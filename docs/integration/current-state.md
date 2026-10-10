@@ -1,3 +1,12 @@
+## 2026-10-10 — A rank-consistent training read (`softsort_rank`) for the learned rank table (claude, #2032)
+
+Preparation for arm S ([record](../labs/softmax-free-read-2026-10-10/README.md#rank-consistent-training-arm-s-preparation-read_weightingsoftsort_rank)):
+- **What changes:** the learned rank read now trains through a differentiable sort (SoftSort), with an exact gradient through the rank weights. Before, it borrowed the flock-softmax gradient for a forward it never ran.
+- **Serving:** the temperature falls to 0 over training and is used only in training steps, so evaluation and export are the hard read D11 already serves.
+
+Line: wide learned flock read · count 2/3 · headline: softmax at runtime yes → yes.
+
+**Next:** arm S runs once `TEST FITNESS: FIT` is posted on the amended pre-registration (#2032): the retune, then 2 seeds at ctx 384 and a ctx 1536 arm.
 ## 2026-10-10 — Codex constructor cycle preserved unfinished for owner-requested session transfer (M2, D22)
 
 The [constructor record](../labs/d22-constructor-2026-10-10/README.md) preserves the complete prepared current-parent comparison and reviewed signed numerical recovery as an indexed inactive patch. Development437/512 and opened-transfer diagnostic0/128 are unchanged; no current-parent training, proposal scoring or diagnostic run occurred, and constructor count remains0/3. External finalized-v2 fitness is FIT, but numerical qualification remains mandatory; the signed source's28 fixtures and saved replay are NOT_RUN. This is unfinished tooling work, not a negative configuration or a closed mechanism.
