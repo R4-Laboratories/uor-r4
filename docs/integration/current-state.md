@@ -1,3 +1,9 @@
+## 2026-10-10 — Codex constructor cycle preserved unfinished for owner-requested session transfer (M2, D22)
+
+The [constructor record](../labs/d22-constructor-2026-10-10/README.md) preserves the complete prepared current-parent comparison and reviewed signed numerical recovery as an indexed inactive patch. Development437/512 and opened-transfer diagnostic0/128 are unchanged; no current-parent training, proposal scoring or diagnostic run occurred, and constructor count remains0/3. External finalized-v2 fitness is FIT, but numerical qualification remains mandatory; the signed source's28 fixtures and saved replay are NOT_RUN. This is unfinished tooling work, not a negative configuration or a closed mechanism.
+
+**Next:** the successor restores the exact archived source, qualifies signed recovery and the integrated producer, executes the registered legal/projected comparison, then merges one result before joint Context–prototype learning. Existing128 is diagnostic only under the owner decision; fresh qualification remains later.
+
 ## 2026-10-10 — Product-key memory trained into the M1 stack at the anchor's steps: the GPU path fix works (0.19 s/step), the configuration reads 19/40 against the brief's 27/40 (deepseek, #2029, D22 order 2)
 
 The [addressed-memory round](../labs/addressed-memory-2026-10-10/README.md) continues with the **device fix the previous cycle
@@ -38,6 +44,7 @@ The owner-funded new line's decisive run, `flock:32:32 learned_rank`, 2 seeds, M
 REJECT. Widening the support 17 → 66 sources buys only 0.0013 BPB over the learned `flock:8:8`, so the remaining gap is the rank weighting or its training, not support size. Line "wide learned flock read" · count 1/3 · headline: softmax at runtime yes → yes. The configuration is closed; the mechanism is not (D22).
 
 **Next:** a rank-consistent training gradient for the rank read (the brief's first open question), pre-registered with a test-fitness review before compute.
+
 ## 2026-10-10 — Addressed memory is built into the dialogue stack and the memory op's missing device support is the measured limit (deepseek, #2029, D22 orders 1–2)
 
 The [addressed-memory round](../labs/addressed-memory-2026-10-10/README.md) answers **D22 order 2**: exact addressed memory is this
