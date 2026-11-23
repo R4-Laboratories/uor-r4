@@ -57,3 +57,27 @@ CARGO_TARGET_DIR=local/antigravity/target ~/.cargo/bin/cargo test -p uor-r4-inte
 | Date | Mechanism / Line | Question / Hypothesis | Artifact & Seed | Result | Next Step |
 |---|---|---|---|---|---|
 | 2026-10-22 | M7 three-host library / CLI / browser parity harness (`#2867`, `#2035`) | Does the D11 integer stack engine (`IntegerStackModel` + `IntegerStackSession` + `stack_argmax` + `UR4SESS1` `session_codec`) produce bit-identical 48-token trajectories and byte-identical `UR4SESS1` session snapshots (both uninterrupted and `32 + 16` fresh-process save/restore) across the Rust library, the `uor-chat --stack` CLI, and the Browser WASM / Studio Web Worker across the 8-prompt `m7-parity-prompts-v1` panel? | `synthetic-stack.lut` (`469,252 B`, seed `5`, `sha256:d60f88d6e08ac60763b35484307f9425f702b9fead4615dd8cbe5fdbbced92df`), `uor_r4_integer_bg.wasm` (`381,734 B`, `sha256:656fe88cdd5740d8c82da91bbd30e872c6a25122943641105ea07651e526d356`), `crates/uor-r4-integer/tests/m7_parity_library_cli_browser.rs`, `web/studio/verify_m7_parity.mjs` | **Confirmed (harness verified on synthetic stand-in; no model capability claim):** `8 / 8` prompts (`384 / 384` uninterrupted tokens and `384 / 384` `32 + 16` fresh-process save/restore tokens) and all 16 `UR4SESS1` session snapshots (`9,782 B` to `16,130 B`) match bit-for-bit across the Rust library, `uor-chat` CLI, direct WASM, and `uor_model_worker.js` (`remote_requests = 0`, `weights_per_token = 15,968`), and all 3 planted-fault controls fail as expected. | Register the `m7-parity-prompts-v1` bar on `#2867` and re-run `m7_parity_library_cli_browser` on the accepted M4 `UORLUT01` model artifact once `#2857` lands. |
+
+## 6. Candidate-artifact mode (2026-11-23, outside contributor, `References #2867`)
+
+The harness accepts a candidate `UORLUT01` stack and checks its embedded tokenizer digest. It compares the same eight prompts, 48 greedy tokens, `32 + 16` continuations and `UR4SESS1` snapshots as the fixture. The CLI starts a new process for each segment. The library uses two model instances, and the Node browser driver restores into a second WASM handle and worker conversation in the same process. Qualification still requires restores in fresh library and browser processes on the accepted M4 artifact under the registered protocol.
+
+- **One panel runner.** `run_m7_panel` runs all three legs on one bound candidate. The seed-5 fixture test still pins its artifact digest, size and `weights_per_token`, and stays the regression.
+- **Receipt identity.** The library, `uor-chat --stack` processes and browser driver check the model and tokenizer digests against the candidate files. The worker verifies the model digest independently. The browser leg drives token IDs directly and records the tokenizer file digest without invoking a browser tokenizer. For `/10` the worker requires explicit token-ID mode and refuses text prompts. The browser report records the hashes of the WASM binary, JavaScript glue and Studio worker, along with whether the WASM package was built, reused, or supplied via `UOR_WASM_PATH`.
+- **No silent substitution.** `verify_m7_parity.mjs` now refuses an explicitly named `UOR_STACK_PATH` or `UOR_TOKENIZER_PATH` that does not exist, instead of building the seed-5 fixture at that path. A candidate equal to the fixture is refused.
+- **Controls.** The regular focused test suite exercises the original seed-5 fixture and a tokenizer-bound seed-6 test fixture. It checks missing or altered receipt fields, the unbound legacy candidate, a tokenizer with different bytes, incorrect digest pins, and missing browser inputs. The bound worker rejects text and out-of-range token IDs.
+
+Run from a clean checkout at the build commit, with Node.js and `wasm-pack` available and no prebuilt `web/studio/pkg` there. Set `ARTIFACT_SHA256` and `TOKENIZER_SHA256` to the expected digests from the candidate's records. Supply absolute input paths and leave `UOR_WASM_PATH` unset for a fresh package from that checkout.
+
+```sh
+UOR_M7_CANDIDATE_ARTIFACT=/path/to/model.lut \
+UOR_M7_CANDIDATE_TOKENIZER=/path/to/tokenizer.json \
+UOR_M7_CANDIDATE_ARTIFACT_SHA256="${ARTIFACT_SHA256:?Set the expected artifact digest}" \
+UOR_M7_CANDIDATE_TOKENIZER_SHA256="${TOKENIZER_SHA256:?Set the expected tokenizer digest}" \
+  cargo test --locked -p uor-r4-integer --features serving-wasm \
+  --test m7_parity_library_cli_browser -- --ignored --nocapture
+```
+
+On success it prints a `uor-r4.m7-candidate-parity-receipt/1` JSON record. The two external digest pins may be omitted for instrument rehearsals. The embedded tokenizer binding is checked in both cases.
+
+The contributor reported an 8/8 rehearsal on the original unbound seed-6 artifact in [PR #4196](https://github.com/UOR-Foundation/uor-r4/pull/4196). That artifact now fails candidate admission. The M7 bar remains at 0/8 pending qualification on the accepted M4 `UORLUT01` (#2859).

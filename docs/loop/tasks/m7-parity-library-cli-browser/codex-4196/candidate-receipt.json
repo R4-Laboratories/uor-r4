@@ -1,0 +1,26 @@
+{
+  "artifact_bytes_len": 469572,
+  "artifact_sha256": "9c7f8a2fcef71e0083b54d1bb6e1b2afc33920d85838e27ab6b6d6f6b48f2a8e",
+  "artifact_sha256_pinned": true,
+  "browser_tokenizer_use": "token-ids-only",
+  "hosts": [
+    "library",
+    "uor-chat-cli",
+    "browser-wasm-worker"
+  ],
+  "panel_id": "m7-parity-prompts-v1",
+  "prompts": 8,
+  "prompts_passed": 8,
+  "read_mode": "lorentz",
+  "schema": "uor-r4.m7-candidate-parity-receipt/1",
+  "snapshots_compared_per_leg": 16,
+  "tokenizer_artifact_binding_sha256": "6e646ba402a342b56680102f1a19d62d82c13eb2e1adabf0ba2e2215c3ca739c",
+  "tokenizer_sha256": "6e646ba402a342b56680102f1a19d62d82c13eb2e1adabf0ba2e2215c3ca739c",
+  "tokenizer_sha256_pinned": true,
+  "tokens_compared": 384,
+  "vocab": 40,
+  "wasm_glue_sha256": "a30ebbe0539e273627a34c76063fdd835c0c334fb24a174d1abd6a6b37a8012d",
+  "wasm_sha256": "091eba8711c811012a94c8983c10b792ab5a6675fcf5876c1f2b7f313070d1d5",
+  "weights_per_token": 15968,
+  "worker_js_sha256": "107b977c1fd41f5d26936e82255af14e92faa83668c485ec98b2c6dcd678b0bc"
+}

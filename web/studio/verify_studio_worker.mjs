@@ -284,14 +284,28 @@ const runtimeMsg = await waitForMessage((m) => m.action === 'runtime_loaded' || 
 assert(runtimeMsg.action === 'runtime_loaded', `prewarm failed: ${JSON.stringify(runtimeMsg)}`);
 assert(runtimeMsg.engine === 'uor-r4-integer/serving-wasm', `unexpected engine tag: ${runtimeMsg.engine}`);
 
-// 1b. The engine limit is advertised honestly: /1-/6 served, /7 parsed but refused.
+// 1b. Check the exact allow-list and `/10`'s explicit token-ID boundary.
 await sendToWorker({ action: 'engine_info', id: 'limit_probe' });
 const infoMsg = await waitForMessage((m) => m.action === 'engine_info_result' || m.action === 'operation_error');
 assert(infoMsg.action === 'engine_info_result', `engine_info failed: ${JSON.stringify(infoMsg)}`);
-assert(Array.isArray(infoMsg.served_schemas) && infoMsg.served_schemas.length === 7 && infoMsg.served_schemas[6] === 'uor-r4.lut-stack/7', `served schemas should be /1-/7, got ${JSON.stringify(infoMsg.served_schemas)}`);
-assert(Array.isArray(infoMsg.parse_schemas) && infoMsg.parse_schemas.includes('uor-r4.lut-stack/7'), `parse schemas should include /7, got ${JSON.stringify(infoMsg.parse_schemas)}`);
+const admittedSchemas = [1, 2, 3, 4, 5, 6, 7, 10].map((n) => `uor-r4.lut-stack/${n}`);
+assert(JSON.stringify(infoMsg.served_schemas) === JSON.stringify(admittedSchemas), `unexpected served schemas: ${JSON.stringify(infoMsg.served_schemas)}`);
+assert(JSON.stringify(infoMsg.parse_schemas) === JSON.stringify(admittedSchemas), `unexpected parsed schemas: ${JSON.stringify(infoMsg.parse_schemas)}`);
+assert(JSON.stringify(infoMsg.token_ids_only_schemas) === '["uor-r4.lut-stack/10"]', 'only /10 should require explicit token-ID mode');
 assert(Array.isArray(infoMsg.refused_schemas) && infoMsg.refused_schemas.length === 0, `no served schema should be refused now, got ${JSON.stringify(infoMsg.refused_schemas)}`);
 assert(infoMsg.turn_memory_served === true, 'engine_info should report the turn memory served');
+for (const schema of [8, 9, 10, 11]) {
+    const header = new TextEncoder().encode(JSON.stringify({ schema: `uor-r4.lut-stack/${schema}`, shape: { vocab: 40 } }));
+    const bytes = new Uint8Array(16 + header.byteLength);
+    bytes.set(new TextEncoder().encode('UORLUT01'));
+    new DataView(bytes.buffer).setBigUint64(8, BigInt(header.byteLength), true);
+    bytes.set(header, 16);
+    const id = `refuse_stack_${schema}`;
+    await sendToWorker({ action: 'load_model', id, payload: { bytes } });
+    const result = await waitForMessage((m) => m.id === id);
+    const reason = schema === 10 ? 'requires explicit token-ID mode' : 'Unsupported stack schema';
+    assert(result.action === 'operation_error' && result.error.includes(reason), `worker did not refuse /${schema} as expected: ${JSON.stringify(result)}`);
+}
 
 // 2. Load the synthetic stack via `load_model` -> `loadStack`.
 const wrongExpectedHash = 'b'.repeat(64);

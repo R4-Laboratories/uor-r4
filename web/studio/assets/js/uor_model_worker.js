@@ -3,7 +3,8 @@
 // `init`, `tickClock`, `loadStack`, `step`, `saveSession`, `restoreSession`,
 // `weightsPerToken`, `allocEvents`, `leakedModels` (`crates/uor-r4-integer/src/wasm_bindgen_exports.rs`).
 //
-// Container family: the engine parses `uor-r4.lut-stack/1` .. `uor-r4.lut-stack/7`
+// Container family: this worker admits `uor-r4.lut-stack/1` .. `uor-r4.lut-stack/7`
+// and tokenizer-bound `/10` stacks in explicit token-ID mode
 // (`crates/uor-r4-integer/src/stack/format.rs`) and, since the M1 serving unit, the
 // discrete `uor-r4.lut-discrete/1` artifact (`crates/uor-r4-integer/src/discrete_d11.rs`).
 // The stack family is served as a stateful token session; the discrete family is
@@ -38,23 +39,15 @@ import {
 
 const ENGINE_TAG = 'uor-r4-integer/serving-wasm';
 const LUT_MAGIC = 'UORLUT01';
-// The engine's container family: `uor-r4.lut-stack/1` .. `/7`, one schema per
-// shape feature set (`crates/uor-r4-integer/src/stack/format.rs`).
+// The WASM parser validates the full stack and its tokenizer binding.
 const LUT_SCHEMA_PREFIX = 'uor-r4.lut-stack/';
-const STACK_SCHEMA_MIN = 1;
-const STACK_SCHEMA_MAX = 7;
-// Served by the engine: /1-/7. A /7 stack carries the turn memory, served since the
-// turn-memory-integer units 2-3 (`stack/session.rs`, `stack/memory.rs`).
-const STACK_SERVED_MAX = 7;
+const BOUND_STACK_SCHEMA = `${LUT_SCHEMA_PREFIX}10`;
 const TURN_MEMORY_SCHEMA = 'uor-r4.lut-stack/7';
 // Carried by the discrete runtime, which is native-only; the stack engine refuses it.
 const DISCRETE_SCHEMA = 'uor-r4.lut-discrete/1';
 const DISCRETE_TRUNK_SCHEMA = 'uor-r4.lut-discrete-trunk/1';
 const ENGINE_SCHEMAS = Object.freeze(
-    Array.from({ length: STACK_SCHEMA_MAX }, (_, i) => `${LUT_SCHEMA_PREFIX}${i + 1}`),
-);
-const SERVED_SCHEMAS = Object.freeze(
-    Array.from({ length: STACK_SERVED_MAX }, (_, i) => `${LUT_SCHEMA_PREFIX}${i + 1}`),
+    [...Array.from({ length: 7 }, (_, i) => `${LUT_SCHEMA_PREFIX}${i + 1}`), BOUND_STACK_SCHEMA],
 );
 // Where the page may have resolved the artifact bytes from. The worker itself
 // makes no network requests: the page (or a desktop shell) owns resolution.
@@ -102,18 +95,8 @@ async function ensureWasmLoaded() {
     return wasmInitPromise;
 }
 
-function stackSchemaLevel(schema) {
-    if (typeof schema !== 'string' || !schema.startsWith(LUT_SCHEMA_PREFIX)) return null;
-    const level = Number(schema.slice(LUT_SCHEMA_PREFIX.length));
-    return Number.isInteger(level) && level >= STACK_SCHEMA_MIN && level <= STACK_SCHEMA_MAX ? level : null;
-}
-
 function unsupportedSchemaReason(schema) {
-    if (schema === DISCRETE_SCHEMA) {
-        return `The ${DISCRETE_SCHEMA} container is not wired into the WASM serving engine yet ` +
-            `(its discrete runtime is native-only). The stack engine parses ${LUT_SCHEMA_PREFIX}1..${STACK_SCHEMA_MAX} only.`;
-    }
-    return `Unsupported stack schema "${schema || 'unknown'}"; the stack engine parses ${LUT_SCHEMA_PREFIX}1..${STACK_SCHEMA_MAX} only.`;
+    return `Unsupported stack schema "${schema || 'unknown'}"; this worker admits ${LUT_SCHEMA_PREFIX}1 through /7 and /10 in token-ID mode.`;
 }
 
 function present(value) {
@@ -204,8 +187,7 @@ function parseUorLutHeader(bytes) {
             mode: 'discrete-prefix',
         };
     }
-    const schemaLevel = stackSchemaLevel(parsed && parsed.schema);
-    if (!Number.isInteger(schemaLevel)) {
+    if (!ENGINE_SCHEMAS.includes(parsed?.schema)) {
         throw new Error(unsupportedSchemaReason(parsed && parsed.schema));
     }
     if (!parsed.shape || typeof parsed.shape !== 'object') {
@@ -216,9 +198,10 @@ function parseUorLutHeader(bytes) {
     const vocab = Number(shape.vocab) || Number(shape.vocabulary) || 0;
     return {
         schema: parsed.schema,
-        schema_level: schemaLevel,
+        schema_level: Number(parsed.schema.slice(LUT_SCHEMA_PREFIX.length)),
         engine_kind: 'stack',
-        engine_supported: schemaLevel <= STACK_SERVED_MAX,
+        engine_supported: true,
+        token_ids_only: parsed.schema === BOUND_STACK_SCHEMA,
         engine_support_reason: null,
         shape: {
             vocab,
@@ -267,6 +250,18 @@ function cancelActive() {
     if (activeJob) {
         activeJob.cancelled = true;
     }
+}
+
+function strictPromptTokenIds(tokenIds, vocabSize) {
+    if (!Array.isArray(tokenIds) || tokenIds.length === 0) {
+        throw new Error('This tokenizer-bound stack requires a non-empty tokenIds array.');
+    }
+    return Array.from(tokenIds, (id, index) => {
+        if (!Object.hasOwn(tokenIds, index) || !Number.isInteger(id) || id < 0 || id >= vocabSize) {
+            throw new Error(`Token ID at index ${index} must be an integer in stack vocab range 0..${vocabSize - 1}.`);
+        }
+        return id;
+    });
 }
 
 function encodePromptTokens(payload, vocabSize, artifact) {
@@ -394,7 +389,8 @@ self.onmessage = async ({ data }) => {
                 ready: Boolean(capabilities),
                 capabilities,
                 parse_schemas: ENGINE_SCHEMAS,
-                served_schemas: SERVED_SCHEMAS,
+                served_schemas: ENGINE_SCHEMAS,
+                token_ids_only_schemas: [BOUND_STACK_SCHEMA],
                 refused_schemas: [],
                 turn_memory_served: true,
                 discrete_supported: false,
@@ -408,7 +404,8 @@ self.onmessage = async ({ data }) => {
                 id,
                 engine: ENGINE_TAG,
                 parse_schemas: ENGINE_SCHEMAS,
-                served_schemas: SERVED_SCHEMAS,
+                served_schemas: ENGINE_SCHEMAS,
+                token_ids_only_schemas: [BOUND_STACK_SCHEMA],
                 refused_schemas: [],
                 turn_memory_served: true,
                 discrete_schemas: [DISCRETE_SCHEMA],
@@ -470,8 +467,13 @@ self.onmessage = async ({ data }) => {
             if (expectedSha256 && artifactSha256 !== expectedSha256) {
                 throw new Error(`Artifact sha256 ${artifactSha256} does not match the expected ${expectedSha256}; refusing to load.`);
             }
+            if (headerInfo.token_ids_only && payload.tokenIdsOnly !== true) {
+                throw new Error('Loading this tokenizer-bound stack requires explicit token-ID mode.');
+            }
             const { source, source_label } = normalizeSource(payload);
-            const nextTokenizerArtifact = await loadTokenizerArtifact(raw, headerInfo, payload.tokenizerArtifact);
+            const nextTokenizerArtifact = headerInfo.token_ids_only
+                ? null
+                : await loadTokenizerArtifact(raw, headerInfo, payload.tokenizerArtifact);
             if (loadToken !== latestLoadToken) return;
             if (headerInfo.engine_kind === 'discrete') {
                 const handle = wasmModule.loadDiscrete(raw);
@@ -558,7 +560,10 @@ self.onmessage = async ({ data }) => {
                 group: headerInfo.group,
                 synthetic: headerInfo.synthetic,
                 status_label: headerInfo.status_label,
-                tokenizer_label: tokenizerLabel(nextTokenizerArtifact, headerInfo.shape.vocab),
+                token_ids_only: headerInfo.token_ids_only,
+                tokenizer_label: headerInfo.token_ids_only
+                    ? 'token IDs only (text tokenization disabled)'
+                    : tokenizerLabel(nextTokenizerArtifact, headerInfo.shape.vocab),
                 weights_per_token: wpt,
                 checkpoint_bytes: initialSessionBytes.byteLength,
                 turn_memory: turnMemory,
@@ -707,7 +712,7 @@ self.onmessage = async ({ data }) => {
             throw new Error('Another generation is active. Wait for its completion or cancellation.');
         }
 
-        const exactTool = exactToolFromPayload(payload);
+        const exactTool = capabilities?.token_ids_only ? null : exactToolFromPayload(payload);
         if (exactTool) {
             const started = performance.now();
             const job = { id, cancelled: false };
@@ -742,6 +747,9 @@ self.onmessage = async ({ data }) => {
             return;
         }
 
+        const strictTokenIds = capabilities?.token_ids_only
+            ? strictPromptTokenIds(payload.tokenIds, capabilities.shape.vocab)
+            : null;
         const hasTurnMemory = Boolean(capabilities && capabilities.turn_memory && capabilities.turn_memory.present);
         const convId = payload.conversationId || 'default';
         const entry = hasTurnMemory ? null : ensureSessionEntry(convId);
@@ -751,7 +759,7 @@ self.onmessage = async ({ data }) => {
         }
 
         const decodeText = !Array.isArray(payload.tokenIds) || payload.tokenIds.length === 0;
-        const promptTokens = encodePromptTokens(payload, capabilities.shape.vocab, tokenizerArtifact);
+        const promptTokens = strictTokenIds ?? encodePromptTokens(payload, capabilities.shape.vocab, tokenizerArtifact);
         const maxTokens = Math.min(4096, Math.max(1, Number(payload.options?.max_new_tokens) || 32));
         const job = { id, conversationId: convId, epoch: startEpoch, cancelled: false };
         activeJob = job;

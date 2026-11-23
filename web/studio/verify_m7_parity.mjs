@@ -16,8 +16,8 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { basename, dirname, resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '../..');
@@ -34,10 +34,24 @@ function sha256Hex(bytes) {
     return createHash('sha256').update(bytes).digest('hex');
 }
 
+// An explicitly named input must exist: a missing candidate is an error, never a
+// silent rebuild of the seed-5 fixture in its place (#2867).
+function requireNamedInput(envName) {
+    const named = process.env[envName];
+    if (named === undefined || named === '') return null;
+    assert(existsSync(named), `${envName}=${named} does not exist; refusing to substitute the synthetic fixture`);
+    return named;
+}
+
 function ensureWasmAndSyntheticStack() {
-    const wasmFile = process.env.UOR_WASM_PATH || resolve(pkgDir, 'uor_r4_integer_bg.wasm');
-    const jsFile = resolve(dirname(wasmFile), 'uor_r4_integer.js');
-    const stackFile = process.env.UOR_STACK_PATH || resolve(pkgDir, 'synthetic-stack.lut');
+    const namedStack = requireNamedInput('UOR_STACK_PATH');
+    const tokenizerFile = requireNamedInput('UOR_TOKENIZER_PATH');
+    const wasmOverride = process.env.UOR_WASM_PATH || null;
+    const wasmFile = wasmOverride || resolve(pkgDir, 'uor_r4_integer_bg.wasm');
+    // The actual Studio worker imports this exact glue module.
+    const glueFile = resolve(pkgDir, 'uor_r4_integer.js');
+    const stackFile = namedStack || resolve(pkgDir, 'synthetic-stack.lut');
+    const stackSource = namedStack ? 'named' : 'default-fixture';
 
     const cargoBin = existsSync(`${process.env.HOME}/.cargo/bin/cargo`)
         ? `${process.env.HOME}/.cargo/bin/cargo`
@@ -47,8 +61,12 @@ function ensureWasmAndSyntheticStack() {
         : 'wasm-pack';
     const targetDir = process.env.CARGO_TARGET_DIR || resolve(repoRoot, 'local/antigravity/target');
 
-    if (!existsSync(wasmFile) || !existsSync(jsFile)) {
-        mkdirSync(dirname(wasmFile), { recursive: true });
+    let wasmSource = 'existing-package';
+    if (wasmOverride) {
+        assert(existsSync(wasmFile) && existsSync(glueFile), 'UOR_WASM_PATH needs existing WASM bytes and Studio pkg/uor_r4_integer.js glue');
+        wasmSource = 'explicit-wasm';
+    } else if (!existsSync(wasmFile) || !existsSync(glueFile)) {
+        mkdirSync(pkgDir, { recursive: true });
         execFileSync(
             wasmPackBin,
             [
@@ -58,8 +76,9 @@ function ensureWasmAndSyntheticStack() {
                 'web',
                 '--no-opt',
                 '--out-dir',
-                dirname(wasmFile),
+                pkgDir,
                 '--',
+                '--locked',
                 '--features',
                 'serving-wasm',
             ],
@@ -69,17 +88,19 @@ function ensureWasmAndSyntheticStack() {
                     CARGO_TARGET_DIR: targetDir,
                     RUSTFLAGS: '-C target-feature=-simd128',
                 },
-                stdio: 'inherit',
+                stdio: ['ignore', 2, 2],
             },
         );
+        wasmSource = 'built-package';
     }
 
-    if (!existsSync(stackFile)) {
+    if (!namedStack && !existsSync(stackFile)) {
         mkdirSync(dirname(stackFile), { recursive: true });
         execFileSync(
             cargoBin,
             [
                 'run',
+                '--locked',
                 '-p',
                 'uor-r4-integer',
                 '--features',
@@ -95,12 +116,12 @@ function ensureWasmAndSyntheticStack() {
                     ...process.env,
                     CARGO_TARGET_DIR: targetDir,
                 },
-                stdio: 'inherit',
+                stdio: ['ignore', 2, 2],
             },
         );
     }
 
-    return { wasmFile, stackFile };
+    return { wasmFile, glueFile, wasmSource, stackFile, stackSource, tokenizerFile };
 }
 
 export const M7_PARITY_PROMPTS = [
@@ -114,11 +135,18 @@ export const M7_PARITY_PROMPTS = [
     { id: 'P7_octave', promptIds: [0, 4, 8, 12, 16, 20, 24, 28] },
 ];
 
-const { wasmFile, stackFile } = ensureWasmAndSyntheticStack();
+const { wasmFile, glueFile, wasmSource, stackFile, stackSource, tokenizerFile } = ensureWasmAndSyntheticStack();
+const workerFile = resolve(__dirname, 'assets/js/uor_model_worker.js');
 const wasmBytes = readFileSync(wasmFile);
 const stackBytes = readFileSync(stackFile);
 const wasmSha256 = sha256Hex(wasmBytes);
+const wasmGlueSha256 = sha256Hex(readFileSync(glueFile));
+const workerJsSha256 = sha256Hex(readFileSync(workerFile));
 const artifactSha256 = sha256Hex(stackBytes);
+// This panel gives the worker token IDs directly. Record the tokenizer bytes as
+// an input identity without exercising browser text tokenization.
+const tokenizerBytes = tokenizerFile ? readFileSync(tokenizerFile) : null;
+const tokenizerSha256 = tokenizerBytes ? sha256Hex(tokenizerBytes) : null;
 
 // 1. Trap all network APIs to enforce zero remote calls during WASM and Worker execution.
 const remoteRequests = [];
@@ -234,7 +262,7 @@ async function sendToWorker(data) {
 
 // 2. Initialize the Studio Web Worker (`uor_model_worker.js`) and load the stack artifact.
 // Note: `uor_model_worker.js` loads slot handle 0 inside the shared wasm-bindgen module.
-await import('./assets/js/uor_model_worker.js');
+await import(pathToFileURL(workerFile).href);
 await sendToWorker({ action: 'prewarm' });
 const runtimeMsg = await waitForMessage((m) => m.action === 'runtime_loaded' || m.action === 'operation_error');
 assert(runtimeMsg.action === 'runtime_loaded', `prewarm failed: ${JSON.stringify(runtimeMsg)}`);
@@ -243,15 +271,44 @@ await sendToWorker({
     action: 'load_model',
     payload: {
         bytes: stackBytes.buffer.slice(stackBytes.byteOffset, stackBytes.byteOffset + stackBytes.byteLength),
-        fileName: 'synthetic-stack.lut',
+        fileName: basename(stackFile),
+        tokenIdsOnly: true,
+        tokenizerArtifact: false,
+        // The worker refuses bytes whose SHA-256 differs from the file this script measured.
+        expectedSha256: artifactSha256,
     },
 });
 const loadedMsg = await waitForMessage((m) => m.action === 'model_loaded' || m.action === 'operation_error');
 assert(loadedMsg.action === 'model_loaded', `load_model failed: ${JSON.stringify(loadedMsg)}`);
+assert(
+    loadedMsg.sha256 === artifactSha256 && loadedMsg.capabilities?.sha256_verified === true,
+    `worker did not verify artifact sha256 ${artifactSha256}: ${loadedMsg.sha256}`,
+);
+assert(loadedMsg.capabilities.can_restore_session, 'the M7 panel requires worker session restore');
+
+if (loadedMsg.schema === 'uor-r4.lut-stack/10') {
+    assert(loadedMsg.capabilities.token_ids_only, 'the worker must expose bound stacks in token-ID mode');
+    const invalidTokenIds = [[null], [false], [''], ['0'], [0.5], [-1], [loadedMsg.capabilities.shape.vocab], Array(1)];
+    const probes = [
+        [{ prompt: '1 + 1' }, 'requires a non-empty tokenIds array'],
+        [{ tokenIds: [] }, 'requires a non-empty tokenIds array'],
+        // Use 32 new conversation IDs and leave them alone. If invalid IDs
+        // allocate sessions, the successful panel below will hit the worker cap.
+        ...Array.from({ length: 32 }, (_, index) => [
+            { tokenIds: invalidTokenIds[index % invalidTokenIds.length] }, 'must be an integer in stack vocab range',
+        ]),
+    ];
+    for (const [index, [payload, message]] of probes.entries()) {
+        const id = `reject_prompt_${index}`;
+        await sendToWorker({ action: 'generate', id, payload: { ...payload, conversationId: id } });
+        const result = await waitForMessage((m) => m.id === id && m.action.startsWith('generate_'));
+        assert(result.action === 'generate_error' && result.error.includes(message), `worker accepted invalid ${id}`);
+    }
+}
 
 // 3. Import the raw `wasm-pack` module (`./pkg/uor_r4_integer.js`) and allocate two independent
 // stack handles (`rawHandleA`, `rawHandleB`) for direct WASM + fresh-handle restore checks.
-const wasmMod = await import('./pkg/uor_r4_integer.js');
+const wasmMod = await import(pathToFileURL(glueFile).href);
 const rawHandleA = wasmMod.loadStack(new Uint8Array(stackBytes));
 const rawHandleB = wasmMod.loadStack(new Uint8Array(stackBytes));
 const blankStateA = new Uint8Array(wasmMod.saveSession(rawHandleA));
@@ -448,9 +505,17 @@ const report = {
     schema: 'uor-r4.m7-browser-parity/1',
     panel_id: 'm7-parity-prompts-v1',
     wasm_sha256: wasmSha256,
+    wasm_glue_sha256: wasmGlueSha256,
+    worker_js_sha256: workerJsSha256,
+    wasm_source: wasmSource,
     wasm_bytes_len: wasmBytes.byteLength,
     artifact_sha256: artifactSha256,
     artifact_bytes_len: stackBytes.byteLength,
+    artifact_source: stackSource,
+    worker_artifact_sha256: loadedMsg.sha256,
+    tokenizer_sha256: tokenizerSha256,
+    tokenizer_use: 'token-ids-only',
+    tokenizer_bytes_len: tokenizerBytes ? tokenizerBytes.byteLength : null,
     weights_per_token: weightsPerToken,
     remote_requests: remoteRequests.length,
     rows,

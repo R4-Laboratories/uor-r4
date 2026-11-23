@@ -2755,7 +2755,10 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
     #[cfg_attr(target_arch = "wasm32", allow(unused_mut))]
     let mut model = IntegerStackModel::load(artifact)?;
     let tokenizer_bytes = std::fs::read(tokenizer_path)?;
-    model.require_tokenizer_sha256(&hex::encode(Sha256::digest(&tokenizer_bytes)))?;
+    // The measured digest of the tokenizer file this process read, reported in
+    // the parity record so a harness can match it across hosts (#2867).
+    let tokenizer_file_sha256 = hex::encode(Sha256::digest(&tokenizer_bytes));
+    model.require_tokenizer_sha256(&tokenizer_file_sha256)?;
     #[cfg(not(target_arch = "wasm32"))]
     model.set_threads(cli.threads)?;
     #[cfg(target_arch = "wasm32")]
@@ -2976,6 +2979,7 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
             "artifact": artifact,
             "artifact_sha256": model.artifact_sha256(),
             "tokenizer": tokenizer_path,
+            "tokenizer_sha256": tokenizer_file_sha256,
             "content_readout": content_readout_identity.as_ref().map(|(path, _)| path),
             "content_readout_sha256": content_readout_identity.as_ref().map(|(_, sha256)| sha256),
             "tokenizer_cid": chat.protocol().tokenizer_cid,
