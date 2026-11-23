@@ -101,19 +101,74 @@ const SCREEN_PATCHES = [
   },
   {
     file: "src/pages/plugins.tsx",
-    from: `    <div className="w-full min-h-screen px-8 py-4">
+    from: `import React, { useEffect, useState } from "react";
+import { Plus } from "lucide-react";
+import { BackButton } from "@/components/ui/back-button";
+import { Button } from "@/components/ui/button";
+import { PluginsList } from "@/components/plugins/PluginsList";
+import { CatalogSection } from "@/components/plugins/catalog/CatalogSection";
+import { useDeepLink } from "@/contexts/DeepLinkContext";
+
+const PluginsPage: React.FC = () => {
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const { lastDeepLink } = useDeepLink();
+
+  // The prism://add-mcp-server deep link lands on this page; open the
+  // add dialog so the prefilled form (see AddPluginDialog) is visible.
+  useEffect(() => {
+    if (lastDeepLink?.type === "add-mcp-server") {
+      setIsAddDialogOpen(true);
+    }
+  }, [lastDeepLink?.timestamp]);
+
+  return (
+    <div className="w-full min-h-screen px-8 py-4">
       <div className="max-w-5xl pb-12">
-        <BackButton />`,
-    to: `    <div className="${PAGE}">
-      <div className="pb-12">`,
-  },
-  {
-    file: "src/pages/plugins.tsx",
-    from: `            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <BackButton />
+        <header className="mb-8 flex items-start justify-between gap-4">
+          <div className="text-left">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Plugins
             </h1>
-            <p className="text-md text-gray-600 dark:text-gray-400">`,
-    to: `            <p className="text-muted-foreground">`,
+            <p className="text-md text-gray-600 dark:text-gray-400">
+              Connect plugins (MCP servers) to give the AI new tools.
+            </p>
+          </div>
+          <Button onClick={() => setIsAddDialogOpen(true)}>
+            <Plus size={16} />
+            Add Plugin
+          </Button>
+        </header>
+        <PluginsList
+          addDialogOpen={isAddDialogOpen}
+          onAddDialogOpenChange={setIsAddDialogOpen}
+        />
+        <CatalogSection />
+      </div>
+    </div>
+  );
+};`,
+    to: `import React from "react";
+
+const PluginsPage: React.FC = () => {
+  return (
+    <div className="${PAGE}">
+      <div className="max-w-3xl pb-12 space-y-4">
+        <p className="text-muted-foreground">
+          External desktop MCP plugin installation is disabled in Foundry Web Studio.
+        </p>
+        <div className="rounded-lg border border-border bg-card p-4 text-sm text-card-foreground space-y-2">
+          <p className="font-medium">Built-in Browser Toolchains Active</p>
+          <p className="text-muted-foreground">
+            UOR-R4 runs built-in tools directly inside your browser workstation: Studio Workspace files,
+            x86 Linux 6.18.7 VM (v86), RV64IMAC MVM sandbox, GitHub sync, PrismPM/.holo publishing,
+            LexLean 0.3.0 checking, UOR Standards lookup, and Stitch networking.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};`,
   },
   {
     file: "src/pages/templates.tsx",
@@ -440,12 +495,21 @@ import { HomeChatThread, HomeModeToggle, useHomeChat, type HomeMode } from "../.
   },
   {
     file: "src/pages/home.tsx",
-    from: `  const navigate = useNavigate();`,
-    to: `  const navigate = useNavigate();
+    from: `  const { settings, envVars, loading: isSettingsLoading } = useSettings();`,
+    to: `  const { settings, envVars, loading: isSettingsLoading, updateSettings } = useSettings();
   const queryClient = useQueryClient();
   const { refreshApps } = useLoadApps();
   const { selectChat } = useSelectChat();
   const [homeMode, setHomeMode] = useState<HomeMode>("chat");
+  const handleHomeModeChange = useCallback(
+    (nextMode: HomeMode) => {
+      setHomeMode(nextMode);
+      if (nextMode === "build") {
+        void updateSettings({ selectedChatMode: "build" }).catch(() => {});
+      }
+    },
+    [updateSettings],
+  );
   const handleHomePromoted = useCallback(async (promotedAppId: number, promotedChatId: number) => {
     await refreshApps();
     await queryClient.invalidateQueries();
@@ -487,14 +551,18 @@ import { HomeChatThread, HomeModeToggle, useHomeChat, type HomeMode } from "../.
         void homeChat.sendMessage(promptText);
         return true;
       }
+      const submittedChatMode =
+        homeMode === "build" ? "build" : homeSubmitChatMode;
+      const submittedExplicit =
+        homeMode === "build" ? true : hasManuallySelectedChatMode;
       return sendFirstPrompt({
         type: "SUBMIT",
         payload: {
           prompt: inputValue,
           attachments: submittedAttachments,
           selectedApp: options?.selectedApp,
-          chatMode: homeSubmitChatMode,
-          isChatModeExplicit: hasManuallySelectedChatMode,
+          chatMode: submittedChatMode,
+          isChatModeExplicit: submittedExplicit,
         },
       });
     },
@@ -518,7 +586,7 @@ import { HomeChatThread, HomeModeToggle, useHomeChat, type HomeMode } from "../.
     to: `          <div className="mb-3 flex justify-center">
             <HomeModeToggle
               mode={homeMode}
-              onChange={setHomeMode}
+              onChange={handleHomeModeChange}
               disabled={isCheckingProviders || homeChat.sending || homeChat.promoting}
             />
           </div>
@@ -537,7 +605,81 @@ import { HomeChatThread, HomeModeToggle, useHomeChat, type HomeMode } from "../.
           <HomeChatInput
             onSubmit={handleSubmit}
             disabled={isCheckingProviders}
+            homeMode={homeMode}
           />`,
+  },
+  {
+    file: "src/components/ChatInputControls.tsx",
+    from: `export function ChatInputControls() {
+  return (
+    <div className="flex items-center">
+      <ChatModeSelector />
+      <div className="w-1.5"></div>
+      <ModelPicker />
+      <ProModeSelector />
+    </div>
+  );
+}`,
+    to: `export function ChatInputControls({
+  hideModeSelector = false,
+}: {
+  hideModeSelector?: boolean;
+} = {}) {
+  return (
+    <div className="flex items-center">
+      {!hideModeSelector && <ChatModeSelector />}
+      {!hideModeSelector && <div className="w-1.5"></div>}
+      <ModelPicker />
+      <ProModeSelector />
+    </div>
+  );
+}`,
+  },
+  {
+    file: "src/components/chat/HomeChatInput.tsx",
+    from: `export function HomeChatInput({
+  onSubmit,
+  disabled = false,
+}: {
+  onSubmit: (options?: HomeSubmitOptions) => boolean | Promise<boolean>;
+  disabled?: boolean;
+}) {`,
+    to: `export function HomeChatInput({
+  onSubmit,
+  disabled = false,
+  homeMode = "build",
+}: {
+  onSubmit: (options?: HomeSubmitOptions) => boolean | Promise<boolean>;
+  disabled?: boolean;
+  homeMode?: "chat" | "build";
+}) {`,
+  },
+  {
+    file: "src/components/chat/HomeChatInput.tsx",
+    from: `  const placeholder = selectedApp
+    ? \`Send a message to \${selectedApp.name}...\`
+    : \`Ask Prism to build \${typingText ?? ""}\`;`,
+    to: `  void typingText;
+  const placeholder = selectedApp
+    ? \`Send a message to \${selectedApp.name}...\`
+    : homeMode === "chat"
+      ? "Ask UOR-R4 anything or run /linux /mvm..."
+      : "Describe the app you want to build...";`,
+  },
+  {
+    file: "src/components/chat/HomeChatInput.tsx",
+    from: `<ChatInputControls />`,
+    to: `<ChatInputControls hideModeSelector />`,
+  },
+  {
+    file: "src/window_infrastructure/query_keys.ts",
+    from: `    case "app":
+      return [queryKeys.apps.detail({ appId: scope.appId })];`,
+    to: `    case "app":
+      return [
+        queryKeys.apps.detail({ appId: scope.appId }),
+        ["app-files", "content", scope.appId] as const,
+      ];`,
   },
   {
     file: "src/components/chat/HomeChatInput.tsx",
@@ -1302,6 +1444,236 @@ export function TerminalEscapeBanner({
         runtime={runtimeMode}
         onSwitchRuntime={handleSwitchRuntime}
       />`,
+  },
+  {
+    file: "src/components/chat/TerminalPanel.tsx",
+    from: `          {cwd && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                void ipc.system.showItemInFolder(cwd);
+              }}
+            >
+              {t("terminal.revealFolder")}
+            </Button>
+          )}`,
+    to: ``,
+  },
+  {
+    file: "src/components/DefaultChatModeSelector.tsx",
+    from: `      case "local-agent":
+        return isProEnabled ? "Agent" : "Basic Agent";`,
+    to: `      case "local-agent":
+        return "Build";`,
+  },
+  {
+    file: "src/components/DefaultChatModeSelector.tsx",
+    from: `          <SelectItem value="local-agent">
+            <div className="flex flex-col items-start">
+              <span className="font-medium">
+                {isProEnabled ? "Agent" : "Basic Agent"}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {isProEnabled
+                  ? "Better at bigger tasks"
+                  : quotaStatus?.isQuotaExceeded
+                    ? "Daily limit reached; preference applies after reset"
+                    : \`Free tier (\${FREE_AGENT_QUOTA_LIMIT} messages/day)\`}
+              </span>
+            </div>
+          </SelectItem>
+`,
+    to: ``,
+  },
+  {
+    file: "src/components/HelpDialog.tsx",
+    from: `const GITHUB_ISSUES_BASE =
+  "https://github.com/dyad-sh/dyad/issues/new" as const;`,
+    to: `const GITHUB_ISSUES_BASE =
+  "https://github.com/UOR-Foundation/uor-r4/issues/new" as const;`,
+  },
+  {
+    file: "src/components/HelpDialog.tsx",
+    from: `            onClick={() =>
+              ipc.system.openExternalUrl("https://www.dyad.sh/docs")
+            }`,
+    to: `            onClick={() =>
+              ipc.system.openExternalUrl("https://github.com/UOR-Foundation/uor-r4")
+            }`,
+  },
+  {
+    file: "src/components/ErrorBoundary.tsx",
+    from: `      const githubIssueUrl = \`https://github.com/dyad-sh/dyad/issues/new?title=\${encodedTitle}&labels=bug,filed-from-app,client-error&body=\${encodedBody}\`;
+
+      // Open the pre-filled GitHub issue page
+      await ipc.system.openExternalUrl(githubIssueUrl);
+    } catch (err) {
+      console.error("Failed to prepare bug report:", err);
+      // Fallback to opening the regular GitHub issue page
+      ipc.system.openExternalUrl("https://github.com/dyad-sh/dyad/issues/new");`,
+    to: `      const githubIssueUrl = \`https://github.com/UOR-Foundation/uor-r4/issues/new?title=\${encodedTitle}&labels=bug,filed-from-app,client-error&body=\${encodedBody}\`;
+
+      // Open the pre-filled GitHub issue page
+      await ipc.system.openExternalUrl(githubIssueUrl);
+    } catch (err) {
+      console.error("Failed to prepare bug report:", err);
+      // Fallback to opening the regular GitHub issue page
+      ipc.system.openExternalUrl("https://github.com/UOR-Foundation/uor-r4/issues/new");`,
+  },
+  {
+    file: "src/components/preview_panel/PublishPanel.tsx",
+    from: `            {app.githubOrg && app.githubRepo && (
+              <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
+                <GithubCollaboratorManager appId={selectedAppId} />
+              </div>
+            )}`,
+    to: ``,
+  },
+  {
+    file: "src/pages/app-details.tsx",
+    from: `            {selectedApp.githubOrg && selectedApp.githubRepo && appId && (
+              <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
+                <GithubCollaboratorManager appId={appId} />
+              </div>
+            )}`,
+    to: ``,
+  },
+  {
+    file: "src/components/chat/ChatInput.tsx",
+    from: `          ) : (
+            selectedComponents.length > 0 && (
+              <div className="border-b border-border p-3 bg-muted/30">
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <button
+                        onClick={() => {
+                          ipc.system.openExternalUrl("https://dyad.sh/pro");
+                        }}
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                      />
+                    }
+                  >
+                    <Lock size={16} />
+                    <span className="font-medium">{t("visualEditor")}</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {t("visualEditorDescription")}
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            )
+          )}`,
+    to: `          ) : null}`,
+  },
+  {
+    file: "src/components/chat/AuxiliaryActionsMenu.tsx",
+    from: `          {/* Generate Image */}
+          {onGenerateImage && (
+            <DropdownMenuItem
+              onClick={() => {
+                setIsOpen(false);
+                onGenerateImage();
+              }}
+              className="py-2 px-3"
+              data-testid="generate-image-menu-item"
+            >
+              <ImageIcon size={16} className="mr-2" />
+              Generate Image
+            </DropdownMenuItem>
+          )}
+`,
+    to: ``,
+  },
+  {
+    file: "src/components/NewLibraryItemMenu.tsx",
+    from: `  onNewImage: () => void;
+}) {`,
+    to: `  onNewImage?: () => void;
+}) {`,
+  },
+  {
+    file: "src/components/NewLibraryItemMenu.tsx",
+    from: `        <DropdownMenuItem onClick={onNewImage}>
+          <ImagePlus className="mr-2 h-4 w-4" />
+          Generate Image
+        </DropdownMenuItem>`,
+    to: ``,
+  },
+  {
+    file: "src/components/preview_panel/PreviewIframe.tsx",
+    from: `        if (isProMode) {
+          // Set as the highlighted component for visual editing
+          setVisualEditingSelectedComponent(component);
+          // Trigger AST analysis
+          analyzeComponent(component.id);
+        }`,
+    to: `        if (isProMode) {
+          // Set as the highlighted component for visual editing
+          setVisualEditingSelectedComponent(component);
+        }`,
+  },
+  {
+    file: "src/components/chat/ChatHeader.tsx",
+    from: `          {currentBranchName === "master" ? (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRenameMasterToMain}
+              disabled={isRenamingBranch || branchInfoLoading}
+            >
+              {isRenamingBranch
+                ? t("header.renaming")
+                : t("header.renameMasterToMain")}
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleCheckoutMainBranch}
+              disabled={
+                !versionPreviewProjection.capabilities.canSwitchBranch ||
+                branchInfoLoading
+              }
+            >
+              {isCheckingOutVersion
+                ? t("header.checkingOut")
+                : t("header.switchToMainBranch")}
+            </Button>
+          )}`,
+    to: `          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCheckoutMainBranch}
+            disabled={
+              !versionPreviewProjection.capabilities.canSwitchBranch ||
+              branchInfoLoading
+            }
+          >
+            {isCheckingOutVersion
+              ? t("header.checkingOut")
+              : t("header.switchToMainBranch")}
+          </Button>`,
+  },
+  {
+    file: "src/components/chat/ChatHeader.tsx",
+    from: `      {/* Show uncommitted files banner when on a branch and there are uncommitted changes */}
+      {/* Hide while streaming to avoid distracting the user */}
+      {!isVersionPaneOpen && branchInfo?.branch && !isStreaming && (
+        <UncommittedFilesBanner appId={appId} />
+      )}`,
+    to: ``,
+  },
+  {
+    file: "src/components/preview_panel/CodeView.tsx",
+    from: `          {app.id != null && <CommitMenu appId={app.id} />}`,
+    to: ``,
+  },
+  {
+    file: "src/components/LibraryFilterTabs.tsx",
+    from: `  { key: "media", label: "Media", icon: Image },`,
+    to: ``,
   },
 ];
 

@@ -147,7 +147,7 @@ async function walk9pFiles(fs9p, prefix = '', out = new Map(), depth = 0) {
   for (const name of names) {
     if (!name || name === '.' || name === '..') continue;
     if (depth === 0 && INTERNAL_FILE_RE.test(name)) continue;
-    if (name === '.git' || name === 'node_modules') continue;
+    if (name === '.git' || name === 'node_modules' || (depth === 0 && name === '.env')) continue;
     const rel = prefix ? `${prefix}/${name}` : name;
     const info = fs9p.SearchPath('/' + rel);
     if (info.id === -1) continue;
@@ -287,6 +287,7 @@ export function createLinuxVmHost({
   readAppFile,
   applyWorkspaceChanges,
   getEthBridge,
+  getAppEnvVars,
 }) {
   const sessions = new Map(); // sessionId -> session state
   const appSessions = new Map(); // appKey -> sessionId
@@ -343,6 +344,34 @@ export function createLinuxVmHost({
     };
   }
 
+  async function writeEnvIntoVm(targetAppId, envVars) {
+    if (!vm?.fs9p || vmState === 'idle' || targetAppId == null || mountedAppId !== targetAppId) {
+      return { ok: false, skipped: true };
+    }
+    const entries = Array.isArray(envVars) ? envVars : ((await getAppEnvVars?.(targetAppId)) || []);
+    const lines = [];
+    for (const item of entries) {
+      const k = String(item?.key || '').trim();
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(k)) continue;
+      const v = String(item?.value ?? '').replace(/[\r\n]/g, ' ');
+      lines.push(`${k}=${JSON.stringify(v)}`);
+    }
+    suppressVmWriteSyncUntil = Date.now() + 500;
+    if (!lines.length) {
+      delete9pFile(vm.fs9p, '.env');
+      return { ok: true, count: 0 };
+    }
+    await write9pFile(vm.fs9p, '.env', enc.encode(lines.join('\n') + '\n'));
+    return { ok: true, count: lines.length };
+  }
+
+  async function syncEnvToVm(appId = activeAppId, envVars = null) {
+    if (!vm?.fs9p || vmState === 'idle' || appId == null) return { ok: false, skipped: true };
+    const work = syncTail.then(() => writeEnvIntoVm(appId, envVars));
+    syncTail = work.catch(() => {});
+    return work;
+  }
+
   async function syncWorkspaceToVm(appId = undefined) {
     if (!vm?.fs9p || vmState === 'idle') return { ok: false, skipped: true };
     const targetAppId = appId === undefined ? activeAppId : appId;
@@ -359,6 +388,9 @@ export function createLinuxVmHost({
       });
       mountedAppId = targetAppId;
       activeAppId = targetAppId;
+      if (targetAppId != null && getAppEnvVars) {
+        await writeEnvIntoVm(targetAppId, null).catch(() => {});
+      }
       return result;
     });
     syncTail = work.catch(() => {});
@@ -627,8 +659,9 @@ export function createLinuxVmHost({
       const stderr = dec.decode(errBytes) + (timedOut ? `\nCommand timed out after ${timeoutMs}ms` : '');
       const nextCwd = dec.decode(pwdBytes).trim() || safeCwd;
 
+      let syncResult = null;
       if (targetAppId != null) {
-        await syncVmToWorkspace(targetAppId);
+        syncResult = await syncVmToWorkspace(targetAppId);
       }
 
       const activeSid = appSessions.get(appKeyOf(targetAppId));
@@ -652,6 +685,7 @@ export function createLinuxVmHost({
         stderr,
         cwd: nextCwd,
         runtime: 'linux-6.18.7-v86',
+        updatedFiles: Boolean((syncResult?.writes || 0) + (syncResult?.deletes || 0) > 0),
       };
     });
 
@@ -826,6 +860,7 @@ export function createLinuxVmHost({
     execCommand,
     syncWorkspaceToVm,
     syncVmToWorkspace,
+    syncEnvToVm,
     ensureBooted,
     injectEthFrame,
     getStatus,

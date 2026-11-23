@@ -146,12 +146,11 @@ const NAV: Nav[] = [
   { title: "Templates", to: "/templates", icon: Store },
   { title: "Library", to: "/library", icon: BookOpen },
   { title: "Theater", to: "/theater", icon: MonitorPlay },
-  { title: "Plugins", to: "/plugins", icon: Blocks },
 ];
 // What the visitor keeps in the sidebar; the rest waits under More. Home, Search and Apps always stay. The choice is a
 // convenience of this browser, so it lives in localStorage and a page without it shows the defaults.
 const SIDEBAR_KEY = "holo.sidebar.v1";
-const OPTIONAL = ["/templates", "/library", "/plugins"];
+const OPTIONAL = ["/templates", "/library"];
 function readShown(): string[] {
   try {
     const saved = JSON.parse(localStorage.getItem(SIDEBAR_KEY) ?? "null");

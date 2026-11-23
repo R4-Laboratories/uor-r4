@@ -66,7 +66,7 @@ import { invokeHost, unwrapHost } from "./host-boundary.mjs";
 import * as inference from "./inference.js";
 import { r4Decide, r4Refusal, r4Request, r4Spec } from "./r4.mjs";
 import { viewReady } from "./inference.js";
-import { install, installed, encodeView, b64, unb64, sha256 } from "./holo.js";
+import { install, installed, inspect, stored, encodeView, b64, unb64, sha256 } from "./holo.js";
 import { admitPublication } from "./publication-identity.mjs";
 import * as prism from "./prism.js";
 import * as live from "./live/project.mjs";
@@ -198,7 +198,7 @@ handlers.set("window-infrastructure:set-focused", () => windowCoordination.setFo
 handlers.set("window-infrastructure:set-visible-entities", input => windowCoordination.setVisible(input));
 handlers.set("window-infrastructure:set-chat-tab-ownership", input => windowCoordination.setTabs(input));
 for (const c of ["add-log", "renderer:error-toast-ready", "clear-logs"]) handlers.set(c, () => undefined);
-relayWindowEvent=(channel,payload)=>{windowCoordination.relay(channel,payload);if(channel==="version-created"&&Number.isSafeInteger(payload?.appId))void windowCoordination.invalidate([{family:"apps"},{family:"app",appId:payload.appId},{family:"versions",appId:payload.appId}]).catch(()=>{});if(channel==="chat:stream:end"&&Number.isSafeInteger(payload?.chatId))void windowCoordination.invalidate([{family:"chat",chatId:payload.chatId},{family:"chats"}]).catch(()=>{});};
+relayWindowEvent=(channel,payload)=>{windowCoordination.relay(channel,payload);if(channel==="version-created"&&Number.isSafeInteger(payload?.appId))void windowCoordination.invalidate([{family:"apps"},{family:"app",appId:payload.appId},{family:"versions",appId:payload.appId},{family:"problems",appId:payload.appId}]).catch(()=>{});if(channel==="chat:stream:end"&&Number.isSafeInteger(payload?.chatId))void windowCoordination.invalidate([{family:"chat",chatId:payload.chatId},{family:"chats"}]).catch(()=>{});};
 window.addEventListener("pagehide",()=>windowCoordination.dispose(),{once:true});
 handlers.set("does-release-note-exist", () => ({ exists: false }));
 handlers.set("get-user-budget", () => null);
@@ -313,6 +313,7 @@ handlers.set("edit-app-file", async (input) => {
     }
   }
   const oid = await editStoredProject(await dbReady, input, { core, derive: kappa });
+  if (!(await hasRules(input.appId))) liveShown.delete(input.appId);
   emit("version-created", { appId: input.appId, oid });
   return {};
 });
@@ -488,6 +489,26 @@ handlers.set("create-chat", async (input) => {
   return chatId;
 });
 handlers.set("update-chat", input => updateChatPreferences(dbReady,input));
+handlers.set("set-chat-favorite", async ({ chatId, isFavorite } = {}) => {
+  const id = Number(chatId);
+  const chat = await get("chats", id);
+  if (!chat) throw new Error("no chat " + id);
+  const fav = Boolean(isFavorite);
+  await put("chats", id, { ...chat, isFavorite: fav });
+  void windowCoordination.invalidate([{ family: "chats" }, { family: "chat", chatId: id }]).catch(() => {});
+  return { isFavorite: fav };
+});
+handlers.set("remove-chat-referenced-app", async ({ chatId, appId } = {}) => {
+  const cid = Number(chatId), aid = Number(appId);
+  const chat = await get("chats", cid);
+  if (!chat) throw new Error("no chat " + cid);
+  const nextRefs = Array.isArray(chat.referencedApps)
+    ? chat.referencedApps.filter((r) => Number(r?.id ?? r) !== aid)
+    : [];
+  await put("chats", cid, { ...chat, referencedApps: nextRefs });
+  void windowCoordination.invalidate([{ family: "chat", chatId: cid }, { family: "chats" }]).catch(() => {});
+  return undefined;
+});
 handlers.set("delete-chat", async (id) => { await deleteStoredChat(await dbReady, id); queueChannel?.postMessage({chatId:id}); await chatQueue.refresh(id).catch(()=>{}); });
 // The sidebar's search: a chat matches by title or by the text of one of its messages, and the line
 // that matched is what the renderer shows under it.
@@ -702,6 +723,53 @@ async function verifiedBuildSource(appId) {
     admit: async (derived, expected) => core.run({ op: "restore", derived, expected }).decision === "Accept",
   });
 }
+async function readSafeAppEnvVars(appId) {
+  const stored = await get("refs", `app-env:${Number(appId)}`);
+  if (!Array.isArray(stored)) return [];
+  const out = [];
+  for (const entry of stored) {
+    if (out.length >= 64) break;
+    const key = String(entry?.key || "").trim();
+    if (!/^VITE_[A-Za-z0-9_]{1,64}$/.test(key)) continue;
+    const value = String(entry?.value ?? "").slice(0, 4096);
+    out.push({ key, value });
+  }
+  return out;
+}
+async function appEnvDefine(appId) {
+  const out = {};
+  for (const { key, value } of await readSafeAppEnvVars(appId)) {
+    const jsonVal = JSON.stringify(value);
+    out[`import.meta.env.${key}`] = jsonVal;
+    out[`process.env.${key}`] = jsonVal;
+  }
+  return out;
+}
+function createProjectResolverPlugin(files, { name = "project", externalBare = true } = {}) {
+  const exts = ["", ".tsx", ".ts", ".jsx", ".js", "/index.tsx", "/index.ts"];
+  const resolveFile = (p) => { for (const e of exts) if (files.has(p + e)) return p + e; return null; };
+  return {
+    name,
+    setup(b) {
+      b.onResolve({ filter: /.*/ }, (args) => {
+        if (args.kind === "entry-point") { const r = resolveFile(args.path); if (r) return { path: r, namespace: "project" }; }
+        if (args.path.startsWith("@/")) { const r = resolveFile("src/" + args.path.slice(2)); if (r) return { path: r, namespace: "project" }; }
+        if (/^\.\.?\//.test(args.path) || args.path.startsWith("/")) {
+          const base = args.importer ? args.importer.split("/").slice(0, -1).join("/") : "src";
+          const norm = new URL(args.path, "file:///" + base + "/").pathname.slice(1);
+          const r = resolveFile(norm); if (r) return { path: r, namespace: "project" };
+          return { errors: [{ text: "not in project: " + norm }] };
+        }
+        return externalBare ? { path: args.path, external: true } : undefined;
+      });
+      b.onLoad({ filter: /.*/, namespace: "project" }, (args) => {
+        const src = files.get(args.path);
+        if (args.path.endsWith(".css")) return { contents: src.replace(/@tailwind[^;]*;/g, ""), loader: "css" };
+        return { contents: src, loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
+      });
+    },
+  };
+}
 async function buildPreview(appId) {
   await coreReady;
   const source = await verifiedBuildSource(appId);
@@ -725,29 +793,11 @@ async function buildPreview(appId) {
   const tw = await (await fetch(new URL("scaffold/tailwind.config.ts", BASE))).text();
   const m = tw.match(/theme:\s*(\{[\s\S]*\n  \}),\n  plugins/);
   const tailwindConfig = m ? "{darkMode:['class'],theme:" + m[1] + "}" : "{}";
-  const exts = ["", ".tsx", ".ts", ".jsx", ".js", "/index.tsx", "/index.ts"];
-  const resolveFile = (p) => { for (const e of exts) if (files.has(p + e)) return p + e; return null; };
-  const plugin = { name: "project", setup(b) {
-    b.onResolve({ filter: /.*/ }, (args) => {
-      if (args.kind === "entry-point") { const r = resolveFile(args.path); if (r) return { path: r, namespace: "project" }; }
-      if (args.path.startsWith("@/")) { const r = resolveFile("src/" + args.path.slice(2)); if (r) return { path: r, namespace: "project" }; }
-      if (/^\.\.?\//.test(args.path) || args.path.startsWith("/")) {
-        const base = args.importer ? args.importer.split("/").slice(0, -1).join("/") : "src";
-        const norm = new URL(args.path, "file:///" + base + "/").pathname.slice(1);
-        const r = resolveFile(norm); if (r) return { path: r, namespace: "project" };
-        return { errors: [{ text: "not in project: " + norm }] };
-      }
-      return { path: args.path, external: true };
-    });
-    b.onLoad({ filter: /.*/, namespace: "project" }, (args) => {
-      const src = files.get(args.path);
-      if (args.path.endsWith(".css")) return { contents: src.replace(/@tailwind[^;]*;/g, ""), loader: "css" };
-      return { contents: src, loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
-    });
-  } };
+  const plugin = createProjectResolverPlugin(files);
+  const envDefine = await appEnvDefine(appId);
   const es = await esbuild();
   const r = await es.build({ entryPoints: ["src/main.tsx"], bundle: true, write: false, format: "esm", target: "es2022", jsx: "automatic", plugins: [plugin], outdir: "out", logLevel: "silent",
-    define: { "import.meta.env.DEV": "true", "import.meta.env.MODE": '"development"', "import.meta.env.BASE_URL": JSON.stringify(appUrl.pathname), "process.env.NODE_ENV": '"development"' } });
+    define: { ...envDefine, "import.meta.env.DEV": "true", "import.meta.env.MODE": '"development"', "import.meta.env.BASE_URL": JSON.stringify(appUrl.pathname), "process.env.NODE_ENV": '"development"' } });
   const js = r.outputFiles.find((f) => f.path.endsWith(".js")).text;
   const css = (r.outputFiles.find((f) => f.path.endsWith(".css")) || { text: "" }).text;
   const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1293,17 +1343,36 @@ window.__preview = buildPreview;
 // file, attributes path and description, content verbatim between the tags; delete and rename are
 // single tags; add-dependency names packages the import map must carry.
 function parsePrismTags(text) {
-  const writes = [], deletes = [], renames = [], deps = [];
-  const attr = (s, name) => { const m = s.match(new RegExp(name + '="([^"]*)"')); return m ? m[1] : null; };
-  for (const m of text.matchAll(/<prism-write\s+([^>]*)>([\s\S]*?)<\/prism-write>/g)) {
+  const writesByPath = new Map(), deletes = [], renames = [], deps = [];
+  const attr = (s, name) => {
+    const dq = s.match(new RegExp(name + '="([^"]*)"'));
+    if (dq) return dq[1];
+    const sq = s.match(new RegExp(name + "='([^']*)'"));
+    return sq ? sq[1] : null;
+  };
+  const safeRel = (raw) => {
+    try { return cleanWorkspacePath(raw, false); } catch { return null; }
+  };
+  const src = String(text ?? "");
+  for (const m of src.matchAll(/<prism-write\s+([^>]*)>([\s\S]*?)<\/prism-write>/g)) {
+    const path = safeRel(attr(m[1], "path"));
+    if (!path) continue;
     let content = m[2]; if (content.startsWith("\n")) content = content.slice(1); if (content.endsWith("\n")) content = content.slice(0, -1);
     const fence = content.match(/^```[\w-]*\n([\s\S]*?)\n```\s*$/); if (fence) content = fence[1];
-    writes.push({ path: attr(m[1], "path"), description: attr(m[1], "description"), content });
+    writesByPath.set(path, { path, description: attr(m[1], "description"), content });
   }
-  for (const m of text.matchAll(/<prism-delete\s+([^>]*?)\s*\/?>/g)) deletes.push({ path: attr(m[1], "path") });
-  for (const m of text.matchAll(/<prism-rename\s+([^>]*?)\s*\/?>/g)) renames.push({ from: attr(m[1], "from"), to: attr(m[1], "to") });
-  for (const m of text.matchAll(/<prism-add-dependency\s+([^>]*?)\s*\/?>/g)) { const p = attr(m[1], "packages") || attr(m[1], "package"); if (p) deps.push(...p.split(/\s+/).filter(Boolean)); }
-  return { writes, deletes, renames, deps };
+  for (const m of src.matchAll(/<prism-delete\s+([^>]*?)\s*\/?>/g)) {
+    const path = safeRel(attr(m[1], "path"));
+    if (path) deletes.push({ path });
+  }
+  for (const m of src.matchAll(/<prism-rename\s+([^>]*?)\s*\/?>/g)) {
+    const from = safeRel(attr(m[1], "from")), to = safeRel(attr(m[1], "to"));
+    if (from && to) renames.push({ from, to });
+  }
+  for (const m of src.matchAll(/<prism-add-dependency\s+([^>]*?)\s*\/?>/g)) { const p = attr(m[1], "packages") || attr(m[1], "package"); if (p) deps.push(...p.split(/\s+/).filter(Boolean)); }
+  const openedWrites = (src.match(/<prism-write\b/g) || []).length;
+  const closedWrites = (src.match(/<\/prism-write>/g) || []).length;
+  return { writes: [...writesByPath.values()], deletes, renames, deps, unclosedWrites: Math.max(0, openedWrites - closedWrites) };
 }
 async function applyPrismTags(appId, tags, options = {}) {
   const copied = copyGenerationInput(tags, options.source), { signal, onCommit } = options;
@@ -1360,6 +1429,8 @@ function cleanWorkspacePath(raw, allowEmpty = false) {
   return s;
 }
 function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit }) {
+  const isBuildMode = chatMode === "build" || chatMode === "local-agent";
+  const vmTargetAppId = isBuildMode ? (appId ?? null) : null;
   return {
     workspace_list: async ({ dir } = {}) => {
       if (!appId) {
@@ -1381,7 +1452,7 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
       return { ok: true, path: rel, total_lines: lines.length, start_line: start + 1, end_line: Math.min(end, lines.length), content: lines.slice(start, end).join("\n") };
     },
     workspace_write: async ({ path: rawPath, content } = {}) => {
-      if (!appId || (chatMode !== "build" && chatMode !== "local-agent")) {
+      if (!appId || !isBuildMode) {
         return { ok: false, error: "Read-only mode; switch to Build or promote to Studio to write files." };
       }
       const rel = cleanWorkspacePath(rawPath, false);
@@ -1392,13 +1463,13 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
     linux_exec: async ({ command, cwd } = {}) => {
       const cmd = String(command ?? "").trim();
       if (!cmd) return { ok: false, error: "command is required" };
-      const res = await linuxVmHost.execCommand(appId ?? null, cmd, { echoToSession: Boolean(appId), cwd });
-      return { ok: res.exit_code === 0, runtime: "linux-6.18.7-v86", kernel: "6.18.7", ...res };
+      const res = await linuxVmHost.execCommand(vmTargetAppId, cmd, { echoToSession: Boolean(appId && isBuildMode), cwd });
+      return { ok: res.exit_code === 0, runtime: "linux-6.18.7-v86", kernel: "6.18.7", ...res, updatedFiles: Boolean(res.updatedFiles && isBuildMode) };
     },
     mvm_exec: async ({ command } = {}) => {
       const cmd = String(command ?? "").trim();
       if (!cmd) return { ok: false, error: "command is required" };
-      const res = await mvmHost.execCommand(appId ?? null, cmd, { echoToSession: Boolean(appId) });
+      const res = await mvmHost.execCommand(vmTargetAppId, cmd, { echoToSession: Boolean(appId && isBuildMode) });
       return { ok: res.exit_code === 0, ...res };
     },
     github_status: async () => ({ ok: true, ...(await githubClient.getStatus()) }),
@@ -1407,6 +1478,9 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
       return { ok: true, count: repos.length, repos };
     },
     github_clone: async ({ url, owner, repo, repository, branch, app_name, appName } = {}) => {
+      if (!isBuildMode) {
+        return { ok: false, error: "Read-only mode; switch to Build mode to clone repositories into Studio." };
+      }
       return githubClient.cloneRepoFromUrl({
         url,
         owner,
@@ -1417,10 +1491,12 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
     },
     github_pull: async ({ branch } = {}) => {
       if (!appId) return { ok: false, error: "Open a Studio app before pulling from GitHub." };
+      if (!isBuildMode) return { ok: false, error: "Read-only mode; switch to Build mode to pull changes into workspace." };
       return githubClient.pull({ appId, branch });
     },
     github_push: async ({ message, branch } = {}) => {
       if (!appId) return { ok: false, error: "Open a Studio app before pushing to GitHub." };
+      if (!isBuildMode) return { ok: false, error: "Read-only mode; switch to Build mode to push changes to GitHub." };
       return githubClient.push({ appId, message, branch });
     },
     prismpm_verify: async ({ target, action } = {}) => {
@@ -1430,10 +1506,20 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
       const shape = applicationShape(source);
       const rules = await rulesOf(appId);
       if (action === "publish") {
+        if (!isBuildMode) return { ok: false, error: "Read-only mode; switch to Build mode to publish." };
         const pub = await handlers.get("holo:publish")({ appId });
         return { ok: Boolean(pub?.kappa), target, shape, rules, publication: pub };
       }
       return { ok: true, target: target || shape, shape, rules, applicationState: source.applicationState || null };
+    },
+    holo_publish: async () => {
+      if (!appId) return { ok: false, error: "Open a Studio app before publishing as a .holo application." };
+      if (!isBuildMode) return { ok: false, error: "Read-only mode; switch to Build mode to publish." };
+      const pub = await handlers.get("holo:publish")({ appId });
+      return { ok: Boolean(pub?.kappa), ...pub };
+    },
+    holo_inspect: async ({ kappa: targetKappa } = {}) => {
+      return handlers.get("holo:inspect")({ kappa: targetKappa || undefined, appId: appId ?? undefined });
     },
     lexlean_check: async ({ path: rawPath } = {}) => {
       if (!appId) return { ok: false, error: "Open a Studio app to check a LexLean module." };
@@ -1580,10 +1666,11 @@ function publishChat(chatId, patch) {
 // leaving the page while one runs asks first; and a turn a reload did cut is marked as cut, not left as a
 // silent half message.
 function turnRunning() { return [...chatMachines.values()].some((m) => ["admitting", "streaming", "finalizing", "cancelling"].includes(m.state.phase)) || Boolean(homeChatAbort); }
+const drawnByWorker = Boolean(navigator.serviceWorker && navigator.serviceWorker.controller);
 var shellUpdate = { waiting: false };
 function reloadIfIdle() { if (shellUpdate.waiting && !turnRunning()) location.reload(); }
 if (navigator.serviceWorker) navigator.serviceWorker.addEventListener("message", (e) => {
-  if (e.data && e.data.type === "shell-updated") { shellUpdate.waiting = true; reloadIfIdle(); }
+  if (drawnByWorker && e.data && e.data.type === "shell-updated") { shellUpdate.waiting = true; reloadIfIdle(); }
 });
 addEventListener("beforeunload", (e) => { if (turnRunning()) { e.preventDefault(); e.returnValue = ""; } });
 // A turn a reload cut: the last message of a chat left as an open reasoning block or empty. Nothing runs
@@ -2150,7 +2237,7 @@ async function chatTurn(chatId, intent) {
   messages.push({ id: asstId, role: "assistant", content: "", approvalState: "approved", commitHash: null, sourceCommitHash: head, model, createdAt: now() });
   await saveMessages(chatId, messages);
   emit("chat:response:chunk", { chatId, invocationRef: ref, messages });
-  let full = "", lastSent = "", updatedFiles = false, summary, error = null;
+  let full = "", lastSent = "", updatedFiles = false, unclosedWrites = 0, summary, error = null;
   const abort = new AbortController(); m.abort = abort; if(m.queueSignal?.aborted){abort.abort();assertGenerationActive(abort.signal);}
   let provenance = null;
   const committed = [];
@@ -2214,10 +2301,11 @@ async function chatTurn(chatId, intent) {
         appId,
         chatId,
         modelId: customEndpoint ? customEndpoint.model : model,
-        messages: messages.slice(0, -1),
+        messages: messages.slice(0, -2),
         userPrompt: intent.prompt,
         chatMode: execution.mode,
         maxNewTokens: customEndpoint ? 2048 : 384,
+        maxToolRounds: Number.isInteger(settings?.maxToolCallSteps) ? settings.maxToolCallSteps : undefined,
         signal: abort.signal,
         uorR4Runtime: uorR4,
         generateFn: customEndpoint ? (opts) => customApiClient.generateChatCompletion({ endpoint: customEndpoint, ...opts }) : undefined,
@@ -2247,7 +2335,7 @@ async function chatTurn(chatId, intent) {
         const wrote = parsePrismTags(rawTurn);
         let changed = 0;
         if (wrote.writes.length || wrote.deletes.length || wrote.renames.length || wrote.deps.length) {
-          const applied = await applyPrismTags(appId, wrote, { signal: abort.signal, onCommit });
+          const applied = await applyPrismTags(appId, { writes: wrote.writes, deletes: wrote.deletes, renames: wrote.renames, deps: wrote.deps }, { signal: abort.signal, onCommit });
           changed += applied.changed || 0;
         }
         const specResult = await afterTurn(appId, rawTurn, [], { signal: abort.signal, onCommit }).catch(() => null);
@@ -2255,14 +2343,13 @@ async function chatTurn(chatId, intent) {
           changed += specResult.changed || 0;
           card = specResult.card || null;
         }
+        if (wrote.unclosedWrites > 0) unclosedWrites += wrote.unclosedWrites;
         updatedFiles = updatedFiles || Boolean(uorTurn.updatedFiles) || changed > 0;
         if (await hasRules(appId)) {
           await showLive(appId).catch(() => {});
           await refreshPreview(appId, { signal: abort.signal });
         } else if (updatedFiles) {
-          if (speculativeLive && liveShown.has(appId)) liveShown.delete(appId);
-          await showBuilt(appId).catch(() => {});
-          await refreshPreview(appId, { signal: abort.signal });
+          liveShown.delete(appId);
         }
       }
       const commit = committed.at(-1) || null;
@@ -2355,7 +2442,11 @@ async function chatTurn(chatId, intent) {
   }
   m.abort = null;
   const outcome = abort.signal.aborted ? "cancelled" : error ? "errored" : "completed";
-  const completion = { intentId: intent.intentId, invocationRef: ref, outcome, updatedFiles, suppressAutoReview: true, targetAppId: appId, ...(summary ? { chatSummary: summary } : {}), ...(error ? { error } : {}), ...(provenance && provenance.cut ? { warningMessages: ["The model ran out of room before it finished; an unfinished file was not written."] } : {}), ...(provenance && provenance.receipt ? { warningMessages: [(provenance.served ? V.servedLabel : V.sealedLabel) + " · " + provenance.receipt.replace(/^blake3:/, "").slice(0, 12) + "…"] } : {}) };
+  const warningMessages = [];
+  if (provenance && provenance.cut) warningMessages.push("The model ran out of room before it finished; an unfinished file was not written.");
+  if (provenance && provenance.receipt) warningMessages.push((provenance.served ? V.servedLabel : V.sealedLabel) + " · " + provenance.receipt.replace(/^blake3:/, "").slice(0, 12) + "…");
+  if (unclosedWrites > 0) warningMessages.push("The model stopped before closing a <prism-write> tag; any unclosed file block was skipped.");
+  const completion = { intentId: intent.intentId, invocationRef: ref, outcome, updatedFiles, suppressAutoReview: true, targetAppId: appId, ...(summary ? { chatSummary: summary } : {}), ...(error ? { error } : {}), ...(warningMessages.length ? { warningMessages } : {}) };
   publishChat(chatId, { phase: "finalizing", error, lastCompletion: completion });
   publishChat(chatId, { phase: outcome === "errored" ? "errored" : "idle", invocationRef: null });
   emit("chat:stream:end", { chatId });
@@ -2473,9 +2564,10 @@ async function buildPortable(appId, captured) {
       return { contents: src, loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
     });
   } };
+  const envDefine = await appEnvDefine(appId);
   const es = await esbuild();
   const r = await es.build({ entryPoints: ["src/main.tsx"], bundle: true, write: false, format: "esm", target: "es2022", jsx: "automatic", plugins: [plugin], outdir: "out", logLevel: "silent", minify: true,
-    define: { "import.meta.env.DEV": "false", "import.meta.env.MODE": '"production"', "import.meta.env.BASE_URL": "__HOLO_BASE__", "process.env.NODE_ENV": '"production"' } });
+    define: { ...envDefine, "import.meta.env.DEV": "false", "import.meta.env.MODE": '"production"', "import.meta.env.BASE_URL": "__HOLO_BASE__", "process.env.NODE_ENV": '"production"' } });
   const js = r.outputFiles.find((f) => f.path.endsWith(".js")).text;
   const css = (r.outputFiles.find((f) => f.path.endsWith(".css")) || { text: "" }).text;
   // Tailwind, compiled once at publish: the play build cannot be fetched (its CDN sends no CORS
@@ -2566,6 +2658,69 @@ let lastPublish = null;
 const holoUrl = (k) => new URL(core.run({ op: "holo-path", kappa: k }).path.slice(1), BASE).href;
 handlers.set("holo:view", async () => { await coreReady; return core.run({ op: "view" }); });
 handlers.set("holo:list", async (appId) => { await coreReady; return (await installed()).filter((r) => r.appId === appId).map((r) => ({ ...r, url: holoUrl(r.kappa) })); });
+handlers.set("holo:inspect", async ({ kappa: targetKappa, bytesBase64, appId } = {}) => {
+  await coreReady;
+  let bytes = null;
+  if (typeof bytesBase64 === "string" && bytesBase64.trim()) {
+    if (bytesBase64.length > 96 * 1024 * 1024) throw new Error("Holo archive exceeds maximum size");
+    bytes = unb64(bytesBase64.trim());
+  } else if (typeof targetKappa === "string" && targetKappa.trim()) {
+    bytes = await stored(targetKappa.trim());
+  } else if (appId != null) {
+    const list = (await installed()).filter((r) => r.appId === Number(appId));
+    if (list.length) bytes = await stored(list[0].kappa);
+  }
+  if (!(bytes instanceof Uint8Array) || !bytes.length) {
+    throw new Error("No .holo archive found to inspect");
+  }
+  const info = await inspect(bytes);
+  return {
+    ok: true,
+    valid: info.valid,
+    kappa: info.kappa,
+    fingerprint: info.fingerprint,
+    byteLength: info.byteLength,
+    url: holoUrl(info.kappa),
+    application: info.model?.application ?? null,
+    version: info.model?.version ?? null,
+    layers: info.directory?.layers ?? [],
+    files: info.view.files.map((f) => ({ path: f.path, bytes: f.bytes.length })),
+    provenance: info.provenance,
+    model: info.model,
+    sections: info.sections,
+  };
+});
+handlers.set("holo:import", async ({ bytesBase64, filename } = {}) => {
+  await coreReady;
+  const raw = typeof bytesBase64 === "string" ? bytesBase64.trim() : "";
+  if (!raw) throw new Error("Empty .holo archive payload");
+  if (raw.length > 96 * 1024 * 1024) throw new Error(".holo archive exceeds 64 MiB limit");
+  const bytes = unb64(raw);
+  const info = await install(bytes, filename ? { importedFrom: String(filename) } : {});
+  return {
+    ok: true,
+    valid: info.valid,
+    kappa: info.kappa,
+    fingerprint: info.fingerprint,
+    byteLength: info.byteLength,
+    url: info.url,
+    application: info.model?.application ?? filename ?? "application",
+    version: info.model?.version ?? null,
+    files: info.view.files.map((f) => f.path),
+    provenance: info.provenance,
+    model: info.model,
+    ms: info.ms,
+  };
+});
+handlers.set("forge:export", async ({ appId } = {}) => {
+  const id = Number(appId);
+  if (!Number.isSafeInteger(id) || id < 1) throw new Error("Invalid appId");
+  const app = await get("apps", id);
+  if (!app) throw new Error("no app " + id);
+  const safeName = String(app.name || `app-${id}`).replace(/[^A-Za-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "") || `app-${id}`;
+  const json = await exportApp(id);
+  return { appId: id, filename: `${safeName}.forge-export.json`, json };
+});
 handlers.set("holo:publish", async ({ appId }) => {
   await coreReady;
   const t0 = performance.now();
@@ -2686,8 +2841,10 @@ const githubClient = createGitHubClient({
     return created;
   },
   applyWorkspacePatch: async (appId, patch) => {
-    await applyPrismTags(appId, patch, {});
-    void windowCoordination.invalidate([{ family: "apps" }, { family: "versions", appId }]).catch(() => {});
+    await applyPrismTags(appId, patch, { onCommit: (oid) => emit("version-created", { appId, oid }) });
+    if (!(await hasRules(appId))) liveShown.delete(appId);
+    else void refreshPreview(appId).catch(() => {});
+    void windowCoordination.invalidate([{ family: "apps" }, { family: "app", appId }, { family: "versions", appId }, { family: "problems", appId }]).catch(() => {});
   },
   onWorkspaceSynced: async (appId) => {
     const st = linuxVmHost?.getStatus?.();
@@ -2728,13 +2885,16 @@ linuxVmHost = createLinuxVmHost({
   applyWorkspaceChanges: async (appId, patch) => {
     syncFromLinuxActive = true;
     try {
-      await applyPrismTags(appId, patch, {});
-      void windowCoordination.invalidate([{ family: "apps" }, { family: "versions", appId }]).catch(() => {});
+      await applyPrismTags(appId, patch, { onCommit: (oid) => emit("version-created", { appId, oid }) });
+      if (!(await hasRules(appId))) liveShown.delete(appId);
+      else void refreshPreview(appId).catch(() => {});
+      void windowCoordination.invalidate([{ family: "apps" }, { family: "app", appId }, { family: "versions", appId }, { family: "problems", appId }]).catch(() => {});
     } finally {
       syncFromLinuxActive = false;
     }
   },
   getEthBridge: () => stitchNetwork,
+  getAppEnvVars: (appId) => readSafeAppEnvVars(appId),
 });
 
 function getTerminalRuntime() {
@@ -3030,8 +3190,16 @@ handlers.set("get-app-env-vars", async ({ appId } = {}) => {
   return Array.isArray(stored) ? stored.map((v) => ({ key: String(v?.key || ""), value: String(v?.value || "") })) : [];
 });
 handlers.set("set-app-env-vars", async ({ appId, envVars = [] } = {}) => {
+  const id = Number(appId);
   const clean = (Array.isArray(envVars) ? envVars : []).map((v) => ({ key: String(v?.key || ""), value: String(v?.value || "") }));
-  await put("refs", `app-env:${Number(appId)}`, clean);
+  await put("refs", `app-env:${id}`, clean);
+  if (Number.isSafeInteger(id) && id > 0) {
+    void windowCoordination.invalidate([{ family: "app", appId: id }, { family: "problems", appId: id }]).catch(() => {});
+    const st = linuxVmHost.getStatus();
+    if (st.state === "online" && st.activeAppId === id) {
+      void linuxVmHost.syncEnvToVm(id, await readSafeAppEnvVars(id)).catch(() => {});
+    }
+  }
 });
 handlers.set("update-app-commands", async ({ appId, installCommand, startCommand } = {}) => {
   const app = await get("apps", appId);
@@ -3039,9 +3207,113 @@ handlers.set("update-app-commands", async ({ appId, installCommand, startCommand
   await put("apps", appId, { ...app, installCommand: installCommand ?? null, startCommand: startCommand ?? null, updatedAt: now() });
 });
 handlers.set("check-problems", async ({ appId } = {}) => {
-  const app = await get("apps", appId);
+  const id = Number(appId);
+  const app = await get("apps", id);
   if (!app) throw new Error("no app " + appId);
-  return { problems: [], outcome: "passed" };
+  const source = await captureProjectSource(await dbReady, id);
+  const files = new Map(source.files);
+  const problems = [];
+  if (files.has("prism/spec.json")) {
+    try {
+      const checked = prism.checkSpec(JSON.parse(files.get("prism/spec.json")));
+      if (!checked?.ok) {
+        problems.push({
+          file: "prism/spec.json",
+          line: 1,
+          column: 1,
+          message: String((checked?.issues || []).join("; ") || "Invalid prism/spec.json"),
+          code: 1001,
+          snippet: "",
+        });
+      }
+    } catch (e) {
+      problems.push({
+        file: "prism/spec.json",
+        line: 1,
+        column: 1,
+        message: String(e?.message || e),
+        code: 1001,
+        snippet: "",
+      });
+    }
+  }
+  const entry = ["src/main.tsx", "src/main.ts", "src/index.tsx", "src/App.tsx"].find((p) => files.has(p));
+  if (!entry) {
+    return { problems, outcome: problems.length ? "errors" : "passed" };
+  }
+  try {
+    const es = await esbuild();
+    const envDefine = await appEnvDefine(id);
+    await es.build({
+      entryPoints: [entry],
+      bundle: true,
+      write: false,
+      format: "esm",
+      target: "es2022",
+      jsx: "automatic",
+      plugins: [createProjectResolverPlugin(files)],
+      outdir: "out",
+      logLevel: "silent",
+      define: {
+        ...envDefine,
+        "import.meta.env.DEV": "true",
+        "import.meta.env.MODE": '"development"',
+        "import.meta.env.BASE_URL": '"/"',
+        "process.env.NODE_ENV": '"development"',
+      },
+    });
+  } catch (err) {
+    if (Array.isArray(err?.errors) && err.errors.length > 0) {
+      for (const e of err.errors) {
+        const rawFile = String(e?.location?.file || entry).replace(/^project:/, "");
+        problems.push({
+          file: rawFile || entry,
+          line: Number.isInteger(e?.location?.line) && e.location.line > 0 ? e.location.line : 1,
+          column: Number.isInteger(e?.location?.column) && e.location.column >= 0 ? e.location.column : 0,
+          message: String(e?.text || "Compilation error"),
+          code: 1002,
+          snippet: String(e?.location?.lineText || ""),
+        });
+      }
+      return { problems, outcome: "errors" };
+    }
+    problems.push({
+      file: entry,
+      line: 1,
+      column: 1,
+      message: String(err?.message || err),
+      code: 1000,
+      snippet: "",
+    });
+    return { problems, outcome: "incomplete" };
+  }
+  return { problems, outcome: problems.length ? "errors" : "passed" };
+});
+handlers.set("clear-session-data", async () => {
+  try {
+    if (typeof caches !== "undefined") {
+      await caches.delete("previews").catch(() => {});
+    }
+  } catch {}
+  liveFrameReady = null;
+  liveFrameUrl = null;
+  coverSources.clear();
+  try {
+    sessionStorage.clear();
+  } catch {}
+  try {
+    const keep = new Set(["holo.theme.v1", "holo.sidebar.v1"]);
+    for (let i = localStorage.length - 1; i >= 0; i -= 1) {
+      const k = localStorage.key(i);
+      if (k && !keep.has(k)) localStorage.removeItem(k);
+    }
+  } catch {}
+  if (typeof caches !== "undefined" && typeof fetch !== "undefined" && workerActive) {
+    try {
+      liveFrameUrl = await liveFrame();
+    } catch {}
+  }
+  return undefined;
 });
 handlers.set("list-all-media", () => ({ apps: [] }));
 handlers.set("free-agent-quota:get-status", () => ({
@@ -3437,7 +3709,6 @@ if ("serviceWorker" in navigator) {
   // A page an older worker drew reloads once when a newer worker takes control, so no visitor keeps running
   // a build Foundry has replaced (a removed screen stays removed). The worker's script is always fetched
   // fresh, and checked on every load.
-  const drawnByWorker = !!navigator.serviceWorker.controller;
   let reloading = false;
   navigator.serviceWorker.addEventListener("controllerchange", () => { if (drawnByWorker && !reloading) { reloading = true; location.reload(); } });
   // A first visit has no worker running yet; previews wait until it runs, or until its install fails.

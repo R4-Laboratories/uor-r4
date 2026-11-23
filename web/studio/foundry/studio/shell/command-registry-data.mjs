@@ -930,11 +930,11 @@ export const commandRegistryData = {
     },
     {
       "channel": "clear-session-data",
-      "feature": "unavailable",
+      "feature": "local-write",
       "version": 1,
-      "owner": "FoundrySpecification.capabilityAvailabilityBoundary",
-      "adapter": "studio/shell/host-boundary.mjs",
-      "availability": "unavailable",
+      "owner": "FoundrySpecification.storageCommitBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
       "input": "imported-renderer",
       "output": "imported-renderer"
     },
@@ -1523,6 +1523,16 @@ export const commandRegistryData = {
       "feature": "event-delivery",
       "version": 1,
       "owner": "FoundrySpecification.eventDeliveryBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
+      "input": "product-boundary",
+      "output": "product-boundary"
+    },
+    {
+      "channel": "forge:export",
+      "feature": "import",
+      "version": 1,
+      "owner": "FoundrySpecification.projectImportBoundary",
       "adapter": "studio/shell/host.js",
       "availability": "adapter",
       "input": "product-boundary",
@@ -2237,6 +2247,26 @@ export const commandRegistryData = {
       "availability": "unavailable",
       "input": "imported-renderer",
       "output": "imported-renderer"
+    },
+    {
+      "channel": "holo:import",
+      "feature": "publication",
+      "version": 1,
+      "owner": "FoundrySpecification.publicationIdentityBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
+      "input": "product-boundary",
+      "output": "product-boundary"
+    },
+    {
+      "channel": "holo:inspect",
+      "feature": "publication",
+      "version": 1,
+      "owner": "FoundrySpecification.publicationIdentityBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
+      "input": "product-boundary",
+      "output": "product-boundary"
     },
     {
       "channel": "holo:list",
@@ -3040,11 +3070,11 @@ export const commandRegistryData = {
     },
     {
       "channel": "remove-chat-referenced-app",
-      "feature": "unavailable",
+      "feature": "local-write",
       "version": 1,
-      "owner": "FoundrySpecification.capabilityAvailabilityBoundary",
-      "adapter": "studio/shell/host-boundary.mjs",
-      "availability": "unavailable",
+      "owner": "FoundrySpecification.storageCommitBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
       "input": "imported-renderer",
       "output": "imported-renderer"
     },
@@ -3270,11 +3300,11 @@ export const commandRegistryData = {
     },
     {
       "channel": "set-chat-favorite",
-      "feature": "unavailable",
+      "feature": "local-write",
       "version": 1,
-      "owner": "FoundrySpecification.capabilityAvailabilityBoundary",
-      "adapter": "studio/shell/host-boundary.mjs",
-      "availability": "unavailable",
+      "owner": "FoundrySpecification.storageCommitBoundary",
+      "adapter": "studio/shell/host.js",
+      "availability": "adapter",
       "input": "imported-renderer",
       "output": "imported-renderer"
     },

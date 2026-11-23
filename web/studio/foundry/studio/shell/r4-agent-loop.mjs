@@ -3,11 +3,11 @@
 // WASM KV-prefix cache hits across multi-turn conversations and tool calls.
 
 export const FOUNDRY_SYSTEM_PROMPT =
-  'You are UOR-R4 Foundry Assistant inside a browser virtual workstation with Studio workspace files, a real Linux 6.18.7 VM (9p mounted at /workspace), a secondary RV64IMAC MVM sandbox, GitHub REST/Git Data tools, PrismPM capsules, LexLean 0.3.0 verification, UOR Standards, and Stitch P2P/fetch networking.\n' +
+  'You are UOR-R4 Foundry Assistant inside a browser virtual workstation with Studio workspace files, a real Linux 6.18.7 VM (9p mounted at /workspace), a secondary RV64IMAC MVM sandbox, GitHub REST/Git Data tools, PrismPM & .holo capsule publishing, LexLean 0.3.0 verification, UOR Standards, and Stitch P2P/fetch networking.\n' +
   'When answering general questions or explaining concepts in Chat mode, respond directly in clear concise markdown without calling tools.\n' +
   'When editing or creating app files in Build mode, emit <prism-write path="relative/path" description="short summary">COMPLETE FILE CONTENT</prism-write>.\n' +
-  'When executing workspace, VM, GitHub, PrismPM, LexLean, Standards, or Stitch actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
-  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
+  'When executing workspace, VM, GitHub, PrismPM/.holo, LexLean, Standards, or Stitch actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
+  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
 
 export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'workspace_read',
@@ -21,6 +21,8 @@ export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'github_pull',
   'github_push',
   'prismpm_verify',
+  'holo_publish',
+  'holo_inspect',
   'lexlean_check',
   'lexlean_verify',
   'standards_lookup',
@@ -30,31 +32,127 @@ export const FOUNDRY_TOOL_NAMES = Object.freeze([
 
 const MAX_TOOL_ROUNDS = 6;
 
+function repairToolJson(text) {
+  let src = String(text || '').trim();
+  const fence = src.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  if (fence) src = fence[1].trim();
+  const start = src.indexOf('{');
+  if (start < 0) return null;
+  src = src.slice(start);
+  // Replace raw control newlines inside string literals and drop trailing commas before closers.
+  let inStr = false;
+  let esc = false;
+  let balanced = '';
+  const stack = [];
+  for (let i = 0; i < src.length; i += 1) {
+    const ch = src[i];
+    if (inStr) {
+      if (esc) {
+        esc = false;
+        balanced += ch;
+      } else if (ch === '\\') {
+        esc = true;
+        balanced += ch;
+      } else if (ch === '"') {
+        inStr = false;
+        balanced += ch;
+      } else if (ch === '\n') {
+        balanced += '\\n';
+      } else if (ch === '\r') {
+        balanced += '\\r';
+      } else {
+        balanced += ch;
+      }
+      continue;
+    }
+    balanced += ch;
+    if (ch === '"') {
+      inStr = true;
+    } else if (ch === '{') {
+      stack.push('}');
+    } else if (ch === '[') {
+      stack.push(']');
+    } else if (ch === '}' || ch === ']') {
+      if (stack.length && stack[stack.length - 1] === ch) {
+        stack.pop();
+        if (stack.length === 0) break;
+      }
+    }
+  }
+  const closed = (inStr ? balanced + '"' : balanced)
+    .replace(/,\s*([}\]])/g, '$1')
+    .replace(/[,:\s]+$/, '') + stack.reverse().join('');
+  try {
+    return JSON.parse(closed);
+  } catch {
+    return null;
+  }
+}
+
 export function parseToolCall(text) {
   const src = String(text || '');
   const match = src.match(/<tool_call>\s*([\s\S]*?)\s*(?:<\/tool_call>|$)/);
   if (!match) return null;
   const raw = match[1].trim();
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw);
-    const name = String(parsed.name || parsed.tool || '').trim();
-    if (!name) return null;
-    const args =
-      parsed.arguments && typeof parsed.arguments === 'object' && !Array.isArray(parsed.arguments)
-        ? parsed.arguments
-        : {};
-    // Normalize aliases only if older prompt syntax appears.
-    if (name === 'bash' || name === 'shell' || name === 'exec' || name === 'terminal') {
-      return { name: 'linux_exec', arguments: { command: String(args.command || args.cmd || parsed.command || '') } };
-    }
-    if (name === 'mvm') {
-      return { name: 'mvm_exec', arguments: { command: String(args.command || args.cmd || parsed.command || '') } };
-    }
-    return { name, arguments: args };
-  } catch {
-    return null;
+  if (!raw) {
+    return { parseError: true, error: 'Empty <tool_call> block. Provide JSON {"name": "...", "arguments": {...}}.' };
   }
+  const fence = raw.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  const candidate = fence ? fence[1].trim() : raw;
+  let parsed = null;
+  try {
+    parsed = JSON.parse(candidate);
+  } catch {
+    parsed = repairToolJson(candidate);
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return {
+      parseError: true,
+      error: 'Malformed <tool_call> JSON. Emit valid JSON inside <tool_call>{"name":"...","arguments":{...}}</tool_call>.',
+    };
+  }
+  const rawName = String(parsed.name || parsed.tool || '').trim();
+  if (!rawName) {
+    return {
+      parseError: true,
+      error: 'Missing tool "name" inside <tool_call>.',
+    };
+  }
+  const rawArgs =
+    parsed.arguments && typeof parsed.arguments === 'object' && !Array.isArray(parsed.arguments)
+      ? { ...parsed.arguments }
+      : parsed.args && typeof parsed.args === 'object' && !Array.isArray(parsed.args)
+        ? { ...parsed.args }
+        : {};
+  if (rawName === 'bash' || rawName === 'shell' || rawName === 'exec' || rawName === 'terminal') {
+    return {
+      name: 'linux_exec',
+      arguments: {
+        ...rawArgs,
+        command: String(rawArgs.command || rawArgs.cmd || parsed.command || ''),
+      },
+    };
+  }
+  if (rawName === 'mvm') {
+    return {
+      name: 'mvm_exec',
+      arguments: {
+        ...rawArgs,
+        command: String(rawArgs.command || rawArgs.cmd || parsed.command || ''),
+      },
+    };
+  }
+  if (rawName === 'workspace_read' || rawName === 'workspace_write') {
+    if (rawArgs.path === undefined) {
+      rawArgs.path = rawArgs.file_path ?? rawArgs.filename ?? rawArgs.file ?? parsed.path;
+    }
+    if (rawName === 'workspace_write' && rawArgs.content === undefined) {
+      rawArgs.content = rawArgs.text ?? rawArgs.code ?? rawArgs.body ?? '';
+    }
+  } else if (rawName === 'workspace_list' && rawArgs.dir === undefined) {
+    rawArgs.dir = rawArgs.path ?? rawArgs.directory ?? 'root';
+  }
+  return { name: rawName, arguments: rawArgs };
 }
 
 export async function dispatchFoundryTool(call, tools) {
@@ -82,6 +180,7 @@ export async function runUorR4AgentTurn({
   userPrompt,
   chatMode = 'build',
   maxNewTokens = 384,
+  maxToolRounds = MAX_TOOL_ROUNDS,
   signal,
   uorR4Runtime,
   generateFn,
@@ -140,7 +239,12 @@ export async function runUorR4AgentTurn({
   const hasCustomGenerate = typeof generateFn === 'function';
   const useFoundryPrompt = isV13 || hasCustomGenerate;
 
-  for (let round = 0; round <= MAX_TOOL_ROUNDS; round += 1) {
+  const maxRounds =
+    Number.isInteger(maxToolRounds) && maxToolRounds >= 1 && maxToolRounds <= 12
+      ? maxToolRounds
+      : MAX_TOOL_ROUNDS;
+
+  for (let round = 0; round <= maxRounds; round += 1) {
     const roundPrefix = transcript;
     const genReq = {
       modelId,
@@ -166,12 +270,34 @@ export async function runUorR4AgentTurn({
     await onText(transcript);
 
     const call = parseToolCall(cleanOut);
-    if (!call || round === MAX_TOOL_ROUNDS) {
+    if (!call || round === maxRounds) {
       break;
     }
-    // In Home Chat mode, skip mutating app-workspace tools cleanly if called accidentally.
-    if (chatMode === 'chat' && call.name === 'workspace_write') {
-      const refusal = { ok: false, error: 'Home Chat is read-only. Click "Build this in Studio" to write files.' };
+    if (call.parseError) {
+      const refusal = { ok: false, error: call.error };
+      const responseBlock = `\n<tool_response>${JSON.stringify(refusal)}</tool_response>\n`;
+      transcript += responseBlock;
+      await onText(transcript);
+      const basePrior =
+        round === 0
+          ? [...turnMessages, { role: 'user', content: prompt }]
+          : turnMessages;
+      turnMessages = [
+        ...basePrior,
+        { role: 'assistant', content: cleanOut },
+        { role: 'user', content: `<tool_response>${JSON.stringify(refusal)}</tool_response>` },
+      ];
+      continue;
+    }
+    // Enforce read-only guard whenever chatMode is not a file-mutating Build mode.
+    if (chatMode !== 'build' && chatMode !== 'local-agent' && call.name === 'workspace_write') {
+      const refusal = {
+        ok: false,
+        error:
+          chatMode === 'chat'
+            ? 'Home Chat is read-only. Click "Build this in Studio" to write files.'
+            : 'Read-only mode; switch to Build mode to write workspace files.',
+      };
       const responseBlock = `\n<tool_response>${JSON.stringify(refusal)}</tool_response>\n`;
       transcript += responseBlock;
       await onText(transcript);

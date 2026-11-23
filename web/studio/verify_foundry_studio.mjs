@@ -514,6 +514,23 @@ async function startMockOpenAIServer() {
       res.end();
       return;
     }
+    if (lastUser.includes('TRIGGER_PHASE1_WRITE')) {
+      res.write(
+        `data: ${JSON.stringify({
+          choices: [
+            {
+              delta: {
+                content:
+                  '<prism-write path="src/Phase1Check.tsx" description="phase1 check">export const PHASE1_BANNER = "phase1-synced";\n</prism-write>\nCreated src/Phase1Check.tsx.',
+              },
+            },
+          ],
+        })}\n\n`,
+      );
+      res.write('data: [DONE]\n\n');
+      res.end();
+      return;
+    }
     if (lastUser.includes('TRIGGER_CUSTOM_TOOL')) {
       res.write(`data: ${JSON.stringify({ choices: [{ delta: { content: '<tool_call>{"name":"workspace_list","arguments":{"dir":""}}</tool_call>' } }] })}\n\n`);
       res.write('data: [DONE]\n\n');
@@ -1462,6 +1479,39 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
         await new Promise((r) => setTimeout(r, 150));
       }
 
+      // Phase 1 check: non-blocking Build Chat file write completes while idle without blocking on preview approval,
+      // and Code / FileEditor sees the newly created file immediately via query invalidation.
+      const tWrite0 = Date.now();
+      await window.__uorR4.submitPrompt(chatId, appId, 'TRIGGER_PHASE1_WRITE');
+      let phase1WriteIdleMs = null;
+      for (let i = 0; i < 100; i++) {
+        const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'chat_stream', encodedKey: { chatId } });
+        const chat = await window.electron.ipcRenderer.invoke('get-chat', chatId);
+        const last = (chat.messages || []).at(-1);
+        if (sub?.encodedState?.phase === 'idle' && last?.role === 'assistant' && String(last.content || '').includes('Created src/Phase1Check.tsx')) {
+          phase1WriteIdleMs = Date.now() - tWrite0;
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      const phase1WrittenFile = await window.electron.ipcRenderer.invoke('read-app-file', { appId, filePath: 'src/Phase1Check.tsx' }).catch(() => null);
+      const modalBlocking = Boolean(document.querySelector('dialog[aria-label="Review preview permissions"]'));
+      location.hash = '#/chat?id=' + chatId;
+      await new Promise((r) => setTimeout(r, 400));
+      const codeTabBtn = [...document.querySelectorAll('button')].find((b) => (b.textContent || '').trim() === 'Code');
+      codeTabBtn?.click();
+      await new Promise((r) => setTimeout(r, 400));
+      const fileItem = [...document.querySelectorAll('button, [role="treeitem"], span, div')].find(
+        (el) => (el.textContent || '').trim() === 'Phase1Check.tsx',
+      );
+      fileItem?.click();
+      await new Promise((r) => setTimeout(r, 500));
+      const appInfoAfterWrite = await window.electron.ipcRenderer.invoke('get-app', appId);
+      const editorSawPhase1 =
+        Boolean(appInfoAfterWrite?.files?.includes('src/Phase1Check.tsx')) &&
+        ((window.monaco?.editor?.getModels?.() || []).some((m) => m.getValue().includes('phase1-synced')) ||
+          (document.body.innerText || '').includes('phase1-synced'));
+
       location.hash = '#/settings';
       await new Promise((r) => setTimeout(r, 300));
       document.querySelector('[data-testid^="custom-api-delete-"]')?.click();
@@ -1488,10 +1538,21 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
         settingsAfterDelete: settingsAfterDelete.selectedModel,
         chatModelAfterDelete: chatAfterDelete?.modelSelection || null,
         countContextWindowAfterDelete: countAfterDelete?.contextWindow || 0,
+        phase1WriteIdleMs,
+        phase1WrittenFile,
+        modalBlocking,
+        editorSawPhase1,
       };
     `,
     60000,
     `Custom AI API Endpoint E2E on ${basePath}`,
+  );
+  assert(
+    customChatCheck.phase1WriteIdleMs !== null &&
+      customChatCheck.phase1WriteIdleMs < 15000 &&
+      String(customChatCheck.phase1WrittenFile || '').includes('phase1-synced') &&
+      customChatCheck.editorSawPhase1,
+    `Non-blocking Build Chat write / FileEditor sync failed: ${JSON.stringify(customChatCheck)}`,
   );
   assert(customChatCheck.providerIds.includes('custom-api'), `custom-api missing from providers: ${JSON.stringify(customChatCheck.providerIds)}`);
   assert(customChatCheck.pickerTextCustom.includes('Loopback Qwen'), `ModelPicker did not display Loopback Qwen: ${customChatCheck.pickerTextCustom}`);
@@ -1506,6 +1567,179 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
       customChatCheck.chatModelAfterDelete?.name === 'uor-r4:qwen3-0.6b-foundry' &&
       customChatCheck.countContextWindowAfterDelete > 0,
     `Delete fallback failed: ${JSON.stringify(customChatCheck)}`,
+  );
+
+  // 11. Check 10: Phases 1-3 E2E — Unified Home UI, dead-UI removal, Problems (esbuild), VITE_* env vars,
+  //     .holo publish/inspect/import/export, and quick browser adapters.
+  console.error(`[verify] verifying Phases 1-3 UI, Problems, Configure env, .holo & adapters on ${basePath}...`);
+  const phase13Check = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      location.hash = '#/';
+      await new Promise((r) => setTimeout(r, 400));
+      const modeToggle = document.querySelector('[data-slot="home-mode-toggle"]');
+      const innerModeSelector = document.querySelector('[data-testid="home-chat-input-container"] [data-testid="chat-mode-selector"]');
+      document.querySelector('[data-testid="home-mode-chat"]')?.click();
+      await new Promise((r) => setTimeout(r, 150));
+      const chatPlaceholderHint = document.body.innerText || '';
+      document.querySelector('[data-testid="home-mode-build"]')?.click();
+      await new Promise((r) => setTimeout(r, 150));
+      const buildPlaceholderHint = document.body.innerText || '';
+      const dyadLinks = [...document.querySelectorAll('a[href*="dyad.sh"]')].map((a) => a.href);
+      const sidebarHasPlugins = [...document.querySelectorAll('a')].some((a) => String(a.getAttribute('href') || '').includes('/plugins'));
+      const settingsText = await (async () => {
+        location.hash = '#/settings';
+        await new Promise((r) => setTimeout(r, 300));
+        return document.body.innerText || '';
+      })();
+      const hasBasicAgentText = (document.body.innerText || '').includes('Basic Agent') || settingsText.includes('Basic Agent');
+
+      const appId = ${builtFromHome.appId};
+      const chatId = ${builtFromHome.chatId};
+      const origAppTsx = await window.electron.ipcRenderer.invoke('read-app-file', { appId, filePath: 'src/App.tsx' });
+      await window.electron.ipcRenderer.invoke('edit-app-file', {
+        appId,
+        filePath: 'src/App.tsx',
+        content: 'export default function App( { return <div>broken<<<; }',
+      });
+      const probErr = await window.electron.ipcRenderer.invoke('check-problems', { appId });
+
+      await window.electron.ipcRenderer.invoke('set-app-env-vars', {
+        appId,
+        envVars: [{ key: 'VITE_PHASE3_TOKEN', value: 'uor-env-ok' }],
+      });
+      const envVarsRead = await window.electron.ipcRenderer.invoke('get-app-env-vars', { appId });
+      await window.electron.ipcRenderer.invoke('edit-app-file', {
+        appId,
+        filePath: 'src/App.tsx',
+        content:
+          'export default function App() { const tok = import.meta.env.VITE_PHASE3_TOKEN || "missing"; return <div className="p-4 text-sm font-sans">{tok}</div>; }\\n',
+      });
+      const probOk = await window.electron.ipcRenderer.invoke('check-problems', { appId });
+
+      await navigator.serviceWorker.ready;
+      const pubPromise = window.electron.ipcRenderer.invoke('holo:publish', { appId });
+      let clickedAllowBuild = false;
+      for (let i = 0; i < 120; i++) {
+        const allowBtn = [...document.querySelectorAll('dialog[aria-label="Review portable build"] button')].find(
+          (b) => (b.textContent || '').includes('Build this source'),
+        );
+        if (allowBtn) {
+          allowBtn.click();
+          clickedAllowBuild = true;
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 100));
+      }
+      const pub = await pubPromise;
+      const inspected = await window.electron.ipcRenderer.invoke('holo:inspect', { kappa: pub.kappa });
+      const holoResp = await fetch(pub.url.replace(/\\/$/, '') + '.holo', { cache: 'no-store' });
+      const holoBytes = new Uint8Array(await holoResp.arrayBuffer());
+      let holoB64 = '';
+      for (let i = 0; i < holoBytes.length; i += 0x8000) {
+        holoB64 += String.fromCharCode(...holoBytes.subarray(i, i + 0x8000));
+      }
+      const importedHolo = await window.electron.ipcRenderer.invoke('holo:import', {
+        bytesBase64: btoa(holoB64),
+        filename: 'roundtrip.holo',
+      });
+      const exportedProj = await window.electron.ipcRenderer.invoke('forge:export', { appId });
+      const exportedParsed = JSON.parse(exportedProj.json);
+
+      // Restore original App.tsx after .holo roundtrip check
+      await window.electron.ipcRenderer.invoke('edit-app-file', { appId, filePath: 'src/App.tsx', content: origAppTsx });
+
+      const favRes = await window.electron.ipcRenderer.invoke('set-chat-favorite', { chatId, isFavorite: true });
+      const refRes = await window.electron.ipcRenderer.invoke('remove-chat-referenced-app', { chatId, appId });
+      const clearRes = await window.electron.ipcRenderer.invoke('clear-session-data');
+      const liveAfterClearUrl = await window.__live.liveFrame();
+      const liveBaseUrl = liveAfterClearUrl.endsWith('/') ? liveAfterClearUrl : liveAfterClearUrl + '/';
+      const liveAfterClearResp = await fetch(liveBaseUrl + 'index.html', { cache: 'no-store' });
+      const pubPathname = new URL(pub.url).pathname;
+      const pubBasePath = pubPathname.endsWith('/') ? pubPathname : pubPathname + '/';
+      const holoCacheStillPresent = Boolean(
+        await (await caches.open('holo')).match(pubBasePath + 'index.html'),
+      );
+
+      return {
+        hasModeToggle: Boolean(modeToggle),
+        hasInnerModeSelector: Boolean(innerModeSelector),
+        chatPlaceholderOk: chatPlaceholderHint.includes('Ask UOR-R4 anything or run /linux /mvm'),
+        buildPlaceholderOk: buildPlaceholderHint.includes('Describe the app you want to build'),
+        dyadLinks,
+        sidebarHasPlugins,
+        hasBasicAgentText,
+        probErr,
+        envVarsRead,
+        probOk,
+        clickedAllowBuild,
+        pub: { decision: pub.decision, kappa: pub.kappa, byteLength: pub.byteLength, url: pub.url },
+        inspected: {
+          valid: inspected.valid,
+          kappa: inspected.kappa,
+          layers: (inspected.layers || []).length,
+          hasIndex: (inspected.files || []).some((f) => f.path === 'index.html'),
+        },
+        holoDownloadOk: holoResp.ok && holoBytes.length === pub.byteLength,
+        importedHolo: { valid: importedHolo.valid, kappa: importedHolo.kappa },
+        exportSchema: exportedParsed?.schema,
+        exportApps: exportedParsed?.apps?.length || 0,
+        favRes,
+        refWasVoid: refRes === undefined,
+        clearWasVoid: clearRes === undefined,
+        liveAfterClearOk: liveAfterClearResp.ok && liveAfterClearUrl.includes('/p/'),
+        holoCacheStillPresent,
+      };
+    `,
+    120000,
+    `Phases 1-3 E2E on ${basePath}`,
+  );
+  assert(
+    phase13Check.hasModeToggle &&
+      !phase13Check.hasInnerModeSelector &&
+      phase13Check.chatPlaceholderOk &&
+      phase13Check.buildPlaceholderOk,
+    `Home unified mode check failed: ${JSON.stringify(phase13Check)}`,
+  );
+  assert(
+    phase13Check.dyadLinks.length === 0 && !phase13Check.sidebarHasPlugins && !phase13Check.hasBasicAgentText,
+    `UI cleanup check failed: ${JSON.stringify(phase13Check)}`,
+  );
+  assert(
+    phase13Check.probErr?.outcome === 'errors' &&
+      (phase13Check.probErr?.problems?.length || 0) > 0 &&
+      phase13Check.probOk?.outcome === 'passed' &&
+      (phase13Check.probOk?.problems?.length || 0) === 0,
+    `check-problems verification failed: ${JSON.stringify({ err: phase13Check.probErr, ok: phase13Check.probOk })}`,
+  );
+  assert(
+    phase13Check.envVarsRead?.some((v) => v.key === 'VITE_PHASE3_TOKEN' && v.value === 'uor-env-ok'),
+    `set-app-env-vars / get-app-env-vars failed: ${JSON.stringify(phase13Check.envVarsRead)}`,
+  );
+  assert(
+    phase13Check.clickedAllowBuild &&
+      phase13Check.pub.decision === 'Accept' &&
+      phase13Check.pub.kappa?.startsWith('blake3:') &&
+      phase13Check.pub.byteLength > 0 &&
+      phase13Check.inspected.valid &&
+      phase13Check.inspected.kappa === phase13Check.pub.kappa &&
+      phase13Check.inspected.layers >= 2 &&
+      phase13Check.inspected.hasIndex &&
+      phase13Check.holoDownloadOk &&
+      phase13Check.importedHolo.valid &&
+      phase13Check.importedHolo.kappa === phase13Check.pub.kappa &&
+      phase13Check.exportSchema === 'hologram-forge/export/1' &&
+      phase13Check.exportApps >= 1,
+    `.holo publish/inspect/download/import/export verification failed: ${JSON.stringify(phase13Check)}`,
+  );
+  assert(
+    phase13Check.favRes?.isFavorite === true &&
+      phase13Check.refWasVoid &&
+      phase13Check.clearWasVoid &&
+      phase13Check.liveAfterClearOk &&
+      phase13Check.holoCacheStillPresent,
+    `Quick browser adapters failed: ${JSON.stringify(phase13Check)}`,
   );
 
   const forbiddenIpcErrors = [];

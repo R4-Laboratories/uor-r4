@@ -65,25 +65,117 @@ echo "== 8/9 project Foundry shell index.html, holo.html, manifest.json & seal c
 cargo run --release --locked --manifest-path "$foundry_studio/core/Cargo.toml" --bin project-shell
 cp "$shell_dir/index.html" "$shell_dir/404.html"
 
-python3 -c '
-import hashlib, json, pathlib
-foundry = pathlib.Path("'"$foundry_root"'")
-shell = pathlib.Path("'"$shell_dir"'")
-def sha(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+python3 - "$foundry_root" "$shell_dir" "$studio_root" <<'PY'
+import gzip, hashlib, io, json, pathlib, re, sys, tarfile
+
+foundry = pathlib.Path(sys.argv[1])
+studio = foundry / "studio"
+shell = pathlib.Path(sys.argv[2])
+studio_root = pathlib.Path(sys.argv[3])
+
+def sha_bytes(data):
+    return hashlib.sha256(data).hexdigest()
+
+def sha_path(p):
+    return sha_bytes(pathlib.Path(p).read_bytes())
+
+def canonical(value):
+    return json.dumps(value, separators=(",", ":"), sort_keys=True, ensure_ascii=False).encode("utf-8")
+
+upstream = json.loads((studio / "generated" / "upstream-provenance.json").read_text(encoding="utf-8"))
+gen_checks = {
+    "kernel_ir_sha256": studio / "generated" / "kernel.ir",
+    "coverage_sha256": studio / "generated" / "coverage.json",
+    "roots_sha256": studio / "generated" / "roots.json",
+    "generated_core_sha256": studio / "generated" / "hologram_forge_core.rs",
+}
+actual = {}
+for field, path in gen_checks.items():
+    digest = sha_path(path)
+    actual[field] = digest
+    if digest != upstream[field]:
+        sys.exit(f"provenance mismatch for {field}: expected {upstream[field]}, got {digest}")
+
+lcnf_manifest = canonical({
+    "coverage_sha256": actual["coverage_sha256"],
+    "kernel_ir_sha256": actual["kernel_ir_sha256"],
+    "roots_sha256": actual["roots_sha256"],
+    "schema": "prismpm/lcnf-manifest/1",
+})
+lcnf_manifest_sha256 = sha_bytes(lcnf_manifest)
+if lcnf_manifest_sha256 != upstream["lcnf_manifest_sha256"]:
+    sys.exit(f"lcnf_manifest_sha256 mismatch: expected {upstream['lcnf_manifest_sha256']}, got {lcnf_manifest_sha256}")
+
+target_profile = canonical({
+    "contract": "hologram:guest/core-wasm@1",
+    "export": "holo_run",
+    "input_allocation_cap": 268435456,
+    "maximum_pages": 4096,
+    "response_maximum": 268435456,
+    "schema": "lean4-prod/core-wasm-target/1",
+})
+target_profile_id = sha_bytes(target_profile)
+if target_profile_id != upstream["target_profile_id"]:
+    sys.exit(f"target_profile_id mismatch: expected {upstream['target_profile_id']}, got {target_profile_id}")
+
+pkg = re.search(
+    r'\[package\]\s*\nname = "([^"]+)"\s*\nversion = "([^"]+)"',
+    (studio / "core" / "Cargo.toml").read_text(encoding="utf-8"),
+)
+cargo_name, cargo_version = pkg.group(1), pkg.group(2)
+
+members = sorted(
+    [studio / "core" / "Cargo.toml", studio / "core" / "Cargo.lock", studio / "generated" / "hologram_forge_core.rs"]
+    + [p for p in (studio / "core" / "src").rglob("*") if p.is_file()]
+)
+tar_buf = io.BytesIO()
+with gzip.GzipFile(fileobj=tar_buf, mode="wb", compresslevel=9, mtime=0) as gz:
+    with tarfile.open(fileobj=gz, mode="w|", format=tarfile.PAX_FORMAT) as tar:
+        for path in members:
+            info = tarfile.TarInfo(str(path.relative_to(studio)).replace("\\", "/"))
+            data = path.read_bytes().replace(b"\r\n", b"\n")
+            info.size, info.mtime, info.uid, info.gid, info.uname, info.gname, info.mode = len(data), 0, 0, 0, "", "", 0o644
+            tar.addfile(info, io.BytesIO(data))
+cargo_crate_sha256 = sha_bytes(tar_buf.getvalue())
+
+closure = json.loads((shell / "manifest.json").read_text(encoding="utf-8"))["closure"]
+upstream_commit = json.loads((studio_root / "foundry-assets.lock.json").read_text(encoding="utf-8"))["upstream_commit"]
+
 prov = {
     "schema": "hologram-forge/provenance/1",
     "source_repo": "UOR-Foundation/uor-r4",
-    "foundry_upstream_commit": json.loads((pathlib.Path("'"$studio_root"'") / "foundry-assets.lock.json").read_text())["upstream_commit"],
-    "kernel_ir_sha256": sha(foundry / "studio/generated/kernel.ir"),
-    "coverage_sha256": sha(foundry / "studio/generated/coverage.json"),
-    "roots_sha256": sha(foundry / "studio/generated/roots.json"),
-    "generated_core_sha256": sha(foundry / "studio/generated/hologram_forge_core.rs"),
-    "core_wasm_sha256": sha(shell / "core.wasm"),
-    "browser_projection_sha256": json.loads((shell / "manifest.json").read_text())["closure"],
+    "foundry_upstream_commit": upstream_commit,
+    "attestation_id": upstream["attestation_id"],
+    "build_id": upstream["build_id"],
+    "source_id": upstream["source_id"],
+    "semantic_id": upstream["semantic_id"],
+    "compiler_semantics_id": upstream["compiler_semantics_id"],
+    "snapshot_id": upstream["snapshot_id"],
+    "stdlib_semantics_id": upstream["stdlib_semantics_id"],
+    "prism_stdlib_crate_sha256": upstream["prism_stdlib_crate_sha256"],
+    "lexlean_commit": upstream["lexlean_commit"],
+    "lexlean_package_sha256": upstream["lexlean_package_sha256"],
+    "lean4_prod_commit": upstream["lean4_prod_commit"],
+    "hologram_live_commit": upstream["hologram_live_commit"],
+    "uor_hologram_commit": upstream["uor_hologram_commit"],
+    "target_profile_id": target_profile_id,
+    "lean_manifest_sha256": upstream["lean_manifest_sha256"],
+    "lcnf_manifest_sha256": lcnf_manifest_sha256,
+    "kernel_ir_sha256": actual["kernel_ir_sha256"],
+    "coverage_sha256": actual["coverage_sha256"],
+    "roots_sha256": actual["roots_sha256"],
+    "generated_core_sha256": actual["generated_core_sha256"],
+    "cargo_name": cargo_name,
+    "cargo_version": cargo_version,
+    "cargo_crate_sha256": cargo_crate_sha256,
+    "cargo_crate_kind": "deterministic tar of Cargo.toml, Cargo.lock, src/** and generated/hologram_forge_core.rs (cargo package refuses the git dependency)",
+    "view_model_id": upstream["view_model_id"],
+    "core_wasm_sha256": sha_path(shell / "core.wasm"),
+    "browser_projection_sha256": closure,
+    "prismpm_commit": upstream["prismpm_commit"],
 }
 (shell / "provenance.json").write_text(json.dumps(prov, indent=2) + "\n", encoding="utf-8")
-'
+PY
 
 node "$repo_root/scripts/studio/seal-shell-closure.mjs" "$shell_dir" --template "$shell_dir/sw.template.js"
 
