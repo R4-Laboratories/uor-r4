@@ -6,7 +6,7 @@ import {createLinuxVmHost} from './linux-vm-host.mjs';
 import {createStitchNetwork} from './stitch-network.mjs';
 import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
-import {runUorR4AgentTurn} from './r4-agent-loop.mjs';
+import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
 import {changeUserSettings} from "./settings-transactions.mjs";
@@ -772,6 +772,7 @@ function createProjectResolverPlugin(files, { name = "project", externalBare = t
 }
 async function buildPreview(appId) {
   await coreReady;
+  await workerActive;
   const source = await verifiedBuildSource(appId);
   if (applicationShape(source) === 'stateful') throw shapeFailure('statefulBuildUnsupported');
   const { path } = core.run({ op: "preview", kappa: source.reference });
@@ -1418,6 +1419,73 @@ async function lookupStandards(query, limit = 5) {
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
   return { ok: true, query, matches: scored.map((x) => x.sec) };
+}
+const BARE_TOOL_PROMPT_RE = /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b/i;
+async function buildTurnGroundingContext({ appId = null, chatMode = "build", prompt = "" } = {}) {
+  const q = String(prompt || "").trim();
+  if (!q) return "";
+  if (/^\/(mvm|linux|bash|sh)\b/i.test(q)) return "";
+  if (q.length <= 120 && BARE_TOOL_PROMPT_RE.test(q)) return "";
+  const parts = [];
+  const isBuildMode = chatMode === "build" || chatMode === "local-agent";
+  if (isBuildMode && appId) {
+    const wsLines = [];
+    try {
+      const files = (await filesOf(appId)).slice().sort();
+      if (files.length) {
+        const header = `Workspace files (${files.length}): `;
+        let joined = "";
+        for (const f of files) {
+          const next = joined ? `${joined}, ${f}` : f;
+          if ((header + next).length > 320) break;
+          joined = next;
+        }
+        if (!joined && files[0]) joined = files[0].slice(0, Math.max(0, 320 - header.length));
+        if (joined) wsLines.push(header + joined);
+      }
+    } catch {}
+    try {
+      const envVars = await readSafeAppEnvVars(appId);
+      const envKeys = envVars.map((v) => v.key).filter(Boolean);
+      if (envKeys.length) {
+        const envLine = `Env keys: ${envKeys.join(", ")}`;
+        const candidate = [...wsLines, envLine].join("\n");
+        if (candidate.length <= 450) {
+          wsLines.push(envLine);
+        } else {
+          const room = 450 - wsLines.join("\n").length - (wsLines.length ? 1 : 0);
+          if (room > 16) wsLines.push(envLine.slice(0, room));
+        }
+      }
+    } catch {}
+    const wsBlock = wsLines.join("\n").slice(0, 450).trim();
+    if (wsBlock) parts.push(wsBlock);
+  }
+  const ragTerms = q.split(/\s+/).filter((w) => w.length >= 3);
+  if (q.length >= 12 || ragTerms.length >= 2) {
+    try {
+      const rag = await lookupStandards(q, 2);
+      const matches = Array.isArray(rag?.matches) ? rag.matches : [];
+      if (matches.length) {
+        let stdText = "[Standards]";
+        for (const sec of matches) {
+          const snippet = String(sec.summary || sec.content || "").replace(/\s+/g, " ").trim();
+          const line = `\n- ${sec.id || sec.title}: ${snippet}`;
+          if ((stdText + line).length > 550) {
+            const rem = 550 - stdText.length;
+            if (rem > 24) stdText += line.slice(0, rem - 3) + "...";
+            break;
+          }
+          stdText += line;
+        }
+        if (stdText !== "[Standards]") {
+          parts.push(stdText.slice(0, 550));
+        }
+      }
+    } catch {}
+  }
+  if (!parts.length) return "";
+  return `[Foundry Context]\n${parts.join("\n")}`;
 }
 function cleanWorkspacePath(raw, allowEmpty = false) {
   let s = String(raw ?? "").trim().replace(/\\/g, "/");
@@ -2297,14 +2365,16 @@ async function chatTurn(chatId, intent) {
     if (isR4OrCustom) {
       await enqueueText("");
       const tools = createFoundryTools({ appId, chatMode: execution.mode, signal: abort.signal, onCommit });
+      const groundingContext = await buildTurnGroundingContext({ appId, chatMode: execution.mode, prompt: intent.prompt }).catch(() => "");
       const uorTurn = await runUorR4AgentTurn({
         appId,
         chatId,
         modelId: customEndpoint ? customEndpoint.model : model,
         messages: messages.slice(0, -2),
         userPrompt: intent.prompt,
+        groundingContext,
         chatMode: execution.mode,
-        maxNewTokens: customEndpoint ? 2048 : 384,
+        maxNewTokens: customEndpoint ? 2048 : 768,
         maxToolRounds: Number.isInteger(settings?.maxToolCallSteps) ? settings.maxToolCallSteps : undefined,
         signal: abort.signal,
         uorR4Runtime: uorR4,
@@ -2616,6 +2686,8 @@ async function compileTailwind(page, lease) {
   const path = new URL("p/" + id + "/index.html", BASE).pathname;
   const at = page.lastIndexOf("</body>");
   const reporting = page.slice(0, at) + `<script>(${tailwindReporter})();<\/script>` + page.slice(at);
+  await lease.check();
+  await workerActive;
   await lease.check();
   const cache = await caches.open("previews");
   await cache.put(path, new Response(reporting, { headers: { "content-type": "text/html; charset=utf-8" } }));
@@ -3484,14 +3556,16 @@ handlers.set("home-chat:send", async ({ prompt, modelId, provider: requestedProv
     });
     const allowed = await r4Decide(before);
     if (allowed.outcome !== "answer") throw new Error(r4Refusal(allowed, before));
+    const groundingContext = await buildTurnGroundingContext({ appId: null, chatMode: "chat", prompt: text }).catch(() => "");
     const result = await runUorR4AgentTurn({
       appId: null,
       chatId: "home-chat",
       modelId: displayModel,
       messages: prior,
       userPrompt: text,
+      groundingContext,
       chatMode: "chat",
-      maxNewTokens: customEndpoint ? 2048 : 384,
+      maxNewTokens: customEndpoint ? 2048 : 768,
       signal: abort.signal,
       uorR4Runtime: uorR4,
       generateFn: customEndpoint ? (opts) => customApiClient.generateChatCompletion({ endpoint: customEndpoint, ...opts }) : undefined,
@@ -3591,6 +3665,11 @@ window.__uorR4 = Object.freeze({
   getCatalog: uorR4.getCatalog,
   getStatus: uorR4.getStatus,
   ensureModelLoaded: uorR4.ensureModelLoaded,
+  prewarmIfCached: (opts = {}) => uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_SYSTEM_PROMPT, ...opts }),
+  configure: uorR4.configure,
+  generate: uorR4.generate,
+  buildTurnGroundingContext,
+  systemPrompt: FOUNDRY_SYSTEM_PROMPT,
   listCustomApiEndpoints: customApiClient.listEndpoints,
   mvmExec: (cmd, appId = null) => mvmHost.execCommand(appId, cmd),
   mvmIdentity: (appId = null) => mvmHost.getIdentity(appId),
@@ -3719,6 +3798,12 @@ if ("serviceWorker" in navigator) {
 if ("serviceWorker" in navigator) {
   const idle = (fn) => (self.requestIdleCallback ? requestIdleCallback(fn, { timeout: 10000 }) : setTimeout(fn, 3000));
   addEventListener("load", () => idle(() => navigator.serviceWorker.ready.then((r) => r.active && r.active.postMessage("fill")).catch(() => {})), { once: true });
+}
+{
+  const idlePrewarm = (fn) => (self.requestIdleCallback ? requestIdleCallback(fn, { timeout: 10000 }) : setTimeout(fn, 3000));
+  const runIdlePrewarm = () => idlePrewarm(() => void uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_SYSTEM_PROMPT }).catch(() => {}));
+  if (document.readyState === "complete") runIdlePrewarm();
+  else addEventListener("load", runIdlePrewarm, { once: true });
 }
 // After a deployment a page can run an entry that names a chunk the origin no longer serves: the worker has
 // already revalidated the entry, so one reload runs the new build whole.

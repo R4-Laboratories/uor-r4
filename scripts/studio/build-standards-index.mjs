@@ -168,6 +168,47 @@ export function buildStandardsIndex(outPath = defaultOut) {
       ].join('\n'),
       source: 'web/studio/foundry/studio/shell/r4-agent-loop.mjs',
     },
+    {
+      id: 'foundry-studio-architecture',
+      title: 'Foundry Web Studio Architecture, Modes & Panels',
+      topic: 'studio',
+      tags: ['studio', 'foundry', 'modes', 'chat', 'build', 'agent', 'preview', 'terminal', 'github', 'settings'],
+      summary: 'How Foundry Web Studio organizes Home Chat, Build/Agent workspace modes, Live Preview, Terminals, GitHub, and Settings.',
+      content: [
+        '# Foundry Web Studio Architecture & Navigation',
+        '- Three Studio modes: **Home Chat** (`chat`, read-only ideation before creating an app — click "Build this in Studio" to create one), **Build** (default workspace mode for editing project files with `<prism-write>` / `workspace_write` and hot-rebuilding the esbuild preview), and **Local Agent** (autonomous multi-step tool loop).',
+        '- Workspace panels: **Chat** (conversation + tool execution transcript), **Code** (workspace file tree and source editor), **Preview** (live compiled Vite React bundle served at `/p/<id>/`), **Problems** (`check-problems` TypeScript/LexLean diagnostics), **Publish** (`holo:publish` single-file HTML/.holo export & `holo:inspect`), **GitHub** (PAT vault + repo pull/push), **Terminal** (Linux 6.18.7 v86 VM `/workspace` + RV64IMAC MVM), and **Settings** (UOR-R4 V13 local WASM, Custom AI API endpoints, Session Reset via `clear-session-data`).',
+      ].join('\n'),
+      source: 'web/studio/foundry/studio/shell/host.js',
+    },
+    {
+      id: 'foundry-tools-and-holo',
+      title: 'Foundry 16 Native Tools & PrismPM .holo Capsule Publishing',
+      topic: 'tools',
+      tags: ['tools', 'workspace', 'holo', 'publish', 'inspect', 'lexlean', 'prism', 'github', 'standards'],
+      summary: 'Complete reference for Studio native browser tools, <prism-write> tags, and .holo v4 portable build/inspect.',
+      content: [
+        '# Foundry Webharness Tools & .holo Publishing',
+        '- Native browser tools callable via `<tool_call>{"name": ..., "arguments": ...}</tool_call>`: `workspace_read`, `workspace_write`, `workspace_list`, `linux_exec`, `mvm_exec`, `github_status`, `github_list_repos`, `github_clone`, `github_pull`, `github_push`, `prismpm_verify`, `holo_publish`, `holo_inspect`, `lexlean_check`, `lexlean_verify`, `standards_lookup`, `stitch_fetch`, `stitch_peer_status`.',
+        '- File authoring: Build mode accepts `<prism-write path="src/App.tsx" description="...">...</prism-write>` blocks or `workspace_write({ path, content })`. Home Chat (`chat` mode) refuses file writes.',
+        '- Publishing: `holo:publish` compiles React+Tailwind inside the hidden preview iframe (`compileTailwind`), bundles production JS with `esbuild`, computes BLAKE3 `kappa` in `core.wasm`, and seals a self-contained `.holo` v4 HTML archive inspectable via `holo:inspect`.',
+      ].join('\n'),
+      source: 'web/studio/foundry/studio/shell/r4-agent-loop.mjs',
+    },
+    {
+      id: 'foundry-browser-apis-and-vm',
+      title: 'Browser Storage (IndexedDB/OPFS), Service Worker Preview, Linux VM & Stitch',
+      topic: 'browser-apis',
+      tags: ['indexeddb', 'opfs', 'service-worker', 'linux', 'v86', 'mvm', 'stitch', 'cache', 'clear-session-data'],
+      summary: 'How IndexedDB, OPFS, Service Worker caches, Linux 6.18.7 9p workspace, MVM, and Stitch work together in-browser.',
+      content: [
+        '# Browser APIs, Storage, Service Worker & VMs in Foundry Studio',
+        '- Storage: IndexedDB stores apps, chats, messages, versions, refs (`app-env:*`, GitHub vault), and fallback weight shards; OPFS (`uor-r4-v13-packs`) caches downloaded `pack_00`..`pack_09` model shards. Clearing session data (`clear-session-data`) clears apps/chats/previews while preserving cached model weights (`"holo"` cache / OPFS).',
+        '- Service Worker (`sw.js`): claims controlled pages, serves `/p/<id>/` live preview & Tailwind compilation frames from `"previews"` CacheStorage, and pre-caches the offline closure manifest (`manifest.json`).',
+        '- In-browser compute: Linux 6.18.7 (`v86` x86) mounts `/workspace` over 9p synchronized with IndexedDB; MVM executes RV64IMAC ELFs with Copy-on-Write memory hashes; `uor_foundry_v13_wasm` runs pure-integer WASM inference inside a Dedicated Worker with `MessageChannel` yield and KV prefix reuse.',
+      ].join('\n'),
+      source: 'web/studio/foundry/studio/shell/linux-vm-host.mjs',
+    },
   );
 
   // Enforce strict total size bound < 110 KB so shell closure stays lean.

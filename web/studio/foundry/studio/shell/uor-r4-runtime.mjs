@@ -36,6 +36,7 @@ let v13Worker = null;
 let catalogCache = null;
 let loadedModelId = null;
 let loadedCapabilities = null;
+let defaultSpeculative = false;
 let opfsStatus = 'untested';
 let pendingOp = Promise.resolve();
 let nextMsgId = 1;
@@ -133,14 +134,16 @@ async function openFallbackIdb(name = IDB_V13_NAME) {
   });
 }
 
-async function isV13Cached(containerSha) {
-  if (!containerSha) return false;
+async function hasCachedFiles(containerSha, files) {
+  if (!containerSha || !Array.isArray(files) || !files.length) return false;
   try {
     if (navigator.storage?.getDirectory) {
       const root = await navigator.storage.getDirectory();
       const base = await root.getDirectoryHandle(OPFS_V13_DIR, { create: false });
       const scoped = await base.getDirectoryHandle(containerSha, { create: false });
-      await scoped.getFileHandle('pack_09.pack', { create: false });
+      for (const file of files) {
+        await scoped.getFileHandle(file, { create: false });
+      }
       return true;
     }
   } catch {}
@@ -148,14 +151,38 @@ async function isV13Cached(containerSha) {
     const db = await openFallbackIdb(IDB_V13_NAME);
     const existing = await new Promise((resolve) => {
       const tx = db.transaction(IDB_STORE, 'readonly');
-      const req = tx.objectStore(IDB_STORE).getKey(`${containerSha}/pack_09.pack`);
-      req.onsuccess = () => resolve(req.result !== undefined);
-      req.onerror = () => resolve(false);
+      const store = tx.objectStore(IDB_STORE);
+      let idx = 0;
+      const checkNext = () => {
+        if (idx >= files.length) {
+          resolve(true);
+          return;
+        }
+        const req = store.getKey(`${containerSha}/${files[idx]}`);
+        idx += 1;
+        req.onsuccess = () => {
+          if (req.result === undefined) {
+            resolve(false);
+          } else {
+            checkNext();
+          }
+        };
+        req.onerror = () => resolve(false);
+      };
+      checkNext();
     });
     return existing;
   } catch {
     return false;
   }
+}
+
+async function isV13Cached(containerSha) {
+  return hasCachedFiles(containerSha, ['pack_09.pack']);
+}
+
+async function hasOfflineV13Cache(containerSha) {
+  return hasCachedFiles(containerSha, ['manifest.json', 'manifest.stitch.json', 'pack_09.pack']);
 }
 
 function ensureV13Worker() {
@@ -404,15 +431,17 @@ export async function generate({
   prompt,
   systemPrompt = '',
   messages,
-  maxNewTokens = 384,
+  maxNewTokens = 768,
   stopSequences = ['</tool_call>'],
-  sliceTokens = 2,
-  prefillSliceTokens = 16,
+  sliceTokens = 4,
+  prefillSliceTokens = 32,
+  speculative,
   signal,
   onToken,
 } = {}) {
   await ensureModelLoaded(modelId, { signal });
   return serializeOp(async () => {
+    const effectiveSpec = typeof speculative === 'boolean' ? speculative : defaultSpeculative;
     const result = await callV13Worker(
       'generate_v13',
       {
@@ -423,6 +452,7 @@ export async function generate({
         stopSequences,
         sliceTokens,
         prefillSliceTokens,
+        speculative: effectiveSpec,
       },
       'v13_complete',
       { onToken, signal },
@@ -433,11 +463,71 @@ export async function generate({
       stopReason: result.stopReason,
       float_ops: result.float_ops ?? 0,
       dense_matmul_ops: result.dense_matmul_ops ?? 0,
+      prefixReusedTokens: result.prefixReusedTokens ?? 0,
+      draftProposed: result.draftProposed ?? 0,
+      draftAccepted: result.draftAccepted ?? 0,
+      mlpMode: result.mlpMode || 'DenseExact',
       capabilities: loadedCapabilities,
       weightsMatched:
         loadedCapabilities?.expected_sha256 == null || loadedCapabilities?.sha256_verified === true,
     };
   });
+}
+
+export async function prewarmIfCached({
+  modelId = `uor-r4:${DEFAULT_MODEL_SHORT}`,
+  systemPrompt = '',
+  signal,
+} = {}) {
+  const shortId = normalizeModelId(modelId);
+  if (loadedModelId !== shortId) {
+    const cat = await getCatalog();
+    const entry = cat.models.find((m) => m.id === shortId);
+    if (!entry) {
+      return { ok: false, skipped: 'unknown_model', cached: false };
+    }
+    const cached = await hasOfflineV13Cache(entry.container_sha256);
+    if (!cached) {
+      return { ok: false, skipped: 'not_cached', cached: false };
+    }
+  }
+  return serializeOp(async () => {
+    if (loadedModelId !== shortId) {
+      const cat = await getCatalog();
+      const entry = cat.models.find((m) => m.id === shortId);
+      if (!entry || !(await hasOfflineV13Cache(entry.container_sha256))) {
+        return { ok: false, skipped: 'not_cached', cached: false };
+      }
+      await loadV13Entry(entry, { signal });
+    }
+    return callV13Worker(
+      'prewarm_v13',
+      { systemPrompt: String(systemPrompt || '') },
+      'v13_prewarmed',
+      { signal },
+    );
+  });
+}
+
+export async function configure({
+  speculative,
+  shortlistK,
+  mlpShortlistK,
+  mlpMode,
+  flockWindow,
+  signal,
+} = {}) {
+  const cfg = {};
+  if (typeof speculative === 'boolean') cfg.speculative = speculative;
+  if (Number.isInteger(shortlistK)) cfg.shortlist_k = shortlistK;
+  if (Number.isInteger(mlpShortlistK)) cfg.mlp_shortlist_k = mlpShortlistK;
+  if (typeof mlpMode === 'string' && mlpMode) cfg.mlp_policy = mlpMode;
+  if (Number.isInteger(flockWindow)) cfg.flock_window = flockWindow;
+  const res = await serializeOp(() => callV13Worker('configure_v13', cfg, 'v13_configured', { signal }));
+  if (typeof speculative === 'boolean') {
+    defaultSpeculative = speculative;
+  }
+  return res;
 }
 
 export async function testStitchRecover({ mirrorBaseUrl = '', groupIndex = 0, signal } = {}) {

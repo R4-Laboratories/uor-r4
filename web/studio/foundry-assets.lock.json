@@ -311,15 +311,15 @@
     },
     {
       "path": "studio/shell/v13/uor_foundry_v13_wasm.js",
-      "sha256": "d548e57ef8d34de6981e3ab9818bef71e5e3330ee860f3809b72f7ce67ad4829",
-      "bytes": 72398,
-      "url": "https://raw.githubusercontent.com/Casey-allard/lexlean-r4/127e954f113b1cac398fb494d9002332138afc70/pkg/uor_foundry_v13_wasm.js"
+      "sha256": "e4ea92b79bea247f51366d77b0c630a8defef744f944dee028d3bebb8b9ad63f",
+      "bytes": 73505,
+      "url": "https://raw.githubusercontent.com/Casey-allard/lexlean-r4/0b5b6d30a019286269d432a625eb7d9c7a339b1b/pkg/uor_foundry_v13_wasm.js"
     },
     {
       "path": "studio/shell/v13/uor_foundry_v13_wasm_bg.wasm",
-      "sha256": "05e92497424f23ed5363a80cbc662d337cfa8d067b0912f1e8944da6114f03fb",
-      "bytes": 11420104,
-      "url": "https://raw.githubusercontent.com/Casey-allard/lexlean-r4/127e954f113b1cac398fb494d9002332138afc70/pkg/uor_foundry_v13_wasm_bg.wasm"
+      "sha256": "855213514627bf885a38b0e1799d68a3d1f3b971366358700f67b2621e710ded",
+      "bytes": 11431737,
+      "url": "https://raw.githubusercontent.com/Casey-allard/lexlean-r4/0b5b6d30a019286269d432a625eb7d9c7a339b1b/pkg/uor_foundry_v13_wasm_bg.wasm"
     },
     {
       "path": "studio/shell/v86/libv86.js",

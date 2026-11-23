@@ -213,12 +213,23 @@ async function handleLoadV13(id, payload) {
       recoveredPieces: [],
     });
 
-    const manifestRes = await fetchBytes(
-      manifestUrl,
-      payload.manifestSha256 ? String(payload.manifestSha256).toLowerCase() : null,
-      loadCtrl.signal,
-    );
-    const manifestText = new TextDecoder('utf-8').decode(manifestRes.bytes);
+    const expectedManifestSha = payload.manifestSha256 ? String(payload.manifestSha256).toLowerCase() : null;
+    const expectedStitchSha = payload.stitchManifestSha256 ? String(payload.stitchManifestSha256).toLowerCase() : null;
+
+    let manifestBytes = null;
+    let manifestFromCache = false;
+    if (expectedContainerSha && expectedManifestSha) {
+      const mHit = await cacheRead(expectedContainerSha, 'manifest.json');
+      if (mHit && (await sha256Hex(mHit.bytes)) === expectedManifestSha) {
+        manifestBytes = mHit.bytes;
+        manifestFromCache = true;
+      }
+    }
+    if (!manifestBytes) {
+      const manifestRes = await fetchBytes(manifestUrl, expectedManifestSha, loadCtrl.signal);
+      manifestBytes = manifestRes.bytes;
+    }
+    const manifestText = new TextDecoder('utf-8').decode(manifestBytes);
     const manifest = JSON.parse(manifestText);
     if (manifest.format !== 'UORR4V13' || !Array.isArray(manifest.packs) || !Array.isArray(manifest.pieces)) {
       throw new Error('Invalid UORR4V13 pack manifest');
@@ -226,15 +237,25 @@ async function handleLoadV13(id, payload) {
     if (expectedContainerSha && manifest.container_sha256 !== expectedContainerSha) {
       throw new Error(`Container SHA-256 mismatch: expected ${expectedContainerSha}, got ${manifest.container_sha256}`);
     }
+    if (!manifestFromCache) {
+      await cacheWrite(manifest.container_sha256, 'manifest.json', manifestBytes).catch(() => {});
+    }
 
     let stitchManifest = null;
     if (stitchUrl) {
-      const stitchRes = await fetchBytes(
-        stitchUrl,
-        payload.stitchManifestSha256 ? String(payload.stitchManifestSha256).toLowerCase() : null,
-        loadCtrl.signal,
-      );
-      const stitchText = new TextDecoder('utf-8').decode(stitchRes.bytes);
+      let stitchBytes = null;
+      if (expectedStitchSha) {
+        const sHit = await cacheRead(manifest.container_sha256, 'manifest.stitch.json');
+        if (sHit && (await sha256Hex(sHit.bytes)) === expectedStitchSha) {
+          stitchBytes = sHit.bytes;
+        }
+      }
+      if (!stitchBytes) {
+        const stitchRes = await fetchBytes(stitchUrl, expectedStitchSha, loadCtrl.signal);
+        stitchBytes = stitchRes.bytes;
+        await cacheWrite(manifest.container_sha256, 'manifest.stitch.json', stitchBytes).catch(() => {});
+      }
+      const stitchText = new TextDecoder('utf-8').decode(stitchBytes);
       const vres = JSON.parse(wasm.v13_stitch_verify_manifest(stitchText));
       if (!vres.ok) {
         throw new Error(`Stitch manifest verification failed: ${vres.message || vres.error_code}`);
@@ -282,7 +303,7 @@ async function handleLoadV13(id, payload) {
       }
     };
 
-    await mapLimit(manifest.packs, 2, async (pack) => {
+    await mapLimit(manifest.packs, 4, async (pack) => {
       throwIfCancelled();
       let packBytes = null;
       const hit = await cacheRead(containerSha, pack.file);
@@ -421,6 +442,20 @@ async function handleLoadV13(id, payload) {
   }
 }
 
+const yieldMacrotask =
+  typeof MessageChannel === 'function'
+    ? () =>
+        new Promise((resolve) => {
+          const ch = new MessageChannel();
+          ch.port1.onmessage = () => {
+            ch.port1.close();
+            ch.port2.close();
+            resolve();
+          };
+          ch.port2.postMessage(null);
+        })
+    : () => new Promise((resolve) => setTimeout(resolve, 0));
+
 async function handleGenerateV13(id, payload) {
   const wasm = await getWasm();
   const status = JSON.parse(wasm.v13_status());
@@ -433,9 +468,10 @@ async function handleGenerateV13(id, payload) {
         system_prompt: payload.systemPrompt || '',
         messages: Array.isArray(payload.messages) ? payload.messages : [],
         prompt: String(payload.prompt || ''),
-        max_new_tokens: payload.maxNewTokens || 384,
-        prefill_slice_tokens: payload.prefillSliceTokens || 16,
-        slice_tokens: payload.sliceTokens || 2,
+        max_new_tokens: payload.maxNewTokens || 768,
+        prefill_slice_tokens: payload.prefillSliceTokens || 32,
+        slice_tokens: payload.sliceTokens || 4,
+        speculative: payload.speculative === true,
         stop_sequences: Array.isArray(payload.stopSequences) && payload.stopSequences.length
           ? payload.stopSequences
           : ['</tool_call>'],
@@ -484,6 +520,10 @@ async function handleGenerateV13(id, payload) {
           stopReason: last.stop_reason || null,
           float_ops: last.float_ops ?? 0,
           dense_matmul_ops: last.dense_matmul_ops ?? 0,
+          prefixReusedTokens: last.prefix_reused_tokens ?? 0,
+          draftProposed: last.draft_proposed_total ?? 0,
+          draftAccepted: last.draft_accepted_total ?? 0,
+          mlpMode: last.mlp_mode || 'DenseExact',
         });
         return;
       }
@@ -496,7 +536,7 @@ async function handleGenerateV13(id, payload) {
         });
         return;
       }
-      await new Promise((r) => setTimeout(r, 0));
+      await yieldMacrotask();
     }
   } finally {
     if (activeTurn && activeTurn.id === id) {
@@ -580,6 +620,41 @@ async function handleTestStitchRecover(id, payload) {
   });
 }
 
+async function handlePrewarmV13(id, payload) {
+  const wasm = await getWasm();
+  const status = JSON.parse(wasm.v13_status());
+  if (!status.mounted) {
+    throw new Error('UORR4V13 model is not mounted yet');
+  }
+  const res = JSON.parse(wasm.v13_prewarm_prefix(String(payload?.systemPrompt || '')));
+  if (!res.ok) {
+    throw new Error(res.message || res.detail || res.error || 'V13 prewarm failed');
+  }
+  self.postMessage({
+    id,
+    action: 'v13_prewarmed',
+    ok: true,
+    prewarmedTokens: res.prewarmed_tokens || 0,
+    kvCachedTokens: res.kv_cached_tokens || 0,
+    reused: Boolean(res.reused),
+    float_ops: res.float_ops ?? 0,
+    dense_matmul_ops: res.dense_matmul_ops ?? 0,
+  });
+}
+
+async function handleConfigureV13(id, payload) {
+  const wasm = await getWasm();
+  const res = JSON.parse(wasm.v13_configure(JSON.stringify(payload || {})));
+  if (!res.ok) {
+    throw new Error(res.message || res.detail || res.error || 'V13 configure failed');
+  }
+  self.postMessage({
+    id,
+    action: 'v13_configured',
+    ...res,
+  });
+}
+
 self.onmessage = async ({ data }) => {
   if (!data || typeof data !== 'object') return;
   const { id, action, payload } = data;
@@ -605,6 +680,14 @@ self.onmessage = async ({ data }) => {
     }
     if (action === 'generate_v13') {
       await handleGenerateV13(id, payload || {});
+      return;
+    }
+    if (action === 'prewarm_v13') {
+      await handlePrewarmV13(id, payload || {});
+      return;
+    }
+    if (action === 'configure_v13') {
+      await handleConfigureV13(id, payload || {});
       return;
     }
     if (action === 'test_stitch_recover') {

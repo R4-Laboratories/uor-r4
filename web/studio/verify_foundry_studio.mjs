@@ -754,6 +754,68 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
   );
   console.error(`[verify] V13 WASM mounted & Stitch XOR group-0 recovered (${v13LoadCheck.stitch.recoveredSha256.slice(0, 12)})`);
 
+  // 2b. Verify V13 prefix prewarm + short 0-LSB exact/speculative parity pair.
+  const v13PrewarmPair = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const cfgRes = await window.__uorR4.configure({ mlpMode: 'dense', shortlistK: 16384 });
+      const prewarmRes = await window.__uorR4.prewarmIfCached();
+      const shortPrompt = 'State what Studio Build mode does in one brief sentence.';
+      const exactGen = await window.__uorR4.generate({
+        prompt: shortPrompt,
+        systemPrompt: window.__uorR4.systemPrompt,
+        maxNewTokens: 16,
+        speculative: false,
+      });
+      const specGen = await window.__uorR4.generate({
+        prompt: shortPrompt,
+        systemPrompt: window.__uorR4.systemPrompt,
+        maxNewTokens: 16,
+        speculative: true,
+      });
+      return {
+        cfgRes,
+        prewarmRes,
+        exactGen: {
+          fullText: exactGen.fullText,
+          prefixReusedTokens: exactGen.prefixReusedTokens,
+          float_ops: exactGen.float_ops,
+          dense_matmul_ops: exactGen.dense_matmul_ops,
+        },
+        specGen: {
+          fullText: specGen.fullText,
+          prefixReusedTokens: specGen.prefixReusedTokens,
+          float_ops: specGen.float_ops,
+          dense_matmul_ops: specGen.dense_matmul_ops,
+          draftProposed: specGen.draftProposed,
+          draftAccepted: specGen.draftAccepted,
+        },
+      };
+    `,
+    60000,
+    `V13 prewarm & 0-LSB parity pair on ${basePath}`,
+  );
+  assert(
+    v13PrewarmPair.cfgRes?.ok === true &&
+      v13PrewarmPair.cfgRes?.mlp_verdict === 'DenseExact' &&
+      v13PrewarmPair.prewarmRes?.ok === true &&
+      v13PrewarmPair.prewarmRes?.prewarmedTokens >= 150 &&
+      v13PrewarmPair.prewarmRes?.float_ops === 0 &&
+      v13PrewarmPair.prewarmRes?.dense_matmul_ops === 0,
+    `V13 configure/prewarmIfCached failed: ${JSON.stringify({ cfgRes: v13PrewarmPair.cfgRes, prewarmRes: v13PrewarmPair.prewarmRes })}`,
+  );
+  assert(
+    v13PrewarmPair.exactGen.prefixReusedTokens >= 150 &&
+      v13PrewarmPair.exactGen.fullText === v13PrewarmPair.specGen.fullText &&
+      v13PrewarmPair.exactGen.float_ops === 0 &&
+      v13PrewarmPair.exactGen.dense_matmul_ops === 0 &&
+      v13PrewarmPair.specGen.float_ops === 0 &&
+      v13PrewarmPair.specGen.dense_matmul_ops === 0,
+    `V13 0-LSB prewarm parity failed: ${JSON.stringify(v13PrewarmPair)}`,
+  );
+  console.error(`[verify] V13 prewarm (${v13PrewarmPair.prewarmRes.prewarmedTokens} tok) & 0-LSB parity OK`);
+
   // Ensure network fetches during V13 load only targeted loopback origin / packOrigin (or pinned raw GitHub if no local mirror).
   const allowedOrigins = new Set([origin, ...(packOrigin ? [packOrigin] : ['https://raw.githubusercontent.com'])]);
   for (const ev of cdp.events.slice(activeEvMark)) {
@@ -1610,6 +1672,35 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
         envVars: [{ key: 'VITE_PHASE3_TOKEN', value: 'uor-env-ok' }],
       });
       const envVarsRead = await window.electron.ipcRenderer.invoke('get-app-env-vars', { appId });
+
+      // Phase 4A: verify standards:lookup hits all 3 Studio self-knowledge sections & grounding is keys-only.
+      const stdArch = await window.electron.ipcRenderer.invoke('standards:lookup', {
+        query: 'Studio modes Build preview',
+        limit: 5,
+      });
+      const stdTools = await window.electron.ipcRenderer.invoke('standards:lookup', {
+        query: 'tools holo publish inspect',
+        limit: 5,
+      });
+      const stdBrowser = await window.electron.ipcRenderer.invoke('standards:lookup', {
+        query: 'IndexedDB OPFS Service Worker Linux VM',
+        limit: 5,
+      });
+      const groundingBuild = await window.__uorR4.buildTurnGroundingContext({
+        appId,
+        chatMode: 'build',
+        prompt: 'How do Studio modes, Build preview, and .holo publish work?',
+      });
+      const groundingSlash = await window.__uorR4.buildTurnGroundingContext({
+        appId,
+        chatMode: 'build',
+        prompt: '/linux ls',
+      });
+      const groundingBareTool = await window.__uorR4.buildTurnGroundingContext({
+        appId,
+        chatMode: 'build',
+        prompt: 'Call workspace_list for root.',
+      });
       await window.electron.ipcRenderer.invoke('edit-app-file', {
         appId,
         filePath: 'src/App.tsx',
@@ -1690,10 +1781,33 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
         clearWasVoid: clearRes === undefined,
         liveAfterClearOk: liveAfterClearResp.ok && liveAfterClearUrl.includes('/p/'),
         holoCacheStillPresent,
+        phase4a: {
+          stdArchIds: (stdArch?.matches || []).map((s) => s.id),
+          stdToolIds: (stdTools?.matches || []).map((s) => s.id),
+          stdBrowserIds: (stdBrowser?.matches || []).map((s) => s.id),
+          groundingBuild,
+          groundingSlash,
+          groundingBareTool,
+        },
       };
     `,
     120000,
     `Phases 1-3 E2E on ${basePath}`,
+  );
+  assert(
+    phase13Check.phase4a?.stdArchIds.includes('foundry-studio-architecture') &&
+      phase13Check.phase4a?.stdToolIds.includes('foundry-tools-and-holo') &&
+      phase13Check.phase4a?.stdBrowserIds.includes('foundry-browser-apis-and-vm'),
+    `standards:lookup missing Phase 4A Studio sections: ${JSON.stringify(phase13Check.phase4a)}`,
+  );
+  assert(
+    phase13Check.phase4a?.groundingBuild.includes('src/App.tsx') &&
+      phase13Check.phase4a?.groundingBuild.includes('VITE_PHASE3_TOKEN') &&
+      !phase13Check.phase4a?.groundingBuild.includes('uor-env-ok') &&
+      phase13Check.phase4a?.groundingBuild.includes('[Standards]') &&
+      phase13Check.phase4a?.groundingSlash === '' &&
+      phase13Check.phase4a?.groundingBareTool === '',
+    `Phase 4A grounding check failed: ${JSON.stringify(phase13Check.phase4a)}`,
   );
   assert(
     phase13Check.hasModeToggle &&

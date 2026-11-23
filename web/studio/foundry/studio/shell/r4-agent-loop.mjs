@@ -178,9 +178,11 @@ export async function runUorR4AgentTurn({
   modelId,
   messages,
   userPrompt,
+  groundingContext = '',
   chatMode = 'build',
-  maxNewTokens = 384,
+  maxNewTokens = 768,
   maxToolRounds = MAX_TOOL_ROUNDS,
+  speculative,
   signal,
   uorR4Runtime,
   generateFn,
@@ -189,6 +191,8 @@ export async function runUorR4AgentTurn({
   onText,
 }) {
   const prompt = String(userPrompt || '').trim();
+  const grounding = String(groundingContext || '').trim();
+  const round0Prompt = grounding ? `${prompt}\n\n${grounding}` : prompt;
 
   // Explicit user slash-command runs RV64IMAC MVM or Linux VM directly.
   const directMatch = prompt.match(/^\/(mvm|linux|bash|sh)\s+([\s\S]+)$/i);
@@ -235,6 +239,9 @@ export async function runUorR4AgentTurn({
   let weightsMatched = true;
   let toolExecutions = 0;
   let updatedFiles = false;
+  let prefixReusedTokens = 0;
+  let draftProposed = 0;
+  let draftAccepted = 0;
   const isV13 = String(modelId || '').includes('qwen3-0.6b-foundry');
   const hasCustomGenerate = typeof generateFn === 'function';
   const useFoundryPrompt = isV13 || hasCustomGenerate;
@@ -250,9 +257,10 @@ export async function runUorR4AgentTurn({
       modelId,
       chatId: `${chatId}-r${round}`,
       systemPrompt: useFoundryPrompt ? FOUNDRY_SYSTEM_PROMPT : '',
-      prompt: round === 0 ? prompt : turnMessages[turnMessages.length - 1].content,
+      prompt: round === 0 ? round0Prompt : turnMessages[turnMessages.length - 1].content,
       messages: round === 0 ? turnMessages : turnMessages.slice(0, -1),
       maxNewTokens: useFoundryPrompt ? maxNewTokens : 48,
+      ...(useFoundryPrompt && typeof speculative === 'boolean' ? { speculative } : {}),
       stopSequences: useFoundryPrompt ? ['</tool_call>'] : undefined,
       signal,
       onToken: ({ fullText }) => {
@@ -265,6 +273,11 @@ export async function runUorR4AgentTurn({
     if (!gen.weightsMatched) {
       weightsMatched = false;
     }
+    if (round === 0) {
+      prefixReusedTokens = gen.prefixReusedTokens ?? 0;
+    }
+    draftProposed += gen.draftProposed ?? 0;
+    draftAccepted += gen.draftAccepted ?? 0;
     const cleanOut = String(gen.fullText || '').trim();
     transcript = roundPrefix + cleanOut;
     await onText(transcript);
@@ -280,7 +293,7 @@ export async function runUorR4AgentTurn({
       await onText(transcript);
       const basePrior =
         round === 0
-          ? [...turnMessages, { role: 'user', content: prompt }]
+          ? [...turnMessages, { role: 'user', content: round0Prompt }]
           : turnMessages;
       turnMessages = [
         ...basePrior,
@@ -303,7 +316,7 @@ export async function runUorR4AgentTurn({
       await onText(transcript);
       const basePrior =
         round === 0
-          ? [...turnMessages, { role: 'user', content: prompt }]
+          ? [...turnMessages, { role: 'user', content: round0Prompt }]
           : turnMessages;
       turnMessages = [
         ...basePrior,
@@ -326,7 +339,7 @@ export async function runUorR4AgentTurn({
 
     const basePrior =
       round === 0
-        ? [...turnMessages, { role: 'user', content: prompt }]
+        ? [...turnMessages, { role: 'user', content: round0Prompt }]
         : turnMessages;
     turnMessages = [
       ...basePrior,
@@ -340,5 +353,8 @@ export async function runUorR4AgentTurn({
     toolExecutions,
     updatedFiles,
     weightsMatched,
+    prefixReusedTokens,
+    draftProposed,
+    draftAccepted,
   };
 }
