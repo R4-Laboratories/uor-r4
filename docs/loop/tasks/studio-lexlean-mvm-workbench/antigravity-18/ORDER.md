@@ -1,0 +1,22 @@
+# ORDER for Qwen3-0.6B Foundry Webharness LoRA v2.2 Pre-Registration (`d90-foundry-lora-v9`)
+
+Lab: antigravity. Item: [studio-lexlean-mvm-workbench](../../../../roadmap/items/studio-lexlean-mvm-workbench.md), #3939. Base: `472bcf77c` (PR #4217, `antigravity-17`). Pre-registers Charter §4.5 GPU run `d90-foundry-lora-v9` (`v2.2`) under D90 (`docs/integration/DECISIONS.md`, `$3.00` cumulative Vast.ai cap; prior Runs 1–8 spend `$2.2584`, remaining `$0.7416`) and D68 (`Bar #4b`). Documents Run 8 (`d90-foundry-lora-v8`, `vast-62270346`, `$0.1790`) Stop-Rule outcome (`335/340` tool = `98.53%`, `74/100` Chat = `74.0%` Bar #3 FAIL before `recompile_holo_v13`: `26` Chat failures comprising `11` `missing_expected_keyword`, `6` `<prism-write` leaks in Chat, `1` `\ufffd`, `3` `repeated_4gram:3` [`val_ch_008`, `val_ch_044`, and `val_ch_070` which also emitted Chinese `流水线`], `3` `too_few_words` [`val_ch_029`, `val_ch_049`, `val_ch_073`], `2` `low_unique_ratio` [`val_ch_005`, `val_ch_041`], plus `5` tool failures = `31` total; `epoch 1.0` `val_loss = 2.07818 < 2.39821 < 2.44343`) and verifies the upgraded local `v2.2` SFT/train/eval toolchain (`local/antigravity/d90-foundry-lora/v2/`, zero repo edits) featuring `3,600` diversified rows (`33` `TRAIN_BUILD_SPECS` × `6` = `198` combinations -> `708` `prism_write` with zero `.lex.tex` leakage against held-out `VAL_BUILD_SPECS`, `1,080` `tool_call`, `612` `multi_turn`, and `1,200` balanced `chat` across `152` unique answers with `max_target_repeat = 10` [`7..10` repeats], `0` repeated 4-grams in train Chat templates, `120` `"You are a helpful assistant."` + `3,480` `FOUNDRY_SYSTEM_PROMPT`), `--epochs 1`, `--lr 1.1e-4`, `8%` warmup (`18/225` opt steps) with full cosine cooldown to `0.0`, `0.50` telemetry-only + `0.75 / 1.00` checkpoint selection tracking `val_loss_tool` and `val_loss_chat`, and `--max-new-tokens 448` passed explicitly at `$0.00` before renting any Vast.ai pod.
+
+## Cancel probe
+
+Verify `uor-harness loop pr-check` (`PASS order`, `PASS commit-order`, `PASS report`), `uor-harness check --staged`, `uor-r4-claim-wording`, ratchets `d23`/`d25`/`d32` (`0` added), zero `crates/**` / `src-tauri/**` / `web/studio/**` / `.github/**` / `local/**` edits committed, zero binaries (§3.13), `$0.00` local `eval_foundry_v13_v2.py --self-test` (`3,600` train / `440` val / `0` overlap / `0` OOD leakage / `0` `.lex.tex` path overlap / `152` unique Chat targets / `max_target_repeat = 10` / `100%` gold eval), and non-author `TEST FITNESS: FIT` + fresh-context exact-head `VERDICT: APPROVE` on `antigravity-18/PREP.md` before handback for Run 9 pre-run review.
+
+## Scope
+
+Inside `docs/loop/tasks/studio-lexlean-mvm-workbench/antigravity-18/**` only (zero `owner-paths`, `crates/**`, `src-tauri/**`, `.github/**`, `web/studio/**`, or `local/**` committed):
+- `ORDER.md`: task order & cancel criteria for Phase 4D Run 9 pre-registration (`antigravity-18`).
+- `PREP.md`: pre-registration sheet (`d90-foundry-lora-v9`) recording Run 8 failure breakdown, cumulative D90 ledger (`$2.2584` spent / `$0.7416` remaining), pinned HF/Git revisions, all 10 SHA-256 script & dataset digests (`DATA_SEED = 20261125`), unchanged strict Bars #1–#5 (evaluating at `--max-new-tokens 448`), hard GPU cap (`1× RTX 5090 <= $1.05/h`, max `1.1h / <= $0.58`), stop/unlock rules, and safe archive protocol (`pkill -f` self-kill prevention + verified non-empty local tar before teardown).
+- `REPORT.md`: negatives-first pre-registration report recording Run 8 Bar #3 failure taxonomy, initial `v2.2` Chat template/4-gram audit & `Admission.lex.tex` disjointness catches resolved offline at `$0.00`, and non-author fitness signoff.
+
+## Done check
+
+- `uor-harness check --staged`, `uor-harness check`, `uor-harness ratchet d23/d25/d32`, `uor-harness loop report --check`, `uor-harness loop pr-check --local`, non-author `TEST FITNESS: FIT` on `antigravity-18/PREP.md`, fresh-context exact-head `VERDICT: APPROVE`, compliant `[antigravity] uor-review v1` PR comment (`uor-harness loop pr-check --pr <N>`), and GitHub CI all pass cleanly prior to merging into `main`.
+
+## Stop and decide if
+
+Stop and hand back to plan mode if non-author fitness review returns `NOT_FIT`, if `eval_foundry_v13_v2.py --self-test` fails any invariant (`train/val` overlap, OOD leakage, schema match, unique Chat count/repeat cap, or gold eval), or if any harness/ratchet check blocks `antigravity-18/**`.
