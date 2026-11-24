@@ -1,0 +1,904 @@
+use serde::Deserialize;
+use serde_json::{json, Value};
+use sha2::{Digest, Sha256};
+use std::collections::BTreeMap;
+use std::fs::{self, File};
+use std::io::{BufWriter, Write};
+use std::path::{Path, PathBuf};
+use std::time::Instant;
+use uor_r4_integer::discrete_d11::{
+    IntegerDiscreteModel, DISCRETE_TRUNK_SCHEMA, MAGIC, SNAPSHOT_SCHEMA,
+};
+
+const ALIGN: usize = 64;
+const SPARSE_TABLE_NAMES: [&str; 12] = [
+    "discrete.trunk.read_table",
+    "discrete.trunk.rec_table",
+    "discrete.trunk.read_rec_table",
+    "discrete.trunk.rec_shuf_table",
+    "discrete.trunk.read_rec_shuf_table",
+    "discrete.trunk.rec_unit_table",
+    "discrete.trunk.read_rec_unit_table",
+    "discrete.trunk.query_table",
+    "discrete.trunk.query_read_table",
+    "discrete.trunk.query_rec_table",
+    "discrete.trunk.query_rec_shuf_table",
+    "discrete.trunk.query_rec_unit_table",
+];
+
+const ROOTS: [[i8; 8]; 16] = [
+    [2, 2, 0, 0, 0, 0, 0, 0],
+    [-2, -2, 0, 0, 0, 0, 0, 0],
+    [-2, 2, 0, 0, 0, 0, 0, 0],
+    [0, 0, -2, 0, -2, 0, 0, 0],
+    [0, 0, -2, 0, 2, 0, 0, 0],
+    [0, 0, 0, -2, 0, 0, 0, -2],
+    [0, 0, 0, -2, 0, 0, 0, 2],
+    [0, 0, 0, 0, 0, -2, -2, 0],
+    [0, 0, 0, 0, 0, -2, 2, 0],
+    [0, 0, 0, 0, 0, 2, -2, 0],
+    [0, 0, 0, 0, 0, 2, 2, 0],
+    [0, 0, 0, 2, 0, 0, 0, -2],
+    [0, 0, 0, 2, 0, 0, 0, 2],
+    [0, 0, 2, 0, -2, 0, 0, 0],
+    [0, 0, 2, 0, 2, 0, 0, 0],
+    [2, -2, 0, 0, 0, 0, 0, 0],
+];
+
+const CODEX36_TRIPLES: usize = 7_164_583;
+const CODEX36_DISTINCT_KEYS: usize = 4_297_201;
+
+fn expected_stages(context: usize) -> usize {
+    let mut stages = 1usize;
+    let mut span = 3usize;
+    while span <= context {
+        stages += 1;
+        span *= 3;
+    }
+    stages
+}
+
+fn token_4block_roots(tok: usize) -> [u8; 4] {
+    let r0 = (tok & 15) as u8;
+    let r1 = ((tok >> 4) & 15) as u8;
+    let r2 = ((tok >> 8) & 15) as u8;
+    let r3 = if tok < 16 { r0 } else { r0 ^ r1 ^ r2 };
+    [r0, r1, r2, r3]
+}
+
+fn pack_4block_roots(roots: [u8; 4]) -> u16 {
+    u16::from(roots[0] & 0xF)
+        | (u16::from(roots[1] & 0xF) << 4)
+        | (u16::from(roots[2] & 0xF) << 8)
+        | (u16::from(roots[3] & 0xF) << 12)
+}
+
+fn push_section_bytes(blob: &mut Vec<u8>, bytes: &[u8]) -> Value {
+    let pad = (ALIGN - blob.len() % ALIGN) % ALIGN;
+    blob.resize(blob.len() + pad, 0);
+    let offset = blob.len() as u64;
+    blob.extend_from_slice(bytes);
+    json!({"offset": offset, "bytes": bytes.len()})
+}
+
+fn push_u32_section(blob: &mut Vec<u8>, name: &str, words: &[u32]) -> Value {
+    let mut bytes = Vec::with_capacity(words.len() * 4);
+    for w in words {
+        bytes.extend_from_slice(&w.to_le_bytes());
+    }
+    let span = push_section_bytes(blob, &bytes);
+    json!({"name": name, "kind": "u32", "len": words.len(), "span": span})
+}
+
+fn build_trunk_uorlut01(
+    vocab: usize,
+    context: usize,
+    step_candidates: &[u32; 64],
+    norm_candidates: &[u32; 4],
+    unigram_words: &[u32],
+    sparse_sections: [&[u32]; 12],
+) -> Vec<u8> {
+    assert_eq!(unigram_words.len(), 1 + vocab);
+    let stages = expected_stages(context);
+    let mut table = Vec::with_capacity(vocab * 32);
+    let mut cells = Vec::with_capacity(vocab);
+    for tok in 0..vocab {
+        let roots = token_4block_roots(tok);
+        for &r in &roots {
+            for d in ROOTS[usize::from(r)] {
+                table.push(i32::from(d));
+            }
+        }
+        cells.push((u32::from(roots[0]) << 4) + u32::from(roots[3]));
+    }
+    let routes = vec![0u32; 4 * stages];
+    let gates = vec![0i32; 4 * stages];
+
+    let mut blob = Vec::new();
+    let mut tables = Vec::new();
+    let table_bytes: Vec<u8> = table.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let table_span = push_section_bytes(&mut blob, &table_bytes);
+    tables.push(
+        json!({"name": "discrete.table", "kind": "i32", "len": table.len(), "span": table_span}),
+    );
+    tables.push(push_u32_section(&mut blob, "discrete.cells", &cells));
+    tables.push(push_u32_section(&mut blob, "discrete.routes", &routes));
+    let gates_bytes: Vec<u8> = gates.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let gates_span = push_section_bytes(&mut blob, &gates_bytes);
+    tables.push(
+        json!({"name": "discrete.gates", "kind": "i32", "len": gates.len(), "span": gates_span}),
+    );
+
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.step_candidates",
+        step_candidates,
+    ));
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.norm_candidates",
+        norm_candidates,
+    ));
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.unigram",
+        unigram_words,
+    ));
+
+    for (idx, name) in SPARSE_TABLE_NAMES.iter().enumerate() {
+        tables.push(push_u32_section(&mut blob, name, sparse_sections[idx]));
+    }
+
+    build_container_from_header_and_blob(vocab, context, stages, tables, &blob)
+}
+
+fn build_container_from_header_and_blob(
+    vocab: usize,
+    context: usize,
+    stages: usize,
+    tables: Vec<Value>,
+    blob: &[u8],
+) -> Vec<u8> {
+    let header = json!({
+        "schema": DISCRETE_TRUNK_SCHEMA,
+        "shape": {
+            "vocabulary": vocab,
+            "blocks": 4,
+            "context": context,
+            "kept_cells": 3,
+            "stages": stages,
+            "read_mode": "pick",
+            "read_kept": 0,
+            "read_sweeps": 0,
+            "read_position": 3,
+            "objective_policy": "nearest_address_margin_v1",
+            "read_initialization": "zero_gates_v1",
+            "seed": 7,
+            "epoch": 1,
+        },
+        "matrices": [],
+        "tables": tables,
+        "source": {
+            "snapshot_schema": SNAPSHOT_SCHEMA,
+            "snapshot_sha256": "00".repeat(32),
+            "operator_kappa": "blake3:a0ea3a10dd10c5f4856b0d881d33d94c3293bad0e68bd07a47918e2bb82c819b",
+            "composition_kappa": "blake3:f2986c8e68dcb30a9cb511a42547179a87b66ef212a87b728765d03e70e640b0",
+            "kernel_sha256": "11".repeat(32),
+            "source_sha256": "22".repeat(32),
+            "geometry_sha256": "33".repeat(32),
+        }
+    });
+    let json = serde_json::to_vec(&header).unwrap();
+    let mut out = Vec::with_capacity(16 + json.len() + ALIGN + blob.len());
+    out.extend_from_slice(MAGIC);
+    out.extend_from_slice(&(json.len() as u64).to_le_bytes());
+    out.extend_from_slice(&json);
+    let pad = (ALIGN - out.len() % ALIGN) % ALIGN;
+    out.resize(out.len() + pad, 0);
+    out.extend_from_slice(blob);
+    out
+}
+
+#[derive(Clone, Debug, Default)]
+struct BTreeSparseOracle {
+    entries: BTreeMap<u32, BTreeMap<u16, u32>>,
+}
+
+impl BTreeSparseOracle {
+    fn from_u32_words(words: &[u32], vocab: usize) -> Self {
+        assert_eq!(words.len() % 3, 0);
+        let mut entries: BTreeMap<u32, BTreeMap<u16, u32>> = BTreeMap::new();
+        for chunk in words.chunks_exact(3) {
+            let key = chunk[0];
+            let tok = u16::try_from(chunk[1]).unwrap();
+            let cnt = chunk[2];
+            assert!(usize::from(tok) < vocab && cnt > 0);
+            let prev = entries.entry(key).or_default().insert(tok, cnt);
+            assert!(prev.is_none());
+        }
+        Self { entries }
+    }
+
+    fn get(&self, key: u32, tok: u16) -> u32 {
+        self.entries
+            .get(&key)
+            .and_then(|m| m.get(&tok).copied())
+            .unwrap_or(0)
+    }
+
+    fn keys_for(&self, key: u32) -> Vec<u16> {
+        self.entries
+            .get(&key)
+            .map(|m| m.keys().copied().collect())
+            .unwrap_or_default()
+    }
+}
+
+struct TrunkBTreeOracle {
+    unigram_best_global: u16,
+    unigram_counts: Vec<u32>,
+    tables: [BTreeSparseOracle; 12],
+}
+
+impl TrunkBTreeOracle {
+    fn from_sections(unigram_words: &[u32], sparse_sections: [&[u32]; 12]) -> Self {
+        let vocab = unigram_words.len() - 1;
+        let tables =
+            std::array::from_fn(|i| BTreeSparseOracle::from_u32_words(sparse_sections[i], vocab));
+        Self {
+            unigram_best_global: unigram_words[0] as u16,
+            unigram_counts: unigram_words[1..].to_vec(),
+            tables,
+        }
+    }
+
+    fn level3_score(
+        &self,
+        query_token: u16,
+        read_code: u16,
+        rec_code: u16,
+        pointer_succ: Option<u16>,
+        tok: u16,
+    ) -> u64 {
+        let q_key = u32::from(query_token);
+        let r_key = u32::from(read_code);
+        let qr_key = (q_key << 16) | r_key;
+        let qc_key = (q_key << 16) | u32::from(rec_code);
+        let rc_key = (r_key << 16) | u32::from(rec_code);
+
+        let c_r = u64::from(self.tables[0].get(r_key, tok)); // read_table
+        let c_rr = u64::from(self.tables[2].get(rc_key, tok)); // read_rec_table
+        let c_q = u64::from(self.tables[7].get(q_key, tok)); // query_table
+        let c_qr = u64::from(self.tables[8].get(qr_key, tok)); // query_read_table
+        let c_qc = u64::from(self.tables[9].get(qc_key, tok)); // query_rec_table
+        let ptr_boost = if pointer_succ == Some(tok) {
+            1u64 << 8
+        } else {
+            0
+        };
+        (c_qr << 6) + (c_qc << 5) + (c_rr << 3) + (c_r << 1) + c_q + ptr_boost
+    }
+
+    fn select_token(
+        &self,
+        query_token: u16,
+        read_code: u16,
+        rec_code: u16,
+        pointer_succ: Option<u16>,
+    ) -> u16 {
+        let q_key = u32::from(query_token);
+        let r_key = u32::from(read_code);
+        let c_key = u32::from(rec_code);
+        let mut best_tok = self.unigram_best_global;
+        let mut best_s = 0u64;
+        let mut best_u = 0u32;
+
+        let mut consider = |tok: u16| {
+            let s = self.level3_score(query_token, read_code, rec_code, pointer_succ, tok);
+            let u = self.unigram_counts[usize::from(tok)];
+            if s > best_s
+                || (s == best_s && s > 0 && u > best_u)
+                || (s == best_s && s > 0 && u == best_u && tok < best_tok)
+            {
+                best_s = s;
+                best_u = u;
+                best_tok = tok;
+            }
+        };
+
+        for tok in self.tables[7].keys_for(q_key) {
+            consider(tok);
+        }
+        for tok in self.tables[0].keys_for(r_key) {
+            consider(tok);
+        }
+        for tok in self.tables[1].keys_for(c_key) {
+            consider(tok);
+        }
+        if let Some(ptr_tok) = pointer_succ {
+            consider(ptr_tok);
+        }
+        best_tok
+    }
+}
+
+fn oracle_pointer_succ(prefix: &[u32]) -> Option<u16> {
+    if prefix.len() < 2 {
+        return None;
+    }
+    let query_roots = token_4block_roots(prefix[prefix.len() - 1] as usize);
+    let mut matched = None;
+    for p in 0..(prefix.len() - 1) {
+        if token_4block_roots(prefix[p] as usize) == query_roots {
+            matched = Some(prefix[p + 1] as u16);
+        }
+    }
+    matched
+}
+
+/// Computes `read_code` and `rec_code` for the identity-route/identity-step fixture
+/// where `routes = 0`, `gates = 0`, `step_candidates = 0 (IDENTITY)`, `norm_candidates = 0`.
+fn identity_fixture_codes(prefix: &[u32]) -> (u16, u16) {
+    let query_roots = token_4block_roots(prefix[prefix.len() - 1] as usize);
+    let read_code = pack_4block_roots(query_roots);
+    // With step = 0 (IDENTITY) and norm = 0 (IDENTITY), prev/mid/start blocks add linearly,
+    // wait: use snap against ROOTS on the 4-block integer sum!
+    let last_pos = prefix.len() - 1;
+    let prev_pos = last_pos.saturating_sub(1);
+    let mid_pos = last_pos / 2;
+    let mut out_roots = [0u8; 4];
+    for (b, dst) in out_roots.iter_mut().enumerate() {
+        let q = ROOTS[usize::from(token_4block_roots(prefix[last_pos] as usize)[b])];
+        let p = ROOTS[usize::from(token_4block_roots(prefix[prev_pos] as usize)[b])];
+        let m = ROOTS[usize::from(token_4block_roots(prefix[mid_pos] as usize)[b])];
+        let s = ROOTS[usize::from(token_4block_roots(prefix[0] as usize)[b])];
+        let mut best_r = 0u8;
+        let mut best_d = u32::MAX;
+        let mut best_h = u32::MAX;
+        for (r, root) in ROOTS.iter().enumerate() {
+            let mut d = 0u32;
+            let mut h = 0u32;
+            for dim in 0..8 {
+                let sum =
+                    i32::from(q[dim]) + i32::from(p[dim]) + i32::from(m[dim]) + i32::from(s[dim]);
+                let target = 4 * i32::from(root[dim]);
+                d += (sum - target).unsigned_abs();
+                h += u32::from(sum != target);
+            }
+            if d < best_d || (d == best_d && h < best_h) {
+                best_d = d;
+                best_h = h;
+                best_r = r as u8;
+            }
+        }
+        *dst = best_r;
+    }
+    (read_code, pack_4block_roots(out_roots))
+}
+
+fn encode_triples(triples: &[(u32, u32, u32)]) -> Vec<u32> {
+    let mut out = Vec::with_capacity(triples.len() * 3);
+    for &(k, t, c) in triples {
+        out.push(k);
+        out.push(t);
+        out.push(c);
+    }
+    out
+}
+
+fn fixture_sparse_data() -> (Vec<u32>, [Vec<u32>; 12]) {
+    let vocab = 16usize;
+    let mut unigram = vec![14u32]; // best_global = 14 on missing keys
+    for t in 0..vocab {
+        unigram.push(100 - (t as u32) * 3);
+    }
+    // Cause explicit tie on unigram counts for tok 6 and tok 9 to exercise tok_asc tie-break:
+    unigram[1 + 6] = 55;
+    unigram[1 + 9] = 55;
+    // Higher unigram for tok 11 than tok 5 to exercise unigram tie-break on equal score:
+    unigram[1 + 5] = 40;
+    unigram[1 + 11] = 75;
+
+    let read0 = u32::from(pack_4block_roots(token_4block_roots(0)));
+    let rec0 = u32::from(identity_fixture_codes(&[0]).1);
+    let q0_r0 = read0;
+    let q1_r1 = (1u32 << 16) | u32::from(pack_4block_roots(token_4block_roots(1)));
+    let q2_c2 = (2u32 << 16) | u32::from(identity_fixture_codes(&[2]).1);
+    let r3_c3 = (u32::from(pack_4block_roots(token_4block_roots(3))) << 16)
+        | u32::from(identity_fixture_codes(&[3]).1);
+
+    let read_table = encode_triples(&[
+        (u32::from(pack_4block_roots(token_4block_roots(0))), 4, 2),
+        (u32::from(pack_4block_roots(token_4block_roots(3))), 5, 3),
+        (u32::from(pack_4block_roots(token_4block_roots(5))), 6, 4),
+    ]);
+    let rec_table = encode_triples(&[(rec0, 7, 1)]);
+    let read_rec_table = encode_triples(&[(r3_c3, 12, 8)]);
+    let query_table = encode_triples(&[
+        (0, 2, 5),
+        (1, 3, 2),
+        (2, 8, 1),
+        (4, 5, 10),
+        (4, 11, 10),
+        (5, 9, 8),
+        (6, 13, 3),
+        (10, 1, 7),
+    ]);
+    let query_read_table = encode_triples(&[(q0_r0, 4, 3), (q1_r1, 10, 5)]);
+    let query_rec_table = encode_triples(&[(q2_c2, 15, 6)]);
+
+    // Also populate the remaining 6 auxiliary sparse tables to exercise all 12 tables end-to-end.
+    let aux = encode_triples(&[(1, 2, 3), (4, 5, 6)]);
+    let sections = [
+        read_table,
+        rec_table,
+        read_rec_table,
+        aux.clone(),
+        aux.clone(),
+        aux.clone(),
+        aux.clone(),
+        query_table,
+        query_read_table,
+        query_rec_table,
+        aux.clone(),
+        aux,
+    ];
+    (unigram, sections)
+}
+
+#[test]
+fn trunk_sparse_loader_matches_btreemap_oracle_on_sorted_and_shuffled_triples() {
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64]; // IDENTITY step_candidates
+    let norms = [0u32; 4]; // IDENTITY norm_candidates
+    let (unigram, sorted_sections) = fixture_sparse_data();
+
+    let sorted_refs: [&[u32]; 12] = std::array::from_fn(|i| sorted_sections[i].as_slice());
+    let oracle = TrunkBTreeOracle::from_sections(&unigram, sorted_refs);
+    let bytes_sorted = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, sorted_refs);
+
+    // Shuffle triple order inside each section while keeping identical multisets of triples.
+    let mut shuffled_sections = sorted_sections.clone();
+    for (idx, sec) in shuffled_sections.iter_mut().enumerate() {
+        let count = sec.len() / 3;
+        if count >= 2 {
+            let mut triples: Vec<[u32; 3]> =
+                sec.chunks_exact(3).map(|c| [c[0], c[1], c[2]]).collect();
+            triples.reverse();
+            if count >= 3 {
+                triples.swap(0, idx % count);
+            }
+            sec.clear();
+            for [k, t, c] in triples {
+                sec.extend_from_slice(&[k, t, c]);
+            }
+        }
+    }
+    let shuffled_refs: [&[u32]; 12] = std::array::from_fn(|i| shuffled_sections[i].as_slice());
+    let bytes_shuffled =
+        build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, shuffled_refs);
+
+    let model_sorted = IntegerDiscreteModel::from_bytes(&bytes_sorted).unwrap();
+    let model_shuffled = IntegerDiscreteModel::from_bytes(&bytes_shuffled).unwrap();
+
+    let probes: Vec<&[u32]> = vec![
+        &[0],
+        &[1],
+        &[2],
+        &[3],
+        &[4], // unigram tie-break between tok 5 (u=40) and tok 11 (u=75)
+        &[5], // equal unigram & score tie-break between tok 6 and tok 9 (6 < 9)
+        &[6],
+        &[7],  // completely missing from all sparse tables -> fallback unigram_best_global = 14
+        &[10], // pointer absent
+        &[0, 1, 2, 0], // triggers pointer_succ == Some(1) on repeat of tok 0
+        &[2, 9, 2], // triggers pointer_succ == Some(9) not in sparse candidate sets
+        &[3, 7, 1, 3], // read_rec + pointer interaction
+        &[4, 8, 4], // rec tie + pointer boost
+        &[5, 9, 5], // tok tie + pointer boost
+    ];
+
+    for prefix in probes {
+        let (read_code, rec_code) = identity_fixture_codes(prefix);
+        let ptr_succ = oracle_pointer_succ(prefix);
+        let q_tok = *prefix.last().unwrap() as u16;
+        let expected_tok = u32::from(oracle.select_token(q_tok, read_code, rec_code, ptr_succ));
+        let expected_vec: Vec<i32> = token_4block_roots(expected_tok as usize)
+            .iter()
+            .flat_map(|&r| ROOTS[usize::from(r)].iter().map(|&v| i32::from(v)))
+            .collect();
+
+        let eval_s = model_sorted.evaluate_prefix(prefix).unwrap();
+        let eval_u = model_shuffled.evaluate_prefix(prefix).unwrap();
+        assert_eq!(eval_s, eval_u, "sorted vs shuffled mismatch on {prefix:?}");
+        assert_eq!(
+            eval_s.prediction, expected_tok,
+            "prediction mismatch on {prefix:?}"
+        );
+        assert_eq!(
+            eval_s.read_vector, expected_vec,
+            "read_vector mismatch on {prefix:?}"
+        );
+
+        let traced_s = model_sorted.evaluate_prefix_traced(prefix).unwrap();
+        let traced_u = model_shuffled.evaluate_prefix_traced(prefix).unwrap();
+        assert_eq!(traced_s, traced_u, "traced replay mismatch on {prefix:?}");
+    }
+
+    // Non-vacuous guards verifying active unigram tie-break, token-ID overwrite, and fallback.
+    assert_eq!(model_sorted.evaluate_prefix(&[4]).unwrap().prediction, 11);
+    assert_eq!(model_sorted.evaluate_prefix(&[5]).unwrap().prediction, 6);
+    assert_eq!(model_sorted.evaluate_prefix(&[7]).unwrap().prediction, 14);
+
+    // Multi-step 4-token autoregressive rollout parity against BTreeMap oracle.
+    let mut seq_model = vec![0u32];
+    let mut seq_oracle = vec![0u32];
+    for _ in 0..3 {
+        let m_next = model_sorted.evaluate_prefix(&seq_model).unwrap().prediction;
+        let (rc, rec) = identity_fixture_codes(&seq_oracle);
+        let o_next = u32::from(oracle.select_token(
+            *seq_oracle.last().unwrap() as u16,
+            rc,
+            rec,
+            oracle_pointer_succ(&seq_oracle),
+        ));
+        assert_eq!(m_next, o_next);
+        seq_model.push(m_next);
+        seq_oracle.push(o_next);
+    }
+    assert_eq!(seq_model, seq_oracle);
+}
+
+#[test]
+fn trunk_sparse_loader_rejects_planted_faults_across_all_12_sections() {
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let (unigram, sorted_sections) = fixture_sparse_data();
+
+    for target_idx in 0..12 {
+        // 1) zero count fault
+        let mut zero_cnt = sorted_sections.clone();
+        zero_cnt[target_idx] = vec![1, 2, 0];
+        let refs: [&[u32]; 12] = std::array::from_fn(|i| zero_cnt[i].as_slice());
+        let bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, refs);
+        assert!(
+            IntegerDiscreteModel::from_bytes(&bytes).is_err(),
+            "section {target_idx} accepted zero count"
+        );
+
+        // 2) token >= vocabulary fault
+        let mut bad_tok = sorted_sections.clone();
+        bad_tok[target_idx] = vec![1, 16, 2];
+        let refs: [&[u32]; 12] = std::array::from_fn(|i| bad_tok[i].as_slice());
+        let bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, refs);
+        assert!(
+            IntegerDiscreteModel::from_bytes(&bytes).is_err(),
+            "section {target_idx} accepted tok >= vocab"
+        );
+
+        // 3) adjacent duplicate (key, token)
+        let mut adj_dup = sorted_sections.clone();
+        adj_dup[target_idx] = vec![5, 3, 1, 5, 3, 2];
+        let refs: [&[u32]; 12] = std::array::from_fn(|i| adj_dup[i].as_slice());
+        let bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, refs);
+        assert!(
+            IntegerDiscreteModel::from_bytes(&bytes).is_err(),
+            "section {target_idx} accepted adjacent duplicate"
+        );
+
+        // 4) non-adjacent duplicate (key, token)
+        let mut nonadj_dup = sorted_sections.clone();
+        nonadj_dup[target_idx] = vec![9, 2, 1, 1, 0, 1, 9, 2, 4];
+        let refs: [&[u32]; 12] = std::array::from_fn(|i| nonadj_dup[i].as_slice());
+        let bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, refs);
+        assert!(
+            IntegerDiscreteModel::from_bytes(&bytes).is_err(),
+            "section {target_idx} accepted non-adjacent duplicate"
+        );
+
+        // 5) non-multiple-of-3 word count
+        let mut bad_len = sorted_sections.clone();
+        bad_len[target_idx] = vec![1, 2, 3, 4];
+        let refs: [&[u32]; 12] = std::array::from_fn(|i| bad_len[i].as_slice());
+        let bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, refs);
+        assert!(
+            IntegerDiscreteModel::from_bytes(&bytes).is_err(),
+            "section {target_idx} accepted word len % 3 != 0"
+        );
+    }
+}
+
+#[test]
+fn trunk_sparse_loader_planted_weight_flip_changes_emitted_token_deterministically() {
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let (unigram, mut sections) = fixture_sparse_data();
+
+    let base_refs: [&[u32]; 12] = std::array::from_fn(|i| sections[i].as_slice());
+    let base_bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, base_refs);
+    let base_model = IntegerDiscreteModel::from_bytes(&base_bytes).unwrap();
+    let before = base_model.evaluate_prefix(&[0]).unwrap();
+    assert_eq!(before.prediction, 4); // query_read_table (4 with c_qr=3 => 194) beats query_table
+
+    // Planted count bump on tok 2 in query_table (`5 -> 250`): score 250 > 194 flips tok 4 -> 2.
+    sections[7][2] = 250;
+    let flipped_refs: [&[u32]; 12] = std::array::from_fn(|i| sections[i].as_slice());
+    let oracle = TrunkBTreeOracle::from_sections(&unigram, flipped_refs);
+    let flipped_bytes =
+        build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, flipped_refs);
+    let flipped_model = IntegerDiscreteModel::from_bytes(&flipped_bytes).unwrap();
+    let after = flipped_model.evaluate_prefix(&[0]).unwrap();
+
+    let (rc, rec) = identity_fixture_codes(&[0]);
+    let oracle_after = u32::from(oracle.select_token(0, rc, rec, None));
+    assert_ne!(after.prediction, before.prediction);
+    assert_eq!(after.prediction, 2);
+    assert_eq!(after.prediction, oracle_after);
+}
+
+#[derive(Deserialize)]
+struct HeaderOnly {
+    tables: Vec<HeaderTable>,
+}
+
+#[derive(Deserialize)]
+struct HeaderTable {
+    name: String,
+    span: HeaderSpan,
+}
+
+#[derive(Deserialize)]
+struct HeaderSpan {
+    offset: u64,
+    bytes: u64,
+}
+
+fn generate_codex36_scale_fixture_file(path: &Path) -> (usize, usize, usize, String) {
+    let vocab = 4096usize;
+    let context = 192usize;
+    let stages = expected_stages(context);
+    let mut table = Vec::with_capacity(vocab * 32);
+    let mut cells = Vec::with_capacity(vocab);
+    for tok in 0..vocab {
+        let roots = token_4block_roots(tok);
+        for &r in &roots {
+            for d in ROOTS[usize::from(r)] {
+                table.push(i32::from(d));
+            }
+        }
+        cells.push((u32::from(roots[0]) << 4) + u32::from(roots[3]));
+    }
+    let routes = vec![0u32; 4 * stages];
+    let gates = vec![0i32; 4 * stages];
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let mut unigram = Vec::with_capacity(1 + vocab);
+    unigram.push(0u32);
+    for t in 0..vocab {
+        unigram.push((vocab - t) as u32);
+    }
+
+    let extra_triples = CODEX36_TRIPLES - CODEX36_DISTINCT_KEYS;
+    let base_keys = CODEX36_DISTINCT_KEYS / 12;
+    let rem_keys = CODEX36_DISTINCT_KEYS % 12;
+    let base_extra = extra_triples / 12;
+    let rem_extra = extra_triples % 12;
+
+    let mut total_keys = 0usize;
+    let mut total_triples = 0usize;
+    let mut sparse_section_specs = Vec::with_capacity(12);
+    let mut blob = Vec::new();
+    let mut tables = Vec::new();
+    let table_bytes: Vec<u8> = table.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let table_span = push_section_bytes(&mut blob, &table_bytes);
+    tables.push(
+        json!({"name": "discrete.table", "kind": "i32", "len": table.len(), "span": table_span}),
+    );
+    tables.push(push_u32_section(&mut blob, "discrete.cells", &cells));
+    tables.push(push_u32_section(&mut blob, "discrete.routes", &routes));
+    let gates_bytes: Vec<u8> = gates.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let gates_span = push_section_bytes(&mut blob, &gates_bytes);
+    tables.push(
+        json!({"name": "discrete.gates", "kind": "i32", "len": gates.len(), "span": gates_span}),
+    );
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.step_candidates",
+        &steps,
+    ));
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.norm_candidates",
+        &norms,
+    ));
+    tables.push(push_u32_section(
+        &mut blob,
+        "discrete.trunk.unigram",
+        &unigram,
+    ));
+
+    // Pre-compute section sizes and write blob sequentially via buffered file I/O to avoid double-copy.
+    let pre_blob_len = blob.len();
+    let mut cursor = pre_blob_len;
+    for (idx, name) in SPARSE_TABLE_NAMES.iter().enumerate() {
+        let keys_s = base_keys + usize::from(idx < rem_keys);
+        let extra_s = base_extra + usize::from(idx < rem_extra);
+        let triples_s = keys_s + extra_s;
+        total_keys += keys_s;
+        total_triples += triples_s;
+        let pad = (ALIGN - cursor % ALIGN) % ALIGN;
+        cursor += pad;
+        let bytes_len = triples_s * 12;
+        tables.push(json!({
+            "name": name,
+            "kind": "u32",
+            "len": triples_s * 3,
+            "span": {"offset": cursor as u64, "bytes": bytes_len as u64},
+        }));
+        sparse_section_specs.push((pad, keys_s, extra_s));
+        cursor += bytes_len;
+    }
+    assert_eq!(total_keys, CODEX36_DISTINCT_KEYS);
+    assert_eq!(total_triples, CODEX36_TRIPLES);
+
+    let header_bytes_only =
+        build_container_from_header_and_blob(vocab, context, stages, tables, &blob);
+    let file = File::create(path).unwrap();
+    let mut writer = BufWriter::with_capacity(1 << 20, file);
+    writer.write_all(&header_bytes_only).unwrap();
+    let zeros = [0u8; ALIGN];
+    for (idx, &(pad, keys_s, extra_s)) in sparse_section_specs.iter().enumerate() {
+        if pad > 0 {
+            writer.write_all(&zeros[..pad]).unwrap();
+        }
+        for k in 0..keys_s {
+            let key = k as u32;
+            let tok0 = ((k + idx * 17) % (vocab - 1)) as u32;
+            let cnt0 = 1 + ((k as u32) % 31);
+            writer.write_all(&key.to_le_bytes()).unwrap();
+            writer.write_all(&tok0.to_le_bytes()).unwrap();
+            writer.write_all(&cnt0.to_le_bytes()).unwrap();
+            if k < extra_s {
+                let tok1 = tok0 + 1;
+                let cnt1 = 1 + (((k + idx) as u32) % 19);
+                writer.write_all(&key.to_le_bytes()).unwrap();
+                writer.write_all(&tok1.to_le_bytes()).unwrap();
+                writer.write_all(&cnt1.to_le_bytes()).unwrap();
+            }
+        }
+    }
+    writer.flush().unwrap();
+    let file_bytes = fs::read(path).unwrap();
+    let digest = format!("{:x}", Sha256::digest(&file_bytes));
+    (file_bytes.len(), total_triples, total_keys, digest)
+}
+
+#[test]
+#[ignore]
+fn bench_generate_codex36_scale_fixture() {
+    let path = PathBuf::from(
+        std::env::var("UOR_BENCH_TRUNK_PATH")
+            .expect("set UOR_BENCH_TRUNK_PATH to write the synthetic codex-36 fixture"),
+    );
+    let (file_bytes, triples, keys, sha) = generate_codex36_scale_fixture_file(&path);
+    println!(
+        "GENERATED path={} file_bytes={} triples={} distinct_keys={} sparse_bytes={} sha256={}",
+        path.display(),
+        file_bytes,
+        triples,
+        keys,
+        triples * 12,
+        sha
+    );
+}
+
+fn bench_probe_prefixes() -> Vec<[u32; 4]> {
+    (0..10_000u32)
+        .map(|i| {
+            let a = (i * 13) % 4096;
+            let b = (i * 37 + 7) % 4096;
+            let c = (i * 73 + 19) % 4096;
+            let d = (i * 131 + 29) % 4096;
+            [a, b, c, d]
+        })
+        .collect()
+}
+
+#[test]
+#[ignore]
+fn bench_codex36_scale_contiguous_trunk_loader() {
+    let path = PathBuf::from(
+        std::env::var("UOR_BENCH_TRUNK_PATH")
+            .expect("set UOR_BENCH_TRUNK_PATH to benchmark contiguous loader"),
+    );
+    let load_start = Instant::now();
+    let model = IntegerDiscreteModel::load(&path).unwrap();
+    let load_ms = load_start.elapsed().as_secs_f64() * 1000.0;
+
+    assert!(model.is_trunk_d11());
+    let probes = bench_probe_prefixes();
+    // Warmup
+    for p in &probes[..256] {
+        let _ = model.evaluate_prefix(p).unwrap();
+    }
+    let eval_start = Instant::now();
+    let mut hash_fold = 0u64;
+    for (idx, p) in probes.iter().enumerate() {
+        let eval = model.evaluate_prefix(p).unwrap();
+        hash_fold ^= u64::from(eval.prediction).wrapping_mul((idx as u64) + 1);
+    }
+    let eval_ms = eval_start.elapsed().as_secs_f64() * 1000.0;
+    let toks_per_sec = (probes.len() as f64) / (eval_ms / 1000.0);
+    println!(
+        "CONTIGUOUS_BENCH artifact_sha256={} load_ms={:.3} eval_10k_ms={:.3} toks_per_sec={:.2} probe_fold={:#018x}",
+        model.artifact_sha256(),
+        load_ms,
+        eval_ms,
+        toks_per_sec,
+        hash_fold
+    );
+}
+
+#[test]
+#[ignore]
+fn bench_codex36_scale_btreemap_baseline() {
+    let path = PathBuf::from(
+        std::env::var("UOR_BENCH_TRUNK_PATH")
+            .expect("set UOR_BENCH_TRUNK_PATH to benchmark legacy BTreeMap loader"),
+    );
+    let load_start = Instant::now();
+    let bytes = fs::read(&path).unwrap();
+    let header_len = u64::from_le_bytes(bytes[8..16].try_into().unwrap()) as usize;
+    let header_end = 16 + header_len;
+    let header: HeaderOnly = serde_json::from_slice(&bytes[16..header_end]).unwrap();
+    let pad = (ALIGN - header_end % ALIGN) % ALIGN;
+    let data = &bytes[header_end + pad..];
+
+    let read_u32 = |name: &str| -> Vec<u32> {
+        let entry = header.tables.iter().find(|t| t.name == name).unwrap();
+        let start = entry.span.offset as usize;
+        let end = start + entry.span.bytes as usize;
+        data[start..end]
+            .chunks_exact(4)
+            .map(|b| u32::from_le_bytes([b[0], b[1], b[2], b[3]]))
+            .collect()
+    };
+
+    let unigram_words = read_u32("discrete.trunk.unigram");
+    let unigram_best = unigram_words[0] as u16;
+    let unigram_counts = unigram_words[1..].to_vec();
+    let vocab = unigram_counts.len();
+
+    let mut tables: Vec<BTreeSparseOracle> = Vec::with_capacity(12);
+    for name in SPARSE_TABLE_NAMES {
+        let words = read_u32(name);
+        tables.push(BTreeSparseOracle::from_u32_words(&words, vocab));
+    }
+    drop(bytes);
+    let load_ms = load_start.elapsed().as_secs_f64() * 1000.0;
+
+    let oracle = TrunkBTreeOracle {
+        unigram_best_global: unigram_best,
+        unigram_counts,
+        tables: tables.try_into().unwrap(),
+    };
+    let probes = bench_probe_prefixes();
+    let eval_start = Instant::now();
+    let mut hash_fold = 0u64;
+    for (idx, p) in probes.iter().enumerate() {
+        let (read_code, rec_code) = identity_fixture_codes(p);
+        let ptr_succ = oracle_pointer_succ(p);
+        let pred = oracle.select_token(p[3] as u16, read_code, rec_code, ptr_succ);
+        hash_fold ^= u64::from(pred).wrapping_mul((idx as u64) + 1);
+    }
+    let eval_ms = eval_start.elapsed().as_secs_f64() * 1000.0;
+    println!(
+        "BTREEMAP_BASELINE load_ms={:.3} eval_10k_ms={:.3} probe_fold={:#018x}",
+        load_ms, eval_ms, hash_fold
+    );
+}

@@ -8,7 +8,6 @@
 //! matrix product exist on this path.
 #![forbid(unsafe_code)]
 
-use std::collections::BTreeMap;
 use std::path::Path;
 
 use serde::{Deserialize, Serialize};
@@ -29,10 +28,10 @@ use crate::{
 mod s2_expert;
 pub use s2_expert::{s2_route_key, S2ExpertPrediction, S2ExpertRead, S2RankedToken, S2_MASS_TOTAL};
 mod assertion_retrieval;
-mod rival_admission;
 #[path = "contextual_source.rs"]
 pub mod contextual_source;
 pub mod pair_rank;
+mod rival_admission;
 pub use assertion_retrieval::pack_assertion_retrieval;
 pub use rival_admission::pack_rival_admission;
 
@@ -95,7 +94,10 @@ pub struct RequestedRoleReplayTrace {
 pub struct ReplayContextualSource {
     pub fact_span: [usize; 2],
     pub selection: contextual_source::SourceSelection,
-    pub candidates: Vec<(contextual_source::SourceCandidate, contextual_source::SourceScore)>,
+    pub candidates: Vec<(
+        contextual_source::SourceCandidate,
+        contextual_source::SourceScore,
+    )>,
 }
 
 /// Version 1 stops at a period, EOS, BOS or newline. A witnessed delimiter after a nonempty copy emits EOS.
@@ -857,23 +859,34 @@ pub struct DiscreteTargetObservation {
 }
 
 /// Sparse integer count table keyed by `u32` (16-bit or 28-bit state keys) -> `u16` token -> `u32` count.
+/// Stored as contiguous strictly-ascending `(key, token)` parallel arrays (10 bytes per entry).
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 struct DiscreteSparseCountTable {
-    entries: BTreeMap<u32, BTreeMap<u16, u32>>,
+    keys: Box<[u32]>,
+    tokens: Box<[u16]>,
+    counts: Box<[u32]>,
 }
 
 impl DiscreteSparseCountTable {
-    fn from_triples(words: &[u32], vocabulary: usize) -> Result<Self> {
-        if words.len() % 3 != 0 {
+    /// Validate and load little-endian `[key, token, count, ...]` triple bytes directly
+    /// into contiguous strictly-ascending `(key, token)` arrays without intermediate `Vec<u32>`
+    /// or per-key `BTreeMap` heap allocations.
+    fn from_triple_bytes(slice: &[u8], vocabulary: usize) -> Result<Self> {
+        if !slice.len().is_multiple_of(12) {
             return Err(invalid(
                 "sparse trunk count table word length must be a multiple of 3",
             ));
         }
-        let mut entries: BTreeMap<u32, BTreeMap<u16, u32>> = BTreeMap::new();
-        for chunk in words.chunks_exact(3) {
-            let key = chunk[0];
-            let tok_u32 = chunk[1];
-            let cnt = chunk[2];
+        let n = slice.len() / 12;
+        let mut keys = Vec::with_capacity(n);
+        let mut tokens = Vec::with_capacity(n);
+        let mut counts = Vec::with_capacity(n);
+        let mut prev: Option<(u32, u16)> = None;
+        let mut strictly_sorted = true;
+        for chunk in slice.chunks_exact(12) {
+            let key = u32::from_le_bytes([chunk[0], chunk[1], chunk[2], chunk[3]]);
+            let tok_u32 = u32::from_le_bytes([chunk[4], chunk[5], chunk[6], chunk[7]]);
+            let cnt = u32::from_le_bytes([chunk[8], chunk[9], chunk[10], chunk[11]]);
             if (tok_u32 as usize) >= vocabulary || cnt == 0 {
                 return Err(invalid(
                     "sparse trunk count table contains invalid token or zero count",
@@ -881,25 +894,73 @@ impl DiscreteSparseCountTable {
             }
             let tok = u16::try_from(tok_u32)
                 .map_err(|_| invalid("sparse trunk count table token overflows u16"))?;
-            let map = entries.entry(key).or_default();
-            if map.insert(tok, cnt).is_some() {
-                return Err(invalid(
-                    "duplicate (key, token) entry in sparse trunk count table",
-                ));
+            if let Some(p) = prev {
+                match (key, tok).cmp(&p) {
+                    std::cmp::Ordering::Equal => {
+                        return Err(invalid(
+                            "duplicate (key, token) entry in sparse trunk count table",
+                        ));
+                    }
+                    std::cmp::Ordering::Less => strictly_sorted = false,
+                    std::cmp::Ordering::Greater => {}
+                }
             }
+            prev = Some((key, tok));
+            keys.push(key);
+            tokens.push(tok);
+            counts.push(cnt);
         }
-        Ok(Self { entries })
+        if !strictly_sorted {
+            let mut order: Vec<usize> = (0..n).collect();
+            order.sort_unstable_by_key(|&i| (keys[i], tokens[i]));
+            let mut sorted_keys = Vec::with_capacity(n);
+            let mut sorted_tokens = Vec::with_capacity(n);
+            let mut sorted_counts = Vec::with_capacity(n);
+            let mut last: Option<(u32, u16)> = None;
+            for &idx in &order {
+                let pair = (keys[idx], tokens[idx]);
+                if last == Some(pair) {
+                    return Err(invalid(
+                        "duplicate (key, token) entry in sparse trunk count table",
+                    ));
+                }
+                last = Some(pair);
+                sorted_keys.push(keys[idx]);
+                sorted_tokens.push(tokens[idx]);
+                sorted_counts.push(counts[idx]);
+            }
+            keys = sorted_keys;
+            tokens = sorted_tokens;
+            counts = sorted_counts;
+        }
+        Ok(Self {
+            keys: keys.into_boxed_slice(),
+            tokens: tokens.into_boxed_slice(),
+            counts: counts.into_boxed_slice(),
+        })
     }
 
     fn get(&self, key: u32, tok: u16) -> u32 {
-        self.entries
-            .get(&key)
-            .and_then(|m| m.get(&tok).copied())
-            .unwrap_or(0)
+        let mut low = 0usize;
+        let mut high = self.keys.len();
+        while low < high {
+            let mid = low + (high - low) / 2;
+            match (self.keys[mid], self.tokens[mid]).cmp(&(key, tok)) {
+                std::cmp::Ordering::Less => low = mid + 1,
+                std::cmp::Ordering::Greater => high = mid,
+                std::cmp::Ordering::Equal => return self.counts[mid],
+            }
+        }
+        0
     }
 
-    fn entries(&self, key: u32) -> Option<&BTreeMap<u16, u32>> {
-        self.entries.get(&key)
+    fn tokens_for_key(&self, key: u32) -> &[u16] {
+        let start = self.keys.partition_point(|&k| k < key);
+        if start == self.keys.len() || self.keys[start] != key {
+            return &[];
+        }
+        let end = start + self.keys[start..].partition_point(|&k| k == key);
+        &self.tokens[start..end]
     }
 }
 
@@ -1115,15 +1176,12 @@ impl DiscreteTrunkTables {
             }
         };
 
-        for map_opt in [
-            self.query_table.entries(q_key),
-            self.read_table.entries(r_key),
-            self.rec_table.entries(c_key),
-        ]
-        .into_iter()
-        .flatten()
-        {
-            for &tok in map_opt.keys() {
+        for toks in [
+            self.query_table.tokens_for_key(q_key),
+            self.read_table.tokens_for_key(r_key),
+            self.rec_table.tokens_for_key(c_key),
+        ] {
+            for &tok in toks {
                 consider(tok);
             }
         }
@@ -2295,7 +2353,7 @@ impl IntegerDiscreteModel {
                 let expected_bytes = expected_len
                     .checked_mul(expected_kind.width())
                     .ok_or_else(|| invalid("table byte size overflow"))?;
-                if (entry.span.offset as usize) % ALIGN != 0
+                if !(entry.span.offset as usize).is_multiple_of(ALIGN)
                     || entry.span.bytes != expected_bytes as u64
                 {
                     return Err(invalid(format!(
@@ -2420,7 +2478,7 @@ impl IntegerDiscreteModel {
         };
 
         let trunk = if is_trunk {
-            let read_u32_any = |idx: usize, expected_name: &str| -> Result<Vec<u32>> {
+            let read_u32_bytes = |idx: usize, expected_name: &str| -> Result<&[u8]> {
                 let entry = header
                     .tables
                     .get(idx)
@@ -2434,7 +2492,7 @@ impl IntegerDiscreteModel {
                     .len
                     .checked_mul(4)
                     .ok_or_else(|| invalid("trunk table byte size overflow"))?;
-                if (entry.span.offset as usize) % ALIGN != 0
+                if !(entry.span.offset as usize).is_multiple_of(ALIGN)
                     || entry.span.bytes != expected_bytes as u64
                 {
                     return Err(invalid(format!(
@@ -2446,10 +2504,11 @@ impl IntegerDiscreteModel {
                 let end = start
                     .checked_add(expected_bytes)
                     .ok_or_else(|| invalid("trunk table end overflow"))?;
-                let slice = data
-                    .get(start..end)
-                    .ok_or_else(|| invalid(format!("trunk table {expected_name} out of bounds")))?;
-                Ok(slice
+                data.get(start..end)
+                    .ok_or_else(|| invalid(format!("trunk table {expected_name} out of bounds")))
+            };
+            let read_u32_any = |idx: usize, expected_name: &str| -> Result<Vec<u32>> {
+                Ok(read_u32_bytes(idx, expected_name)?
                     .chunks_exact(4)
                     .map(|b| u32::from_le_bytes([b[0], b[1], b[2], b[3]]))
                     .collect())
@@ -2491,8 +2550,8 @@ impl IntegerDiscreteModel {
             let unigram_counts = unigram_words[1..].to_vec();
 
             let read_sparse = |idx: usize, name: &str| -> Result<DiscreteSparseCountTable> {
-                let words = read_u32_any(idx, name)?;
-                DiscreteSparseCountTable::from_triples(&words, vocab)
+                let slice = read_u32_bytes(idx, name)?;
+                DiscreteSparseCountTable::from_triple_bytes(slice, vocab)
             };
 
             let s2 = if has_s2 {
@@ -4938,5 +4997,134 @@ mod tests {
             pick_read(&token_blocks, &[1, -1], &PickTransport::Identity, &prefix).unwrap();
         assert_eq!(by_holonomy, by_identity);
         assert_eq!(by_identity.pick, Some(1));
+    }
+
+    fn encode_sparse_triple_bytes(triples: &[(u32, u32, u32)]) -> Vec<u8> {
+        let mut bytes = Vec::with_capacity(triples.len() * 12);
+        for &(k, t, c) in triples {
+            bytes.extend_from_slice(&k.to_le_bytes());
+            bytes.extend_from_slice(&t.to_le_bytes());
+            bytes.extend_from_slice(&c.to_le_bytes());
+        }
+        bytes
+    }
+
+    #[test]
+    fn sparse_table_flat_soa_matches_btreemap_oracle_on_sorted_and_unsorted_inputs() {
+        let empty = DiscreteSparseCountTable::from_triple_bytes(&[], 16).unwrap();
+        assert_eq!(empty.get(0, 0), 0);
+        assert!(empty.tokens_for_key(0).is_empty());
+
+        let vocab = 300usize;
+        let mut sorted_triples = Vec::new();
+        sorted_triples.push((0u32, 0u32, 1u32));
+        for tok in 0..256u32 {
+            if tok % 3 == 0 {
+                sorted_triples.push((42, tok, tok + 1));
+            }
+        }
+        sorted_triples.push((100, 1, 7));
+        sorted_triples.push((100, 299, 13));
+        sorted_triples.push((u32::MAX, 2, 99));
+
+        // Deterministic unsorted permutation of the exact same triples.
+        let mut unsorted_triples = sorted_triples.clone();
+        unsorted_triples.reverse();
+        if unsorted_triples.len() > 5 {
+            unsorted_triples.swap(1, 4);
+        }
+
+        let sorted_tbl = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&sorted_triples),
+            vocab,
+        )
+        .unwrap();
+        let unsorted_tbl = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&unsorted_triples),
+            vocab,
+        )
+        .unwrap();
+        assert_eq!(sorted_tbl, unsorted_tbl);
+
+        let mut oracle: std::collections::BTreeMap<u32, std::collections::BTreeMap<u16, u32>> =
+            std::collections::BTreeMap::new();
+        for &(k, t, c) in &sorted_triples {
+            oracle.entry(k).or_default().insert(t as u16, c);
+        }
+
+        for k in [0u32, 1, 41, 42, 43, 100, 101, u32::MAX - 1, u32::MAX] {
+            let expected_toks: Vec<u16> = oracle
+                .get(&k)
+                .map(|m| m.keys().copied().collect())
+                .unwrap_or_default();
+            assert_eq!(sorted_tbl.tokens_for_key(k), expected_toks.as_slice());
+            for tok in [0u16, 1, 2, 3, 6, 255, 299] {
+                let expected = oracle
+                    .get(&k)
+                    .and_then(|m| m.get(&tok).copied())
+                    .unwrap_or(0);
+                assert_eq!(sorted_tbl.get(k, tok), expected);
+            }
+        }
+    }
+
+    #[test]
+    fn sparse_table_flat_soa_rejects_all_planted_faults() {
+        let len_err = DiscreteSparseCountTable::from_triple_bytes(&[1, 2, 3, 4], 16)
+            .unwrap_err()
+            .to_string();
+        assert!(len_err.contains("multiple of 3"), "{len_err}");
+
+        let vocab_err = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&[(0, 8, 1)]),
+            8,
+        )
+        .unwrap_err()
+        .to_string();
+        assert!(
+            vocab_err.contains("invalid token or zero count"),
+            "{vocab_err}"
+        );
+
+        let u16_err = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&[(0, 70_000, 1)]),
+            80_000,
+        )
+        .unwrap_err()
+        .to_string();
+        assert!(u16_err.contains("overflows u16"), "{u16_err}");
+
+        let zero_err = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&[(0, 1, 0)]),
+            8,
+        )
+        .unwrap_err()
+        .to_string();
+        assert!(
+            zero_err.contains("invalid token or zero count"),
+            "{zero_err}"
+        );
+
+        let adj_dup_err = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&[(5, 2, 1), (5, 2, 9)]),
+            8,
+        )
+        .unwrap_err()
+        .to_string();
+        assert!(
+            adj_dup_err.contains("duplicate (key, token)"),
+            "{adj_dup_err}"
+        );
+
+        let nonadj_dup_err = DiscreteSparseCountTable::from_triple_bytes(
+            &encode_sparse_triple_bytes(&[(10, 3, 1), (2, 1, 1), (10, 3, 4)]),
+            8,
+        )
+        .unwrap_err()
+        .to_string();
+        assert!(
+            nonadj_dup_err.contains("duplicate (key, token)"),
+            "{nonadj_dup_err}"
+        );
     }
 }
