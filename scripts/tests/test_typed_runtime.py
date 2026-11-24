@@ -75,7 +75,7 @@ class TypedRuntimeContractTests(unittest.TestCase):
             models_doc = json.loads((typed_dest / 'models.json').read_text(encoding='utf-8'))
             self.assertIs(models_doc['sources']['local_file'], False)
             model_ids = [m['id'] for m in models_doc['models']]
-            self.assertEqual(model_ids, ['qwen3-0.6b-foundry'])
+            self.assertEqual(model_ids, ['qwen3-0.6b', 'qwen3-1.7b'])
             for forbidden in ['sw.template.js', 'warmup.json', 'node_modules', 'pkg/README.md', 'pkg/uor_r4_integer.d.ts', 'pkg/package.json']:
                 self.assertFalse((typed_dest / forbidden).exists(), forbidden)
             self.assertEqual(list(typed_dest.rglob('*.map')), [])

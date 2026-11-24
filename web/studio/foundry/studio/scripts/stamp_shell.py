@@ -50,6 +50,19 @@ rules = dst / "AI_RULES.md"
 rules.write_text(rules.read_text(encoding="utf-8").rstrip("\n") + "\n\n## Brand\n\n- The app wears the Hologram brand kit: its colours, fonts and radius are set for you. Use the shadcn/ui components and the theme classes (`bg-background`, `text-foreground`, `bg-primary`, `text-muted-foreground`, `border-border`, `bg-card`, `text-destructive`); never raw palette colours (`bg-blue-500`), hex values, or a new `:root` theme.\n", encoding="utf-8", newline="\n")
 app = dst / "src" / "App.tsx"
 app.write_text(app.read_text(encoding="utf-8").replace("<BrowserRouter>", "<BrowserRouter basename={import.meta.env.BASE_URL}>", 1), encoding="utf-8", newline="\n")
+main_tsx = dst / "src" / "main.tsx"
+if main_tsx.exists():
+    main_tsx.write_text(
+        'import type { ComponentType } from "react";\n'
+        'import { createRoot } from "react-dom/client";\n'
+        'import * as AppMod from "./App.tsx";\n'
+        'import "./globals.css";\n\n'
+        'const RootApp = (AppMod as { default?: ComponentType; App?: ComponentType }).default ?? (AppMod as { App?: ComponentType }).App;\n'
+        'if (!RootApp) throw new Error("src/App.tsx must export a default or App React component");\n'
+        'createRoot(document.getElementById("root")!).render(<RootApp />);\n',
+        encoding="utf-8",
+        newline="\n",
+    )
 files = sorted(str(p.relative_to(dst)).replace("\\", "/") for p in (dst / "src").rglob("*") if p.is_file())
 (dst / "files.json").write_text(json.dumps(files), encoding="utf-8", newline="\n")
 print(f"staged {len(files)} scaffold files")

@@ -1,35 +1,59 @@
 // Real in-browser UOR-R4 runtime bridge:
-// - Built-in model: `uor-r4:qwen3-0.6b-foundry` (`UORR4V13` pure-integer Qwen3-0.6B Foundry via `./uor-v13-worker.mjs`)
+// - Built-in models: `uor-r4:qwen3-0.6b` (default) & `uor-r4:qwen3-1.7b` (`UORR4V13` pure-integer via `./uor-v13-worker.mjs`)
 // - Zero M1 dummy/seed models and zero weight-file upload controls.
 
 const OPFS_V13_DIR = 'uor-r4-v13-packs';
 const IDB_STORE = 'blobs';
 const IDB_V13_NAME = 'uor-r4-v13-cache';
-const DEFAULT_MODEL_SHORT = 'qwen3-0.6b-foundry';
+const DEFAULT_MODEL_SHORT = 'qwen3-0.6b';
 
 const BASE = new URL('./', import.meta.url);
 
 const FALLBACK_V13_MODEL = Object.freeze({
-  id: 'qwen3-0.6b-foundry',
+  id: 'qwen3-0.6b',
   kind: 'stitch-packs',
   primary: true,
-  label: 'UOR-R4 Qwen3-0.6B Foundry',
+  label: 'UOR-R4 Qwen3-0.6B',
   format: 'UORR4V13',
   manifest_url:
-    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/3b04cd460735af679d912ce749e6e4bb2bccc0b0/manifest.json',
+    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/081cb4f9cdf0e4e9dd1a160fa014615cb81db10e/manifest.json',
   stitch_manifest_url:
-    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/3b04cd460735af679d912ce749e6e4bb2bccc0b0/manifest.stitch.json',
-  manifest_sha256: '9c71182fe5462b55990b7f139635d0183ce73b15210c9169d68326f65f704a27',
-  stitch_manifest_sha256: '42154f44c064d364303b1695b6c941228719be953b0aa8f8b4254c2b3761cd61',
-  container_sha256: '789333898aed75c3be0f1db85a4da5b50bb1067481c37a79af38c605b4488d61',
-  size_bytes: 500760064,
-  context_window: 4096,
-  note: 'Pure-integer UORR4V13 Qwen3-0.6B fine-tuned for Foundry 16-tool webharness.',
+    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/081cb4f9cdf0e4e9dd1a160fa014615cb81db10e/manifest.stitch.json',
+  manifest_sha256: '6bc863c2eb5a5a1e79f280eedcb3a90caa806c5fba0c708861f176b18b4a2d8e',
+  stitch_manifest_sha256: 'fd29db5b1fbc3aa13c8a7803599ec2f143218a09140d4e771086d03bd608bc4d',
+  container_sha256: '617ea77fd9c3d15285e351bd4f094cc0845cf5bc038e042a3fb5aadf0e406bda',
+  size_bytes: 429484190,
+  pack_count: 9,
+  piece_count: 410,
+  last_pack: 'pack_08.pack',
+  context_window: 2048,
+  note: 'Pure-integer UORR4V13 Qwen3-0.6B (410 pieces, 9 Stitch 2-of-3 parity packs). Cached locally in OPFS/IndexedDB.',
+});
+
+const FALLBACK_V13_17B_MODEL = Object.freeze({
+  id: 'qwen3-1.7b',
+  kind: 'stitch-packs',
+  primary: false,
+  label: 'UOR-R4 Qwen3-1.7B',
+  format: 'UORR4V13',
+  manifest_url:
+    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/b35a6dcce1c527d91402a07dfa9ebd0928ee28f7/manifest.json',
+  stitch_manifest_url:
+    'https://raw.githubusercontent.com/Casey-allard/lexlean-r4/b35a6dcce1c527d91402a07dfa9ebd0928ee28f7/manifest.stitch.json',
+  manifest_sha256: 'ac10aca3d9259786d483028d73acbfda5363ecadb45471a7e4604bb62970b195',
+  stitch_manifest_sha256: 'dca8eacb0d8115e83405a70e2e5361d63ec37c3e200a4c761835ee89fc5b2d3b',
+  container_sha256: '2c362d73046851ff69dfa7e1de197d4f0fee14031e9e53e29bf278c41b6bc8bf',
+  size_bytes: 1140250782,
+  pack_count: 23,
+  piece_count: 1088,
+  last_pack: 'pack_22.pack',
+  context_window: 2048,
+  note: 'Pure-integer UORR4V13 Qwen3-1.7B (1,088 pieces, 23 Stitch 2-of-3 parity packs). Streamed from OPFS/IndexedDB.',
 });
 
 const BUNDLED_FALLBACK_CATALOG = Object.freeze({
   schema: 'uor-r4.studio-models/1',
-  models: [FALLBACK_V13_MODEL],
+  models: [FALLBACK_V13_MODEL, FALLBACK_V13_17B_MODEL],
 });
 
 let v13Worker = null;
@@ -48,11 +72,11 @@ let hydrationState = {
   phase: 'idle',
   percent: 0,
   packsDone: 0,
-  packsTotal: 10,
+  packsTotal: 9,
   piecesDone: 0,
-  piecesTotal: 452,
+  piecesTotal: 410,
   bytesLoaded: 0,
-  bytesTotal: 500760064,
+  bytesTotal: 429484190,
   cached: false,
   cacheBackend: null,
   recoveredPieces: [],
@@ -98,22 +122,44 @@ function sanitizeMirrorBase(raw) {
   }
 }
 
-function getV13MirrorBase() {
+function getV13MirrorBase(shortId = DEFAULT_MODEL_SHORT) {
   try {
-    if (typeof globalThis.__UOR_V13_MIRROR__ === 'string' && globalThis.__UOR_V13_MIRROR__.trim()) {
-      return sanitizeMirrorBase(globalThis.__UOR_V13_MIRROR__);
+    const map = globalThis.__UOR_V13_MIRRORS__;
+    if (map && typeof map === 'object' && typeof map[shortId] === 'string' && map[shortId].trim()) {
+      return sanitizeMirrorBase(map[shortId]);
     }
-    const q = new URLSearchParams(globalThis.location?.search || '').get('v13Mirror');
-    if (q && q.trim()) return sanitizeMirrorBase(q);
-    const s = globalThis.localStorage?.getItem('uor.v13.mirror');
-    if (s && s.trim()) return sanitizeMirrorBase(s);
+    const storedMapRaw = globalThis.localStorage?.getItem('uor.v13.mirrors');
+    if (storedMapRaw) {
+      try {
+        const storedMap = JSON.parse(storedMapRaw);
+        if (storedMap && typeof storedMap[shortId] === 'string' && storedMap[shortId].trim()) {
+          return sanitizeMirrorBase(storedMap[shortId]);
+        }
+      } catch {}
+    }
+    if (shortId === DEFAULT_MODEL_SHORT) {
+      if (typeof globalThis.__UOR_V13_MIRROR__ === 'string' && globalThis.__UOR_V13_MIRROR__.trim()) {
+        return sanitizeMirrorBase(globalThis.__UOR_V13_MIRROR__);
+      }
+      const q = new URLSearchParams(globalThis.location?.search || '').get('v13Mirror');
+      if (q && q.trim()) return sanitizeMirrorBase(q);
+      const s = globalThis.localStorage?.getItem('uor.v13.mirror');
+      if (s && s.trim()) return sanitizeMirrorBase(s);
+    }
   } catch {}
   return '';
 }
 
 function normalizeModelId(modelId) {
   const raw = String(modelId || `uor-r4:${DEFAULT_MODEL_SHORT}`).trim();
-  return raw.startsWith('uor-r4:') ? raw.slice('uor-r4:'.length) : raw;
+  const short = raw.startsWith('uor-r4:') ? raw.slice('uor-r4:'.length) : raw;
+  if (short === 'qwen3-0.6b-foundry') return 'qwen3-0.6b';
+  return short;
+}
+
+function lastPackForEntry(entry) {
+  if (entry?.last_pack) return entry.last_pack;
+  return entry?.id === 'qwen3-1.7b' ? 'pack_22.pack' : 'pack_08.pack';
 }
 
 function toFullModelId(shortId) {
@@ -177,12 +223,12 @@ async function hasCachedFiles(containerSha, files) {
   }
 }
 
-async function isV13Cached(containerSha) {
-  return hasCachedFiles(containerSha, ['pack_09.pack']);
+async function isV13Cached(containerSha, lastPack = 'pack_08.pack') {
+  return hasCachedFiles(containerSha, [lastPack]);
 }
 
-async function hasOfflineV13Cache(containerSha) {
-  return hasCachedFiles(containerSha, ['manifest.json', 'manifest.stitch.json', 'pack_09.pack']);
+async function hasOfflineV13Cache(containerSha, lastPack = 'pack_08.pack') {
+  return hasCachedFiles(containerSha, ['manifest.json', 'manifest.stitch.json', lastPack]);
 }
 
 function ensureV13Worker() {
@@ -305,7 +351,7 @@ export async function getCatalog({ refresh = false } = {}) {
   for (const entry of catalogCache.models || []) {
     if (entry.id === 'synthetic-seed-5' || entry.id === 'm1-discrete-trunk-seed-1') continue;
     if (entry.format !== 'UORR4V13' && entry.kind !== 'stitch-packs') continue;
-    const cached = await isV13Cached(entry.container_sha256);
+    const cached = await isV13Cached(entry.container_sha256, lastPackForEntry(entry));
     models.push({
       ...entry,
       apiName: toFullModelId(entry.id),
@@ -337,17 +383,30 @@ export function getStatus() {
 }
 
 async function loadV13Entry(entry, { signal } = {}) {
-  const mirrorBaseUrl = getV13MirrorBase();
+  const mirrorBaseUrl = getV13MirrorBase(entry.id);
+  const fullModelId = toFullModelId(entry.id);
+  loadedModelId = null;
+  loadedCapabilities = null;
   notifyProgress({
-    modelId: toFullModelId(entry.id),
+    modelId: fullModelId,
     phase: 'hydrating',
+    percent: 0,
+    packsDone: 0,
+    packsTotal: entry.pack_count || (entry.id === 'qwen3-1.7b' ? 23 : 9),
+    piecesDone: 0,
+    piecesTotal: entry.piece_count || (entry.id === 'qwen3-1.7b' ? 1088 : 410),
+    bytesLoaded: 0,
+    bytesTotal: entry.size_bytes || 0,
+    cached: false,
+    cacheBackend: null,
+    recoveredPieces: [],
     error: null,
   });
   try {
     const resp = await callV13Worker(
       'load_v13',
       {
-        modelId: toFullModelId(entry.id),
+        modelId: fullModelId,
         manifestUrl: entry.manifest_url,
         stitchManifestUrl: entry.stitch_manifest_url,
         manifestSha256: entry.manifest_sha256,
@@ -380,17 +439,30 @@ async function loadV13Entry(entry, { signal } = {}) {
       cacheBackend: resp.cacheBackend,
       recoveredPieces: resp.recoveredPieces || [],
     };
+    const isCached = Boolean(resp.reusedMount || resp.cacheBackend === 'opfs' || resp.cacheBackend === 'indexeddb');
+    notifyProgress({
+      modelId: fullModelId,
+      phase: 'ready',
+      percent: 100,
+      cached: isCached,
+      cacheBackend: resp.cacheBackend,
+      recoveredPieces: resp.recoveredPieces || [],
+      error: null,
+    });
     return {
-      modelId: toFullModelId(entry.id),
+      modelId: fullModelId,
       capabilities: loadedCapabilities,
       sha256: loadedCapabilities.artifact_sha256,
       bytes: entry.size_bytes,
       cacheBackend: resp.cacheBackend,
       recoveredPieces: resp.recoveredPieces || [],
-      cached: Boolean(resp.reusedMount || resp.cacheBackend === 'opfs' || resp.cacheBackend === 'indexeddb'),
+      cached: isCached,
     };
   } catch (err) {
+    loadedModelId = null;
+    loadedCapabilities = null;
     notifyProgress({
+      modelId: fullModelId,
       phase: 'error',
       error: String(err?.message || err),
     });
@@ -398,8 +470,7 @@ async function loadV13Entry(entry, { signal } = {}) {
   }
 }
 
-export async function ensureModelLoaded(modelId, { signal } = {}) {
-  const shortId = normalizeModelId(modelId);
+async function ensureModelLoadedQueued(shortId, { signal } = {}) {
   if (loadedModelId === shortId && loadedCapabilities) {
     return {
       modelId: toFullModelId(shortId),
@@ -408,22 +479,17 @@ export async function ensureModelLoaded(modelId, { signal } = {}) {
       cached: true,
     };
   }
-  return serializeOp(async () => {
-    if (loadedModelId === shortId && loadedCapabilities) {
-      return {
-        modelId: toFullModelId(shortId),
-        capabilities: loadedCapabilities,
-        sha256: loadedCapabilities.artifact_sha256,
-        cached: true,
-      };
-    }
-    const cat = await getCatalog();
-    const entry = cat.models.find((m) => m.id === shortId);
-    if (!entry) {
-      throw new Error(`Unknown UOR-R4 model id: ${shortId}`);
-    }
-    return loadV13Entry(entry, { signal });
-  });
+  const cat = await getCatalog();
+  const entry = cat.models.find((m) => m.id === shortId);
+  if (!entry) {
+    throw new Error(`Unknown UOR-R4 model id: ${shortId}`);
+  }
+  return loadV13Entry(entry, { signal });
+}
+
+export async function ensureModelLoaded(modelId, { signal } = {}) {
+  const shortId = normalizeModelId(modelId);
+  return serializeOp(() => ensureModelLoadedQueued(shortId, { signal }));
 }
 
 export async function generate({
@@ -439,8 +505,9 @@ export async function generate({
   signal,
   onToken,
 } = {}) {
-  await ensureModelLoaded(modelId, { signal });
+  const shortId = normalizeModelId(modelId);
   return serializeOp(async () => {
+    await ensureModelLoadedQueued(shortId, { signal });
     const effectiveSpec = typeof speculative === 'boolean' ? speculative : defaultSpeculative;
     const result = await callV13Worker(
       'generate_v13',
@@ -486,7 +553,7 @@ export async function prewarmIfCached({
     if (!entry) {
       return { ok: false, skipped: 'unknown_model', cached: false };
     }
-    const cached = await hasOfflineV13Cache(entry.container_sha256);
+    const cached = await hasOfflineV13Cache(entry.container_sha256, lastPackForEntry(entry));
     if (!cached) {
       return { ok: false, skipped: 'not_cached', cached: false };
     }
@@ -495,7 +562,7 @@ export async function prewarmIfCached({
     if (loadedModelId !== shortId) {
       const cat = await getCatalog();
       const entry = cat.models.find((m) => m.id === shortId);
-      if (!entry || !(await hasOfflineV13Cache(entry.container_sha256))) {
+      if (!entry || !(await hasOfflineV13Cache(entry.container_sha256, lastPackForEntry(entry)))) {
         return { ok: false, skipped: 'not_cached', cached: false };
       }
       await loadV13Entry(entry, { signal });

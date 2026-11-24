@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Automated end-to-end Chrome DevTools Protocol (CDP) verification for Foundry Studio +
-// real UOR-R4 V13 Qwen3-0.6B Foundry WASM + 16-tool webharness + Home Chat mode +
+// real UOR-R4 V13 Qwen3-0.6B & Qwen3-1.7B WASM + Foundry webharness + Home Chat + Build +
 // Stitch 2-of-3 XOR recovery + RV64IMAC MVM Micro-Linux WebAssembly terminal.
 //
 // Usage:
@@ -18,16 +18,29 @@ import { fileURLToPath } from 'node:url';
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
 const repoRoot = resolve(__dirname, '../..');
 const DEFAULT_DIST = resolve(__dirname, 'dist');
-function resolveV13PackDir() {
-  const candidates = [
-    process.env.UOR_V13_PACK_DIR || '',
-    resolve(repoRoot, 'local/antigravity/d90-foundry-lora/diag_v5/v13_pieces_foundry'),
-    resolve(repoRoot, '../../local/antigravity/d90-foundry-lora/diag_v5/v13_pieces_foundry'),
-  ].filter(Boolean);
-  for (const dir of candidates) {
-    if (existsSync(join(dir, 'manifest.stitch.json'))) return dir;
+function findFirstDir(candidates) {
+  for (const dir of candidates.filter(Boolean)) {
+    if (existsSync(join(dir, 'manifest.json')) && existsSync(join(dir, 'manifest.stitch.json'))) {
+      return dir;
+    }
   }
   return null;
+}
+function resolveV13PackDirs() {
+  return {
+    qwen3_06b: findFirstDir([
+      process.env.UOR_V13_PACK_DIR || '',
+      resolve(repoRoot, 'local/antigravity/v13-qwen3-0.6b'),
+      resolve(repoRoot, '../uor-r4/local/antigravity/v13-qwen3-0.6b'),
+      resolve(repoRoot, '../../local/antigravity/v13-qwen3-0.6b'),
+    ]),
+    qwen3_17b: findFirstDir([
+      process.env.UOR_V13_17B_PACK_DIR || '',
+      resolve(repoRoot, 'local/antigravity/v13-qwen3-1.7b'),
+      resolve(repoRoot, '../uor-r4/local/antigravity/v13-qwen3-1.7b'),
+      resolve(repoRoot, '../../local/antigravity/v13-qwen3-1.7b'),
+    ]),
+  };
 }
 const CHROME_CANDIDATES = [
   process.env.CHROME || '',
@@ -72,7 +85,7 @@ function chromeBinary() {
   throw new Error('No local Chrome/Chromium found (set CHROME env var)');
 }
 
-async function startStaticServer(rootDir, { subpathPrefix = null, cors = false } = {}) {
+async function startStaticServer(rootDir, { subpathPrefix = null, cors = false, prefixDirs = null } = {}) {
   const server = createServer((req, res) => {
     try {
       if (cors) {
@@ -86,6 +99,16 @@ async function startStaticServer(rootDir, { subpathPrefix = null, cors = false }
       }
       const reqUrl = new URL(req.url, 'http://127.0.0.1');
       let reqPath = decodeURIComponent(reqUrl.pathname);
+      let activeRoot = rootDir;
+      if (prefixDirs) {
+        for (const [prefix, dir] of Object.entries(prefixDirs)) {
+          if (dir && reqPath.startsWith(prefix + '/')) {
+            activeRoot = dir;
+            reqPath = '/' + reqPath.slice(prefix.length + 1);
+            break;
+          }
+        }
+      }
       if (subpathPrefix) {
         if (reqPath === subpathPrefix) {
           res.writeHead(301, { location: subpathPrefix + '/' });
@@ -98,15 +121,15 @@ async function startStaticServer(rootDir, { subpathPrefix = null, cors = false }
       }
       if (reqPath === '/') reqPath = '/index.html';
       const norm = normalize(reqPath).replace(/^\/+/, '');
-      let full = resolve(rootDir, norm);
-      if (!full.startsWith(rootDir + sep) && full !== rootDir) {
+      let full = resolve(activeRoot, norm);
+      if (!full.startsWith(activeRoot + sep) && full !== activeRoot) {
         res.writeHead(403);
         res.end('forbidden');
         return;
       }
       if (!existsSync(full) || statSync(full).isDirectory()) {
-        if (!extname(norm) && existsSync(join(rootDir, 'index.html'))) {
-          full = join(rootDir, 'index.html');
+        if (!extname(norm) && existsSync(join(activeRoot, 'index.html'))) {
+          full = join(activeRoot, 'index.html');
         } else {
           res.writeHead(404, { 'content-type': 'text/plain' });
           res.end('not found: ' + norm);
@@ -546,7 +569,7 @@ async function startMockOpenAIServer() {
   return { server, origin: `http://127.0.0.1:${port}/v1`, calls };
 }
 
-async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, mockOpenAI) {
+async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mockOpenAI) {
   const target = await cdp.send('Target.createTarget', { url: 'about:blank' });
   const attached = await cdp.send('Target.attachToTarget', { targetId: target.targetId, flatten: true });
   const sessionId = attached.sessionId;
@@ -561,8 +584,9 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     sessionId,
   );
 
-  const navUrl = packOrigin
-    ? `${origin}${basePath}?v13Mirror=${encodeURIComponent(packOrigin + '/')}`
+  const packOrigin = mirrors?.origin || null;
+  const navUrl = mirrors?.qwen3_06b
+    ? `${origin}${basePath}?v13Mirror=${encodeURIComponent(mirrors.qwen3_06b)}`
     : `${origin}${basePath}`;
   console.error(`[verify] navigating to ${navUrl}`);
 
@@ -604,6 +628,20 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     25000,
   );
   assert(ready, 'Foundry UI did not mount inside #root');
+  if (mirrors) {
+    await evalAsync(
+      cdp,
+      sessionId,
+      `localStorage.setItem('uor.v13.mirrors', ${JSON.stringify(
+        JSON.stringify({
+          ...(mirrors.qwen3_06b ? { 'qwen3-0.6b': mirrors.qwen3_06b } : {}),
+          ...(mirrors.qwen3_17b ? { 'qwen3-1.7b': mirrors.qwen3_17b } : {}),
+        }),
+      )});`,
+      10000,
+      'set per-model local mirror map',
+    );
+  }
   await new Promise((r) => setTimeout(r, 1500));
   await drainChildren();
 
@@ -698,11 +736,11 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     `Expected sole default provider ['uor-r4'], got ${JSON.stringify(catalogCheck.providerIds)}`,
   );
   assert(
-    JSON.stringify(catalogCheck.uorModelNames) === JSON.stringify(['uor-r4:qwen3-0.6b-foundry']),
-    `Expected sole built-in model ['uor-r4:qwen3-0.6b-foundry'], got ${JSON.stringify(catalogCheck.uorModelNames)}`,
+    JSON.stringify(catalogCheck.uorModelNames) === JSON.stringify(['uor-r4:qwen3-0.6b', 'uor-r4:qwen3-1.7b']),
+    `Expected dual built-in models ['uor-r4:qwen3-0.6b', 'uor-r4:qwen3-1.7b'], got ${JSON.stringify(catalogCheck.uorModelNames)}`,
   );
   assert(
-    JSON.stringify(catalogCheck.jsonIds) === JSON.stringify(['qwen3-0.6b-foundry']) && catalogCheck.localFileSource === false,
+    JSON.stringify(catalogCheck.jsonIds) === JSON.stringify(['qwen3-0.6b', 'qwen3-1.7b']) && catalogCheck.localFileSource === false,
     `Unexpected models.json: ids=${JSON.stringify(catalogCheck.jsonIds)} local_file=${catalogCheck.localFileSource}`,
   );
   assert(
@@ -727,13 +765,13 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
   assert(catalogCheck.standardsCount > 0, `standards:lookup returned 0 matches for 'softmax'`);
   console.error(`[verify] catalog, scaffold & clean UI controls OK (${catalogCheck.uorModelNames.join(', ')})`);
 
-  // 2. Load Run 5 Qwen3-0.6B Foundry V13 WASM & verify Stitch 2-of-3 XOR recovery.
+  // 2. Load Qwen3-0.6B V13 WASM & verify Stitch 2-of-3 XOR recovery.
   const activeEvMark = cdp.events.length;
   const v13LoadCheck = await evalAsync(
     cdp,
     sessionId,
     `
-      const loaded = await window.electron.ipcRenderer.invoke('uor-r4:select-model', { modelId: 'uor-r4:qwen3-0.6b-foundry' });
+      const loaded = await window.electron.ipcRenderer.invoke('uor-r4:select-model', { modelId: 'uor-r4:qwen3-0.6b' });
       const stitch = await window.electron.ipcRenderer.invoke('uor-r4:test-stitch-recover', { groupIndex: 0, dropped: 2 });
       return { loaded, stitch };
     `,
@@ -764,13 +802,13 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
       const shortPrompt = 'State what Studio Build mode does in one brief sentence.';
       const exactGen = await window.__uorR4.generate({
         prompt: shortPrompt,
-        systemPrompt: window.__uorR4.systemPrompt,
+        systemPrompt: window.__uorR4.chatSystemPrompt,
         maxNewTokens: 16,
         speculative: false,
       });
       const specGen = await window.__uorR4.generate({
         prompt: shortPrompt,
-        systemPrompt: window.__uorR4.systemPrompt,
+        systemPrompt: window.__uorR4.chatSystemPrompt,
         maxNewTokens: 16,
         speculative: true,
       });
@@ -831,8 +869,16 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     }
   }
 
-  // 3. Exercise real Home Chat UI (`Chat` mode stays on `/` with zero app created).
-  await typeIntoHomeComposer(cdp, sessionId, 'Explain the UOR-R4 Charter in one sentence.');
+  // 3. Exercise real Home Chat UI (`Chat` mode stays on `/` with zero app created & natural reply).
+  const groundingCasualChat = await evalAsync(
+    cdp,
+    sessionId,
+    `return await window.__uorR4.buildTurnGroundingContext({ appId: null, chatMode: 'chat', prompt: 'hi how are you' });`,
+    10000,
+    'casual Home Chat grounding check',
+  );
+  assert(groundingCasualChat === '', `Casual Home Chat must not inject [Foundry Context]: ${groundingCasualChat}`);
+  await typeIntoHomeComposer(cdp, sessionId, 'hi how are you');
   const sentHome = await evalAsync(
     cdp,
     sessionId,
@@ -861,16 +907,16 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
         !stopBtn &&
         msgs.length >= 2 &&
         msgs[1].role === 'assistant' &&
-        String(msgs[1].content || '').trim().length > 8 &&
-        msgs[1].model === 'uor-r4:qwen3-0.6b-foundry';
+        String(msgs[1].content || '').trim().length > 5 &&
+        msgs[1].model === 'uor-r4:qwen3-0.6b';
       if (!done || !promoteBtn) return null;
       const apps = (await window.electron.ipcRenderer.invoke('list-apps')).apps || [];
       return {
         hash: location.hash,
         replyLen: msgs[1].content.length,
-        replyPreview: msgs[1].content.slice(0, 120),
+        replyPreview: msgs[1].content.slice(0, 200),
         appsCountBeforePromote: apps.length,
-        asstText: (asst?.textContent || '').slice(0, 120),
+        asstText: (asst?.textContent || '').slice(0, 200),
       };
     })()`,
     90000,
@@ -878,6 +924,10 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
   assert(
     !homeChatResult.hash.startsWith('#/chat') && homeChatResult.appsCountBeforePromote === 0,
     `Home Chat navigated or created an app prematurely: ${JSON.stringify(homeChatResult)}`,
+  );
+  assert(
+    !/Available tools:|workspace_write|linux_exec|mvm_exec|lexlean_verify/i.test(homeChatResult.replyPreview),
+    `Casual Home Chat collapsed into tool/capability boilerplate: ${JSON.stringify(homeChatResult.replyPreview)}`,
   );
   console.error(`[verify] Home Chat stayed on '/' and streamed ${homeChatResult.replyLen} chars: ${JSON.stringify(homeChatResult.replyPreview)}`);
 
@@ -979,14 +1029,205 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     120000,
   );
   assert(
-    builtFromHome.model === 'uor-r4:qwen3-0.6b-foundry',
+    builtFromHome.model === 'uor-r4:qwen3-0.6b',
     `Build App chat used wrong model: ${JSON.stringify(builtFromHome)}`,
   );
   assert(
     builtFromHome.hasToolCall && builtFromHome.hasToolResponse,
     `Expected full <tool_call>/<tool_response> round-trip on Build App turn: ${JSON.stringify(builtFromHome)}`,
   );
-  console.error(`[verify] Home Build App create-app + Run 5 generation succeeded: app=${builtFromHome.appId} toolCall=${builtFromHome.hasToolCall} toolResp=${builtFromHome.hasToolResponse} preview=${JSON.stringify(builtFromHome.replyPreview)}`);
+  console.error(`[verify] Home Build App create-app + tool round-trip succeeded: app=${builtFromHome.appId} toolCall=${builtFromHome.hasToolCall} toolResp=${builtFromHome.hasToolResponse} preview=${JSON.stringify(builtFromHome.replyPreview)}`);
+
+  // 5c. Build a real Todo List app via Home Build UI, verify live preview Ready, and apply follow-up edit.
+  await evalAsync(cdp, sessionId, `location.hash = '#/';`, 10000, 'navigate home for Todo build test');
+  await waitForEval(cdp, sessionId, `Boolean(document.querySelector('[data-testid="home-mode-build"]'))`, 15000);
+  await evalAsync(cdp, sessionId, `document.querySelector('[data-testid="home-mode-build"]')?.click();`, 10000, 'select Build mode for Todo test');
+  await typeIntoHomeComposer(cdp, sessionId, 'build a todo list app');
+  await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const btn = document.querySelector('[aria-label="Send message"]');
+      if (!btn || btn.disabled) throw new Error('Todo Build send button disabled');
+      btn.click();
+    `,
+    10000,
+    'submit Todo Build prompt',
+  );
+  const todoBuilt = await waitForEval(
+    cdp,
+    sessionId,
+    `(async () => {
+      const apps = (await window.electron.ipcRenderer.invoke('list-apps')).apps || [];
+      if (apps.length < 3 || !location.hash.includes('chat')) return null;
+      const app = apps[apps.length - 1];
+      const chats = await window.electron.ipcRenderer.invoke('get-chats', app.id);
+      const chatId = chats[0]?.id;
+      if (!chatId) return null;
+      const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'chat_stream', encodedKey: { chatId } });
+      if (sub?.encodedState?.phase !== 'idle') return null;
+      const chat = await window.electron.ipcRenderer.invoke('get-chat', chatId);
+      const asst = (chat.messages || []).find((m) => m.role === 'assistant');
+      if (!asst || !String(asst.content || '').trim().length) return null;
+      const src = await window.electron.ipcRenderer.invoke('read-app-file', { appId: app.id, filePath: 'src/App.tsx' });
+      return {
+        appId: app.id,
+        chatId,
+        updatedFiles: Boolean(sub?.encodedState?.lastCompletion?.updatedFiles),
+        isStarter: src.includes('import Index from "./pages/Index"'),
+        srcLen: src.length,
+        srcHead: src.slice(0, 140),
+      };
+    })()`,
+    180000,
+  );
+  assert(
+    todoBuilt.updatedFiles && !todoBuilt.isStarter && todoBuilt.srcLen > 80,
+    `Todo Build Turn 1 failed to update src/App.tsx: ${JSON.stringify(todoBuilt)}`,
+  );
+  const todoPreview1 = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const problems = await window.electron.ipcRenderer.invoke('check-problems', { appId: ${todoBuilt.appId} });
+      const clickAllow = () => {
+        const allow = [...document.querySelectorAll('dialog[aria-label="Review preview permissions"] button')].find(
+          (b) => (b.textContent || '').trim() === 'Allow this preview',
+        );
+        if (allow) allow.click();
+      };
+      let appRunState = null;
+      for (let i = 0; i < 12; i++) {
+        clickAllow();
+        const cur = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        appRunState = cur?.encodedState;
+        if (appRunState?.phase === 'starting' || appRunState?.phase === 'ready' || appRunState?.phase === 'errored') break;
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      if (!appRunState || appRunState.phase === 'idle') {
+        const cur0 = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        if (cur0?.encodedState?.phase !== 'starting' && cur0?.encodedState?.phase !== 'ready') {
+          await window.electron.ipcRenderer.invoke('distributed-machine:dispatch', {
+            protocolVersion: 1,
+            machineId: 'app_run',
+            encodedKey: { appId: ${todoBuilt.appId} },
+            messageId: 'cdp-todo-run-1',
+            encodedEvent: { type: 'START', operationId: 'cdp-todo-run-1', startedAt: Date.now(), expectedRevision: cur0?.revision || 0 },
+          });
+        }
+      }
+      for (let i = 0; i < 120; i++) {
+        clickAllow();
+        const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        appRunState = sub?.encodedState;
+        if (appRunState?.phase === 'ready' || appRunState?.phase === 'errored') break;
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      const previewUrl = appRunState?.url?.appUrl || '';
+      const previewResp = previewUrl ? await fetch(previewUrl, { cache: 'no-store' }) : null;
+      const previewHtml = previewResp && previewResp.ok ? await previewResp.text() : '';
+      return { problems, phase: appRunState?.phase, epoch: appRunState?.previewReloadEpoch || 0, error: appRunState?.operationError || null, previewUrl, previewLen: previewHtml.length };
+    `,
+    60000,
+    'compile Todo Build Turn 1 preview',
+  );
+  assert(
+    todoPreview1.problems?.outcome === 'passed' && todoPreview1.phase === 'ready' && todoPreview1.previewLen > 300,
+    `Todo Build Turn 1 preview failed: ${JSON.stringify(todoPreview1)}`,
+  );
+
+  await evalAsync(
+    cdp,
+    sessionId,
+    `await window.__uorR4.submitPrompt(${todoBuilt.chatId}, ${todoBuilt.appId}, 'Add a filter for All, Active, and Completed todos');`,
+    15000,
+    'submit Todo Turn 2 follow-up edit',
+  );
+  const todoEdited = await waitForEval(
+    cdp,
+    sessionId,
+    `(async () => {
+      const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'chat_stream', encodedKey: { chatId: ${todoBuilt.chatId} } });
+      if (sub?.encodedState?.phase !== 'idle') return null;
+      const chat = await window.electron.ipcRenderer.invoke('get-chat', ${todoBuilt.chatId});
+      if ((chat.messages || []).filter((m) => m.role === 'assistant' && String(m.content || '').trim().length > 0).length < 2) return null;
+      const src = await window.electron.ipcRenderer.invoke('read-app-file', { appId: ${todoBuilt.appId}, filePath: 'src/App.tsx' });
+      return {
+        updatedFiles: Boolean(sub?.encodedState?.lastCompletion?.updatedFiles),
+        hasFilter: /Active/i.test(src) && /Completed/i.test(src),
+        srcLen: src.length,
+      };
+    })()`,
+    180000,
+  );
+  assert(
+    todoEdited.updatedFiles && todoEdited.hasFilter,
+    `Todo Turn 2 follow-up filter edit failed: ${JSON.stringify(todoEdited)}`,
+  );
+  const todoPreview2 = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const problems = await window.electron.ipcRenderer.invoke('check-problems', { appId: ${todoBuilt.appId} });
+      const prevEpoch = ${todoPreview1.epoch};
+      const prevUrl = ${JSON.stringify(todoPreview1.previewUrl)};
+      const clickAllow = () => {
+        const allow = [...document.querySelectorAll('dialog[aria-label="Review preview permissions"] button')].find(
+          (b) => (b.textContent || '').trim() === 'Allow this preview',
+        );
+        if (allow) allow.click();
+      };
+      let appRunState = null;
+      for (let i = 0; i < 12; i++) {
+        clickAllow();
+        const cur = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        appRunState = cur?.encodedState;
+        if (appRunState?.phase === 'starting' || appRunState?.phase === 'errored' || (appRunState?.phase === 'ready' && (appRunState?.previewReloadEpoch || 0) > prevEpoch)) break;
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      if (!appRunState || (appRunState.phase === 'ready' && (appRunState.previewReloadEpoch || 0) <= prevEpoch)) {
+        const cur = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        if (cur?.encodedState?.phase !== 'starting' && (cur?.encodedState?.previewReloadEpoch || 0) <= prevEpoch) {
+          await window.electron.ipcRenderer.invoke('distributed-machine:dispatch', {
+            protocolVersion: 1,
+            machineId: 'app_run',
+            encodedKey: { appId: ${todoBuilt.appId} },
+            messageId: 'cdp-todo-run-2',
+            encodedEvent: { type: 'RESTART', operation: 'rebuild', operationId: 'cdp-todo-run-2', startedAt: Date.now(), expectedRevision: cur?.revision || 0 },
+          });
+        }
+      }
+      for (let i = 0; i < 120; i++) {
+        clickAllow();
+        const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'app_run', encodedKey: { appId: ${todoBuilt.appId} } });
+        appRunState = sub?.encodedState;
+        if (appRunState?.phase === 'errored' || (appRunState?.phase === 'ready' && (appRunState?.previewReloadEpoch || 0) > prevEpoch)) break;
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      const previewUrl = appRunState?.url?.appUrl || '';
+      const previewResp = previewUrl ? await fetch(previewUrl, { cache: 'no-store' }) : null;
+      const previewHtml = previewResp && previewResp.ok ? await previewResp.text() : '';
+      return { problems, phase: appRunState?.phase, error: appRunState?.operationError || null, previewUrl, prevUrl, previewLen: previewHtml.length };
+    `,
+    60000,
+    'compile Todo Build Turn 2 preview',
+  );
+  assert(
+    todoPreview2.problems?.outcome === 'passed' &&
+      todoPreview2.phase === 'ready' &&
+      todoPreview2.previewUrl &&
+      todoPreview2.previewUrl !== todoPreview2.prevUrl &&
+      todoPreview2.previewLen > 300,
+    `Todo Turn 2 follow-up preview failed: ${JSON.stringify(todoPreview2)}`,
+  );
+  await evalAsync(
+    cdp,
+    sessionId,
+    `await window.electron.ipcRenderer.invoke('delete-apps', { appIds: [${todoBuilt.appId}] }); location.hash = '#/chat?id=${builtFromHome.chatId}&appId=${builtFromHome.appId}';`,
+    15000,
+    'clean up Todo test app and restore build test app route',
+  );
+  console.error(`[verify] Todo Build Turn 1 + Turn 2 follow-up filter edit & live preview OK`);
 
   // 5b. Verify create-app scaffold files (`src/vite-env.d.ts`), Zod-contracted internal controls, routes, and local preview mode.
   const controlsCheck = await evalAsync(
@@ -1624,9 +1865,9 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
   assert(customChatCheck.studioContent.includes('<tool_response>') && customChatCheck.studioContent.includes('Custom API Build App verified'), `Custom API Studio tool loop failed: ${JSON.stringify(customChatCheck)}`);
   assert(
     customChatCheck.settingsAfterDelete?.provider === 'uor-r4' &&
-      customChatCheck.settingsAfterDelete?.name === 'uor-r4:qwen3-0.6b-foundry' &&
+      customChatCheck.settingsAfterDelete?.name === 'uor-r4:qwen3-0.6b' &&
       customChatCheck.chatModelAfterDelete?.provider === 'uor-r4' &&
-      customChatCheck.chatModelAfterDelete?.name === 'uor-r4:qwen3-0.6b-foundry' &&
+      customChatCheck.chatModelAfterDelete?.name === 'uor-r4:qwen3-0.6b' &&
       customChatCheck.countContextWindowAfterDelete > 0,
     `Delete fallback failed: ${JSON.stringify(customChatCheck)}`,
   );
@@ -1868,6 +2109,41 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
   assert(forbiddenIpcErrors.length === 0, `Detected forbidden IPC errors during CDP walk on ${basePath}: ${JSON.stringify(forbiddenIpcErrors)}`);
   console.error(`[verify] Custom AI API Endpoint E2E & zero IPC error check OK`);
 
+  // 12. Switch to UOR-R4 Qwen3-1.7B, verify pack-streaming OPFS/IDB mount (0 float/matmul ops), and short turn.
+  let model17bVerified = false;
+  if (mirrors?.qwen3_17b) {
+    const check17b = await evalAsync(
+      cdp,
+      sessionId,
+      `
+        const loaded = await window.electron.ipcRenderer.invoke('uor-r4:select-model', { modelId: 'uor-r4:qwen3-1.7b' });
+        const gen = await window.__uorR4.generate({
+          modelId: 'uor-r4:qwen3-1.7b',
+          prompt: 'Say hello in five words.',
+          systemPrompt: window.__uorR4.chatSystemPrompt,
+          maxNewTokens: 24,
+          speculative: false,
+        });
+        return { loaded, gen };
+      `,
+      240000,
+      `UOR-R4 Qwen3-1.7B streaming mount & chat turn on ${basePath}`,
+    );
+    assert(
+      check17b.loaded?.capabilities?.d_model === 2048 &&
+        check17b.loaded?.capabilities?.sha256_verified === true &&
+        check17b.loaded?.sha256 === '2c362d73046851ff69dfa7e1de197d4f0fee14031e9e53e29bf278c41b6bc8bf' &&
+        check17b.loaded?.capabilities?.float_ops === 0 &&
+        check17b.loaded?.capabilities?.dense_matmul_ops === 0 &&
+        String(check17b.gen?.fullText || '').trim().length > 0 &&
+        check17b.gen?.float_ops === 0 &&
+        check17b.gen?.dense_matmul_ops === 0,
+      `Qwen3-1.7B verification failed: ${JSON.stringify(check17b)}`,
+    );
+    model17bVerified = true;
+    console.error(`[verify] Qwen3-1.7B pack-streamed mount + chat turn OK: ${JSON.stringify(check17b.gen.fullText.trim())}`);
+  }
+
   await cdp.send('Target.closeTarget', { targetId: target.targetId });
   return {
     basePath,
@@ -1877,16 +2153,18 @@ async function verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, m
     homeChatReplyPreview: homeChatResult.replyPreview,
     promotedAppId: promoted.appId,
     builtFromHomeAppId: builtFromHome.appId,
+    todoBuiltOk: true,
     persistedAfterReload: true,
     linuxUname: linuxCheck.res.stdout.split('\n')[0],
     githubPushSha: ghStep1.pushRes.commitSha,
     stitchPeerId: stitchCheck.stBefore.peerId,
     embedMeBridgeOk: Boolean(stitchCheck.bridgeResult.statusRes.ok),
     customApiVerified: true,
+    model17bVerified,
   };
 }
 
-async function runIsolatedOriginPath(origin, basePath, packOrigin) {
+async function runIsolatedOriginPath(origin, basePath, mirrors) {
   const profileDir = await mkdtemp(join(tmpdir(), 'uor-foundry-cdp-'));
   const mockGitHub = await startMockGitHubServer();
   const mockOpenAI = await startMockOpenAIServer();
@@ -1895,7 +2173,7 @@ async function runIsolatedOriginPath(origin, basePath, packOrigin) {
   try {
     chrome = await launchChrome(profileDir);
     cdp = await cdpConnect(chrome.wsUrl);
-    return await verifyOriginPath(cdp, origin, basePath, packOrigin, mockGitHub, mockOpenAI);
+    return await verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mockOpenAI);
   } finally {
     try { cdp?.ws?.close(); } catch {}
     try { chrome?.child?.kill('SIGKILL'); } catch {}
@@ -1908,18 +2186,31 @@ async function runIsolatedOriginPath(origin, basePath, packOrigin) {
 async function main() {
   const distDir = resolve(process.argv[2] || DEFAULT_DIST);
   assert(existsSync(join(distDir, 'index.html')), `dist directory not built: ${distDir}`);
-  const packDir = resolveV13PackDir();
+  const packDirs = resolveV13PackDirs();
 
   const { server, origin } = await startStaticServer(distDir, { subpathPrefix: '/uor-r4/studio' });
-  const packSrv = packDir ? await startStaticServer(packDir, { cors: true }) : null;
+  const prefixDirs = {};
+  if (packDirs.qwen3_06b) prefixDirs['/qwen3-0.6b'] = packDirs.qwen3_06b;
+  if (packDirs.qwen3_17b) prefixDirs['/qwen3-1.7b'] = packDirs.qwen3_17b;
+  const packSrv = Object.keys(prefixDirs).length
+    ? await startStaticServer(packDirs.qwen3_06b || packDirs.qwen3_17b, { cors: true, prefixDirs })
+    : null;
+  const mirrors = packSrv
+    ? {
+        origin: packSrv.origin,
+        qwen3_06b: packDirs.qwen3_06b ? `${packSrv.origin}/qwen3-0.6b/` : null,
+        qwen3_17b: packDirs.qwen3_17b ? `${packSrv.origin}/qwen3-1.7b/` : null,
+      }
+    : null;
   try {
-    const rootReport = await withTimeout(runIsolatedOriginPath(origin, '/', packSrv?.origin || null), 360000, 'origin /');
-    const subpathReport = await withTimeout(runIsolatedOriginPath(origin, '/uor-r4/studio/', packSrv?.origin || null), 360000, 'origin /uor-r4/studio/');
+    const rootReport = await withTimeout(runIsolatedOriginPath(origin, '/', mirrors), 720000, 'origin /');
+    const subpathReport = await withTimeout(runIsolatedOriginPath(origin, '/uor-r4/studio/', mirrors), 720000, 'origin /uor-r4/studio/');
     console.log(
       JSON.stringify({
         verdict: 'ALL FOUNDRY STUDIO CDP CHECKS PASSED',
         distDir,
         packMirrorUsed: Boolean(packSrv),
+        packMirror17bUsed: Boolean(mirrors?.qwen3_17b),
         root: rootReport,
         subpath: subpathReport,
       }),

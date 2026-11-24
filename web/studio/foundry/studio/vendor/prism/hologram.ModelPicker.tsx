@@ -1,5 +1,5 @@
-// UOR-R4 Foundry model picker: offers the built-in pure-integer UOR-R4 Qwen3-0.6B
-// Foundry model plus any user-configured OpenAI-compatible Custom AI API endpoints.
+// UOR-R4 Foundry model picker: offers built-in pure-integer UOR-R4 Qwen3-0.6B &
+// Qwen3-1.7B models plus any user-configured OpenAI-compatible Custom AI API endpoints.
 // Zero M1 stub models and zero local weight-file upload controls.
 //
 // FoundrySpecification.chatModelPickerScopeBoundary: a mounted chat owns its selection;
@@ -111,7 +111,7 @@ export function ModelPicker() {
     .filter((provider) => ORDER.includes(provider.id))
     .sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
   const selected: LargeLanguageModel = chat?.modelSelection ??
-    settings?.selectedModel ?? { name: "uor-r4:qwen3-0.6b-foundry", provider: "uor-r4" };
+    settings?.selectedModel ?? { name: "uor-r4:qwen3-0.6b", provider: "uor-r4" };
   const modelsOf = (providerId: string) => modelsByProvider?.[providerId] ?? [];
   const isSelected = (providerId: string, model: LanguageModel) =>
     (selected.provider === providerId ||
@@ -125,12 +125,13 @@ export function ModelPicker() {
     options.find(({ provider, model }) => isSelected(provider, model)) ??
     options.find(({ provider }) => provider === "uor-r4");
   const label = current ? current.model.displayName : selected.name;
+  const isHydratingCurrent = !hydration?.modelId || hydration.modelId === current?.model.apiName;
   const where =
     current?.provider === "custom-api"
       ? "API"
-      : hydration?.phase === "downloading"
+      : isHydratingCurrent && (hydration?.phase === "downloading" || hydration?.phase === "hydrating")
         ? `${hydration.percent ?? 0}%`
-        : hydration?.phase === "ready" && hydration?.cached
+        : isHydratingCurrent && hydration?.phase === "ready" && hydration?.cached
           ? "Cached"
           : current
             ? WHERE[current.provider]
@@ -220,8 +221,8 @@ export function ModelPicker() {
             <span>Add / Manage AI API Endpoint…</span>
           </button>
           <div className="px-2.5 py-1 text-[10px] leading-4 text-muted-foreground" data-testid="uor-r4-hydration-status">
-            {hydration?.phase === "downloading"
-              ? `Downloading packs ${hydration.packsDone ?? 0}/${hydration.packsTotal ?? 10} (${hydration.percent ?? 0}%)…`
+            {hydration?.phase === "downloading" || hydration?.phase === "hydrating"
+              ? `Downloading packs ${hydration.packsDone ?? 0}/${hydration.packsTotal || 9} (${hydration.percent ?? 0}%)…`
               : hydration?.phase === "ready"
                 ? `Ready · ${hydration.cacheBackend || "OPFS"} cache${Array.isArray(hydration.recoveredPieces) && hydration.recoveredPieces.length ? ` · Stitch recovered ${hydration.recoveredPieces.length}` : ""}`
                 : "Pre-alpha · M1 complete (1 of 8 milestones) · UORR4V13 Integer WASM"}

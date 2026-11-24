@@ -66,6 +66,9 @@ test("Foundry answers via compiled IdeaReader ('local') or SHA-verified UOR-R4 W
   const customDenied = r4Request({ provider: "custom-api", engine: "match", routeGranted: false });
   assert.equal((await r4Decide(customDenied)).outcome, "refuse");
 
+  assert.deepEqual(chatModelRoute({ provider: "uor-r4", name: "qwen3-0.6b" }, null), { provider: "uor-r4", model: "uor-r4:qwen3-0.6b", paid: false });
+  assert.deepEqual(chatModelRoute({ provider: "uor-r4", name: "qwen3-1.7b" }, null), { provider: "uor-r4", model: "uor-r4:qwen3-1.7b", paid: false });
+  assert.deepEqual(chatModelRoute({ provider: "uor-r4", name: "qwen3-0.6b-foundry" }, null), { provider: "uor-r4", model: "uor-r4:qwen3-0.6b", paid: false });
   assert.throws(() => chatModelRoute({ provider: "uor-r4", name: "m1-discrete-trunk-seed-1" }, null), { code: "invalidChatModelSelection" });
   assert.throws(() => chatModelRoute({ provider: "uor-r4", name: "uor-r4:local-upload" }, null), { code: "invalidChatModelSelection" });
   assert.deepEqual(chatModelRoute({ provider: "custom-api", name: "ep-1" }, null), { provider: "custom-api", model: "ep-1", paid: true });
@@ -81,8 +84,8 @@ test("a chat turn gates both UOR-R4 WASM and IdeaReader through R4 before showin
   for (const remote of ["paidGenerate", "sealPaid", "openrouter/", 'op: "warmup"', "inst.generate(", "rulesModel("]) assert.ok(!chatTurn.includes(remote), `a chat turn never reaches ${remote}`);
 });
 
-test("the studio offers UOR-R4 V13 Qwen3-0.6B Foundry and user Custom AI API endpoints with no M1 or weight uploads", () => {
-  assert.ok(host.includes('selectedModel: { name: "uor-r4:qwen3-0.6b-foundry", provider: "uor-r4" }'));
+test("the studio offers UOR-R4 V13 Qwen3-0.6B and Qwen3-1.7B and user Custom AI API endpoints with no M1 or weight uploads", () => {
+  assert.ok(host.includes('selectedModel: { name: "uor-r4:qwen3-0.6b", provider: "uor-r4" }'));
   assert.ok(host.includes('handlers.set("get-language-model-providers", async () => {'));
   assert.ok(host.includes('return customModels.length ? [UOR_R4, CUSTOM_API] : [UOR_R4];'));
   assert.ok(host.includes('handlers.set("custom-api:list"'));

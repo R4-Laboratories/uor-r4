@@ -138,7 +138,7 @@ export function ProviderSettingsGrid() {
 
   const handleUseBuiltIn = async () => {
     await updateSettings({
-      selectedModel: { provider: "uor-r4", name: "uor-r4:qwen3-0.6b-foundry" },
+      selectedModel: { provider: "uor-r4", name: "uor-r4:qwen3-0.6b" },
     });
     await invalidateModelQueries();
   };
@@ -253,7 +253,7 @@ export function ProviderSettingsGrid() {
           <div className="flex items-center gap-2">
             <Cpu className="size-4 text-primary" aria-hidden="true" />
             <span className="text-sm font-medium text-foreground">
-              UOR-R4 Qwen3-0.6B Foundry (Built-in Integer WASM)
+              UOR-R4 Qwen3-0.6B / 1.7B (Built-in Integer WASM)
             </span>
             {isBuiltInSelected && (
               <span className="rounded-full bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary">
@@ -262,7 +262,7 @@ export function ProviderSettingsGrid() {
             )}
           </div>
           <p className="text-xs text-muted-foreground">
-            Runs in-browser with OPFS cache and Stitch 2-of-3 parity recovery. No weight upload needed.
+            Runs in-browser with OPFS/IndexedDB cache and Stitch 2-of-3 parity recovery. No weight upload needed.
           </p>
         </div>
         {!isBuiltInSelected && (

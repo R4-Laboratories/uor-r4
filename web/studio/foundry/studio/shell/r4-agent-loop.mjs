@@ -1,13 +1,35 @@
-// Real UOR-R4 V13 Qwen3-0.6B + 16-Tool Foundry Webharness Agent Loop.
-// System prompt matches Run 5 LoRA training (`foundry_schemas.json`) verbatim so
-// WASM KV-prefix cache hits across multi-turn conversations and tool calls.
+// Real UOR-R4 V13 Qwen3-0.6B & Qwen3-1.7B + Foundry Webharness Agent Loop.
+// Separates general conversational Chat mode (`FOUNDRY_CHAT_SYSTEM_PROMPT`) from
+// Build/Agent file authoring (`FOUNDRY_SYSTEM_PROMPT`) so Chat replies naturally
+// and Build produces compact, complete `src/App.tsx` apps that close cleanly.
+
+export const FOUNDRY_CHAT_SYSTEM_PROMPT =
+  'You are UOR-R4 Foundry Assistant inside a local-first browser virtual workstation (Linux 6.18.7 VM, RV64IMAC MVM, Studio workspace, GitHub sync, PrismPM/.holo, LexLean 0.3.0, UOR Standards, Stitch networking).\n' +
+  'Answer general questions directly in clear, concise natural language without listing capabilities or calling tools unless the user asks for an action.\n' +
+  'When the user explicitly asks to inspect files, run shell/MVM commands, sync GitHub, verify PrismPM/LexLean, look up UOR standards, or fetch via Stitch, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
+  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
+
+export const FOUNDRY_BUILD_SYSTEM_PROMPT =
+  'You are an expert React, TypeScript, and Tailwind CSS software engineer inside UOR-R4 Foundry Studio.\n' +
+  'Build complete, working, interactive React applications directly in `src/App.tsx` (never placeholder stubs).\n' +
+  'Always emit the file using raw XML tags:\n' +
+  '<prism-write path="src/App.tsx" description="short summary">\n' +
+  '// complete TypeScript React code\n' +
+  '</prism-write>\n' +
+  'Rules:\n' +
+  '1. Import React hooks explicitly (e.g. `import { useState } from \'react\';`) and export the root component with `export default function App()`.\n' +
+  '2. Do NOT put ``` markdown fences inside or around <prism-write>.\n' +
+  '3. Keep the code clean and compact (~45-85 lines) so the entire file finishes cleanly before </prism-write>.\n' +
+  '4. When modifying an existing app, inspect Current src/App.tsx (and any Last preview build error), preserve existing features, and emit the complete updated src/App.tsx inside <prism-write path="src/App.tsx" description="short summary">...</prism-write>.';
 
 export const FOUNDRY_SYSTEM_PROMPT =
-  'You are UOR-R4 Foundry Assistant inside a browser virtual workstation with Studio workspace files, a real Linux 6.18.7 VM (9p mounted at /workspace), a secondary RV64IMAC MVM sandbox, GitHub REST/Git Data tools, PrismPM & .holo capsule publishing, LexLean 0.3.0 verification, UOR Standards, and Stitch P2P/fetch networking.\n' +
-  'When answering general questions or explaining concepts in Chat mode, respond directly in clear concise markdown without calling tools.\n' +
-  'When editing or creating app files in Build mode, emit <prism-write path="relative/path" description="short summary">COMPLETE FILE CONTENT</prism-write>.\n' +
+  'You are an expert React, TypeScript, and Tailwind CSS software engineer and workstation operator inside UOR-R4 Foundry Studio.\n' +
+  'When editing or creating app files in Build mode, emit <prism-write path="src/App.tsx" description="short summary">COMPLETE FILE CONTENT</prism-write> with NO markdown ``` fences.\n' +
   'When executing workspace, VM, GitHub, PrismPM/.holo, LexLean, Standards, or Stitch actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
   'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
+
+const BUILD_TOOL_INTENT_RE =
+  /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b|\b(github_status|github_list_repos|github_clone|github_pull|github_push|clone|pull|push)\b.*\b(repo|github|branch)\b|\b(run|exec|execute)\s+.*(command|linux|mvm|shell|bash)\b|\b(list|read|inspect)\s+(the\s+)?(files?|workspace|dir|directory)\b|\b(publish|inspect)\s+.*\.?holo\b|\b(lexlean|prismpm|stitch_peer|standards_lookup)\b/i;
 
 export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'workspace_read',
@@ -242,9 +264,15 @@ export async function runUorR4AgentTurn({
   let prefixReusedTokens = 0;
   let draftProposed = 0;
   let draftAccepted = 0;
-  const isV13 = String(modelId || '').includes('qwen3-0.6b-foundry');
+  const isV13 = /^((uor-r4:)?qwen3-)/i.test(String(modelId || ''));
   const hasCustomGenerate = typeof generateFn === 'function';
   const useFoundryPrompt = isV13 || hasCustomGenerate;
+  const wantsToolPrompt = chatMode === 'local-agent' || (chatMode === 'build' && BUILD_TOOL_INTENT_RE.test(prompt));
+  const activeSystemPrompt = wantsToolPrompt
+    ? FOUNDRY_SYSTEM_PROMPT
+    : chatMode === 'build'
+      ? FOUNDRY_BUILD_SYSTEM_PROMPT
+      : FOUNDRY_CHAT_SYSTEM_PROMPT;
 
   const maxRounds =
     Number.isInteger(maxToolRounds) && maxToolRounds >= 1 && maxToolRounds <= 12
@@ -256,7 +284,7 @@ export async function runUorR4AgentTurn({
     const genReq = {
       modelId,
       chatId: `${chatId}-r${round}`,
-      systemPrompt: useFoundryPrompt ? FOUNDRY_SYSTEM_PROMPT : '',
+      systemPrompt: useFoundryPrompt ? activeSystemPrompt : '',
       prompt: round === 0 ? round0Prompt : turnMessages[turnMessages.length - 1].content,
       messages: round === 0 ? turnMessages : turnMessages.slice(0, -1),
       maxNewTokens: useFoundryPrompt ? maxNewTokens : 48,

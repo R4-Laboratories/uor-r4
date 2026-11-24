@@ -1,7 +1,7 @@
-// Real in-browser UORR4V13 pure-integer Qwen3-0.6B Foundry Web Worker.
-// Downloads and verifies Run 5 Stitch 2-of-3 packs with OPFS/IndexedDB caching,
-// self-heals damaged shards via `v13_stitch_recover_pair`, mounts into
-// `uor_foundry_v13_wasm`, and streams non-blocking chunked turns.
+// Real in-browser UORR4V13 pure-integer Qwen3-0.6B & Qwen3-1.7B Web Worker.
+// Downloads and verifies Stitch 2-of-3 packs with OPFS/IndexedDB caching,
+// self-heals damaged shards via `v13_stitch_recover_pair`, streams packs into
+// `uor_foundry_v13_wasm`, and runs non-blocking chunked turns.
 
 const BASE = new URL('./', import.meta.url);
 const OPFS_ROOT_DIR = 'uor-r4-v13-packs';
@@ -166,7 +166,7 @@ async function mapLimit(items, limit, fn) {
 
 async function handleLoadV13(id, payload) {
   const wasm = await getWasm();
-  const modelId = String(payload.modelId || 'uor-r4:qwen3-0.6b-foundry');
+  const modelId = String(payload.modelId || 'uor-r4:qwen3-0.6b');
   const expectedContainerSha = String(payload.containerSha256 || '').trim().toLowerCase();
 
   if (
@@ -177,6 +177,15 @@ async function handleLoadV13(id, payload) {
   ) {
     const status = JSON.parse(wasm.v13_status());
     if (status.mounted) {
+      self.postMessage({
+        id,
+        action: 'v13_progress',
+        phase: 'ready',
+        percent: 100,
+        cached: true,
+        cacheBackend: payload.lastBackend || 'memory',
+        recoveredPieces: [],
+      });
       self.postMessage({
         id,
         action: 'v13_loaded',
@@ -267,7 +276,15 @@ async function handleLoadV13(id, payload) {
     const packsTotal = manifest.packs.length;
     const piecesTotal = manifest.piece_count;
     const bytesTotal = manifest.packs.reduce((n, p) => n + p.byte_length, 0);
-    const pieceBuffers = new Array(piecesTotal).fill(null);
+    const pieceToPack = new Array(piecesTotal);
+    for (const pack of manifest.packs) {
+      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+        pieceToPack[p] = pack;
+      }
+    }
+    const packCached = new Set();
+    const memoryPacks = new Map();
+    const healedPieces = new Map();
     const failedPieces = new Set();
     const recoveredPieces = [];
 
@@ -275,6 +292,7 @@ async function handleLoadV13(id, payload) {
     let piecesDone = 0;
     let bytesLoaded = 0;
     let cacheBackend = 'network';
+    let anyMemoryPack = false;
     let allFromCache = true;
 
     const emitProgress = (phase) => {
@@ -306,10 +324,13 @@ async function handleLoadV13(id, payload) {
     await mapLimit(manifest.packs, 4, async (pack) => {
       throwIfCancelled();
       let packBytes = null;
+      let packVerified = false;
       const hit = await cacheRead(containerSha, pack.file);
       if (hit && hit.bytes.byteLength === pack.byte_length && (await sha256Hex(hit.bytes)) === pack.sha256) {
         packBytes = hit.bytes;
+        packVerified = true;
         cacheBackend = hit.backend;
+        packCached.add(pack.file);
       } else {
         throwIfCancelled();
         allFromCache = false;
@@ -317,7 +338,16 @@ async function handleLoadV13(id, payload) {
         try {
           const fetched = await fetchBytes(url, pack.sha256, loadCtrl.signal);
           packBytes = fetched.bytes;
-          cacheBackend = await cacheWrite(containerSha, pack.file, packBytes);
+          packVerified = true;
+          const writtenBackend = await cacheWrite(containerSha, pack.file, packBytes);
+          if (writtenBackend === 'memory') {
+            anyMemoryPack = true;
+            cacheBackend = 'memory';
+            memoryPacks.set(pack.file, packBytes);
+          } else {
+            if (!anyMemoryPack) cacheBackend = writtenBackend;
+            packCached.add(pack.file);
+          }
         } catch (err) {
           if (err?.name === 'AbortError' || loadCtrl.signal.aborted) throw err;
           // Attempt piece-level inspection if pack bytes were returned with SHA mismatch.
@@ -327,33 +357,56 @@ async function handleLoadV13(id, payload) {
         }
       }
 
-    for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
-      const pieceMeta = manifest.pieces[p];
-      if (packBytes) {
-        const rel = pieceMeta.byte_offset - pack.byte_offset;
-        const slice = new Uint8Array(packBytes.subarray(rel, rel + pieceMeta.byte_length));
-        if (slice.byteLength === pieceMeta.byte_length && (await sha256Hex(slice)) === pieceMeta.sha256) {
-          pieceBuffers[p] = slice;
-          piecesDone += 1;
+      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+        const pieceMeta = manifest.pieces[p];
+        if (packBytes) {
+          const rel = pieceMeta.byte_offset - pack.byte_offset;
+          const slice = packBytes.subarray(rel, rel + pieceMeta.byte_length);
+          if (slice.byteLength === pieceMeta.byte_length && (await sha256Hex(slice)) === pieceMeta.sha256) {
+            if (!packVerified || (!packCached.has(pack.file) && !memoryPacks.has(pack.file))) {
+              healedPieces.set(p, new Uint8Array(slice));
+            }
+            piecesDone += 1;
+          } else {
+            failedPieces.add(p);
+          }
         } else {
           failedPieces.add(p);
         }
-      } else {
-        failedPieces.add(p);
       }
-    }
 
-    packsDone += 1;
-    bytesLoaded += pack.byte_length;
-    emitProgress('hydrating');
-  });
+      packBytes = null;
+      packsDone += 1;
+      bytesLoaded += pack.byte_length;
+      emitProgress('hydrating');
+    });
 
-  // Self-heal any missing or corrupted pieces via Stitch 2-of-3 XOR parity recovery.
-  if (failedPieces.size > 0) {
-    if (!stitchManifest || !Array.isArray(stitchManifest.groups)) {
-      throw new Error(`Shard download failed for pieces [${[...failedPieces].slice(0, 6).join(', ')}] and no Stitch parity manifest is available`);
-    }
+    // Self-heal any missing or corrupted pieces via Stitch 2-of-3 XOR parity recovery.
+    if (failedPieces.size > 0) {
+      if (!stitchManifest || !Array.isArray(stitchManifest.groups)) {
+        throw new Error(`Shard download failed for pieces [${[...failedPieces].slice(0, 6).join(', ')}] and no Stitch parity manifest is available`);
+      }
       emitProgress('stitch-healing');
+      const loadPieceForStitch = async (entry) => {
+        const idx = entry.index;
+        if (healedPieces.has(idx)) {
+          return healedPieces.get(idx);
+        }
+        const ownerPack = pieceToPack[idx];
+        if (ownerPack) {
+          const packBuf = memoryPacks.get(ownerPack.file) || (await cacheRead(containerSha, ownerPack.file))?.bytes;
+          if (packBuf && packBuf.byteLength === ownerPack.byte_length) {
+            const meta = manifest.pieces[idx];
+            const rel = meta.byte_offset - ownerPack.byte_offset;
+            const copy = new Uint8Array(packBuf.subarray(rel, rel + meta.byte_length));
+            if ((await sha256Hex(copy)) === entry.sha256) {
+              return copy;
+            }
+          }
+        }
+        const fetchedPartner = await fetchBytes(new URL(entry.file, baseHref).href, entry.sha256, loadCtrl.signal);
+        return fetchedPartner.bytes;
+      };
       for (const p of [...failedPieces].sort((a, b) => a - b)) {
         throwIfCancelled();
         const group = stitchManifest.groups.find((g) => g.left.index === p || g.right?.index === p);
@@ -365,45 +418,87 @@ async function handleLoadV13(id, payload) {
         if (!partnerEntry) {
           throw new Error(`Piece ${p} has no partner shard in group ${group.group_index}`);
         }
-        let partnerBytes = pieceBuffers[partnerEntry.index];
-        if (!partnerBytes) {
-          const fetchedPartner = await fetchBytes(new URL(partnerEntry.file, baseHref).href, partnerEntry.sha256, loadCtrl.signal);
-          partnerBytes = fetchedPartner.bytes;
-        }
+        const partnerBytes = await loadPieceForStitch(partnerEntry);
         const fetchedParity = await fetchBytes(new URL(group.parity.file, baseHref).href, group.parity.sha256, loadCtrl.signal);
-      const recovered = wasm.v13_stitch_recover_pair(
-        JSON.stringify(group),
-        recoverLeft,
-        !recoverLeft,
-        recoverLeft ? new Uint8Array(0) : partnerBytes,
-        recoverLeft,
-        recoverLeft ? partnerBytes : new Uint8Array(0),
-        true,
-        fetchedParity.bytes,
-        manifest.pieces[p].sha256,
-      );
-      pieceBuffers[p] = new Uint8Array(recovered);
-      recoveredPieces.push(p);
-      piecesDone += 1;
+        const recovered = wasm.v13_stitch_recover_pair(
+          JSON.stringify(group),
+          recoverLeft,
+          !recoverLeft,
+          recoverLeft ? new Uint8Array(0) : partnerBytes,
+          recoverLeft,
+          recoverLeft ? partnerBytes : new Uint8Array(0),
+          true,
+          fetchedParity.bytes,
+          manifest.pieces[p].sha256,
+        );
+        healedPieces.set(p, new Uint8Array(recovered));
+        recoveredPieces.push(p);
+        piecesDone += 1;
+      }
     }
-  }
 
     throwIfCancelled();
     emitProgress('mounting');
+    // Reset JS mount tracking before v13_begin_mount clears the WASM engine state.
+    mountedContainerSha = null;
+    mountedModelId = null;
     const beginMount = JSON.parse(wasm.v13_begin_mount(modelId, piecesTotal, containerSha, true));
     if (!beginMount.ok) {
       throw new Error(beginMount.message || 'v13_begin_mount failed');
     }
-    for (let p = 0; p < piecesTotal; p += 1) {
-      const buf = pieceBuffers[p];
-      pieceBuffers[p] = null; // Free JS copy incrementally while copying into WASM heap.
-      if (!buf) {
-        throw new Error(`Missing verified piece ${p} during V13 mount`);
+    const orderedPacks = [...manifest.packs].sort((a, b) => a.piece_start - b.piece_start);
+    let pushedPieces = 0;
+    for (const pack of orderedPacks) {
+      throwIfCancelled();
+      let needsPackRead = false;
+      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+        if (!healedPieces.has(p)) {
+          needsPackRead = true;
+          break;
+        }
       }
-      const pushRes = JSON.parse(wasm.v13_push_piece(buf));
-      if (!pushRes.ok) {
-        throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
+      let packBuf = null;
+      if (needsPackRead) {
+        if (memoryPacks.has(pack.file)) {
+          packBuf = memoryPacks.get(pack.file);
+          memoryPacks.delete(pack.file);
+        } else {
+          const hit = await cacheRead(containerSha, pack.file);
+          if (hit && hit.bytes.byteLength === pack.byte_length) {
+            packBuf = hit.bytes;
+          }
+        }
+        if (!packBuf) {
+          const fetched = await fetchBytes(new URL(pack.file, baseHref).href, pack.sha256, loadCtrl.signal);
+          packBuf = fetched.bytes;
+        }
       }
+      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+        if (pushedPieces !== p) {
+          throw new Error(`Non-contiguous piece order during V13 mount: expected ${pushedPieces}, got ${p}`);
+        }
+        let buf = healedPieces.get(p);
+        if (buf) {
+          healedPieces.delete(p);
+        } else if (packBuf) {
+          const pieceMeta = manifest.pieces[p];
+          const rel = pieceMeta.byte_offset - pack.byte_offset;
+          buf = packBuf.subarray(rel, rel + pieceMeta.byte_length);
+        }
+        if (!buf || buf.byteLength !== manifest.pieces[p].byte_length) {
+          throw new Error(`Missing verified piece ${p} during V13 mount`);
+        }
+        const pushRes = JSON.parse(wasm.v13_push_piece(buf));
+        if (!pushRes.ok) {
+          throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
+        }
+        pushedPieces += 1;
+      }
+      packBuf = null;
+      await yieldMacrotask();
+    }
+    if (pushedPieces !== piecesTotal) {
+      throw new Error(`Incomplete V13 mount: pushed ${pushedPieces} of ${piecesTotal} pieces`);
     }
     const finalized = JSON.parse(wasm.v13_finalize_mount());
     if (!finalized.ok || finalized.container_sha256 !== containerSha) {

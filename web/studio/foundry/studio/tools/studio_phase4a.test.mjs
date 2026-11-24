@@ -6,6 +6,8 @@ import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { buildStandardsIndex } from '../../../../../scripts/studio/build-standards-index.mjs';
 import {
+  FOUNDRY_BUILD_SYSTEM_PROMPT,
+  FOUNDRY_CHAT_SYSTEM_PROMPT,
   FOUNDRY_SYSTEM_PROMPT,
   runUorR4AgentTurn,
 } from '../shell/r4-agent-loop.mjs';
@@ -38,7 +40,7 @@ test('runUorR4AgentTurn puts user prompt before groundingContext, preserves KV p
   const res = await runUorR4AgentTurn({
     appId: 42,
     chatId: 'chat-4a',
-    modelId: 'uor-r4:qwen3-0.6b-foundry',
+    modelId: 'uor-r4:qwen3-0.6b',
     messages: callerMessages,
     userPrompt: 'Explain Studio modes',
     groundingContext: '[Foundry Context]\nWorkspace files (1): src/App.tsx',
@@ -73,8 +75,8 @@ test('runUorR4AgentTurn puts user prompt before groundingContext, preserves KV p
   assert.equal(requests.length, 2);
   assert.equal(requests[0].maxNewTokens, 768);
   assert.equal(requests[0].speculative, undefined);
-  assert.equal(requests[0].systemPrompt, FOUNDRY_SYSTEM_PROMPT);
-  assert.equal(requests[1].systemPrompt, FOUNDRY_SYSTEM_PROMPT);
+  assert.equal(requests[0].systemPrompt, FOUNDRY_BUILD_SYSTEM_PROMPT);
+  assert.equal(requests[1].systemPrompt, FOUNDRY_BUILD_SYSTEM_PROMPT);
   assert.ok(
     requests[0].prompt.startsWith('Explain Studio modes\n\n[Foundry Context]\nWorkspace files'),
     `expected user prompt before groundingContext, got: ${requests[0].prompt}`,
@@ -107,16 +109,132 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   const runtimeSrc = fs.readFileSync(join(shellDir, 'uor-r4-runtime.mjs'), 'utf8');
   assert.match(runtimeSrc, /let defaultSpeculative = false;/);
   assert.match(runtimeSrc, /cfg\.mlp_policy = mlpMode;/);
-  assert.match(runtimeSrc, /hasOfflineV13Cache[\s\S]*'manifest\.json'[\s\S]*'manifest\.stitch\.json'[\s\S]*'pack_09\.pack'/);
+  assert.match(runtimeSrc, /hasOfflineV13Cache[\s\S]*'manifest\.json'[\s\S]*'manifest\.stitch\.json'[\s\S]*lastPack/);
   assert.match(runtimeSrc, /export async function prewarmIfCached\(/);
   assert.match(runtimeSrc, /export async function configure\(/);
   assert.match(runtimeSrc, /maxNewTokens = 768[\s\S]*sliceTokens = 4[\s\S]*prefillSliceTokens = 32/);
 
   const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
-  assert.match(hostSrc, /import\s*\{runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT\}\s*from\s*'\.\/r4-agent-loop\.mjs';/);
+  assert.match(hostSrc, /import\s*\{runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT\}\s*from\s*'\.\/r4-agent-loop\.mjs';/);
   assert.match(hostSrc, /async function buildPreview\(appId\)\s*\{\s*await coreReady;\s*await workerActive;/);
   assert.match(hostSrc, /async function compileTailwind\(page,\s*lease\)[\s\S]*await workerActive;\s*await lease\.check\(\);/);
   assert.match(hostSrc, /async function buildTurnGroundingContext\(/);
   assert.match(hostSrc, /const envKeys = envVars\.map\(\(v\) => v\.key\)\.filter\(Boolean\)/);
-  assert.match(hostSrc, /uorR4\.prewarmIfCached\(\{\s*systemPrompt:\s*FOUNDRY_SYSTEM_PROMPT\s*\}\)/);
+  assert.match(hostSrc, /uorR4\.prewarmIfCached\(\{\s*systemPrompt:\s*FOUNDRY_CHAT_SYSTEM_PROMPT\s*\}\)/);
+  assert.match(hostSrc, /FOUNDRY_DOMAIN_RE\.test\(q\)/);
+  assert.match(hostSrc, /function extractFallbackCodeWrites\(/);
+  assert.match(hostSrc, /function compactBuildHistory\(/);
+  assert.match(workerSrc, /const packCached = new Set\(\);/);
+  assert.match(workerSrc, /const orderedPacks = \[\.\.\.manifest\.packs\]/);
+  assert.ok(FOUNDRY_CHAT_SYSTEM_PROMPT !== FOUNDRY_SYSTEM_PROMPT, 'Chat and tool system prompts must stay separate');
+  assert.ok(FOUNDRY_BUILD_SYSTEM_PROMPT !== FOUNDRY_SYSTEM_PROMPT, 'Build app-authoring and tool prompts must stay separate');
+});
+
+test('runUorR4AgentTurn uses FOUNDRY_CHAT_SYSTEM_PROMPT in chat mode, FOUNDRY_BUILD_SYSTEM_PROMPT for Build app authoring, and FOUNDRY_SYSTEM_PROMPT for tool requests across 0.6B and 1.7B', async () => {
+  for (const modelId of ['uor-r4:qwen3-0.6b', 'uor-r4:qwen3-1.7b']) {
+    const seen = [];
+    await runUorR4AgentTurn({
+      appId: null,
+      chatId: `chat-mode-${modelId}`,
+      modelId,
+      messages: [],
+      userPrompt: 'hi how are you',
+      chatMode: 'chat',
+      generateFn: async (req) => {
+        seen.push(req.systemPrompt);
+        return { fullText: 'Doing well!', weightsMatched: true };
+      },
+      tools: {},
+      onText: async () => {},
+    });
+    await runUorR4AgentTurn({
+      appId: 9,
+      chatId: `build-mode-${modelId}`,
+      modelId,
+      messages: [],
+      userPrompt: 'build a todo app',
+      chatMode: 'build',
+      generateFn: async (req) => {
+        seen.push(req.systemPrompt);
+        return { fullText: '<prism-write path="src/App.tsx" description="todo">export default function App(){return <div/>;}</prism-write>', weightsMatched: true };
+      },
+      tools: {},
+      onText: async () => {},
+    });
+    await runUorR4AgentTurn({
+      appId: 9,
+      chatId: `tool-mode-${modelId}`,
+      modelId,
+      messages: [],
+      userPrompt: 'Call workspace_list for root.',
+      chatMode: 'build',
+      generateFn: async (req) => {
+        seen.push(req.systemPrompt);
+        return { fullText: 'Done.', weightsMatched: true };
+      },
+      tools: {},
+      onText: async () => {},
+    });
+    await runUorR4AgentTurn({
+      appId: 9,
+      chatId: `build-mode-grounded-${modelId}`,
+      modelId,
+      messages: [],
+      userPrompt: 'Build a UOR standards dashboard app',
+      groundingContext: '[Foundry Context]\n- tool docs mention workspace_write and lexlean_check',
+      chatMode: 'build',
+      generateFn: async (req) => {
+        seen.push(req.systemPrompt);
+        return { fullText: '<prism-write path="src/App.tsx" description="uor">export default function App(){return <div/>;}</prism-write>', weightsMatched: true };
+      },
+      tools: {},
+      onText: async () => {},
+    });
+    assert.equal(seen[0], FOUNDRY_CHAT_SYSTEM_PROMPT, `${modelId} chat mode must use FOUNDRY_CHAT_SYSTEM_PROMPT`);
+    assert.equal(seen[1], FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} build authoring must use FOUNDRY_BUILD_SYSTEM_PROMPT`);
+    assert.equal(seen[2], FOUNDRY_SYSTEM_PROMPT, `${modelId} build tool request must use FOUNDRY_SYSTEM_PROMPT`);
+    assert.equal(seen[3], FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} groundingContext keywords must not hijack BUILD_TOOL_INTENT_RE`);
+  }
+});
+
+test('transformProjectSource preserves multi-line imports/destructuring, adds missing hooks, and extractFallbackCodeWrites blocks path traversal', async () => {
+  const vm = await import('node:vm');
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  const cleanStart = hostSrc.indexOf('function cleanWorkspacePath(');
+  const cleanEnd = hostSrc.indexOf('\nfunction createFoundryTools(', cleanStart);
+  const fbStart = hostSrc.indexOf('function looksLikeCompleteComponent(');
+  const fbEnd = hostSrc.indexOf('\nfunction compactBuildHistory(', fbStart);
+  const trStart = hostSrc.indexOf('function transformProjectSource(');
+  const trEnd = hostSrc.indexOf('\nfunction createProjectResolverPlugin(', trStart);
+  const { extractFallbackCodeWrites, transformProjectSource } = vm.runInNewContext(
+    hostSrc.slice(cleanStart, cleanEnd) +
+      '\n' +
+      hostSrc.slice(fbStart, fbEnd) +
+      '\n' +
+      hostSrc.slice(trStart, trEnd) +
+      '\n({ extractFallbackCodeWrites, transformProjectSource })',
+    {},
+  );
+  const recovered = extractFallbackCodeWrites(
+    '<prism-write path="src/App.tsx" description="todo">\nexport default function App() {\n  return <><div>Don\'t fail</div></>;\n}\n```\nAll done!',
+  );
+  assert.equal(recovered.length, 1);
+  assert.equal(recovered[0].path, 'src/App.tsx');
+  assert.match(recovered[0].content, /Don't fail/);
+
+  const traversal = extractFallbackCodeWrites(
+    '<prism-write path="../evil.tsx">\nexport default function App() { return <div/>; }\n```',
+  );
+  assert.equal(traversal.length, 0, 'invalid/traversal path must be refused instead of falling back to src/App.tsx');
+
+  const multiLine = 'import {\n  useState,\n  useEffect,\n} from "react";\nexport default function App() { const [x] = useState(0); useEffect(() => {}, []); return <div>{x}</div>; }';
+  assert.equal((transformProjectSource('src/App.tsx', multiLine).match(/useState/g) || []).length, 2, 'multi-line import must not inject duplicate useState import');
+  const destructured = 'import * as React from "react";\nconst { useState } = React;\nexport default function App() { const [x] = useState(0); return <div>{x}</div>; }';
+  assert.ok(!transformProjectSource('src/App.tsx', destructured).includes('import { useState }'), 'destructured hook must not inject duplicate import');
+
+  const workerSrc = fs.readFileSync(join(shellDir, 'uor-v13-worker.mjs'), 'utf8');
+  assert.match(workerSrc, /mountedContainerSha = null;\s*mountedModelId = null;\s*const beginMount/);
+  const runtimeSrc = fs.readFileSync(join(shellDir, 'uor-r4-runtime.mjs'), 'utf8');
+  assert.match(runtimeSrc, /export async function generate[\s\S]*serializeOp\(async \(\) => \{\s*await ensureModelLoadedQueued\(/);
+  assert.match(hostSrc, /async function buildPortable[\s\S]*transformProjectSource\(args\.path,\s*src\)/);
 });

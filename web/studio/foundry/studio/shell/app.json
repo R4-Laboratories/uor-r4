@@ -4,13 +4,13 @@
   "tagline": "Local-first AI Studio powered by UOR-R4, Linux 6.18.7, and PrismPM.",
   "live": "https://uor-foundation.github.io/uor-r4/studio/",
   "icon": "./mark.svg",
-  "purpose": "Interactive browser IDE and workspace powered by pure-integer UOR-R4 V13 Qwen3-0.6B Foundry, embedded Linux 6.18.7 (v86 + host9p), RV64IMAC MVM, encrypted browser-native GitHub sync, and Stitch peer networking.",
+  "purpose": "Interactive browser IDE and workspace powered by pure-integer UOR-R4 V13 Qwen3-0.6B and Qwen3-1.7B, embedded Linux 6.18.7 (v86 + host9p), RV64IMAC MVM, encrypted browser-native GitHub sync, and Stitch peer networking.",
   "promise": {
     "headline": "Local-first compute with ChaCha20-Poly1305 sealed workspace storage.",
     "detail": "Inference, compilation, virtualized Linux execution, and GitHub credential encryption happen directly in the browser."
   },
   "runtime": {
-    "model": "uor-r4:qwen3-0.6b-foundry",
+    "model": "uor-r4:qwen3-0.6b",
     "vm": "linux-6.18.7-v86",
     "mvm": "rv64imac-mvm"
   },

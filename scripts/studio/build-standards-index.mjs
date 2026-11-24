@@ -156,13 +156,13 @@ export function buildStandardsIndex(outPath = defaultOut) {
     },
     {
       id: 'foundry-v13-runtime-standard',
-      title: 'UOR-R4 Foundry V13 Pure-Integer Serving & 16-Tool Webharness',
+      title: 'UOR-R4 Foundry V13 Pure-Integer Serving & Native Tooling',
       topic: 'runtime',
       tags: ['uorr4v13', 'qwen3', 'tools', 'workspace', 'github', 'linux', 'v86', 'mvm'],
-      summary: 'Default Studio runtime serves pure-integer Qwen3-0.6B (`UORR4V13`) with OPFS shard caching and 16 native browser tools.',
+      summary: 'Built-in Studio runtime serves pure-integer Qwen3-0.6B (default) and Qwen3-1.7B (`UORR4V13`) with OPFS/IndexedDB pack caching and browser tools.',
       content: [
         '# UOR-R4 V13 Webharness Standard',
-        '- Engine: `uor_foundry_v13_wasm` (`compute_float_ops: 0`, `dense_matmul_ops: 0` across all 49 `HoloV13Model` functions).',
+        '- Engine: `uor_foundry_v13_wasm` (`compute_float_ops: 0`, `dense_matmul_ops: 0` across all 49 `HoloV13Model` functions); models `uor-r4:qwen3-0.6b` (9 packs) and `uor-r4:qwen3-1.7b` (23 packs).',
         '- Editing app files in Build mode uses `<prism-write path="..." description="...">...</prism-write>` or tool `workspace_write`.',
         '- Shell commands execute inside the in-browser Linux 6.18.7 VM (`linux_exec`, `/workspace` 9p synced to Studio IndexedDB) or the RV64IMAC MVM sandbox (`mvm_exec`).',
       ].join('\n'),
@@ -183,7 +183,7 @@ export function buildStandardsIndex(outPath = defaultOut) {
     },
     {
       id: 'foundry-tools-and-holo',
-      title: 'Foundry 16 Native Tools & PrismPM .holo Capsule Publishing',
+      title: 'Foundry 18 Native Tools & PrismPM .holo Capsule Publishing',
       topic: 'tools',
       tags: ['tools', 'workspace', 'holo', 'publish', 'inspect', 'lexlean', 'prism', 'github', 'standards'],
       summary: 'Complete reference for Studio native browser tools, <prism-write> tags, and .holo v4 portable build/inspect.',
@@ -203,7 +203,7 @@ export function buildStandardsIndex(outPath = defaultOut) {
       summary: 'How IndexedDB, OPFS, Service Worker caches, Linux 6.18.7 9p workspace, MVM, and Stitch work together in-browser.',
       content: [
         '# Browser APIs, Storage, Service Worker & VMs in Foundry Studio',
-        '- Storage: IndexedDB stores apps, chats, messages, versions, refs (`app-env:*`, GitHub vault), and fallback weight shards; OPFS (`uor-r4-v13-packs`) caches downloaded `pack_00`..`pack_09` model shards. Clearing session data (`clear-session-data`) clears apps/chats/previews while preserving cached model weights (`"holo"` cache / OPFS).',
+        '- Storage: IndexedDB stores apps, chats, messages, versions, refs (`app-env:*`, GitHub vault), and fallback weight shards; OPFS (`uor-r4-v13-packs`) caches downloaded `pack_00`..`pack_08` (0.6B) and `pack_00`..`pack_22` (1.7B) model shards. Clearing session data (`clear-session-data`) clears apps/chats/previews while preserving cached model weights (`"holo"` cache / OPFS).',
         '- Service Worker (`sw.js`): claims controlled pages, serves `/p/<id>/` live preview & Tailwind compilation frames from `"previews"` CacheStorage, and pre-caches the offline closure manifest (`manifest.json`).',
         '- In-browser compute: Linux 6.18.7 (`v86` x86) mounts `/workspace` over 9p synchronized with IndexedDB; MVM executes RV64IMAC ELFs with Copy-on-Write memory hashes; `uor_foundry_v13_wasm` runs pure-integer WASM inference inside a Dedicated Worker with `MessageChannel` yield and KV prefix reuse.',
       ].join('\n'),

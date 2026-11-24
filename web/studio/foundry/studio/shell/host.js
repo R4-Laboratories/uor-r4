@@ -1,4 +1,4 @@
-import {chatModelRoute,CUSTOM_API_PROVIDER,LOCAL_MODEL,UOR_R4_PROVIDER,UOR_R4_DEFAULT_MODEL} from './chat-model-route.mjs';
+import {chatModelRoute,CUSTOM_API_PROVIDER,LOCAL_MODEL,UOR_R4_PROVIDER,UOR_R4_DEFAULT_MODEL,normalizeUorR4ModelName} from './chat-model-route.mjs';
 import {createCustomApiClient} from './custom-api-client.mjs';
 import * as uorR4 from './uor-r4-runtime.mjs';
 import {createMvmHost} from './mvm-host.mjs';
@@ -6,7 +6,7 @@ import {createLinuxVmHost} from './linux-vm-host.mjs';
 import {createStitchNetwork} from './stitch-network.mjs';
 import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
-import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
+import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
 import {changeUserSettings} from "./settings-transactions.mjs";
@@ -134,8 +134,8 @@ handlers.set("prompts:delete", input => promptLibrary("delete",input));
 
 // ---- settings
 const DEFAULT_SETTINGS = {
-  // Default to the real UOR-R4 V13 Qwen3-0.6B Foundry integer WASM engine in this browser.
-  selectedModel: { name: "uor-r4:qwen3-0.6b-foundry", provider: "uor-r4" }, providerSettings: {}, telemetryConsent: "opted_out", telemetryUserId: "web",
+  // Default to the real UOR-R4 V13 Qwen3-0.6B pure-integer WASM engine in this browser.
+  selectedModel: { name: "uor-r4:qwen3-0.6b", provider: "uor-r4" }, providerSettings: {}, telemetryConsent: "opted_out", telemetryUserId: "web",
   hasRunBefore: true, experiments: {}, enableProLazyEditsMode: false, enableProSmartFilesContextMode: false, selectedChatMode: "build",
   enableAppBlueprint: false, enableTestingForNewApps: false, enableAutoUpdate: false, releaseChannel: "stable", isRunning: false,
   enableSandboxScriptExecution: false, enableMcpToolSearch: false, enableCodeExplorer: false, runTypeScriptForWholeProject: false,
@@ -152,25 +152,28 @@ const DEFAULT_SETTINGS = {
 // tool calls this host does not make.
 handlers.set("get-user-settings", async () => {
   const stored = (await inference.settingsGet()) || {};
-  // Migrate removed dummy/legacy/M1 models or deleted custom endpoints onto the real UOR-R4 V13 Qwen3-0.6B Foundry model.
+  // Migrate removed dummy/legacy/M1/Foundry-LoRA models or deleted custom endpoints onto current UOR-R4 V13 models.
   const sel = stored.selectedModel;
-  let needsMigration = false;
+  let migratedSelection = null;
   if (sel) {
     if (sel.provider === UOR_R4_PROVIDER) {
-      if (sel.name !== "uor-r4:qwen3-0.6b-foundry" && sel.name !== "qwen3-0.6b-foundry") {
-        needsMigration = true;
+      const normalized = normalizeUorR4ModelName(sel.name);
+      if (!normalized) {
+        migratedSelection = DEFAULT_SETTINGS.selectedModel;
+      } else if (sel.name !== normalized) {
+        migratedSelection = { provider: UOR_R4_PROVIDER, name: normalized };
       }
     } else if (sel.provider === CUSTOM_API_PROVIDER) {
       const endpoints = await customApiClient.listEndpoints();
       if (!endpoints.some((ep) => ep.id === sel.name)) {
-        needsMigration = true;
+        migratedSelection = DEFAULT_SETTINGS.selectedModel;
       }
     } else {
-      needsMigration = true;
+      migratedSelection = DEFAULT_SETTINGS.selectedModel;
     }
   }
-  if (needsMigration) {
-    return changeUserSettings(dbReady, { selectedModel: DEFAULT_SETTINGS.selectedModel }, (current, captured) => browserSettings(browserChatModeSettings({ ...DEFAULT_SETTINGS, ...current, ...captured })));
+  if (migratedSelection) {
+    return changeUserSettings(dbReady, { selectedModel: migratedSelection }, (current, captured) => browserSettings(browserChatModeSettings({ ...DEFAULT_SETTINGS, ...current, ...captured })));
   }
   return browserSettings(browserChatModeSettings({ ...DEFAULT_SETTINGS, ...stored }));
 });
@@ -222,7 +225,7 @@ async function getUorR4Models() {
     apiName: m.apiName,
     displayName: m.label || m.id,
     description: m.note || "In-browser UOR-R4 integer WASM model",
-    contextWindow: 4096,
+    contextWindow: m.context_window || 2048,
   }));
 }
 async function getCustomApiModels() {
@@ -745,6 +748,37 @@ async function appEnvDefine(appId) {
   }
   return out;
 }
+function transformProjectSource(path, src) {
+  if ((path !== "src/App.tsx" && path !== "src/App.jsx") || typeof src !== "string") return src;
+  const stripped = src.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, "");
+  const importDecls = [...stripped.matchAll(/\bimport\b[\s\S]*?(?:from\s+["'][^"']+["']|["'][^"']+["'])/g)]
+    .map((m) => m[0])
+    .join(" ");
+  const REACT_HOOKS = ["useState", "useEffect", "useRef", "useMemo", "useCallback", "useReducer", "useContext", "createContext", "Fragment"];
+  const missingHooks = REACT_HOOKS.filter((h) => {
+    const used = new RegExp(`(?<!\\.)\\b${h}\\b`).test(stripped);
+    if (!used) return false;
+    const imported = new RegExp(`\\b${h}\\b`).test(importDecls);
+    const declared = new RegExp(`(?:\\bfunction\\s+${h}\\b|\\b(?:const|let|var)\\s+(?:\\{[^}]*\\b)?${h}\\b)`).test(stripped);
+    return !imported && !declared;
+  });
+  let out = src;
+  if (missingHooks.length) {
+    out = `import { ${missingHooks.join(", ")} } from "react";\n${out}`;
+  }
+  if (/\bReact\./.test(stripped) && !/\bReact\b/.test(importDecls) && !/\b(?:const|let|var)\s+React\b/.test(stripped)) {
+    out = `import * as React from "react";\n${out}`;
+  }
+  if (!/\bexport\s+default\b/.test(stripped)) {
+    if (/\b(?:function|const|class)\s+App\b/.test(stripped)) {
+      out = `${out}\nexport default App;\n`;
+    } else {
+      const named = stripped.match(/\bexport\s+(?:function|const|class)\s+([A-Z]\w*)/);
+      if (named) out = `${out}\nexport default ${named[1]};\n`;
+    }
+  }
+  return out;
+}
 function createProjectResolverPlugin(files, { name = "project", externalBare = true } = {}) {
   const exts = ["", ".tsx", ".ts", ".jsx", ".js", "/index.tsx", "/index.ts"];
   const resolveFile = (p) => { for (const e of exts) if (files.has(p + e)) return p + e; return null; };
@@ -763,9 +797,9 @@ function createProjectResolverPlugin(files, { name = "project", externalBare = t
         return externalBare ? { path: args.path, external: true } : undefined;
       });
       b.onLoad({ filter: /.*/, namespace: "project" }, (args) => {
-        const src = files.get(args.path);
-        if (args.path.endsWith(".css")) return { contents: src.replace(/@tailwind[^;]*;/g, ""), loader: "css" };
-        return { contents: src, loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
+        const raw = files.get(args.path);
+        if (args.path.endsWith(".css")) return { contents: raw.replace(/@tailwind[^;]*;/g, ""), loader: "css" };
+        return { contents: transformProjectSource(args.path, raw), loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
       });
     },
   };
@@ -1394,24 +1428,99 @@ async function loadStandardsIndex() {
   }
   return standardsCache;
 }
-async function lookupStandards(query, limit = 5) {
+const FOUNDRY_DOMAIN_RE = /\b(uor|uor-r4|r4|foundry|prism|prismpm|holo|lexlean|mvm|rv64|v86|wasm|opfs|indexeddb|stitch|spiralcore|esbuild|v13|qwen|service\s*worker|container_sha256|tool_call|prism-write)\b|\.(holo|lex\.tex)\b|\buor\s+(charter|standards)\b/i;
+const STANDARDS_STOP_WORDS = new Set([
+  "the", "and", "for", "are", "but", "not", "you", "all", "can", "her", "was", "one", "our", "out",
+  "day", "get", "has", "him", "his", "how", "man", "new", "now", "old", "see", "two", "way", "who",
+  "did", "its", "let", "put", "say", "she", "too", "use", "what", "when", "where", "which", "why",
+  "with", "this", "that", "from", "have", "they", "will", "your", "about", "there", "their", "would",
+  "could", "should", "hello", "hey", "please", "make", "build", "create", "app", "list", "todo",
+  "filter", "active", "completed", "edit", "update", "add", "tell", "joke", "capital", "france",
+]);
+
+function looksLikeCompleteComponent(code) {
+  const s = String(code || "").trimEnd();
+  if (s.trim().length < 40) return false;
+  const hasComponent = /\b(?:export\s+default\s+|function\s+[A-Z]\w*|const\s+[A-Z]\w*\s*=|import\s+[^;\n]*\bfrom\s+['"]react['"])/.test(s);
+  const hasJsx = /\breturn\s*(?:\(|<)/.test(s) && /(?:<\/\w+>|<\/>|\/>)/.test(s);
+  const hasTopLevelClosure = /(?:^|\n)(?:export\s+default\s+[A-Za-z_]\w*;?|\}\s*;?)\s*$/.test(s);
+  return hasComponent && hasJsx && hasTopLevelClosure;
+}
+
+function extractFallbackCodeWrites(rawText) {
+  const src = String(rawText || "");
+  if (!src) return [];
+  const openTag = src.match(/<prism-write\s+([^>]*)>([\s\S]*)$/);
+  if (openTag) {
+    const pathAttr = openTag[1].match(/path=["']([^"']+)["']/);
+    const descAttr = openTag[1].match(/description=["']([^"']+)["']/);
+    let path = "src/App.tsx";
+    if (pathAttr) {
+      try { path = cleanWorkspacePath(pathAttr[1], false); } catch { return []; }
+    }
+    let body = openTag[2];
+    const closedInner = body.match(/```(?:tsx|typescriptreact|jsx|ts|js)?\n([\s\S]+?)\n```/);
+    if (closedInner) {
+      body = closedInner[1];
+    } else {
+      const bareBeforeFence = body.match(/^([\s\S]+?)\n```\s*(?:\n[\s\S]*)?$/);
+      body = bareBeforeFence ? bareBeforeFence[1] : body.replace(/^\s*```[\w-]*\n/, "");
+    }
+    if (looksLikeCompleteComponent(body)) {
+      return [{ path, description: descAttr ? descAttr[1] : "Recovered component write", content: body.trimEnd() + "\n" }];
+    }
+  }
+  const blocks = [];
+  for (const m of src.matchAll(/```(tsx|typescriptreact|jsx)\n([\s\S]+?)\n```/g)) {
+    const candidate = m[2].trimEnd();
+    if (looksLikeCompleteComponent(candidate)) {
+      blocks.push(candidate + "\n");
+    }
+  }
+  if (!blocks.length) return [];
+  blocks.sort((a, b) => b.length - a.length);
+  return [{ path: "src/App.tsx", description: "Recovered React component block", content: blocks[0] }];
+}
+
+function compactBuildHistory(history) {
+  if (!Array.isArray(history) || !history.length) return [];
+  const recent = history.slice(-4);
+  return recent.map((msg) => {
+    if (!msg || typeof msg.content !== "string" || msg.role !== "assistant") return msg;
+    let compacted = msg.content
+      .replace(/<prism-write\s+[^>]*path=["']([^"']+)["'][^>]*>[\s\S]*?<\/prism-write>/g, "[Updated $1]")
+      .replace(/<prism-write\s+[^>]*path=["']([^"']+)["'][^>]*>[\s\S]*$/g, "[Updated $1]")
+      .replace(/```(?:tsx|typescriptreact|jsx|ts|js)?\n[\s\S]{350,}?\n```/g, "[Updated code block]");
+    if (compacted.length > 480) compacted = compacted.slice(0, 480) + "…";
+    return { ...msg, content: compacted };
+  });
+}
+
+async function lookupStandards(query, limit = 5, { filterStopWords = false } = {}) {
   const index = await loadStandardsIndex();
   const sections = Array.isArray(index?.sections) ? index.sections : [];
   const q = String(query || "").trim().toLowerCase();
-  const terms = q.split(/\s+/).filter(Boolean);
-  if (!terms.length) return { ok: true, count: sections.length, matches: sections.slice(0, limit) };
+  if (!q) return { ok: true, count: sections.length, matches: sections.slice(0, limit) };
+  const terms = [...new Set(
+    q.replace(/[^a-z0-9._-]+/g, " ")
+      .split(/\s+/)
+      .map((w) => w.replace(/^\.+|\.+$/g, ""))
+      .filter((w) => w.length >= 3 && (!filterStopWords || !STANDARDS_STOP_WORDS.has(w))),
+  )];
+  if (!terms.length) return { ok: true, query, matches: [] };
   const scored = sections
     .map((sec) => {
       const id = String(sec.id || "").toLowerCase();
       const title = String(sec.title || "").toLowerCase();
-      const tags = Array.isArray(sec.tags) ? sec.tags.join(" ") : "";
+      const tags = Array.isArray(sec.tags) ? sec.tags.join(" ").toLowerCase() : "";
       const hay = `${id} ${title} ${sec.topic || ""} ${tags} ${sec.source || ""} ${sec.summary || ""} ${sec.content || sec.body || ""}`.toLowerCase();
       let score = 0;
       for (const term of terms) {
-        if (id.includes(term)) score += 6;
-        if (title.includes(term)) score += 4;
-        if (tags.toLowerCase().includes(term)) score += 4;
-        if (hay.includes(term)) score += 2;
+        const re = new RegExp(`(?:^|[^a-z0-9_])${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:$|[^a-z0-9_])`, "i");
+        if (re.test(id)) score += 6;
+        if (re.test(title)) score += 4;
+        if (re.test(tags)) score += 4;
+        if (re.test(hay)) score += 2;
       }
       return { sec, score };
     })
@@ -1460,11 +1569,27 @@ async function buildTurnGroundingContext({ appId = null, chatMode = "build", pro
     } catch {}
     const wsBlock = wsLines.join("\n").slice(0, 450).trim();
     if (wsBlock) parts.push(wsBlock);
-  }
-  const ragTerms = q.split(/\s+/).filter((w) => w.length >= 3);
-  if (q.length >= 12 || ragTerms.length >= 2) {
     try {
-      const rag = await lookupStandards(q, 2);
+      const appSrc = await get("files", `${appId}:src/App.tsx`);
+      const isStarter = typeof appSrc === "string" && appSrc.includes('import Index from "./pages/Index"') && appSrc.includes("new QueryClient()");
+      if (isStarter) {
+        parts.push("Current src/App.tsx is the starter template (replace completely).");
+      } else if (typeof appSrc === "string" && appSrc.trim()) {
+        parts.push(`Current src/App.tsx:\n<current-file path="src/App.tsx">\n${appSrc.slice(0, 2600)}\n</current-file>`);
+      }
+    } catch {}
+    try {
+      const opErr = machineOf(appId)?.state?.operationError;
+      const errMsg = typeof opErr === "string" ? opErr : (opErr?.message || "");
+      if (errMsg) {
+        parts.push(`Last preview build error: ${errMsg.slice(0, 400)}`);
+      }
+    } catch {}
+  }
+  const ragTerms = q.replace(/[^a-z0-9._-]+/gi, " ").split(/\s+/).filter((w) => w.length >= 3 && !STANDARDS_STOP_WORDS.has(w.toLowerCase()));
+  if (FOUNDRY_DOMAIN_RE.test(q) && (q.length >= 12 || ragTerms.length >= 2)) {
+    try {
+      const rag = await lookupStandards(q, 2, { filterStopWords: true });
       const matches = Array.isArray(rag?.matches) ? rag.matches : [];
       if (matches.length) {
         let stdText = "[Standards]";
@@ -2366,15 +2491,16 @@ async function chatTurn(chatId, intent) {
       await enqueueText("");
       const tools = createFoundryTools({ appId, chatMode: execution.mode, signal: abort.signal, onCommit });
       const groundingContext = await buildTurnGroundingContext({ appId, chatMode: execution.mode, prompt: intent.prompt }).catch(() => "");
+      const historyForModel = execution.sourceEffects ? compactBuildHistory(messages.slice(0, -2)) : messages.slice(0, -2);
       const uorTurn = await runUorR4AgentTurn({
         appId,
         chatId,
         modelId: customEndpoint ? customEndpoint.model : model,
-        messages: messages.slice(0, -2),
+        messages: historyForModel,
         userPrompt: intent.prompt,
         groundingContext,
         chatMode: execution.mode,
-        maxNewTokens: customEndpoint ? 2048 : 768,
+        maxNewTokens: customEndpoint ? 2048 : (execution.sourceEffects ? 1024 : 512),
         maxToolRounds: Number.isInteger(settings?.maxToolCallSteps) ? settings.maxToolCallSteps : undefined,
         signal: abort.signal,
         uorR4Runtime: uorR4,
@@ -2403,9 +2529,11 @@ async function chatTurn(chatId, intent) {
         await settleAppFrames(appId, abort.signal);
         assertGenerationActive(abort.signal);
         const wrote = parsePrismTags(rawTurn);
+        const fallbackWrites = (!wrote.writes.length && !uorTurn.updatedFiles) ? extractFallbackCodeWrites(rawTurn) : [];
+        const allWrites = wrote.writes.length ? wrote.writes : fallbackWrites;
         let changed = 0;
-        if (wrote.writes.length || wrote.deletes.length || wrote.renames.length || wrote.deps.length) {
-          const applied = await applyPrismTags(appId, { writes: wrote.writes, deletes: wrote.deletes, renames: wrote.renames, deps: wrote.deps }, { signal: abort.signal, onCommit });
+        if (allWrites.length || wrote.deletes.length || wrote.renames.length || wrote.deps.length) {
+          const applied = await applyPrismTags(appId, { writes: allWrites, deletes: wrote.deletes, renames: wrote.renames, deps: wrote.deps }, { signal: abort.signal, onCommit });
           changed += applied.changed || 0;
         }
         const specResult = await afterTurn(appId, rawTurn, [], { signal: abort.signal, onCommit }).catch(() => null);
@@ -2413,7 +2541,7 @@ async function chatTurn(chatId, intent) {
           changed += specResult.changed || 0;
           card = specResult.card || null;
         }
-        if (wrote.unclosedWrites > 0) unclosedWrites += wrote.unclosedWrites;
+        if (!fallbackWrites.length && wrote.unclosedWrites > 0) unclosedWrites += wrote.unclosedWrites;
         updatedFiles = updatedFiles || Boolean(uorTurn.updatedFiles) || changed > 0;
         if (await hasRules(appId)) {
           await showLive(appId).catch(() => {});
@@ -2631,7 +2759,7 @@ async function buildPortable(appId, captured) {
     b.onLoad({ filter: /.*/, namespace: "project" }, (args) => {
       const src = files.get(args.path);
       if (args.path.endsWith(".css")) return { contents: src.replace(/@tailwind[^;]*;/g, ""), loader: "css" };
-      return { contents: src, loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
+      return { contents: transformProjectSource(args.path, src), loader: args.path.endsWith(".tsx") ? "tsx" : args.path.endsWith(".ts") ? "ts" : "jsx" };
     });
   } };
   const envDefine = await appEnvDefine(appId);
@@ -3486,14 +3614,13 @@ handlers.set("home-chat:send", async ({ prompt, modelId, provider: requestedProv
 
   const settings = (await get("settings", "user")) || DEFAULT_SETTINGS;
   const sel = settings.selectedModel;
+  const normalizedSelected = sel?.provider === UOR_R4_PROVIDER ? normalizeUorR4ModelName(sel.name) : null;
   const fallbackModel =
     !sel ||
     (sel.provider !== UOR_R4_PROVIDER && sel.provider !== CUSTOM_API_PROVIDER) ||
-    (sel.provider === UOR_R4_PROVIDER &&
-      sel.name !== "uor-r4:qwen3-0.6b-foundry" &&
-      sel.name !== "qwen3-0.6b-foundry")
+    (sel.provider === UOR_R4_PROVIDER && !normalizedSelected)
       ? { provider: UOR_R4_PROVIDER, name: UOR_R4_DEFAULT_MODEL }
-      : sel;
+      : (normalizedSelected ? { provider: UOR_R4_PROVIDER, name: normalizedSelected } : sel);
   const requested = modelId
     ? { provider: requestedProvider === CUSTOM_API_PROVIDER ? CUSTOM_API_PROVIDER : UOR_R4_PROVIDER, name: modelId }
     : null;
@@ -3565,7 +3692,7 @@ handlers.set("home-chat:send", async ({ prompt, modelId, provider: requestedProv
       userPrompt: text,
       groundingContext,
       chatMode: "chat",
-      maxNewTokens: customEndpoint ? 2048 : 768,
+      maxNewTokens: customEndpoint ? 2048 : 512,
       signal: abort.signal,
       uorR4Runtime: uorR4,
       generateFn: customEndpoint ? (opts) => customApiClient.generateChatCompletion({ endpoint: customEndpoint, ...opts }) : undefined,
@@ -3665,11 +3792,12 @@ window.__uorR4 = Object.freeze({
   getCatalog: uorR4.getCatalog,
   getStatus: uorR4.getStatus,
   ensureModelLoaded: uorR4.ensureModelLoaded,
-  prewarmIfCached: (opts = {}) => uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_SYSTEM_PROMPT, ...opts }),
+  prewarmIfCached: (opts = {}) => uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT, ...opts }),
   configure: uorR4.configure,
   generate: uorR4.generate,
   buildTurnGroundingContext,
   systemPrompt: FOUNDRY_SYSTEM_PROMPT,
+  chatSystemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT,
   listCustomApiEndpoints: customApiClient.listEndpoints,
   mvmExec: (cmd, appId = null) => mvmHost.execCommand(appId, cmd),
   mvmIdentity: (appId = null) => mvmHost.getIdentity(appId),
@@ -3801,7 +3929,7 @@ if ("serviceWorker" in navigator) {
 }
 {
   const idlePrewarm = (fn) => (self.requestIdleCallback ? requestIdleCallback(fn, { timeout: 10000 }) : setTimeout(fn, 3000));
-  const runIdlePrewarm = () => idlePrewarm(() => void uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_SYSTEM_PROMPT }).catch(() => {}));
+  const runIdlePrewarm = () => idlePrewarm(() => void uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT }).catch(() => {}));
   if (document.readyState === "complete") runIdlePrewarm();
   else addEventListener("load", runIdlePrewarm, { once: true });
 }
