@@ -14,6 +14,14 @@ flowchart LR
 
 An entry gives the date, what changed, which charter clauses it touches, and who decided. The owner's own words are recorded verbatim when they are the reason. Old text is never edited or deleted: it moves unchanged to the `archive/` folder, and the live decision index keeps one line saying where each decision went (see the [decision map](decision-map.md)).
 
+## 24 November 2026 — D91 Studio-only Qwen3-17B Phase 5 extension and return to M2
+
+Owner Casey Allard approved [D91](../integration/DECISIONS.md#decisions-after-the-charter-from-d43) (`antigravity-21`) at `2026-11-24T04:32:05Z` following D90's Phase 4D `Qwen3-0.6B` closeout (`$2.7427 / $3.00` spent across 11 pod runs, PR #4222):
+
+- Verbatim owner direction choosing Option #1 (`Qwen/Qwen3-1.7B` Phase 5 extension with a fresh `+$3.00` Vast.ai cap and opt-in Studio selector) followed by Option #3 (return to core native UOR-R4 M2+ milestones): `"Ok I want you to do #1 and then I want you to do #3, which is returning to the core native UOR-R4 M2+ milestones"`.
+
+Extends the temporary Studio-only (`web/studio/` only) Charter §3.2, §3.3, §3.4, §3.7, §3.10, and §5.1 exemption of D90 to pure-integer `UORR4V13` `Qwen/Qwen3-1.7B` (`70d244cc86ccca08cf5af4e1e306ecf908b1ad5e`, published to `Casey-allard/lexlean-r4@weights-v13-qwen3-1.7b-foundry`) under a separate fresh `+$3.00` Vast.ai GPU budget cap while keeping fast `Qwen3-0.6B` (`PR #4213`) as the default Studio model and adding `Qwen3-1.7B (UORR4V13)` as an opt-in selector. Once Phase 5 ships cleanly (or halts under its pre-registered stop rule), Studio weight-tuning closes and focus returns to core native UOR-R4 M2+ milestones. Charter §3 remains strictly enforced with zero relaxation on `crates/**` and all native M1–M8 research, training, serving, and milestone paths (`ratchet d23/d25/d32` baselines unchanged).
+
 ## 22 November 2026 — D90 Studio-only external Qwen3 Foundry port and real Linux GitHub Stitch wiring
 
 Owner Casey Allard approved [D90](../integration/DECISIONS.md#decisions-after-the-charter-from-d43) (`antigravity-4`) at `2026-11-22T21:39:18Z` (referenced in prompt prose as "D88" prior to checking `D88`/`D89` from `2026-11-16`, logged sequentially as `D90` under [decisions](../integration/DECISIONS.md#decisions-after-the-charter-from-d43)):
@@ -420,7 +428,7 @@ The owner answered eight questions. One line each, with the clause it changed:
 | Item | State | Source |
 |---|---|---|
 | Charter in force | Yes, since 19 October 2026. | `CHARTER.md` |
-| Entries in this log | 21 | this page |
+| Entries in this log | 22 | this page |
 | Open owner questions on the charter | None recorded at adoption: all 16 rows marked "owner decision needed" in the working rule map were resolved by the eight answers. | `charter-diff-notes.md` |
 
 ## Go deeper
