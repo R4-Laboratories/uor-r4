@@ -13,6 +13,7 @@ import {
 } from '../shell/r4-agent-loop.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(__dirname, '../../../../..');
 const shellDir = resolve(__dirname, '../shell');
 
 test('buildStandardsIndex adds Studio architecture, tools/.holo, and browser-API sections within 110 KB', () => {
@@ -94,7 +95,7 @@ test('runUorR4AgentTurn puts user prompt before groundingContext, preserves KV p
 
 test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, offline manifests, keys-only env grounding, and cold-SW waits', () => {
   const workerSrc = fs.readFileSync(join(shellDir, 'uor-v13-worker.mjs'), 'utf8');
-  assert.match(workerSrc, /mapLimit\(manifest\.packs,\s*4,/);
+  assert.match(workerSrc, /mapLimit\(manifest\.packs,\s*6,/);
   assert.match(workerSrc, /typeof MessageChannel === 'function'/);
   assert.match(workerSrc, /await yieldMacrotask\(\);/);
   assert.doesNotMatch(workerSrc, /await new Promise\(\(r\) => setTimeout\(r,\s*0\)\);/);
@@ -107,7 +108,7 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   assert.match(workerSrc, /action === 'configure_v13'/);
 
   const runtimeSrc = fs.readFileSync(join(shellDir, 'uor-r4-runtime.mjs'), 'utf8');
-  assert.match(runtimeSrc, /let defaultSpeculative = false;/);
+  assert.match(runtimeSrc, /let defaultSpeculative = true;/);
   assert.match(runtimeSrc, /cfg\.mlp_policy = mlpMode;/);
   assert.match(runtimeSrc, /hasOfflineV13Cache[\s\S]*'manifest\.json'[\s\S]*'manifest\.stitch\.json'[\s\S]*lastPack/);
   assert.match(runtimeSrc, /export async function prewarmIfCached\(/);
@@ -115,7 +116,7 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   assert.match(runtimeSrc, /maxNewTokens = 768[\s\S]*sliceTokens = 4[\s\S]*prefillSliceTokens = 32/);
 
   const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
-  assert.match(hostSrc, /import\s*\{runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT\}\s*from\s*'\.\/r4-agent-loop\.mjs';/);
+  assert.match(hostSrc, /import\s*\{runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT\}\s*from\s*'\.\/r4-agent-loop\.mjs';/);
   assert.match(hostSrc, /async function buildPreview\(appId\)\s*\{\s*await coreReady;\s*await workerActive;/);
   assert.match(hostSrc, /async function compileTailwind\(page,\s*lease\)[\s\S]*await workerActive;\s*await lease\.check\(\);/);
   assert.match(hostSrc, /async function buildTurnGroundingContext\(/);
@@ -233,8 +234,64 @@ test('transformProjectSource preserves multi-line imports/destructuring, adds mi
   assert.ok(!transformProjectSource('src/App.tsx', destructured).includes('import { useState }'), 'destructured hook must not inject duplicate import');
 
   const workerSrc = fs.readFileSync(join(shellDir, 'uor-v13-worker.mjs'), 'utf8');
-  assert.match(workerSrc, /mountedContainerSha = null;\s*mountedModelId = null;\s*const beginMount/);
+  assert.match(workerSrc, /mountedContainerSha = null;\s*mountedModelId = null;/);
+  assert.match(workerSrc, /mountedContainerSha = containerSha;\s*mountedModelId = modelId;\s*try \{\s*wasm\.v13_configure/);
+  assert.match(workerSrc, /createSyncAccessHandle/);
+  assert.match(workerSrc, /pack_seal\.json/);
   const runtimeSrc = fs.readFileSync(join(shellDir, 'uor-r4-runtime.mjs'), 'utf8');
   assert.match(runtimeSrc, /export async function generate[\s\S]*serializeOp\(async \(\) => \{\s*await ensureModelLoadedQueued\(/);
+  assert.match(runtimeSrc, /let defaultSpeculative = true;/);
   assert.match(hostSrc, /async function buildPortable[\s\S]*transformProjectSource\(args\.path,\s*src\)/);
+  assert.match(hostSrc, /handlers\.set\("chat:cancel",\s*async chatId\s*=>\s*Boolean\(await chatQueue\.cancelCurrent\(chatId\)\)\)/);
+  assert.match(hostSrc, /handlers\.set\("uor-r4:status",[\s\S]*prewarmMode/);
+  const queueCtrlSrc = fs.readFileSync(join(shellDir, 'chat-queue-controller.mjs'), 'utf8');
+  assert.match(queueCtrlSrc, /j\.pauseReason==='stop'\?\[/);
+  assert.match(queueCtrlSrc, /return true;/);
+});
+
+test('parsePrismTags supports <prism-search-replace> XML/git-style hunks, blocks traversal, and gates UOR identity grounding', async () => {
+  const vm = await import('node:vm');
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  const cleanStart = hostSrc.indexOf('function cleanWorkspacePath(');
+  const cleanEnd = hostSrc.indexOf('\nfunction createFoundryTools(', cleanStart);
+  const parseStart = hostSrc.indexOf('function applySearchReplaceHunk(');
+  const parseEnd = hostSrc.indexOf('\nasync function applyPrismTags(', parseStart);
+  const { applySearchReplaceHunk, parsePrismTags } = vm.runInNewContext(
+    hostSrc.slice(cleanStart, cleanEnd) +
+      '\n' +
+      hostSrc.slice(parseStart, parseEnd) +
+      '\n({ applySearchReplaceHunk, parsePrismTags })',
+    {},
+  );
+  const parsed = parsePrismTags(
+    '<prism-search-replace path="src/App.tsx" description="filter">\n' +
+      '<search>\nconst x = 1;\n</search>\n' +
+      '<replace>\nconst x = 2;\n</replace>\n' +
+      '</prism-search-replace>\n' +
+      '<prism-search-replace path="../secret.tsx">\n<search>a</search><replace>b</replace>\n</prism-search-replace>',
+  );
+  assert.equal(parsed.patches.length, 1, 'traversal patch path must be dropped');
+  assert.equal(parsed.patches[0].path, 'src/App.tsx');
+  const original = 'import { useState } from "react";\n  const x = 1;\nexport default function App() { return <div>{x}</div>; }\n';
+  const patched = applySearchReplaceHunk(original, parsed.patches[0].hunks[0].search, parsed.patches[0].hunks[0].replace);
+  assert.ok(patched && patched.includes('const x = 2;') && !patched.includes('const x = 1;'));
+
+  const gitStyle = parsePrismTags(
+    '<prism-search-replace path="src/App.tsx">\n<<<<<<< SEARCH\nconst x = 1;\n=======\nconst x = 3;\n>>>>>>> REPLACE\n</prism-search-replace>',
+  );
+  assert.equal(gitStyle.patches.length, 1);
+  assert.equal(gitStyle.patches[0].hunks[0].replace, 'const x = 3;');
+
+  const unmatchedFence = parsePrismTags(
+    '<prism-write path="src/App.tsx" description="fenced">\n```tsx\nexport default function App() { return <div/>; }\n</prism-write>\n```',
+  );
+  assert.equal(unmatchedFence.writes.length, 1);
+  assert.equal(unmatchedFence.writes[0].content, 'export default function App() { return <div/>; }');
+
+  assert.match(hostSrc, /are\\s\+you\\s\+a\?\\s\*transformer/);
+  const screensSrc = fs.readFileSync(resolve(__dirname, '../vendor/prism/hologram.screens.mjs'), 'utf8');
+  assert.equal(screensSrc.split('withdrawPendingPrompt();').length - 1, 2, 'hologram.screens.mjs must preserve 2 withdrawPendingPrompt(); occurrences across from/to');
+  assert.match(screensSrc, /"uor-r4:status",\s*\{\s*prewarmMode:\s*"build"\s*\}/);
+  const stdSrc = fs.readFileSync(join(repoRoot, 'scripts/studio/build-standards-index.mjs'), 'utf8');
+  assert.match(stdSrc, /uor-r4-self-identity/);
 });

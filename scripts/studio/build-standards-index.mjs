@@ -155,6 +155,21 @@ export function buildStandardsIndex(outPath = defaultOut) {
       source: 'web/studio/foundry/studio/shell/uor-v13-worker.mjs',
     },
     {
+      id: 'uor-r4-self-identity',
+      title: 'UOR-R4 Identity & Non-Transformer Pure-Integer Architecture',
+      topic: 'architecture',
+      tags: ['uor', 'uor-r4', 'architecture', 'transformer', 'non-transformer', 'integer', 'geometry', 'hologram', 'wasm'],
+      summary: 'UOR-R4 is a non-transformer pure-integer geometric language model and Hologram Foundry workstation running 100% client-side in WebAssembly with zero floats, zero dense matmul, and zero softmax.',
+      content: [
+        '# UOR-R4 Geometric Language Model & Hologram Architecture',
+        '- Core principle (Charter §3): Every inference op runs on pure-integer / fixed-point arithmetic (`float_ops: 0`, `dense_matmul_ops: 0`, zero softmax/squashing, zero dense GEMM) verified by WASM bytecode audit.',
+        '- Built-in browser models: `uor-r4:qwen3-0.6b` (default, 9 packs) and `uor-r4:qwen3-1.7b` (23 packs) execute via `uor_foundry_v13_wasm` with OPFS `SyncAccessHandle` caching, Stitch 2-of-3 XOR parity recovery, KV prefix prewarm, and 0-LSB speculative decoding.',
+        '- Geometric roadmap (M1–M8): Native Rust `uor_r4_integer_bg.wasm` provides integer stack/Fibonacci-Zeta/Hamilton rotation/exact addressed memory kernels while Hologram `core.wasm` + PrismPM `.holo` v4 archives + LexLean 0.3.0 proofs verify app state.',
+        '- Full workstation: In-browser Linux 6.18.7 (`v86` x86 with `/workspace` 9p), RV64IMAC MVM, esbuild-wasm React preview compiler, and GitHub PAT vault run locally in your tab.',
+      ].join('\n'),
+      source: 'CHARTER.md',
+    },
+    {
       id: 'foundry-v13-runtime-standard',
       title: 'UOR-R4 Foundry V13 Pure-Integer Serving & Native Tooling',
       topic: 'runtime',

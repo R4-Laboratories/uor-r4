@@ -12,6 +12,7 @@ let wasmModulePromise = null;
 let mountedContainerSha = null;
 let mountedModelId = null;
 let activeTurn = null; // { id, turnId: BigInt, cancelled: boolean }
+let activeTurnPromise = null;
 let activeLoad = null; // { id, controller: AbortController }
 
 async function getWasm() {
@@ -61,6 +62,17 @@ async function cacheRead(scopeKey, fileKey) {
       const baseDir = await root.getDirectoryHandle(OPFS_ROOT_DIR, { create: false });
       const scopeDir = await baseDir.getDirectoryHandle(scopeKey, { create: false });
       const fh = await scopeDir.getFileHandle(fileKey, { create: false });
+      if (typeof fh.createSyncAccessHandle === 'function') {
+        const access = await fh.createSyncAccessHandle();
+        try {
+          const size = access.getSize();
+          const out = new Uint8Array(size);
+          if (size > 0) access.read(out, { at: 0 });
+          return { bytes: out, backend: 'opfs' };
+        } finally {
+          access.close();
+        }
+      }
       const f = await fh.getFile();
       return { bytes: new Uint8Array(await f.arrayBuffer()), backend: 'opfs' };
     }
@@ -96,6 +108,17 @@ async function cacheWrite(scopeKey, fileKey, bytes) {
       const baseDir = await root.getDirectoryHandle(OPFS_ROOT_DIR, { create: true });
       const scopeDir = await baseDir.getDirectoryHandle(scopeKey, { create: true });
       const fh = await scopeDir.getFileHandle(fileKey, { create: true });
+      if (typeof fh.createSyncAccessHandle === 'function') {
+        const access = await fh.createSyncAccessHandle();
+        try {
+          access.truncate(0);
+          if (u8.byteLength > 0) access.write(u8, { at: 0 });
+          access.flush();
+          return 'opfs';
+        } finally {
+          access.close();
+        }
+      }
       const w = await fh.createWritable();
       await w.write(u8);
       await w.close();
@@ -321,16 +344,41 @@ async function handleLoadV13(id, payload) {
       }
     };
 
-    await mapLimit(manifest.packs, 4, async (pack) => {
+    const expectedPiecesMeta = manifest.pieces;
+    const sealHit = await cacheRead(containerSha, 'pack_seal.json');
+    let sealMap = null;
+    if (sealHit) {
+      try {
+        const parsedSeal = JSON.parse(new TextDecoder('utf-8').decode(sealHit.bytes));
+        if (parsedSeal?.container_sha256 === containerSha && parsedSeal?.packs && typeof parsedSeal.packs === 'object') {
+          sealMap = parsedSeal.packs;
+        }
+      } catch {
+        sealMap = null;
+      }
+    }
+    const verifiedPackSeals = {};
+
+    await mapLimit(manifest.packs, 6, async (pack) => {
       throwIfCancelled();
       let packBytes = null;
       let packVerified = false;
+      let sealVerified = false;
       const hit = await cacheRead(containerSha, pack.file);
-      if (hit && hit.bytes.byteLength === pack.byte_length && (await sha256Hex(hit.bytes)) === pack.sha256) {
+      const sealedEntry = sealMap?.[pack.file];
+      const matchesSealed =
+        hit &&
+        hit.bytes.byteLength === pack.byte_length &&
+        sealedEntry &&
+        sealedEntry.byte_length === pack.byte_length &&
+        sealedEntry.sha256 === pack.sha256;
+      if (matchesSealed || (hit && hit.bytes.byteLength === pack.byte_length && (await sha256Hex(hit.bytes)) === pack.sha256)) {
         packBytes = hit.bytes;
         packVerified = true;
-        cacheBackend = hit.backend;
+        sealVerified = Boolean(matchesSealed);
+        if (!anyMemoryPack) cacheBackend = hit.backend;
         packCached.add(pack.file);
+        verifiedPackSeals[pack.file] = { sha256: pack.sha256, byte_length: pack.byte_length };
       } else {
         throwIfCancelled();
         allFromCache = false;
@@ -339,6 +387,7 @@ async function handleLoadV13(id, payload) {
           const fetched = await fetchBytes(url, pack.sha256, loadCtrl.signal);
           packBytes = fetched.bytes;
           packVerified = true;
+          verifiedPackSeals[pack.file] = { sha256: pack.sha256, byte_length: pack.byte_length };
           const writtenBackend = await cacheWrite(containerSha, pack.file, packBytes);
           if (writtenBackend === 'memory') {
             anyMemoryPack = true;
@@ -357,21 +406,25 @@ async function handleLoadV13(id, payload) {
         }
       }
 
-      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
-        const pieceMeta = manifest.pieces[p];
-        if (packBytes) {
-          const rel = pieceMeta.byte_offset - pack.byte_offset;
-          const slice = packBytes.subarray(rel, rel + pieceMeta.byte_length);
-          if (slice.byteLength === pieceMeta.byte_length && (await sha256Hex(slice)) === pieceMeta.sha256) {
-            if (!packVerified || (!packCached.has(pack.file) && !memoryPacks.has(pack.file))) {
-              healedPieces.set(p, new Uint8Array(slice));
+      if (packBytes && sealVerified) {
+        piecesDone += pack.piece_count;
+      } else {
+        for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+          const pieceMeta = expectedPiecesMeta[p];
+          if (packBytes) {
+            const rel = pieceMeta.byte_offset - pack.byte_offset;
+            const slice = packBytes.subarray(rel, rel + pieceMeta.byte_length);
+            if (slice.byteLength === pieceMeta.byte_length && (await sha256Hex(slice)) === pieceMeta.sha256) {
+              if (!packVerified || (!packCached.has(pack.file) && !memoryPacks.has(pack.file))) {
+                healedPieces.set(p, new Uint8Array(slice));
+              }
+              piecesDone += 1;
+            } else {
+              failedPieces.add(p);
             }
-            piecesDone += 1;
           } else {
             failedPieces.add(p);
           }
-        } else {
-          failedPieces.add(p);
         }
       }
 
@@ -380,6 +433,10 @@ async function handleLoadV13(id, payload) {
       bytesLoaded += pack.byte_length;
       emitProgress('hydrating');
     });
+    if (failedPieces.size === 0 && Object.keys(verifiedPackSeals).length === manifest.packs.length && !anyMemoryPack) {
+      const sealBytes = new TextEncoder().encode(JSON.stringify({ container_sha256: containerSha, packs: verifiedPackSeals }));
+      await cacheWrite(containerSha, 'pack_seal.json', sealBytes).catch(() => {});
+    }
 
     // Self-heal any missing or corrupted pieces via Stitch 2-of-3 XOR parity recovery.
     if (failedPieces.size > 0) {
@@ -507,6 +564,7 @@ async function handleLoadV13(id, payload) {
 
     mountedContainerSha = containerSha;
     mountedModelId = modelId;
+    try { wasm.v13_configure(JSON.stringify({ speculative: true })); } catch {}
     self.postMessage({
       id,
       action: 'v13_progress',
@@ -552,6 +610,12 @@ const yieldMacrotask =
     : () => new Promise((resolve) => setTimeout(resolve, 0));
 
 async function handleGenerateV13(id, payload) {
+  if (activeTurn) {
+    activeTurn.cancelled = true;
+  }
+  if (activeTurnPromise) {
+    await activeTurnPromise.catch(() => {});
+  }
   const wasm = await getWasm();
   const status = JSON.parse(wasm.v13_status());
   if (!status.mounted) {
@@ -579,63 +643,82 @@ async function handleGenerateV13(id, payload) {
   const turnId = BigInt(begin.turn_id);
   activeTurn = { id, turnId, cancelled: false };
 
-  try {
-    let last;
-    for (;;) {
-      if (activeTurn?.cancelled) {
-        const cancelRes = JSON.parse(wasm.v13_cancel_turn(turnId));
-        self.postMessage({
-          id,
-          action: 'v13_error',
-          error: 'Generation cancelled',
-          cancelled: true,
-          cancelRes,
-        });
-        return;
+  let turnEndedInWasm = false;
+  const runPromise = (async () => {
+    try {
+      let last;
+      for (;;) {
+        if (activeTurn?.cancelled) {
+          const cancelRes = JSON.parse(wasm.v13_cancel_turn(turnId));
+          turnEndedInWasm = true;
+          self.postMessage({
+            id,
+            action: 'v13_error',
+            error: 'Generation cancelled',
+            cancelled: true,
+            cancelRes,
+          });
+          return;
+        }
+        last = JSON.parse(wasm.v13_step_turn(turnId));
+        if (!last.ok) {
+          throw new Error(last.message || 'v13_step_turn failed');
+        }
+        if (last.delta) {
+          self.postMessage({
+            id,
+            action: 'v13_token',
+            chunk: last.delta,
+            fullText: last.full_text || '',
+            tokensEmitted: last.tokens_emitted || 0,
+          });
+        }
+        if (last.status === 'done') {
+          turnEndedInWasm = true;
+          self.postMessage({
+            id,
+            action: 'v13_complete',
+            fullText: last.full_text || '',
+            tokensEmitted: last.tokens_emitted || 0,
+            stopReason: last.stop_reason || null,
+            float_ops: last.float_ops ?? 0,
+            dense_matmul_ops: last.dense_matmul_ops ?? 0,
+            prefixReusedTokens: last.prefix_reused_tokens ?? 0,
+            draftProposed: last.draft_proposed_total ?? 0,
+            draftAccepted: last.draft_accepted_total ?? 0,
+            mlpMode: last.mlp_mode || 'DenseExact',
+          });
+          return;
+        }
+        if (last.status === 'cancelled') {
+          turnEndedInWasm = true;
+          self.postMessage({
+            id,
+            action: 'v13_error',
+            error: 'Generation cancelled',
+            cancelled: true,
+          });
+          return;
+        }
+        await yieldMacrotask();
       }
-      last = JSON.parse(wasm.v13_step_turn(turnId));
-      if (!last.ok) {
-        throw new Error(last.message || 'v13_step_turn failed');
+    } finally {
+      if (!turnEndedInWasm) {
+        try {
+          wasm.v13_cancel_turn(turnId);
+        } catch {}
       }
-      if (last.delta) {
-        self.postMessage({
-          id,
-          action: 'v13_token',
-          chunk: last.delta,
-          fullText: last.full_text || '',
-          tokensEmitted: last.tokens_emitted || 0,
-        });
+      if (activeTurn && activeTurn.id === id) {
+        activeTurn = null;
       }
-      if (last.status === 'done') {
-        self.postMessage({
-          id,
-          action: 'v13_complete',
-          fullText: last.full_text || '',
-          tokensEmitted: last.tokens_emitted || 0,
-          stopReason: last.stop_reason || null,
-          float_ops: last.float_ops ?? 0,
-          dense_matmul_ops: last.dense_matmul_ops ?? 0,
-          prefixReusedTokens: last.prefix_reused_tokens ?? 0,
-          draftProposed: last.draft_proposed_total ?? 0,
-          draftAccepted: last.draft_accepted_total ?? 0,
-          mlpMode: last.mlp_mode || 'DenseExact',
-        });
-        return;
-      }
-      if (last.status === 'cancelled') {
-        self.postMessage({
-          id,
-          action: 'v13_error',
-          error: 'Generation cancelled',
-          cancelled: true,
-        });
-        return;
-      }
-      await yieldMacrotask();
     }
+  })();
+  activeTurnPromise = runPromise;
+  try {
+    await runPromise;
   } finally {
-    if (activeTurn && activeTurn.id === id) {
-      activeTurn = null;
+    if (activeTurnPromise === runPromise) {
+      activeTurnPromise = null;
     }
   }
 }

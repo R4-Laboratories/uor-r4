@@ -199,7 +199,7 @@ async function cdpConnect(wsUrl) {
   const pending = new Map();
   let nextId = 1;
   const events = [];
-  const send = (method, params = {}, sessionId) =>
+  const send = (method, params = {}, sessionId, rpcTimeoutMs = 90000) =>
     new Promise((resolveSend, rejectSend) => {
       const id = nextId++;
       const timer = setTimeout(() => {
@@ -207,7 +207,7 @@ async function cdpConnect(wsUrl) {
           pending.delete(id);
           rejectSend(new Error(`CDP timeout calling ${method}`));
         }
-      }, 90000);
+      }, rpcTimeoutMs);
       pending.set(id, {
         resolve: (res) => {
           clearTimeout(timer);
@@ -281,6 +281,7 @@ async function evalAsync(cdp, sessionId, fnBody, timeoutMs = 60000, label = 'eva
       'Runtime.evaluate',
       { expression: `(async () => { ${fnBody} })()`, awaitPromise: true, returnByValue: true },
       sessionId,
+      Math.max(90000, timeoutMs),
     ),
     timeoutMs,
     label,
@@ -1220,6 +1221,94 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
       todoPreview2.previewLen > 300,
     `Todo Turn 2 follow-up preview failed: ${JSON.stringify(todoPreview2)}`,
   );
+
+  // 5a2. Verify real UI typing on #/chat build screen, canonical uor-r4:status prewarm, StudioModelStatusBar, cancel contract, post-cancel re-send, and UOR self-identity grounding.
+  const prewarmStatus = await evalAsync(
+    cdp,
+    sessionId,
+    `return await window.electron.ipcRenderer.invoke('uor-r4:status', { prewarmMode: 'build' });`,
+    10000,
+    'canonical uor-r4:status prewarm check',
+  );
+  assert(Array.isArray(prewarmStatus?.models) && prewarmStatus.models.length >= 2, `uor-r4:status prewarm failed: ${JSON.stringify(prewarmStatus)}`);
+  const identityGrounding = await evalAsync(
+    cdp,
+    sessionId,
+    `return await window.__uorR4.buildTurnGroundingContext({ appId: null, chatMode: 'chat', prompt: 'are you a transformer?' });`,
+    10000,
+    'UOR self-identity grounding check',
+  );
+  assert(
+    /non-transformer|pure-integer|UOR-R4/i.test(identityGrounding),
+    `Expected UOR-R4 identity grounding for architecture question, got: ${JSON.stringify(identityGrounding)}`,
+  );
+  await clickCenter(cdp, sessionId, '[data-testid="chat-input-container"] [contenteditable="true"]');
+  await cdp.send('Input.insertText', { text: 'Add a dark mode toggle' }, sessionId);
+  await new Promise((r) => setTimeout(r, 200));
+  await clickCenter(cdp, sessionId, '[aria-label="Send message"]');
+  const statusBarSeen = await waitForEval(
+    cdp,
+    sessionId,
+    `Boolean(document.querySelector('[data-testid="studio-model-status-bar"]')) && Boolean(document.querySelector('[aria-label*="Cancel"], [aria-label*="Stop"]'))`,
+    15000,
+  );
+  assert(statusBarSeen, 'Expected StudioModelStatusBar and Stop button while #/chat is streaming');
+  await clickCenter(cdp, sessionId, '[aria-label*="Cancel"], [aria-label*="Stop"]');
+  await waitForEval(
+    cdp,
+    sessionId,
+    `(async () => {
+      const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'chat_stream', encodedKey: { chatId: ${todoBuilt.chatId} } });
+      return sub?.encodedState?.phase !== 'streaming' && !document.querySelector('[aria-label*="Cancel"], [aria-label*="Stop"]');
+    })()`,
+    20000,
+  );
+  // Immediately type and send another prompt on #/chat after Stop; queue must auto-resume rather than staying paused.
+  await clickCenter(cdp, sessionId, '[data-testid="chat-input-container"] [contenteditable="true"]');
+  await cdp.send('Input.insertText', { text: 'Say hello from build chat' }, sessionId);
+  await new Promise((r) => setTimeout(r, 200));
+  const cancelResFalse = await evalAsync(
+    cdp,
+    sessionId,
+    `return await window.electron.ipcRenderer.invoke('chat:cancel', ${todoBuilt.chatId});`,
+    10000,
+    'idle chat:cancel boolean check',
+  );
+  assert(cancelResFalse === false, `Idle chat:cancel must return boolean false, got ${JSON.stringify(cancelResFalse)}`);
+  await clickCenter(cdp, sessionId, '[aria-label="Send message"]');
+  const postCancelChat = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const deadline = Date.now() + 120000;
+      let lastSnap = null;
+      while (Date.now() < deadline) {
+        const sub = await window.electron.ipcRenderer.invoke('distributed-machine:subscribe', { protocolVersion: 1, machineId: 'chat_stream', encodedKey: { chatId: ${todoBuilt.chatId} } });
+        const chat = await window.electron.ipcRenderer.invoke('get-chat', ${todoBuilt.chatId});
+        const msgs = chat?.messages || [];
+        const last = msgs[msgs.length - 1];
+        lastSnap = {
+          phase: sub?.encodedState?.phase,
+          queueLen: (sub?.encodedState?.queue || []).length,
+          queuePaused: Boolean(sub?.encodedState?.queuePaused),
+          pauseReason: sub?.encodedState?.queuePauseReason || null,
+          error: sub?.encodedState?.error || null,
+          userCount: msgs.filter((m) => m.role === 'user').length,
+          roles: msgs.map((m) => m.role + ':' + String(m.content || '').slice(0, 32)),
+          lastLen: String(last?.content || '').length,
+        };
+        if (lastSnap.phase === 'idle' && lastSnap.queueLen === 0 && lastSnap.userCount >= 4 && last?.role === 'assistant' && lastSnap.lastLen > 0) {
+          return lastSnap;
+        }
+        await new Promise((r) => setTimeout(r, 250));
+      }
+      return { timedOut: true, ...lastSnap };
+    `,
+    125000,
+    'post-cancel re-send completion',
+  );
+  assert(!postCancelChat.timedOut && postCancelChat.queueLen === 0 && postCancelChat.lastLen > 0, `Post-cancel #/chat send remained stuck: ${JSON.stringify(postCancelChat)}`);
+
   await evalAsync(
     cdp,
     sessionId,
@@ -1227,7 +1316,7 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
     15000,
     'clean up Todo test app and restore build test app route',
   );
-  console.error(`[verify] Todo Build Turn 1 + Turn 2 follow-up filter edit & live preview OK`);
+  console.error(`[verify] Todo Build Turn 1 + Turn 2 + #/chat UI typing/cancel/re-send & UOR identity OK`);
 
   // 5b. Verify create-app scaffold files (`src/vite-env.d.ts`), Zod-contracted internal controls, routes, and local preview mode.
   const controlsCheck = await evalAsync(

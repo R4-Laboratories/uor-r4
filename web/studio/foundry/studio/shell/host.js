@@ -6,7 +6,7 @@ import {createLinuxVmHost} from './linux-vm-host.mjs';
 import {createStitchNetwork} from './stitch-network.mjs';
 import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
-import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
+import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
 import {changeUserSettings} from "./settings-transactions.mjs";
@@ -1377,8 +1377,53 @@ window.__preview = buildPreview;
 // ---- the renderer's tags: what the model writes becomes files. The grammar is the renderer's: a block per
 // file, attributes path and description, content verbatim between the tags; delete and rename are
 // single tags; add-dependency names packages the import map must carry.
+function applySearchReplaceHunk(fileContent, searchBlock, replaceBlock) {
+  const src = String(fileContent ?? "").replace(/\r\n/g, "\n");
+  const needle = String(searchBlock ?? "").replace(/\r\n/g, "\n");
+  const replacement = String(replaceBlock ?? "").replace(/\r\n/g, "\n");
+  if (!needle) return null;
+  const exactIdx = src.indexOf(needle);
+  if (exactIdx >= 0 && src.indexOf(needle, exactIdx + needle.length) < 0) {
+    return src.slice(0, exactIdx) + replacement + src.slice(exactIdx + needle.length);
+  }
+  const srcLines = src.split("\n");
+  const needleLines = needle.replace(/\n$/, "").split("\n");
+  if (!needleLines.length) return null;
+  let matchStart = -1;
+  for (let i = 0; i <= srcLines.length - needleLines.length; i += 1) {
+    let ok = true;
+    for (let j = 0; j < needleLines.length; j += 1) {
+      if (srcLines[i + j].trim() !== needleLines[j].trim()) { ok = false; break; }
+    }
+    if (ok) {
+      if (matchStart >= 0) return null;
+      matchStart = i;
+    }
+  }
+  if (matchStart < 0) return null;
+  const repLines = replacement.replace(/\n$/, "").split("\n");
+  return [...srcLines.slice(0, matchStart), ...repLines, ...srcLines.slice(matchStart + needleLines.length)].join("\n");
+}
 function parsePrismTags(text) {
-  const writesByPath = new Map(), deletes = [], renames = [], deps = [];
+  const writesByPath = new Map(), patchesByPath = new Map(), deletes = [], renames = [], deps = [];
+  const stripOuterFences = (raw) => {
+    const out = String(raw ?? "").replace(/^\r?\n/, "").replace(/\r?\n$/, "");
+    const paired = out.match(/^```[\w-]*\r?\n([\s\S]*?)\r?\n```\s*$/);
+    if (paired) return paired[1];
+    return out.replace(/^```[\w-]*\r?\n/, "").replace(/\r?\n```\s*$/, "");
+  };
+  const parseSearchReplaceHunks = (body) => {
+    const hunks = [];
+    const block = String(body ?? "");
+    for (const hm of block.matchAll(/<search>\r?\n?([\s\S]*?)\r?\n?<\/search>\s*<replace>\r?\n?([\s\S]*?)\r?\n?<\/replace>/g)) {
+      hunks.push({ search: stripOuterFences(hm[1]), replace: stripOuterFences(hm[2]) });
+    }
+    if (hunks.length) return hunks;
+    for (const hm of block.matchAll(/<<<<<<<\s*SEARCH\r?\n([\s\S]*?)\r?\n=======\r?\n([\s\S]*?)\r?\n>>>>>>>\s*REPLACE/g)) {
+      hunks.push({ search: stripOuterFences(hm[1]), replace: stripOuterFences(hm[2]) });
+    }
+    return hunks;
+  };
   const attr = (s, name) => {
     const dq = s.match(new RegExp(name + '="([^"]*)"'));
     if (dq) return dq[1];
@@ -1392,9 +1437,16 @@ function parsePrismTags(text) {
   for (const m of src.matchAll(/<prism-write\s+([^>]*)>([\s\S]*?)<\/prism-write>/g)) {
     const path = safeRel(attr(m[1], "path"));
     if (!path) continue;
-    let content = m[2]; if (content.startsWith("\n")) content = content.slice(1); if (content.endsWith("\n")) content = content.slice(0, -1);
-    const fence = content.match(/^```[\w-]*\n([\s\S]*?)\n```\s*$/); if (fence) content = fence[1];
+    const content = stripOuterFences(m[2]);
     writesByPath.set(path, { path, description: attr(m[1], "description"), content });
+  }
+  for (const m of src.matchAll(/<prism-search-replace\s+([^>]*)>([\s\S]*?)<\/prism-search-replace>/g)) {
+    const path = safeRel(attr(m[1], "path"));
+    if (!path) continue;
+    const hunks = parseSearchReplaceHunks(m[2]);
+    if (!hunks.length) continue;
+    const prev = patchesByPath.get(path)?.hunks || [];
+    patchesByPath.set(path, { path, description: attr(m[1], "description"), hunks: [...prev, ...hunks] });
   }
   for (const m of src.matchAll(/<prism-delete\s+([^>]*?)\s*\/?>/g)) {
     const path = safeRel(attr(m[1], "path"));
@@ -1407,15 +1459,43 @@ function parsePrismTags(text) {
   for (const m of src.matchAll(/<prism-add-dependency\s+([^>]*?)\s*\/?>/g)) { const p = attr(m[1], "packages") || attr(m[1], "package"); if (p) deps.push(...p.split(/\s+/).filter(Boolean)); }
   const openedWrites = (src.match(/<prism-write\b/g) || []).length;
   const closedWrites = (src.match(/<\/prism-write>/g) || []).length;
-  return { writes: [...writesByPath.values()], deletes, renames, deps, unclosedWrites: Math.max(0, openedWrites - closedWrites) };
+  return { writes: [...writesByPath.values()], patches: [...patchesByPath.values()], deletes, renames, deps, unclosedWrites: Math.max(0, openedWrites - closedWrites) };
 }
 async function applyPrismTags(appId, tags, options = {}) {
-  const copied = copyGenerationInput(tags, options.source), { signal, onCommit } = options;
+  const { signal, onCommit } = options;
+  const copied = copyGenerationInput(tags, options.source);
   await coreReady;
   assertGenerationActive(signal);
-  const source = copied.source || await captureProjectSource(await dbReady, appId);
-  assertCanonicalGeneration(source, copied.tags, lexlean);
-  return applyStoredProjectPatch(await dbReady, appId, copied.tags, { core, derive: kappa, source, signal, onCommit });
+  const resolvedSource = copied.source || await captureProjectSource(await dbReady, appId);
+  const rawPatches = Array.isArray(copied.tags?.patches) ? copied.tags.patches : [];
+  const rawWrites = Array.isArray(copied.tags?.writes) ? [...copied.tags.writes] : [];
+  if (rawPatches.length) {
+    const fileMap = new Map(resolvedSource.files);
+    const writeMap = new Map(rawWrites.map((w) => [w.path, w]));
+    for (const patch of rawPatches) {
+      let cur = writeMap.get(patch.path)?.content ?? fileMap.get(patch.path);
+      if (typeof cur !== "string") continue;
+      let updated = cur;
+      let ok = true;
+      for (const hunk of patch.hunks || []) {
+        const next = applySearchReplaceHunk(updated, hunk.search, hunk.replace);
+        if (next === null) { ok = false; break; }
+        updated = next;
+      }
+      if (ok && updated !== cur) {
+        writeMap.set(patch.path, { path: patch.path, description: patch.description || "Surgical patch", content: updated.endsWith("\n") ? updated : updated + "\n" });
+      }
+    }
+    rawWrites.splice(0, rawWrites.length, ...writeMap.values());
+  }
+  const normalizedTags = {
+    writes: rawWrites,
+    deletes: copied.tags?.deletes,
+    renames: copied.tags?.renames,
+    deps: copied.tags?.deps,
+  };
+  assertCanonicalGeneration(resolvedSource, normalizedTags, lexlean);
+  return applyStoredProjectPatch(await dbReady, appId, normalizedTags, { core, derive: kappa, source: resolvedSource, signal, onCommit });
 }
 window.__chat = { parsePrismTags, applyPrismTags };
 
@@ -1428,7 +1508,7 @@ async function loadStandardsIndex() {
   }
   return standardsCache;
 }
-const FOUNDRY_DOMAIN_RE = /\b(uor|uor-r4|r4|foundry|prism|prismpm|holo|lexlean|mvm|rv64|v86|wasm|opfs|indexeddb|stitch|spiralcore|esbuild|v13|qwen|service\s*worker|container_sha256|tool_call|prism-write)\b|\.(holo|lex\.tex)\b|\buor\s+(charter|standards)\b/i;
+const FOUNDRY_DOMAIN_RE = /\b(uor|uor-r4|r4|foundry|prism|prismpm|holo|lexlean|mvm|rv64|v86|wasm|opfs|indexeddb|stitch|spiralcore|esbuild|v13|qwen|service\s*worker|container_sha256|tool_call|prism-write|prism-search-replace|non-transformer|integer[- ]only)\b|\.(holo|lex\.tex)\b|\b(who|what)\s+are\s+you\b|\bare\s+you\s+a?\s*transformer\b|\b(your|uor)\s+(architecture|model|geometry|charter|standards)\b|\bhow\s+do\s+you\s+work\b/i;
 const STANDARDS_STOP_WORDS = new Set([
   "the", "and", "for", "are", "but", "not", "you", "all", "can", "her", "was", "one", "our", "out",
   "day", "get", "has", "him", "his", "how", "man", "new", "now", "old", "see", "two", "way", "who",
@@ -1490,6 +1570,7 @@ function compactBuildHistory(history) {
     let compacted = msg.content
       .replace(/<prism-write\s+[^>]*path=["']([^"']+)["'][^>]*>[\s\S]*?<\/prism-write>/g, "[Updated $1]")
       .replace(/<prism-write\s+[^>]*path=["']([^"']+)["'][^>]*>[\s\S]*$/g, "[Updated $1]")
+      .replace(/<prism-search-replace\s+[^>]*path=["']([^"']+)["'][^>]*>[\s\S]*?<\/prism-search-replace>/g, "[Patched $1]")
       .replace(/```(?:tsx|typescriptreact|jsx|ts|js)?\n[\s\S]{350,}?\n```/g, "[Updated code block]");
     if (compacted.length > 480) compacted = compacted.slice(0, 480) + "…";
     return { ...msg, content: compacted };
@@ -2492,6 +2573,11 @@ async function chatTurn(chatId, intent) {
       const tools = createFoundryTools({ appId, chatMode: execution.mode, signal: abort.signal, onCommit });
       const groundingContext = await buildTurnGroundingContext({ appId, chatMode: execution.mode, prompt: intent.prompt }).catch(() => "");
       const historyForModel = execution.sourceEffects ? compactBuildHistory(messages.slice(0, -2)) : messages.slice(0, -2);
+      const rawPromptChars = String(intent.prompt || "").length + String(groundingContext || "").length + historyForModel.reduce((n, m) => n + String(m?.content || "").length, 0);
+      const estPromptTokens = Math.ceil(rawPromptChars / 3.5) + 220;
+      const modelMaxSeq = Number(uorR4StatusBefore?.capabilities?.max_seq) || 2048;
+      const budgetRemaining = Math.max(384, modelMaxSeq - estPromptTokens - 32);
+      const computedMaxNew = customEndpoint ? 2048 : (execution.sourceEffects ? Math.min(1536, Math.max(512, budgetRemaining)) : Math.min(768, Math.max(384, budgetRemaining)));
       const uorTurn = await runUorR4AgentTurn({
         appId,
         chatId,
@@ -2500,7 +2586,7 @@ async function chatTurn(chatId, intent) {
         userPrompt: intent.prompt,
         groundingContext,
         chatMode: execution.mode,
-        maxNewTokens: customEndpoint ? 2048 : (execution.sourceEffects ? 1024 : 512),
+        maxNewTokens: computedMaxNew,
         maxToolRounds: Number.isInteger(settings?.maxToolCallSteps) ? settings.maxToolCallSteps : undefined,
         signal: abort.signal,
         uorR4Runtime: uorR4,
@@ -2518,7 +2604,7 @@ async function chatTurn(chatId, intent) {
       });
       const shown = await r4Decide(made);
       if (shown.outcome !== "answer") throw new Error(r4Refusal(shown, made));
-      const rawTurn = uorTurn.fullText || full;
+      let rawTurn = uorTurn.fullText || full;
       const sm = rawTurn.match(/<prism-chat-summary>([\s\S]*?)<\/prism-chat-summary>/);
       summary = sm ? sm[1].trim() : summary;
       if (summary && (!chat.title || chat.title === "New chat")) {
@@ -2529,12 +2615,55 @@ async function chatTurn(chatId, intent) {
         await settleAppFrames(appId, abort.signal);
         assertGenerationActive(abort.signal);
         const wrote = parsePrismTags(rawTurn);
-        const fallbackWrites = (!wrote.writes.length && !uorTurn.updatedFiles) ? extractFallbackCodeWrites(rawTurn) : [];
+        const fallbackWrites = (!wrote.writes.length && !wrote.patches.length && !uorTurn.updatedFiles) ? extractFallbackCodeWrites(rawTurn) : [];
         const allWrites = wrote.writes.length ? wrote.writes : fallbackWrites;
         let changed = 0;
-        if (allWrites.length || wrote.deletes.length || wrote.renames.length || wrote.deps.length) {
-          const applied = await applyPrismTags(appId, { writes: allWrites, deletes: wrote.deletes, renames: wrote.renames, deps: wrote.deps }, { signal: abort.signal, onCommit });
+        if (allWrites.length || wrote.patches.length || wrote.deletes.length || wrote.renames.length || wrote.deps.length) {
+          const applied = await applyPrismTags(appId, { writes: allWrites, patches: wrote.patches, deletes: wrote.deletes, renames: wrote.renames, deps: wrote.deps }, { signal: abort.signal, onCommit });
           changed += applied.changed || 0;
+        }
+        if ((changed > 0 || uorTurn.updatedFiles) && !abort.signal.aborted) {
+          try {
+            const firstCheck = await checkProjectProblems(appId);
+            const firstErr = firstCheck?.problems?.[0];
+            if (firstCheck?.outcome === "errors" && firstErr) {
+              const badPath = firstErr.file || "src/App.tsx";
+              const badSrc = String((await get("files", `${appId}:${badPath}`)) || "");
+              const lines = badSrc.split("\n");
+              const errLine = Math.max(1, Number(firstErr.line) || 1);
+              const snippet = badSrc.length <= 2600
+                ? badSrc
+                : lines.slice(Math.max(0, errLine - 20), Math.min(lines.length, errLine + 20)).join("\n");
+              const repairPrompt = `Fix this compile error in ${badPath} at line ${errLine}: ${firstErr.message}\n\n<current-file path="${badPath}">\n${snippet}\n</current-file>\n\nEmit ONLY a fixed <prism-search-replace path="${badPath}"><search>...</search><replace>...</replace></prism-search-replace> or complete <prism-write path="${badPath}">...</prism-write>.`;
+              const repairTurn = await runUorR4AgentTurn({
+                appId,
+                chatId: `${chatId}-repair`,
+                modelId: customEndpoint ? customEndpoint.model : model,
+                messages: [],
+                userPrompt: repairPrompt,
+                groundingContext: "",
+                chatMode: "build",
+                maxNewTokens: customEndpoint ? 1024 : 768,
+                maxToolRounds: 1,
+                signal: abort.signal,
+                uorR4Runtime: uorR4,
+                generateFn: customEndpoint ? (opts) => customApiClient.generateChatCompletion({ endpoint: customEndpoint, ...opts }) : undefined,
+                mvmHost,
+                tools,
+                onText: () => {},
+              });
+              const repairTags = parsePrismTags(repairTurn.fullText || "");
+              const repairFallback = (!repairTags.writes.length && !repairTags.patches.length) ? extractFallbackCodeWrites(repairTurn.fullText || "") : [];
+              const repairWrites = repairTags.writes.length ? repairTags.writes : repairFallback;
+              if (repairWrites.length || repairTags.patches.length) {
+                const repApplied = await applyPrismTags(appId, { writes: repairWrites, patches: repairTags.patches, deletes: repairTags.deletes, renames: repairTags.renames, deps: repairTags.deps }, { signal: abort.signal, onCommit });
+                if ((repApplied.changed || 0) > 0) {
+                  changed += repApplied.changed;
+                  rawTurn = `${rawTurn}\n${repairTurn.fullText || ""}`.trim();
+                }
+              }
+            }
+          } catch {}
         }
         const specResult = await afterTurn(appId, rawTurn, [], { signal: abort.signal, onCommit }).catch(() => null);
         if (specResult) {
@@ -2682,7 +2811,7 @@ async function chatDispatch(raw){
   await chatQueue.dispatch(chatId,encodedEvent);const m=chatMachineOf(chatId);return {kind:"applied",actorInstanceId:aid,revision:m.revision,transactionSequence:m.revision,messageId};
 }
 handlers.set("chat:observe-submission-stop-policy",async chatId=>(await readStoredChatQueue(await dbReady,chatId)).journal.state.stopPolicy);
-handlers.set("chat:cancel",chatId=>chatQueue.cancelCurrent(chatId));
+handlers.set("chat:cancel",async chatId=>Boolean(await chatQueue.cancelCurrent(chatId)));
 
 // ---- the typed host boundary (FoundrySpecification.hostResponseBoundary)
 function dispatch(channel, args) {
@@ -3203,7 +3332,13 @@ inference.onWorkspaceWrite((store, key) => {
 });
 uorR4.onProgress((progress) => emit("uor-r4:progress", progress));
 handlers.set("standards:lookup", ({ query, limit } = {}) => lookupStandards(query, limit));
-handlers.set("uor-r4:status", () => uorR4.getCatalog({ refresh: true }));
+handlers.set("uor-r4:status", (opts) => {
+  if (opts && (opts.prewarmMode === "build" || opts.prewarmMode === "chat")) {
+    const sys = opts.prewarmMode === "build" ? FOUNDRY_BUILD_SYSTEM_PROMPT : FOUNDRY_CHAT_SYSTEM_PROMPT;
+    void uorR4.prewarmIfCached({ systemPrompt: sys }).catch(() => {});
+  }
+  return uorR4.getCatalog({ refresh: true });
+});
 handlers.set("uor-r4:test-stitch-recover", ({ groupIndex = 0, dropped = 2 } = {}) => uorR4.testStitchRecover({ groupIndex, dropped }));
 handlers.set("uor-r4:select-model", ({ modelId }) => uorR4.ensureModelLoaded(modelId));
 handlers.set("custom-api:list", () => customApiClient.listEndpoints());
@@ -3406,7 +3541,7 @@ handlers.set("update-app-commands", async ({ appId, installCommand, startCommand
   if (!app) throw new Error("no app " + appId);
   await put("apps", appId, { ...app, installCommand: installCommand ?? null, startCommand: startCommand ?? null, updatedAt: now() });
 });
-handlers.set("check-problems", async ({ appId } = {}) => {
+async function checkProjectProblems(appId) {
   const id = Number(appId);
   const app = await get("apps", id);
   if (!app) throw new Error("no app " + appId);
@@ -3488,7 +3623,8 @@ handlers.set("check-problems", async ({ appId } = {}) => {
     return { problems, outcome: "incomplete" };
   }
   return { problems, outcome: problems.length ? "errors" : "passed" };
-});
+}
+handlers.set("check-problems", async ({ appId } = {}) => checkProjectProblems(appId));
 handlers.set("clear-session-data", async () => {
   try {
     if (typeof caches !== "undefined") {

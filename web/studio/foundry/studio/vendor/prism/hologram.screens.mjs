@@ -365,6 +365,110 @@ import { MobileBuild } from "../../hologram.screens/MobileBuild";`,
   ...PLAIN_CHAT_PATCHES,
   // A sent prompt is on screen at once, before the host has stored it.
   ...PENDING_MESSAGE_PATCHES,
+  // Build-page chat hardening: prewarm build prompt, retain early-mount keystrokes, never wedge acceptance ref.
+  {
+    file: "src/pages/chat.tsx",
+    from: `  useEffect(() => {
+    setSelectedChatId(chatId ?? null);
+  }, [chatId, setSelectedChatId]);`,
+    to: `  useEffect(() => {
+    setSelectedChatId(chatId ?? null);
+  }, [chatId, setSelectedChatId]);
+
+  useEffect(() => {
+    void (window as unknown as { electron?: { ipcRenderer?: { invoke?: (ch: string, arg?: unknown) => Promise<unknown> } } }).electron?.ipcRenderer?.invoke?.("uor-r4:status", { prewarmMode: "build" })?.catch(() => {});
+  }, [chatId]);`,
+  },
+  {
+    file: "src/components/chat/ChatInput.tsx",
+    from: `  const inputValue = chatId ? (inputValuesById.get(chatId) ?? "") : "";
+  const setInputValue = useCallback(
+    (newValue: string | ((prev: string) => string)) => {
+      if (!chatId) return;
+
+      setInputValuesById((currentMap) => {
+        const prev = currentMap.get(chatId) ?? "";
+        const next = typeof newValue === "function" ? newValue(prev) : newValue;
+        const newMap = new Map(currentMap);
+        newMap.set(chatId, next);
+        return newMap;
+      });
+    },
+    [chatId, setInputValuesById],
+  );`,
+    to: `  const [fallbackDraft, setFallbackDraft] = useState("");
+  const inputValue = chatId ? (inputValuesById.get(chatId) ?? fallbackDraft) : fallbackDraft;
+  useEffect(() => {
+    if (!chatId || !fallbackDraft) return;
+    setInputValuesById((currentMap) => {
+      if (currentMap.get(chatId)) return currentMap;
+      const next = new Map(currentMap);
+      next.set(chatId, fallbackDraft);
+      return next;
+    });
+    setFallbackDraft("");
+  }, [chatId, fallbackDraft, setInputValuesById]);
+  const setInputValue = useCallback(
+    (newValue: string | ((prev: string) => string)) => {
+      if (!chatId) {
+        setFallbackDraft((prev) => (typeof newValue === "function" ? newValue(prev) : newValue));
+        return;
+      }
+
+      setInputValuesById((currentMap) => {
+        const prev = currentMap.get(chatId) ?? "";
+        const next = typeof newValue === "function" ? newValue(prev) : newValue;
+        const newMap = new Map(currentMap);
+        newMap.set(chatId, next);
+        return newMap;
+      });
+    },
+    [chatId, setInputValuesById],
+  );`,
+  },
+  {
+    file: "src/components/chat/ChatInput.tsx",
+    from: `    await streamMessage({`,
+    to: `    let streamFailedBeforeAccept = false;
+    try {
+      await streamMessage({`,
+  },
+  {
+    file: "src/components/chat/ChatInput.tsx",
+    from: `      onSettled: ({ success, queued }) => {
+        isAwaitingTurnAcceptanceRef.current = false;
+        // The host reports every turn as queued for a moment before it runs it: the prompt stays in the
+        // conversation through that, and gives way to the queue only if the queue is paused
+        // (hologram.screens/PendingMessage.tsx).
+        if (queued) clearAcceptedPayload();
+        if (!success && !queued && !wasAccepted) {
+          restoreSubmittedAnnotations();
+          withdrawPendingPrompt();
+        }
+      },
+    });`,
+    to: `      onSettled: ({ success, queued }) => {
+        isAwaitingTurnAcceptanceRef.current = false;
+        // The host reports every turn as queued for a moment before it runs it: the prompt stays in the
+        // conversation through that, and gives way to the queue only if the queue is paused
+        // (hologram.screens/PendingMessage.tsx).
+        if (queued) clearAcceptedPayload();
+        if (!success && !queued && !wasAccepted) {
+          restoreSubmittedAnnotations();
+          withdrawPendingPrompt();
+        }
+      },
+    });
+    } catch {
+      isAwaitingTurnAcceptanceRef.current = false;
+      streamFailedBeforeAccept = !wasAccepted;
+    }
+    if (streamFailedBeforeAccept) {
+      restoreSubmittedAnnotations();
+      const rollbackPending = withdrawPendingPrompt;
+      rollbackPending();
+    }`,
+  },
   // Home's one entry point is the composer: importing an app is an item in its + menu, not a button above it.
   {
     file: "src/pages/home.tsx",
@@ -506,6 +610,7 @@ import { HomeChatThread, HomeModeToggle, useHomeChat, type HomeMode } from "../.
       setHomeMode(nextMode);
       if (nextMode === "build") {
         void updateSettings({ selectedChatMode: "build" }).catch(() => {});
+        void (window as unknown as { electron?: { ipcRenderer?: { invoke?: (ch: string, arg?: unknown) => Promise<unknown> } } }).electron?.ipcRenderer?.invoke?.("uor-r4:status", { prewarmMode: "build" })?.catch(() => {});
       }
     },
     [updateSettings],

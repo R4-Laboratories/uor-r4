@@ -79,7 +79,10 @@ function authorizePreviewNow(input, { document = globalThis.document, online = (
       // Not modal: it sits in a corner and blocks nothing. The studio and the chat stay usable while it is
       // open, and only the code preview waits for the answer. Apps made from an idea never ask: their
       // preview is the live frame, on this origin (host.js, projected).
-      dialog.style.position="fixed";dialog.style.inset="auto 1rem 1rem auto";dialog.style.margin="0";dialog.style.zIndex="50";dialog.show(); deny.focus();
+      dialog.style.position="fixed";dialog.style.inset="auto 1rem 1rem auto";dialog.style.margin="0";dialog.style.zIndex="50";dialog.show();
+      const activeEl = document?.activeElement;
+      const isEditing = Boolean(activeEl && (activeEl.isContentEditable || activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA"));
+      if (!isEditing) deny.focus();
       dialog.addEventListener("keydown",event=>{if(event.key==="Escape"){event.preventDefault();finish("previewPermissionDenied");}});
     } catch { finish("previewPermissionUnavailable"); }
   });

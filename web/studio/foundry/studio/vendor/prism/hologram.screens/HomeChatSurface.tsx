@@ -290,7 +290,7 @@ export function HomeChatThread({
               <Loader2 className="size-3 animate-spin" aria-hidden="true" />
               <span>
                 Loading weights {hydration?.percent ?? 0}% (
-                {hydration?.packsDone ?? 0}/{hydration?.packsTotal ?? 10} packs)
+                {hydration?.packsDone ?? 0}/{hydration?.packsTotal ?? 9} packs)
               </span>
             </span>
           )}
@@ -378,6 +378,80 @@ export function HomeChatThread({
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+export function StudioModelStatusBar({
+  isStreaming = false,
+}: {
+  isStreaming?: boolean;
+}) {
+  const [hydration, setHydration] = useState<HomeHydrationProgress | null>(null);
+
+  useEffect(() => {
+    const ipc = getIpc();
+    if (!ipc) return;
+    let active = true;
+    const onProgress = (payload: unknown) => {
+      if (!active || !payload || typeof payload !== "object") return;
+      setHydration(payload as HomeHydrationProgress);
+    };
+    const offProg = ipc.on?.("uor-r4:progress", onProgress);
+    void ipc
+      .invoke<{ hydration?: HomeHydrationProgress }>("uor-r4:status")
+      .then((st) => {
+        if (active && st?.hydration && st.hydration.phase && st.hydration.phase !== "idle") {
+          setHydration(st.hydration);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+      if (typeof offProg === "function") offProg();
+      else ipc.removeListener?.("uor-r4:progress", onProgress);
+    };
+  }, []);
+
+  const phase = hydration?.phase;
+  const isLoading =
+    Boolean(phase) &&
+    phase !== "idle" &&
+    phase !== "ready" &&
+    phase !== "error";
+
+  if (!isLoading && phase !== "error" && !isStreaming) {
+    return null;
+  }
+
+  return (
+    <div
+      data-testid="studio-model-status-bar"
+      className="mx-2 mb-1.5 flex items-center gap-2 rounded-lg border border-border/70 bg-muted/60 px-2.5 py-1 text-xs text-muted-foreground"
+    >
+      {phase === "error" ? (
+        <span className="text-destructive truncate">
+          Model load failed: {hydration?.error || "Unknown error"}
+        </span>
+      ) : isLoading ? (
+        <>
+          <Loader2 className="size-3.5 shrink-0 animate-spin text-primary" aria-hidden="true" />
+          <span className="truncate">
+            {phase === "mounting"
+              ? `Mounting ${hydration?.modelId || "UOR-R4"} into WASM…`
+              : phase === "stitch-healing"
+                ? "Recovering shard parity (Stitch 2-of-3)…"
+                : `Loading ${hydration?.modelId || "UOR-R4"} weights ${hydration?.percent ?? 0}% (${hydration?.packsDone ?? 0}/${hydration?.packsTotal ?? 9} packs)`}
+          </span>
+        </>
+      ) : (
+        <>
+          <Cpu className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
+          <span className="truncate">
+            UOR-R4 WASM running locally (prefill / pure-integer decode)…
+          </span>
+        </>
+      )}
     </div>
   );
 }

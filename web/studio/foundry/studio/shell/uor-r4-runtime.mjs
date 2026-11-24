@@ -60,7 +60,7 @@ let v13Worker = null;
 let catalogCache = null;
 let loadedModelId = null;
 let loadedCapabilities = null;
-let defaultSpeculative = false;
+let defaultSpeculative = true;
 let opfsStatus = 'untested';
 let pendingOp = Promise.resolve();
 let nextMsgId = 1;
@@ -289,17 +289,18 @@ function callV13Worker(action, payload, expectAction, { onToken, signal } = {}) 
   const id = `v13-${nextMsgId++}`;
   return new Promise((resolve, reject) => {
     let settled = false;
+    let cancelTimer = null;
     const onAbort = () => {
       try {
         w.postMessage({ action: 'cancel_v13', id });
       } catch {}
-      setTimeout(() => {
+      cancelTimer = setTimeout(() => {
         if (!settled && pendingV13Replies.has(id)) {
           pendingV13Replies.delete(id);
           settled = true;
           reject(Object.assign(new Error('V13 operation cancelled'), { name: 'AbortError' }));
         }
-      }, 250);
+      }, 15000);
     };
     if (signal) {
       if (signal.aborted) {
@@ -312,12 +313,14 @@ function callV13Worker(action, payload, expectAction, { onToken, signal } = {}) 
       expectAction,
       onToken,
       resolve: (value) => {
+        if (cancelTimer) clearTimeout(cancelTimer);
         if (settled) return;
         settled = true;
         signal?.removeEventListener('abort', onAbort);
         resolve(value);
       },
       reject: (err) => {
+        if (cancelTimer) clearTimeout(cancelTimer);
         if (settled) return;
         settled = true;
         signal?.removeEventListener('abort', onAbort);
@@ -414,6 +417,7 @@ async function loadV13Entry(entry, { signal } = {}) {
         containerSha256: entry.container_sha256,
         sizeBytes: entry.size_bytes,
         mirrorBaseUrl,
+        lastBackend: opfsStatus !== 'untested' ? opfsStatus : undefined,
       },
       'v13_loaded',
       { signal },

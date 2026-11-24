@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { chatInputValuesByIdAtom } from "@/atoms/chatAtoms";
 import { selectedAppIdAtom } from "@/atoms/appAtoms";
 import { Button } from "@/components/ui/button";
+import { StudioModelStatusBar } from "./HomeChatSurface";
 import { useChatMode } from "@/hooks/useChatMode";
 import { useChatMessageCount } from "@/hooks/useChatMessages";
 import { useChatStreamState } from "@/hooks/useChatStream";
@@ -119,6 +120,7 @@ export function ChatComposer({ chatId, children }: { chatId?: number; children: 
             ))}
         </div>
       )}
+      <StudioModelStatusBar isStreaming={isStreaming} />
       {children}
     </div>
   );

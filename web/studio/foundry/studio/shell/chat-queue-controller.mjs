@@ -49,7 +49,7 @@ export function createChatQueueController({store,guest,boundary,locks,publish,ru
    const active=running.get(chatId);if(active&&sameInvocation(active.invocation,event.invocationRef))active.controller.abort();notify({chatId,stop:true});return;
   }
   let operation;
-  if(event.type==='SUBMIT')operation={type:'enqueue',intent:event.intent,observedStop:event.observedStopPolicyVersion??0};
+  if(event.type==='SUBMIT')operation=j=>(j.state.paused&&j.pauseReason==='stop'?[{type:'resume',observedStop:j.state.stopPolicy},{type:'enqueue',intent:event.intent,observedStop:j.state.stopPolicy}]:{type:'enqueue',intent:event.intent,observedStop:event.observedStopPolicyVersion??0});
   else{
    const common={expectedRevision:event.expectedQueueRevision,mutationId:event.mutationId};
    if(event.type==='PAUSE_QUEUE')operation={...common,type:'pause'};
@@ -67,6 +67,6 @@ export function createChatQueueController({store,guest,boundary,locks,publish,ru
   if(active&&(journal.state.owner!==active.owner||journal.state.stopPolicy!==active.stopPolicy))active.controller.abort();
   drain(chatId);
  }
- async function cancelCurrent(chatId){const {journal}=await store.read(chatId),active=journal.entries.find(e=>e.id===journal.state.active);if(active)await dispatch(chatId,{type:'CANCEL',invocationRef:active.intent.invocationRef,pauseQueue:true,observedStopPolicyVersion:journal.state.stopPolicy});}
+ async function cancelCurrent(chatId){const {journal}=await store.read(chatId),active=journal.entries.find(e=>e.id===journal.state.active);if(!active)return false;await dispatch(chatId,{type:'CANCEL',invocationRef:active.intent.invocationRef,pauseQueue:true,observedStopPolicyVersion:journal.state.stopPolicy});return true;}
  return {dispatch,snapshot,refresh,cancelCurrent,async idle(chatId){await pumps.get(chatId);},dispose(){disposed=true;lifetime.abort();for(const active of running.values())active.controller.abort();},get activeCount(){return running.size;}};
 }
