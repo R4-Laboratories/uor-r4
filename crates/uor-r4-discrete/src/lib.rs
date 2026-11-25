@@ -2,7 +2,6 @@
 //! Static geometry compilation is a build dependency, excluded from the runtime graph.
 //! The routing atlas is one sixteen-root E8 orbit; this is not full-orbit learnability.
 pub mod address_cells;
-pub mod e_means;
 pub mod address_key_grade;
 pub mod attention_anchor;
 pub mod attention_anchor_device;
@@ -21,10 +20,6 @@ pub mod corpus;
 pub mod coverage_census;
 #[cfg(all(test, feature = "cuda"))]
 mod cpu_oracle_parity;
-#[cfg(all(test, feature = "cuda"))]
-mod pick_read_cuda;
-#[cfg(all(test, feature = "cuda"))]
-mod student_throughput;
 pub mod d11_export;
 pub mod decomposition;
 #[cfg(test)]
@@ -34,22 +29,17 @@ pub mod device;
 #[cfg(feature = "cuda")]
 pub mod driver_qualification;
 pub mod driver_source_pin;
-#[cfg(feature = "cuda")]
-pub mod measurement;
-pub mod metadata;
-pub mod native_vector;
-#[cfg(feature = "cuda")]
-pub mod native_vector_device;
+pub mod e_means;
 pub mod equal_count;
 #[cfg(feature = "cuda")]
 pub mod equal_count_device;
 pub mod kn_ceiling;
-pub mod kn_pick;
 pub mod kn_filter;
 #[cfg(all(test, feature = "cuda"))]
 mod kn_lookup_cuda;
 #[cfg(feature = "cuda")]
 pub mod kn_lookup_device;
+pub mod kn_pick;
 pub mod kn_score;
 #[cfg(all(test, feature = "cuda"))]
 mod kn_score_cuda;
@@ -57,6 +47,12 @@ mod kn_score_cuda;
 pub mod kn_score_device;
 #[cfg(test)]
 mod kn_score_oracle;
+#[cfg(feature = "cuda")]
+pub mod measurement;
+pub mod metadata;
+pub mod native_vector;
+#[cfg(feature = "cuda")]
+pub mod native_vector_device;
 pub mod ngram_count;
 #[cfg(all(test, feature = "cuda"))]
 mod ngram_count_cuda;
@@ -67,13 +63,18 @@ pub mod ngram_count_oracle;
 pub mod normalization_mechanism;
 pub mod objective;
 pub mod order_slice;
+#[cfg(all(test, feature = "cuda"))]
+mod pick_read_cuda;
 pub mod position_mechanism;
 pub mod proposal_timing;
 pub mod q4_import;
 pub mod rows_source;
 pub mod rowsk_source;
+pub mod s3_state_rows;
 pub mod snapshot;
 pub mod stage_t;
+#[cfg(all(test, feature = "cuda"))]
+mod student_throughput;
 pub use objective::ObjectivePolicy;
 pub mod training;
 pub mod trunk;

@@ -1404,3 +1404,473 @@ fn embedded_uorknc03_deployment_streaming_roundtrip_parity_and_refusal() {
 
     let _ = fs::remove_dir_all(&dir);
 }
+
+#[cfg(feature = "p1-count-serving")]
+#[test]
+fn uors3t01_e8_parity_starling_miss_equal_byte_arms_and_refusals() {
+    use sha2::{Digest, Sha256};
+    use uor_r4_count_runtime::s3_state::{
+        build_equal_byte_s3_table, e8_root_coords_2x, e8_root_neighbours_56, e8_snap_240,
+        encode_uors3t01, encoded_s3_bytes, output_pick_score_q16, random_transport_blocks,
+        s3_primary_key, starling_k_neighbours, S3AddressArm, S3HitKind, S3StateTable, S3_Q16_ONE,
+        S3_Q48_ONE, S3_VOCABULARY,
+    };
+    use uor_r4_integer::fbs_address::{e8_cell, ADDRESS_SHARED_BLOCKS};
+
+    // 1. Bit-exact Conway-Sloane E8 parity against uor_r4_integer::fbs_address::e8_cell
+    // across all 12 shared boundary blocks, extremes, and 10,000 deterministic blocks.
+    for block in &ADDRESS_SHARED_BLOCKS {
+        assert_eq!(u32::from(e8_snap_240(block)), e8_cell(block));
+    }
+    for extreme in [
+        [i32::MIN; 8],
+        [i32::MAX; 8],
+        [i32::MIN, i32::MAX, 0, -1, 1, i32::MIN / 2, i32::MAX / 2, 0],
+    ] {
+        assert_eq!(u32::from(e8_snap_240(&extreme)), e8_cell(&extreme));
+    }
+    let mut rng = 0xD85_5300_2026_1125u64;
+    for round in 0..10_000 {
+        let range = match round % 3 {
+            0 => i64::from(u16::MAX),
+            1 => 1i64 << 20,
+            _ => 9i64,
+        };
+        let mut block = [0i32; 8];
+        for dst in &mut block {
+            rng = rng.wrapping_add(0x9E37_79B9_7F4A_7C15);
+            let mut z = rng;
+            z = (z ^ (z >> 30)).wrapping_mul(0xBF58_476D_1CE4_E5B9);
+            z = (z ^ (z >> 27)).wrapping_mul(0x94D0_49BB_1331_11EB);
+            let v = z ^ (z >> 31);
+            *dst = ((v % (range as u64 + 1)) as i64 - range / 2) as i32;
+        }
+        assert_eq!(u32::from(e8_snap_240(&block)), e8_cell(&block));
+    }
+
+    // 2. Linear Q16 output Pick scores across all 5 E8 dot_2x shells {-8, -4, 0, 4, 8}.
+    let nb_r0 = e8_root_neighbours_56(0).unwrap()[0];
+    let c0 = e8_root_coords_2x(0).unwrap();
+    let opp0 = (0u8..240u8)
+        .find(|&r| {
+            let cr = e8_root_coords_2x(r).unwrap();
+            cr.iter().zip(c0.iter()).all(|(&a, &b)| a == -b)
+        })
+        .unwrap();
+    let orth0 = (0u8..240u8)
+        .find(|&r| {
+            let cr = e8_root_coords_2x(r).unwrap();
+            let d: i32 = cr
+                .iter()
+                .zip(c0.iter())
+                .map(|(&a, &b)| i32::from(a) * i32::from(b))
+                .sum();
+            d == 0
+        })
+        .unwrap();
+    let neg_adj0 = (0u8..240u8)
+        .find(|&r| {
+            let cr = e8_root_coords_2x(r).unwrap();
+            let d: i32 = cr
+                .iter()
+                .zip(c0.iter())
+                .map(|(&a, &b)| i32::from(a) * i32::from(b))
+                .sum();
+            d == -4
+        })
+        .unwrap();
+    assert_eq!(output_pick_score_q16(0, opp0).unwrap(), 16_384);
+    assert_eq!(output_pick_score_q16(0, neg_adj0).unwrap(), 28_672);
+    assert_eq!(output_pick_score_q16(0, orth0).unwrap(), 40_960);
+    assert_eq!(output_pick_score_q16(0, nb_r0).unwrap(), 53_248);
+    assert_eq!(output_pick_score_q16(0, 0).unwrap(), S3_Q16_ONE);
+
+    // 3. UORS3T01 round-trip, Starling miss, and fair equal-byte arms (including random_transport_blocks).
+    let mut token_roots = [0u8; S3_VOCABULARY];
+    for (i, slot) in token_roots.iter_mut().enumerate() {
+        *slot = (i * 7 % 240) as u8;
+    }
+    let train_sha = [0xA5u8; 32];
+    let blk_a = ADDRESS_SHARED_BLOCKS[1];
+    let blk_b = ADDRESS_SHARED_BLOCKS[2];
+    let ra = e8_snap_240(&blk_a);
+    let nb = e8_root_neighbours_56(ra).unwrap()[0];
+    let nb_coords = e8_root_coords_2x(nb).unwrap();
+    let mut blk_a_miss = [0i32; 8];
+    for (dst, (&orig, &alt)) in blk_a_miss
+        .iter_mut()
+        .zip(blk_a.iter().zip(nb_coords.iter()))
+    {
+        *dst = orig / 8 + i32::from(alt) * 32_768;
+    }
+    assert!(
+        starling_k_neighbours(&blk_a_miss, e8_snap_240(&blk_a_miss), 7)
+            .unwrap()
+            .contains(&ra)
+    );
+
+    let p0 = &[0u16, 10][..];
+    let p1 = &[0u16, 11][..];
+    let p2 = &[0u16, 12][..];
+    let obs = [
+        (&blk_a, &blk_b, p0, 50u16),
+        (&blk_a, &blk_b, p0, 50u16),
+        (&blk_a, &blk_b, p1, 50u16),
+        (&blk_a_miss, &blk_b, p2, 60u16),
+    ];
+    let rt0 = random_transport_blocks(42, p0).unwrap();
+    let rt1 = random_transport_blocks(42, p1).unwrap();
+    let rt2 = random_transport_blocks(42, p2).unwrap();
+    assert_ne!(
+        S3AddressArm::E8Product
+            .context_keys(&blk_a, &blk_b, p0)
+            .unwrap(),
+        S3AddressArm::RandomTransport { seed: 42 }
+            .context_keys(&rt0.0, &rt0.1, p0)
+            .unwrap()
+    );
+    let rt_obs = [
+        (&rt0.0, &rt0.1, p0, 50u16),
+        (&rt0.0, &rt0.1, p0, 50u16),
+        (&rt1.0, &rt1.1, p1, 50u16),
+        (&rt2.0, &rt2.1, p2, 60u16),
+    ];
+
+    let budget = 72 + 4096 + 128;
+    for (arm, bytes) in [
+        (
+            S3AddressArm::E8Product,
+            build_equal_byte_s3_table(
+                S3AddressArm::E8Product,
+                train_sha,
+                Some(token_roots),
+                &obs,
+                budget,
+            )
+            .unwrap(),
+        ),
+        (
+            S3AddressArm::TokenContext { k: 6 },
+            build_equal_byte_s3_table(
+                S3AddressArm::TokenContext { k: 6 },
+                train_sha,
+                None,
+                &obs,
+                budget,
+            )
+            .unwrap(),
+        ),
+        (
+            S3AddressArm::RandomTransport { seed: 42 },
+            build_equal_byte_s3_table(
+                S3AddressArm::RandomTransport { seed: 42 },
+                train_sha,
+                None,
+                &rt_obs,
+                budget,
+            )
+            .unwrap(),
+        ),
+        (
+            S3AddressArm::SplitMixPrefix { seed: 42 },
+            build_equal_byte_s3_table(
+                S3AddressArm::SplitMixPrefix { seed: 42 },
+                train_sha,
+                None,
+                &obs,
+                budget,
+            )
+            .unwrap(),
+        ),
+    ] {
+        assert!(bytes.len() <= budget);
+        let decoded =
+            S3StateTable::from_bytes(&bytes, train_sha, Sha256::digest(&bytes).into()).unwrap();
+        assert_eq!(decoded.arm(), arm);
+    }
+
+    // RandomTransport rejects Some(token_roots) and exercises ExactPrimary / ExactBackoff / UniformFallback without StarlingMiss.
+    assert!(build_equal_byte_s3_table(
+        S3AddressArm::RandomTransport { seed: 42 },
+        train_sha,
+        Some(token_roots),
+        &rt_obs,
+        budget,
+    )
+    .is_err());
+    let full_rt = build_equal_byte_s3_table(
+        S3AddressArm::RandomTransport { seed: 42 },
+        train_sha,
+        None,
+        &rt_obs[..3],
+        4096,
+    )
+    .unwrap();
+    let rt_tab =
+        S3StateTable::from_bytes(&full_rt, train_sha, Sha256::digest(&full_rt).into()).unwrap();
+    assert!(!rt_tab.has_token_roots());
+    let rt_prim = rt_tab.lookup_q48(&rt0.0, &rt0.1, p0, 50).unwrap();
+    assert_eq!(rt_prim.hit_kind, S3HitKind::ExactPrimary);
+    assert_eq!(rt_prim.predicted_root, 0);
+    assert_eq!(rt_prim.output_pick_q16, S3_Q16_ONE);
+    let rt_back = rt_tab.lookup_q48(&rt0.0, &rt0.1, &[0, 99], 50).unwrap();
+    assert_eq!(rt_back.hit_kind, S3HitKind::ExactBackoff);
+    assert_eq!(rt_back.output_pick_q16, S3_Q16_ONE);
+    let rt0_nb_coords =
+        e8_root_coords_2x(e8_root_neighbours_56(e8_snap_240(&rt0.0)).unwrap()[0]).unwrap();
+    let mut rt0_miss_blk = [0i32; 8];
+    for (dst, (&orig, &alt)) in rt0_miss_blk
+        .iter_mut()
+        .zip(rt0.0.iter().zip(rt0_nb_coords.iter()))
+    {
+        *dst = orig / 8 + i32::from(alt) * 32_768;
+    }
+    let rt_unif = rt_tab
+        .lookup_q48(&rt0_miss_blk, &rt0.1, &[0, 99], 50)
+        .unwrap();
+    assert_eq!(rt_unif.hit_kind, S3HitKind::UniformFallback);
+    assert_eq!(rt_unif.predicted_root, 0);
+    assert_eq!(rt_unif.output_pick_q16, S3_Q16_ONE);
+
+    // SplitMixPrefix position invariance across distinct prefixes sharing 16 trailing tokens + lookup_q48 checks.
+    let suffix16: Vec<u16> = (100..116).collect();
+    let mut padded = vec![5u16, 7u16, 9u16];
+    padded.extend_from_slice(&suffix16);
+    assert_eq!(
+        S3AddressArm::SplitMixPrefix { seed: 99 }
+            .context_keys(&blk_a, &blk_b, &suffix16)
+            .unwrap(),
+        S3AddressArm::SplitMixPrefix { seed: 99 }
+            .context_keys(&blk_a, &blk_b, &padded)
+            .unwrap()
+    );
+    let full_sm = build_equal_byte_s3_table(
+        S3AddressArm::SplitMixPrefix { seed: 42 },
+        train_sha,
+        None,
+        &obs[..3],
+        4096,
+    )
+    .unwrap();
+    let sm_tab =
+        S3StateTable::from_bytes(&full_sm, train_sha, Sha256::digest(&full_sm).into()).unwrap();
+    let sm_prim = sm_tab.lookup_q48(&blk_a, &blk_b, p0, 50).unwrap();
+    assert_eq!(sm_prim.hit_kind, S3HitKind::ExactPrimary);
+    assert_eq!(sm_prim.output_pick_q16, S3_Q16_ONE);
+    let sm_unif = sm_tab.lookup_q48(&blk_a, &blk_b, &[999, 888], 50).unwrap();
+    assert_eq!(sm_unif.hit_kind, S3HitKind::UniformFallback);
+    assert_eq!(sm_unif.output_pick_q16, S3_Q16_ONE);
+
+    // TokenContext k=1, k=2 (including &[42] vs &[0, 42] sentinel 4096), k=6 collision-free & zero token_e8_roots tax.
+    let tc1 = S3AddressArm::TokenContext { k: 1 };
+    let tc2 = S3AddressArm::TokenContext { k: 2 };
+    let k1_keys = tc1.context_keys(&blk_a, &blk_b, &[9, 42]).unwrap();
+    assert_eq!(k1_keys.0, s3_primary_key(0, 42));
+    assert_eq!(k1_keys.1, None);
+    let k2_keys = tc2.context_keys(&blk_a, &blk_b, &[9, 42]).unwrap();
+    assert_eq!(k2_keys.0, s3_primary_key(9, 42));
+    assert_eq!(k2_keys.1, Some(42));
+    let k2_short = tc2.context_keys(&blk_a, &blk_b, &[42]).unwrap();
+    let k2_bos = tc2.context_keys(&blk_a, &blk_b, &[0, 42]).unwrap();
+    assert_ne!(k2_short.0, k2_bos.0);
+    assert_eq!(k2_short.0, s3_primary_key(S3_VOCABULARY as u16, 42));
+    assert_eq!(k2_bos.0, s3_primary_key(0, 42));
+
+    let full_tc2 = build_equal_byte_s3_table(tc2, train_sha, None, &obs[..3], 4096).unwrap();
+    let tc2_tab =
+        S3StateTable::from_bytes(&full_tc2, train_sha, Sha256::digest(&full_tc2).into()).unwrap();
+    let tc2_prim = tc2_tab.lookup_q48(&blk_a, &blk_b, p0, 50).unwrap();
+    assert_eq!(tc2_prim.hit_kind, S3HitKind::ExactPrimary);
+    assert_eq!(tc2_prim.output_pick_q16, S3_Q16_ONE);
+    let tc2_back = tc2_tab.lookup_q48(&blk_a, &blk_b, &[55, 10], 50).unwrap();
+    assert_eq!(tc2_back.hit_kind, S3HitKind::ExactBackoff);
+    let tc2_unif = tc2_tab.lookup_q48(&blk_a, &blk_b, &[55, 777], 50).unwrap();
+    assert_eq!(tc2_unif.hit_kind, S3HitKind::UniformFallback);
+
+    let full_tc6 = build_equal_byte_s3_table(
+        S3AddressArm::TokenContext { k: 6 },
+        train_sha,
+        None,
+        &obs[..3],
+        4096,
+    )
+    .unwrap();
+    let tc6_tab =
+        S3StateTable::from_bytes(&full_tc6, train_sha, Sha256::digest(&full_tc6).into()).unwrap();
+    assert_eq!(
+        tc6_tab.lookup_q48(&blk_a, &blk_b, p0, 50).unwrap().hit_kind,
+        S3HitKind::ExactPrimary
+    );
+    assert_eq!(
+        tc6_tab
+            .lookup_q48(&blk_a, &blk_b, &[88, 10], 50)
+            .unwrap()
+            .hit_kind,
+        S3HitKind::ExactBackoff
+    );
+
+    // snap_i64_accum high-count scaling (count = u32::MAX forces right-shift > 0 without i32 overflow).
+    let (big_pk, _, _, _) = S3AddressArm::E8Product
+        .context_keys(&blk_a, &blk_b, &[0, 10])
+        .unwrap();
+    let big_bytes = encode_uors3t01(
+        S3AddressArm::E8Product,
+        train_sha,
+        Some(token_roots),
+        &[(big_pk, &[(50, u32::MAX, 0)])],
+        &[],
+    )
+    .unwrap();
+    let big_tab =
+        S3StateTable::from_bytes(&big_bytes, train_sha, Sha256::digest(&big_bytes).into()).unwrap();
+    let big_res = big_tab.lookup_q48(&blk_a, &blk_b, &[0, 10], 50).unwrap();
+    assert_eq!(big_res.predicted_root, token_roots[50]);
+    assert_eq!(big_res.output_pick_q16, S3_Q16_ONE);
+
+    let full_e8 = build_equal_byte_s3_table(
+        S3AddressArm::E8Product,
+        train_sha,
+        Some(token_roots),
+        &obs[..3],
+        8192,
+    )
+    .unwrap();
+    let table =
+        S3StateTable::from_bytes(&full_e8, train_sha, Sha256::digest(&full_e8).into()).unwrap();
+    let exact = table.lookup_q48(&blk_a, &blk_b, &[0, 10], 50).unwrap();
+    assert_eq!(exact.hit_kind, S3HitKind::ExactPrimary);
+    assert_eq!(exact.mass_q48, S3_Q48_ONE);
+    assert_eq!(
+        exact.output_pick_q16,
+        output_pick_score_q16(exact.predicted_root, token_roots[50]).unwrap()
+    );
+    let hit_other_target = table.lookup_q48(&blk_a, &blk_b, &[0, 10], 77).unwrap();
+    assert_eq!(hit_other_target.hit_kind, S3HitKind::ExactPrimary);
+    assert_eq!(hit_other_target.mass_q48, 1);
+    let starling = table.lookup_q48(&blk_a_miss, &blk_b, &[0, 99], 50).unwrap();
+    assert_eq!(starling.hit_kind, S3HitKind::StarlingMiss);
+    assert_eq!(starling.mass_q48, S3_Q48_ONE);
+    let far = [99_999, -99_999, 99_999, -99_999, 1, 2, 3, 4];
+    let uniform = table.lookup_q48(&far, &far, &[0, 99], 50).unwrap();
+    assert_eq!(uniform.hit_kind, S3HitKind::UniformFallback);
+    assert_eq!(uniform.mass_q48, S3_Q48_ONE / (S3_VOCABULARY as u64));
+
+    // 4. Planted fail-closed & overflow-safety refusals.
+    assert!(encoded_s3_bytes(true, usize::MAX / 18 + 1, 0, 0, 0).is_err());
+    assert!(S3StateTable::from_bytes(&full_e8, train_sha, [0u8; 32]).is_err());
+    assert!(
+        S3StateTable::from_bytes(&full_e8, [0u8; 32], Sha256::digest(&full_e8).into()).is_err()
+    );
+    let mut bad_magic = full_e8.clone();
+    bad_magic[0] ^= 1;
+    assert!(
+        S3StateTable::from_bytes(&bad_magic, train_sha, Sha256::digest(&bad_magic).into()).is_err()
+    );
+    let mut bad_ver = full_e8.clone();
+    bad_ver[8] = 2;
+    assert!(
+        S3StateTable::from_bytes(&bad_ver, train_sha, Sha256::digest(&bad_ver).into()).is_err()
+    );
+    let mut bad_flags = full_e8.clone();
+    bad_flags[14] = 2;
+    assert!(
+        S3StateTable::from_bytes(&bad_flags, train_sha, Sha256::digest(&bad_flags).into()).is_err()
+    );
+    let mut bad_arm_flag = full_e8.clone();
+    bad_arm_flag[14] = 0; // E8Product requires flags & 1 != 0
+    assert!(S3StateTable::from_bytes(
+        &bad_arm_flag,
+        train_sha,
+        Sha256::digest(&bad_arm_flag).into()
+    )
+    .is_err());
+    let mut bad_arm = full_e8.clone();
+    bad_arm[12] = 9;
+    assert!(
+        S3StateTable::from_bytes(&bad_arm, train_sha, Sha256::digest(&bad_arm).into()).is_err()
+    );
+    let mut trailing = full_e8.clone();
+    trailing.push(0);
+    assert!(
+        S3StateTable::from_bytes(&trailing, train_sha, Sha256::digest(&trailing).into()).is_err()
+    );
+    let mut bad_root = full_e8.clone();
+    bad_root[72] = 240;
+    assert!(
+        S3StateTable::from_bytes(&bad_root, train_sha, Sha256::digest(&bad_root).into()).is_err()
+    );
+    let mut trunc = full_e8.clone();
+    trunc.pop();
+    assert!(S3StateTable::from_bytes(&trunc, train_sha, Sha256::digest(&trunc).into()).is_err());
+
+    // Crafted 32-bit multiplication-wrap overflow payload must fail closed cleanly.
+    let mut ovf = vec![0u8; 72];
+    ovf[..8].copy_from_slice(b"UORS3T01");
+    ovf[8..12].copy_from_slice(&1u32.to_le_bytes());
+    ovf[12] = 1; // TokenContext
+    ovf[13] = 1; // k=1
+    ovf[24..56].copy_from_slice(&train_sha);
+    ovf[56..60].copy_from_slice(&0x8000_0000u32.to_le_bytes());
+    assert!(S3StateTable::from_bytes(&ovf, train_sha, Sha256::digest(&ovf).into()).is_err());
+
+    // Corrupted primary last_token >= 4096, row_len == 0, total != sum, count == 0, next_token >= 4096, unsorted.
+    let valid_tc = S3StateTable::encode_bytes(
+        S3AddressArm::TokenContext { k: 2 },
+        train_sha,
+        None,
+        &[
+            (s3_primary_key(1, 10), &[(5, 3, 0), (6, 2, 0)]),
+            (s3_primary_key(2, 10), &[(7, 1, 0)]),
+        ],
+        &[(10, &[(5, 6, 0)])],
+    )
+    .unwrap();
+    let mut bad_lt = valid_tc.clone();
+    bad_lt[72] = 0;
+    bad_lt[73] = 0x10; // last_tok = 4096
+    assert!(S3StateTable::from_bytes(&bad_lt, train_sha, Sha256::digest(&bad_lt).into()).is_err());
+
+    let mut bad_tot = valid_tc.clone();
+    bad_tot[72 + 4] ^= 1; // corrupt context total
+    assert!(
+        S3StateTable::from_bytes(&bad_tot, train_sha, Sha256::digest(&bad_tot).into()).is_err()
+    );
+
+    let mut bad_rlen = valid_tc.clone();
+    bad_rlen[72 + 16] = 0;
+    bad_rlen[72 + 17] = 0; // row_len = 0
+    assert!(
+        S3StateTable::from_bytes(&bad_rlen, train_sha, Sha256::digest(&bad_rlen).into()).is_err()
+    );
+
+    // First primary row starts at 72 + 2*18 = 108.
+    let mut bad_cnt0 = valid_tc.clone();
+    bad_cnt0[108 + 2..108 + 6].copy_from_slice(&0u32.to_le_bytes());
+    assert!(
+        S3StateTable::from_bytes(&bad_cnt0, train_sha, Sha256::digest(&bad_cnt0).into()).is_err()
+    );
+
+    let mut bad_ntok = valid_tc.clone();
+    bad_ntok[108..110].copy_from_slice(&4096u16.to_le_bytes());
+    assert!(
+        S3StateTable::from_bytes(&bad_ntok, train_sha, Sha256::digest(&bad_ntok).into()).is_err()
+    );
+
+    let mut unsorted_rows = valid_tc.clone();
+    unsorted_rows[108..110].copy_from_slice(&8u16.to_le_bytes()); // row0 next_token 8 > row1 6
+    assert!(S3StateTable::from_bytes(
+        &unsorted_rows,
+        train_sha,
+        Sha256::digest(&unsorted_rows).into()
+    )
+    .is_err());
+
+    let mut unsorted_ctx = valid_tc.clone();
+    unsorted_ctx[72..76].copy_from_slice(&s3_primary_key(2, 10).to_le_bytes());
+    assert!(S3StateTable::from_bytes(
+        &unsorted_ctx,
+        train_sha,
+        Sha256::digest(&unsorted_ctx).into()
+    )
+    .is_err());
+}

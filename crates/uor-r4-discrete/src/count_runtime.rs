@@ -8,7 +8,6 @@ pub mod ngram_count {
     use crate::{invalid, Result};
     include!("kn_ceiling/runtime/key.rs");
     include!("kn_ceiling/runtime/count_words.rs");
-
 }
 pub mod kn_score {
     use crate::{
@@ -41,6 +40,12 @@ mod kn_ceiling {
 pub use kn_ceiling::{
     compact::CompactCountLookup, frozen_pick::FrozenPickMixture, PickClassRule, PickTarget,
 };
+
+pub mod s3_state {
+    use crate::{invalid, Result};
+    use sha2::{Digest, Sha256};
+    include!("kn_ceiling/runtime/s3_state.rs");
+}
 
 #[derive(Debug)]
 pub struct Error(String);
