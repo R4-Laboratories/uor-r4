@@ -1,0 +1,266 @@
+{
+  "arms": {
+    "a0": {
+      "all": {
+        "bits_q12": "259345936468",
+        "bpb_micro": "1461372",
+        "bytes": 43326982,
+        "targets": 21349576
+      },
+      "by_class_targets_hits": [
+        [
+          21349576,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "manifest_sha256": "95b17f7bbb9059f4542f3505a9e7aeca5315bc540b8327a0d0a882cb8710e4c8",
+      "native_count_and_mix_probes": 13607,
+      "novel": {
+        "bits_q12": "228573306501",
+        "bpb_micro": "1781264",
+        "bytes": 31328319,
+        "targets": 14795227
+      },
+      "novel_response": {
+        "bits_q12": "218943766865",
+        "bpb_micro": "1783863",
+        "bytes": 29964782,
+        "targets": 14190847
+      },
+      "response": {
+        "bits_q12": "245460754351",
+        "bpb_micro": "1577215",
+        "bytes": 37995416,
+        "targets": 18751676
+      },
+      "seal_sha256": "5eddd7837bb67ed3b58b5a1262d711ade186719cc6a57ff31cc45d0042186b5b",
+      "weight_sha256": "9ec8168a20f250ef089db1b55d94b02f248d1ec39ee4f51d9692d98ee6be9c37"
+    },
+    "a1s": {
+      "all": {
+        "bits_q12": "246099676775",
+        "bpb_micro": "1386732",
+        "bytes": 43326982,
+        "targets": 21349576
+      },
+      "by_class_targets_hits": [
+        [
+          10642,
+          0
+        ],
+        [
+          8114555,
+          4440202
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          74374,
+          12945
+        ],
+        [
+          13150005,
+          1006755
+        ]
+      ],
+      "manifest_sha256": "26f8f2225a8a0735400a647e37f2f97d86cde9f2de8d847ef791469a6d6b02ec",
+      "native_count_and_mix_probes": 13607,
+      "novel": {
+        "bits_q12": "215795693587",
+        "bpb_micro": "1681689",
+        "bytes": 31328319,
+        "targets": 14795227
+      },
+      "novel_response": {
+        "bits_q12": "206793243553",
+        "bpb_micro": "1684865",
+        "bytes": 29964782,
+        "targets": 14190847
+      },
+      "response": {
+        "bits_q12": "232903228375",
+        "bpb_micro": "1496526",
+        "bytes": 37995416,
+        "targets": 18751676
+      },
+      "seal_sha256": "b6e9ac04006100922873d86562d6f525a9e5b73c713ca15d2dd329294d798071",
+      "weight_sha256": "e2fbf41d38d9dbe3449cdbb85c8bd335c5ee1f803e35bc7993070d65c0d33293"
+    }
+  },
+  "bands": {
+    "a0_minus_rstar": {
+      "all": {
+        "micro_bpb": [
+          "41360",
+          "45051"
+        ],
+        "q12": [
+          "7340161370",
+          "7994976041"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      },
+      "novel": {
+        "micro_bpb": [
+          "36142",
+          "38826"
+        ],
+        "q12": [
+          "4637872375",
+          "4982058792"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      }
+    },
+    "a1s_minus_103pct_rstar": {
+      "all": {
+        "micro_bpb": [
+          "-78439",
+          "-69377"
+        ],
+        "q12": [
+          "-1392034591777",
+          "-1231222513219"
+        ],
+        "scale_x": 100,
+        "scale_y": 103,
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-120152",
+          "-108093"
+        ],
+        "q12": [
+          "-1541796179738",
+          "-1387062970114"
+        ],
+        "scale_x": 100,
+        "scale_y": 103,
+        "strictly_below_zero": true
+      }
+    },
+    "a1s_minus_a0": {
+      "all": {
+        "micro_bpb": [
+          "-78294",
+          "-70727"
+        ],
+        "q12": [
+          "-13894470044",
+          "-12551877221"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-104592",
+          "-94299"
+        ],
+        "q12": [
+          "-13421261716",
+          "-12100534859"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      }
+    },
+    "a1s_minus_rstar": {
+      "all": {
+        "micro_bpb": [
+          "-35024",
+          "-27966"
+        ],
+        "q12": [
+          "-6215465381",
+          "-4963096108"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-66755",
+          "-57460"
+        ],
+        "q12": [
+          "-8566039858",
+          "-7373351062"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      }
+    }
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 4390
+  },
+  "census_sha256": "ec048217ac64f05a6519d7e38dd2fabf6e244eca8009b24476b3870cbc0f73f2",
+  "compact_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+  "deploy_artifact_sha256": "dd217c0de241f725925e62fdcecab2a78cfc4829e080200e2de708a1e5c57d05",
+  "dev_test_tape_sha256": "f0e3432d3ecede6b54ae1d4782dd6a9ea87da280d2a8d04f456f88b2fc6a9951",
+  "dev_test_uort_sha256": "023784b74c98a796401a064d50bf2f83f2f8eb95ab8bbead1cbe2aec6e7a176b",
+  "go_sha256": "a343b63fdded4c620819d5aab77ae1cbf24a3404f185712001bf3ce50178ac36",
+  "p1b_gate": {
+    "a1s_over_rstar_micro_all": "977855",
+    "a1s_over_rstar_micro_novel": "964411",
+    "deploy_artifact_bytes": 3891016460,
+    "deploy_artifact_sha256": "dd217c0de241f725925e62fdcecab2a78cfc4829e080200e2de708a1e5c57d05",
+    "deploy_tokenizer_bytes": 265393,
+    "deployed_bytes_with_tokenizer": 3891281853,
+    "passes_103pct_all": true,
+    "passes_103pct_novel": true,
+    "verdict": "PASS",
+    "within_4gb_cap": true
+  },
+  "phase": "DEV-test P1(b) UORKNC03 paired evaluation",
+  "records": 5321,
+  "rows": 21349576,
+  "rstar": {
+    "all": {
+      "bits_q12": "251672950854",
+      "bpb_micro": "1418136",
+      "bytes": 43326982,
+      "targets": 21349576
+    },
+    "masses_at_floor": 4,
+    "masses_sha256": "59f076093c51b15469b55b01821947b7c51d8038e68d834465e29be72d56f8de",
+    "novel": {
+      "bits_q12": "223758978608",
+      "bpb_micro": "1743746",
+      "bytes": 31328319,
+      "targets": 14795227
+    },
+    "threshold_103pct_all_bpb_micro": "1460680",
+    "threshold_103pct_novel_bpb_micro": "1796059"
+  },
+  "schema": "uor-r4.antigravity-5.p1b-devtest/1"
+}

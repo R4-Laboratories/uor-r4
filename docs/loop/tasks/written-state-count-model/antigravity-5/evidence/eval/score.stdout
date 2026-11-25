@@ -1,0 +1,12 @@
+{
+  "a1s_over_rstar_micro_all": "977855",
+  "a1s_over_rstar_micro_novel": "964411",
+  "deploy_artifact_bytes": 3891016460,
+  "deploy_artifact_sha256": "dd217c0de241f725925e62fdcecab2a78cfc4829e080200e2de708a1e5c57d05",
+  "deploy_tokenizer_bytes": 265393,
+  "deployed_bytes_with_tokenizer": 3891281853,
+  "passes_103pct_all": true,
+  "passes_103pct_novel": true,
+  "verdict": "PASS",
+  "within_4gb_cap": true
+}
