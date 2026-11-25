@@ -12,7 +12,9 @@ use std::process;
 use uor_r4_integer::bundle::{create_test_bundle_with_byte_vocab, Bundle};
 use uor_r4_integer::config::ReadMode;
 #[cfg(feature = "p1-count-serving")]
-use uor_r4_integer::discrete_d11::count_deployment::{self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA};
+use uor_r4_integer::discrete_d11::count_deployment::{
+    self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA,
+};
 use uor_r4_integer::discrete_d11::pair_rank;
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
@@ -413,7 +415,9 @@ fn print_usage() {
         "      --prompt-ids <CSV>      step comma-separated token IDs on --stack or --discrete,"
     );
     eprintln!("                              print a JSON record and exit");
-    eprintln!("      --contextual-source-trace  include native candidate geometry and source decisions");
+    eprintln!(
+        "      --contextual-source-trace  include native candidate geometry and source decisions"
+    );
     eprintln!(
         "      --script <PATH>         run a JSON dialogue script on --stack and print a record"
     );
@@ -445,8 +449,12 @@ fn print_usage() {
     eprintln!(
         "      --pair-experts <FILE>   pair experts table that checks each --stack text reply;\n                              needs --place-asks, --pair-cap, --pair-keep and --pair-floor"
     );
-    eprintln!("      --pair-cap <INT>        an expert seen more than this many times does not vote");
-    eprintln!("      --pair-keep <NUM/DEN>   share of the top vote the model's reply keeps to stand");
+    eprintln!(
+        "      --pair-cap <INT>        an expert seen more than this many times does not vote"
+    );
+    eprintln!(
+        "      --pair-keep <NUM/DEN>   share of the top vote the model's reply keeps to stand"
+    );
     eprintln!(
         "      --pair-floor <INT>      top vote the experts need to answer, in thousandths of one vote"
     );
@@ -744,7 +752,9 @@ fn parse_cli_args() -> CliArgs {
                     Some("0") => args.place_serve_again = Some(false),
                     Some("1") => args.place_serve_again = Some(true),
                     _ => {
-                        eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--place-serve-again' takes 0 or 1");
+                        eprintln!(
+                            "{ANSI_RED_BOLD}error:{ANSI_RESET} '--place-serve-again' takes 0 or 1"
+                        );
                         process::exit(1);
                     }
                 }
@@ -759,9 +769,12 @@ fn parse_cli_args() -> CliArgs {
                     }
                 }
             }
-            flag @ ("--pair-experts" | "--pair-cap" | "--pair-keep" | "--pair-floor" | "--pair-hold-out") => {
+            flag @ ("--pair-experts" | "--pair-cap" | "--pair-keep" | "--pair-floor"
+            | "--pair-hold-out") => {
                 idx += 1;
-                if let Err(message) = parse_pair_flag(&mut args, flag, raw.get(idx).map(String::as_str)) {
+                if let Err(message) =
+                    parse_pair_flag(&mut args, flag, raw.get(idx).map(String::as_str))
+                {
                     eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} {message}");
                     process::exit(1);
                 }
@@ -1049,13 +1062,17 @@ fn parse_cli_args() -> CliArgs {
         );
         process::exit(1);
     }
-    if args.print_place && (args.stack_path.is_none() || args.prompt_ids.is_some() || args.serve.is_some()) {
+    if args.print_place
+        && (args.stack_path.is_none() || args.prompt_ids.is_some() || args.serve.is_some())
+    {
         eprintln!(
             "{ANSI_RED_BOLD}error:{ANSI_RESET} '--print-place' requires text replies on '--stack' (the REPL, '--say' or '--script')"
         );
         process::exit(1);
     }
-    if args.place_serve_again.is_some() && (args.place_asks.is_none() || args.prompt_ids.is_some() || args.serve.is_some()) {
+    if args.place_serve_again.is_some()
+        && (args.place_asks.is_none() || args.prompt_ids.is_some() || args.serve.is_some())
+    {
         eprintln!(
             "{ANSI_RED_BOLD}error:{ANSI_RESET} '--place-serve-again' requires '--place-asks' and text replies on '--stack' (the REPL, '--say' or '--script')"
         );
@@ -1170,14 +1187,23 @@ fn parse_unended(value: Option<&str>) -> std::result::Result<Unended, String> {
 
 /// Refuse `--unended` where no stack chat keeps a conversation (claude-369).
 fn check_unended_args(args: &CliArgs) -> std::result::Result<(), String> {
-    if args.unended.is_some() && (args.stack_path.is_none() || args.prompt_ids.is_some() || args.serve.is_some()) {
-        return Err("'--unended' requires text replies on '--stack' (the REPL, '--say' or '--script')".into());
+    if args.unended.is_some()
+        && (args.stack_path.is_none() || args.prompt_ids.is_some() || args.serve.is_some())
+    {
+        return Err(
+            "'--unended' requires text replies on '--stack' (the REPL, '--say' or '--script')"
+                .into(),
+        );
     }
     Ok(())
 }
 
 /// Read one pair experts flag's value into `args` (claude-367).
-fn parse_pair_flag(args: &mut CliArgs, flag: &str, value: Option<&str>) -> std::result::Result<(), String> {
+fn parse_pair_flag(
+    args: &mut CliArgs,
+    flag: &str,
+    value: Option<&str>,
+) -> std::result::Result<(), String> {
     let whole = |value: Option<&str>| value.and_then(|text| text.parse::<u32>().ok());
     match flag {
         "--pair-experts" => {
@@ -1188,7 +1214,8 @@ fn parse_pair_flag(args: &mut CliArgs, flag: &str, value: Option<&str>) -> std::
             args.pair_cap = Some(whole(value).ok_or("'--pair-cap' takes a whole number")?);
         }
         "--pair-floor" => {
-            args.pair_floor = Some(whole(value).ok_or("'--pair-floor' takes a whole number of thousandths")?);
+            args.pair_floor =
+                Some(whole(value).ok_or("'--pair-floor' takes a whole number of thousandths")?);
         }
         "--pair-keep" => {
             let keep = value
@@ -1235,7 +1262,8 @@ fn check_pair_args(args: &CliArgs) -> std::result::Result<(), String> {
     }
     if args.prompt_ids.is_some() || args.serve.is_some() {
         return Err(
-            "'--pair-experts' requires text replies on '--stack' (the REPL, '--say' or '--script')".into(),
+            "'--pair-experts' requires text replies on '--stack' (the REPL, '--say' or '--script')"
+                .into(),
         );
     }
     for (set, flag) in [
@@ -1689,7 +1717,11 @@ mod tests {
     }
 
     /// The pair experts flags read as the parser reads them, then checked as it checks them.
-    fn pair_args(stack: bool, asks: bool, flags: &[(&str, &str)]) -> std::result::Result<CliArgs, String> {
+    fn pair_args(
+        stack: bool,
+        asks: bool,
+        flags: &[(&str, &str)],
+    ) -> std::result::Result<CliArgs, String> {
         let mut args = CliArgs::default();
         if stack {
             args.stack_path = Some(PathBuf::from("model.lut"));
@@ -1728,15 +1760,32 @@ mod tests {
             check_unended_args(&args)?;
             Ok(args)
         };
-        assert_eq!(read(true, false, "drop").expect("drop is accepted").unended, Some(Unended::Drop));
-        assert_eq!(read(true, false, "close").expect("close is accepted").unended, Some(Unended::Close));
-        assert_eq!(read(true, false, "keep").expect("keep is accepted").unended, Some(Unended::Keep));
-        let wrong = read(true, false, "trim").err().expect("a wrong value is refused");
+        assert_eq!(
+            read(true, false, "drop").expect("drop is accepted").unended,
+            Some(Unended::Drop)
+        );
+        assert_eq!(
+            read(true, false, "close")
+                .expect("close is accepted")
+                .unended,
+            Some(Unended::Close)
+        );
+        assert_eq!(
+            read(true, false, "keep").expect("keep is accepted").unended,
+            Some(Unended::Keep)
+        );
+        let wrong = read(true, false, "trim")
+            .err()
+            .expect("a wrong value is refused");
         assert_eq!(wrong, "'--unended' takes keep, drop or close");
         assert!(parse_unended(None).is_err(), "a missing value is refused");
-        let no_stack = read(false, false, "drop").err().expect("refused without --stack");
+        let no_stack = read(false, false, "drop")
+            .err()
+            .expect("refused without --stack");
         assert!(no_stack.contains("on '--stack'"), "{no_stack}");
-        let ids = read(true, true, "close").err().expect("refused with --prompt-ids");
+        let ids = read(true, true, "close")
+            .err()
+            .expect("refused with --prompt-ids");
         assert!(ids.contains("text replies"), "{ids}");
         let left_out = CliArgs::default();
         assert_eq!(left_out.unended, None);
@@ -1752,10 +1801,21 @@ mod tests {
         assert_eq!(args.pair_floor, Some(250));
         assert_eq!(args.pair_hold_out, Some(true));
 
-        let default_hold_out = pair_args(true, true, &PAIR_FLAGS[..4]).expect("hold-out is optional");
+        let default_hold_out =
+            pair_args(true, true, &PAIR_FLAGS[..4]).expect("hold-out is optional");
         assert_eq!(default_hold_out.pair_hold_out, None);
-        let off = pair_args(true, true, &[PAIR_FLAGS[0], PAIR_FLAGS[1], PAIR_FLAGS[2], PAIR_FLAGS[3], ("--pair-hold-out", "0")])
-            .expect("hold-out 0 is accepted");
+        let off = pair_args(
+            true,
+            true,
+            &[
+                PAIR_FLAGS[0],
+                PAIR_FLAGS[1],
+                PAIR_FLAGS[2],
+                PAIR_FLAGS[3],
+                ("--pair-hold-out", "0"),
+            ],
+        )
+        .expect("hold-out 0 is accepted");
         assert_eq!(off.pair_hold_out, Some(false));
 
         let none = pair_args(false, false, &[]).expect("no pair flags is today's run");
@@ -1764,31 +1824,64 @@ mod tests {
 
     #[test]
     fn pair_experts_flags_are_refused_without_what_they_need() {
-        let no_stack = pair_args(false, true, &PAIR_FLAGS).err().expect("refused without --stack");
+        let no_stack = pair_args(false, true, &PAIR_FLAGS)
+            .err()
+            .expect("refused without --stack");
         assert_eq!(no_stack, "'--pair-experts' requires '--stack'");
 
-        let no_asks = pair_args(true, false, &PAIR_FLAGS).err().expect("refused without --place-asks");
+        let no_asks = pair_args(true, false, &PAIR_FLAGS)
+            .err()
+            .expect("refused without --place-asks");
         assert!(no_asks.contains("requires '--place-asks'"), "{no_asks}");
 
         for (missing, flag) in [(1, "--pair-cap"), (2, "--pair-keep"), (3, "--pair-floor")] {
-            let flags: Vec<(&str, &str)> = PAIR_FLAGS.iter().enumerate().filter(|&(at, _)| at != missing).map(|(_, &pair)| pair).collect();
-            let error = pair_args(true, true, &flags).err().expect("refused without one of cap, keep, floor");
-            assert!(error.starts_with("'--pair-experts' requires") && error.contains(flag), "{error}");
+            let flags: Vec<(&str, &str)> = PAIR_FLAGS
+                .iter()
+                .enumerate()
+                .filter(|&(at, _)| at != missing)
+                .map(|(_, &pair)| pair)
+                .collect();
+            let error = pair_args(true, true, &flags)
+                .err()
+                .expect("refused without one of cap, keep, floor");
+            assert!(
+                error.starts_with("'--pair-experts' requires") && error.contains(flag),
+                "{error}"
+            );
         }
 
-        let cap_alone = pair_args(true, true, &[("--pair-cap", "8")]).err().expect("--pair-cap needs the table");
+        let cap_alone = pair_args(true, true, &[("--pair-cap", "8")])
+            .err()
+            .expect("--pair-cap needs the table");
         assert_eq!(cap_alone, "'--pair-cap' requires '--pair-experts'");
-        let hold_out_alone = pair_args(true, true, &[("--pair-hold-out", "0")]).err().expect("--pair-hold-out needs the table");
-        assert_eq!(hold_out_alone, "'--pair-hold-out' requires '--pair-experts'");
+        let hold_out_alone = pair_args(true, true, &[("--pair-hold-out", "0")])
+            .err()
+            .expect("--pair-hold-out needs the table");
+        assert_eq!(
+            hold_out_alone,
+            "'--pair-hold-out' requires '--pair-experts'"
+        );
 
-        let zero_den = pair_args(true, true, &[("--pair-keep", "1/0")]).err().expect("DEN 0 is refused");
-        assert!(zero_den.starts_with("'--pair-keep' takes NUM/DEN"), "{zero_den}");
+        let zero_den = pair_args(true, true, &[("--pair-keep", "1/0")])
+            .err()
+            .expect("DEN 0 is refused");
+        assert!(
+            zero_den.starts_with("'--pair-keep' takes NUM/DEN"),
+            "{zero_den}"
+        );
         for bad in ["1", "1/x", "-1/2", "1/2/3", "3/2"] {
-            let error = pair_args(true, true, &[("--pair-keep", bad)]).err().expect("a malformed share is refused");
-            assert!(error.starts_with("'--pair-keep' takes NUM/DEN"), "{bad}: {error}");
+            let error = pair_args(true, true, &[("--pair-keep", bad)])
+                .err()
+                .expect("a malformed share is refused");
+            assert!(
+                error.starts_with("'--pair-keep' takes NUM/DEN"),
+                "{bad}: {error}"
+            );
         }
 
-        let hold_out_two = pair_args(true, true, &[("--pair-hold-out", "2")]).err().expect("hold-out 2 is refused");
+        let hold_out_two = pair_args(true, true, &[("--pair-hold-out", "2")])
+            .err()
+            .expect("hold-out 2 is refused");
         assert_eq!(hold_out_two, "'--pair-hold-out' takes 0 or 1");
 
         let mut on_ids = pair_args(true, true, &PAIR_FLAGS).expect("accepted");
@@ -1803,9 +1896,22 @@ mod tests {
             (Verdict::NoTurn, "noturn"),
             (Verdict::LeftAlone, "alone"),
             (Verdict::Checked(Check::NoExpert), "noexpert"),
-            (Verdict::Checked(Check::Stands { vote: 9, top: 9 }), "stands"),
-            (Verdict::Checked(Check::Unsure { vote: 1, top: 3 }), "unsure"),
-            (Verdict::Checked(Check::Replaced { reply: 2, vote: 0, top: 5 }), "replaced"),
+            (
+                Verdict::Checked(Check::Stands { vote: 9, top: 9 }),
+                "stands",
+            ),
+            (
+                Verdict::Checked(Check::Unsure { vote: 1, top: 3 }),
+                "unsure",
+            ),
+            (
+                Verdict::Checked(Check::Replaced {
+                    reply: 2,
+                    vote: 0,
+                    top: 5,
+                }),
+                "replaced",
+            ),
             (Verdict::NoRoom, "noroom"),
         ];
         for (verdict, name) in names {
@@ -2128,32 +2234,46 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         ));
     }
     #[cfg(feature = "p1-count-serving")]
-    let profile_start = std::env::var_os("UOR_P1_TIMING").is_some().then(std::time::Instant::now);
+    let profile_start = std::env::var_os("UOR_P1_TIMING")
+        .is_some()
+        .then(std::time::Instant::now);
     #[cfg(not(feature = "p1-count-serving"))]
     let model = uor_r4_integer::discrete_d11::IntegerDiscreteModel::load(artifact)?;
     #[cfg(feature = "p1-count-serving")]
-    let artifact_bytes;
+    let state_bytes;
     #[cfg(feature = "p1-count-serving")]
     let p1_bytes;
     #[cfg(feature = "p1-count-serving")]
     let deployment = {
         let has_sidecar = cli.p1_path.is_some();
-        let bytes = count_deployment::read_client_artifact(artifact, has_sidecar)?;
-        if count_deployment::is_embedded(&bytes, has_sidecar)? {
-            artifact_bytes = bytes;
-            DiscreteCountModel::load(&artifact_bytes, None)?
-        } else {
-            let model = uor_r4_integer::discrete_d11::IntegerDiscreteModel::from_bytes(&bytes)?;
-            drop(bytes);
-            p1_bytes = cli.p1_path.as_deref().map(std::fs::read).transpose()?;
-            DiscreteCountModel::bind_legacy(model, p1_bytes.as_deref())?
+        match count_deployment::load_client_artifact(artifact, has_sidecar)? {
+            count_deployment::ClientArtifactFile::Embedded {
+                model,
+                state_bytes: loaded_state,
+                expected_state_sha256,
+                identity,
+            } => {
+                state_bytes = loaded_state;
+                DiscreteCountModel::bind_embedded(
+                    model,
+                    &state_bytes,
+                    &expected_state_sha256,
+                    identity,
+                )?
+            }
+            count_deployment::ClientArtifactFile::Legacy(model) => {
+                p1_bytes = cli.p1_path.as_deref().map(std::fs::read).transpose()?;
+                DiscreteCountModel::bind_legacy(model, p1_bytes.as_deref())?
+            }
         }
     };
     #[cfg(feature = "p1-count-serving")]
     let (model, p1) = (deployment.model, deployment.state);
     #[cfg(feature = "p1-count-serving")]
     if cli.p1_trace && p1.is_none() {
-        return Err(IntegerError::Invalid("--p1-trace requires count state".into()));
+        return Err(IntegerError::Invalid(
+            "--p1-trace requires count state".into(),
+        ));
     }
     #[cfg(feature = "p1-count-serving")]
     let profile_start = profile_start.filter(|_| p1.is_some());
@@ -2223,7 +2343,8 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         }
     }
     let read_enabled = cli.read_mode == ReadMode::Enabled;
-    if read_enabled && model.pair_rank_bindings().is_some()
+    if read_enabled
+        && model.pair_rank_bindings().is_some()
         && !matches!(cli.role_replay, Some(RoleReplay::Detached))
     {
         return Err(IntegerError::Invalid(
@@ -2693,7 +2814,10 @@ fn place_line(chat: &StackChat<'_>, reply: &StackReply) -> String {
         },
         None => "-".to_owned(),
     };
-    let open = places.iter().filter(|(_, offered)| offered.is_some()).count();
+    let open = places
+        .iter()
+        .filter(|(_, offered)| offered.is_some())
+        .count();
     format!(
         "{ANSI_MAGENTA_BOLD}[place]{ANSI_RESET} first: held={} offered={} token={token:?}; open: {open} of {}",
         name(held),
@@ -2798,7 +2922,9 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
             let asks: uor_r4_integer::place_asks::PlaceAsks = std::fs::read_to_string(path)
                 .map_err(|e| e.to_string())
                 .and_then(|text| serde_json::from_str(&text).map_err(|e| e.to_string()))
-                .map_err(|e| StackCliError::Usage(format!("--place-asks {}: {e}", path.display())))?;
+                .map_err(|e| {
+                    StackCliError::Usage(format!("--place-asks {}: {e}", path.display()))
+                })?;
             asks_counted_on = Some((asks.vocab, asks.tokens_sha256.clone()));
             let speak = speak.unwrap_or(true);
             model
@@ -2810,7 +2936,9 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
             );
         }
         (None, Some(_)) => {
-            return Err(StackCliError::Usage("--place-speak needs --place-asks".into()));
+            return Err(StackCliError::Usage(
+                "--place-speak needs --place-asks".into(),
+            ));
         }
         (None, None) => {}
     }
@@ -2889,7 +3017,8 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
     // The pair experts (claude-367): set on the chat, which checks every text reply with them.
     let pair_identity = match cli.pair_experts.as_deref() {
         Some(path) => {
-            let refused = |e: String| StackCliError::Usage(format!("--pair-experts {}: {e}", path.display()));
+            let refused =
+                |e: String| StackCliError::Usage(format!("--pair-experts {}: {e}", path.display()));
             let table = std::fs::read(path)
                 .map_err(|e| e.to_string())
                 .and_then(|bytes| PairExperts::from_bytes(&bytes))
@@ -2908,10 +3037,18 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
             let tag = hex::decode(asks_tokens)
                 .ok()
                 .and_then(|bytes| <[u8; 32]>::try_from(bytes).ok())
-                .ok_or_else(|| refused(format!("the asks name their tokens as {asks_tokens}, not a SHA-256")))?;
+                .ok_or_else(|| {
+                    refused(format!(
+                        "the asks name their tokens as {asks_tokens}, not a SHA-256"
+                    ))
+                })?;
             table.expect(*asks_vocab, &tag).map_err(refused)?;
-            let (Some(cap), Some(keep), Some(floor)) = (cli.pair_cap, cli.pair_keep, cli.pair_floor) else {
-                return Err(refused("needs --pair-cap, --pair-keep and --pair-floor".into()));
+            let (Some(cap), Some(keep), Some(floor)) =
+                (cli.pair_cap, cli.pair_keep, cli.pair_floor)
+            else {
+                return Err(refused(
+                    "needs --pair-cap, --pair-keep and --pair-floor".into(),
+                ));
             };
             let setting = Setting {
                 cap,
@@ -2920,7 +3057,8 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
                 floor,
             };
             let sha256 = table.sha256();
-            chat.set_pair_experts(Some((table, setting))).map_err(refused)?;
+            chat.set_pair_experts(Some((table, setting)))
+                .map_err(refused)?;
             Some((sha256, setting))
         }
         None => None,

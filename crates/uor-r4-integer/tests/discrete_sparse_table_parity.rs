@@ -7,7 +7,8 @@ use std::io::{BufWriter, Write};
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 use uor_r4_integer::discrete_d11::{
-    IntegerDiscreteModel, DISCRETE_TRUNK_SCHEMA, MAGIC, SNAPSHOT_SCHEMA,
+    IntegerDiscreteModel, DISCRETE_S2_EXPERT_SCHEMA, DISCRETE_S2_SCHEMA, DISCRETE_SCHEMA,
+    DISCRETE_TRUNK_SCHEMA, MAGIC, S2_SECTION, SNAPSHOT_SCHEMA,
 };
 
 const ALIGN: usize = 64;
@@ -901,4 +902,303 @@ fn bench_codex36_scale_btreemap_baseline() {
         "BTREEMAP_BASELINE load_ms={:.3} eval_10k_ms={:.3} probe_fold={:#018x}",
         load_ms, eval_ms, hash_fold
     );
+}
+
+fn assert_models_equivalent(a: &IntegerDiscreteModel, b: &IntegerDiscreteModel, vocab: usize) {
+    assert_eq!(a.artifact_schema(), b.artifact_schema());
+    assert_eq!(a.artifact_sha256(), b.artifact_sha256());
+    assert_eq!(a.tokenizer_sha256(), b.tokenizer_sha256());
+    assert_eq!(a.shape(), b.shape());
+    assert_eq!(
+        a.frozen_s2().map(|s| s.triples().collect::<Vec<_>>()),
+        b.frozen_s2().map(|s| s.triples().collect::<Vec<_>>()),
+    );
+    for t in 0..vocab.min(8) {
+        let t = t as u32;
+        assert_eq!(
+            a.evaluate_prefix(&[t]).unwrap(),
+            b.evaluate_prefix(&[t]).unwrap()
+        );
+        assert_eq!(
+            a.evaluate_prefix(&[0, t]).unwrap(),
+            b.evaluate_prefix(&[0, t]).unwrap()
+        );
+    }
+}
+
+#[test]
+fn streaming_from_reader_and_load_match_from_bytes_across_container_variants() {
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let (unigram, sorted_sections) = fixture_sparse_data();
+    let sorted_refs: [&[u32]; 12] = std::array::from_fn(|i| sorted_sections[i].as_slice());
+
+    // 1) Sorted trunk UORLUT01
+    let trunk_bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, sorted_refs);
+    let m_bytes = IntegerDiscreteModel::from_bytes(&trunk_bytes).unwrap();
+    let m_reader = IntegerDiscreteModel::from_reader(std::io::Cursor::new(&trunk_bytes)).unwrap();
+    assert_models_equivalent(&m_reader, &m_bytes, vocab);
+
+    let dir = std::env::temp_dir().join(format!("uor-stream-test-{}", std::process::id()));
+    fs::create_dir_all(&dir).unwrap();
+    let trunk_path = dir.join("trunk.d11");
+    fs::write(&trunk_path, &trunk_bytes).unwrap();
+    let m_disk = IntegerDiscreteModel::load(&trunk_path).unwrap();
+    assert_models_equivalent(&m_disk, &m_bytes, vocab);
+
+    // 2) Shuffled trunk UORLUT01
+    let mut shuffled_sections = sorted_sections.clone();
+    for (idx, sec) in shuffled_sections.iter_mut().enumerate() {
+        let count = sec.len() / 3;
+        if count >= 2 {
+            let mut triples: Vec<[u32; 3]> =
+                sec.chunks_exact(3).map(|c| [c[0], c[1], c[2]]).collect();
+            triples.reverse();
+            if count >= 3 {
+                triples.swap(0, idx % count);
+            }
+            sec.clear();
+            for [k, t, c] in triples {
+                sec.extend_from_slice(&[k, t, c]);
+            }
+        }
+    }
+    let shuf_refs: [&[u32]; 12] = std::array::from_fn(|i| shuffled_sections[i].as_slice());
+    let shuf_bytes = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, shuf_refs);
+    let shuf_from_bytes = IntegerDiscreteModel::from_bytes(&shuf_bytes).unwrap();
+    let shuf_from_reader =
+        IntegerDiscreteModel::from_reader(std::io::Cursor::new(&shuf_bytes)).unwrap();
+    assert_models_equivalent(&shuf_from_reader, &shuf_from_bytes, vocab);
+
+    // 3) Plain uor-r4.lut-discrete/1 container (fallback path in from_reader)
+    let stages = expected_stages(context);
+    let mut plain_table = Vec::with_capacity(vocab * 32);
+    let mut plain_cells = Vec::with_capacity(vocab);
+    for tok in 0..vocab {
+        let roots = token_4block_roots(tok);
+        for &r in &roots {
+            for d in ROOTS[usize::from(r)] {
+                plain_table.push(i32::from(d));
+            }
+        }
+        plain_cells.push((u32::from(roots[0]) << 4) + u32::from(roots[3]));
+    }
+    let plain_routes = vec![0u32; 4 * stages];
+    let plain_gates = vec![0i32; 4 * stages];
+    let mut plain_blob = Vec::new();
+    let mut plain_tables = Vec::new();
+    let t_bytes: Vec<u8> = plain_table.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let t_span = push_section_bytes(&mut plain_blob, &t_bytes);
+    plain_tables.push(
+        json!({"name": "discrete.table", "kind": "i32", "len": plain_table.len(), "span": t_span}),
+    );
+    plain_tables.push(push_u32_section(
+        &mut plain_blob,
+        "discrete.cells",
+        &plain_cells,
+    ));
+    plain_tables.push(push_u32_section(
+        &mut plain_blob,
+        "discrete.routes",
+        &plain_routes,
+    ));
+    let g_bytes: Vec<u8> = plain_gates.iter().flat_map(|x| x.to_le_bytes()).collect();
+    let g_span = push_section_bytes(&mut plain_blob, &g_bytes);
+    plain_tables.push(
+        json!({"name": "discrete.gates", "kind": "i32", "len": plain_gates.len(), "span": g_span}),
+    );
+    let plain_header = json!({
+        "schema": DISCRETE_SCHEMA,
+        "shape": {
+            "vocabulary": vocab, "blocks": 4, "context": context, "kept_cells": 3, "stages": stages,
+            "read_mode": "pick", "read_kept": 0, "read_sweeps": 0, "read_position": 3,
+            "objective_policy": "nearest_address_margin_v1", "read_initialization": "zero_gates_v1",
+            "seed": 7, "epoch": 1,
+        },
+        "matrices": [],
+        "tables": plain_tables,
+        "source": {
+            "snapshot_schema": SNAPSHOT_SCHEMA,
+            "snapshot_sha256": "00".repeat(32),
+            "operator_kappa": "blake3:a0ea3a10dd10c5f4856b0d881d33d94c3293bad0e68bd07a47918e2bb82c819b",
+            "composition_kappa": "blake3:f2986c8e68dcb30a9cb511a42547179a87b66ef212a87b728765d03e70e640b0",
+            "kernel_sha256": "11".repeat(32),
+            "source_sha256": "22".repeat(32),
+            "geometry_sha256": "33".repeat(32),
+        }
+    });
+    let plain_hdr = serde_json::to_vec(&plain_header).unwrap();
+    let mut plain_bytes = Vec::new();
+    plain_bytes.extend_from_slice(MAGIC);
+    plain_bytes.extend_from_slice(&(plain_hdr.len() as u64).to_le_bytes());
+    plain_bytes.extend_from_slice(&plain_hdr);
+    let plain_pad = (ALIGN - plain_bytes.len() % ALIGN) % ALIGN;
+    plain_bytes.resize(plain_bytes.len() + plain_pad, 0);
+    plain_bytes.extend_from_slice(&plain_blob);
+    assert_models_equivalent(
+        &IntegerDiscreteModel::from_reader(std::io::Cursor::new(&plain_bytes)).unwrap(),
+        &IntegerDiscreteModel::from_bytes(&plain_bytes).unwrap(),
+        vocab,
+    );
+
+    // 4) S2 passive (uor-r4.lut-discrete-trunk-s2/1) streaming parity
+    let mut s2_blob = Vec::new();
+    let mut s2_tables = Vec::new();
+    let s2_t_span = push_section_bytes(&mut s2_blob, &t_bytes);
+    s2_tables.push(
+        json!({"name": "discrete.table", "kind": "i32", "len": plain_table.len(), "span": s2_t_span}),
+    );
+    s2_tables.push(push_u32_section(
+        &mut s2_blob,
+        "discrete.cells",
+        &plain_cells,
+    ));
+    s2_tables.push(push_u32_section(
+        &mut s2_blob,
+        "discrete.routes",
+        &plain_routes,
+    ));
+    let s2_g_span = push_section_bytes(&mut s2_blob, &g_bytes);
+    s2_tables.push(
+        json!({"name": "discrete.gates", "kind": "i32", "len": plain_gates.len(), "span": s2_g_span}),
+    );
+    s2_tables.push(push_u32_section(
+        &mut s2_blob,
+        "discrete.trunk.step_candidates",
+        &steps,
+    ));
+    s2_tables.push(push_u32_section(
+        &mut s2_blob,
+        "discrete.trunk.norm_candidates",
+        &norms,
+    ));
+    s2_tables.push(push_u32_section(
+        &mut s2_blob,
+        "discrete.trunk.unigram",
+        &unigram,
+    ));
+    for (idx, name) in SPARSE_TABLE_NAMES.iter().enumerate() {
+        s2_tables.push(push_u32_section(&mut s2_blob, name, sorted_refs[idx]));
+    }
+    let mut s2_payload = vec![0xAAu8; 96];
+    let mut row = [0u8; 20];
+    row[..16].copy_from_slice(&(1u128 << 120).to_le_bytes()); // order=1, route=0
+    row[16..18].copy_from_slice(&2u16.to_le_bytes());
+    row[18] = 3; // rank
+    s2_payload.extend_from_slice(&row);
+    let s2_span = push_section_bytes(&mut s2_blob, &s2_payload);
+    s2_tables.push(
+        json!({"name": S2_SECTION, "kind": "u32", "len": s2_payload.len() / 4, "span": s2_span}),
+    );
+    let s2_header = json!({
+        "schema": DISCRETE_S2_SCHEMA,
+        "shape": {
+            "vocabulary": vocab, "blocks": 4, "context": context, "kept_cells": 3, "stages": stages,
+            "read_mode": "pick", "read_kept": 0, "read_sweeps": 0, "read_position": 3,
+            "objective_policy": "nearest_address_margin_v1", "read_initialization": "zero_gates_v1",
+            "seed": 7, "epoch": 1,
+        },
+        "matrices": [],
+        "tables": s2_tables,
+        "source": {
+            "snapshot_schema": SNAPSHOT_SCHEMA,
+            "snapshot_sha256": "00".repeat(32),
+            "operator_kappa": "blake3:a0ea3a10dd10c5f4856b0d881d33d94c3293bad0e68bd07a47918e2bb82c819b",
+            "composition_kappa": "blake3:f2986c8e68dcb30a9cb511a42547179a87b66ef212a87b728765d03e70e640b0",
+            "kernel_sha256": "11".repeat(32),
+            "source_sha256": "22".repeat(32),
+            "geometry_sha256": "33".repeat(32),
+        }
+    });
+    let s2_hdr = serde_json::to_vec(&s2_header).unwrap();
+    let mut s2_bytes = Vec::new();
+    s2_bytes.extend_from_slice(MAGIC);
+    s2_bytes.extend_from_slice(&(s2_hdr.len() as u64).to_le_bytes());
+    s2_bytes.extend_from_slice(&s2_hdr);
+    let s2_pad = (ALIGN - s2_bytes.len() % ALIGN) % ALIGN;
+    s2_bytes.resize(s2_bytes.len() + s2_pad, 0);
+    s2_bytes.extend_from_slice(&s2_blob);
+    let m_s2_bytes = IntegerDiscreteModel::from_bytes(&s2_bytes).unwrap();
+    let m_s2_reader = IntegerDiscreteModel::from_reader(std::io::Cursor::new(&s2_bytes)).unwrap();
+    assert_models_equivalent(&m_s2_reader, &m_s2_bytes, vocab);
+    // Active S2 requires V=4096; verify rejection parity between from_reader and from_bytes.
+    let expert_bytes: Vec<u8> = {
+        let mut h = s2_header.clone();
+        h["schema"] = json!(DISCRETE_S2_EXPERT_SCHEMA);
+        let h_vec = serde_json::to_vec(&h).unwrap();
+        let mut out = Vec::new();
+        out.extend_from_slice(MAGIC);
+        out.extend_from_slice(&(h_vec.len() as u64).to_le_bytes());
+        out.extend_from_slice(&h_vec);
+        let pad = (ALIGN - out.len() % ALIGN) % ALIGN;
+        out.resize(out.len() + pad, 0);
+        out.extend_from_slice(&s2_blob);
+        out
+    };
+    assert!(IntegerDiscreteModel::from_bytes(&expert_bytes).is_err());
+    assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&expert_bytes)).is_err());
+
+    let _ = fs::remove_dir_all(&dir);
+}
+
+#[test]
+fn streaming_from_reader_rejects_planted_truncation_padding_and_trailing_faults() {
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let (unigram, sorted_sections) = fixture_sparse_data();
+    let sorted_refs: [&[u32]; 12] = std::array::from_fn(|i| sorted_sections[i].as_slice());
+    let valid = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, sorted_refs);
+
+    // 1) Truncated preamble / header / body
+    assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&valid[..10])).is_err());
+    assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&valid[..100])).is_err());
+    assert!(
+        IntegerDiscreteModel::from_reader(std::io::Cursor::new(&valid[..valid.len() - 4])).is_err()
+    );
+
+    // 2) Trailing byte after final section
+    let mut with_tail = valid.clone();
+    with_tail.push(0);
+    assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&with_tail)).is_err());
+
+    // 3) Non-zero header padding byte (if padding exists)
+    let hdr_len = u64::from_le_bytes(valid[8..16].try_into().unwrap()) as usize;
+    let unaligned = 16 + hdr_len;
+    let data_start = unaligned + (ALIGN - unaligned % ALIGN) % ALIGN;
+    if data_start > unaligned {
+        let mut bad_hdr_pad = valid.clone();
+        bad_hdr_pad[unaligned] = 1;
+        assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&bad_hdr_pad)).is_err());
+    }
+
+    // 4) Non-zero inter-section alignment padding (routes table is 20 u32s = 80 B, padded +48 B to 128 B)
+    let hdr: HeaderOnly = serde_json::from_slice(&valid[16..16 + hdr_len]).unwrap();
+    let routes = hdr
+        .tables
+        .iter()
+        .find(|t| t.name == "discrete.routes")
+        .unwrap();
+    let routes_end = data_start + (routes.span.offset + routes.span.bytes) as usize;
+    let gates = hdr
+        .tables
+        .iter()
+        .find(|t| t.name == "discrete.gates")
+        .unwrap();
+    let gates_start = data_start + gates.span.offset as usize;
+    assert!(gates_start > routes_end);
+    let mut bad_gap = valid.clone();
+    bad_gap[routes_end] = 0x7f;
+    assert!(IntegerDiscreteModel::from_reader(std::io::Cursor::new(&bad_gap)).is_err());
+
+    // 5) Disk load() rejects file whose actual size differs from declared layout
+    let dir = std::env::temp_dir().join(format!("uor-stream-fault-{}", std::process::id()));
+    fs::create_dir_all(&dir).unwrap();
+    let bad_path = dir.join("truncated.d11");
+    fs::write(&bad_path, &valid[..valid.len() - 4]).unwrap();
+    assert!(IntegerDiscreteModel::load(&bad_path).is_err());
+    let _ = fs::remove_dir_all(&dir);
 }

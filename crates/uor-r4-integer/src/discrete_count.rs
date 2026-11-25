@@ -309,6 +309,149 @@ pub fn is_embedded(bytes: &[u8], has_sidecar: bool) -> Result<bool> {
     Ok(embedded)
 }
 
+/// Loaded client artifact from disk: embedded deployments stream the trunk
+/// directly via `IntegerDiscreteModel::from_reader` and allocate only
+/// `header.state_bytes` for the `P1` count table.
+pub enum ClientArtifactFile {
+    Embedded {
+        model: IntegerDiscreteModel,
+        state_bytes: Vec<u8>,
+        expected_state_sha256: String,
+        identity: DeploymentIdentity,
+    },
+    Legacy(IntegerDiscreteModel),
+}
+
+struct TakeHashReader<'a, R> {
+    inner: R,
+    hasher: &'a mut Sha256,
+    bytes_read: &'a mut u64,
+}
+
+impl<R: std::io::Read> std::io::Read for TakeHashReader<'_, R> {
+    fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize> {
+        let n = self.inner.read(buf)?;
+        if n > 0 {
+            self.hasher.update(&buf[..n]);
+            *self.bytes_read += n as u64;
+        }
+        Ok(n)
+    }
+}
+
+/// Stream-load a client artifact from disk, avoiding a duplicate full-file
+/// buffer on standalone trunks and embedded `uor-r4.lut-discrete-count/1` bundles.
+pub fn load_client_artifact(
+    path: &std::path::Path,
+    has_sidecar: bool,
+) -> Result<ClientArtifactFile> {
+    use std::io::Read;
+
+    let mut file = std::fs::File::open(path)?;
+    let file_len = file.metadata().ok().map(|m| m.len());
+    let mut preamble = [0u8; 16];
+    let mut read_len = 0usize;
+    while read_len < 16 {
+        let n = file.read(&mut preamble[read_len..])?;
+        if n == 0 {
+            break;
+        }
+        read_len += n;
+    }
+
+    let mut header_buf = Vec::new();
+    if read_len == 16 && &preamble[..8] == crate::discrete_d11::MAGIC {
+        let length = u64::from_le_bytes(preamble[8..16].try_into().map_err(invalid)?);
+        if length <= MAX_DEPLOYMENT_HEADER as u64 {
+            (&mut file).take(length).read_to_end(&mut header_buf)?;
+            if header_buf.len() == length as usize {
+                #[derive(Deserialize)]
+                struct Schema<'a> {
+                    schema: &'a str,
+                }
+                let is_deployment = serde_json::from_slice::<Schema<'_>>(&header_buf)
+                    .map(|s| s.schema == SCHEMA)
+                    .unwrap_or(false);
+                if is_deployment {
+                    let header: DeploymentHeader = serde_json::from_slice(&header_buf)?;
+                    if has_sidecar {
+                        return Err(reject_sidecar());
+                    }
+                    if header.trunk_bytes == 0 || header.state_bytes == 0 {
+                        return Err(invalid("embedded count state length mismatch"));
+                    }
+                    let expected_total = (16u64)
+                        .saturating_add(length)
+                        .saturating_add(header.trunk_bytes as u64)
+                        .saturating_add(header.state_bytes as u64);
+                    if let Some(len) = file_len {
+                        if len < expected_total {
+                            return Err(invalid("truncated embedded D11 trunk or state"));
+                        }
+                    }
+
+                    let mut reader = std::io::BufReader::with_capacity(64 * 1024, file);
+                    let mut full_hasher = Sha256::new();
+                    full_hasher.update(preamble);
+                    full_hasher.update(&header_buf);
+
+                    let mut trunk_read = 0u64;
+                    let model = {
+                        let mut trunk_reader = TakeHashReader {
+                            inner: (&mut reader).take(header.trunk_bytes as u64),
+                            hasher: &mut full_hasher,
+                            bytes_read: &mut trunk_read,
+                        };
+                        IntegerDiscreteModel::from_reader_with_len(
+                            &mut trunk_reader,
+                            Some(header.trunk_bytes as u64),
+                        )?
+                    };
+                    if trunk_read != header.trunk_bytes as u64 {
+                        return Err(invalid("truncated embedded D11 trunk"));
+                    }
+                    if model.artifact_sha256() != header.trunk_sha256 {
+                        return Err(invalid("embedded D11 trunk digest mismatch"));
+                    }
+
+                    let mut state_bytes = Vec::new();
+                    state_bytes
+                        .try_reserve_exact(header.state_bytes)
+                        .map_err(|_| invalid("embedded count state allocation failed"))?;
+                    state_bytes.resize(header.state_bytes, 0);
+                    reader
+                        .read_exact(&mut state_bytes)
+                        .map_err(|_| invalid("embedded count state length mismatch"))?;
+                    let mut tail = [0u8; 1];
+                    if reader.read(&mut tail)? != 0 {
+                        return Err(invalid("embedded count state length mismatch"));
+                    }
+                    full_hasher.update(&state_bytes);
+                    return Ok(ClientArtifactFile::Embedded {
+                        model,
+                        state_bytes,
+                        expected_state_sha256: header.state_sha256,
+                        identity: DeploymentIdentity {
+                            artifact_sha256: hex::encode(full_hasher.finalize()),
+                            header_bytes: 16 + length as usize,
+                            trunk_bytes: header.trunk_bytes,
+                            state_bytes: header.state_bytes,
+                        },
+                    });
+                }
+            }
+        }
+    }
+
+    let mut prefix = Vec::with_capacity(read_len + header_buf.len());
+    prefix.extend_from_slice(&preamble[..read_len]);
+    prefix.extend_from_slice(&header_buf);
+    let chained = std::io::Read::chain(std::io::Cursor::new(prefix), file);
+    let model =
+        IntegerDiscreteModel::from_reader(std::io::BufReader::with_capacity(64 * 1024, chained))?;
+    Ok(ClientArtifactFile::Legacy(model))
+}
+
 impl<'a> DiscreteCountModel<'a> {
     pub fn bind_legacy(model: IntegerDiscreteModel, sidecar: Option<&'a [u8]>) -> Result<Self> {
         let state = sidecar
@@ -318,6 +461,23 @@ impl<'a> DiscreteCountModel<'a> {
             model,
             state,
             identity: None,
+        })
+    }
+
+    pub fn bind_embedded(
+        model: IntegerDiscreteModel,
+        state_bytes: &'a [u8],
+        expected_state_sha256: &str,
+        identity: DeploymentIdentity,
+    ) -> Result<Self> {
+        let state = P1::load(state_bytes, &model)?;
+        if state.artifact_sha256 != expected_state_sha256 {
+            return Err(invalid("embedded P1 state digest mismatch"));
+        }
+        Ok(Self {
+            model,
+            state: Some(state),
+            identity: Some(identity),
         })
     }
 
@@ -332,20 +492,17 @@ impl<'a> DiscreteCountModel<'a> {
         if model.artifact_sha256() != header.trunk_sha256 {
             return Err(invalid("embedded D11 trunk digest mismatch"));
         }
-        let state = P1::load(state, &model)?;
-        if state.artifact_sha256 != header.state_sha256 {
-            return Err(invalid("embedded P1 state digest mismatch"));
-        }
-        Ok(Self {
+        Self::bind_embedded(
             model,
-            state: Some(state),
-            identity: Some(DeploymentIdentity {
+            state,
+            &header.state_sha256,
+            DeploymentIdentity {
                 artifact_sha256: hex::encode(Sha256::digest(bytes)),
                 header_bytes: header_end,
                 trunk_bytes: header.trunk_bytes,
                 state_bytes: header.state_bytes,
-            }),
-        })
+            },
+        )
     }
 }
 
@@ -435,5 +592,207 @@ mod tests {
             assert!(manifest.validate_weights(&weights).is_err());
         }
         Ok(())
+    }
+
+    #[test]
+    fn load_client_artifact_streams_embedded_refuses_sidecar_and_detects_faults() {
+        let dir = std::env::temp_dir().join(format!("uor-count-stream-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+
+        // 1) Sidecar conflict on an embedded deployment header fails without needing body bytes.
+        let hdr_json = serde_json::to_vec(&DeploymentHeader {
+            schema: SCHEMA.into(),
+            trunk_bytes: 128,
+            state_bytes: 64,
+            trunk_sha256: "00".repeat(32),
+            state_sha256: "11".repeat(32),
+        })
+        .unwrap();
+        let mut header_only = Vec::new();
+        header_only.extend_from_slice(crate::discrete_d11::MAGIC);
+        header_only.extend_from_slice(&(hdr_json.len() as u64).to_le_bytes());
+        header_only.extend_from_slice(&hdr_json);
+        let sidecar_path = dir.join("sidecar_conflict.d11");
+        std::fs::write(&sidecar_path, &header_only).unwrap();
+        let err = load_client_artifact(&sidecar_path, true).err().unwrap();
+        assert!(err.to_string().contains("conflicts with --p1-state"));
+
+        // 2) Truncated deployment fails cleanly without allocating huge buffers.
+        assert!(load_client_artifact(&sidecar_path, false).is_err());
+
+        // 3) Valid minimal trunk wrapped as a fake embedded deployment validates trunk_sha256 & EOF,
+        //    and rejects wrong trunk digest or trailing bytes.
+        //    (Build a minimal valid plain UORLUT01 container as trunk bytes.)
+        let vocab = 16usize;
+        let context = 4usize;
+        let stages = 2usize;
+        let roots: [[i8; 8]; 16] = [
+            [2, 2, 0, 0, 0, 0, 0, 0],
+            [-2, -2, 0, 0, 0, 0, 0, 0],
+            [-2, 2, 0, 0, 0, 0, 0, 0],
+            [0, 0, -2, 0, -2, 0, 0, 0],
+            [0, 0, -2, 0, 2, 0, 0, 0],
+            [0, 0, 0, -2, 0, 0, 0, -2],
+            [0, 0, 0, -2, 0, 0, 0, 2],
+            [0, 0, 0, 0, 0, -2, -2, 0],
+            [0, 0, 0, 0, 0, -2, 2, 0],
+            [0, 0, 0, 0, 0, 2, -2, 0],
+            [0, 0, 0, 0, 0, 2, 2, 0],
+            [0, 0, 0, 2, 0, 0, 0, -2],
+            [0, 0, 0, 2, 0, 0, 0, 2],
+            [0, 0, 2, 0, -2, 0, 0, 0],
+            [0, 0, 2, 0, 2, 0, 0, 0],
+            [2, -2, 0, 0, 0, 0, 0, 0],
+        ];
+        let mut table = Vec::with_capacity(vocab * 32);
+        let mut cells = Vec::with_capacity(vocab);
+        for tok in 0..vocab {
+            let r = (tok & 15) as u8;
+            for _ in 0..4 {
+                for d in roots[usize::from(r)] {
+                    table.push(i32::from(d));
+                }
+            }
+            cells.push((u32::from(r) << 4) + u32::from(r));
+        }
+        let routes = vec![0u32; 4 * stages];
+        let gates = vec![0i32; 4 * stages];
+        let mut blob = Vec::new();
+        let mut push_sec = |bytes: &[u8]| {
+            let pad = (64 - blob.len() % 64) % 64;
+            blob.resize(blob.len() + pad, 0);
+            let off = blob.len() as u64;
+            blob.extend_from_slice(bytes);
+            json!({"offset": off, "bytes": bytes.len()})
+        };
+        let t_b: Vec<u8> = table.iter().flat_map(|x| x.to_le_bytes()).collect();
+        let c_b: Vec<u8> = cells.iter().flat_map(|x| x.to_le_bytes()).collect();
+        let r_b: Vec<u8> = routes.iter().flat_map(|x| x.to_le_bytes()).collect();
+        let g_b: Vec<u8> = gates.iter().flat_map(|x| x.to_le_bytes()).collect();
+        let t_span = push_sec(&t_b);
+        let c_span = push_sec(&c_b);
+        let r_span = push_sec(&r_b);
+        let g_span = push_sec(&g_b);
+        let trunk_hdr = serde_json::to_vec(&json!({
+            "schema": crate::discrete_d11::DISCRETE_SCHEMA,
+            "shape": {
+                "vocabulary": vocab, "blocks": 4, "context": context, "kept_cells": 3, "stages": stages,
+                "read_mode": "pick", "read_kept": 0, "read_sweeps": 0, "read_position": 3,
+                "objective_policy": "nearest_address_margin_v1", "read_initialization": "zero_gates_v1",
+                "seed": 7, "epoch": 1,
+            },
+            "matrices": [],
+            "tables": [
+                {"name": "discrete.table", "kind": "i32", "len": table.len(), "span": t_span},
+                {"name": "discrete.cells", "kind": "u32", "len": cells.len(), "span": c_span},
+                {"name": "discrete.routes", "kind": "u32", "len": routes.len(), "span": r_span},
+                {"name": "discrete.gates", "kind": "i32", "len": gates.len(), "span": g_span},
+            ],
+            "source": {
+                "snapshot_schema": crate::discrete_d11::SNAPSHOT_SCHEMA,
+                "snapshot_sha256": "00".repeat(32),
+                "operator_kappa": "blake3:a0ea3a10dd10c5f4856b0d881d33d94c3293bad0e68bd07a47918e2bb82c819b",
+                "composition_kappa": "blake3:f2986c8e68dcb30a9cb511a42547179a87b66ef212a87b728765d03e70e640b0",
+                "kernel_sha256": "11".repeat(32),
+                "source_sha256": "22".repeat(32),
+                "geometry_sha256": "33".repeat(32),
+            }
+        }))
+        .unwrap();
+        let mut trunk = Vec::new();
+        trunk.extend_from_slice(crate::discrete_d11::MAGIC);
+        trunk.extend_from_slice(&(trunk_hdr.len() as u64).to_le_bytes());
+        trunk.extend_from_slice(&trunk_hdr);
+        let pad = (64 - trunk.len() % 64) % 64;
+        trunk.resize(trunk.len() + pad, 0);
+        trunk.extend_from_slice(&blob);
+        let legacy_path = dir.join("legacy.d11");
+        std::fs::write(&legacy_path, &trunk).unwrap();
+        match load_client_artifact(&legacy_path, true).unwrap() {
+            ClientArtifactFile::Legacy(m) => {
+                let want = IntegerDiscreteModel::from_bytes(&trunk).unwrap();
+                assert_eq!(m.artifact_sha256(), want.artifact_sha256());
+                assert_eq!(m.artifact_schema(), want.artifact_schema());
+                assert_eq!(
+                    m.evaluate_prefix(&[0]).unwrap(),
+                    want.evaluate_prefix(&[0]).unwrap()
+                );
+            }
+            ClientArtifactFile::Embedded { .. } => panic!("expected legacy fallback"),
+        }
+
+        let trunk_sha = hex::encode(Sha256::digest(&trunk));
+        let fake_state = b"fake-state-payload-bytes".to_vec();
+        let state_sha = hex::encode(Sha256::digest(&fake_state));
+        let emb_hdr = serde_json::to_vec(&DeploymentHeader {
+            schema: SCHEMA.into(),
+            trunk_bytes: trunk.len(),
+            state_bytes: fake_state.len(),
+            trunk_sha256: trunk_sha.clone(),
+            state_sha256: state_sha.clone(),
+        })
+        .unwrap();
+        let mut bundle = Vec::new();
+        bundle.extend_from_slice(crate::discrete_d11::MAGIC);
+        bundle.extend_from_slice(&(emb_hdr.len() as u64).to_le_bytes());
+        bundle.extend_from_slice(&emb_hdr);
+        bundle.extend_from_slice(&trunk);
+        bundle.extend_from_slice(&fake_state);
+
+        let bundle_path = dir.join("embedded.d11");
+        std::fs::write(&bundle_path, &bundle).unwrap();
+        match load_client_artifact(&bundle_path, false).unwrap() {
+            ClientArtifactFile::Embedded {
+                model,
+                state_bytes,
+                expected_state_sha256,
+                identity,
+            } => {
+                let want = IntegerDiscreteModel::from_bytes(&trunk).unwrap();
+                assert_eq!(model.artifact_sha256(), want.artifact_sha256());
+                assert_eq!(
+                    model.evaluate_prefix(&[0]).unwrap(),
+                    want.evaluate_prefix(&[0]).unwrap()
+                );
+                assert_eq!(state_bytes, fake_state);
+                assert_eq!(expected_state_sha256, state_sha);
+                assert_eq!(
+                    identity.artifact_sha256,
+                    hex::encode(Sha256::digest(&bundle))
+                );
+                assert_eq!(identity.trunk_bytes, trunk.len());
+                assert_eq!(identity.state_bytes, fake_state.len());
+                assert_eq!(identity.header_bytes, 16 + emb_hdr.len());
+            }
+            ClientArtifactFile::Legacy(_) => panic!("expected embedded variant"),
+        }
+
+        // Trailing byte rejected
+        let mut with_tail = bundle.clone();
+        with_tail.push(0);
+        let tail_path = dir.join("tail.d11");
+        std::fs::write(&tail_path, &with_tail).unwrap();
+        assert!(load_client_artifact(&tail_path, false).is_err());
+
+        // Bad trunk digest rejected
+        let bad_hdr = serde_json::to_vec(&DeploymentHeader {
+            schema: SCHEMA.into(),
+            trunk_bytes: trunk.len(),
+            state_bytes: fake_state.len(),
+            trunk_sha256: "ff".repeat(32),
+            state_sha256: state_sha,
+        })
+        .unwrap();
+        let mut bad_bundle = Vec::new();
+        bad_bundle.extend_from_slice(crate::discrete_d11::MAGIC);
+        bad_bundle.extend_from_slice(&(bad_hdr.len() as u64).to_le_bytes());
+        bad_bundle.extend_from_slice(&bad_hdr);
+        bad_bundle.extend_from_slice(&trunk);
+        bad_bundle.extend_from_slice(&fake_state);
+        let bad_path = dir.join("bad_digest.d11");
+        std::fs::write(&bad_path, &bad_bundle).unwrap();
+        assert!(load_client_artifact(&bad_path, false).is_err());
+
+        let _ = std::fs::remove_dir_all(&dir);
     }
 }

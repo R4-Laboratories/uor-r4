@@ -1,0 +1,330 @@
+{
+  "artifact": "/mnt/plexpool/uor-r4-corpus/runs/20261120-whole-context-36/client/c1-candidate/fixture.d11",
+  "artifact_sha256": "a1e1387a3400e7f3240f02078d5996a2a1c9ac2ae2e0c5e6cf443a22f1b5cdbf",
+  "context": 192,
+  "decoding": "greedy complete count and fitted native A1 mixture",
+  "generated_ids": [
+    799,
+    767,
+    2505,
+    16,
+    2237,
+    71,
+    266,
+    962,
+    375,
+    16,
+    3184,
+    2728,
+    1776,
+    28,
+    319,
+    1085
+  ],
+  "model_schema": "uor-r4.lut-discrete-count/1",
+  "p1_components": {
+    "count_sha256": "1ba0ae5473ad8154e2144891f999c049b17eb335e0f6f106754d1cf7dbdeab81",
+    "fit_manifest_sha256": "5475c75eb7cd1f60aefee5e1a3bb1ed132e0aca52b151a797e18579f363bf99c",
+    "weights_sha256": "ceb2e7e6c53cc04ea585ceac26e7cc5be229cd93cae413c0528d3b234bb7cccf"
+  },
+  "p1_sha256": "3a09668187b26adc509e93b78b7929ea277fb2916562a39365ada1a6e103e62d",
+  "p1_state_sha256": "3a09668187b26adc509e93b78b7929ea277fb2916562a39365ada1a6e103e62d",
+  "p1_steps": [
+    {
+      "bucket": 474,
+      "context_tokens": 51,
+      "mass_q48": 212743300023863,
+      "mass_sha256": "4acae0e8aef6b6af73225fa152a9994922a24bbc3600d185ad514cb52556f7bd",
+      "pick_successor": 379,
+      "pick_words": [
+        3,
+        12,
+        1
+      ],
+      "prefix_sha256": "fab863e0aac95964daae922c360be0cab8baf17c2f4151cf26d72ddbb2b572c0",
+      "token": 799,
+      "top_ties": 1
+    },
+    {
+      "bucket": 490,
+      "context_tokens": 52,
+      "mass_q48": 281473888974321,
+      "mass_sha256": "f8217b43a9b914ac95a7de1871a51d200e382cc5a18ecae897b5b6f5b462333d",
+      "pick_successor": 307,
+      "pick_words": [
+        4,
+        16,
+        1
+      ],
+      "prefix_sha256": "a657637e5d4c2372acb8a3052ff6c4e588c229dc2584f5774a4ec8802b711b90",
+      "token": 767,
+      "top_ties": 1
+    },
+    {
+      "bucket": 506,
+      "context_tokens": 53,
+      "mass_q48": 233600664249479,
+      "mass_sha256": "3671b0826f4e3f7084c35681dd6fba8c41bddc02f707d2bf2d9f598727ec9621",
+      "pick_successor": 2708,
+      "pick_words": [
+        35,
+        18,
+        1
+      ],
+      "prefix_sha256": "d7729d047be5c5324a1e376330c688819f0353529a74b6a0dbd14a37bc2899e4",
+      "token": 2505,
+      "top_ties": 1
+    },
+    {
+      "bucket": 522,
+      "context_tokens": 54,
+      "mass_q48": 149930827691192,
+      "mass_sha256": "8befd8d4550f7467348aa186539559d93d47ea729ba6387263f574920d32e951",
+      "pick_successor": 450,
+      "pick_words": [
+        29,
+        16,
+        1
+      ],
+      "prefix_sha256": "1a86c72033deb7c5999d839ef7e7b198881e72e99e11e0dfce9fba49101f5e7f",
+      "token": 16,
+      "top_ties": 1
+    },
+    {
+      "bucket": 523,
+      "context_tokens": 55,
+      "mass_q48": 261457262636678,
+      "mass_sha256": "45707e746013b8f28fd8d80ebd7b4889e2461a60541c4461d456e2b6d020009a",
+      "pick_successor": 201,
+      "pick_words": [
+        44,
+        14,
+        2
+      ],
+      "prefix_sha256": "0f0cbbcd56ae23d5eb838137c11699462a92a6cf9bac5858cac86adc399d51d9",
+      "token": 2237,
+      "top_ties": 1
+    },
+    {
+      "bucket": 522,
+      "context_tokens": 56,
+      "mass_q48": 281474177301190,
+      "mass_sha256": "666047dc9991cf046996a59454080da7bd5edab58dae9381f2dde1a13aab3255",
+      "pick_successor": 35,
+      "pick_words": [
+        45,
+        10,
+        2
+      ],
+      "prefix_sha256": "7b276ea996ca35ce8c5e6486a2db46918dccecc6c5231486ee954f986070f831",
+      "token": 71,
+      "top_ties": 1
+    },
+    {
+      "bucket": 522,
+      "context_tokens": 57,
+      "mass_q48": 281474916817627,
+      "mass_sha256": "e74e4bcd157179cb31c9d45272add21b435197ee275f056cf1a0b3cccd1397a8",
+      "pick_successor": 265,
+      "pick_words": [
+        27,
+        16,
+        2
+      ],
+      "prefix_sha256": "46c389fbffbed6ea464fd22f32b013851d92b60814b7efef3ebd86b0966b7771",
+      "token": 266,
+      "top_ties": 1
+    },
+    {
+      "bucket": 522,
+      "context_tokens": 58,
+      "mass_q48": 98731212659111,
+      "mass_sha256": "ae079267db0410355d10e657ba84347e7d66ee9487209dfe0c0d93f1d9cebfa1",
+      "pick_successor": 16,
+      "pick_words": [
+        43,
+        14,
+        1
+      ],
+      "prefix_sha256": "2281e589ff11f221c177db244d347de31ce0c61b77e59c8f6ad357560e6ca558",
+      "token": 962,
+      "top_ties": 1
+    },
+    {
+      "bucket": 521,
+      "context_tokens": 59,
+      "mass_q48": 280068345744732,
+      "mass_sha256": "cd549fe965d0784ddb0efddc02049a0bc44b20b4cd445385f17f47eb345801cf",
+      "pick_successor": 307,
+      "pick_words": [
+        21,
+        16,
+        2
+      ],
+      "prefix_sha256": "299875a695e4b21783bdccdd19a53799e8873aedb3aa681230fb8427ad04b486",
+      "token": 375,
+      "top_ties": 1
+    },
+    {
+      "bucket": 521,
+      "context_tokens": 60,
+      "mass_q48": 72903505606092,
+      "mass_sha256": "496a9807f6fa1a0633f71cdf21eba137d06eb7a95a7d696df97e9d9daa430051",
+      "pick_successor": 67,
+      "pick_words": [
+        22,
+        14,
+        2
+      ],
+      "prefix_sha256": "5748620bb097df54b69f45f713866838e4f43e197d35ca76829c86b68081579c",
+      "token": 16,
+      "top_ties": 1
+    },
+    {
+      "bucket": 519,
+      "context_tokens": 61,
+      "mass_q48": 74959429417919,
+      "mass_sha256": "5ceaa6ee9a45778e0a10b24a16df2229956191609401f3486d800db1f4b31bf2",
+      "pick_successor": 1601,
+      "pick_words": [
+        18,
+        14,
+        1
+      ],
+      "prefix_sha256": "267a60e13adcd7728c95f83b356b4aedd2bc7e81bb73a9af536a75bc7e76ede7",
+      "token": 3184,
+      "top_ties": 1
+    },
+    {
+      "bucket": 517,
+      "context_tokens": 62,
+      "mass_q48": 281274735583342,
+      "mass_sha256": "f003137315ed32bd40b5b5e5999b43f30df1924a089e70ad4be30317e7930439",
+      "pick_successor": 28,
+      "pick_words": [
+        2,
+        12,
+        1
+      ],
+      "prefix_sha256": "bf9dce5caf748adec648dfec8c1e94967c144a82f1a44d1d8d1ce9956cf12281",
+      "token": 2728,
+      "top_ties": 1
+    },
+    {
+      "bucket": 517,
+      "context_tokens": 63,
+      "mass_q48": 187914421291494,
+      "mass_sha256": "04377c9a1dc24b6a4bf450834e8e3f10ef688c184092ac7ab5ec7604d8f12eb2",
+      "pick_successor": 28,
+      "pick_words": [
+        2,
+        16,
+        1
+      ],
+      "prefix_sha256": "695d9df6c75e9e4d33828abf59ce5dcda80d5c34aa3f68675109fb93f439e07d",
+      "token": 1776,
+      "top_ties": 1
+    },
+    {
+      "bucket": 517,
+      "context_tokens": 64,
+      "mass_q48": 108904878115073,
+      "mass_sha256": "cd398566093a81c0f4bc6f4442d3c9732cfb5d6135c526f2ae17ec38ca3ee7ce",
+      "pick_successor": 1776,
+      "pick_words": [
+        62,
+        16,
+        2
+      ],
+      "prefix_sha256": "cd211acf397cc723d996e0fe4bc2b0c0e56c61aad4886600a4b317f0da276525",
+      "token": 28,
+      "top_ties": 1
+    },
+    {
+      "bucket": 515,
+      "context_tokens": 65,
+      "mass_q48": 235848938391000,
+      "mass_sha256": "cec721eb88765f2d11efdde863d9aab9d0c36c02adf6aeeb10dc6983c84126e5",
+      "pick_successor": 799,
+      "pick_words": [
+        50,
+        10,
+        1
+      ],
+      "prefix_sha256": "ab727bbaa2a12c2a69622806ed62cf7a614b58c75129a0a6efec0dc8f715be05",
+      "token": 319,
+      "top_ties": 1
+    },
+    {
+      "bucket": 515,
+      "context_tokens": 66,
+      "mass_q48": 32676570902468,
+      "mass_sha256": "c18b26bea93c338ea19bac5b9be32f64ca814d2b93eceb452ca8ec4ce59681d9",
+      "pick_successor": 307,
+      "pick_words": [
+        4,
+        6,
+        1
+      ],
+      "prefix_sha256": "ba0b757db215d0378101f04fe57c1a3c50eabe3c89d6ffcff1fd8512b2123e82",
+      "token": 1085,
+      "top_ties": 1
+    }
+  ],
+  "p1_trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+  "prompt_ids": [
+    0,
+    55,
+    2728,
+    28,
+    379,
+    307,
+    67,
+    1040,
+    85,
+    581,
+    2195,
+    16,
+    2130,
+    292,
+    1040,
+    85,
+    3585,
+    322,
+    16,
+    1601,
+    1303,
+    379,
+    307,
+    67,
+    1040,
+    33,
+    1155,
+    673,
+    265,
+    2505,
+    450,
+    571,
+    67,
+    969,
+    463,
+    731,
+    2708,
+    583,
+    265,
+    537,
+    969,
+    85,
+    642,
+    2156,
+    16,
+    201,
+    35,
+    560,
+    652,
+    714,
+    28
+  ],
+  "read_enabled": true,
+  "schema": "uor-r4.uor-chat-discrete-parity/1"
+}
