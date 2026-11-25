@@ -300,6 +300,20 @@ export function buildStandardsIndex(outPath = defaultOut) {
       ].join('\n'),
       source: 'web/studio/foundry/studio/shell/verdant-3d-template.mjs',
     },
+    {
+      id: 'vtensor-quarantine-and-integer-simd',
+      title: 'vTensor CHARTER §3 Quarantine & Pure-Integer WASM SIMD128 Roadmap',
+      topic: 'wasm-acceleration',
+      tags: ['vtensor', 'quarantine', 'wasm', 'simd128', 'pure-integer', 'charter'],
+      summary: 'Quarantines afflom/vTensor outside UOR-R4 under CHARTER §3 and specifies pure-integer WASM SIMD128 kernels + runtime capability probing.',
+      content: [
+        '# vTensor Quarantine & Pure-Integer WASM SIMD128 Roadmap',
+        '- `afflom/vTensor` (`codex/vtensor-implementation` `b0ce3f6b`, `MIT OR Apache-2.0`) wraps GGML buffer/graph execution over an external floating-point tensor engine using `F64`/`F32`/`F16`/`BF16` floats, SoftFloat reductions, float RMS_NORM, and matrix primitives, violating CHARTER §3.1/§3.2/§3.3/§3.7.',
+        '- Binding quarantine: `vTensor` and its external tensor crate stay permanently excluded from `Cargo.toml`, `crates/uor-r4-*`, `core.wasm`, and `uor-foundry-v13-wasm`.',
+        '- Browser speed uses pure-integer WASM SIMD128 (`i8x16`/`i16x8`/`i32x4`/`i64x2`, zero float lanes) gated behind `uorR4.detectWasmCapabilities()` (`window.__uorR4.getWasmCapabilities()`), preceded by Stage B4 integer-only `0xFD` opcode classification in `audit_zero_matmul_wasm.py` and bit-identical scalar/SIMD differential checks.',
+      ].join('\n'),
+      source: 'docs/integration/vtensor-quarantine-and-wasm-simd.md',
+    },
   );
 
   // Enforce strict total size bound < 110 KB so shell closure stays lean.

@@ -1082,7 +1082,7 @@ test('Stage A4 buildStandardsIndex and host.js wire verdant-3d template cleanly'
     const info = buildStandardsIndex(tmpIdx);
     assert.ok(info.bytes < 110 * 1024, `standards-index.json exceeded 110 KB: ${info.bytes}`);
     const parsed = JSON.parse(fs.readFileSync(tmpIdx, 'utf8'));
-    assert.equal(parsed.sections.length, 37);
+    assert.ok(parsed.sections.length >= 37);
     assert.ok(
       parsed.sections.some((s) => s.id === 'verdant-engine-3d-template'),
       'standards-index missing verdant-engine-3d-template section',
@@ -1156,5 +1156,94 @@ test('Stage A4 buildVerdant3dProjectFiles compiles cleanly under esbuild without
       format: 'esm',
     });
     assert.equal(jsxRes.warnings.length, 0);
+  }
+});
+
+test('Stage A5 detectWasmCapabilities probes pure-integer WASM SIMD128 safely and feeds getStatus()', () => {
+  const caps = uorR4.detectWasmCapabilities();
+  assert.equal(Object.isFrozen(caps), true);
+  assert.equal(caps, uorR4.detectWasmCapabilities());
+  assert.equal(caps.wasmSupported, true);
+  assert.equal(caps.simd128IntegerSupported, true);
+  assert.equal(caps.activeIntegerKernel, 'wasm-scalar-integer');
+  assert.equal(caps.plannedSimdKernel, 'wasm-simd128-integer-b4');
+  assert.equal(caps.vtensorQuarantined, true);
+  assert.deepEqual(uorR4.getStatus().wasmCapabilities, caps);
+
+  const noWasm = uorR4.detectWasmCapabilities({ webAssembly: null, globalScope: {} });
+  assert.equal(noWasm.wasmSupported, false);
+  assert.equal(noWasm.simd128IntegerSupported, false);
+  assert.equal(noWasm.vtensorQuarantined, true);
+
+  const throwingWasm = uorR4.detectWasmCapabilities({
+    webAssembly: {
+      instantiate() {},
+      validate() {
+        throw new Error('WASM disabled');
+      },
+    },
+    globalScope: {},
+  });
+  assert.equal(throwingWasm.wasmSupported, true);
+  assert.equal(throwingWasm.simd128IntegerSupported, false);
+
+  const partialWasm = uorR4.detectWasmCapabilities({
+    webAssembly: { validate: () => true },
+    globalScope: {},
+  });
+  assert.equal(partialWasm.wasmSupported, false);
+  assert.equal(partialWasm.simd128IntegerSupported, false);
+
+  const primitiveOpts = uorR4.detectWasmCapabilities(1);
+  assert.equal(primitiveOpts.wasmSupported, true);
+  assert.equal(primitiveOpts.simd128IntegerSupported, true);
+  assert.notEqual(uorR4.detectWasmCapabilities(), throwingWasm);
+});
+
+test('Stage A5 vTensor quarantine doc, standards index, host bridge, and Cargo quarantine hold', () => {
+  const docPath = join(repoRoot, 'docs/integration/vtensor-quarantine-and-wasm-simd.md');
+  assert.ok(fs.existsSync(docPath), 'missing docs/integration/vtensor-quarantine-and-wasm-simd.md');
+  const docText = fs.readFileSync(docPath, 'utf8');
+  assert.match(docText, /b0ce3f6b72ce3b12ea3081977b61cbb01b36980f/);
+  assert.match(docText, /audit_zero_matmul_wasm\.py/);
+
+  const tmpIdx = join(tmpdir(), `uor-r4-a5-standards-${process.pid}.json`);
+  try {
+    const info = buildStandardsIndex(tmpIdx);
+    assert.ok(info.bytes < 110 * 1024, `standards-index.json exceeded 110 KB: ${info.bytes}`);
+    const parsed = JSON.parse(fs.readFileSync(tmpIdx, 'utf8'));
+    assert.equal(parsed.sections.length, 38);
+    assert.ok(
+      parsed.sections.some((s) => s.id === 'vtensor-quarantine-and-integer-simd'),
+      'standards-index missing vtensor-quarantine-and-integer-simd section',
+    );
+  } finally {
+    fs.rmSync(tmpIdx, { force: true });
+  }
+
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  assert.match(hostSrc, /getWasmCapabilities:\s*uorR4\.detectWasmCapabilities/);
+
+  // Verify active workspace Cargo manifests & core.wasm keep vTensor, verdant-tensor, and uor-matmul quarantined.
+  const stripTomlComments = (text) =>
+    text
+      .split(/\r?\n/)
+      .map((line) => line.replace(/#.*$/, ''))
+      .join('\n');
+  const rootManifest = stripTomlComments(fs.readFileSync(join(repoRoot, 'Cargo.toml'), 'utf8'));
+  assert.ok(!/(vtensor|verdant-tensor|uor-matmul)/i.test(rootManifest), 'quarantine breach in root Cargo.toml');
+  const memberMatches = rootManifest.match(/members\s*=\s*\[([\s\S]*?)\]/)?.[1] || '';
+  const cargoPaths = [...memberMatches.matchAll(/"([^"]+)"/g)].map((m) => join(repoRoot, m[1], 'Cargo.toml'));
+  cargoPaths.push(join(repoRoot, 'web/studio/foundry/studio/core/Cargo.toml'));
+  assert.ok(cargoPaths.length > 5, 'expected workspace Cargo members');
+  for (const manifest of cargoPaths) {
+    if (!fs.existsSync(manifest)) continue;
+    const text = stripTomlComments(fs.readFileSync(manifest, 'utf8'));
+    assert.ok(!/(vtensor|verdant-tensor|uor-matmul)/i.test(text), `quarantine breach in ${manifest}`);
+  }
+  const lockPath = join(repoRoot, 'Cargo.lock');
+  if (fs.existsSync(lockPath)) {
+    const lockText = fs.readFileSync(lockPath, 'utf8');
+    assert.ok(!/(vtensor|verdant-tensor|uor-matmul)/i.test(lockText), 'quarantine breach in Cargo.lock');
   }
 });

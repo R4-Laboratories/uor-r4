@@ -4079,6 +4079,7 @@ window.__host = { handlers, emit, seen, get, put, all, kappa, core: () => core, 
 window.__uorR4 = Object.freeze({
   getCatalog: uorR4.getCatalog,
   getStatus: uorR4.getStatus,
+  getWasmCapabilities: uorR4.detectWasmCapabilities,
   ensureModelLoaded: uorR4.ensureModelLoaded,
   prewarmIfCached: (opts = {}) => uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT, ...opts }),
   configure: uorR4.configure,

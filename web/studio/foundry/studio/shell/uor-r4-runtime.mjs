@@ -63,7 +63,57 @@ let loadedCapabilities = null;
 let loadedHydrationProvenance = null;
 let defaultSpeculative = true;
 let opfsStatus = 'untested';
+let cachedWasmCapabilities = null;
 let pendingOp = Promise.resolve();
+
+// Minimal 64-byte valid pure-integer WASM SIMD128 module (`v128.const 0` x2 + `i32x4.dot_i16x8_s`).
+const WASM_INT_SIMD128_PROBE = new Uint8Array([
+  0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00,
+  0x01, 0x04, 0x01, 0x60, 0x00, 0x00,
+  0x03, 0x02, 0x01, 0x00,
+  0x0a, 0x2c, 0x01, 0x2a, 0x00,
+  0xfd, 0x0c, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0xfd, 0x0c, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0xfd, 0xba, 0x01,
+  0x1a, 0x0b,
+]);
+
+/** Probe browser support for pure-integer WASM SIMD128 and shared typed primitives. */
+export function detectWasmCapabilities(opts) {
+  const useDefaultCache = opts === undefined;
+  if (useDefaultCache && cachedWasmCapabilities) {
+    return cachedWasmCapabilities;
+  }
+  const optObj = opts && typeof opts === 'object' ? opts : null;
+  const scope = optObj && optObj.globalScope !== undefined ? optObj.globalScope : globalThis;
+  const wasmApi = optObj && 'webAssembly' in optObj ? optObj.webAssembly : scope?.WebAssembly;
+  const wasmSupported = Boolean(
+    wasmApi && typeof wasmApi.validate === 'function' && typeof wasmApi.instantiate === 'function',
+  );
+  let simd128IntegerSupported = false;
+  if (wasmSupported) {
+    try {
+      simd128IntegerSupported = wasmApi.validate(WASM_INT_SIMD128_PROBE.slice()) === true;
+    } catch {
+      simd128IntegerSupported = false;
+    }
+  }
+  const caps = Object.freeze({
+    wasmSupported,
+    simd128IntegerSupported,
+    bigInt64ArraySupported: typeof scope?.BigInt64Array === 'function',
+    sharedArrayBufferSupported: typeof scope?.SharedArrayBuffer === 'function',
+    atomicsSupported: Boolean(scope?.Atomics && typeof scope.Atomics.wait === 'function'),
+    crossOriginIsolated: Boolean(scope?.crossOriginIsolated),
+    activeIntegerKernel: 'wasm-scalar-integer',
+    plannedSimdKernel: 'wasm-simd128-integer-b4',
+    vtensorQuarantined: true,
+  });
+  if (useDefaultCache) {
+    cachedWasmCapabilities = caps;
+  }
+  return caps;
+}
 let nextMsgId = 1;
 const pendingV13Replies = new Map();
 const progressListeners = new Set();
@@ -466,6 +516,7 @@ export function getStatus() {
     engine: loadedCapabilities?.engine || 'uor-foundry-v13/wasm',
     loadedModelId: loadedModelId ? toFullModelId(loadedModelId) : null,
     capabilities: loadedCapabilities,
+    wasmCapabilities: detectWasmCapabilities(),
     opfsStatus,
     hydration: getHydrationState(),
     hydrationProvenance: loadedHydrationProvenance,
