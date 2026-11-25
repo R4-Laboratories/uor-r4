@@ -1202,3 +1202,205 @@ fn streaming_from_reader_rejects_planted_truncation_padding_and_trailing_faults(
     assert!(IntegerDiscreteModel::load(&bad_path).is_err());
     let _ = fs::remove_dir_all(&dir);
 }
+
+#[cfg(feature = "p1-count-serving")]
+#[test]
+fn embedded_uorknc03_deployment_streaming_roundtrip_parity_and_refusal() {
+    use uor_r4_count_runtime::{CompactCountLookup, FrozenPickMixture, PickClassRule};
+    use uor_r4_integer::discrete_d11::count_deployment::{
+        load_client_artifact, ClientArtifactFile, SCHEMA as DEPLOYMENT_SCHEMA,
+    };
+
+    let vocab = 16usize;
+    let context = 4usize;
+    let steps = [0u32; 64];
+    let norms = [0u32; 4];
+    let (unigram, sorted_sections) = fixture_sparse_data();
+    let sorted_refs: [&[u32]; 12] = std::array::from_fn(|i| sorted_sections[i].as_slice());
+    let trunk = build_trunk_uorlut01(vocab, context, &steps, &norms, &unigram, sorted_refs);
+    let trunk_sha = hex::encode(Sha256::digest(&trunk));
+
+    let train_sha = [0x33u8; 32];
+    let highest = 1u32;
+    let mut rspec0 = [0u64; 4];
+    let mut aspec0 = [0u64; 4];
+    rspec0[0] = 1;
+    rspec0[1] = 1;
+    aspec0[0] = 2;
+
+    // Order 0: key=[], followers (next=1, r=1, a=1) and (next=2, r=2, a=1).
+    let mut v2 = Vec::new();
+    v2.extend_from_slice(b"UORKNC02");
+    v2.extend_from_slice(&highest.to_le_bytes());
+    v2.extend_from_slice(&train_sha);
+    v2.extend_from_slice(&2u32.to_le_bytes());
+    v2.extend_from_slice(&1u32.to_le_bytes());
+    for w in rspec0.into_iter().chain(aspec0) {
+        v2.extend_from_slice(&w.to_le_bytes());
+    }
+    v2.extend_from_slice(&0u32.to_le_bytes());
+    for (next, r, a) in [(1u16, 1u32, 1u32), (2u16, 2u32, 1u32)] {
+        v2.extend_from_slice(&next.to_le_bytes());
+        v2.extend_from_slice(&r.to_le_bytes());
+        v2.extend_from_slice(&a.to_le_bytes());
+    }
+    // Order 1 (highest => shared): context [5] => next=2, r=2, a=2.
+    let mut rspec1 = [0u64; 4];
+    rspec1[1] = 1;
+    v2.extend_from_slice(&1u32.to_le_bytes());
+    v2.extend_from_slice(&1u32.to_le_bytes());
+    for w in rspec1.into_iter().chain(rspec1) {
+        v2.extend_from_slice(&w.to_le_bytes());
+    }
+    v2.extend_from_slice(&[0x00, 0x05]); // big-endian 12-bit key for token 5 in order 1
+    v2.extend_from_slice(&0u32.to_le_bytes());
+    v2.extend_from_slice(&2u16.to_le_bytes());
+    v2.extend_from_slice(&2u32.to_le_bytes());
+
+    // Exact matching UORKNC03 encoding.
+    let mut v3 = Vec::new();
+    v3.extend_from_slice(b"UORKNC03");
+    v3.extend_from_slice(&highest.to_le_bytes());
+    v3.extend_from_slice(&train_sha);
+    // Order 0 section:
+    v3.extend_from_slice(&2u32.to_le_bytes());
+    v3.extend_from_slice(&1u32.to_le_bytes());
+    for w in rspec0.into_iter().chain(aspec0) {
+        v3.extend_from_slice(&w.to_le_bytes());
+    }
+    for _ in 0..4 {
+        v3.extend_from_slice(&0u32.to_le_bytes());
+    }
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    v3.extend_from_slice(&2u32.to_le_bytes());
+    v3.push(1); // fol_deg = 2 - 1
+    v3.extend_from_slice(&((1u16 << 4) | 0u16).to_le_bytes()); // (1, 1) => code 0
+    v3.extend_from_slice(&((2u16 << 4) | 1u16).to_le_bytes()); // (2, 1) => code 1
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    // Order 1 section (shared):
+    v3.extend_from_slice(&1u32.to_le_bytes());
+    v3.extend_from_slice(&1u32.to_le_bytes());
+    for w in rspec1.into_iter().chain(rspec1) {
+        v3.extend_from_slice(&w.to_le_bytes());
+    }
+    for _ in 0..4 {
+        v3.extend_from_slice(&0u32.to_le_bytes());
+    }
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    v3.extend_from_slice(&1u32.to_le_bytes());
+    v3.push(1); // parent_deg[0] = 1
+    v3.extend_from_slice(&[0x05, 0x00]); // 12-bit child_tok = 5 (padded nibble = 0)
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    v3.extend_from_slice(&1u32.to_le_bytes());
+    v3.push(0); // fol_deg[0] = 1 - 1
+    v3.extend_from_slice(&((2u16 << 4) | 1u16).to_le_bytes()); // shared count=2 => code 1
+    v3.extend_from_slice(&0u32.to_le_bytes());
+    v3.extend_from_slice(&0u32.to_le_bytes());
+
+    let v2_sha: [u8; 32] = Sha256::digest(&v2).into();
+    let v3_sha: [u8; 32] = Sha256::digest(&v3).into();
+    let l2 = CompactCountLookup::from_bytes(&v2, train_sha, v2_sha).unwrap();
+    let l3 = CompactCountLookup::from_bytes(&v3, train_sha, v3_sha).unwrap();
+
+    let mut weights_vec = vec![0u64; 176 * 5 * 14];
+    for row in weights_vec.chunks_exact_mut(14) {
+        row[0] = 1 << 32;
+    }
+    let frozen =
+        FrozenPickMixture::with_rule(10, [0x55; 32], weights_vec, PickClassRule::Five).unwrap();
+    let weights_bytes = frozen.to_bytes();
+    let fit_manifest = serde_json::to_vec(&json!({
+        "schema": "uor-r4.d37.r-fit/1",
+        "arm": "a1s",
+        "weight_format": "UORS5W02",
+        "pick_classes": 5,
+        "q32_weight_words": 176 * 5 * 14,
+        "prepared": {
+            "format": "uor-r4.d37.r-preparation/1",
+            "c_sha256": hex::encode(train_sha),
+            "r_sha256": "11".repeat(32),
+            "pick_mode": "identity",
+            "trunk_sha256": trunk_sha,
+            "compact_sha256": hex::encode(v3_sha),
+        }
+    }))
+    .unwrap();
+    let mut state_bytes = Vec::new();
+    state_bytes.extend_from_slice(b"UORP1A01");
+    state_bytes.extend_from_slice(&(fit_manifest.len() as u32).to_le_bytes());
+    state_bytes.extend_from_slice(&(weights_bytes.len() as u32).to_le_bytes());
+    state_bytes.extend_from_slice(&Sha256::digest(&weights_bytes));
+    state_bytes.extend_from_slice(&fit_manifest);
+    state_bytes.extend_from_slice(&weights_bytes);
+    state_bytes.extend_from_slice(&v3);
+    let state_sha = hex::encode(Sha256::digest(&state_bytes));
+
+    let emb_hdr = serde_json::to_vec(&json!({
+        "schema": DEPLOYMENT_SCHEMA,
+        "trunk_bytes": trunk.len(),
+        "state_bytes": state_bytes.len(),
+        "trunk_sha256": trunk_sha,
+        "state_sha256": state_sha,
+    }))
+    .unwrap();
+    let mut deploy = Vec::new();
+    deploy.extend_from_slice(MAGIC);
+    deploy.extend_from_slice(&(emb_hdr.len() as u64).to_le_bytes());
+    deploy.extend_from_slice(&emb_hdr);
+    deploy.extend_from_slice(&trunk);
+    deploy.extend_from_slice(&state_bytes);
+
+    let dir = std::env::temp_dir().join(format!("uor-v3-deploy-{}", std::process::id()));
+    let _ = fs::remove_dir_all(&dir);
+    fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("v3-embed.d11");
+    fs::write(&path, &deploy).unwrap();
+
+    let (loaded_model, loaded_state) = match load_client_artifact(&path, false).unwrap() {
+        ClientArtifactFile::Embedded {
+            model,
+            state_bytes: sb,
+            expected_state_sha256,
+            identity,
+        } => {
+            assert_eq!(expected_state_sha256, state_sha);
+            assert_eq!(
+                identity.artifact_sha256,
+                hex::encode(Sha256::digest(&deploy))
+            );
+            (model, sb)
+        }
+        ClientArtifactFile::Legacy(_) => panic!("expected embedded deployment"),
+    };
+    let want_model = IntegerDiscreteModel::from_bytes(&trunk).unwrap();
+    assert_eq!(loaded_model.artifact_sha256(), want_model.artifact_sha256());
+
+    let fit_len = u32::from_le_bytes(loaded_state[8..12].try_into().unwrap()) as usize;
+    let wt_len = u32::from_le_bytes(loaded_state[12..16].try_into().unwrap()) as usize;
+    let decoded_v3 =
+        CompactCountLookup::from_bytes(&loaded_state[48 + fit_len + wt_len..], train_sha, v3_sha)
+            .unwrap();
+    for ctx_tok in [0u16, 4u16, 5u16] {
+        for tgt in [1u16, 2u16, 3u16] {
+            let seq = [ctx_tok, tgt];
+            let (mut c2, mut t2) = ([0u32; 2], [0u64; 2]);
+            let (mut c3, mut t3) = ([0u32; 2], [0u64; 2]);
+            let (mut cd, mut td) = ([0u32; 2], [0u64; 2]);
+            let m2 = l2.lookup(&seq, 1, &mut c2, &mut t2).unwrap();
+            let m3 = l3.lookup(&seq, 1, &mut c3, &mut t3).unwrap();
+            let md = decoded_v3.lookup(&seq, 1, &mut cd, &mut td).unwrap();
+            assert_eq!((m2, c2, t2), (m3, c3, t3));
+            assert_eq!((m2, c2, t2), (md, cd, td));
+        }
+    }
+
+    // Tampered trailing byte must be rejected by streaming artifact loader.
+    let mut bad = deploy.clone();
+    bad.push(0);
+    let bad_path = dir.join("v3-embed-bad.d11");
+    fs::write(&bad_path, &bad).unwrap();
+    assert!(load_client_artifact(&bad_path, false).is_err());
+
+    let _ = fs::remove_dir_all(&dir);
+}

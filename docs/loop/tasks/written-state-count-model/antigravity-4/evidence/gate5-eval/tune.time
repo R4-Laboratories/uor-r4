@@ -1,0 +1,23 @@
+	Command being timed: "/mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/bin/eval-v3 score-tune /mnt/plexpool/uor-r4-corpus/runs/20261120-pruned-r-fit-37/tune/c420 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate3-fullc/full-c.v3 75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233 /home/callard/uor-codex/20261118-diagnostics/inputs/seed1.d11 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate4-tapes/tune-65536.tape dc0785bf0002a17f9e416235e7b4aeb1308b218574ce6b5145b808244fc4f24d /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/bin/eval-v3-tune-device /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/tune"
+	User time (seconds): 161.27
+	System time (seconds): 44.03
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:25.52
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4437132
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 130
+	Minor (reclaiming a frame) page faults: 44737683
+	Voluntary context switches: 138211
+	Involuntary context switches: 2626
+	Swaps: 0
+	File system inputs: 5109
+	File system outputs: 319
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

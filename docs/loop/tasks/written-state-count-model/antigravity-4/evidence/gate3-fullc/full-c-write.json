@@ -1,0 +1,289 @@
+{
+  "elapsed_ms": 406732,
+  "orders": [
+    {
+      "adjusted_support": 3280628,
+      "contexts": 1,
+      "esc16": 4074,
+      "esc32": 1570,
+      "fol_deg_esc": 1,
+      "followers": 4079,
+      "kn_spectrum": [
+        7,
+        6,
+        11,
+        11
+      ],
+      "order": 0,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "raw_support": 2075092837,
+      "section_bytes": 43657,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 53294162,
+      "contexts": 4079,
+      "esc16": 1686208,
+      "esc32": 4444,
+      "fol_deg_esc": 2967,
+      "followers": 3280628,
+      "kn_spectrum": [
+        1059022,
+        501343,
+        301076,
+        203021
+      ],
+      "order": 1,
+      "parent_deg_esc": 1,
+      "raw_spectrum": [
+        701667,
+        377640,
+        233153,
+        168647
+      ],
+      "raw_support": 2075092837,
+      "section_bytes": 13592823,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 200517874,
+      "contexts": 3279140,
+      "esc16": 12100125,
+      "esc32": 2685,
+      "fol_deg_esc": 34278,
+      "followers": 52778642,
+      "kn_spectrum": [
+        32465243,
+        8089715,
+        3532070,
+        1963096
+      ],
+      "order": 2,
+      "parent_deg_esc": 2893,
+      "raw_spectrum": [
+        23900929,
+        8331269,
+        4091165,
+        2596185
+      ],
+      "raw_support": 2074577317,
+      "section_bytes": 165918931,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 385934209,
+      "contexts": 28870347,
+      "esc16": 24257177,
+      "esc32": 1584,
+      "fol_deg_esc": 34027,
+      "followers": 176109525,
+      "kn_spectrum": [
+        128485860,
+        23620926,
+        8446152,
+        4232421
+      ],
+      "order": 3,
+      "parent_deg_esc": 16811,
+      "raw_spectrum": [
+        95612330,
+        30674867,
+        12882020,
+        7537954
+      ],
+      "raw_support": 2050168968,
+      "section_bytes": 538043098,
+      "threshold": 2
+    },
+    {
+      "adjusted_support": 396832699,
+      "contexts": 24621509,
+      "esc16": 29794420,
+      "esc32": 912,
+      "fol_deg_esc": 17401,
+      "followers": 192961856,
+      "kn_spectrum": [
+        140981930,
+        25338535,
+        9374659,
+        4857303
+      ],
+      "order": 4,
+      "parent_deg_esc": 3702,
+      "raw_spectrum": [
+        104546748,
+        30118866,
+        13524068,
+        8283120
+      ],
+      "raw_support": 1800104623,
+      "section_bytes": 611066538,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 358490402,
+      "contexts": 30958881,
+      "esc16": 29495719,
+      "esc32": 589,
+      "fol_deg_esc": 8076,
+      "followers": 189599560,
+      "kn_spectrum": [
+        141020336,
+        24407602,
+        8825940,
+        4539934
+      ],
+      "order": 5,
+      "parent_deg_esc": 1781,
+      "raw_spectrum": [
+        102518452,
+        29212362,
+        13086817,
+        8052793
+      ],
+      "raw_support": 1533633289,
+      "section_bytes": 614590774,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 282920214,
+      "contexts": 31328000,
+      "esc16": 26235484,
+      "esc32": 449,
+      "fol_deg_esc": 3237,
+      "followers": 157096098,
+      "kn_spectrum": [
+        118449812,
+        19712961,
+        7012737,
+        3607746
+      ],
+      "order": 6,
+      "parent_deg_esc": 851,
+      "raw_spectrum": [
+        82881395,
+        23776561,
+        10685490,
+        6663306
+      ],
+      "raw_support": 1273932796,
+      "section_bytes": 542154469,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 211028438,
+      "contexts": 28563910,
+      "esc16": 22783865,
+      "esc32": 375,
+      "fol_deg_esc": 1432,
+      "followers": 120552805,
+      "kn_spectrum": [
+        91807330,
+        14721665,
+        5189602,
+        2699895
+      ],
+      "order": 7,
+      "parent_deg_esc": 398,
+      "raw_spectrum": [
+        60336405,
+        17878038,
+        8140310,
+        5207015
+      ],
+      "raw_support": 1061928813,
+      "section_bytes": 446272225,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 157441260,
+      "contexts": 25399097,
+      "esc16": 19923723,
+      "esc32": 312,
+      "fol_deg_esc": 683,
+      "followers": 91564626,
+      "kn_spectrum": [
+        70246718,
+        10866340,
+        3853786,
+        2031858
+      ],
+      "order": 8,
+      "parent_deg_esc": 246,
+      "raw_spectrum": [
+        42648529,
+        13249624,
+        6136168,
+        4041393
+      ],
+      "raw_support": 902432911,
+      "section_bytes": 363990699,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 120811370,
+      "contexts": 22655303,
+      "esc16": 17772501,
+      "esc32": 262,
+      "fol_deg_esc": 463,
+      "followers": 71427025,
+      "kn_spectrum": [
+        55201264,
+        8264966,
+        2938541,
+        1565827
+      ],
+      "order": 9,
+      "parent_deg_esc": 148,
+      "raw_spectrum": [
+        30510935,
+        10062095,
+        4773286,
+        3239044
+      ],
+      "raw_support": 784373872,
+      "section_bytes": 303455915,
+      "threshold": 6
+    },
+    {
+      "adjusted_support": 694777590,
+      "contexts": 20535585,
+      "esc16": 4877175,
+      "esc32": 220,
+      "fol_deg_esc": 364,
+      "followers": 57598579,
+      "kn_spectrum": [
+        22410564,
+        7863623,
+        3812752,
+        2664571
+      ],
+      "order": 10,
+      "parent_deg_esc": 91,
+      "raw_spectrum": [
+        22410564,
+        7863623,
+        3812752,
+        2664571
+      ],
+      "raw_support": 694777590,
+      "section_bytes": 205249712,
+      "threshold": 6
+    }
+  ],
+  "output_bytes": 3804378885,
+  "output_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+  "schema": "uor-r4.uorknc03-compression/1",
+  "source_bytes": 148096362864,
+  "source_sha256": "1afd1c27bac4e963f4885ed275fa45c3e0a4014d3a6242f5deba82f04110ce26",
+  "t3": 2,
+  "t_hi": 6,
+  "training_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+  "verified_cold_load": true
+}

@@ -18,7 +18,7 @@ use crate::{Error, Result};
 mod compact_lookup;
 mod complete_lookup;
 mod frozen_pick;
-pub use compact_lookup::{encode_compact_lookup, CompactCountLookup};
+pub use compact_lookup::{encode_compact_lookup, encode_compact_lookup_v3, CompactCountLookup};
 pub use complete_lookup::{encode_complete_lookup, CompleteCountLookup};
 pub use frozen_pick::FrozenPickMixture;
 
@@ -125,7 +125,9 @@ impl RawTables {
         counts: &mut [u32],
         totals: &mut [u64],
     ) -> Result<()> {
-        let target = *tokens.get(j).ok_or_else(|| invalid("missing raw lookup target"))?;
+        let target = *tokens
+            .get(j)
+            .ok_or_else(|| invalid("missing raw lookup target"))?;
         if target == NGRAM_BOS || u32::from(target) >= NGRAM_VOCABULARY {
             return Err(invalid("raw lookup target is not a valid non-BOS token"));
         }
@@ -589,8 +591,8 @@ impl CeilingTable {
                 self.experts()
             )));
         }
-        if let Some(b) = (0..self.bucket_total())
-            .find(|&b| !(0..on.len()).any(|e| on[e] && self.holds(b, e)))
+        if let Some(b) =
+            (0..self.bucket_total()).find(|&b| !(0..on.len()).any(|e| on[e] && self.holds(b, e)))
         {
             return Err(invalid(format!(
                 "the expert mask leaves bucket {b} no expert"
@@ -1156,7 +1158,11 @@ mod tests {
         assert_eq!(table.experts(), base + 1);
         for (t, p) in pick.iter().enumerate() {
             let row = &table.masses()[t * (base + 1)..(t + 1) * (base + 1)];
-            assert_eq!(&row[..base], &plain.masses()[t * base..(t + 1) * base], "target {t}");
+            assert_eq!(
+                &row[..base],
+                &plain.masses()[t * base..(t + 1) * base],
+                "target {t}"
+            );
             assert_eq!(row[base], if p.hit { 1 << 48 } else { 0 }, "target {t}");
             let want = usize::from(p.class) * stride + usize::from(plain.buckets()[t]);
             assert_eq!(usize::from(table.buckets()[t]), want, "target {t}");
@@ -1191,7 +1197,13 @@ mod tests {
         assert_eq!(run.fit_bits, want);
         assert_eq!(weight_digest(&run.weights), 24357983333462);
         // A Pick table whose targets all stay in class 0 fits the same.
-        let table = pick_table(&vec![PickTarget { class: 0, hit: false }; 240]);
+        let table = pick_table(&vec![
+            PickTarget {
+                class: 0,
+                hit: false
+            };
+            240
+        ]);
         let on = vec![true; table.experts()];
         let got = table
             .fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits)
@@ -1236,9 +1248,11 @@ mod tests {
         // At highest = 10: 3 * 176 buckets.
         let mut totals = vec![0u64; 11];
         totals[0] = 1;
-        let one = [PickTarget { class: 2, hit: true }];
-        let wide = CeilingTable::from_lookups_with_pick(10, &[1], &[0; 11], &totals, &one)
-            .unwrap();
+        let one = [PickTarget {
+            class: 2,
+            hit: true,
+        }];
+        let wide = CeilingTable::from_lookups_with_pick(10, &[1], &[0; 11], &totals, &one).unwrap();
         assert_eq!(wide.bucket_total(), 528);
         assert_eq!(wide.buckets(), &[352]);
         // Bad Pick lists are refused.
@@ -1251,7 +1265,10 @@ mod tests {
         bad[4].class = 3;
         assert!(build(&bad));
         let mut bad = pick.clone();
-        bad[0] = PickTarget { class: 0, hit: true };
+        bad[0] = PickTarget {
+            class: 0,
+            hit: true,
+        };
         assert!(build(&bad));
         assert!(!build(&pick));
     }
@@ -1276,9 +1293,8 @@ mod tests {
         // Three classes through the new constructor: the same table, byte for byte.
         let three = pick_targets(|t| t % 2 == 0);
         let old = pick_table(&three);
-        let new =
-            CeilingTable::from_lookups_with_pick_classes(2, &kn, &counts, &totals, &three, 3)
-                .unwrap();
+        let new = CeilingTable::from_lookups_with_pick_classes(2, &kn, &counts, &totals, &three, 3)
+            .unwrap();
         assert_eq!(new.buckets(), old.buckets());
         assert_eq!(new.masses(), old.masses());
         assert_eq!(new.bucket_total(), old.bucket_total());
@@ -1316,7 +1332,10 @@ mod tests {
         // At highest = 10: 5 * 176 = 880 buckets; a class-4 target sits in the last copy.
         let mut wide_totals = vec![0u64; 11];
         wide_totals[0] = 1;
-        let one = [PickTarget { class: 4, hit: true }];
+        let one = [PickTarget {
+            class: 4,
+            hit: true,
+        }];
         let wide = CeilingTable::from_lookups_with_pick_classes(
             10,
             &[1],
@@ -1335,8 +1354,12 @@ mod tests {
         let wide3 =
             CeilingTable::from_lookups_with_pick_classes(2, &kn, &counts, &totals, &three, 5)
                 .unwrap();
-        let a = old.fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits).unwrap();
-        let b = wide3.fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits).unwrap();
+        let a = old
+            .fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits)
+            .unwrap();
+        let b = wide3
+            .fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits)
+            .unwrap();
         assert_eq!(a.fit_bits, b.fit_bits);
         assert_eq!(&b.weights[..a.weights.len()], &a.weights[..]);
         // Refusals: a class count outside 2 to 5, and a class at or above the count.
@@ -1366,7 +1389,12 @@ mod tests {
         let got = table
             .fit_em_from(&fit, &on, EmStart::Kn, 24, test_bits)
             .unwrap();
-        assert!(got.fit_bits[24] < base.fit_bits[24], "{} vs {}", got.fit_bits[24], base.fit_bits[24]);
+        assert!(
+            got.fit_bits[24] < base.fit_bits[24],
+            "{} vs {}",
+            got.fit_bits[24],
+            base.fit_bits[24]
+        );
     }
 
     #[test]

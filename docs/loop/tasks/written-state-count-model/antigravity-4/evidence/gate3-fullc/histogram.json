@@ -1,0 +1,559 @@
+{
+  "asym_t3_1": [
+    {
+      "bytes": 32864181714,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 1
+    },
+    {
+      "bytes": 9246874501,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 2
+    },
+    {
+      "bytes": 6044738760,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 3
+    },
+    {
+      "bytes": 4941961659,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 4
+    },
+    {
+      "bytes": 4326614504,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 5
+    },
+    {
+      "bytes": 3940366658,
+      "fits_cap": false,
+      "t3": 1,
+      "t_hi": 6
+    },
+    {
+      "bytes": 3654216737,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 7
+    },
+    {
+      "bytes": 3419882831,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 8
+    },
+    {
+      "bytes": 3226690798,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 9
+    },
+    {
+      "bytes": 3070508262,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 10
+    },
+    {
+      "bytes": 2937719625,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 11
+    },
+    {
+      "bytes": 2826202820,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 12
+    },
+    {
+      "bytes": 2728301063,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 13
+    },
+    {
+      "bytes": 2644961507,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 14
+    },
+    {
+      "bytes": 2570517994,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 15
+    },
+    {
+      "bytes": 2505623494,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 16
+    },
+    {
+      "bytes": 2393998422,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 18
+    },
+    {
+      "bytes": 2302166974,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 20
+    },
+    {
+      "bytes": 2224521257,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 22
+    },
+    {
+      "bytes": 2157767296,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 24
+    },
+    {
+      "bytes": 2048240161,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 28
+    },
+    {
+      "bytes": 1961612961,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 32
+    },
+    {
+      "bytes": 1831526620,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 40
+    },
+    {
+      "bytes": 1737055244,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 48
+    },
+    {
+      "bytes": 1606518087,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 64
+    },
+    {
+      "bytes": 1453950987,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 96
+    },
+    {
+      "bytes": 1364205532,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 128
+    },
+    {
+      "bytes": 1196561135,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 256
+    },
+    {
+      "bytes": 1155794711,
+      "fits_cap": true,
+      "t3": 1,
+      "t_hi": 318
+    }
+  ],
+  "asym_t3_2": [
+    {
+      "bytes": 9110886728,
+      "fits_cap": false,
+      "t3": 2,
+      "t_hi": 2
+    },
+    {
+      "bytes": 5908750987,
+      "fits_cap": false,
+      "t3": 2,
+      "t_hi": 3
+    },
+    {
+      "bytes": 4805973886,
+      "fits_cap": false,
+      "t3": 2,
+      "t_hi": 4
+    },
+    {
+      "bytes": 4190626731,
+      "fits_cap": false,
+      "t3": 2,
+      "t_hi": 5
+    },
+    {
+      "bytes": 3804378885,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 6
+    },
+    {
+      "bytes": 3518228964,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 7
+    },
+    {
+      "bytes": 3283895058,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 8
+    },
+    {
+      "bytes": 3090703025,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 9
+    },
+    {
+      "bytes": 2934520489,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 10
+    },
+    {
+      "bytes": 2801731852,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 11
+    },
+    {
+      "bytes": 2690215047,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 12
+    },
+    {
+      "bytes": 2592313290,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 13
+    },
+    {
+      "bytes": 2508973734,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 14
+    },
+    {
+      "bytes": 2434530221,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 15
+    },
+    {
+      "bytes": 2369635721,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 16
+    },
+    {
+      "bytes": 2258010649,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 18
+    },
+    {
+      "bytes": 2166179201,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 20
+    },
+    {
+      "bytes": 2088533484,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 22
+    },
+    {
+      "bytes": 2021779523,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 24
+    },
+    {
+      "bytes": 1912252388,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 28
+    },
+    {
+      "bytes": 1825625188,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 32
+    },
+    {
+      "bytes": 1695538847,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 40
+    },
+    {
+      "bytes": 1601067471,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 48
+    },
+    {
+      "bytes": 1470530314,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 64
+    },
+    {
+      "bytes": 1317963214,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 96
+    },
+    {
+      "bytes": 1228217759,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 128
+    },
+    {
+      "bytes": 1060573362,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 256
+    },
+    {
+      "bytes": 1019806938,
+      "fits_cap": true,
+      "t3": 2,
+      "t_hi": 318
+    }
+  ],
+  "cap_bytes": 3912936331,
+  "elapsed_ms": 637748,
+  "highest": 10,
+  "source_bytes": 148096362864,
+  "source_sha256": "1afd1c27bac4e963f4885ed275fa45c3e0a4014d3a6242f5deba82f04110ce26",
+  "training_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+  "uniform": [
+    {
+      "bytes": 32864181714,
+      "fits_cap": false,
+      "followers": 6684784357,
+      "t3": 1,
+      "t_hi": 1
+    },
+    {
+      "bytes": 9110886728,
+      "fits_cap": false,
+      "followers": 2312517783,
+      "t3": 2,
+      "t_hi": 2
+    },
+    {
+      "bytes": 5853183148,
+      "fits_cap": false,
+      "followers": 1623889728,
+      "t3": 3,
+      "t_hi": 3
+    },
+    {
+      "bytes": 4719062919,
+      "fits_cap": false,
+      "followers": 1353161380,
+      "t3": 4,
+      "t_hi": 4
+    },
+    {
+      "bytes": 4081700885,
+      "fits_cap": false,
+      "followers": 1189622668,
+      "t3": 5,
+      "t_hi": 5
+    },
+    {
+      "bytes": 3678693295,
+      "fits_cap": true,
+      "followers": 1081710361,
+      "t3": 6,
+      "t_hi": 6
+    },
+    {
+      "bytes": 3378712042,
+      "fits_cap": true,
+      "followers": 1000161429,
+      "t3": 7,
+      "t_hi": 7
+    },
+    {
+      "bytes": 3132346156,
+      "fits_cap": true,
+      "followers": 937447170,
+      "t3": 8,
+      "t_hi": 8
+    },
+    {
+      "bytes": 2928672464,
+      "fits_cap": true,
+      "followers": 885375741,
+      "t3": 9,
+      "t_hi": 9
+    },
+    {
+      "bytes": 2763276022,
+      "fits_cap": true,
+      "followers": 842233262,
+      "t3": 10,
+      "t_hi": 10
+    },
+    {
+      "bytes": 2622225895,
+      "fits_cap": true,
+      "followers": 805113849,
+      "t3": 11,
+      "t_hi": 11
+    },
+    {
+      "bytes": 2503260202,
+      "fits_cap": true,
+      "followers": 773160160,
+      "t3": 12,
+      "t_hi": 12
+    },
+    {
+      "bytes": 2398573467,
+      "fits_cap": true,
+      "followers": 744853810,
+      "t3": 13,
+      "t_hi": 13
+    },
+    {
+      "bytes": 2309022314,
+      "fits_cap": true,
+      "followers": 720013185,
+      "t3": 14,
+      "t_hi": 14
+    },
+    {
+      "bytes": 2228860282,
+      "fits_cap": true,
+      "followers": 697648140,
+      "t3": 15,
+      "t_hi": 15
+    },
+    {
+      "bytes": 2158656344,
+      "fits_cap": true,
+      "followers": 677624195,
+      "t3": 16,
+      "t_hi": 16
+    },
+    {
+      "bytes": 2037476456,
+      "fits_cap": true,
+      "followers": 642743660,
+      "t3": 18,
+      "t_hi": 18
+    },
+    {
+      "bytes": 1937242116,
+      "fits_cap": true,
+      "followers": 613315082,
+      "t3": 20,
+      "t_hi": 20
+    },
+    {
+      "bytes": 1852078983,
+      "fits_cap": true,
+      "followers": 587966483,
+      "t3": 22,
+      "t_hi": 22
+    },
+    {
+      "bytes": 1778556771,
+      "fits_cap": true,
+      "followers": 565830379,
+      "t3": 24,
+      "t_hi": 24
+    },
+    {
+      "bytes": 1657144873,
+      "fits_cap": true,
+      "followers": 528770568,
+      "t3": 28,
+      "t_hi": 28
+    },
+    {
+      "bytes": 1560399930,
+      "fits_cap": true,
+      "followers": 498746138,
+      "t3": 32,
+      "t_hi": 32
+    },
+    {
+      "bytes": 1413686186,
+      "fits_cap": true,
+      "followers": 452482603,
+      "t3": 40,
+      "t_hi": 40
+    },
+    {
+      "bytes": 1305885736,
+      "fits_cap": true,
+      "followers": 417931707,
+      "t3": 48,
+      "t_hi": 48
+    },
+    {
+      "bytes": 1154787795,
+      "fits_cap": true,
+      "followers": 368858100,
+      "t3": 64,
+      "t_hi": 64
+    },
+    {
+      "bytes": 974086312,
+      "fits_cap": true,
+      "followers": 309401077,
+      "t3": 96,
+      "t_hi": 96
+    },
+    {
+      "bytes": 865203471,
+      "fits_cap": true,
+      "followers": 273346196,
+      "t3": 128,
+      "t_hi": 128
+    },
+    {
+      "bytes": 654232668,
+      "fits_cap": true,
+      "followers": 203401383,
+      "t3": 256,
+      "t_hi": 256
+    },
+    {
+      "bytes": 600816188,
+      "fits_cap": true,
+      "followers": 185809857,
+      "t3": 318,
+      "t_hi": 318
+    }
+  ]
+}

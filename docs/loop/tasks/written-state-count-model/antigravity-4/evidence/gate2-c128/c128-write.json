@@ -1,0 +1,289 @@
+{
+  "elapsed_ms": 215,
+  "orders": [
+    {
+      "adjusted_support": 25620,
+      "contexts": 1,
+      "esc16": 1323,
+      "esc32": 0,
+      "fol_deg_esc": 1,
+      "followers": 2243,
+      "kn_spectrum": [
+        525,
+        311,
+        224,
+        172
+      ],
+      "order": 0,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        321,
+        255,
+        142,
+        124
+      ],
+      "raw_support": 111543,
+      "section_bytes": 10029,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 50111,
+      "contexts": 2243,
+      "esc16": 3609,
+      "esc32": 0,
+      "fol_deg_esc": 2,
+      "followers": 25620,
+      "kn_spectrum": [
+        18303,
+        3649,
+        1379,
+        673
+      ],
+      "order": 1,
+      "parent_deg_esc": 1,
+      "raw_spectrum": [
+        12949,
+        4648,
+        2066,
+        1352
+      ],
+      "raw_support": 111543,
+      "section_bytes": 73155,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 65508,
+      "contexts": 25589,
+      "esc16": 2604,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 49983,
+      "kn_spectrum": [
+        43161,
+        4234,
+        1180,
+        504
+      ],
+      "order": 2,
+      "parent_deg_esc": 5,
+      "raw_spectrum": [
+        33126,
+        8229,
+        3040,
+        1739
+      ],
+      "raw_support": 111415,
+      "section_bytes": 181596,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 75294,
+      "contexts": 49905,
+      "esc16": 1702,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 65380,
+      "kn_spectrum": [
+        60131,
+        3591,
+        859,
+        318
+      ],
+      "order": 3,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        48713,
+        9276,
+        3070,
+        1577
+      ],
+      "raw_support": 111287,
+      "section_bytes": 296828,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 81676,
+      "contexts": 65287,
+      "esc16": 1104,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 75166,
+      "kn_spectrum": [
+        71220,
+        2925,
+        576,
+        208
+      ],
+      "order": 4,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        59781,
+        9288,
+        2824,
+        1326
+      ],
+      "raw_support": 111159,
+      "section_bytes": 379875,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 85797,
+      "contexts": 75062,
+      "esc16": 747,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 81548,
+      "kn_spectrum": [
+        78701,
+        2258,
+        345,
+        111
+      ],
+      "order": 5,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        67669,
+        8789,
+        2550,
+        1087
+      ],
+      "raw_support": 111031,
+      "section_bytes": 433002,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 88659,
+      "contexts": 81434,
+      "esc16": 556,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 85669,
+      "kn_spectrum": [
+        83568,
+        1696,
+        254,
+        69
+      ],
+      "order": 6,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        73062,
+        8242,
+        2319,
+        899
+      ],
+      "raw_support": 110903,
+      "section_bytes": 467449,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 90731,
+      "contexts": 85545,
+      "esc16": 431,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 88531,
+      "kn_spectrum": [
+        86949,
+        1315,
+        159,
+        53
+      ],
+      "order": 7,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        76968,
+        7717,
+        2146,
+        760
+      ],
+      "raw_support": 110775,
+      "section_bytes": 490159,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 92295,
+      "contexts": 88406,
+      "esc16": 357,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 90603,
+      "kn_spectrum": [
+        89369,
+        1046,
+        105,
+        42
+      ],
+      "order": 8,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        79863,
+        7275,
+        1987,
+        672
+      ],
+      "raw_support": 110647,
+      "section_bytes": 505834,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 93533,
+      "contexts": 90478,
+      "esc16": 308,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 92167,
+      "kn_spectrum": [
+        91165,
+        846,
+        85,
+        41
+      ],
+      "order": 9,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        82064,
+        6938,
+        1860,
+        599
+      ],
+      "raw_support": 110519,
+      "section_bytes": 517215,
+      "threshold": 1
+    },
+    {
+      "adjusted_support": 110391,
+      "contexts": 92041,
+      "esc16": 31,
+      "esc32": 0,
+      "fol_deg_esc": 0,
+      "followers": 93405,
+      "kn_spectrum": [
+        83833,
+        6655,
+        1759,
+        537
+      ],
+      "order": 10,
+      "parent_deg_esc": 0,
+      "raw_spectrum": [
+        83833,
+        6655,
+        1759,
+        537
+      ],
+      "raw_support": 110391,
+      "section_bytes": 524805,
+      "threshold": 1
+    }
+  ],
+  "output_bytes": 3879991,
+  "output_sha256": "ea7fd6e50506063c8502d33efd2e14d7cf0d1ede3d155655673dbad37e52527e",
+  "schema": "uor-r4.uorknc03-compression/1",
+  "source_bytes": 16459406,
+  "source_sha256": "eea859b5d7272ef8d4be3a4ee623c92c2b11da866478b05765a7b20557b3788e",
+  "t3": 1,
+  "t_hi": 1,
+  "training_sha256": "1466d3790e1c53bc4ac3982712f669967cce7b3ad1d7e0e34259568154d19cb6",
+  "verified_cold_load": true
+}

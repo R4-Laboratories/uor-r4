@@ -1,0 +1,41 @@
+{
+  "arms": {
+    "a1": {
+      "class_counts": [
+        15947584,
+        0,
+        0,
+        0,
+        0
+      ],
+      "classes": 3,
+      "hit_counts": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows_sha256": "ada9cf28b147a9412bc53a5d477064f7c5b06da9172095c5364f6a3df3695732"
+    }
+  },
+  "c_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+  "compact_bytes": 3804378885,
+  "compact_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+  "count_capture_batch": 65536,
+  "count_tape_sha256": "8b6b39d25ace5d1dadfe50fd05d8638b6b5b3765784f20e8714f3832935d8c0a",
+  "cuda_pick_batch": 4096,
+  "device_source_sha256": "49efc0ccfa0dc5d547b6edb98c482cea8f9a884b3c8b2267a43dfbd64e651450",
+  "elapsed_ms": 25045,
+  "eval_main_source_sha256": "b80de4565e056b5522892d329d76e22328ef76f5175f9854243e9fd4bc93f2ce",
+  "format": "uor-r4.d37.r-preparation/1",
+  "host_source_sha256": "78f79c3971dde2ec6211daa475c1501cbef10f6ec313f8d4c8e90cd66b0d322f",
+  "pick_mode": "disabled",
+  "pick_tape_sha256": "ad4aea55db88119a9c566034411b255ef992a56328e7f7db7e67758f99a0df1f",
+  "probe_ordinals_sha256": "7f6fb18ac79902adee6e96ed119e3a4434f09a95ddd2c108fe8a2a69ca9d7afe",
+  "probes_sha256": "f06e000c2aa939bf6d0689a8b8789227d01e022866e4bad7a5da1fcbcbfae837",
+  "r_sha256": "5875b173ad19aefbdd38929af8d88c15344333e941f44128d5e0a67b50102a0a",
+  "records": 4060,
+  "rows": 15947584,
+  "trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d"
+}

@@ -1,0 +1,73 @@
+{
+  "arm": "a1s",
+  "cuda_probe_count": 677,
+  "cuda_probes_sha256": "735d7cd6cae47490dbe20c029516eef046d402cc0b310f32b265525aa963d89d",
+  "cuda_trace_sha256": "5e9f9f15211bf5bc710cd96f36cb711627d83aad960c6e6948be7acd71ab2ff1",
+  "final_fit_bits_q12": 184956221990,
+  "passes": 96,
+  "pick_classes": 5,
+  "preparation_sha256": "aed09cc60cf5de216c678e2a45eadaf872c0cc3465011bf9b5bbd391d73658c1",
+  "prepared": {
+    "arms": {
+      "a1": {
+        "class_counts": [
+          8120,
+          6001324,
+          9938140,
+          0,
+          0
+        ],
+        "classes": 3,
+        "hit_counts": [
+          0,
+          3300209,
+          757166,
+          0,
+          0
+        ],
+        "rows_sha256": "f473f15204221a123d7b6888c41886d81fcc3f10102b577fffbd2ac772d26daa"
+      },
+      "a1s": {
+        "class_counts": [
+          8120,
+          6001324,
+          0,
+          53736,
+          9884404
+        ],
+        "classes": 5,
+        "hit_counts": [
+          0,
+          3300209,
+          0,
+          8953,
+          748213
+        ],
+        "rows_sha256": "4b24e3a48832b03ae8e51d45bb22dafe5784e5d77d81edbffd4e6365558661b4"
+      }
+    },
+    "c_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+    "compact_bytes": 3804378885,
+    "compact_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+    "count_capture_batch": 65536,
+    "count_tape_sha256": "8b6b39d25ace5d1dadfe50fd05d8638b6b5b3765784f20e8714f3832935d8c0a",
+    "cuda_pick_batch": 4096,
+    "device_source_sha256": "49efc0ccfa0dc5d547b6edb98c482cea8f9a884b3c8b2267a43dfbd64e651450",
+    "elapsed_ms": 247457,
+    "eval_main_source_sha256": "b80de4565e056b5522892d329d76e22328ef76f5175f9854243e9fd4bc93f2ce",
+    "format": "uor-r4.d37.r-preparation/1",
+    "host_source_sha256": "78f79c3971dde2ec6211daa475c1501cbef10f6ec313f8d4c8e90cd66b0d322f",
+    "pick_mode": "identity",
+    "pick_tape_sha256": "ba9e646a99ed1507235e95715c6e959469cd830085b6b492b01b2a083769bba9",
+    "probe_ordinals_sha256": "7f6fb18ac79902adee6e96ed119e3a4434f09a95ddd2c108fe8a2a69ca9d7afe",
+    "probes_sha256": "865074267f4acd768caa04c6a0e8ae41c43c85c4356afa083cbda3daac929fad",
+    "r_sha256": "5875b173ad19aefbdd38929af8d88c15344333e941f44128d5e0a67b50102a0a",
+    "records": 4060,
+    "rows": 15947584,
+    "trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d"
+  },
+  "q32_weight_words": 12320,
+  "rows": 15947584,
+  "schema": "uor-r4.d37.r-fit/1",
+  "weight_format": "UORS5W02"
+}

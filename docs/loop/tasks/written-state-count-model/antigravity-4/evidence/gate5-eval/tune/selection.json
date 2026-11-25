@@ -1,0 +1,254 @@
+{
+  "arms": {
+    "a0": {
+      "all": {
+        "bits_q12": "132537765979",
+        "bpb_micro": "1475608",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "by_class_targets_hits": [
+        [
+          10807417,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "manifest_sha256": "95b17f7bbb9059f4542f3505a9e7aeca5315bc540b8327a0d0a882cb8710e4c8",
+      "native_count_and_mix_probes": 8493,
+      "novel": {
+        "bits_q12": "116907885020",
+        "bpb_micro": "1784338",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "112023746646",
+        "bpb_micro": "1787207",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "response": {
+        "bits_q12": "125470760461",
+        "bpb_micro": "1588266",
+        "bytes": 19286759,
+        "targets": 9523958
+      },
+      "seal_sha256": "5eddd7837bb67ed3b58b5a1262d711ade186719cc6a57ff31cc45d0042186b5b",
+      "weight_sha256": "9ec8168a20f250ef089db1b55d94b02f248d1ec39ee4f51d9692d98ee6be9c37"
+    },
+    "a1": {
+      "all": {
+        "bits_q12": "125752675407",
+        "bpb_micro": "1400067",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "by_class_targets_hits": [
+        [
+          5340,
+          0
+        ],
+        [
+          4111759,
+          2253627
+        ],
+        [
+          6690318,
+          511454
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "manifest_sha256": "0eab2f2e1dc2b14d888be3e31fb55c70a11e0b4e536f182cd4deaf1e12c741f2",
+      "native_count_and_mix_probes": 8493,
+      "novel": {
+        "bits_q12": "110371454189",
+        "bpb_micro": "1684574",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "105801841331",
+        "bpb_micro": "1687944",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "response": {
+        "bits_q12": "119030895492",
+        "bpb_micro": "1506747",
+        "bytes": 19286759,
+        "targets": 9523958
+      },
+      "seal_sha256": "028923fdd8d9c9372ab3370adc697feeabba3a63781e99e03b8dcc012a69defb",
+      "weight_sha256": "a944d018ca670c4db4457edcc5ce9fc2f05cbcad593c8223c7c971888fb21e4e"
+    },
+    "a1s": {
+      "all": {
+        "bits_q12": "125750699315",
+        "bpb_micro": "1400045",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "by_class_targets_hits": [
+        [
+          5340,
+          0
+        ],
+        [
+          4111759,
+          2253627
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          36362,
+          6160
+        ],
+        [
+          6653956,
+          505294
+        ]
+      ],
+      "manifest_sha256": "26f8f2225a8a0735400a647e37f2f97d86cde9f2de8d847ef791469a6d6b02ec",
+      "native_count_and_mix_probes": 8493,
+      "novel": {
+        "bits_q12": "110369395384",
+        "bpb_micro": "1684543",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "105799873721",
+        "bpb_micro": "1687913",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "response": {
+        "bits_q12": "119029052958",
+        "bpb_micro": "1506724",
+        "bytes": 19286759,
+        "targets": 9523958
+      },
+      "seal_sha256": "b6e9ac04006100922873d86562d6f525a9e5b73c713ca15d2dd329294d798071",
+      "weight_sha256": "e2fbf41d38d9dbe3449cdbb85c8bd335c5ee1f803e35bc7993070d65c0d33293"
+    }
+  },
+  "bands": {
+    "a1_minus_a0": {
+      "all": {
+        "micro_bpb": [
+          "-81199",
+          "-69926"
+        ],
+        "q12": [
+          "-7293170961",
+          "-6280691388"
+        ],
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-107278",
+          "-92203"
+        ],
+        "q12": [
+          "-7028722570",
+          "-6041086290"
+        ],
+        "strictly_below_zero": true
+      }
+    },
+    "a1s_minus_a0": {
+      "all": {
+        "micro_bpb": [
+          "-81216",
+          "-69945"
+        ],
+        "q12": [
+          "-7294730253",
+          "-6282473114"
+        ],
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-107310",
+          "-92232"
+        ],
+        "q12": [
+          "-7030824398",
+          "-6042941445"
+        ],
+        "strictly_below_zero": true
+      }
+    },
+    "a1s_minus_a1": {
+      "all": {
+        "micro_bpb": [
+          "-31",
+          "-13"
+        ],
+        "q12": [
+          "-2709857",
+          "-1217573"
+        ],
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-43",
+          "-20"
+        ],
+        "q12": [
+          "-2768772",
+          "-1348360"
+        ],
+        "strictly_below_zero": true
+      }
+    }
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 4390
+  },
+  "census_sha256": "90fbc73a7b19129d39860cece7403027f71d6d952a6825e89bd1619dac3f8467",
+  "compact_bytes": 3804378885,
+  "compact_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+  "dev_tune_tape_sha256": "dc0785bf0002a17f9e416235e7b4aeb1308b218574ce6b5145b808244fc4f24d",
+  "dev_tune_uort_sha256": "75c6d1ac479bf120bac3aa60ac160536e8146f8052aa49c002209500799b7d0a",
+  "phase": "DEV-tune frozen S5 selection (UORKNC03)",
+  "records": 2670,
+  "rows": 10807417,
+  "schema": "uor-r4.b1a.tune-selection/1",
+  "selection": {
+    "arm": "a1s",
+    "format": "UORS5W02",
+    "manifest_sha256": "26f8f2225a8a0735400a647e37f2f97d86cde9f2de8d847ef791469a6d6b02ec",
+    "seal_sha256": "b6e9ac04006100922873d86562d6f525a9e5b73c713ca15d2dd329294d798071",
+    "weight_sha256": "e2fbf41d38d9dbe3449cdbb85c8bd335c5ee1f803e35bc7993070d65c0d33293"
+  }
+}

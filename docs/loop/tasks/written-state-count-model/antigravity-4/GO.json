@@ -1,0 +1,17 @@
+{
+  "schema": "uor-r4.b1a.go/1",
+  "unit": "antigravity-4",
+  "item": "written-state-count-model",
+  "phase": "Stage B1a (UORKNC03)",
+  "wick_run_root": "/mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03",
+  "pod_spend_usd": 0.0,
+  "order_sha256": "0324c40601c10f64fb615f950f0d3c67d1cd65ceab610a90db2505f4e3133598",
+  "sheet_sha256": "e48b3ba64c1be2429b1d657fdf5993e7bd6ebbfedc71adfee2f3733266d31a9e",
+  "fit_sha256": "7853715c6838c19f69d65f1a380990c05ceb5c5aba3bb55d6209750598a127e5",
+  "fit_verdict": "TEST FITNESS: FIT",
+  "compact_cap_bytes": 3912936331,
+  "deploy_cap_bytes": 4000000000,
+  "rss_cap_kib": 3906250,
+  "sealed_dev_test_touched": false,
+  "authorized": true
+}

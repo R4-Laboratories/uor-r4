@@ -136,8 +136,15 @@ impl FrozenPickMixture {
         let experts = expert_count(self.highest) + 1;
         let mut row = [0; MAX_EXPERTS];
         let row = &mut row[..experts];
-        let bucket =
-            ceiling_pick_row_classes(self.highest, kn_q48, counts, totals, pick, self.rule.classes(), row)?;
+        let bucket = ceiling_pick_row_classes(
+            self.highest,
+            kn_q48,
+            counts,
+            totals,
+            pick,
+            self.rule.classes(),
+            row,
+        )?;
         let start = usize::from(bucket) * experts;
         let weights = &self.weights[start..start + experts];
         Ok((bucket, mixed_q48(mix_sum(weights, row))))
@@ -203,7 +210,10 @@ mod tests {
         for row in weights.chunks_exact_mut(expert_count(highest) + 1) {
             row[0] = WEIGHT_ONE;
         }
-        let last_row = weights.chunks_exact_mut(expert_count(highest) + 1).last().unwrap();
+        let last_row = weights
+            .chunks_exact_mut(expert_count(highest) + 1)
+            .last()
+            .unwrap();
         last_row[0] = 0;
         *last_row.last_mut().unwrap() = WEIGHT_ONE;
         let fit = FrozenPickMixture::with_rule(highest, binding, weights, rule)?;
@@ -218,7 +228,8 @@ mod tests {
 
         let counts = [0; 11];
         let totals = [1 << 15; 11];
-        let predict = |class, hit| loaded.predict_mass(7, &counts, &totals, PickTarget { class, hit });
+        let predict =
+            |class, hit| loaded.predict_mass(7, &counts, &totals, PickTarget { class, hit });
         assert_eq!(predict(rule.classify(Some(3)), true)?, (879, 1 << 48));
         assert_eq!(predict(rule.classify(Some(u32::MAX)), false)?, (879, 1));
         assert_eq!(predict(rule.classify(Some(2)), true)?, (703, 7));
