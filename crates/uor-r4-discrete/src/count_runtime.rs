@@ -47,6 +47,12 @@ pub mod s3_state {
     include!("kn_ceiling/runtime/s3_state.rs");
 }
 
+pub mod p3_state {
+    use crate::{invalid, Result};
+    use sha2::{Digest, Sha256};
+    include!("kn_ceiling/runtime/p3_state.rs");
+}
+
 #[derive(Debug)]
 pub struct Error(String);
 impl std::fmt::Display for Error {

@@ -1874,3 +1874,227 @@ fn uors3t01_e8_parity_starling_miss_equal_byte_arms_and_refusals() {
     )
     .is_err());
 }
+
+#[cfg(feature = "p1-count-serving")]
+#[test]
+fn uors4p01_uors6b01_p3_parity_controls_and_refusals() {
+    use sha2::{Digest, Sha256};
+    use uor_r4_count_runtime::p3_state::{
+        apply_lawful_stop_and_rep_guard, apply_s3_s4_err_write, brier_mix_q48,
+        extract_turn_pair_keys, isqrt_ceil_u64, isqrt_u64, p3_token_primes, paired_band_compare,
+        s4_pair_key, s4_prime_product_u64, unpack_s4_pair_key, BrierS6Weights, BrierSample,
+        LawfulStopConfig, S4ConjunctionTable, S4ControlMode, S4HingeExample, S4PointerEntry,
+        P3_EOS, P3_Q16_ONE, P3_Q32_ONE, P3_Q48_ONE, P3_VOCABULARY,
+    };
+    use uor_r4_integer::fbs_pair_rows::token_primes;
+
+    // 1. Cross-crate prime bijection between p3_state and fbs_pair_rows across all 4,096 tokens.
+    let primes_p3 = p3_token_primes();
+    let primes_fbs = token_primes(P3_VOCABULARY).expect("4096 primes fit < 2^31");
+    assert_eq!(primes_p3, primes_fbs);
+    assert_eq!(
+        s4_prime_product_u64(101, 4095, &primes_p3).unwrap(),
+        u64::from(primes_fbs[101]) * u64::from(primes_fbs[4095])
+    );
+
+    // 2. Order-free S4 conjunction pointers, hinge updates, controls & lossless UORS4P01 codec.
+    let train_sha = [0x5Cu8; 32];
+    let turn_keys = extract_turn_pair_keys(&[200, 10, 300, 10], 0).unwrap();
+    assert_eq!(turn_keys.len(), 3);
+    let k0 = s4_pair_key(10, 200).unwrap();
+    let k1 = s4_pair_key(10, 300).unwrap();
+    let k2 = s4_pair_key(200, 300).unwrap();
+    let k3 = s4_pair_key(400, 500).unwrap();
+    let e_gold_a = S4PointerEntry {
+        role_class: 1,
+        span_offset: 2,
+        count: 3,
+        err_i8: 0,
+    };
+    let e_rival_a = S4PointerEntry {
+        role_class: 2,
+        span_offset: 3,
+        count: 4,
+        err_i8: 0,
+    };
+    let e_gold_b = S4PointerEntry {
+        role_class: 1,
+        span_offset: 4,
+        count: 5,
+        err_i8: 0,
+    };
+    let mut s4_rows = vec![
+        (k0, vec![e_gold_a, e_rival_a]),
+        (k1, vec![e_gold_a, e_rival_a]),
+        (k2, vec![e_gold_a, e_rival_a]),
+        (k3, vec![e_gold_b, e_rival_a]),
+    ];
+    s4_rows.sort_by_key(|(k, _)| *k);
+    let s4_refs: Vec<(u32, &[S4PointerEntry])> =
+        s4_rows.iter().map(|(k, v)| (*k, v.as_slice())).collect();
+    let mut s4 = S4ConjunctionTable::from_sorted_rows(train_sha, &s4_refs).unwrap();
+
+    let candidates = vec![(1u8, 2u16), (2u8, 3u16), (1u8, 4u16)];
+    let mut examples = Vec::new();
+    for i in 0..80usize {
+        if i % 2 == 0 {
+            examples.push(S4HingeExample {
+                pair_keys: turn_keys.clone(),
+                candidates: candidates.clone(),
+                gold_index: 0,
+            });
+        } else {
+            examples.push(S4HingeExample {
+                pair_keys: vec![k3],
+                candidates: candidates.clone(),
+                gold_index: 2,
+            });
+        }
+    }
+    let h1 = s4
+        .s4_hinge_step(&examples, (P3_Q16_ONE as i64) / 2, 2)
+        .unwrap();
+    let h2 = s4
+        .s4_hinge_step(&examples, (P3_Q16_ONE as i64) / 2, 2)
+        .unwrap();
+    assert_eq!(h2.exact_top1, 80);
+    assert!(h2.total_hinge_loss_q16 <= h1.total_hinge_loss_q16);
+
+    let s4_bytes = s4.encode_bytes().unwrap();
+    let s4_sha: [u8; 32] = Sha256::digest(&s4_bytes).into();
+    let s4_reloaded = S4ConjunctionTable::from_bytes(&s4_bytes, train_sha, s4_sha).unwrap();
+    assert_eq!(s4_reloaded, s4);
+
+    let mut act_hits = Vec::with_capacity(80);
+    let mut no_hits = Vec::with_capacity(80);
+    let mut shuf_hits = Vec::with_capacity(80);
+    for (idx, ex) in examples.iter().enumerate() {
+        act_hits.push(
+            s4_reloaded
+                .pick_pointer(&ex.pair_keys, &ex.candidates, S4ControlMode::Active)
+                .map(|(i, _)| i)
+                == Some(ex.gold_index),
+        );
+        no_hits.push(
+            s4_reloaded
+                .pick_pointer(&ex.pair_keys, &ex.candidates, S4ControlMode::NoMemory)
+                .map(|(i, _)| i)
+                == Some(ex.gold_index),
+        );
+        shuf_hits.push(
+            s4_reloaded
+                .pick_pointer(
+                    &ex.pair_keys,
+                    &ex.candidates,
+                    S4ControlMode::ShuffledRole {
+                        seed: 900 + idx as u64,
+                    },
+                )
+                .map(|(i, _)| i)
+                == Some(ex.gold_index),
+        );
+    }
+    let pb_nomem = paired_band_compare(&act_hits, &no_hits).unwrap();
+    let pb_shuf = paired_band_compare(&act_hits, &shuf_hits).unwrap();
+    assert!(pb_nomem.beats_control_by_band);
+    assert!(pb_shuf.beats_control_by_band);
+
+    // 3. Three-epoch integer Brier error-write, UORS6B01 round-trip & signed S3/S4 cell writes.
+    let mut s6 = BrierS6Weights::uniform(2, 4, train_sha).unwrap();
+    let mut samples = Vec::new();
+    for i in 0..32usize {
+        let bucket = i % 2;
+        let masses = if bucket == 0 {
+            vec![
+                P3_Q48_ONE / 16,
+                P3_Q48_ONE / 16,
+                P3_Q48_ONE / 8,
+                (P3_Q48_ONE / 8) * 7,
+            ]
+        } else {
+            vec![
+                (P3_Q48_ONE / 8) * 7,
+                P3_Q48_ONE / 16,
+                P3_Q48_ONE / 16,
+                P3_Q48_ONE / 8,
+            ]
+        };
+        samples.push(BrierSample {
+            bucket,
+            target_masses_q48: masses,
+            rival_sq_sum_q32: 0,
+        });
+    }
+    let mut prev_brier = s6.mean_brier_q32(&samples).unwrap();
+    for _ in 0..3 {
+        let ep = s6.brier_error_write_epoch(&samples, 1, 1).unwrap();
+        assert!(ep.mean_brier_after_q32 < prev_brier);
+        prev_brier = ep.mean_brier_after_q32;
+    }
+    let s6_bytes = s6.encode_bytes().unwrap();
+    let s6_sha: [u8; 32] = Sha256::digest(&s6_bytes).into();
+    let s6_reloaded = BrierS6Weights::from_bytes(&s6_bytes, train_sha, s6_sha).unwrap();
+    assert_eq!(s6_reloaded, s6);
+    assert_eq!(
+        s6_reloaded.bucket_weights(0).unwrap().iter().sum::<u64>(),
+        P3_Q32_ONE
+    );
+    let m_test = brier_mix_q48(
+        s6_reloaded.bucket_weights(0).unwrap(),
+        &samples[0].target_masses_q48,
+    )
+    .unwrap();
+    assert!(m_test >= 1 && m_test <= P3_Q48_ONE);
+    assert!(apply_s3_s4_err_write(0, true, P3_Q48_ONE / 8, 10) > 0);
+
+    // 4. Lawful stop & repetition guard keeps positive masses and enforces EOS stop + refusals.
+    let cfg = LawfulStopConfig::default();
+    let mut scores = vec![16u64; P3_VOCABULARY];
+    scores[42] = 65_536;
+    scores[99] = 16_384;
+    let trace =
+        apply_lawful_stop_and_rep_guard(&[10, 20, 30, 42, 10, 20, 30], &mut scores, false, cfg)
+            .unwrap();
+    assert_eq!(trace.greedy_token, 99);
+    assert!(scores.iter().all(|&s| s >= 1));
+    let trace_stop = apply_lawful_stop_and_rep_guard(&[10, 20], &mut scores, true, cfg).unwrap();
+    assert!(trace_stop.promoted_eos && trace_stop.greedy_token == P3_EOS);
+
+    // Exact square root & fail-closed S4/S6 wire refusals.
+    assert_eq!(isqrt_u64(200), 14);
+    assert_eq!(isqrt_ceil_u64(200), 15);
+    assert!(unpack_s4_pair_key(0x1000_0001).is_err());
+    let mut bad_s4 = s4_bytes;
+    bad_s4[56..60].copy_from_slice(&0x1000_0001u32.to_le_bytes());
+    assert!(
+        S4ConjunctionTable::from_bytes(&bad_s4, train_sha, Sha256::digest(&bad_s4).into()).is_err()
+    );
+    let mut bad_s6 = s6_bytes;
+    bad_s6[0] ^= 0xFF;
+    assert!(
+        BrierS6Weights::from_bytes(&bad_s6, train_sha, Sha256::digest(&bad_s6).into()).is_err()
+    );
+}
+
+#[cfg(not(feature = "serving-wasm"))]
+#[test]
+fn p3_prll_positive_floor_mass_invariants() {
+    use uor_r4_integer::lawful_likelihood::{bits_q12, mle_masses_from_counts, PROBABILITY_ONE};
+
+    // Any 4,096-entry positive score table emitted by `apply_lawful_stop_and_rep_guard`
+    // (`s >= 1`, `sum >= 4096`) yields exact Q48 PRLL masses with finite `bits_q12` everywhere.
+    let mut scores = vec![16u64; 4096];
+    scores[42] = 16; // suppressed 4-gram cycle target retains >= 1 floor
+    scores[99] = 16_384;
+    let masses = mle_masses_from_counts(&scores).unwrap();
+    assert_eq!(masses.iter().sum::<u64>(), PROBABILITY_ONE);
+    assert!(masses.iter().all(|&m| m >= 1));
+    assert!(bits_q12(masses[99]).unwrap() < bits_q12(masses[42]).unwrap());
+
+    let mut stop_scores = vec![1u64; 4096];
+    stop_scores[1] = PROBABILITY_ONE;
+    let stop_masses = mle_masses_from_counts(&stop_scores).unwrap();
+    assert_eq!(stop_masses.iter().sum::<u64>(), PROBABILITY_ONE);
+    assert!(stop_masses.iter().all(|&m| m >= 1));
+    assert!(bits_q12(stop_masses[1]).unwrap() < bits_q12(stop_masses[99]).unwrap());
+}

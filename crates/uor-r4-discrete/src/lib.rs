@@ -63,6 +63,7 @@ pub mod ngram_count_oracle;
 pub mod normalization_mechanism;
 pub mod objective;
 pub mod order_slice;
+pub mod p3_state_rows;
 #[cfg(all(test, feature = "cuda"))]
 mod pick_read_cuda;
 pub mod position_mechanism;
