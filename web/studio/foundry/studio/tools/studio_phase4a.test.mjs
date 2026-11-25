@@ -614,3 +614,330 @@ test('Stage A1 R4-54 .holo tampered trailing BLAKE3 footer is rejected by archiv
   const holoSrc = fs.readFileSync(join(shellDir, 'holo.js'), 'utf8');
   assert.match(holoSrc, /core\.run\(\{\s*op:\s*"validate-application"/);
 });
+
+test('Stage A2 buildStandardsIndex adds Verdant Studio sections and verdant_plan within 110 KB', () => {
+  const dir = fs.mkdtempSync(join(tmpdir(), 'uor-std-a2-'));
+  const out = join(dir, 'standards-index.json');
+  try {
+    const info = buildStandardsIndex(out);
+    assert.ok(info.bytes < 110 * 1024, `standards-index.json exceeded 110 KB: ${info.bytes}`);
+    const parsed = JSON.parse(fs.readFileSync(out, 'utf8'));
+    const ids = new Set((parsed.sections || []).map((s) => s.id));
+    for (const reqId of [
+      'verdant-studio-certified-api',
+      'verdant-studio-admission-and-strata',
+      'verdant-studio-game-and-web-standards-catalog',
+    ]) {
+      assert.ok(ids.has(reqId), `missing ${reqId}`);
+    }
+    const toolsSec = (parsed.sections || []).find((s) => s.id === 'foundry-tools-and-holo');
+    assert.match(toolsSec?.content || '', /verdant_plan/);
+    assert.match(toolsSec?.content || '', /web_search/);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('Stage A2 r4-agent-loop and host wire verdant_plan while preserving clean Home Chat', async () => {
+  assert.ok(FOUNDRY_TOOL_NAMES.includes('verdant_plan'));
+  assert.match(FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT, /verdant_plan\(/);
+  assert.match(FOUNDRY_SYSTEM_PROMPT, /verdant_plan\(/);
+  assert.doesNotMatch(FOUNDRY_CHAT_SYSTEM_PROMPT, /verdant_plan|<tool_call>/);
+
+  let casualPrompt = '';
+  await runUorR4AgentTurn({
+    appId: null,
+    chatId: 'a2-casual',
+    modelId: 'uor-r4:qwen3-0.6b',
+    userPrompt: 'hello',
+    chatMode: 'chat',
+    messages: [],
+    generateFn: async ({ systemPrompt }) => {
+      casualPrompt = systemPrompt;
+      return { fullText: 'Hello!', tokenCount: 2, weightsMatched: true };
+    },
+    tools: {},
+    onText: async () => {},
+  });
+  assert.equal(casualPrompt, FOUNDRY_CHAT_SYSTEM_PROMPT);
+
+  let planArgs = null;
+  let seenSys = '';
+  let step = 0;
+  const planOut = await runUorR4AgentTurn({
+    appId: 7,
+    chatId: 'a2-plan',
+    modelId: 'uor-r4:qwen3-0.6b',
+    userPrompt: 'Run verdant_plan check on the model registers',
+    chatMode: 'chat',
+    messages: [],
+    tools: {
+      verdant_plan: async (args) => {
+        planArgs = args;
+        return { ok: true, status: 0, stdout: 'checked\n', stderr: '' };
+      },
+    },
+    generateFn: async ({ systemPrompt }) => {
+      seenSys = systemPrompt;
+      step += 1;
+      if (step === 1) {
+        return {
+          fullText: '<tool_call>{"name":"verdant_plan","arguments":{"op":"check"}}</tool_call>',
+          tokenCount: 12,
+          weightsMatched: true,
+        };
+      }
+      return { fullText: 'Verdant Studio check passed.', tokenCount: 6, weightsMatched: true };
+    },
+    onText: async () => {},
+  });
+  assert.equal(seenSys, FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT);
+  assert.deepEqual(planArgs, { op: 'check' });
+  assert.equal(planOut.toolExecutions, 1);
+
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  assert.match(hostSrc, /VERDANT_PLAN_OPS\s*=\s*new Set/);
+  assert.match(hostSrc, /verdant_plan:\s*async/);
+  assert.match(hostSrc, /verdantPlan:\s*\(/);
+  assert.match(hostSrc, /BARE_TOOL_PROMPT_RE[\s\S]*verdant_plan/);
+  assert.match(hostSrc, /const \{ written_files: rawWrittenFiles, deleted_files: rawDeletedFiles, \.\.\.summary \} = res;/);
+  assert.match(hostSrc, /"stage-mappings"/);
+  assert.match(hostSrc, /"stage-matrix"/);
+  assert.match(hostSrc, /"merge-gate"/);
+  assert.match(hostSrc, /deletes\s*=\s*deletedList\.map\(\(rawPath\)\s*=>\s*\(\{\s*path:/);
+  assert.match(hostSrc, /normalizeVerdantArgPath/);
+});
+
+test('Stage A2 core.wasm executes Lean-certified verdant-studio planning ops end-to-end', async () => {
+  const coreWasmPath = fs.existsSync(join(repoRoot, 'web/studio/dist/core.wasm'))
+    ? join(repoRoot, 'web/studio/dist/core.wasm')
+    : join(shellDir, 'core.wasm');
+  assert.ok(fs.existsSync(coreWasmPath), `expected built core.wasm at ${coreWasmPath}`);
+  const wasmBytes = fs.readFileSync(coreWasmPath);
+  assert.ok(wasmBytes.byteLength < 2.5 * 1024 * 1024, `core.wasm too large: ${wasmBytes.byteLength}`);
+
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {});
+  const { memory, holo_alloc, holo_free, holo_run } = instance.exports;
+  const enc = new TextEncoder();
+  const dec = new TextDecoder();
+  const runCore = (req) => {
+    const payload = enc.encode(JSON.stringify(req));
+    const ptr = holo_alloc(payload.length);
+    new Uint8Array(memory.buffer, ptr, payload.length).set(payload);
+    const packed = holo_run(ptr, payload.length);
+    const outPtr = Number(packed >> 32n);
+    const outLen = Number(packed & 0xffffffffn);
+    const outBytes = new Uint8Array(memory.buffer, outPtr, outLen).slice();
+    holo_free(ptr, payload.length);
+    holo_free(outPtr, outLen);
+    return JSON.parse(dec.decode(outBytes));
+  };
+
+  const checkRes = runCore({ op: 'verdant-studio', args: ['check'], files: {}, auto_init: true });
+  assert.equal(checkRes.ok, true, `core.wasm check failed: ${JSON.stringify(checkRes)}`);
+
+  const admitInput = [
+    JSON.stringify({
+      id: 'REQ-W1',
+      statement: 'Widget state transitions remain verified.',
+      stakeholder: 'casey',
+      evidence: { source: 'wasm-test' },
+    }),
+    JSON.stringify({ construct: 'WidgetState', req: 'REQ-W1' }),
+  ].join('\n');
+  const admitRes = runCore({
+    op: 'verdant-studio',
+    args: ['admit'],
+    inline_input: admitInput,
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(admitRes.ok, true, `core.wasm admit failed: ${JSON.stringify(admitRes)}`);
+  assert.ok(admitRes.written_files['model/requirements.json']);
+  assert.ok(admitRes.written_files['model/admissions.json']);
+
+  const decRes = runCore({
+    op: 'verdant-studio',
+    args: ['record-decision'],
+    inline_input: JSON.stringify({
+      agent: 'antigravity',
+      at: '2026-11-25T02:30:00Z',
+      quote: 'Approve REQ-W1 in core.wasm',
+      requirements: ['REQ-W1'],
+    }),
+    files: admitRes.written_files,
+    auto_init: true,
+  });
+  assert.equal(decRes.ok, true, `core.wasm record-decision failed: ${JSON.stringify(decRes)}`);
+
+  const mergedFiles = { ...admitRes.written_files, ...decRes.written_files };
+  const encRes = runCore({
+    op: 'verdant-studio',
+    args: ['propose-encoding', 'Widget', 'req', 'REQ-W1'],
+    inline_input: JSON.stringify({
+      title: 'Widget',
+      type: 'object',
+      properties: { id: { type: 'string' }, active: { type: 'boolean' } },
+      required: ['id', 'active'],
+    }),
+    files: mergedFiles,
+    auto_init: true,
+  });
+  assert.equal(encRes.ok, true, `core.wasm propose-encoding failed: ${JSON.stringify(encRes)}`);
+  assert.ok(encRes.written_files['app/src/Catalog/Widget.lex.tex']);
+
+  const traversalRes = runCore({
+    op: 'verdant-studio',
+    args: ['check'],
+    files: { '../etc/passwd': 'bad' },
+    auto_init: false,
+  });
+  assert.equal(traversalRes.ok, false);
+
+  const argTraversalRes = runCore({
+    op: 'verdant-studio',
+    args: ['admit', '../../etc/passwd'],
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(argTraversalRes.ok, false);
+  assert.doesNotMatch(String(argTraversalRes.stderr || ''), /could not write/);
+
+  const noAutoInitCheck = runCore({
+    op: 'verdant-studio',
+    args: ['check'],
+    files: {},
+    auto_init: false,
+  });
+  assert.doesNotMatch(String(noAutoInitCheck.stderr || ''), /could not write/);
+
+  const stageAdmissionsRes = runCore({
+    op: 'verdant-studio',
+    args: ['stage-admissions'],
+    inline_input: JSON.stringify({
+      id: 'REQ-STG-1',
+      statement: 'Staged admission via inline_input.',
+      stakeholder: 'casey',
+      evidence: { source: 'wasm-test' },
+    }),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(stageAdmissionsRes.ok, true, `stage-admissions failed: ${JSON.stringify(stageAdmissionsRes)}`);
+
+  const stageDecisionsRes = runCore({
+    op: 'verdant-studio',
+    args: ['stage-decisions'],
+    inline_input: JSON.stringify({
+      agent: 'antigravity',
+      at: '2026-11-25T03:00:00Z',
+      quote: 'Stage decision via inline_input.',
+      requirements: ['REQ-STG-1'],
+    }),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(stageDecisionsRes.ok, true, `stage-decisions failed: ${JSON.stringify(stageDecisionsRes)}`);
+
+  const colonRes = runCore({
+    op: 'verdant-studio',
+    args: ['stage-bindings'],
+    inline_input: JSON.stringify({ id: 'STD:1', domain: 'ui', name: 'Bad colon' }),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(colonRes.ok, false);
+
+  const oversizedArgRes = runCore({
+    op: 'verdant-studio',
+    args: ['read-xml', 'a'.repeat(10000)],
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(oversizedArgRes.ok, false);
+
+  const deepJsonRes = runCore({
+    op: 'verdant-studio',
+    args: ['propose-encoding', 'Big', 'req', 'R1'],
+    inline_input: '['.repeat(5000) + ']'.repeat(5000),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(deepJsonRes.ok, false);
+
+  const newlineBomb = runCore({
+    op: 'verdant-studio',
+    args: ['admit'],
+    inline_input: '\n'.repeat(10000),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(newlineBomb.ok, false);
+
+  const manyAttrs = Array.from({ length: 300 }, (_, i) => `a${i}="1"`).join(' ');
+  const xmlAttrsRes = runCore({
+    op: 'verdant-studio',
+    args: ['read-xml'],
+    inline_input: `<r ${manyAttrs}/>`,
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(xmlAttrsRes.ok, false);
+
+  const bomXmlRes = runCore({
+    op: 'verdant-studio',
+    args: ['read-xml', 'evil.txt'],
+    files: { 'evil.txt': '\ufeff' + '<a>'.repeat(5000) },
+    auto_init: true,
+  });
+  assert.equal(bomXmlRes.ok, false);
+
+  const csvRows = ['id,domain,name,owner,phases,scope,adoption,adoption_code,source'];
+  for (let i = 0; i < 65; i += 1) {
+    csvRows.push(`STD-${String(i).padStart(3, '0')},ui,Rule ${i},casey,p1,studio,adopted,A,doc`);
+  }
+  const csvRes = runCore({
+    op: 'verdant-studio',
+    args: ['ingest-index'],
+    inline_input: csvRows.join('\n'),
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(csvRes.ok, true, `65-row ingest-index CSV failed: ${JSON.stringify(csvRes)}`);
+
+  const req70Lines = Array.from({ length: 70 }, (_, i) =>
+    JSON.stringify({
+      id: `REQ-W70-${i}`,
+      statement: `Requirement ${i} passes reload check.`,
+      stakeholder: 'casey',
+      evidence: { source: 'wasm-test' },
+    }),
+  ).join('\n');
+  const admit70 = runCore({
+    op: 'verdant-studio',
+    args: ['admit'],
+    inline_input: req70Lines,
+    files: {},
+    auto_init: true,
+  });
+  assert.equal(admit70.ok, true, `70-req core.wasm admit failed: ${JSON.stringify(admit70)}`);
+  const recheck70 = runCore({
+    op: 'verdant-studio',
+    args: ['check'],
+    files: admit70.written_files,
+    auto_init: true,
+  });
+  assert.equal(recheck70.ok, true, `70-req core.wasm recheck failed: ${JSON.stringify(recheck70)}`);
+
+  const authToml = Array.from(
+    { length: 60 },
+    (_, i) => `[[authority]]\nid = "AUTH-${i}"\nrealized_by = ["a","b","c","d","e","f","g","h","i"]`,
+  ).join('\n');
+  const tomlCheck = runCore({
+    op: 'verdant-studio',
+    args: ['check'],
+    files: { 'model/authorities.toml': authToml },
+    auto_init: true,
+  });
+  assert.doesNotMatch(String(tomlCheck.stderr || ''), /structural item count/);
+});

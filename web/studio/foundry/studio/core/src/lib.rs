@@ -38,3 +38,9 @@ pub mod holo;
 /// The browser boundary, a host transport adapter over the generated core.
 #[allow(unsafe_code)]
 pub mod abi;
+
+/// Lean-certified Verdant Studio lifecycle/planning core, vendored verbatim from `afflom/verdant-studio`.
+#[allow(dead_code, unused_imports, non_snake_case, unused_parens, unused_variables, clippy::all, clippy::pedantic)]
+pub mod verdant_studio;
+/// In-memory virtual workspace effect driver for `verdant_studio::run`.
+pub mod verdant_driver;

@@ -38,7 +38,7 @@ node -e "import('$repo_root/scripts/studio/catalog.mjs').then(m => m.writeStudio
 node "$repo_root/scripts/studio/build-standards-index.mjs" "$shell_dir/standards-index.json"
 
 echo "== 5/9 build Foundry core.wasm (hologram-forge-core) =="
-cargo build --release --locked --manifest-path "$foundry_studio/core/Cargo.toml" --target wasm32-unknown-unknown
+RUSTFLAGS="${RUSTFLAGS:-} -C link-arg=-zstack-size=8388608" cargo build --release --locked --manifest-path "$foundry_studio/core/Cargo.toml" --target wasm32-unknown-unknown
 target_base="${CARGO_TARGET_DIR:-$foundry_studio/core/target}"
 cp "$target_base/wasm32-unknown-unknown/release/hologram_forge_core.wasm" "$shell_dir/core.wasm"
 

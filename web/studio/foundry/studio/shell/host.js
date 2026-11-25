@@ -1616,7 +1616,7 @@ async function lookupStandards(query, limit = 5, { filterStopWords = false } = {
     .slice(0, limit);
   return { ok: true, query, matches: scored.map((x) => x.sec) };
 }
-const BARE_TOOL_PROMPT_RE = /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status|web_search)\b/i;
+const BARE_TOOL_PROMPT_RE = /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status|web_search|verdant_plan)\b/i;
 async function buildTurnGroundingContext({ appId = null, chatMode = "build", prompt = "" } = {}) {
   const q = String(prompt || "").trim();
   if (!q) return "";
@@ -1931,7 +1931,102 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
         };
       }
     },
+    verdant_plan: async ({ op, args = [], input, auto_init = true } = {}) => {
+      const res = await runVerdantPlanInCore({ op, args, input, autoInit: auto_init, appId });
+      if (!res?.ok) return res;
+      const { written_files: rawWrittenFiles, deleted_files: rawDeletedFiles, ...summary } = res;
+      const writtenEntries = Object.entries(rawWrittenFiles || {});
+      const deletedList = Array.isArray(rawDeletedFiles) ? rawDeletedFiles : [];
+      if (!appId || !isBuildMode) {
+        return {
+          ...summary,
+          readOnly: true,
+          applied: false,
+          written_paths: writtenEntries.map(([p]) => p),
+          deleted_paths: deletedList,
+        };
+      }
+      if (!writtenEntries.length && !deletedList.length) {
+        return { ...summary, applied: true, updatedFiles: false, written_paths: [], deleted_paths: [] };
+      }
+      const writes = writtenEntries.map(([rawPath, content]) => ({
+        path: cleanWorkspacePath(rawPath, false),
+        description: `verdant_plan ${String(op || "").trim()}`,
+        content: String(content ?? ""),
+      }));
+      const deletes = deletedList.map((rawPath) => ({ path: cleanWorkspacePath(rawPath, false) }));
+      await applyPrismTags(appId, { writes, patches: [], deletes, renames: [], deps: [] }, { signal, onCommit });
+      return {
+        ...summary,
+        applied: true,
+        updatedFiles: true,
+        written_paths: writes.map((w) => w.path),
+        deleted_paths: deletes.map((d) => d.path),
+      };
+    },
   };
+}
+
+const VERDANT_PLAN_OPS = new Set([
+  "check",
+  "next",
+  "agenda",
+  "admit",
+  "record-decision",
+  "propose-encoding",
+  "stage-bindings",
+  "stage-mappings",
+  "stage-matrix",
+  "stage-encodings",
+  "stage-admissions",
+  "stage-decisions",
+  "admit-encoding",
+  "merge-gate",
+  "ingest-index",
+  "read-xml",
+  "read-xsd",
+]);
+
+const VERDANT_WORKSPACE_PREFIX_RE = /^(model|catalog|app|studio|stdlib|encodings|target)\//;
+
+function normalizeVerdantArgPath(raw) {
+  const s = String(raw ?? "").replace(/\\/g, "/").replace(/^\/workspace(?:\/|$)/, "");
+  return s.split("/").filter((seg) => seg && seg !== ".").join("/");
+}
+
+async function runVerdantPlanInCore({ op, args = [], input, autoInit = true, appId = null } = {}) {
+  const cleanOp = String(op || "").trim();
+  if (!VERDANT_PLAN_OPS.has(cleanOp)) {
+    return {
+      ok: false,
+      code: "DisallowedVerdantOp",
+      error: `Unsupported verdant_plan op ${JSON.stringify(cleanOp)}. Allowed: ${[...VERDANT_PLAN_OPS].join(", ")}`,
+    };
+  }
+  const c = await coreReady;
+  const extraArgs = Array.isArray(args) ? args.map((a) => String(a ?? "")) : [];
+  const referencedPaths = new Set(extraArgs.map(normalizeVerdantArgPath));
+  const files = {};
+  if (appId != null) {
+    for (const rel of await filesOf(appId)) {
+      if (!VERDANT_WORKSPACE_PREFIX_RE.test(rel) && !referencedPaths.has(rel)) continue;
+      const content = await get("files", `${appId}:${rel}`);
+      if (typeof content === "string") files[rel] = content;
+    }
+  }
+  const inlineInput = typeof input === "string" ? input : input != null ? JSON.stringify(input) : undefined;
+  try {
+    return await c.run({
+      op: "verdant-studio",
+      args: [cleanOp, ...extraArgs],
+      files,
+      inline_input: inlineInput,
+      auto_init: Boolean(autoInit),
+    });
+  } catch (err) {
+    const message = String(err?.message || err || "verdant-studio core execution failed");
+    return { ok: false, status: 1, error: message, stderr: message };
+  }
 }
 
 // ---- the chat stream machine. the renderer submits a turn only here: SUBMIT on the chat_stream
@@ -3990,6 +4085,7 @@ window.__uorR4 = Object.freeze({
   stitchConnect: (opts = {}) => stitchNetwork.joinChannel(opts),
   stitchDisconnect: () => stitchNetwork.disconnect(),
   spiralCoreRelay,
+  verdantPlan: (opts = {}) => runVerdantPlanInCore(opts),
   githubStatus: () => githubClient.getStatus(),
   submitPrompt: async (chatId, appId, prompt) => {
     const intentId = 'uor-' + crypto.randomUUID();

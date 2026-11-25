@@ -674,9 +674,21 @@ fn cmd_provenance(foundry_root: &Path, shell_dir: &Path, studio_root: &Path) {
         .stdout(Stdio::piped())
         .spawn()
         .expect("spawn gzip");
-    gz.stdin.take().expect("gzip stdin").write_all(&tar_bytes).expect("write tar to gzip");
-    let gz_out = gz.wait_with_output().expect("gzip output");
-    assert!(gz_out.status.success(), "gzip crate tar failed");
+    let (gz_out, write_res) = std::thread::scope(|s| {
+        let mut gz_stdin = gz.stdin.take().expect("gzip stdin");
+        let tar_ref = &tar_bytes;
+        let writer = s.spawn(move || gz_stdin.write_all(tar_ref));
+        let output = gz.wait_with_output().expect("gzip output");
+        let res = writer.join().expect("gzip stdin writer thread panicked");
+        (output, res)
+    });
+    assert!(
+        gz_out.status.success(),
+        "gzip crate tar failed ({}): {}",
+        gz_out.status,
+        String::from_utf8_lossy(&gz_out.stderr)
+    );
+    write_res.expect("write tar to gzip");
     let cargo_crate_sha256 = sha256_hex(&gz_out.stdout);
 
     let manifest_text = fs::read_to_string(shell_dir.join("manifest.json")).expect("read manifest.json");

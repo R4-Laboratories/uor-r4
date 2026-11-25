@@ -308,6 +308,8 @@ fn run(input: &[u8]) -> Value {
             Ok(request) => json!({ "bytes": encodeOpenRouterRequest(value["model"].as_str().unwrap_or("").to_owned(), &request, value["stream"].as_bool().unwrap_or(false)) }),
             Err(message) => json!({ "error": message }),
         },
+        // Verdant Studio lifecycle/planning engine compiled from Lean via LexLean (Stage A2).
+        "verdant-studio" => crate::verdant_driver::run_from_json(&value),
         other => json!({ "error": format!("unknown op {other:?}") }),
     }
 }
