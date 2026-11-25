@@ -1,0 +1,89 @@
+{
+  "arms": [
+    {
+      "arm": "vsa",
+      "bytes": 8188,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "hopf",
+      "bytes": 8177,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "h4_600cell",
+      "bytes": 8186,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "golden_shell",
+      "bytes": 8184,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "rand",
+      "bytes": 8172,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_1",
+      "bytes": 2564,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_2",
+      "bytes": 6022,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_3",
+      "bytes": 6395,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_4",
+      "bytes": 6556,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_6",
+      "bytes": 6710,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_8",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_10",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_12",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "splitmix",
+      "bytes": 8172,
+      "divergent": 0,
+      "probes_checked": 175
+    }
+  ],
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536"
+}

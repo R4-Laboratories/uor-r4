@@ -1,0 +1,9 @@
+{
+  "arm": "vsa",
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536",
+  "divergent_rows": 0,
+  "packed_sha256": "41416f23e67c1c73e727a5a02b74b24e255bd4c2c8908ca8d8e31fd23cd07348",
+  "probes_checked": 19315,
+  "rows": 15947584,
+  "tape_sha256": "44a9e1412bff8d37a02b9ce4e7f4e0c36acf995f273450585b50e3186d8fcb85"
+}

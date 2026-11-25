@@ -1,0 +1,9 @@
+{
+  "arm": "tc_8",
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536",
+  "divergent_rows": 0,
+  "packed_sha256": "ba3ccfd2ad95143c401c41e62117f550a1a426cd3bd8db548288d998b2c11f98",
+  "probes_checked": 13189,
+  "rows": 10807417,
+  "tape_sha256": "0c277df0e8121e04df71542fa7cf6c7261131519a3c07d44c54bf71e84de6565"
+}

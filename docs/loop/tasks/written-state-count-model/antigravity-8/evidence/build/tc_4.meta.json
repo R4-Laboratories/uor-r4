@@ -1,0 +1,9 @@
+{
+  "arm": "tc_4",
+  "backoff_ctxs": 4025,
+  "backoff_rows": 838889,
+  "bytes": 99999999,
+  "primary_ctxs": 2843034,
+  "primary_rows": 6126956,
+  "sha256": "4bc486a2eded27fea5252e73489b3501470f907699211bfeaa37bd72cb496e5e"
+}

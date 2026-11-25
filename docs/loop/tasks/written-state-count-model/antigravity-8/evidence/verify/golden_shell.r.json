@@ -1,0 +1,9 @@
+{
+  "arm": "golden_shell",
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536",
+  "divergent_rows": 0,
+  "packed_sha256": "4f0b57e0ec5f62b4c4bb2c262098742edaaf5de72133feb5c659504ab44b2209",
+  "probes_checked": 19315,
+  "rows": 15947584,
+  "tape_sha256": "09230c9e8e92f27e18d21facad7057b13ad18c82a2c2dbb66b6db80eef2177f5"
+}

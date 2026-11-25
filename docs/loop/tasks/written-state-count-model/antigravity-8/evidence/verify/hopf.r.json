@@ -1,0 +1,9 @@
+{
+  "arm": "hopf",
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536",
+  "divergent_rows": 0,
+  "packed_sha256": "2b46b2f81857c4cbf805e513b3f38bd809337719e46d0d9955c09d41019f1b3a",
+  "probes_checked": 19315,
+  "rows": 15947584,
+  "tape_sha256": "6f35e8111e970cc5fffe2dfb5cf29435b70c3ecc89cc9cdeafc324e8c495a46e"
+}

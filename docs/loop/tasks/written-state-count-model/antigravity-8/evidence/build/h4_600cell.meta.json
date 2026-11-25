@@ -1,0 +1,9 @@
+{
+  "arm": "h4_600cell",
+  "backoff_ctxs": 14400,
+  "backoff_rows": 5509877,
+  "bytes": 99999995,
+  "primary_ctxs": 1662589,
+  "primary_rows": 4467098,
+  "sha256": "ecee442d5405fcf1e89fe61bce4268e63cbe12a90e33f506fea92d85c57fd832"
+}

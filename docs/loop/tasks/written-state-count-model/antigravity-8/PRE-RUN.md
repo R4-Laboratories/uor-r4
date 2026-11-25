@@ -1,0 +1,10 @@
+# Pre-Run Review: `written-state-count-model`, `antigravity-8` (Stage B2-Fallback `DEV-tune` `P2` Equal-Byte S3 Calibration)
+
+- **Lab:** `antigravity`
+- **Review verdict:** **GO** — Non-author `pro` Round 2 audit [`FIT.md`](FIT.md) returned **`TEST FITNESS: FIT`** after fixing all Round 1 findings (`TokenContext` `k>=3` `primary_hi_modulus` 57,600 vs `backoff_modulus` 4,097, `SHEET.md` H4 Pick formula `8_192 + (8 - H4_SHELL) * 7_168`, `ORDER.md` `UORS3T02` header, `S3FallbackTable::from_bytes` validation, and `dev.snapshot()` readback check), with zero post-FIT edits across all 13 audited files.
+- **Host & budget:** Wick RTX 4090 is currently running another lab's `train-in-space` (`PID 812576`, `2208 MiB`), so execution uses one dedicated single-GPU Vast.ai RTX 5090 (`sm_120`) pod provisioned via `uor-pod up --lab antigravity --session b2-fallback --count 1 --hours 2` (`~$0.52/h <= $1.00/h`, well inside the `$8.00/h` cap), leased and renewed while running, and torn down immediately after archiving `evidence/` + `receipts.sha256` per `L-004`. `admit_gpu` runs before every live GPU step.
+- **Protected assets:** `DEV-test` (`dev-test.tokens.u16`, `dev-test.json`, `rstar-devtest.masses.u64`) is hard-locked untouched and actively refused by `dispatch.sh`, `main.rs`, and `eval.rs`.
+- **Unlock rules:**
+  - Evaluate all 4 registered `DECISION.md:293-298` fallback address arms (`vsa`, `hopf`, `h4_600cell`, `golden_shell`) against all 10 equal-byte controls (`rand`, `tc_{1,2,3,4,6,8,10,12}`, `splitmix`) at `<= 100,000,000 B` on `DEV-tune`.
+  - If `first_passing_fallback_arm != null` (first fallback arm in strict priority order achieving `<= 99%` of best equal-byte control bits with 95% CI upper bound `< 0` standalone OR combined with frozen Stage B1a `P1(A1s)`), advance that arm to pre-registered Stage B2c single-shot `DEV-test`.
+  - Otherwise close all 4 `100 MB` fallback configurations on `DEV-tune` (`DEV-test` untouched), record the `DECISION.md:298` §3.1 owner-queue architectural summary, and advance to Stage B3 (`P3`).

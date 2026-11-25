@@ -1,0 +1,9 @@
+{
+  "arm": "vsa",
+  "backoff_ctxs": 32768,
+  "backoff_rows": 6336541,
+  "bytes": 100000000,
+  "primary_ctxs": 1582556,
+  "primary_rows": 3804835,
+  "sha256": "2d645410aac7fe694be849cf63dd8ea53815f860c87bc8f9d7fc07222ee8fe4d"
+}

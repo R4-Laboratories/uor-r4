@@ -1,0 +1,9 @@
+{
+  "arm": "hopf",
+  "backoff_ctxs": 9216,
+  "backoff_rows": 4982949,
+  "bytes": 99999995,
+  "primary_ctxs": 1701854,
+  "primary_rows": 4904908,
+  "sha256": "a750f527371eb08bf77269c6bb8733bc864ec8cdd9745d13aed48c5ddc26fa01"
+}

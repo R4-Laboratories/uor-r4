@@ -1,0 +1,9 @@
+{
+  "arm": "h4_600cell",
+  "cubin_sha256": "775d08b6a67fdbb1cc2366e4a44b2abe5b8f462171ed5f8803d2d054375dd536",
+  "divergent_rows": 0,
+  "packed_sha256": "ec22f64ac7612e506335bed7ff5a280c5d3654ec4c9dcfaf7d2d33c679841ebf",
+  "probes_checked": 13189,
+  "rows": 10807417,
+  "tape_sha256": "3f1e18a725be4252f726698b60f7778ca71b0ad74889f926dc73c7ce6689e63a"
+}

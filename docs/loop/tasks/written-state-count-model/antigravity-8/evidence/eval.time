@@ -1,0 +1,23 @@
+	Command being timed: "bin/p2-fallback eval /workspace/b2-fallback/inputs/seed1.d11 /workspace/b2-fallback/run-v1/r_tapes /workspace/b2-fallback/inputs/c420 /workspace/b2-fallback/run-v1/tune_tapes /workspace/b2-fallback/inputs/b1a/r-65536.tape /workspace/b2-fallback/inputs/b1a/pick.rows /workspace/b2-fallback/inputs/b1a/tune-65536.tape /workspace/b2-fallback/run-v1/devtune-pick.rows /workspace/b2-fallback/inputs/b1a/a1s.weights /workspace/b2-fallback/inputs/b1a/a1s.seal.json /workspace/b2-fallback/run-v1/evidence/devtune-fallback.json"
+	User time (seconds): 497.84
+	System time (seconds): 12.75
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:37.13
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2370252
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 8412045
+	Voluntary context switches: 10109
+	Involuntary context switches: 3793
+	Swaps: 0
+	File system inputs: 25773544
+	File system outputs: 56
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
