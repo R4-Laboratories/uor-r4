@@ -1,0 +1,23 @@
+	Command being timed: "bin/p2-s3 build rand /workspace/b2b/inputs/c.tokens.u16 cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a /workspace/b2b/inputs/seed1.d11 /workspace/b2b/run-v2/tmp/rand 100000000 /workspace/b2b/run-v2/tables/rand.uors3t01 /workspace/b2b/run-v2/evidence/build/rand.meta.json"
+	User time (seconds): 137.63
+	System time (seconds): 31.37
+	Percent of CPU this job got: 205%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:22.13
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 8232280
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 16605740
+	Voluntary context switches: 68371
+	Involuntary context switches: 5240
+	Swaps: 0
+	File system inputs: 37555160
+	File system outputs: 37507904
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,9 @@
+{
+  "arm": "splitmix",
+  "cubin_sha256": "9bc3ec4dc03840f7d54a96fa95e65af50e35a849e0c005df958865f865804acb",
+  "divergent_rows": 0,
+  "packed_sha256": "13d5cfa8123c4a74b61320ae2dd2152d4eac1ad97ee7c8e7584be8498cf07cf2",
+  "probes_checked": 13189,
+  "rows": 10807417,
+  "tape_sha256": "09f542a706056cb6bb8a6b9c4468605ee0ba178fd79e8f9b0e714a636d057635"
+}

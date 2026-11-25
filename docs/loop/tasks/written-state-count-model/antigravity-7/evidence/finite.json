@@ -1,0 +1,71 @@
+{
+  "arms": [
+    {
+      "arm": "e8",
+      "bytes": 8174,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "rand",
+      "bytes": 8172,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_1",
+      "bytes": 2564,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_2",
+      "bytes": 6022,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_3",
+      "bytes": 6395,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_4",
+      "bytes": 6556,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_6",
+      "bytes": 6710,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_8",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_10",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "tc_12",
+      "bytes": 6771,
+      "divergent": 0,
+      "probes_checked": 175
+    },
+    {
+      "arm": "splitmix",
+      "bytes": 8172,
+      "divergent": 0,
+      "probes_checked": 175
+    }
+  ],
+  "cubin_sha256": "9bc3ec4dc03840f7d54a96fa95e65af50e35a849e0c005df958865f865804acb"
+}

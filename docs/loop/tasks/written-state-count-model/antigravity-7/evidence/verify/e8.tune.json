@@ -1,0 +1,9 @@
+{
+  "arm": "e8",
+  "cubin_sha256": "9bc3ec4dc03840f7d54a96fa95e65af50e35a849e0c005df958865f865804acb",
+  "divergent_rows": 0,
+  "packed_sha256": "4b4d53ab88b540eb6a730261e980f2af77f0a423291c8c7280407616f0e7b895",
+  "probes_checked": 13189,
+  "rows": 10807417,
+  "tape_sha256": "52abef18f66f1f1cf49722a7175575afa25fcc0ab1876159078dd6296e67fc04"
+}

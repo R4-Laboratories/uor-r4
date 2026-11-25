@@ -1,0 +1,9 @@
+{
+  "arm": "splitmix",
+  "backoff_ctxs": 57600,
+  "backoff_rows": 8772830,
+  "bytes": 99999999,
+  "primary_ctxs": 1272596,
+  "primary_rows": 2108827,
+  "sha256": "ae7c807db3ff6699580ee3318b744357bd05f1386082fe0cfde98af3e40806e2"
+}

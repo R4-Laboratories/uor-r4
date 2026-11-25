@@ -1,0 +1,690 @@
+{
+  "arms": [
+    {
+      "arm": "e8",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125750080815",
+          "bpb_micro": "1400038",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110368697626",
+          "bpb_micro": "1684532",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105799266567",
+          "bpb_micro": "1687903",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028459257",
+          "bpb_micro": "1506716",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": {
+        "bits_q12": "125749877450",
+        "bpb_micro": "1400035"
+      },
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "387756585766",
+          "bpb_micro": "4317087",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "297715996539",
+          "bpb_micro": "4543972",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "285232717945",
+          "bpb_micro": "4550553",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "356208819395",
+          "bpb_micro": "4509054",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "rand",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125749943201",
+          "bpb_micro": "1400036",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110367680739",
+          "bpb_micro": "1684517",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105798361979",
+          "bpb_micro": "1687888",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119027923816",
+          "bpb_micro": "1506709",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "273850328566",
+          "bpb_micro": "3048911",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "229122023556",
+          "bpb_micro": "3497037",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "219249018539",
+          "bpb_micro": "3497861",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "253867139381",
+          "bpb_micro": "3213566",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_1",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125749650933",
+          "bpb_micro": "1400033",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110367871854",
+          "bpb_micro": "1684519",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105798569385",
+          "bpb_micro": "1687892",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119027784060",
+          "bpb_micro": "1506708",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "247816289531",
+          "bpb_micro": "2759062",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "187400848137",
+          "bpb_micro": "2860256",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "179428356650",
+          "bpb_micro": "2862569",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "222618523288",
+          "bpb_micro": "2818007",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_2",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125718863335",
+          "bpb_micro": "1399690",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110315600020",
+          "bpb_micro": "1683722",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105749269610",
+          "bpb_micro": "1687105",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "118987666124",
+          "bpb_micro": "1506200",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "191317210741",
+          "bpb_micro": "2130029",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "153939185776",
+          "bpb_micro": "2349539",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "147306494350",
+          "bpb_micro": "2350102",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "175603187317",
+          "bpb_micro": "2222865",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_3",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125712269808",
+          "bpb_micro": "1399617",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110295822466",
+          "bpb_micro": "1683420",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105730240521",
+          "bpb_micro": "1686802",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "118974568033",
+          "bpb_micro": "1506034",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "199101051478",
+          "bpb_micro": "2216691",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "166283648831",
+          "bpb_micro": "2537949",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "159187400716",
+          "bpb_micro": "2539648",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "184596035563",
+          "bpb_micro": "2336701",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_4",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125737677284",
+          "bpb_micro": "1399900",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110345575043",
+          "bpb_micro": "1684179",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105777751146",
+          "bpb_micro": "1687560",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119009983917",
+          "bpb_micro": "1506482",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "218114335689",
+          "bpb_micro": "2428375",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "185024622040",
+          "bpb_micro": "2823989",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "177244222680",
+          "bpb_micro": "2827723",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "203014233767",
+          "bpb_micro": "2569847",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_6",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125750013621",
+          "bpb_micro": "1400037",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110367770308",
+          "bpb_micro": "1684518",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105798776272",
+          "bpb_micro": "1687895",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028185601",
+          "bpb_micro": "1506713",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "247259455220",
+          "bpb_micro": "2752862",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "210574787676",
+          "bpb_micro": "3213955",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "201852951434",
+          "bpb_micro": "3220327",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "230638697609",
+          "bpb_micro": "2919530",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_8",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125750156060",
+          "bpb_micro": "1400039",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110368236029",
+          "bpb_micro": "1684525",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105798972249",
+          "bpb_micro": "1687898",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028418199",
+          "bpb_micro": "1506716",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "262580379031",
+          "bpb_micro": "2923438",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "221222663891",
+          "bpb_micro": "3376471",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "212064627032",
+          "bpb_micro": "3383242",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "244891631649",
+          "bpb_micro": "3099950",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_10",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125750370586",
+          "bpb_micro": "1400041",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110368421778",
+          "bpb_micro": "1684528",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105799092015",
+          "bpb_micro": "1687900",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028676112",
+          "bpb_micro": "1506719",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "270920680905",
+          "bpb_micro": "3016294",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "225073276888",
+          "bpb_micro": "3435242",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "215750654674",
+          "bpb_micro": "3442048",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "252586376646",
+          "bpb_micro": "3197353",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "tc_12",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125750060129",
+          "bpb_micro": "1400037",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110368250855",
+          "bpb_micro": "1684525",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105798989195",
+          "bpb_micro": "1687898",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028463099",
+          "bpb_micro": "1506716",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "276198459487",
+          "bpb_micro": "3075054",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "226030334566",
+          "bpb_micro": "3449850",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "216654750285",
+          "bpb_micro": "3456472",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "257381712427",
+          "bpb_micro": "3258055",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    },
+    {
+      "arm": "splitmix",
+      "combined_with_p1_a1s": {
+        "all": {
+          "bits_q12": "125749299335",
+          "bpb_micro": "1400029",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "110369309814",
+          "bpb_micro": "1684541",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "105799979318",
+          "bpb_micro": "1687914",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "119028571394",
+          "bpb_micro": "1506718",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      },
+      "oracle_u_geo_subset": null,
+      "standalone_100mb": {
+        "all": {
+          "bits_q12": "386352499173",
+          "bpb_micro": "4301454",
+          "bytes": 21928475,
+          "targets": 10807417
+        },
+        "novel": {
+          "bits_q12": "306220320964",
+          "bpb_micro": "4673771",
+          "bytes": 15995822,
+          "targets": 7566174
+        },
+        "novel_response": {
+          "bits_q12": "293387004425",
+          "bpb_micro": "4680645",
+          "bytes": 15302949,
+          "targets": 7258229
+        },
+        "response": {
+          "bits_q12": "360853078225",
+          "bpb_micro": "4567843",
+          "bytes": 19286759,
+          "targets": 9523958
+        }
+      }
+    }
+  ],
+  "comparisons": {
+    "best_combined_control": "tc_3",
+    "best_standalone_control": "tc_2",
+    "ci_combined_e8_minus_best_ctrl_all_q12": [
+      "31002630",
+      "44813594"
+    ],
+    "ci_combined_e8_minus_best_ctrl_novel_q12": [
+      "67040913",
+      "78735931"
+    ],
+    "ci_combined_e8_minus_p1_all_q12": [
+      "-1155500",
+      "-195792"
+    ],
+    "ci_combined_e8_minus_p1_novel_q12": [
+      "-1194780",
+      "-315887"
+    ],
+    "ci_standalone_e8_minus_best_ctrl_all_q12": [
+      "188298283907",
+      "205308195859"
+    ],
+    "ci_standalone_e8_minus_best_ctrl_novel_q12": [
+      "137224085354",
+      "151006302059"
+    ],
+    "gate_p2_combined_1pct": false,
+    "gate_p2_standalone_1pct": false
+  },
+  "p1_a1s_baseline": {
+    "all": {
+      "bits_q12": "125750699315",
+      "bpb_micro": "1400045",
+      "bytes": 21928475,
+      "targets": 10807417
+    },
+    "novel": {
+      "bits_q12": "110369395384",
+      "bpb_micro": "1684543",
+      "bytes": 15995822,
+      "targets": 7566174
+    },
+    "novel_response": {
+      "bits_q12": "105799873721",
+      "bpb_micro": "1687913",
+      "bytes": 15302949,
+      "targets": 7258229
+    },
+    "response": {
+      "bits_q12": "119029052958",
+      "bpb_micro": "1506724",
+      "bytes": 19286759,
+      "targets": 9523958
+    }
+  },
+  "u_count_devtune": {
+    "bits_q12": "128614178256",
+    "bpb_micro": "1431925",
+    "source": "claude-438 (docs/research/notebook/m4-serving.md:38)"
+  },
+  "u_geo_vs_u_count": {
+    "delta_bits_q12": "-2864300806",
+    "ratio_milli": "977",
+    "u_geo_bits_q12": "125749877450",
+    "u_geo_bpb_micro": "1400035"
+  }
+}

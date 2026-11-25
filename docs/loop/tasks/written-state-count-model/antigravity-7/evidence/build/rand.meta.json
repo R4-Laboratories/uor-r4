@@ -1,0 +1,9 @@
+{
+  "arm": "rand",
+  "backoff_ctxs": 57600,
+  "backoff_rows": 6038699,
+  "bytes": 100000000,
+  "primary_ctxs": 1249281,
+  "primary_rows": 4902911,
+  "sha256": "b3863f3ce8cd25f081bf67f65a3a6d6b5368edb3eb4dddd4227c2be161347795"
+}
