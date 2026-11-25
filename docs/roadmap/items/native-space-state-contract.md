@@ -3,7 +3,8 @@ id: native-space-state-contract
 title: Define one persistent native training/serving state and its operator parity
 milestone: research
 area: architecture
-status: ready
+status: done
+done_class: host
 open_to: lab
 needs_gpu: false
 depends_on: []
@@ -24,12 +25,9 @@ contract shared by both phases.
 
 ## What is missing
 
-**November 17, 2026.** The Q31 CUDA updates, integer recurrence and bounded fixtures are on main. Acceptance still calls for the complete operator inventory, raw-word replay over every required field and a recorded planted fault. The written-state S0–S6 contract identifies the fields and operators for the current model. [PR #3962](https://github.com/UOR-Foundation/uor-r4/pull/3962) · [PR #4010](https://github.com/UOR-Foundation/uor-r4/pull/4010) · [PR #4046](https://github.com/UOR-Foundation/uor-r4/pull/4046)
+**November 24, 2026 (closed by [`antigravity-1`](../../loop/tasks/native-space-state-contract/antigravity-1/REPORT.md), [DECISION](../../loop/tasks/native-space-state-contract/antigravity-1/DECISION.md)).** All six `Done when` criteria are met with zero GPU spend (`$0.00`): [`crates/uor-r4-native-vector/src/contract.rs`](../../../crates/uor-r4-native-vector/src/contract.rs) provides the versioned native-state schema (`uor-r4.native-state-schema/1`, `24` fields), source-level operator registry (`uor-r4.native-operator-registry/1`, `11` shared operators across CUDA/serving/CPU/WASM), and boundary inventory (`15` classified legacy vs native paths); [`crates/uor-r4-discrete/tests/native_space_state_contract.rs`](../../../crates/uor-r4-discrete/tests/native_space_state_contract.rs) verifies all files/symbols exist, replays raw integer words bit-identically across all five D85 parity fields (`route choices`, `carry state`, `read choices`, `memory addresses`, `token ids`) over discrete Route/Flock/Pick/ExactCopy and Q31 `/12`..`/14`, and records planted faults `F1`–`F7` failing through the shared comparators; and [`docs/model/native-space-state-contract.md`](../../model/native-space-state-contract.md) documents the schema, operators, faults, and legacy boundary. Historical note (November 17, 2026): earlier incremental work merged via [PR #3962](https://github.com/UOR-Foundation/uor-r4/pull/3962) · [PR #4010](https://github.com/UOR-Foundation/uor-r4/pull/4010) · [PR #4046](https://github.com/UOR-Foundation/uor-r4/pull/4046).
 
-There is no single type that declares which token addresses, vector coordinates, SpiralCore
-carry, routes, memory keys, memory reads, learned state and optimizer state cross every
-training and serving boundary. There is also no source-level operator registry proving that
-the CUDA training kernel and the integer serving kernel implement the same transformation.
+Prior open summary (retained as history): before `antigravity-1`, there was no single versioned Rust type declaring all carried fields across discrete and Q31 paths, no workspace-verified source-level operator registry, and no unified planted-fault fixture covering operator, scale, route, carry, read-choice, memory-address, and token-id faults together.
 
 ## Done when
 

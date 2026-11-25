@@ -8,9 +8,11 @@
 //! words; the AOT CUDA module must return the same words.
 
 use std::fmt;
+pub mod contract;
 pub mod read;
 pub mod read_dump;
 pub mod read_train;
+pub use contract::*;
 pub use read::*;
 pub use read_dump::*;
 pub use read_train::*;
