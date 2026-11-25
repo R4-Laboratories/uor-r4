@@ -60,12 +60,93 @@ let v13Worker = null;
 let catalogCache = null;
 let loadedModelId = null;
 let loadedCapabilities = null;
+let loadedHydrationProvenance = null;
 let defaultSpeculative = true;
 let opfsStatus = 'untested';
 let pendingOp = Promise.resolve();
 let nextMsgId = 1;
 const pendingV13Replies = new Map();
 const progressListeners = new Set();
+
+const OFF_ORIGIN_CONSENT_KEY = 'uor.v13.offOriginConsent';
+
+function isSameOriginOrLoopbackUrl(rawUrl) {
+  const s = String(rawUrl || '').trim();
+  if (!s) return true;
+  try {
+    const base = globalThis.location?.href || 'http://127.0.0.1/';
+    const parsed = new URL(s, base);
+    if (globalThis.location?.origin && parsed.origin === globalThis.location.origin) {
+      return true;
+    }
+    return parsed.hostname === '127.0.0.1' || parsed.hostname === 'localhost' || parsed.hostname === '[::1]';
+  } catch {
+    return false;
+  }
+}
+
+export function getOffOriginConsent() {
+  try {
+    const raw = globalThis.localStorage?.getItem?.(OFF_ORIGIN_CONSENT_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function consentKeyFor(origin, modelId = null) {
+  const m = modelId ? String(modelId).trim() : '';
+  return m ? `${origin}::${m}` : origin;
+}
+
+export function setOffOriginConsent(originOrUrl, allowed = true, meta = {}) {
+  const s = String(originOrUrl || '').trim();
+  if (!s) return getOffOriginConsent();
+  const origin = new URL(s, globalThis.location?.href || 'http://127.0.0.1/').origin;
+  const scopedModel = meta?.modelId ? toFullModelId(normalizeModelId(meta.modelId)) : null;
+  const key = consentKeyFor(origin, scopedModel);
+  const current = getOffOriginConsent();
+  if (allowed) {
+    current[key] = {
+      allowed: true,
+      origin,
+      grantedAt: new Date().toISOString(),
+      modelId: scopedModel,
+      containerSha256: meta.containerSha256 || null,
+      sizeBytes: Number.isFinite(meta.sizeBytes) ? meta.sizeBytes : null,
+    };
+  } else {
+    delete current[key];
+    if (!scopedModel) {
+      for (const k of Object.keys(current)) {
+        if (k.startsWith(`${origin}::`)) delete current[k];
+      }
+    }
+  }
+  try {
+    globalThis.localStorage?.setItem?.(OFF_ORIGIN_CONSENT_KEY, JSON.stringify(current));
+  } catch {}
+  return current;
+}
+
+function hasOffOriginConsent(rawUrl, modelId = null) {
+  try {
+    const origin = new URL(String(rawUrl || ''), globalThis.location?.href || 'http://127.0.0.1/').origin;
+    const store = getOffOriginConsent();
+    if (modelId) {
+      const fullModelId = toFullModelId(normalizeModelId(modelId));
+      if (store[consentKeyFor(origin, fullModelId)]?.allowed === true) return true;
+      const wildcard = store[origin];
+      return Boolean(wildcard?.allowed === true && (wildcard.modelId == null || wildcard.modelId === fullModelId));
+    }
+    const wildcard = store[origin];
+    return Boolean(wildcard?.allowed === true && wildcard.modelId == null);
+  } catch {
+    return false;
+  }
+}
 
 let hydrationState = {
   modelId: `uor-r4:${DEFAULT_MODEL_SHORT}`,
@@ -232,7 +313,7 @@ async function isV13Cached(containerSha, lastPack = 'pack_08.pack') {
 }
 
 async function hasOfflineV13Cache(containerSha, lastPack = 'pack_08.pack') {
-  return hasCachedFiles(containerSha, ['manifest.json', 'manifest.stitch.json', lastPack]);
+  return hasCachedFiles(containerSha, ['manifest.json', 'manifest.stitch.json', 'pack_seal.json', lastPack]);
 }
 
 function ensureV13Worker() {
@@ -387,6 +468,7 @@ export function getStatus() {
     capabilities: loadedCapabilities,
     opfsStatus,
     hydration: getHydrationState(),
+    hydrationProvenance: loadedHydrationProvenance,
     weightsMatched: Boolean(
       loadedCapabilities &&
         (loadedCapabilities.expected_sha256 == null || loadedCapabilities.sha256_verified === true),
@@ -394,11 +476,72 @@ export function getStatus() {
   };
 }
 
-async function loadV13Entry(entry, { signal } = {}) {
+async function assertOffOriginHydrationAllowed({
+  urls,
+  modelId,
+  containerSha256,
+  sizeBytes,
+  mirrorBaseUrl,
+  lastPack,
+  allowOffOriginHydration,
+}) {
+  const remoteUrls = (urls || []).filter(Boolean);
+  const offOriginUrls = mirrorBaseUrl ? [] : remoteUrls.filter((u) => !isSameOriginOrLoopbackUrl(u));
+  if (offOriginUrls.length === 0) {
+    return { isLocalSource: true, offOriginUrls: [] };
+  }
+  const cachedBefore = await hasOfflineV13Cache(containerSha256, lastPack);
+  const allConsented = offOriginUrls.every((u) => hasOffOriginConsent(u, modelId));
+  if (!cachedBefore && !allConsented && !allowOffOriginHydration) {
+    loadedModelId = null;
+    loadedCapabilities = null;
+    loadedHydrationProvenance = null;
+    const primaryUrl = offOriginUrls[0];
+    const err = new Error(
+      `Off-origin model weight download requires user consent: ${primaryUrl} (${sizeBytes || 0} bytes)`,
+    );
+    err.code = 'ConsentRequiredForWeightDownload';
+    err.origin = (() => {
+      try {
+        return new URL(primaryUrl, globalThis.location?.href || 'http://127.0.0.1/').origin;
+      } catch {
+        return null;
+      }
+    })();
+    err.manifestUrl = primaryUrl;
+    err.sizeBytes = sizeBytes || 0;
+    notifyProgress({
+      modelId,
+      phase: 'error',
+      percent: 0,
+      packsDone: 0,
+      piecesDone: 0,
+      bytesLoaded: 0,
+      cached: false,
+      cacheBackend: null,
+      recoveredPieces: [],
+      error: err.message,
+    });
+    throw err;
+  }
+  return { isLocalSource: false, offOriginUrls };
+}
+
+async function loadV13Entry(entry, { signal, allowOffOriginHydration = false } = {}) {
   const mirrorBaseUrl = getV13MirrorBase(entry.id);
   const fullModelId = toFullModelId(entry.id);
+  const { isLocalSource, offOriginUrls } = await assertOffOriginHydrationAllowed({
+    urls: [entry.manifest_url, entry.stitch_manifest_url],
+    modelId: fullModelId,
+    containerSha256: entry.container_sha256,
+    sizeBytes: entry.size_bytes,
+    mirrorBaseUrl,
+    lastPack: lastPackForEntry(entry),
+    allowOffOriginHydration,
+  });
   loadedModelId = null;
   loadedCapabilities = null;
+  loadedHydrationProvenance = null;
   notifyProgress({
     modelId: fullModelId,
     phase: 'hydrating',
@@ -452,7 +595,42 @@ async function loadV13Entry(entry, { signal } = {}) {
       cacheBackend: resp.cacheBackend,
       recoveredPieces: resp.recoveredPieces || [],
     };
+    if (!isLocalSource && offOriginUrls.length > 0 && allowOffOriginHydration) {
+      for (const u of offOriginUrls) {
+        if (!hasOffOriginConsent(u, fullModelId)) {
+          setOffOriginConsent(u, true, {
+            modelId: fullModelId,
+            containerSha256: entry.container_sha256 || null,
+            sizeBytes: entry.size_bytes || null,
+          });
+        }
+      }
+    }
     const isCached = Boolean(resp.reusedMount || resp.cacheBackend === 'opfs' || resp.cacheBackend === 'indexeddb');
+    const sourceOrigin = (() => {
+      try {
+        return new URL(mirrorBaseUrl || entry.manifest_url, globalThis.location?.href || 'http://127.0.0.1/').origin;
+      } catch {
+        return null;
+      }
+    })();
+    loadedHydrationProvenance = {
+      modelId: fullModelId,
+      manifestUrl: entry.manifest_url,
+      stitchManifestUrl: entry.stitch_manifest_url || null,
+      mirrorBaseUrl: mirrorBaseUrl || null,
+      sourceOrigin,
+      sameOriginOrLoopback: isLocalSource,
+      offOriginConsentGranted: isLocalSource
+        ? null
+        : offOriginUrls.every((u) => hasOffOriginConsent(u, fullModelId)),
+      cacheBackend: resp.cacheBackend,
+      reusedMount: Boolean(resp.reusedMount),
+      containerSha256: resp.status.container_sha256,
+      sha256Verified: resp.status.container_sha256 === (entry.container_sha256 || resp.status.container_sha256),
+      recoveredPieces: resp.recoveredPieces || [],
+      loadedAt: new Date().toISOString(),
+    };
     notifyProgress({
       modelId: fullModelId,
       phase: 'ready',
@@ -470,10 +648,12 @@ async function loadV13Entry(entry, { signal } = {}) {
       cacheBackend: resp.cacheBackend,
       recoveredPieces: resp.recoveredPieces || [],
       cached: isCached,
+      hydrationProvenance: loadedHydrationProvenance,
     };
   } catch (err) {
     loadedModelId = null;
     loadedCapabilities = null;
+    loadedHydrationProvenance = null;
     notifyProgress({
       modelId: fullModelId,
       phase: 'error',
@@ -483,13 +663,14 @@ async function loadV13Entry(entry, { signal } = {}) {
   }
 }
 
-async function ensureModelLoadedQueued(shortId, { signal } = {}) {
+async function ensureModelLoadedQueued(shortId, { signal, allowOffOriginHydration = false } = {}) {
   if (loadedModelId === shortId && loadedCapabilities) {
     return {
       modelId: toFullModelId(shortId),
       capabilities: loadedCapabilities,
       sha256: loadedCapabilities.artifact_sha256,
       cached: true,
+      hydrationProvenance: loadedHydrationProvenance,
     };
   }
   const cat = await getCatalog();
@@ -497,12 +678,12 @@ async function ensureModelLoadedQueued(shortId, { signal } = {}) {
   if (!entry) {
     throw new Error(`Unknown UOR-R4 model id: ${shortId}`);
   }
-  return loadV13Entry(entry, { signal });
+  return loadV13Entry(entry, { signal, allowOffOriginHydration });
 }
 
-export async function ensureModelLoaded(modelId, { signal } = {}) {
+export async function ensureModelLoaded(modelId, { signal, allowOffOriginHydration = true } = {}) {
   const shortId = normalizeModelId(modelId);
-  return serializeOp(() => ensureModelLoadedQueued(shortId, { signal }));
+  return serializeOp(() => ensureModelLoadedQueued(shortId, { signal, allowOffOriginHydration }));
 }
 
 export async function generate({
@@ -515,12 +696,13 @@ export async function generate({
   sliceTokens = 4,
   prefillSliceTokens = 64,
   speculative,
+  allowOffOriginHydration = true,
   signal,
   onToken,
 } = {}) {
   const shortId = normalizeModelId(modelId);
   return serializeOp(async () => {
-    await ensureModelLoadedQueued(shortId, { signal });
+    await ensureModelLoadedQueued(shortId, { signal, allowOffOriginHydration });
     const effectiveSpec = typeof speculative === 'boolean' ? speculative : defaultSpeculative;
     const result = await callV13Worker(
       'generate_v13',
@@ -598,7 +780,7 @@ export async function prewarmIfCached({
       if (!entry || !(await hasOfflineV13Cache(entry.container_sha256, lastPackForEntry(entry)))) {
         return { ok: false, skipped: 'not_cached', cached: false };
       }
-      await loadV13Entry(entry, { signal });
+      await loadV13Entry(entry, { signal, allowOffOriginHydration: false });
     }
     return callV13Worker(
       'prewarm_v13',
@@ -630,7 +812,22 @@ export async function configure({
   return res;
 }
 
-export async function testStitchRecover({ mirrorBaseUrl = '', groupIndex = 0, signal } = {}) {
+export async function testStitchRecover({
+  mirrorBaseUrl = '',
+  groupIndex = 0,
+  allowOffOriginHydration = true,
+  signal,
+} = {}) {
+  const resolvedMirror = mirrorBaseUrl ? sanitizeMirrorBase(mirrorBaseUrl) : getV13MirrorBase();
+  await assertOffOriginHydrationAllowed({
+    urls: [FALLBACK_V13_MODEL.manifest_url, FALLBACK_V13_MODEL.stitch_manifest_url],
+    modelId: toFullModelId(FALLBACK_V13_MODEL.id),
+    containerSha256: FALLBACK_V13_MODEL.container_sha256,
+    sizeBytes: FALLBACK_V13_MODEL.size_bytes,
+    mirrorBaseUrl: resolvedMirror,
+    lastPack: lastPackForEntry(FALLBACK_V13_MODEL),
+    allowOffOriginHydration,
+  });
   return callV13Worker(
     'test_stitch_recover',
     {
@@ -638,7 +835,7 @@ export async function testStitchRecover({ mirrorBaseUrl = '', groupIndex = 0, si
       stitchManifestUrl: FALLBACK_V13_MODEL.stitch_manifest_url,
       manifestSha256: FALLBACK_V13_MODEL.manifest_sha256,
       stitchManifestSha256: FALLBACK_V13_MODEL.stitch_manifest_sha256,
-      mirrorBaseUrl: mirrorBaseUrl ? sanitizeMirrorBase(mirrorBaseUrl) : getV13MirrorBase(),
+      mirrorBaseUrl: resolvedMirror,
       groupIndex,
     },
     'stitch_recover_result',

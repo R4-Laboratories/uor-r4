@@ -792,10 +792,12 @@ impl IntegerStackModel {
         // A turn memory (`lut-stack/7`) is checked section by section and repacked for the
         // session, which forms its keys and applies its moves (units 2-3 of
         // `turn-memory-integer`). Dropping it would serve a trunk the float model depends on.
+        let point_anchors = super::point_key::point_anchors(&artifact)?;
         let memory = match memory_image(&artifact)? {
-            Some(image) => Some(Box::new(ServedTurnMemory::new(
+            Some(image) => Some(Box::new(ServedTurnMemory::new_with_point_anchors(
                 image,
                 artifact.memory_chain.as_ref(),
+                point_anchors,
             ))),
             None => None,
         };
@@ -4385,9 +4387,25 @@ fn stack_step_fbs(
     let mut served = None;
     if point_miss {
         if let Some(point) = model.memory.as_ref().and_then(|m| m.point.as_ref()) {
-            let named = point.name(&b.query_q12, &mut b.point_tied)?;
-            b.native_token = named.0;
-            served = Some(named);
+            let (tok, dist, win_row) = point.name_with_row(&b.query_q12, &mut b.point_tied)?;
+            b.native_token = tok;
+            served = Some((tok, dist));
+            if let Some(canon) = point.canonical_reply_anchor(win_row) {
+                let limit = model
+                    .memory
+                    .as_ref()
+                    .and_then(|m| m.reply_turn)
+                    .unwrap_or(canon.len())
+                    .min(canon.len());
+                let trimmed: Vec<u32> = canon[..limit]
+                    .iter()
+                    .copied()
+                    .take_while(|&id| id != super::format::MEMORY_PAD)
+                    .collect();
+                if !trimmed.is_empty() {
+                    session.memory.anchors.reply = trimmed;
+                }
+            }
         }
     }
     session.memory.last_point = served;
@@ -4678,9 +4696,25 @@ fn stack_step_fbs_timed(
     let mut served = None;
     if point_miss {
         if let Some(point) = model.memory.as_ref().and_then(|m| m.point.as_ref()) {
-            let named = point.name(&b.query_q12, &mut b.point_tied)?;
-            b.native_token = named.0;
-            served = Some(named);
+            let (tok, dist, win_row) = point.name_with_row(&b.query_q12, &mut b.point_tied)?;
+            b.native_token = tok;
+            served = Some((tok, dist));
+            if let Some(canon) = point.canonical_reply_anchor(win_row) {
+                let limit = model
+                    .memory
+                    .as_ref()
+                    .and_then(|m| m.reply_turn)
+                    .unwrap_or(canon.len())
+                    .min(canon.len());
+                let trimmed: Vec<u32> = canon[..limit]
+                    .iter()
+                    .copied()
+                    .take_while(|&id| id != super::format::MEMORY_PAD)
+                    .collect();
+                if !trimmed.is_empty() {
+                    session.memory.anchors.reply = trimmed;
+                }
+            }
         }
     }
     session.memory.last_point = served;

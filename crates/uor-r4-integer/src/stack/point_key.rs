@@ -10,7 +10,7 @@
 //! trunk's own points (the item's condition (b)); the default remains byte-compatible with the
 //! original artifacts.
 
-use super::format::{Container, StackPointKey, POINT_KEY_EXP};
+use super::format::{Container, StackPointKey, MEMORY_PAD, POINT_KEY_EXP};
 use super::memory::MEMORY_BOS_ID;
 use super::StackError;
 
@@ -22,6 +22,32 @@ pub struct PointKeyImage {
     pub targets: Vec<u32>,
     /// Rows voted over after exact `(L1 distance, row)` ordering.
     pub vote_k: usize,
+}
+
+/// Optional flat `rows × anchor_len` canonical reply anchor rows (`u32` token ids padded with
+/// `MEMORY_PAD`) stored in `memory.point.anchors` alongside a `/8` point key.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct PointKeyAnchors {
+    pub anchor_len: usize,
+    pub anchors: Vec<u32>,
+}
+
+impl PointKeyAnchors {
+    /// Refuse malformed canonical anchor tables: zero anchor width, length mismatch with `rows`,
+    /// or token ids past `vocab` (other than `MEMORY_PAD`).
+    pub fn check(&self, rows: usize, vocab: usize) -> Result<(), StackError> {
+        if self.anchor_len == 0 || rows.checked_mul(self.anchor_len) != Some(self.anchors.len()) {
+            return Err(StackError::Numerics(
+                "the point table's canonical anchors are not rows × anchor_len".to_owned(),
+            ));
+        }
+        if self.anchors.iter().any(|&id| id != MEMORY_PAD && (id as usize) >= vocab) {
+            return Err(StackError::Numerics(
+                "the point table's canonical anchors name an id past the vocabulary".to_owned(),
+            ));
+        }
+        Ok(())
+    }
 }
 
 impl PointKeyImage {
@@ -37,6 +63,7 @@ impl PointKeyImage {
             width: self.width,
             exp: POINT_KEY_EXP,
             vote_k: self.vote_k,
+            anchor_len: None,
         }
     }
 
@@ -84,22 +111,51 @@ pub(crate) fn point_image(artifact: &Container<'_>) -> Result<Option<PointKeyIma
     Ok(Some(image))
 }
 
+/// Read the container's optional canonical reply anchor table (`memory.point.anchors`), checked
+/// against `record.rows`, `record.anchor_len`, and `artifact.shape.vocab`.
+pub(crate) fn point_anchors(artifact: &Container<'_>) -> Result<Option<PointKeyAnchors>, StackError> {
+    let Some(record) = &artifact.point else {
+        return Ok(None);
+    };
+    let Some(anchor_len) = record.anchor_len else {
+        return Ok(None);
+    };
+    let anchors = artifact.table_u32("memory.point.anchors")?;
+    let out = PointKeyAnchors { anchor_len, anchors };
+    out.check(record.rows, artifact.shape.vocab)?;
+    Ok(Some(out))
+}
+
 /// The point table as a session serves it.
 pub(crate) struct ServedPointKey {
     width: usize,
     points: Vec<i16>,
     targets: Vec<u32>,
     vote_k: usize,
+    canonical_anchors: Option<Vec<u32>>,
+    anchor_len: usize,
 }
 
 impl ServedPointKey {
     /// The served table of a checked image.
+    #[cfg_attr(not(test), allow(dead_code))]
     pub(crate) fn new(image: PointKeyImage) -> Self {
+        Self::with_anchors(image, None)
+    }
+
+    /// The served table of a checked image with optional canonical reply anchors.
+    pub(crate) fn with_anchors(image: PointKeyImage, anchors: Option<PointKeyAnchors>) -> Self {
+        let (canonical_anchors, anchor_len) = match anchors {
+            Some(a) => (Some(a.anchors), a.anchor_len),
+            None => (None, 0),
+        };
         Self {
             width: image.width,
             points: image.points,
             targets: image.targets,
             vote_k: image.vote_k,
+            canonical_anchors,
+            anchor_len,
         }
     }
 
@@ -118,12 +174,26 @@ impl ServedPointKey {
     /// rows exactly by `(L1 distance, row index)` and choose the commonest target in the first
     /// `vote_k`, ties to the smaller id. `ranked` is the caller's scratch, of at least
     /// [`Self::rows`] capacity, so the search allocates nothing.
+    #[cfg(test)]
     #[inline(never)]
     pub(crate) fn name(
         &self,
         query: &[i32],
         ranked: &mut Vec<(i64, usize, u32)>,
     ) -> Result<(u32, i64), StackError> {
+        let (named, least, _) = self.name_with_row(query, ranked)?;
+        Ok((named, least))
+    }
+
+    /// Like [`Self::name`], and also returns the deterministic winning row index (`min` by
+    /// `(L1 distance, row)` among considered rows matching the winning target) so callers can
+    /// read optional canonical reply anchors for that row.
+    #[inline(never)]
+    pub(crate) fn name_with_row(
+        &self,
+        query: &[i32],
+        ranked: &mut Vec<(i64, usize, u32)>,
+    ) -> Result<(u32, i64, usize), StackError> {
         if query.len() != self.width {
             return Err(StackError::Numerics("the point key's query is not the table's width".to_owned()));
         }
@@ -184,7 +254,26 @@ impl ServedPointKey {
         if best == 0 || named == MEMORY_BOS_ID {
             return Err(StackError::Numerics("the point key named no token, or BOS".to_owned()));
         }
-        Ok((named, least))
+        let best_row = if self.canonical_anchors.is_some() {
+            considered
+                .iter()
+                .filter(|&&(_, _, target)| target == named)
+                .map(|&(dist, row, _)| (dist, row))
+                .min()
+                .map(|(_, row)| row)
+                .unwrap_or(0)
+        } else {
+            0
+        };
+        Ok((named, least, best_row))
+    }
+
+    /// Optional canonical reply anchor slice (`MEMORY_PAD`-terminated) for row `row`.
+    pub(crate) fn canonical_reply_anchor(&self, row: usize) -> Option<&[u32]> {
+        let anchors = self.canonical_anchors.as_ref()?;
+        let start = row.checked_mul(self.anchor_len)?;
+        let end = start.checked_add(self.anchor_len)?;
+        anchors.get(start..end)
     }
 
     /// The least L1 distance at Q12 from `query` to a row naming `target` (claude-224), or `None`
@@ -595,6 +684,12 @@ mod point_key_tests {
         }
         .check(100)
         .is_err(), "vote width past the rows");
+        assert!(PointKeyAnchors {
+            anchor_len: 2,
+            anchors: vec![5, 6, 7],
+        }
+        .check(2, 100)
+        .is_err(), "mismatched canonical anchor length");
         let key = served(1, vec![0, 4], vec![3, 4]);
         assert!(key.name(&[0, 0], &mut Vec::new()).is_err(), "a wrong-width query");
     }

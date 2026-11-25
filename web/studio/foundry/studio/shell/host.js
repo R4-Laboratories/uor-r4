@@ -6,6 +6,7 @@ import {createLinuxVmHost} from './linux-vm-host.mjs';
 import {createStitchNetwork} from './stitch-network.mjs';
 import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
+import {createSpiralCoreRelayClient} from './spiralcore-relay.mjs';
 import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
@@ -1405,6 +1406,9 @@ function applySearchReplaceHunk(fileContent, searchBlock, replaceBlock) {
   return [...srcLines.slice(0, matchStart), ...repLines, ...srcLines.slice(matchStart + needleLines.length)].join("\n");
 }
 function parsePrismTags(text) {
+  text = String(text ?? "")
+    .replace(/<tool_response>[\s\S]*?<\/tool_response>/g, "\n")
+    .replace(/<tool_call>[\s\S]*?<\/tool_call>/g, "\n");
   const writesByPath = new Map(), patchesByPath = new Map(), deletes = [], renames = [], deps = [];
   const stripOuterFences = (raw) => {
     const out = String(raw ?? "").replace(/^\r?\n/, "").replace(/\r?\n$/, "");
@@ -1528,7 +1532,9 @@ function looksLikeCompleteComponent(code) {
 }
 
 function extractFallbackCodeWrites(rawText) {
-  const src = String(rawText || "");
+  const src = String(rawText || "")
+    .replace(/<tool_response>[\s\S]*?<\/tool_response>/g, "\n")
+    .replace(/<tool_call>[\s\S]*?<\/tool_call>/g, "\n");
   if (!src) return [];
   const openTag = src.match(/<prism-write\s+([^>]*)>([\s\S]*)$/);
   if (openTag) {
@@ -1610,7 +1616,7 @@ async function lookupStandards(query, limit = 5, { filterStopWords = false } = {
     .slice(0, limit);
   return { ok: true, query, matches: scored.map((x) => x.sec) };
 }
-const BARE_TOOL_PROMPT_RE = /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b/i;
+const BARE_TOOL_PROMPT_RE = /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status|web_search)\b/i;
 async function buildTurnGroundingContext({ appId = null, chatMode = "build", prompt = "" } = {}) {
   const q = String(prompt || "").trim();
   if (!q) return "";
@@ -1910,6 +1916,21 @@ function createFoundryTools({ appId = null, chatMode = "build", signal, onCommit
       xor_2_of_3_ready: true,
       stitch: await stitchNetwork.getStatus(),
     }),
+    web_search: async ({ query, limit } = {}) => {
+      const q = String(query || "").trim();
+      if (!q) return { ok: false, code: "MissingQuery", error: "query is required" };
+      try {
+        const data = await spiralCoreRelay.webSearch({ query: q, limit });
+        return { ok: true, ...data };
+      } catch (err) {
+        return {
+          ok: false,
+          code: err?.code || "RelayUnavailable",
+          error: String(err?.message || err),
+          relay: spiralCoreRelay.getStatus(),
+        };
+      }
+    },
   };
 }
 
@@ -2665,7 +2686,10 @@ async function chatTurn(chatId, intent) {
             }
           } catch {}
         }
-        const specResult = await afterTurn(appId, rawTurn, [], { signal: abort.signal, onCommit }).catch(() => null);
+        const specRawTurn = String(rawTurn || "")
+          .replace(/<tool_response>[\s\S]*?<\/tool_response>/g, "\n")
+          .replace(/<tool_call>[\s\S]*?<\/tool_call>/g, "\n");
+        const specResult = await afterTurn(appId, specRawTurn, [], { signal: abort.signal, onCommit }).catch(() => null);
         if (specResult) {
           changed += specResult.changed || 0;
           card = specResult.card || null;
@@ -3143,6 +3167,7 @@ const mvmHost = createMvmHost({
 let linuxVmHost = null;
 let stitchNetwork = null;
 let syncFromLinuxActive = false;
+const spiralCoreRelay = createSpiralCoreRelayClient();
 
 const githubVault = createGitHubVault({
   coreReady: coreReady.then(() => core),
@@ -3964,6 +3989,7 @@ window.__uorR4 = Object.freeze({
   stitchStatus: () => stitchNetwork.getStatus(),
   stitchConnect: (opts = {}) => stitchNetwork.joinChannel(opts),
   stitchDisconnect: () => stitchNetwork.disconnect(),
+  spiralCoreRelay,
   githubStatus: () => githubClient.getStatus(),
   submitPrompt: async (chatId, appId, prompt) => {
     const intentId = 'uor-' + crypto.randomUUID();

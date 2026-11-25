@@ -102,7 +102,8 @@ pub use format::{add_q31_read_uorlut01, STACK_FBS_Q31_READ_SCHEMA};
 pub use q31_read::{read_q31_read_uorlut01, Q31ReadStep, Q31SessionRead, StackQ31Read, Q31_READ_TABLE};
 pub use read_out::ReadOut;
 pub use format::{
-    add_hamming_ask_uorlut01, add_hamming_place_uorlut01, add_point_key_uorlut01, drop_hamming_carry_uorlut01,
+    add_hamming_ask_uorlut01, add_hamming_place_uorlut01, add_point_key_uorlut01,
+    add_point_key_with_anchors_uorlut01, drop_hamming_carry_uorlut01,
     set_hamming_copy_latest_uorlut01, set_hamming_copy_longest_uorlut01,
     StackMemoryChain, StackPointKey, POINT_KEY_EXP, STACK_FBS_CHAIN_SCHEMA, STACK_FBS_POINT_SCHEMA,
     StackQ31State, STACK_FBS_Q31_SCHEMA, Q31_STATE_TABLE,
@@ -136,7 +137,8 @@ pub use kernels::{stack_argmax, stack_memory_select, stack_snap_select, MAX_SELE
 pub use memory::{read_memory_uorlut01, MemoryImage, MemoryTableImage};
 pub use point_key::{
     build_point_key, check_point_key_read_back, panel_reply, point_key_windows, reply_stop,
-    PanelReply, PointKeyImage, PointKeyWindow, ReplyEnd, POINT_KEY_BOS, POINT_KEY_WINDOW,
+    PanelReply, PointKeyAnchors, PointKeyImage, PointKeyWindow, ReplyEnd, POINT_KEY_BOS,
+    POINT_KEY_WINDOW,
 };
 pub use prompt_reply::{
     PromptReplyExample, PromptReplyReadout, PromptReplySelection, PromptReplySignatureConfig,

@@ -181,7 +181,8 @@ impl StackMemoryChain {
 }
 
 /// The header record of a stack's served point key (claude-222): its rows, their width, the
-/// exponent the points are stored at and an optional exact-neighbour vote width, in sections
+/// exponent the points are stored at, an optional exact-neighbour vote width, and an optional
+/// canonical reply anchor row width (`memory.point.anchors` u32), in sections
 /// `memory.point.points` (i16) and `memory.point.targets` (u32).
 #[derive(Clone, Debug, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
@@ -193,12 +194,17 @@ pub struct StackPointKey {
     /// original one-nearest-row behavior so existing `/8` artifacts stay byte-identical.
     #[serde(default = "one_point_vote", skip_serializing_if = "is_one_point_vote")]
     pub vote_k: usize,
+    /// Optional width (in `u32` token ids per row) of `memory.point.anchors` for `/8 -> /7`
+    /// paraphrase continuation. Omitted when no anchor table is present so existing `/8` artifacts
+    /// keep byte-identical headers.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub anchor_len: Option<usize>,
 }
 
 impl StackPointKey {
     /// Refuse a record the stack cannot carry: no turn memory beside it (the key serves where the
-    /// memory misses), no rows, a width other than the stack's, or an exponent other than this
-    /// engine's.
+    /// memory misses), no rows, a width other than the stack's, an exponent other than this
+    /// engine's, or a zero anchor width.
     pub fn check(&self, shape: &StackShape, memory: Option<&StackTurnMemory>) -> Result<(), StackError> {
         if memory.is_none() {
             return Err(StackError::Shape("a point key needs the turn memory"));
@@ -208,9 +214,10 @@ impl StackPointKey {
             || self.exp != POINT_KEY_EXP
             || self.vote_k == 0
             || self.vote_k > self.rows
+            || matches!(self.anchor_len, Some(0))
         {
             return Err(StackError::Shape(
-                "the point key's rows, width, exponent or vote width is not this stack's",
+                "the point key's rows, width, exponent, vote width or anchor width is not this stack's",
             ));
         }
         Ok(())
@@ -2675,6 +2682,16 @@ fn export_fbs_trunk(
 /// integer trunk's own points, never from a float snapshot, so it is added to an exported stack
 /// rather than exported with it. The result is read back before it is returned.
 pub fn add_point_key_uorlut01(artifact: &[u8], image: &super::PointKeyImage) -> Result<Vec<u8>, StackError> {
+    add_point_key_with_anchors_uorlut01(artifact, image, None)
+}
+
+/// Like [`add_point_key_uorlut01`], plus optional `memory.point.anchors` (`PointKeyAnchors`) for
+/// `/8 -> /7` paraphrase reply continuation.
+pub fn add_point_key_with_anchors_uorlut01(
+    artifact: &[u8],
+    image: &super::PointKeyImage,
+    anchors: Option<&super::PointKeyAnchors>,
+) -> Result<Vec<u8>, StackError> {
     let container = Container::parse(artifact)?;
     if container.memory.is_none() || container.point.is_some() {
         return Err(StackError::Shape("a point key is added to a turn-memory stack without one"));
@@ -2683,6 +2700,9 @@ pub fn add_point_key_uorlut01(artifact: &[u8], image: &super::PointKeyImage) -> 
         return Err(StackError::Shape("the point key's width is not this stack's"));
     }
     image.check(container.shape.vocab)?;
+    if let Some(a) = anchors {
+        a.check(image.rows(), container.shape.vocab)?;
+    }
     // Where `Container::parse` found the header and the data.
     let declared = u64::from_le_bytes(artifact[8..16].try_into().map_err(|_| StackError::MissingData)?);
     let header_end = 16 + usize::try_from(declared).map_err(|_| StackError::MissingData)?;
@@ -2698,6 +2718,9 @@ pub fn add_point_key_uorlut01(artifact: &[u8], image: &super::PointKeyImage) -> 
     b.data = artifact[data_start..].to_vec();
     b.push_i16("memory.point.points", &image.points);
     b.push_u32("memory.point.targets", &image.targets);
+    if let Some(a) = anchors {
+        b.push_u32("memory.point.anchors", &a.anchors);
+    }
     header["tables"]
         .as_array_mut()
         .ok_or(StackError::MissingData)?
@@ -2708,7 +2731,9 @@ pub fn add_point_key_uorlut01(artifact: &[u8], image: &super::PointKeyImage) -> 
     } else if header.get("memory_chain").is_none_or(serde_json::Value::is_null) {
         header["schema"] = json!(STACK_FBS_POINT_SCHEMA);
     }
-    header["point"] = json!(image.record());
+    let mut record = image.record();
+    record.anchor_len = anchors.map(|a| a.anchor_len);
+    header["point"] = json!(record);
     let header_bytes = serde_json::to_vec(&header).map_err(StackError::Header)?;
     let mut out = Vec::with_capacity(16 + header_bytes.len() + ALIGN + b.data.len());
     out.extend_from_slice(MAGIC);
@@ -2716,7 +2741,9 @@ pub fn add_point_key_uorlut01(artifact: &[u8], image: &super::PointKeyImage) -> 
     out.extend_from_slice(&header_bytes);
     out.resize(out.len().div_ceil(ALIGN) * ALIGN, 0);
     out.extend_from_slice(&b.data);
-    super::point_key::point_image(&Container::parse(&out)?)?;
+    let parsed = Container::parse(&out)?;
+    super::point_key::point_image(&parsed)?;
+    super::point_key::point_anchors(&parsed)?;
     Ok(out)
 }
 

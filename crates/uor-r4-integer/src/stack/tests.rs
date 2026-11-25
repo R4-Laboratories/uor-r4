@@ -7236,6 +7236,87 @@ fn a_voted_point_key_round_trips_and_serves_in_the_native_session() {
     );
 }
 
+/// Gap 4 (`/8 -> /7` canonical reply anchors): when the opening lookup misses on `/8` with
+/// `PointKeyAnchors` present, the canonical anchor overwrites `session.memory.anchors.reply`
+/// (trimmed before `MEMORY_PAD`) so later `/7` reply rows key into the canonical reply table.
+#[test]
+fn canonical_reply_anchors_bridge_point_miss_to_reply_table_and_reject_bad_table() {
+    use super::MEMORY_PAD;
+    let (tokens, reply_start) = turn_memory_script(8);
+    let bytes = point_key_test_stack(false);
+    let model7 = IntegerStackModel::parse(&bytes).expect("served /7");
+    let width = model7.shape().width;
+
+    let mut s7 = model7.session();
+    let mut query = None;
+    for (row, &token) in tokens[..reply_start].iter().enumerate() {
+        if row + 1 == reply_start {
+            s7.mark_reply_start();
+        }
+        let step = s7.step_native(token).expect("/7 step");
+        if row + 1 == reply_start {
+            query = Some(step.query_q12);
+        }
+    }
+    // At reply_start (first reply row), /7 anchors hold prompt tokens 12..=19, missing [90..=97].
+    s7.step_native(tokens[reply_start]).expect("/7 reply step 1");
+    assert_eq!(
+        s7.last_memory_move().and_then(|m| m.stored),
+        None,
+        "/7 without canonical anchors misses reply table"
+    );
+
+    let query = query.expect("opening query");
+    let points: Vec<i16> = query.iter().map(|&v| v as i16).collect();
+    let image = super::PointKeyImage {
+        width,
+        points,
+        targets: vec![7],
+        vote_k: 1,
+    };
+    // Canonical anchor is [90..=97] followed by two MEMORY_PAD sentinels (anchor_len = 10),
+    // which must trim at MEMORY_PAD to [90..=97] and match `point_key_test_stack`'s reply key.
+    let mut padded_anchor = vec![90, 91, 92, 93, 94, 95, 96, 97, MEMORY_PAD, MEMORY_PAD];
+    let anchors = super::PointKeyAnchors {
+        anchor_len: padded_anchor.len(),
+        anchors: padded_anchor.clone(),
+    };
+    let bytes8 = super::add_point_key_with_anchors_uorlut01(&bytes, &image, Some(&anchors))
+        .expect("/8 with canonical anchors");
+    let (header8, _) = header_and_data(&bytes8);
+    assert_eq!(header8["point"]["anchor_len"], padded_anchor.len());
+    assert!(
+        header8["tables"]
+            .as_array()
+            .is_some_and(|t| t.iter().any(|e| e["name"] == "memory.point.anchors")),
+        "memory.point.anchors table must be exported when PointKeyAnchors is Some"
+    );
+
+    let model8 = IntegerStackModel::parse(&bytes8).expect("served /8 with anchors");
+    let mut s8 = model8.session();
+    for (row, &token) in tokens[..reply_start].iter().enumerate() {
+        if row + 1 == reply_start {
+            s8.mark_reply_start();
+        }
+        s8.step_native(token).expect("/8 step");
+    }
+    // Reply row 1 queries [anchors.reply..., MEMORY_PAD, 1, MEMORY_PAD, 20] -> hits target 43.
+    s8.step_native(tokens[reply_start]).expect("/8 reply step 1");
+    assert_eq!(
+        s8.last_memory_move().and_then(|m| m.stored),
+        Some(43),
+        "/8 canonical anchor bridge must hit reply table target 43"
+    );
+
+    // Reject a truncated PointKeyAnchors slice.
+    padded_anchor.pop();
+    let bad_anchors = super::PointKeyAnchors {
+        anchor_len: 10,
+        anchors: padded_anchor,
+    };
+    assert!(super::add_point_key_with_anchors_uorlut01(&bytes, &image, Some(&bad_anchors)).is_err());
+}
+
 /// claude-224: a panel reply ends at BOS, unkept; at its length; or where prompt and reply fill
 /// the context. Each of the last two keeps its token.
 #[test]

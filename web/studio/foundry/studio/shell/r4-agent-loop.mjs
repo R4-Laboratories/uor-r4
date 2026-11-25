@@ -11,7 +11,7 @@ export const FOUNDRY_CHAT_SYSTEM_PROMPT =
 export const FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT =
   'You are UOR-R4 Foundry Assistant running locally in-browser on pure-integer WASM (zero floats/matmul/softmax) inside Hologram Foundry.\n' +
   'Emit a single JSON tool call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call> to fulfill the user\'s explicit tool request, then summarize the result clearly in natural language.\n' +
-  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
+  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?), web_search(query, limit?).';
 
 export const FOUNDRY_BUILD_SYSTEM_PROMPT =
   'You are an expert React, TypeScript, and Tailwind CSS software engineer inside UOR-R4 Foundry Studio.\n' +
@@ -29,11 +29,11 @@ export const FOUNDRY_BUILD_SYSTEM_PROMPT =
 export const FOUNDRY_SYSTEM_PROMPT =
   'You are UOR-R4 Foundry Assistant & Software Engineer running locally in-browser on pure-integer WASM (zero floats/matmul/softmax) inside Hologram Foundry.\n' +
   'When editing or creating app files in Build mode, emit <prism-search-replace path="src/App.tsx"><search>...</search><replace>...</replace></prism-search-replace> for surgical updates or <prism-write path="src/App.tsx" description="short summary">COMPLETE FILE CONTENT</prism-write> with NO markdown ``` fences.\n' +
-  'When executing workspace, VM, GitHub, PrismPM/.holo, LexLean, Standards, or Stitch actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
-  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
+  'When executing workspace, VM, GitHub, PrismPM/.holo, LexLean, Standards, Stitch, or web_search actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
+  'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?), web_search(query, limit?).';
 
 const TOOL_INTENT_RE =
-  /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b|\b(check|show|inspect|list|clone|pull|push|sync)\s+(my\s+|the\s+)?(github|repo|repositories|branch)\b|\b(look\s+up|search)\s+(uor\s+)?standards\b|\b(run|exec|execute)\s+.*(command|linux|mvm|shell|bash)\b|\b(list|read|inspect)\s+(the\s+)?(?:(?:root|workspace|project)\s+)?(files?|workspace|dir|directory)\b|\b(publish|inspect)\s+.*\.?holo\b|\b(lexlean|prismpm|stitch_peer)\b/i;
+  /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status|web_search)\b|\b(check|show|inspect|list|clone|pull|push|sync)\s+(my\s+|the\s+)?(github|repo|repositories|branch)\b|\b(look\s+up|search)\s+(uor\s+)?standards\b|\bsearch\s+the\s+web\b|\b(run|exec|execute)\s+.*(command|linux|mvm|shell|bash)\b|\b(list|read|inspect)\s+(the\s+)?(?:(?:root|workspace|project)\s+)?(files?|workspace|dir|directory)\b|\b(publish|inspect)\s+.*\.?holo\b|\b(lexlean|prismpm|stitch_peer)\b/i;
 
 export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'workspace_read',
@@ -54,6 +54,7 @@ export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'standards_lookup',
   'stitch_fetch',
   'stitch_peer_status',
+  'web_search',
 ]);
 
 const MAX_TOOL_ROUNDS = 6;
@@ -397,7 +398,7 @@ export async function runUorR4AgentTurn({
       turnMessages = [
         ...basePrior,
         { role: 'assistant', content: cleanOut },
-        { role: 'user', content: `<tool_response>${JSON.stringify(refusal)}</tool_response>` },
+        { role: 'user', content: `<tool_response>${JSON.stringify(refusal).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')}</tool_response>` },
       ];
       continue;
     }
@@ -407,7 +408,7 @@ export async function runUorR4AgentTurn({
     if (result?.updatedFiles) {
       updatedFiles = true;
     }
-    const compact = JSON.stringify(result);
+    const compact = JSON.stringify(result).replace(/</g, '\\u003c').replace(/>/g, '\\u003e');
     const bounded = compact.length > 6000 ? compact.slice(0, 6000) + '..."}' : compact;
     const responseBlock = `\n<tool_response>${bounded}</tool_response>\n`;
     transcript += responseBlock;

@@ -8,7 +8,7 @@
 use super::format::{Container, StackMemoryChain, StackTurnMemory, MEMORY_PAD, MEMORY_REPLY_KEY_LEN, MEMORY_WEIGHT_EXP};
 use super::hamming::round_shift;
 use super::kernels::NORM_FINE_EXP;
-use super::point_key::{point_image, PointKeyImage, ServedPointKey};
+use super::point_key::{point_image, PointKeyAnchors, PointKeyImage, ServedPointKey};
 use super::StackError;
 
 /// One memory table: its keys (pads cut) in strictly ascending order, the id each names, and the
@@ -63,6 +63,7 @@ pub(crate) fn memory_image(artifact: &Container<'_>) -> Result<Option<MemoryImag
         )?),
         _ => None,
     };
+    super::point_key::point_anchors(artifact)?;
     Ok(Some(MemoryImage {
         record,
         opening,
@@ -266,7 +267,17 @@ const MEMORY_POINT_RAISE: i32 = WRITER_EXP - NORM_FINE_EXP;
 
 impl ServedTurnMemory {
     /// The served tables of a checked image, with the container's memory chain record.
+    #[cfg_attr(not(test), allow(dead_code))]
     pub(crate) fn new(image: MemoryImage, chain: Option<&StackMemoryChain>) -> Self {
+        Self::new_with_point_anchors(image, chain, None)
+    }
+
+    /// Like [`Self::new`], attaching optional canonical reply anchors to the served point key.
+    pub(crate) fn new_with_point_anchors(
+        image: MemoryImage,
+        chain: Option<&StackMemoryChain>,
+        point_anchors: Option<PointKeyAnchors>,
+    ) -> Self {
         Self {
             record: image.record.clone(),
             k: image.record.k,
@@ -275,7 +286,7 @@ impl ServedTurnMemory {
             chain_tail: chain.map(|c| c.tail),
             opening: ServedMemoryTable::new(&image.opening),
             reply: image.reply.as_ref().map(ServedMemoryTable::new),
-            point: image.point.map(ServedPointKey::new),
+            point: image.point.map(|p| ServedPointKey::with_anchors(p, point_anchors)),
         }
     }
 
