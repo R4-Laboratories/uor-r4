@@ -8,6 +8,7 @@ import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
 import {createSpiralCoreRelayClient} from './spiralcore-relay.mjs';
 import {createVramStore} from './vram-store.mjs';
+import {VERDANT_3D_TEMPLATE_ID,VERDANT_3D_TEMPLATE_META,VERDANT_3D_PRISM_CONSTANTS,buildVerdant3dProjectFiles} from './verdant-3d-template.mjs';
 import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
@@ -275,10 +276,15 @@ handlers.set("get-app", async (id) => { const a = await get("apps", id); if (!a)
 handlers.set("check-app-name", async ({ appName }) => ({ exists: (await all("apps")).some((a) => a.name === appName) }));
 handlers.set("preview-app-folder-name", async ({ name, appName } = {}) => ({ folderName: String(name ?? appName ?? "").trim() || "app" }));
 const pendingCreations = new Map();
-handlers.set("create-app", async ({ name, initialChatMode, firstPromptCreationOperationId }) => {
+handlers.set("create-app", async ({ name, initialChatMode, firstPromptCreationOperationId, templateId }) => {
   await coreReady;
-  const capturedMode = browserChatMode(initialChatMode,await get("settings","user"));
-  const prepared = await prepareNewProject({ name, initialChatMode: capturedMode, files: await loadScaffold() }, { core, derive: kappa });
+  const settings = await get("settings", "user");
+  const capturedMode = browserChatMode(initialChatMode, settings);
+  const resolvedTemplate = (templateId ?? settings?.selectedTemplateId) || "react";
+  const baseFiles = await loadScaffold();
+  const projectFiles =
+    resolvedTemplate === VERDANT_3D_TEMPLATE_ID ? buildVerdant3dProjectFiles(baseFiles) : baseFiles;
+  const prepared = await prepareNewProject({ name, initialChatMode: capturedMode, files: projectFiles }, { core, derive: kappa });
   const created = await createStoredProject(await dbReady, prepared, nulls, themesData);
   if (typeof firstPromptCreationOperationId === "string" && firstPromptCreationOperationId) {
     pendingCreations.set(firstPromptCreationOperationId, { kind: "app", appId: created.app.id, chatId: created.chatId });
@@ -3805,6 +3811,10 @@ handlers.set("get-templates", () => [
     imageUrl: new URL("mark.svg", BASE).href,
     isOfficial: true,
   },
+  {
+    ...VERDANT_3D_TEMPLATE_META,
+    imageUrl: new URL("mark.svg", BASE).href,
+  },
 ]);
 handlers.set("open-external-url", (url) => {
   let parsed;
@@ -4087,6 +4097,11 @@ window.__uorR4 = Object.freeze({
   stitchDisconnect: () => stitchNetwork.disconnect(),
   spiralCoreRelay,
   verdantPlan: (opts = {}) => runVerdantPlanInCore(opts),
+  verdantEngine: Object.freeze({
+    templateId: VERDANT_3D_TEMPLATE_ID,
+    meta: VERDANT_3D_PRISM_CONSTANTS,
+    buildProjectFiles: async () => buildVerdant3dProjectFiles(await loadScaffold()),
+  }),
   vram: Object.freeze({
     selfTest: async () => (await coreReady).run({ op: 'vram', action: 'self_test' }),
     createStore: async (opts = {}) => {

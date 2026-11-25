@@ -7,6 +7,12 @@ import { fileURLToPath } from 'node:url';
 import { buildStandardsIndex } from '../../../../../scripts/studio/build-standards-index.mjs';
 import { createSpiralCoreRelayClient, normalizeRelayEndpoint } from '../shell/spiralcore-relay.mjs';
 import { VRAM_PAGE_BYTES, createVramStore } from '../shell/vram-store.mjs';
+import {
+  VERDANT_3D_TEMPLATE_ID,
+  VERDANT_3D_PRISM_CONSTANTS,
+  VERDANT_3D_TEMPLATE_META,
+  buildVerdant3dProjectFiles,
+} from '../shell/verdant-3d-template.mjs';
 import * as uorR4 from '../shell/uor-r4-runtime.mjs';
 import {
   APP_MANIFEST_URI,
@@ -1067,5 +1073,88 @@ test('Stage A3 core.wasm executes pure-integer 4 KiB vRAM store and blob allocat
     assert.deepEqual(readBack.subarray(chunkedLen - 8192), largeShard.subarray(chunkedLen - 8192));
   } finally {
     defaultStore.destroy();
+  }
+});
+
+test('Stage A4 buildStandardsIndex and host.js wire verdant-3d template cleanly', () => {
+  const tmpIdx = join(tmpdir(), `uor-r4-a4-standards-${process.pid}.json`);
+  try {
+    const info = buildStandardsIndex(tmpIdx);
+    assert.ok(info.bytes < 110 * 1024, `standards-index.json exceeded 110 KB: ${info.bytes}`);
+    const parsed = JSON.parse(fs.readFileSync(tmpIdx, 'utf8'));
+    assert.equal(parsed.sections.length, 37);
+    assert.ok(
+      parsed.sections.some((s) => s.id === 'verdant-engine-3d-template'),
+      'standards-index missing verdant-engine-3d-template section',
+    );
+  } finally {
+    fs.rmSync(tmpIdx, { force: true });
+  }
+
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  assert.match(hostSrc, /from\s+['"]\.\/verdant-3d-template\.mjs['"]/);
+  assert.match(hostSrc, /VERDANT_3D_TEMPLATE_META/);
+  assert.match(hostSrc, /\(templateId\s*\?\?\s*settings\?\.selectedTemplateId\)\s*\|\|\s*['"]react['"]/);
+  assert.match(hostSrc, /verdantEngine:\s*Object\.freeze/);
+  assert.ok(!FOUNDRY_CHAT_SYSTEM_PROMPT.includes('verdant-3d'));
+});
+
+test('Stage A4 buildVerdant3dProjectFiles compiles cleanly under esbuild without banned tokens', async () => {
+  assert.equal(VERDANT_3D_TEMPLATE_ID, 'verdant-3d');
+  assert.equal(VERDANT_3D_TEMPLATE_META.isOfficial, true);
+  assert.equal(VERDANT_3D_PRISM_CONSTANTS.defaultWorldSeed, 7);
+
+  const scaffoldDir = join(shellDir, 'scaffold');
+  const baseFiles = {
+    'AI_RULES.md': '# Base Rules\n',
+    'src/pages/Index.tsx': 'export default function Index() { return null; }\n',
+  };
+  if (fs.existsSync(join(scaffoldDir, 'src/pages/Index.tsx'))) {
+    baseFiles['AI_RULES.md'] = fs.readFileSync(join(scaffoldDir, 'AI_RULES.md'), 'utf8');
+    baseFiles['src/pages/Index.tsx'] = fs.readFileSync(join(scaffoldDir, 'src/pages/Index.tsx'), 'utf8');
+  }
+  const origRules = baseFiles['AI_RULES.md'];
+  const origIndex = baseFiles['src/pages/Index.tsx'];
+
+  const built = buildVerdant3dProjectFiles(baseFiles);
+  // Base scaffold map must remain completely untouched.
+  assert.equal(Object.hasOwn(baseFiles, 'src/engine/verdant-engine.ts'), false);
+  assert.equal(baseFiles['AI_RULES.md'], origRules);
+  assert.equal(baseFiles['src/pages/Index.tsx'], origIndex);
+
+  for (const reqPath of [
+    'src/engine/verdant-engine.ts',
+    'src/components/VerdantViewport.tsx',
+    'src/pages/Index.tsx',
+    'AI_RULES.md',
+  ]) {
+    assert.equal(typeof built[reqPath], 'string', `missing ${reqPath}`);
+    assert.ok(built[reqPath].length > 100, `${reqPath} unexpectedly short`);
+    assert.ok(!/https?:\/\//i.test(built[reqPath]), `${reqPath} must stay offline without external URLs`);
+    assert.ok(
+      !/\b(softmax|log_softmax|softplus|sigmoid|tanh|gelu|gemm|cublas|wmma)\b/i.test(built[reqPath]),
+      `${reqPath} contains banned neural/matmul identifier`,
+    );
+    assert.ok(!/\.matmul\s*\(/i.test(built[reqPath]), `${reqPath} calls .matmul(`);
+    assert.ok(!/(verdant-tensor|uor-matmul)/i.test(built[reqPath]), `${reqPath} mentions forbidden crate`);
+  }
+
+  const esbuild = await import('../vendor/prism/node_modules/esbuild/lib/main.js');
+  const tsRes = await esbuild.transform(built['src/engine/verdant-engine.ts'], {
+    loader: 'ts',
+    target: 'es2022',
+    format: 'esm',
+  });
+  assert.equal(tsRes.warnings.length, 0);
+  assert.ok(tsRes.code.includes('VerdantEngine'));
+
+  for (const tsxPath of ['src/components/VerdantViewport.tsx', 'src/pages/Index.tsx']) {
+    const jsxRes = await esbuild.transform(built[tsxPath], {
+      loader: 'tsx',
+      jsx: 'automatic',
+      target: 'es2022',
+      format: 'esm',
+    });
+    assert.equal(jsxRes.warnings.length, 0);
   }
 });

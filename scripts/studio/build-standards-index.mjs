@@ -286,6 +286,20 @@ export function buildStandardsIndex(outPath = defaultOut) {
       ].join('\n'),
       source: 'web/studio/foundry/studio/core/src/vram_store.rs',
     },
+    {
+      id: 'verdant-engine-3d-template',
+      title: 'Verdant 3D Game Engine Template (`verdant-3d`, `afflom/verdant-engine`)',
+      topic: 'verdant-engine',
+      tags: ['verdant-engine', '3d', 'webgl2', 'canvas2d', 'game-template', 'physics', 'audio'],
+      summary: 'Sandboxed browser 3D game engine template (`verdant-3d`) with WebGL2 + Canvas2D fallback raster, physics sphere, beacons, drone, and modal audio.',
+      content: [
+        '# Verdant 3D Game Engine Template (afflom/verdant-engine)',
+        '- Available in `get-templates` as `verdant-3d` (`Verdant 3D Game Engine (WebGL2 + Prism)`) alongside `react`.',
+        '- Selecting `verdant-3d` overlays `src/engine/verdant-engine.ts`, `src/components/VerdantViewport.tsx`, `src/pages/Index.tsx`, and `AI_RULES.md` onto the browser scaffold without network fetches or external tensor crate imports.',
+        '- Supports WebGL2 directional-sun PBR triangle rendering with automatic Canvas2D software painter fallback, `chase`/`first-person`/`orbit` camera modes, `WASD`/Arrow/`Space` movement, modal Web Audio chimes `[9,25,49,81,121]/9`, and deterministic FNV-1a integer state hashing.',
+      ].join('\n'),
+      source: 'web/studio/foundry/studio/shell/verdant-3d-template.mjs',
+    },
   );
 
   // Enforce strict total size bound < 110 KB so shell closure stays lean.
