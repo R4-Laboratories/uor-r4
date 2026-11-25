@@ -6,6 +6,7 @@ import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { buildStandardsIndex } from '../../../../../scripts/studio/build-standards-index.mjs';
 import { createSpiralCoreRelayClient, normalizeRelayEndpoint } from '../shell/spiralcore-relay.mjs';
+import { VRAM_PAGE_BYTES, createVramStore } from '../shell/vram-store.mjs';
 import * as uorR4 from '../shell/uor-r4-runtime.mjs';
 import {
   APP_MANIFEST_URI,
@@ -940,4 +941,131 @@ test('Stage A2 core.wasm executes Lean-certified verdant-studio planning ops end
     auto_init: true,
   });
   assert.doesNotMatch(String(tomlCheck.stderr || ''), /structural item count/);
+});
+
+test('Stage A3 buildStandardsIndex and Foundry shell wire geometric vRAM cleanly', async () => {
+  const tmpIdx = join(tmpdir(), `standards-a3-${process.pid}.json`);
+  try {
+    const out = await buildStandardsIndex(tmpIdx);
+    const bytes = fs.readFileSync(out.path);
+    assert.ok(bytes.byteLength < 110 * 1024, `standards-index.json exceeded 110 KB: ${bytes.byteLength}`);
+    const parsed = JSON.parse(bytes.toString('utf8'));
+    const ids = new Set(parsed.sections.map((s) => s.id));
+    assert.ok(ids.has('vram-geometric-page-store'), 'missing vram-geometric-page-store section');
+  } finally {
+    fs.rmSync(tmpIdx, { force: true });
+  }
+
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  assert.match(hostSrc, /createVramStore/);
+  assert.match(hostSrc, /vram:\s*Object\.freeze/);
+  const inferenceSrc = fs.readFileSync(join(shellDir, 'inference.js'), 'utf8');
+  assert.match(inferenceSrc, /vramExports:\s*instance\.exports/);
+  const workerSrc = fs.readFileSync(join(shellDir, 'uor-v13-worker.mjs'), 'utf8');
+  assert.match(workerSrc, /vram-store\.mjs/);
+  assert.match(workerSrc, /putFallbackPack/);
+});
+
+test('Stage A3 core.wasm executes pure-integer 4 KiB vRAM store and blob allocator end-to-end', async () => {
+  const coreWasmPath = fs.existsSync(join(repoRoot, 'web/studio/dist/core.wasm'))
+    ? join(repoRoot, 'web/studio/dist/core.wasm')
+    : join(shellDir, 'core.wasm');
+  assert.ok(fs.existsSync(coreWasmPath), `expected built core.wasm at ${coreWasmPath}`);
+  const wasmBytes = fs.readFileSync(coreWasmPath);
+  assert.ok(wasmBytes.byteLength < 2.5 * 1024 * 1024, `core.wasm too large: ${wasmBytes.byteLength}`);
+
+  const { instance } = await WebAssembly.instantiate(wasmBytes, {});
+  const { memory, holo_alloc, holo_free, holo_run } = instance.exports;
+  const enc = new TextEncoder();
+  const dec = new TextDecoder();
+  const runCore = (req) => {
+    const payload = enc.encode(JSON.stringify(req));
+    const ptr = holo_alloc(payload.length);
+    new Uint8Array(memory.buffer, ptr, payload.length).set(payload);
+    const packed = holo_run(ptr, payload.length);
+    const outPtr = Number(packed >> 32n);
+    const outLen = Number(packed & 0xffffffffn);
+    const outBytes = new Uint8Array(memory.buffer, outPtr, outLen).slice();
+    holo_free(ptr, payload.length);
+    holo_free(outPtr, outLen);
+    return JSON.parse(dec.decode(outBytes));
+  };
+
+  // JSON self_test verifies all 7 lossless representation tags.
+  const selfRes = runCore({ op: 'vram', action: 'self_test' });
+  assert.equal(selfRes.ok, true, `core.wasm vram self_test failed: ${JSON.stringify(selfRes)}`);
+  assert.deepEqual(selfRes.tags, selfRes.expected_tags);
+
+  // Binary FFI + blob allocator over createVramStore.
+  const store = createVramStore(instance.exports, { maxPages: 64, maxBackingBytes: 16 * VRAM_PAGE_BYTES });
+  try {
+    // Write repetitive, sparse, and random multi-page blobs.
+    const repeatedBlob = new Uint8Array(10 * 1024);
+    for (let i = 0; i < repeatedBlob.length; i += 1) repeatedBlob[i] = ((i % 16) * 17) & 0xff;
+    store.putBlob('pack_00.bin', repeatedBlob);
+
+    const sparseBlob = new Uint8Array(16 * 1024).fill(0x2a);
+    sparseBlob[17] = 0x99;
+    sparseBlob[9000] = 0x77;
+    store.putBlob('pack_01.bin', sparseBlob);
+
+    assert.deepEqual(store.getBlob('pack_00.bin'), repeatedBlob);
+    assert.deepEqual(store.getBlob('pack_01.bin'), sparseBlob);
+    assert.equal(store.getBlob('missing.bin'), null);
+
+    const st = store.stats();
+    assert.equal(st.blobs, 2);
+    assert.ok(st.savings_permille > 500, `expected >500 permille savings, got ${JSON.stringify(st)}`);
+
+    // Deleting pack_00 frees its pages cleanly.
+    assert.equal(store.deleteBlob('pack_00.bin'), true);
+    assert.equal(store.hasBlob('pack_00.bin'), false);
+
+    // Random blob roundtrip & capacity refusal leaving prior blobs intact.
+    const rnd = new Uint8Array(8 * 1024);
+    let s = 0x12345678;
+    for (let i = 0; i < rnd.length; i += 1) {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      rnd[i] = (s >>> 24) & 0xff;
+    }
+    store.putBlob('rnd_small.bin', rnd);
+    assert.deepEqual(store.getBlob('rnd_small.bin'), rnd);
+
+    const huge = new Uint8Array(20 * VRAM_PAGE_BYTES);
+    for (let i = 0; i < huge.length; i += 1) {
+      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+      huge[i] = (s >>> 24) & 0xff;
+    }
+    assert.throws(() => store.putBlob('huge.bin', huge), /OutOfRange|VramCapacityExceeded/);
+    assert.deepEqual(store.getBlob('rnd_small.bin'), rnd);
+
+    // Out-of-range JS integer arguments must fail instead of wrapping via | 0.
+    assert.throws(() => store.writePage(0x1_0000_0000, new Uint8Array(VRAM_PAGE_BYTES)), /VramInvalidArgument/);
+    assert.throws(() => store.writePage(-1, new Uint8Array(VRAM_PAGE_BYTES)), /VramInvalidArgument/);
+  } finally {
+    store.destroy();
+  }
+
+  // Default maxPages: 0 & >16 MiB chunked transfer roundtrip (simulated model shard > MAX_TRANSFER_BYTES).
+  const defaultStore = createVramStore(instance.exports, { maxPages: 0, maxBackingBytes: 0 });
+  try {
+    assert.equal(defaultStore.maxPages, 65536);
+    const chunkedLen = 18 * 1024 * 1024 + 137;
+    const largeShard = new Uint8Array(chunkedLen);
+    // 64 KiB periodic pattern deduplicates via Shared literals across >16 MiB chunks within default backing.
+    for (let i = 0; i < largeShard.length; i += 1) {
+      largeShard[i] = (i * 7 + (i >>> 8)) & 0xff;
+    }
+    defaultStore.putBlob('shard_18m.bin', largeShard);
+    const readBack = defaultStore.getBlob('shard_18m.bin');
+    assert.equal(readBack.byteLength, chunkedLen);
+    assert.deepEqual(readBack.subarray(0, 8192), largeShard.subarray(0, 8192));
+    assert.deepEqual(
+      readBack.subarray(16 * 1024 * 1024 - 4096, 16 * 1024 * 1024 + 8192),
+      largeShard.subarray(16 * 1024 * 1024 - 4096, 16 * 1024 * 1024 + 8192),
+    );
+    assert.deepEqual(readBack.subarray(chunkedLen - 8192), largeShard.subarray(chunkedLen - 8192));
+  } finally {
+    defaultStore.destroy();
+  }
 });

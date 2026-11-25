@@ -310,6 +310,8 @@ fn run(input: &[u8]) -> Value {
         },
         // Verdant Studio lifecycle/planning engine compiled from Lean via LexLean (Stage A2).
         "verdant-studio" => crate::verdant_driver::run_from_json(&value),
+        // Pure-integer 4 KiB geometric virtual-RAM store adapted from afflom/vRAM (Stage A3).
+        "vram" => crate::vram_store::run_from_json(&value),
         other => json!({ "error": format!("unknown op {other:?}") }),
     }
 }
@@ -432,4 +434,82 @@ pub extern "C" fn holo_seal(pointer: i32, len: i32) -> i64 {
 pub extern "C" fn holo_open(pointer: i32, len: i32) -> i64 {
     let input = input(pointer, len);
     hand_out((input.len() >= 44).then(|| ChaCha.open(&input[..32], &input[32..44], &input[44..])).flatten())
+}
+
+/// Create a geometric 4 KiB vRAM store (`0` defaults to 65,536 pages / 64 MiB backing). Returns handle >= 1 or negative error code.
+#[no_mangle]
+pub extern "C" fn vram_create(max_pages: i32, max_backing_bytes: i32) -> i32 {
+    crate::vram_store::ffi_create(max_pages, max_backing_bytes)
+}
+
+/// Destroy a vRAM store handle.
+#[no_mangle]
+pub extern "C" fn vram_destroy(handle: i32) -> i32 {
+    crate::vram_store::ffi_destroy(handle)
+}
+
+/// Compress and store one 4 KiB page (`ptr`, `len == 4096`). Returns encoding tag >= 0 or negative error code.
+#[no_mangle]
+pub extern "C" fn vram_write_page(handle: i32, page_idx: i32, ptr: i32, len: i32) -> i32 {
+    if ptr == 0 || len != crate::vram_store::PAGE as i32 {
+        return crate::vram_store::ERR_INVALID_ARG;
+    }
+    // SAFETY: caller allocated `len` readable bytes via `holo_alloc`; convert via `u32` to avoid sign extension.
+    let slice = unsafe { std::slice::from_raw_parts((ptr as u32 as usize) as *const u8, len as usize) };
+    crate::vram_store::ffi_write_page(handle, page_idx, slice)
+}
+
+/// Reconstruct one 4 KiB page into `out_ptr` (`out_len == 4096`). Returns 0 or negative error code.
+#[no_mangle]
+pub extern "C" fn vram_read_page(handle: i32, page_idx: i32, out_ptr: i32, out_len: i32) -> i32 {
+    if out_ptr == 0 || out_len != crate::vram_store::PAGE as i32 {
+        return crate::vram_store::ERR_INVALID_ARG;
+    }
+    // SAFETY: caller allocated `out_len` writable bytes via `holo_alloc`; convert via `u32` to avoid sign extension.
+    let out = unsafe { std::slice::from_raw_parts_mut((out_ptr as u32 as usize) as *mut u8, out_len as usize) };
+    crate::vram_store::ffi_read_page(handle, page_idx, out)
+}
+
+/// Write an arbitrary byte range (`len <= 16 MiB`) across aligned or unaligned 4 KiB pages.
+#[no_mangle]
+pub extern "C" fn vram_write_range(handle: i32, offset_lo: i32, offset_hi: i32, ptr: i32, len: i32) -> i32 {
+    if len < 0 || (len > 0 && ptr == 0) || (len as usize) > crate::vram_store::MAX_TRANSFER_BYTES {
+        return crate::vram_store::ERR_INVALID_ARG;
+    }
+    let offset = (u64::from(offset_hi as u32) << 32) | u64::from(offset_lo as u32);
+    // SAFETY: caller allocated `len` readable bytes via `holo_alloc`; convert via `u32` to avoid sign extension.
+    let data = if len == 0 {
+        &[]
+    } else {
+        unsafe { std::slice::from_raw_parts((ptr as u32 as usize) as *const u8, len as usize) }
+    };
+    crate::vram_store::ffi_write_range(handle, offset, data)
+}
+
+/// Read an arbitrary byte range (`len <= 16 MiB`) across aligned or unaligned 4 KiB pages.
+#[no_mangle]
+pub extern "C" fn vram_read_range(handle: i32, offset_lo: i32, offset_hi: i32, out_ptr: i32, len: i32) -> i32 {
+    if len < 0 || (len > 0 && out_ptr == 0) || (len as usize) > crate::vram_store::MAX_TRANSFER_BYTES {
+        return crate::vram_store::ERR_INVALID_ARG;
+    }
+    let offset = (u64::from(offset_hi as u32) << 32) | u64::from(offset_lo as u32);
+    // SAFETY: caller allocated `len` writable bytes via `holo_alloc`; convert via `u32` to avoid sign extension.
+    let out = if len == 0 {
+        &mut []
+    } else {
+        unsafe { std::slice::from_raw_parts_mut((out_ptr as u32 as usize) as *mut u8, len as usize) }
+    };
+    crate::vram_store::ffi_read_range(handle, offset, out)
+}
+
+/// Discard `page_count` contiguous pages starting at `start_page` and free empty leaves/literals.
+#[no_mangle]
+pub extern "C" fn vram_discard_pages(handle: i32, start_page: i32, page_count: i32) -> i32 {
+    crate::vram_store::ffi_discard_pages(handle, start_page, page_count)
+}
+
+/// Return UTF-8 JSON statistics as `(ptr << 32) | len` (must be freed with `holo_free`), or `-1` on invalid handle.
+#[no_mangle]
+pub extern "C" fn vram_stats_json(handle: i32) -> i64 {
+    hand_out(crate::vram_store::ffi_stats_json_bytes(handle))
 }

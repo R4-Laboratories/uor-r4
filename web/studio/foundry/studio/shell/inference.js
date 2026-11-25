@@ -26,6 +26,7 @@ export function coreReady() {
     };
     const none = new Uint8Array(0);
     core = {
+      vramExports: instance.exports,
       seal: (key, bytes) => call(holo_seal, key, bytes),
       open: (key, bytes) => call(holo_open, key, bytes),
       run(request) {

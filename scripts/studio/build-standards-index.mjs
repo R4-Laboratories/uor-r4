@@ -272,6 +272,20 @@ export function buildStandardsIndex(outPath = defaultOut) {
       ].join('\n'),
       source: 'web/studio/foundry/studio/shell/linux-vm-host.mjs',
     },
+    {
+      id: 'vram-geometric-page-store',
+      title: 'Geometric 4 KiB vRAM Page Store (`afflom/vRAM`)',
+      topic: 'vram-storage',
+      tags: ['vram', 'virtual-ram', 'compression', 'pages', 'core-wasm', 'memory'],
+      summary: 'Pure-integer 4 KiB sparse geometric page store inside core.wasm supporting 7 lossless representations and fallback pack buffering.',
+      content: [
+        '# Geometric 4 KiB vRAM Page Store (afflom/vRAM)',
+        '- Implemented in pure safe Rust (`#![forbid(unsafe_code)]`, zero floats) inside `core.wasm` with binary ABI exports (`vram_create`, `vram_destroy`, `vram_write_page`, `vram_read_page`, `vram_write_range`, `vram_read_range`, `vram_discard_pages`, `vram_stats_json`) and `op: "vram"` JSON control.',
+        '- Seven lossless 4 KiB representations verified byte-for-byte before admission: `Fill`, folded/shifted `Repeated`, `Sparse` exceptions, 64x64 column-masked `Selector` & `Corrected`, 4-bit nibble `Packed`, and content-addressed `Shared`/`Residual` literal pool with weak reclamation.',
+        '- Accessed from Studio via `vram-store.mjs` (`createVramStore` / `putBlob` / `getBlob` / `deleteBlob` / `stats`) and `window.__uorR4.vram`, and automatically backs the V13 worker `memory` fallback cache when OPFS and IndexedDB are unavailable.',
+      ].join('\n'),
+      source: 'web/studio/foundry/studio/core/src/vram_store.rs',
+    },
   );
 
   // Enforce strict total size bound < 110 KB so shell closure stays lean.

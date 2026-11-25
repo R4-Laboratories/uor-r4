@@ -7,6 +7,7 @@ import {createStitchNetwork} from './stitch-network.mjs';
 import {createGitHubVault} from './github-vault.mjs';
 import {createGitHubClient} from './github-client.mjs';
 import {createSpiralCoreRelayClient} from './spiralcore-relay.mjs';
+import {createVramStore} from './vram-store.mjs';
 import {runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT} from './r4-agent-loop.mjs';
 import {createThemeLibrary} from "./theme-library.mjs";
 import {themesData} from "./builtin-themes.mjs";
@@ -4086,6 +4087,13 @@ window.__uorR4 = Object.freeze({
   stitchDisconnect: () => stitchNetwork.disconnect(),
   spiralCoreRelay,
   verdantPlan: (opts = {}) => runVerdantPlanInCore(opts),
+  vram: Object.freeze({
+    selfTest: async () => (await coreReady).run({ op: 'vram', action: 'self_test' }),
+    createStore: async (opts = {}) => {
+      const c = await coreReady;
+      return createVramStore(c.vramExports, opts);
+    },
+  }),
   githubStatus: () => githubClient.getStatus(),
   submitPrompt: async (chatId, appId, prompt) => {
     const intentId = 'uor-' + crypto.randomUUID();

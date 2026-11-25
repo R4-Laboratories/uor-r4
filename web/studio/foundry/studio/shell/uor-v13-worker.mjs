@@ -3,6 +3,8 @@
 // self-heals damaged shards via `v13_stitch_recover_pair`, streams packs into
 // `uor_foundry_v13_wasm`, and runs non-blocking chunked turns.
 
+import { createVramStore, loadVramExports } from './vram-store.mjs';
+
 const BASE = new URL('./', import.meta.url);
 const OPFS_ROOT_DIR = 'uor-r4-v13-packs';
 const IDB_NAME = 'uor-r4-v13-cache';
@@ -331,6 +333,76 @@ async function handleLoadV13(id, payload) {
     }
     const packCached = new Set();
     const memoryPacks = new Map();
+    let loadDisposed = false;
+    let vramPackStorePromise = null;
+    let vramPackStore = null;
+    const getVramPackStore = async () => {
+      if (loadDisposed) return null;
+      if (vramPackStore) return vramPackStore;
+      if (!vramPackStorePromise) {
+        vramPackStorePromise = (async () => {
+          try {
+            const exports = await loadVramExports({
+              wasmUrl: new URL('./core.wasm', BASE),
+              wasmBytes: self.__UOR_CORE_WASM_BYTES__ || null,
+            });
+            if (loadDisposed) return null;
+            const store = createVramStore(exports, { maxPages: 262144, maxBackingBytes: 128 * 1024 * 1024 });
+            if (loadDisposed) {
+              store.destroy();
+              return null;
+            }
+            vramPackStore = store;
+            return store;
+          } catch {
+            return null;
+          }
+        })();
+      }
+      return vramPackStorePromise;
+    };
+    const putFallbackPack = async (file, bytes) => {
+      const store = await getVramPackStore();
+      if (store && !loadDisposed) {
+        try {
+          store.putBlob(file, bytes);
+          return true;
+        } catch {
+          // Fall back to direct memory map if vRAM store reaches its backing cap.
+        }
+      }
+      if (!loadDisposed) {
+        memoryPacks.set(file, bytes);
+      }
+      return false;
+    };
+    const deleteFallbackPack = (file) => {
+      memoryPacks.delete(file);
+      if (vramPackStore?.hasBlob(file)) {
+        try {
+          vramPackStore.deleteBlob(file);
+        } catch {}
+      }
+    };
+    const takeFallbackPack = (file) => {
+      if (memoryPacks.has(file)) {
+        const buf = memoryPacks.get(file);
+        memoryPacks.delete(file);
+        return buf;
+      }
+      if (vramPackStore?.hasBlob(file)) {
+        const buf = vramPackStore.getBlob(file);
+        vramPackStore.deleteBlob(file);
+        return buf;
+      }
+      return null;
+    };
+    const peekFallbackPack = (file) => {
+      if (memoryPacks.has(file)) return memoryPacks.get(file);
+      if (vramPackStore?.hasBlob(file)) return vramPackStore.getBlob(file);
+      return null;
+    };
+    const hasFallbackPack = (file) => memoryPacks.has(file) || Boolean(vramPackStore?.hasBlob(file));
     const healedPieces = new Map();
     const failedPieces = new Set();
     const recoveredPieces = [];
@@ -516,10 +588,8 @@ async function handleLoadV13(id, payload) {
           pendingOutOfOrderPacks.delete(idx);
           try {
             if (!buf) {
-              if (memoryPacks.has(pack.file)) {
-                buf = memoryPacks.get(pack.file);
-                memoryPacks.delete(pack.file);
-              } else {
+              buf = takeFallbackPack(pack.file);
+              if (!buf) {
                 const hit = await cacheRead(containerSha, pack.file);
                 if (hit && hit.bytes.byteLength === pack.byte_length) {
                   buf = hit.bytes;
@@ -546,6 +616,7 @@ async function handleLoadV13(id, payload) {
               streamPushedPieces += 1;
             }
             nextMountPackIdx += 1;
+            deleteFallbackPack(pack.file);
             buf = null;
             await yieldMacrotask();
           } catch (err) {
@@ -594,7 +665,7 @@ async function handleLoadV13(id, payload) {
           if (writtenBackend === 'memory') {
             anyMemoryPack = true;
             cacheBackend = 'memory';
-            memoryPacks.set(pack.file, packBytes);
+            await putFallbackPack(pack.file, packBytes);
           } else {
             if (!anyMemoryPack) cacheBackend = writtenBackend;
             packCached.add(pack.file);
@@ -635,7 +706,7 @@ async function handleLoadV13(id, payload) {
             const rel = pieceMeta.byte_offset - pack.byte_offset;
             const slice = packBytes.subarray(rel, rel + pieceMeta.byte_length);
             if (slice.byteLength === pieceMeta.byte_length && (await sha256Hex(slice)) === pieceMeta.sha256) {
-              if (!packVerified || (!packCached.has(pack.file) && !memoryPacks.has(pack.file))) {
+              if (!packVerified || (!packCached.has(pack.file) && !hasFallbackPack(pack.file))) {
                 healedPieces.set(p, new Uint8Array(slice));
               }
               piecesDone += 1;
@@ -675,7 +746,7 @@ async function handleLoadV13(id, payload) {
         }
         const ownerPack = pieceToPack[idx];
         if (ownerPack) {
-          const packBuf = memoryPacks.get(ownerPack.file) || (await cacheRead(containerSha, ownerPack.file))?.bytes;
+          const packBuf = peekFallbackPack(ownerPack.file) || (await cacheRead(containerSha, ownerPack.file))?.bytes;
           if (packBuf && packBuf.byteLength === ownerPack.byte_length) {
             const meta = manifest.pieces[idx];
             const rel = meta.byte_offset - ownerPack.byte_offset;
@@ -745,10 +816,8 @@ async function handleLoadV13(id, payload) {
         }
         let packBuf = null;
         if (needsPackRead) {
-          if (memoryPacks.has(pack.file)) {
-            packBuf = memoryPacks.get(pack.file);
-            memoryPacks.delete(pack.file);
-          } else {
+          packBuf = takeFallbackPack(pack.file);
+          if (!packBuf) {
             const hit = await cacheRead(containerSha, pack.file);
             if (hit && hit.bytes.byteLength === pack.byte_length) {
               packBuf = hit.bytes;
@@ -819,6 +888,15 @@ async function handleLoadV13(id, payload) {
       recoveredPieces,
     });
   } finally {
+    loadDisposed = true;
+    try {
+      if (vramPackStorePromise) {
+        await vramPackStorePromise.catch(() => null);
+      }
+      vramPackStore?.destroy();
+      vramPackStore = null;
+    } catch {}
+    memoryPacks.clear();
     if (activeLoad && activeLoad.id === id) {
       activeLoad = null;
     }

@@ -44,3 +44,5 @@ pub mod abi;
 pub mod verdant_studio;
 /// In-memory virtual workspace effect driver for `verdant_studio::run`.
 pub mod verdant_driver;
+/// Pure-integer 4 KiB geometric virtual-RAM backing store adapted from `afflom/vRAM`.
+pub mod vram_store;
