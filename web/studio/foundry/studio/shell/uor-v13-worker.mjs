@@ -54,6 +54,30 @@ async function openIdb() {
   });
 }
 
+async function cacheStat(scopeKey, fileKey) {
+  try {
+    if (self.navigator?.storage?.getDirectory) {
+      const root = await self.navigator.storage.getDirectory();
+      const baseDir = await root.getDirectoryHandle(OPFS_ROOT_DIR, { create: false });
+      const scopeDir = await baseDir.getDirectoryHandle(scopeKey, { create: false });
+      const fh = await scopeDir.getFileHandle(fileKey, { create: false });
+      if (typeof fh.createSyncAccessHandle === 'function') {
+        const access = await fh.createSyncAccessHandle();
+        try {
+          return { byteLength: access.getSize(), backend: 'opfs' };
+        } finally {
+          access.close();
+        }
+      }
+      const f = await fh.getFile();
+      return { byteLength: f.size, backend: 'opfs' };
+    }
+  } catch {
+    // Fall back to full read/fetch path.
+  }
+  return null;
+}
+
 async function cacheRead(scopeKey, fileKey) {
   const fullKey = `${scopeKey}/${fileKey}`;
   try {
@@ -344,6 +368,7 @@ async function handleLoadV13(id, payload) {
       }
     };
 
+    const orderedPacks = [...manifest.packs].sort((a, b) => a.piece_start - b.piece_start);
     const expectedPiecesMeta = manifest.pieces;
     const sealHit = await cacheRead(containerSha, 'pack_seal.json');
     let sealMap = null;
@@ -357,13 +382,191 @@ async function handleLoadV13(id, payload) {
         sealMap = null;
       }
     }
+
+    // Fast path: when pack_seal.json covers every pack and zero-read OPFS stat matches sizes,
+    // mount all packs in a single OPFS read pass (~50% less I/O, no redundant SHA-256 hashing).
+    const sealCoversAll =
+      sealMap &&
+      orderedPacks.length > 0 &&
+      orderedPacks.every((pack) => {
+        const sealed = sealMap[pack.file];
+        return sealed && sealed.byte_length === pack.byte_length && sealed.sha256 === pack.sha256;
+      });
+    if (sealCoversAll) {
+      let allStatsOk = true;
+      await mapLimit(orderedPacks, 6, async (pack) => {
+        throwIfCancelled();
+        const st = await cacheStat(containerSha, pack.file);
+        if (!st || st.byteLength !== pack.byte_length) {
+          allStatsOk = false;
+        }
+      });
+      if (allStatsOk) {
+        try {
+          mountedContainerSha = null;
+          mountedModelId = null;
+          const sealedBegin = JSON.parse(wasm.v13_begin_mount(modelId, piecesTotal, containerSha, true));
+          if (!sealedBegin.ok) {
+            throw new Error(sealedBegin.message || 'v13_begin_mount failed');
+          }
+          emitProgress('mounting');
+          let pushedSealed = 0;
+          for (const pack of orderedPacks) {
+            throwIfCancelled();
+            const hit = await cacheRead(containerSha, pack.file);
+            if (!hit || hit.bytes.byteLength !== pack.byte_length) {
+              throw new Error(`Sealed cache read mismatch for ${pack.file}`);
+            }
+            cacheBackend = hit.backend;
+            let packBuf = hit.bytes;
+            for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+              if (pushedSealed !== p) {
+                throw new Error(`Non-contiguous piece order in sealed mount: expected ${pushedSealed}, got ${p}`);
+              }
+              const pieceMeta = expectedPiecesMeta[p];
+              const rel = pieceMeta.byte_offset - pack.byte_offset;
+              const slice = packBuf.subarray(rel, rel + pieceMeta.byte_length);
+              if (slice.byteLength !== pieceMeta.byte_length) {
+                throw new Error(`Invalid piece ${p} length in ${pack.file}`);
+              }
+              const pushRes = JSON.parse(wasm.v13_push_piece(slice));
+              if (!pushRes.ok) {
+                throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
+              }
+              pushedSealed += 1;
+            }
+            packBuf = null;
+            packsDone += 1;
+            piecesDone += pack.piece_count;
+            bytesLoaded += pack.byte_length;
+            emitProgress('mounting');
+            await yieldMacrotask();
+          }
+          if (pushedSealed !== piecesTotal) {
+            throw new Error(`Incomplete sealed mount: pushed ${pushedSealed} of ${piecesTotal}`);
+          }
+          const sealedFinal = JSON.parse(wasm.v13_finalize_mount());
+          if (!sealedFinal.ok || sealedFinal.container_sha256 !== containerSha) {
+            throw new Error(sealedFinal.message || 'v13_finalize_mount failed');
+          }
+          mountedContainerSha = containerSha;
+          mountedModelId = modelId;
+          try { wasm.v13_configure(JSON.stringify({ speculative: true })); } catch {}
+          self.postMessage({
+            id,
+            action: 'v13_progress',
+            phase: 'ready',
+            percent: 100,
+            packsDone,
+            packsTotal,
+            piecesDone,
+            piecesTotal,
+            bytesLoaded,
+            bytesTotal,
+            cached: true,
+            cacheBackend,
+            recoveredPieces: [],
+          });
+          self.postMessage({
+            id,
+            action: 'v13_loaded',
+            modelId,
+            status: sealedFinal,
+            cacheBackend,
+            recoveredPieces: [],
+          });
+          return;
+        } catch (sealedErr) {
+          if (sealedErr?.name === 'AbortError' || loadCtrl.signal.aborted) {
+            throw sealedErr;
+          }
+          // Fall back to full verify + Stitch recovery if the sealed fast-path failed.
+          sealMap = null;
+          packsDone = 0;
+          piecesDone = 0;
+          bytesLoaded = 0;
+        }
+      }
+    }
+
     const verifiedPackSeals = {};
+    const MAX_STREAM_MOUNT_BUFFERED_PACKS = 3;
+    const packOrderIndex = new Map(orderedPacks.map((pack, idx) => [pack.file, idx]));
+    mountedContainerSha = null;
+    mountedModelId = null;
+    const streamBegin = JSON.parse(wasm.v13_begin_mount(modelId, piecesTotal, containerSha, true));
+    let streamMountActive = Boolean(streamBegin?.ok);
+    let nextMountPackIdx = 0;
+    let streamPushedPieces = 0;
+    const pendingMountPacks = new Map();
+    const pendingOutOfOrderPacks = new Set();
+    let mountQueue = Promise.resolve();
+
+    const drainStreamMount = () => {
+      mountQueue = mountQueue.then(async () => {
+        while (
+          streamMountActive &&
+          (pendingMountPacks.has(nextMountPackIdx) || pendingOutOfOrderPacks.has(nextMountPackIdx))
+        ) {
+          throwIfCancelled();
+          const idx = nextMountPackIdx;
+          const pack = orderedPacks[idx];
+          let buf = pendingMountPacks.get(idx) || null;
+          pendingMountPacks.delete(idx);
+          pendingOutOfOrderPacks.delete(idx);
+          try {
+            if (!buf) {
+              if (memoryPacks.has(pack.file)) {
+                buf = memoryPacks.get(pack.file);
+                memoryPacks.delete(pack.file);
+              } else {
+                const hit = await cacheRead(containerSha, pack.file);
+                if (hit && hit.bytes.byteLength === pack.byte_length) {
+                  buf = hit.bytes;
+                }
+              }
+            }
+            if (!buf || buf.byteLength !== pack.byte_length) {
+              throw new Error(`Missing buffered/cached pack ${pack.file} during stream mount`);
+            }
+            for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+              if (streamPushedPieces !== p) {
+                throw new Error(`Non-contiguous piece order in stream mount: expected ${streamPushedPieces}, got ${p}`);
+              }
+              const pieceMeta = expectedPiecesMeta[p];
+              const rel = pieceMeta.byte_offset - pack.byte_offset;
+              const slice = buf.subarray(rel, rel + pieceMeta.byte_length);
+              if (slice.byteLength !== pieceMeta.byte_length) {
+                throw new Error(`Invalid streamed piece ${p} in ${pack.file}`);
+              }
+              const pushRes = JSON.parse(wasm.v13_push_piece(slice));
+              if (!pushRes.ok) {
+                throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
+              }
+              streamPushedPieces += 1;
+            }
+            nextMountPackIdx += 1;
+            buf = null;
+            await yieldMacrotask();
+          } catch (err) {
+            streamMountActive = false;
+            pendingMountPacks.clear();
+            pendingOutOfOrderPacks.clear();
+            buf = null;
+            if (err?.name === 'AbortError' || loadCtrl.signal.aborted) {
+              throw err;
+            }
+            break;
+          }
+        }
+      });
+      return mountQueue;
+    };
 
     await mapLimit(manifest.packs, 6, async (pack) => {
       throwIfCancelled();
       let packBytes = null;
       let packVerified = false;
-      let sealVerified = false;
       const hit = await cacheRead(containerSha, pack.file);
       const sealedEntry = sealMap?.[pack.file];
       const matchesSealed =
@@ -375,7 +578,6 @@ async function handleLoadV13(id, payload) {
       if (matchesSealed || (hit && hit.bytes.byteLength === pack.byte_length && (await sha256Hex(hit.bytes)) === pack.sha256)) {
         packBytes = hit.bytes;
         packVerified = true;
-        sealVerified = Boolean(matchesSealed);
         if (!anyMemoryPack) cacheBackend = hit.backend;
         packCached.add(pack.file);
         verifiedPackSeals[pack.file] = { sha256: pack.sha256, byte_length: pack.byte_length };
@@ -406,9 +608,27 @@ async function handleLoadV13(id, payload) {
         }
       }
 
-      if (packBytes && sealVerified) {
+      if (packVerified && packBytes) {
+        // Pack SHA-256 already verified: skip redundant per-piece hashing and pipeline straight to WASM.
         piecesDone += pack.piece_count;
+        if (streamMountActive) {
+          const ordIdx = packOrderIndex.get(pack.file);
+          if (typeof ordIdx === 'number') {
+            if (
+              ordIdx < nextMountPackIdx + MAX_STREAM_MOUNT_BUFFERED_PACKS &&
+              pendingMountPacks.size < MAX_STREAM_MOUNT_BUFFERED_PACKS
+            ) {
+              pendingMountPacks.set(ordIdx, packBytes);
+            } else {
+              pendingOutOfOrderPacks.add(ordIdx);
+            }
+            drainStreamMount().catch(() => {});
+          }
+        }
       } else {
+        streamMountActive = false;
+        pendingMountPacks.clear();
+        pendingOutOfOrderPacks.clear();
         for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
           const pieceMeta = expectedPiecesMeta[p];
           if (packBytes) {
@@ -433,6 +653,7 @@ async function handleLoadV13(id, payload) {
       bytesLoaded += pack.byte_length;
       emitProgress('hydrating');
     });
+    await mountQueue;
     if (failedPieces.size === 0 && Object.keys(verifiedPackSeals).length === manifest.packs.length && !anyMemoryPack) {
       const sealBytes = new TextEncoder().encode(JSON.stringify({ container_sha256: containerSha, packs: verifiedPackSeals }));
       await cacheWrite(containerSha, 'pack_seal.json', sealBytes).catch(() => {});
@@ -440,6 +661,9 @@ async function handleLoadV13(id, payload) {
 
     // Self-heal any missing or corrupted pieces via Stitch 2-of-3 XOR parity recovery.
     if (failedPieces.size > 0) {
+      streamMountActive = false;
+      pendingMountPacks.clear();
+      pendingOutOfOrderPacks.clear();
       if (!stitchManifest || !Array.isArray(stitchManifest.groups)) {
         throw new Error(`Shard download failed for pieces [${[...failedPieces].slice(0, 6).join(', ')}] and no Stitch parity manifest is available`);
       }
@@ -496,66 +720,72 @@ async function handleLoadV13(id, payload) {
 
     throwIfCancelled();
     emitProgress('mounting');
-    // Reset JS mount tracking before v13_begin_mount clears the WASM engine state.
-    mountedContainerSha = null;
-    mountedModelId = null;
-    const beginMount = JSON.parse(wasm.v13_begin_mount(modelId, piecesTotal, containerSha, true));
-    if (!beginMount.ok) {
-      throw new Error(beginMount.message || 'v13_begin_mount failed');
-    }
-    const orderedPacks = [...manifest.packs].sort((a, b) => a.piece_start - b.piece_start);
-    let pushedPieces = 0;
-    for (const pack of orderedPacks) {
-      throwIfCancelled();
-      let needsPackRead = false;
-      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
-        if (!healedPieces.has(p)) {
-          needsPackRead = true;
-          break;
-        }
+    if (
+      !streamMountActive ||
+      failedPieces.size > 0 ||
+      nextMountPackIdx !== orderedPacks.length ||
+      streamPushedPieces !== piecesTotal
+    ) {
+      // Fallback full sequential mount (e.g. after Stitch healing or stream interruption).
+      mountedContainerSha = null;
+      mountedModelId = null;
+      const beginMount = JSON.parse(wasm.v13_begin_mount(modelId, piecesTotal, containerSha, true));
+      if (!beginMount.ok) {
+        throw new Error(beginMount.message || 'v13_begin_mount failed');
       }
-      let packBuf = null;
-      if (needsPackRead) {
-        if (memoryPacks.has(pack.file)) {
-          packBuf = memoryPacks.get(pack.file);
-          memoryPacks.delete(pack.file);
-        } else {
-          const hit = await cacheRead(containerSha, pack.file);
-          if (hit && hit.bytes.byteLength === pack.byte_length) {
-            packBuf = hit.bytes;
+      let pushedPieces = 0;
+      for (const pack of orderedPacks) {
+        throwIfCancelled();
+        let needsPackRead = false;
+        for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+          if (!healedPieces.has(p)) {
+            needsPackRead = true;
+            break;
           }
         }
-        if (!packBuf) {
-          const fetched = await fetchBytes(new URL(pack.file, baseHref).href, pack.sha256, loadCtrl.signal);
-          packBuf = fetched.bytes;
+        let packBuf = null;
+        if (needsPackRead) {
+          if (memoryPacks.has(pack.file)) {
+            packBuf = memoryPacks.get(pack.file);
+            memoryPacks.delete(pack.file);
+          } else {
+            const hit = await cacheRead(containerSha, pack.file);
+            if (hit && hit.bytes.byteLength === pack.byte_length) {
+              packBuf = hit.bytes;
+            }
+          }
+          if (!packBuf) {
+            const fetched = await fetchBytes(new URL(pack.file, baseHref).href, pack.sha256, loadCtrl.signal);
+            packBuf = fetched.bytes;
+          }
         }
+        for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
+          if (pushedPieces !== p) {
+            throw new Error(`Non-contiguous piece order during V13 mount: expected ${pushedPieces}, got ${p}`);
+          }
+          let buf = healedPieces.get(p);
+          if (buf) {
+            healedPieces.delete(p);
+          } else if (packBuf) {
+            const pieceMeta = manifest.pieces[p];
+            const rel = pieceMeta.byte_offset - pack.byte_offset;
+            buf = packBuf.subarray(rel, rel + pieceMeta.byte_length);
+          }
+          if (!buf || buf.byteLength !== manifest.pieces[p].byte_length) {
+            throw new Error(`Missing verified piece ${p} during V13 mount`);
+          }
+          const pushRes = JSON.parse(wasm.v13_push_piece(buf));
+          if (!pushRes.ok) {
+            throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
+          }
+          pushedPieces += 1;
+        }
+        packBuf = null;
+        await yieldMacrotask();
       }
-      for (let p = pack.piece_start; p < pack.piece_start + pack.piece_count; p += 1) {
-        if (pushedPieces !== p) {
-          throw new Error(`Non-contiguous piece order during V13 mount: expected ${pushedPieces}, got ${p}`);
-        }
-        let buf = healedPieces.get(p);
-        if (buf) {
-          healedPieces.delete(p);
-        } else if (packBuf) {
-          const pieceMeta = manifest.pieces[p];
-          const rel = pieceMeta.byte_offset - pack.byte_offset;
-          buf = packBuf.subarray(rel, rel + pieceMeta.byte_length);
-        }
-        if (!buf || buf.byteLength !== manifest.pieces[p].byte_length) {
-          throw new Error(`Missing verified piece ${p} during V13 mount`);
-        }
-        const pushRes = JSON.parse(wasm.v13_push_piece(buf));
-        if (!pushRes.ok) {
-          throw new Error(pushRes.message || `v13_push_piece(${p}) failed`);
-        }
-        pushedPieces += 1;
+      if (pushedPieces !== piecesTotal) {
+        throw new Error(`Incomplete V13 mount: pushed ${pushedPieces} of ${piecesTotal} pieces`);
       }
-      packBuf = null;
-      await yieldMacrotask();
-    }
-    if (pushedPieces !== piecesTotal) {
-      throw new Error(`Incomplete V13 mount: pushed ${pushedPieces} of ${piecesTotal} pieces`);
     }
     const finalized = JSON.parse(wasm.v13_finalize_mount());
     if (!finalized.ok || finalized.container_sha256 !== containerSha) {
@@ -628,7 +858,7 @@ async function handleGenerateV13(id, payload) {
         messages: Array.isArray(payload.messages) ? payload.messages : [],
         prompt: String(payload.prompt || ''),
         max_new_tokens: payload.maxNewTokens || 768,
-        prefill_slice_tokens: payload.prefillSliceTokens || 32,
+        prefill_slice_tokens: payload.prefillSliceTokens || 64,
         slice_tokens: payload.sliceTokens || 4,
         speculative: payload.speculative === true,
         stop_sequences: Array.isArray(payload.stopSequences) && payload.stopSequences.length
@@ -643,6 +873,11 @@ async function handleGenerateV13(id, payload) {
   const turnId = BigInt(begin.turn_id);
   activeTurn = { id, turnId, cancelled: false };
 
+  const turnStartMs = performance.now();
+  let firstTokenMs = null;
+  let lastTtftMs = null;
+  let lastTps = null;
+  let decodeStartMs = null;
   let turnEndedInWasm = false;
   const runPromise = (async () => {
     try {
@@ -660,21 +895,61 @@ async function handleGenerateV13(id, payload) {
           });
           return;
         }
+        const stepStartMs = performance.now();
         last = JSON.parse(wasm.v13_step_turn(turnId));
         if (!last.ok) {
           throw new Error(last.message || 'v13_step_turn failed');
         }
+        if (last.status === 'prefilling') {
+          const prefillDone = last.prefill_done ?? 0;
+          const prefillTotal = last.prefill_total ?? 0;
+          const pct = prefillTotal > 0 ? Math.min(99, Math.round((prefillDone / prefillTotal) * 100)) : 0;
+          self.postMessage({
+            id,
+            action: 'v13_progress',
+            modelId: mountedModelId,
+            phase: 'prefilling',
+            percent: pct,
+            prefillDone,
+            prefillTotal,
+          });
+        }
         if (last.delta) {
+          const nowMs = performance.now();
+          if (firstTokenMs === null) {
+            firstTokenMs = nowMs;
+            decodeStartMs = stepStartMs;
+            lastTtftMs = Math.max(0, Math.round(firstTokenMs - turnStartMs));
+          }
+          const emitted = last.tokens_emitted || 0;
+          const decodeElapsedSec = Math.max(0.01, (nowMs - decodeStartMs) / 1000);
+          lastTps = Number((emitted / decodeElapsedSec).toFixed(2));
           self.postMessage({
             id,
             action: 'v13_token',
             chunk: last.delta,
             fullText: last.full_text || '',
-            tokensEmitted: last.tokens_emitted || 0,
+            tokensEmitted: emitted,
+            ttftMs: lastTtftMs,
+            tokensPerSec: lastTps,
+          });
+          self.postMessage({
+            id,
+            action: 'v13_progress',
+            modelId: mountedModelId,
+            phase: 'generating',
+            percent: 100,
+            tokensEmitted: emitted,
+            ttftMs: lastTtftMs,
+            tokensPerSec: lastTps,
           });
         }
         if (last.status === 'done') {
           turnEndedInWasm = true;
+          const totalMs = Math.round(performance.now() - turnStartMs);
+          if (lastTtftMs === null && firstTokenMs === null && (last.tokens_emitted || 0) > 0) {
+            lastTtftMs = totalMs;
+          }
           self.postMessage({
             id,
             action: 'v13_complete',
@@ -687,6 +962,9 @@ async function handleGenerateV13(id, payload) {
             draftProposed: last.draft_proposed_total ?? 0,
             draftAccepted: last.draft_accepted_total ?? 0,
             mlpMode: last.mlp_mode || 'DenseExact',
+            ttftMs: lastTtftMs,
+            tokensPerSec: lastTps,
+            totalMs,
           });
           return;
         }
@@ -707,6 +985,19 @@ async function handleGenerateV13(id, payload) {
         try {
           wasm.v13_cancel_turn(turnId);
         } catch {}
+      }
+      if (mountedModelId) {
+        self.postMessage({
+          id,
+          action: 'v13_progress',
+          modelId: mountedModelId,
+          phase: 'ready',
+          percent: 100,
+          prefillDone: 0,
+          prefillTotal: 0,
+          ttftMs: null,
+          tokensPerSec: null,
+        });
       }
       if (activeTurn && activeTurn.id === id) {
         activeTurn = null;

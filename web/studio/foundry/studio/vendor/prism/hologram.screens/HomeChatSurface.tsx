@@ -33,6 +33,10 @@ export interface HomeHydrationProgress {
   packsTotal?: number;
   piecesDone?: number;
   piecesTotal?: number;
+  prefillDone?: number;
+  prefillTotal?: number;
+  ttftMs?: number | null;
+  tokensPerSec?: number | null;
   cached?: boolean;
   cacheBackend?: string | null;
   recoveredPieces?: unknown[];
@@ -414,13 +418,17 @@ export function StudioModelStatusBar({
   }, []);
 
   const phase = hydration?.phase;
+  const isPrefilling = phase === "prefilling";
+  const isGenerating = phase === "generating";
   const isLoading =
     Boolean(phase) &&
     phase !== "idle" &&
     phase !== "ready" &&
-    phase !== "error";
+    phase !== "error" &&
+    !isPrefilling &&
+    !isGenerating;
 
-  if (!isLoading && phase !== "error" && !isStreaming) {
+  if (!isLoading && !isPrefilling && !isGenerating && phase !== "error" && !isStreaming) {
     return null;
   }
 
@@ -433,6 +441,13 @@ export function StudioModelStatusBar({
         <span className="text-destructive truncate">
           Model load failed: {hydration?.error || "Unknown error"}
         </span>
+      ) : isPrefilling ? (
+        <>
+          <Loader2 className="size-3.5 shrink-0 animate-spin text-primary" aria-hidden="true" />
+          <span className="truncate">
+            {`Prefilling ${hydration?.modelId || "UOR-R4"} prompt (${hydration?.prefillDone ?? 0}/${hydration?.prefillTotal ?? 0} tok)…`}
+          </span>
+        </>
       ) : isLoading ? (
         <>
           <Loader2 className="size-3.5 shrink-0 animate-spin text-primary" aria-hidden="true" />
@@ -448,7 +463,9 @@ export function StudioModelStatusBar({
         <>
           <Cpu className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
           <span className="truncate">
-            UOR-R4 WASM running locally (prefill / pure-integer decode)…
+            {typeof hydration?.tokensPerSec === "number" && hydration.tokensPerSec > 0
+              ? `Generating with ${hydration?.modelId || "UOR-R4"} (${hydration.tokensPerSec.toFixed(1)} tok/s${hydration?.ttftMs != null ? ` · TTFT ${hydration.ttftMs}ms` : ""})…`
+              : "UOR-R4 WASM running locally (prefill / pure-integer decode)…"}
           </span>
         </>
       )}

@@ -2205,7 +2205,11 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
       cdp,
       sessionId,
       `
+        const t0 = performance.now();
         const loaded = await window.electron.ipcRenderer.invoke('uor-r4:select-model', { modelId: 'uor-r4:qwen3-1.7b' });
+        const loadMs = Math.round(performance.now() - t0);
+        const nonEvictPrewarm = await window.__uorR4.prewarmIfCached({ modelId: 'uor-r4:qwen3-0.6b' });
+        const statusAfterPrewarm = window.__uorR4.getStatus();
         const gen = await window.__uorR4.generate({
           modelId: 'uor-r4:qwen3-1.7b',
           prompt: 'Say hello in five words.',
@@ -2213,7 +2217,7 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
           maxNewTokens: 24,
           speculative: false,
         });
-        return { loaded, gen };
+        return { loaded, loadMs, nonEvictPrewarm, statusAfterPrewarm, gen };
       `,
       240000,
       `UOR-R4 Qwen3-1.7B streaming mount & chat turn on ${basePath}`,
@@ -2224,13 +2228,19 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
         check17b.loaded?.sha256 === '2c362d73046851ff69dfa7e1de197d4f0fee14031e9e53e29bf278c41b6bc8bf' &&
         check17b.loaded?.capabilities?.float_ops === 0 &&
         check17b.loaded?.capabilities?.dense_matmul_ops === 0 &&
+        check17b.nonEvictPrewarm?.skipped === 'other_model_mounted' &&
+        check17b.statusAfterPrewarm?.loadedModelId === 'uor-r4:qwen3-1.7b' &&
         String(check17b.gen?.fullText || '').trim().length > 0 &&
+        typeof check17b.gen?.ttftMs === 'number' &&
+        typeof check17b.gen?.tokensPerSec === 'number' &&
         check17b.gen?.float_ops === 0 &&
         check17b.gen?.dense_matmul_ops === 0,
       `Qwen3-1.7B verification failed: ${JSON.stringify(check17b)}`,
     );
     model17bVerified = true;
-    console.error(`[verify] Qwen3-1.7B pack-streamed mount + chat turn OK: ${JSON.stringify(check17b.gen.fullText.trim())}`);
+    console.error(
+      `[verify] Qwen3-1.7B pack-streamed mount (${check17b.loadMs}ms, backend=${check17b.loaded?.cacheBackend}) + chat turn OK (TTFT=${check17b.gen.ttftMs}ms, ${check17b.gen.tokensPerSec} tok/s, total=${check17b.gen.totalMs}ms): ${JSON.stringify(check17b.gen.fullText.trim())}`,
+    );
   }
 
   await cdp.send('Target.closeTarget', { targetId: target.targetId });

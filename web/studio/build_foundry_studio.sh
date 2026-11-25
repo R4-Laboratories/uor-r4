@@ -50,7 +50,7 @@ if [ ! -d "$foundry_studio/vendor/prism/node_modules" ] || [ ! -f "$foundry_stud
         ELECTRON_SKIP_BINARY_DOWNLOAD=1 npm ci --prefer-offline --ignore-scripts --engine-strict=false --force --no-audit --no-fund --loglevel=error
     )
 else
-    # Ensure npm's offline tarball store holds monaco-editor for stamp_shell.py.
+    # Ensure npm's offline tarball store holds monaco-editor for Rust stamp-shell.
     npm cache add monaco-editor@0.52.2 --prefer-offline >/dev/null 2>&1 || true
 fi
 (

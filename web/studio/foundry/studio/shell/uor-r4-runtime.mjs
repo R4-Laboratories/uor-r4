@@ -75,6 +75,10 @@ let hydrationState = {
   packsTotal: 9,
   piecesDone: 0,
   piecesTotal: 410,
+  prefillDone: 0,
+  prefillTotal: 0,
+  ttftMs: null,
+  tokensPerSec: null,
   bytesLoaded: 0,
   bytesTotal: 429484190,
   cached: false,
@@ -241,17 +245,22 @@ function ensureV13Worker() {
         opfsStatus = data.cacheBackend;
       }
       notifyProgress({
+        ...(data.modelId ? { modelId: data.modelId } : {}),
         phase: data.phase,
         percent: data.percent,
-        packsDone: data.packsDone,
-        packsTotal: data.packsTotal,
-        piecesDone: data.piecesDone,
-        piecesTotal: data.piecesTotal,
-        bytesLoaded: data.bytesLoaded,
-        bytesTotal: data.bytesTotal,
-        cached: Boolean(data.cached),
-        cacheBackend: data.cacheBackend || null,
-        recoveredPieces: Array.isArray(data.recoveredPieces) ? data.recoveredPieces : [],
+        ...(data.packsDone !== undefined ? { packsDone: data.packsDone } : {}),
+        ...(data.packsTotal !== undefined ? { packsTotal: data.packsTotal } : {}),
+        ...(data.piecesDone !== undefined ? { piecesDone: data.piecesDone } : {}),
+        ...(data.piecesTotal !== undefined ? { piecesTotal: data.piecesTotal } : {}),
+        ...(data.prefillDone !== undefined ? { prefillDone: data.prefillDone } : {}),
+        ...(data.prefillTotal !== undefined ? { prefillTotal: data.prefillTotal } : {}),
+        ...(data.ttftMs !== undefined ? { ttftMs: data.ttftMs } : {}),
+        ...(data.tokensPerSec !== undefined ? { tokensPerSec: data.tokensPerSec } : {}),
+        ...(data.bytesLoaded !== undefined ? { bytesLoaded: data.bytesLoaded } : {}),
+        ...(data.bytesTotal !== undefined ? { bytesTotal: data.bytesTotal } : {}),
+        ...(data.cached !== undefined ? { cached: Boolean(data.cached) } : {}),
+        ...(data.cacheBackend !== undefined ? { cacheBackend: data.cacheBackend || null } : {}),
+        ...(Array.isArray(data.recoveredPieces) ? { recoveredPieces: data.recoveredPieces } : {}),
         error: null,
       });
       return;
@@ -504,7 +513,7 @@ export async function generate({
   maxNewTokens = 768,
   stopSequences = ['</tool_call>'],
   sliceTokens = 4,
-  prefillSliceTokens = 32,
+  prefillSliceTokens = 64,
   speculative,
   signal,
   onToken,
@@ -538,6 +547,9 @@ export async function generate({
       draftProposed: result.draftProposed ?? 0,
       draftAccepted: result.draftAccepted ?? 0,
       mlpMode: result.mlpMode || 'DenseExact',
+      ttftMs: result.ttftMs ?? null,
+      tokensPerSec: result.tokensPerSec ?? null,
+      totalMs: result.totalMs ?? null,
       capabilities: loadedCapabilities,
       weightsMatched:
         loadedCapabilities?.expected_sha256 == null || loadedCapabilities?.sha256_verified === true,
@@ -548,9 +560,18 @@ export async function generate({
 export async function prewarmIfCached({
   modelId = `uor-r4:${DEFAULT_MODEL_SHORT}`,
   systemPrompt = '',
+  allowModelSwitch = false,
   signal,
 } = {}) {
   const shortId = normalizeModelId(modelId);
+  if (loadedModelId && loadedModelId !== shortId && !allowModelSwitch) {
+    return {
+      ok: false,
+      skipped: 'other_model_mounted',
+      loadedModelId: toFullModelId(loadedModelId),
+      cached: true,
+    };
+  }
   if (loadedModelId !== shortId) {
     const cat = await getCatalog();
     const entry = cat.models.find((m) => m.id === shortId);
@@ -563,6 +584,14 @@ export async function prewarmIfCached({
     }
   }
   return serializeOp(async () => {
+    if (loadedModelId && loadedModelId !== shortId && !allowModelSwitch) {
+      return {
+        ok: false,
+        skipped: 'other_model_mounted',
+        loadedModelId: toFullModelId(loadedModelId),
+        cached: true,
+      };
+    }
     if (loadedModelId !== shortId) {
       const cat = await getCatalog();
       const entry = cat.models.find((m) => m.id === shortId);

@@ -3332,15 +3332,31 @@ inference.onWorkspaceWrite((store, key) => {
 });
 uorR4.onProgress((progress) => emit("uor-r4:progress", progress));
 handlers.set("standards:lookup", ({ query, limit } = {}) => lookupStandards(query, limit));
+async function resolveSelectedUorR4ModelId() {
+  const settings = (await inference.settingsGet()) || {};
+  const sel = settings.selectedModel;
+  if (sel?.provider === CUSTOM_API_PROVIDER) return null;
+  return (sel?.provider === UOR_R4_PROVIDER ? normalizeUorR4ModelName(sel.name) : null) || DEFAULT_SETTINGS.selectedModel.name;
+}
 handlers.set("uor-r4:status", (opts) => {
   if (opts && (opts.prewarmMode === "build" || opts.prewarmMode === "chat")) {
     const sys = opts.prewarmMode === "build" ? FOUNDRY_BUILD_SYSTEM_PROMPT : FOUNDRY_CHAT_SYSTEM_PROMPT;
-    void uorR4.prewarmIfCached({ systemPrompt: sys }).catch(() => {});
+    void resolveSelectedUorR4ModelId().then((modelId) => {
+      if (modelId) {
+        return uorR4.prewarmIfCached({ modelId, systemPrompt: sys });
+      }
+      return null;
+    }).catch(() => {});
   }
   return uorR4.getCatalog({ refresh: true });
 });
 handlers.set("uor-r4:test-stitch-recover", ({ groupIndex = 0, dropped = 2 } = {}) => uorR4.testStitchRecover({ groupIndex, dropped }));
-handlers.set("uor-r4:select-model", ({ modelId }) => uorR4.ensureModelLoaded(modelId));
+handlers.set("uor-r4:select-model", async ({ modelId, prewarmMode } = {}) => {
+  const res = await uorR4.ensureModelLoaded(modelId);
+  const sys = prewarmMode === "build" ? FOUNDRY_BUILD_SYSTEM_PROMPT : FOUNDRY_CHAT_SYSTEM_PROMPT;
+  void uorR4.prewarmIfCached({ modelId: res?.modelId || modelId, systemPrompt: sys }).catch(() => {});
+  return res;
+});
 handlers.set("custom-api:list", () => customApiClient.listEndpoints());
 handlers.set("custom-api:save", async (input) => {
   const res = await customApiClient.saveEndpoint(input);
@@ -3820,6 +3836,11 @@ handlers.set("home-chat:send", async ({ prompt, modelId, provider: requestedProv
     const allowed = await r4Decide(before);
     if (allowed.outcome !== "answer") throw new Error(r4Refusal(allowed, before));
     const groundingContext = await buildTurnGroundingContext({ appId: null, chatMode: "chat", prompt: text }).catch(() => "");
+    const rawHomeChars = text.length + String(groundingContext || "").length + prior.reduce((n, m) => n + String(m?.content || "").length, 0);
+    const estHomePromptTokens = Math.ceil(rawHomeChars / 3.5) + 180;
+    const homeMaxSeq = Number(statusBefore?.capabilities?.max_seq) || 2048;
+    const homeBudgetRemaining = Math.max(512, homeMaxSeq - estHomePromptTokens - 32);
+    const computedHomeMaxNew = customEndpoint ? 2048 : Math.min(1024, Math.max(512, homeBudgetRemaining));
     const result = await runUorR4AgentTurn({
       appId: null,
       chatId: "home-chat",
@@ -3828,7 +3849,7 @@ handlers.set("home-chat:send", async ({ prompt, modelId, provider: requestedProv
       userPrompt: text,
       groundingContext,
       chatMode: "chat",
-      maxNewTokens: customEndpoint ? 2048 : 512,
+      maxNewTokens: computedHomeMaxNew,
       signal: abort.signal,
       uorR4Runtime: uorR4,
       generateFn: customEndpoint ? (opts) => customApiClient.generateChatCompletion({ endpoint: customEndpoint, ...opts }) : undefined,
@@ -4065,7 +4086,12 @@ if ("serviceWorker" in navigator) {
 }
 {
   const idlePrewarm = (fn) => (self.requestIdleCallback ? requestIdleCallback(fn, { timeout: 10000 }) : setTimeout(fn, 3000));
-  const runIdlePrewarm = () => idlePrewarm(() => void uorR4.prewarmIfCached({ systemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT }).catch(() => {}));
+  const runIdlePrewarm = () => idlePrewarm(() => void resolveSelectedUorR4ModelId().then((modelId) => {
+    if (modelId) {
+      return uorR4.prewarmIfCached({ modelId, systemPrompt: FOUNDRY_CHAT_SYSTEM_PROMPT });
+    }
+    return null;
+  }).catch(() => {}));
   if (document.readyState === "complete") runIdlePrewarm();
   else addEventListener("load", runIdlePrewarm, { once: true });
 }

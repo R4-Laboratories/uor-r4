@@ -113,7 +113,7 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   assert.match(runtimeSrc, /hasOfflineV13Cache[\s\S]*'manifest\.json'[\s\S]*'manifest\.stitch\.json'[\s\S]*lastPack/);
   assert.match(runtimeSrc, /export async function prewarmIfCached\(/);
   assert.match(runtimeSrc, /export async function configure\(/);
-  assert.match(runtimeSrc, /maxNewTokens = 768[\s\S]*sliceTokens = 4[\s\S]*prefillSliceTokens = 32/);
+  assert.match(runtimeSrc, /maxNewTokens = 768[\s\S]*sliceTokens = 4[\s\S]*prefillSliceTokens = 64/);
 
   const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
   assert.match(hostSrc, /import\s*\{runUorR4AgentTurn,FOUNDRY_SYSTEM_PROMPT,FOUNDRY_CHAT_SYSTEM_PROMPT,FOUNDRY_BUILD_SYSTEM_PROMPT\}\s*from\s*'\.\/r4-agent-loop\.mjs';/);
@@ -121,7 +121,7 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   assert.match(hostSrc, /async function compileTailwind\(page,\s*lease\)[\s\S]*await workerActive;\s*await lease\.check\(\);/);
   assert.match(hostSrc, /async function buildTurnGroundingContext\(/);
   assert.match(hostSrc, /const envKeys = envVars\.map\(\(v\) => v\.key\)\.filter\(Boolean\)/);
-  assert.match(hostSrc, /uorR4\.prewarmIfCached\(\{\s*systemPrompt:\s*FOUNDRY_CHAT_SYSTEM_PROMPT\s*\}\)/);
+  assert.match(hostSrc, /resolveSelectedUorR4ModelId[\s\S]*uorR4\.prewarmIfCached\(\{\s*modelId,\s*systemPrompt:\s*FOUNDRY_CHAT_SYSTEM_PROMPT\s*\}\)/);
   assert.match(hostSrc, /FOUNDRY_DOMAIN_RE\.test\(q\)/);
   assert.match(hostSrc, /function extractFallbackCodeWrites\(/);
   assert.match(hostSrc, /function compactBuildHistory\(/);
@@ -294,4 +294,45 @@ test('parsePrismTags supports <prism-search-replace> XML/git-style hunks, blocks
   assert.match(screensSrc, /"uor-r4:status",\s*\{\s*prewarmMode:\s*"build"\s*\}/);
   const stdSrc = fs.readFileSync(join(repoRoot, 'scripts/studio/build-standards-index.mjs'), 'utf8');
   assert.match(stdSrc, /uor-r4-self-identity/);
+});
+
+test('Stage 4 single-pass mount, prefill/TPS telemetry, 1.7B non-eviction prewarm guard, dynamic home budget, and zero python build script', () => {
+  const workerSrc = fs.readFileSync(join(shellDir, 'uor-v13-worker.mjs'), 'utf8');
+  assert.match(workerSrc, /async function cacheStat\(/);
+  assert.match(workerSrc, /const sealCoversAll =/);
+  assert.match(workerSrc, /const MAX_STREAM_MOUNT_BUFFERED_PACKS = 3;/);
+  assert.match(workerSrc, /const pendingMountPacks = new Map\(\);/);
+  assert.match(workerSrc, /const pendingOutOfOrderPacks = new Set\(\);/);
+  assert.match(workerSrc, /const drainStreamMount = \(\) =>/);
+  assert.match(workerSrc, /if \(packVerified && packBytes\)/);
+  assert.match(workerSrc, /prefill_slice_tokens:\s*payload\.prefillSliceTokens \|\| 64/);
+  assert.match(workerSrc, /last\.status === 'prefilling'/);
+  assert.match(workerSrc, /ttftMs:\s*lastTtftMs/);
+  assert.match(workerSrc, /tokensPerSec:\s*lastTps/);
+  assert.match(workerSrc, /catch \(sealedErr\)[\s\S]*?sealMap = null;/);
+  assert.doesNotMatch(workerSrc, /\bstatHits\b/);
+  assert.match(workerSrc, /let decodeStartMs = null;/);
+  assert.match(workerSrc, /phase:\s*'ready'[\s\S]*?ttftMs:\s*null,\s*tokensPerSec:\s*null/);
+
+  const runtimeSrc = fs.readFileSync(join(shellDir, 'uor-r4-runtime.mjs'), 'utf8');
+  assert.match(runtimeSrc, /allowModelSwitch = false/);
+  assert.match(runtimeSrc, /skipped:\s*'other_model_mounted'/);
+  assert.match(runtimeSrc, /prefillDone:\s*0/);
+  assert.match(runtimeSrc, /tokensPerSec:\s*null/);
+
+  const hostSrc = fs.readFileSync(join(shellDir, 'host.js'), 'utf8');
+  assert.match(hostSrc, /async function resolveSelectedUorR4ModelId\(/);
+  assert.match(hostSrc, /handlers\.set\("uor-r4:select-model",\s*async \(\{ modelId, prewarmMode \} = \{\}\) =>/);
+  assert.match(hostSrc, /computedHomeMaxNew = customEndpoint \? 2048 : Math\.min\(1024, Math\.max\(512, homeBudgetRemaining\)\)/);
+
+  const homeSurfaceSrc = fs.readFileSync(
+    resolve(__dirname, '../vendor/prism/hologram.screens/HomeChatSurface.tsx'),
+    'utf8',
+  );
+  assert.match(homeSurfaceSrc, /const isPrefilling = phase === "prefilling";/);
+  assert.match(homeSurfaceSrc, /Prefilling \$\{hydration\?\.modelId \|\| "UOR-R4"\} prompt/);
+  assert.match(homeSurfaceSrc, /Generating with \$\{hydration\?\.modelId \|\| "UOR-R4"\}/);
+
+  const buildSh = fs.readFileSync(join(repoRoot, 'web/studio/build_foundry_studio.sh'), 'utf8');
+  assert.doesNotMatch(buildSh, /python3|stamp_shell\.py/);
 });
