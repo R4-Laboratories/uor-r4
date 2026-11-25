@@ -1,0 +1,23 @@
+	Command being timed: "/mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/stage/kn-target/release/kn-reference /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/inputs/c420/train.tokens.u16 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/inputs/c420/dev-test.tokens.u16 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/inputs/c420/id-bytes.u8 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/inputs/c420/dev-test.novel.u8 10 16777216 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/rstar/run-v1/rstar-devtest.json --sealed-run --check-host --profile-phases --write-masses /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/rstar/run-v1/rstar-devtest.masses.u64"
+	User time (seconds): 580.01
+	System time (seconds): 225.91
+	Percent of CPU this job got: 198%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:46.04
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 13612268
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 164634469
+	Voluntary context switches: 15255
+	Involuntary context switches: 19023
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 333610
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

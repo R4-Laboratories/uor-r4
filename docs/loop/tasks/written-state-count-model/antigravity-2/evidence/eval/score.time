@@ -1,0 +1,23 @@
+	Command being timed: "/mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/stage/eval-target/release/p1b-devtest-eval score /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/inputs/c420 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/eval/stage-v1/GO.json b4add2701fac4cc63d3b50f1615975a2c5f597cf2f93d2efed7933eab9f30706 /mnt/plexpool/uor-r4-corpus/runs/20261120-whole-context-36/pruned-full-v1/compact.counts /mnt/plexpool/uor-r4-corpus/runs/20261120-pruned-r-fit-37/tune/pod-transfer-v1/input/trunk.d11 /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/count/run-v1/65536.features /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/rstar/run-v1/rstar-devtest.masses.u64 /mnt/plexpool/uor-r4-corpus/runs/20261120-pruned-r-fit-37/tune/stage-v1/d37-tune-device /mnt/plexpool/uor-r4-corpus/runs/20261120-pruned-r-fit-37/tune/vast-61843938-evidence/revision-v2/frozen /mnt/plexpool/uor-r4-corpus/runs/20261120-pruned-r-fit-37/fit/control-stage-v2/real-v1/disabled /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/eval/run-v1"
+	User time (seconds): 293.52
+	System time (seconds): 71.59
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:05.12
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 5038252
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 87108374
+	Voluntary context switches: 183804
+	Involuntary context switches: 4513
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 627
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

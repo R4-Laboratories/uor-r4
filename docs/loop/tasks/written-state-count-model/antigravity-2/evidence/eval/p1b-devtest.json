@@ -1,0 +1,261 @@
+{
+  "arms": {
+    "a0": {
+      "all": {
+        "bits_q12": "295844864503",
+        "bpb_micro": "1667038",
+        "bytes": 43326982,
+        "targets": 21349576
+      },
+      "by_class_targets_hits": [
+        [
+          21349576,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "manifest_sha256": "6931b3fec5388edf827e65fd36a6fa7028a0c5fa49b84b0a72a1efacbeb826f3",
+      "native_count_and_mix_probes": 13607,
+      "novel": {
+        "bits_q12": "249862662991",
+        "bpb_micro": "1947172",
+        "bytes": 31328319,
+        "targets": 14795227
+      },
+      "novel_response": {
+        "bits_q12": "239285873250",
+        "bpb_micro": "1949602",
+        "bytes": 29964782,
+        "targets": 14190847
+      },
+      "response": {
+        "bits_q12": "277203036279",
+        "bpb_micro": "1781175",
+        "bytes": 37995416,
+        "targets": 18751676
+      },
+      "seal_sha256": "5a7d108997da3378f3bee79599b95910155e646dc81d54ae1fafe6891d06267e",
+      "weight_sha256": "0731c8c7474542f1cbf02b0425ab571ab1fe7075c1ee14a81ba27019f242e94f"
+    },
+    "a1s": {
+      "all": {
+        "bits_q12": "278311440324",
+        "bpb_micro": "1568240",
+        "bytes": 43326982,
+        "targets": 21349576
+      },
+      "by_class_targets_hits": [
+        [
+          10642,
+          0
+        ],
+        [
+          8114555,
+          4440202
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          74374,
+          12945
+        ],
+        [
+          13150005,
+          1006755
+        ]
+      ],
+      "manifest_sha256": "133e691cca11e6663163271c63d1f248aa8a9c575d7adf42ae4131316b74ca97",
+      "native_count_and_mix_probes": 13607,
+      "novel": {
+        "bits_q12": "234015065683",
+        "bpb_micro": "1823672",
+        "bytes": 31328319,
+        "targets": 14795227
+      },
+      "novel_response": {
+        "bits_q12": "224197262079",
+        "bpb_micro": "1826666",
+        "bytes": 29964782,
+        "targets": 14190847
+      },
+      "response": {
+        "bits_q12": "260743187822",
+        "bpb_micro": "1675412",
+        "bytes": 37995416,
+        "targets": 18751676
+      },
+      "seal_sha256": "589a68020bf3c1124af66967fea297c70c96d3d0ad013414f0467844d2277c23",
+      "weight_sha256": "b6b3da9e94ac33d0d8dc6c192c3117afc4fdc1f8e9c83dbf051010f5c2f31bb0"
+    }
+  },
+  "bands": {
+    "a0_minus_rstar": {
+      "all": {
+        "micro_bpb": [
+          "240123",
+          "257371"
+        ],
+        "q12": [
+          "42614118946",
+          "45674856930"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      },
+      "novel": {
+        "micro_bpb": [
+          "196407",
+          "210106"
+        ],
+        "q12": [
+          "25203126767",
+          "26960947595"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      }
+    },
+    "a1s_minus_103pct_rstar": {
+      "all": {
+        "micro_bpb": [
+          "101091",
+          "113939"
+        ],
+        "q12": [
+          "1794036140772",
+          "2022034300407"
+        ],
+        "scale_x": 100,
+        "scale_y": 103,
+        "strictly_below_zero": false
+      },
+      "novel": {
+        "micro_bpb": [
+          "21982",
+          "32746"
+        ],
+        "q12": [
+          "282081371158",
+          "420188980360"
+        ],
+        "scale_x": 100,
+        "scale_y": 103,
+        "strictly_below_zero": false
+      }
+    },
+    "a1s_minus_a0": {
+      "all": {
+        "micro_bpb": [
+          "-103336",
+          "-94001"
+        ],
+        "q12": [
+          "-18338614204",
+          "-16682183649"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      },
+      "novel": {
+        "micro_bpb": [
+          "-129287",
+          "-117257"
+        ],
+        "q12": [
+          "-16590110668",
+          "-15046585396"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": true
+      }
+    },
+    "a1s_minus_rstar": {
+      "all": {
+        "micro_bpb": [
+          "143465",
+          "156994"
+        ],
+        "q12": [
+          "25460439639",
+          "27861269773"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      },
+      "novel": {
+        "micro_bpb": [
+          "74385",
+          "84926"
+        ],
+        "q12": [
+          "9545189108",
+          "10897649172"
+        ],
+        "scale_x": 1,
+        "scale_y": 1,
+        "strictly_below_zero": false
+      }
+    }
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 4390
+  },
+  "census_sha256": "ec048217ac64f05a6519d7e38dd2fabf6e244eca8009b24476b3870cbc0f73f2",
+  "compact_sha256": "064b691a54895771df1a957b2f97c91163990b6c6b6e09504c43285a97c49ef8",
+  "dev_test_tape_sha256": "27af4908bfa16dc28a2f8e1dcd5e7c5ff0b22161b7ec57031ce182ba7aa08d9d",
+  "dev_test_uort_sha256": "023784b74c98a796401a064d50bf2f83f2f8eb95ab8bbead1cbe2aec6e7a176b",
+  "go_sha256": "b4add2701fac4cc63d3b50f1615975a2c5f597cf2f93d2efed7933eab9f30706",
+  "p1b_gate": {
+    "a1s_over_rstar_micro_all": "1105845",
+    "a1s_over_rstar_micro_novel": "1045835",
+    "deployed_bytes_with_tokenizer": 3999237441,
+    "passes_103pct_all": false,
+    "verdict": "NEGATIVE_PRUNING_COST",
+    "within_4gb_cap": true
+  },
+  "phase": "DEV-test P1(b) paired evaluation",
+  "records": 5321,
+  "rows": 21349576,
+  "rstar": {
+    "all": {
+      "bits_q12": "251672950854",
+      "bpb_micro": "1418136",
+      "bytes": 43326982,
+      "targets": 21349576
+    },
+    "masses_at_floor": 4,
+    "masses_sha256": "59f076093c51b15469b55b01821947b7c51d8038e68d834465e29be72d56f8de",
+    "novel": {
+      "bits_q12": "223758978608",
+      "bpb_micro": "1743746",
+      "bytes": 31328319,
+      "targets": 14795227
+    },
+    "threshold_103pct_all_bpb_micro": "1460680",
+    "threshold_103pct_novel_bpb_micro": "1796059"
+  },
+  "schema": "uor-r4.antigravity-2.p1b-devtest/1"
+}

@@ -246,6 +246,7 @@ struct Args {
     frame_source: Option<String>,
     synthetic_fixture: bool,
     pick_arms: Option<[String; 2]>,
+    write_masses: Option<String>,
 }
 
 impl Args {
@@ -268,6 +269,7 @@ fn parse(args: &[String]) -> Result<Args, Failure> {
     let mut frame_source: Option<String> = None;
     let mut synthetic_fixture = false;
     let mut pick_arms: Option<[String; 2]> = None;
+    let mut write_masses: Option<String> = None;
     let mut at = 0;
     while at < args.len() {
         match args[at].as_str() {
@@ -289,6 +291,13 @@ fn parse(args: &[String]) -> Result<Args, Failure> {
                 };
                 pick_arms = Some([segments.clone(), trunk.clone()]);
                 at += 2;
+            }
+            "--write-masses" => {
+                at += 1;
+                let path = args.get(at).ok_or_else(|| fail(usage))?;
+                if write_masses.replace(path.clone()).is_some() {
+                    return Err(fail("--write-masses takes one output path"));
+                }
             }
             "--source-sha256" => {
                 at += 1;
@@ -345,6 +354,16 @@ fn parse(args: &[String]) -> Result<Args, Failure> {
             "frame host oracles are limited to finite fixtures and the 1 per mille cut",
         ));
     }
+    if let Some(ref path) = write_masses {
+        if count_only || extension_census || frame || pick_arms.is_some() {
+            return Err(fail(
+                "--write-masses refuses --count-only, --extension-census, --fit-frame and --pick-arms",
+            ));
+        }
+        if std::path::Path::new(path).symlink_metadata().is_ok() {
+            return Err(fail("--write-masses output file already exists"));
+        }
+    }
     Ok(Args {
         paths: [train, query, id_bytes, classes],
         highest,
@@ -360,6 +379,7 @@ fn parse(args: &[String]) -> Result<Args, Failure> {
         frame_source,
         synthetic_fixture,
         pick_arms,
+        write_masses,
     })
 }
 
@@ -870,6 +890,15 @@ fn run(args: &[String]) -> Result<(), Failure> {
     let masses_at_floor = masses.iter().filter(|&&m| m == 1).count();
     eprintln!("masses at the one-unit floor: {masses_at_floor}");
     let mass_bytes: Vec<u8> = masses.iter().flat_map(|m| m.to_le_bytes()).collect();
+    if let Some(ref path) = args.write_masses {
+        use std::io::Write;
+        let mut file = std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(path)?;
+        file.write_all(&mass_bytes)?;
+        file.sync_all()?;
+    }
     let mut summary = serde_json::json!({
         "unit": if args.ceiling { "claude-438" } else { "claude-421" },
         "highest_order": args.highest,
@@ -884,6 +913,9 @@ fn run(args: &[String]) -> Result<(), Failure> {
         "all": all.json(),
         "novel": novel.json(),
     });
+    if args.write_masses.is_some() {
+        summary["masses_bytes"] = serde_json::json!(mass_bytes.len());
+    }
     if let Some(json) = ceiling_json {
         summary["ceiling"] = json;
     }
@@ -1259,6 +1291,46 @@ mod tests {
         assert!(tally(&query, &[half, quarter, half, half], &id_bytes, &classes).is_err());
         assert!(tally(&query, &[half, quarter, half], &id_bytes, &[0, 1, 0, 1]).is_err());
         assert!(tally(&query, &[half, quarter, half], &id_bytes, &[3, 4, 0, 1]).is_err());
+    }
+
+    #[test]
+    fn write_masses_flag_parses_and_refuses_conflicts() {
+        let base: Vec<String> = ["train", "query", "bytes", "classes", "10", "64", "out"]
+            .into_iter()
+            .map(str::to_owned)
+            .collect();
+        let with = |flags: &[&str]| {
+            let mut args = base.clone();
+            args.extend(flags.iter().map(|f| f.to_string()));
+            parse(&args)
+        };
+        let unique = format!("/tmp/uor-kn-write-masses-missing-{}", std::process::id());
+        let ok = with(&["--sealed-run", "--check-host", "--write-masses", &unique]).unwrap();
+        assert_eq!(ok.write_masses.as_deref(), Some(unique.as_str()));
+        let hash = "a".repeat(64);
+        for conflict in [
+            &["--count-only", "--write-masses", &unique][..],
+            &["--extension-census", "--write-masses", &unique],
+            &[
+                "--fit-frame",
+                "--source-sha256",
+                &hash,
+                "--write-masses",
+                &unique,
+            ],
+            &["--pick-arms", "s", "t", "--write-masses", &unique],
+            &["--write-masses", &unique, "--write-masses", "/tmp/other"],
+        ] {
+            assert!(with(conflict).is_err(), "{conflict:?}");
+        }
+        let existing = std::env::temp_dir().join(format!(
+            "uor-kn-write-masses-existing-{}.tmp",
+            std::process::id()
+        ));
+        std::fs::write(&existing, b"x").unwrap();
+        let err = with(&["--write-masses", existing.to_str().unwrap()]);
+        std::fs::remove_file(&existing).ok();
+        assert!(err.is_err());
     }
 
     const PROBABILITY_ONE_TEST: u64 = 1 << 48;

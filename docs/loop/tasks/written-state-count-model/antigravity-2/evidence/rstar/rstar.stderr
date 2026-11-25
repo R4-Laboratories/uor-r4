@@ -1,0 +1,42 @@
+read: train 2091560001 of 2091560001 tokens, query 21354897 of 21354897, 5890 ms
+sweep: 128 shared ranges for orders 1..=10
+sweep phases ms: wall 200744 | own count 147145 extension count 0 | histogram 175 select 20494 sort 30024 emit 12216 download 42276 records 37787 | runs 0 adjust 0 | push 36320 keep 17103 | 1408 partitions counted
+order 0 sink ms: push 0 keep 0
+order 1 sink ms: push 20 keep 8
+order 2 sink ms: push 281 keep 135
+order 3 sink ms: push 1131 keep 488
+order 4 sink ms: push 2386 keep 1039
+order 5 sink ms: push 3609 keep 1607
+order 6 sink ms: push 4600 keep 2142
+order 7 sink ms: push 5292 keep 2533
+order 8 sink ms: push 5804 keep 2840
+order 9 sink ms: push 6128 keep 3074
+order 10 sink ms: push 7064 keep 3233
+order 0 push parts ms: triple checks 0 context checks 0 census 0 triple feed 0 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 0 context 0
+order 0: 1 partitions, grams 4079 contexts 1, kept triples 3993 contexts 1, 220929 ms
+order 1 push parts ms: triple checks 3 context checks 0 census 15 triple feed 1 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 37 context 0
+order 1: 128 partitions, grams 3287899 contexts 4079, kept triples 564178 contexts 3993, 220931 ms
+order 2 push parts ms: triple checks 62 context checks 2 census 194 triple feed 21 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 482 context 68
+order 2: 128 partitions, grams 52997638 contexts 3286408, kept triples 2771379 contexts 563995, 220938 ms
+order 3 push parts ms: triple checks 241 context checks 54 census 718 triple feed 116 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 1791 context 969
+order 3: 128 partitions, grams 201064161 contexts 52982116, kept triples 4896750 contexts 2770267, 220951 ms
+order 4 push parts ms: triple checks 489 context checks 202 census 1434 triple feed 260 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 3738 context 3704
+order 4: 128 partitions, grams 411773607 contexts 200999697, kept triples 5844406 contexts 4894941, 220970 ms
+order 5 push parts ms: triple checks 745 context checks 398 census 2061 triple feed 403 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 5799 context 7653
+order 5: 128 partitions, grams 633254327 contexts 411651673, kept triples 5846243 contexts 5842419, 220992 ms
+order 6 push parts ms: triple checks 973 context checks 603 census 2499 triple feed 523 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 7527 context 11808
+order 6: 128 partitions, grams 829909716 contexts 633079160, kept triples 5359773 contexts 5844421, 221014 ms
+order 7 push parts ms: triple checks 1155 context checks 777 census 2744 triple feed 614 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 8926 context 15528
+order 7: 128 partitions, grams 988919928 contexts 829688875, kept triples 4771073 contexts 5357949, 221037 ms
+order 8 push parts ms: triple checks 1296 context checks 928 census 2881 triple feed 696 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 10004 context 18633
+order 8: 128 partitions, grams 1113001553 contexts 988659209, kept triples 4230781 contexts 4769399, 221060 ms
+order 9 push parts ms: triple checks 1408 context checks 1036 census 2940 triple feed 743 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 10858 context 21031
+order 9: 128 partitions, grams 1209995770 contexts 1112709780, kept triples 3781971 contexts 4229286, 221085 ms
+order 10 push parts ms: triple checks 1495 context checks 1134 census 3633 triple feed 800 (send wait 0) context feed 0 (send wait 0) | hasher busy triple 11526 context 22927
+order 10: 128 partitions, grams 1286910428 contexts 1209683953, kept triples 3425574 contexts 3780632, 221111 ms
+push parts ms, all orders: triple checks 7872 context checks 5138 census 19124 triple feed 4181 (send wait 5) context feed 2 (send wait 2) | hasher busy triple 60692 context 102326
+order 0: KenLM fallback discounts (1/2, 1, 3/2)
+gpu scored 21349576 targets, 222580 ms
+host = GPU at all 21349576 targets, 405026 ms
+masses at the one-unit floor: 4
+wrote /mnt/plexpool/uor-r4-corpus/runs/20261124-antigravity-p1b-devtest/rstar/run-v1/rstar-devtest.json, 405927 ms
