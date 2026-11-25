@@ -861,7 +861,7 @@ async function handleGenerateV13(id, payload) {
         prefill_slice_tokens: payload.prefillSliceTokens || 64,
         slice_tokens: payload.sliceTokens || 4,
         speculative: payload.speculative === true,
-        stop_sequences: Array.isArray(payload.stopSequences) && payload.stopSequences.length
+        stop_sequences: Array.isArray(payload.stopSequences)
           ? payload.stopSequences
           : ['</tool_call>'],
       }),

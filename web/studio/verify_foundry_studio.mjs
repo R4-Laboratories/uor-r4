@@ -839,13 +839,13 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
     v13PrewarmPair.cfgRes?.ok === true &&
       v13PrewarmPair.cfgRes?.mlp_verdict === 'DenseExact' &&
       v13PrewarmPair.prewarmRes?.ok === true &&
-      v13PrewarmPair.prewarmRes?.prewarmedTokens >= 150 &&
+      v13PrewarmPair.prewarmRes?.prewarmedTokens >= 40 &&
       v13PrewarmPair.prewarmRes?.float_ops === 0 &&
       v13PrewarmPair.prewarmRes?.dense_matmul_ops === 0,
     `V13 configure/prewarmIfCached failed: ${JSON.stringify({ cfgRes: v13PrewarmPair.cfgRes, prewarmRes: v13PrewarmPair.prewarmRes })}`,
   );
   assert(
-    v13PrewarmPair.exactGen.prefixReusedTokens >= 150 &&
+    v13PrewarmPair.exactGen.prefixReusedTokens >= 40 &&
       v13PrewarmPair.exactGen.fullText === v13PrewarmPair.specGen.fullText &&
       v13PrewarmPair.exactGen.float_ops === 0 &&
       v13PrewarmPair.exactGen.dense_matmul_ops === 0 &&
@@ -879,7 +879,7 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
     'casual Home Chat grounding check',
   );
   assert(groundingCasualChat === '', `Casual Home Chat must not inject [Foundry Context]: ${groundingCasualChat}`);
-  await typeIntoHomeComposer(cdp, sessionId, 'hi how are you');
+  await typeIntoHomeComposer(cdp, sessionId, 'hello');
   const sentHome = await evalAsync(
     cdp,
     sessionId,
@@ -927,10 +927,54 @@ async function verifyOriginPath(cdp, origin, basePath, mirrors, mockGitHub, mock
     `Home Chat navigated or created an app prematurely: ${JSON.stringify(homeChatResult)}`,
   );
   assert(
-    !/Available tools:|workspace_write|linux_exec|mvm_exec|lexlean_verify/i.test(homeChatResult.replyPreview),
-    `Casual Home Chat collapsed into tool/capability boilerplate: ${JSON.stringify(homeChatResult.replyPreview)}`,
+    !/^\s*\{\s*"name"\s*:|"arguments"\s*:|Available tools:|workspace_write|linux_exec|mvm_exec|lexlean_verify/i.test(homeChatResult.replyPreview),
+    `Casual Home Chat collapsed into tool/JSON scaffolding: ${JSON.stringify(homeChatResult.replyPreview)}`,
   );
-  console.error(`[verify] Home Chat stayed on '/' and streamed ${homeChatResult.replyLen} chars: ${JSON.stringify(homeChatResult.replyPreview)}`);
+  console.error(`[verify] Home Chat turn 1 stayed on '/' and streamed ${homeChatResult.replyLen} chars: ${JSON.stringify(homeChatResult.replyPreview)}`);
+
+  // 3b. Follow up with a technical question to ensure multi-turn casual chat stays in natural English.
+  await typeIntoHomeComposer(cdp, sessionId, 'how do you predict the next token');
+  const sentHome2 = await evalAsync(
+    cdp,
+    sessionId,
+    `
+      const btn = document.querySelector('[aria-label="Send message"]');
+      if (!btn || btn.disabled) return false;
+      btn.click();
+      return true;
+    `,
+    10000,
+    'click send turn 2 in Home Chat mode',
+  );
+  assert(sentHome2, 'Could not click Send for Home Chat turn 2');
+
+  const homeChatResult2 = await waitForEval(
+    cdp,
+    sessionId,
+    `(async () => {
+      const promoteBtn = document.querySelector('[data-testid="home-promote-to-studio"]');
+      const stopBtn = document.querySelector('[data-testid="home-chat-cancel"]');
+      const hist = await window.electron.ipcRenderer.invoke('home-chat:history');
+      const msgs = hist.messages || [];
+      const done =
+        !stopBtn &&
+        msgs.length >= 4 &&
+        msgs[3].role === 'assistant' &&
+        String(msgs[3].content || '').trim().length > 12 &&
+        msgs[3].model === 'uor-r4:qwen3-0.6b';
+      if (!done || !promoteBtn) return null;
+      return {
+        replyLen: msgs[3].content.length,
+        replyPreview: msgs[3].content.slice(0, 220),
+      };
+    })()`,
+    90000,
+  );
+  assert(
+    !/^\s*\{\s*"name"\s*:|"arguments"\s*:|Available tools:|workspace_write|linux_exec|mvm_exec|lexlean_verify/i.test(homeChatResult2.replyPreview),
+    `Home Chat turn 2 collapsed into tool/JSON scaffolding: ${JSON.stringify(homeChatResult2.replyPreview)}`,
+  );
+  console.error(`[verify] Home Chat turn 2 natural reply (${homeChatResult2.replyLen} chars): ${JSON.stringify(homeChatResult2.replyPreview)}`);
 
   // 4. Click "Build this in Studio →" and confirm promotion creates an app & navigates into Studio chat.
   await evalAsync(

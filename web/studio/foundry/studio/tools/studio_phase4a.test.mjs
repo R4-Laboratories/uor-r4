@@ -8,8 +8,10 @@ import { buildStandardsIndex } from '../../../../../scripts/studio/build-standar
 import {
   FOUNDRY_BUILD_SYSTEM_PROMPT,
   FOUNDRY_CHAT_SYSTEM_PROMPT,
+  FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT,
   FOUNDRY_SYSTEM_PROMPT,
   runUorR4AgentTurn,
+  sanitizeCasualChatHistory,
 } from '../shell/r4-agent-loop.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -129,21 +131,47 @@ test('Phase 4A worker, runtime, and host contracts keep MessageChannel yields, o
   assert.match(workerSrc, /const orderedPacks = \[\.\.\.manifest\.packs\]/);
   assert.ok(FOUNDRY_CHAT_SYSTEM_PROMPT !== FOUNDRY_SYSTEM_PROMPT, 'Chat and tool system prompts must stay separate');
   assert.ok(FOUNDRY_BUILD_SYSTEM_PROMPT !== FOUNDRY_SYSTEM_PROMPT, 'Build app-authoring and tool prompts must stay separate');
+  assert.doesNotMatch(FOUNDRY_CHAT_SYSTEM_PROMPT, /<tool_call>|Available tools:/, 'Casual Home Chat system prompt must not leak tool schemas');
+  assert.ok(
+    FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT.includes('<tool_call>') && FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT.includes('Available tools:'),
+    'FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT must include tool-call instructions for explicit tool requests',
+  );
+  const workerStopMatch = workerSrc.match(/stop_sequences:\s*Array\.isArray\(payload\.stopSequences\)\s*\?\s*payload\.stopSequences\s*:/);
+  assert.ok(workerStopMatch, 'uor-v13-worker must honor explicit empty stopSequences array');
 });
 
-test('runUorR4AgentTurn uses FOUNDRY_CHAT_SYSTEM_PROMPT in chat mode, FOUNDRY_BUILD_SYSTEM_PROMPT for Build app authoring, and FOUNDRY_SYSTEM_PROMPT for tool requests across 0.6B and 1.7B', async () => {
+test('runUorR4AgentTurn separates casual natural chat, explicit chat tool calls, Build app authoring, and sanitizes stale JSON history', async () => {
   for (const modelId of ['uor-r4:qwen3-0.6b', 'uor-r4:qwen3-1.7b']) {
     const seen = [];
     await runUorR4AgentTurn({
       appId: null,
       chatId: `chat-mode-${modelId}`,
       modelId,
-      messages: [],
-      userPrompt: 'hi how are you',
+      messages: [
+        { role: 'user', content: 'hello' },
+        { role: 'assistant', content: '{"name": "hello", "arguments": {"message": "Hi there!"}}' },
+        { role: 'user', content: 'what is up?' },
+        { role: 'assistant', content: '{"name": "predict_next_token", "arguments": {"model": "your_model"}}' },
+      ],
+      userPrompt: 'how do you predict the next token',
       chatMode: 'chat',
       generateFn: async (req) => {
-        seen.push(req.systemPrompt);
-        return { fullText: 'Doing well!', weightsMatched: true };
+        seen.push(req);
+        return { fullText: 'I predict the next token using integer arithmetic.', weightsMatched: true };
+      },
+      tools: {},
+      onText: async () => {},
+    });
+    await runUorR4AgentTurn({
+      appId: null,
+      chatId: `chat-tool-${modelId}`,
+      modelId,
+      messages: [],
+      userPrompt: 'Check github_status',
+      chatMode: 'chat',
+      generateFn: async (req) => {
+        seen.push(req);
+        return { fullText: 'Status checked.', weightsMatched: true };
       },
       tools: {},
       onText: async () => {},
@@ -156,7 +184,7 @@ test('runUorR4AgentTurn uses FOUNDRY_CHAT_SYSTEM_PROMPT in chat mode, FOUNDRY_BU
       userPrompt: 'build a todo app',
       chatMode: 'build',
       generateFn: async (req) => {
-        seen.push(req.systemPrompt);
+        seen.push(req);
         return { fullText: '<prism-write path="src/App.tsx" description="todo">export default function App(){return <div/>;}</prism-write>', weightsMatched: true };
       },
       tools: {},
@@ -170,7 +198,7 @@ test('runUorR4AgentTurn uses FOUNDRY_CHAT_SYSTEM_PROMPT in chat mode, FOUNDRY_BU
       userPrompt: 'Call workspace_list for root.',
       chatMode: 'build',
       generateFn: async (req) => {
-        seen.push(req.systemPrompt);
+        seen.push(req);
         return { fullText: 'Done.', weightsMatched: true };
       },
       tools: {},
@@ -185,17 +213,41 @@ test('runUorR4AgentTurn uses FOUNDRY_CHAT_SYSTEM_PROMPT in chat mode, FOUNDRY_BU
       groundingContext: '[Foundry Context]\n- tool docs mention workspace_write and lexlean_check',
       chatMode: 'build',
       generateFn: async (req) => {
-        seen.push(req.systemPrompt);
+        seen.push(req);
         return { fullText: '<prism-write path="src/App.tsx" description="uor">export default function App(){return <div/>;}</prism-write>', weightsMatched: true };
       },
       tools: {},
       onText: async () => {},
     });
-    assert.equal(seen[0], FOUNDRY_CHAT_SYSTEM_PROMPT, `${modelId} chat mode must use FOUNDRY_CHAT_SYSTEM_PROMPT`);
-    assert.equal(seen[1], FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} build authoring must use FOUNDRY_BUILD_SYSTEM_PROMPT`);
-    assert.equal(seen[2], FOUNDRY_SYSTEM_PROMPT, `${modelId} build tool request must use FOUNDRY_SYSTEM_PROMPT`);
-    assert.equal(seen[3], FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} groundingContext keywords must not hijack BUILD_TOOL_INTENT_RE`);
+    assert.equal(seen[0].systemPrompt, FOUNDRY_CHAT_SYSTEM_PROMPT, `${modelId} casual chat must use FOUNDRY_CHAT_SYSTEM_PROMPT`);
+    assert.deepEqual(seen[0].stopSequences, [], `${modelId} casual chat must not set </tool_call> stop sequence`);
+    assert.deepEqual(
+      seen[0].messages,
+      [
+        { role: 'user', content: 'hello' },
+        { role: 'assistant', content: 'Hi there!' },
+        { role: 'user', content: 'what is up?' },
+      ],
+      `${modelId} casual chat must unwrap/drop stale bare-JSON assistant turns`,
+    );
+    assert.equal(seen[1].systemPrompt, FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT, `${modelId} explicit chat tool request must use FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT`);
+    assert.deepEqual(seen[1].stopSequences, ['</tool_call>'], `${modelId} explicit chat tool request must stop at </tool_call>`);
+    assert.equal(seen[2].systemPrompt, FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} build authoring must use FOUNDRY_BUILD_SYSTEM_PROMPT`);
+    assert.equal(seen[3].systemPrompt, FOUNDRY_SYSTEM_PROMPT, `${modelId} build tool request must use FOUNDRY_SYSTEM_PROMPT`);
+    assert.equal(seen[4].systemPrompt, FOUNDRY_BUILD_SYSTEM_PROMPT, `${modelId} groundingContext keywords must not hijack TOOL_INTENT_RE`);
   }
+
+  const sanitized = sanitizeCasualChatHistory([
+    { role: 'user', content: 'hello' },
+    { role: 'assistant', content: '{"name": "hello", "arguments": {"message": "Hi! What can I assist you with?"}}' },
+    { role: 'assistant', content: '{"name": "predict_next_token", "arguments": {"model": "your_model"}}' },
+    { role: 'assistant', content: 'Pure-integer WASM response.' },
+  ]);
+  assert.deepEqual(sanitized, [
+    { role: 'user', content: 'hello' },
+    { role: 'assistant', content: 'Hi! What can I assist you with?' },
+    { role: 'assistant', content: 'Pure-integer WASM response.' },
+  ]);
 });
 
 test('transformProjectSource preserves multi-line imports/destructuring, adds missing hooks, and extractFallbackCodeWrites blocks path traversal', async () => {

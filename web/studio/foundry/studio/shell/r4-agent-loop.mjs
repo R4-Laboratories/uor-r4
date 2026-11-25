@@ -1,12 +1,16 @@
 // Real UOR-R4 V13 Qwen3-0.6B & Qwen3-1.7B + Foundry Webharness Agent Loop.
-// Separates general conversational Chat mode (`FOUNDRY_CHAT_SYSTEM_PROMPT`) from
-// Build/Agent file authoring (`FOUNDRY_SYSTEM_PROMPT`) so Chat replies naturally
-// and Build produces compact, complete `src/App.tsx` apps that close cleanly.
+// Separates general conversational Chat mode (`FOUNDRY_CHAT_SYSTEM_PROMPT`),
+// explicit tool-enabled Chat (`FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT`), Build app
+// authoring (`FOUNDRY_BUILD_SYSTEM_PROMPT`), and full tool mode (`FOUNDRY_SYSTEM_PROMPT`).
 
 export const FOUNDRY_CHAT_SYSTEM_PROMPT =
-  'You are UOR-R4 Foundry Assistant, running locally inside your user\'s browser on Hologram Foundry\'s pure-integer WebAssembly engine (zero floats, zero dense matmul, zero softmax — not a standard cloud transformer) alongside a local virtual workstation (Linux 6.18.7 VM, RV64IMAC MVM, Studio workspace, GitHub sync, PrismPM/.holo, LexLean 0.3.0, UOR Standards, Stitch).\n' +
-  'Answer questions directly in clear, concise natural language without listing tools unless the user asks for an action.\n' +
-  'When the user explicitly asks to inspect files, run shell/MVM commands, sync GitHub, verify PrismPM/LexLean, look up UOR standards, or fetch via Stitch, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
+  "You are UOR-R4 Foundry Assistant, running locally inside the user's browser on Hologram Foundry's pure-integer WebAssembly engine (zero floats, zero dense matmul, zero softmax — not a standard cloud transformer). " +
+  'You predict the next token using pure-integer fixed-point UOR-R4 geometry and exact arithmetic in WebAssembly over locally cached weights. ' +
+  'Reply directly in clear, concise natural language.';
+
+export const FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT =
+  'You are UOR-R4 Foundry Assistant running locally in-browser on pure-integer WASM (zero floats/matmul/softmax) inside Hologram Foundry.\n' +
+  'Emit a single JSON tool call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call> to fulfill the user\'s explicit tool request, then summarize the result clearly in natural language.\n' +
   'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
 
 export const FOUNDRY_BUILD_SYSTEM_PROMPT =
@@ -28,8 +32,8 @@ export const FOUNDRY_SYSTEM_PROMPT =
   'When executing workspace, VM, GitHub, PrismPM/.holo, LexLean, Standards, or Stitch actions, emit a single JSON call inside <tool_call>{"name": "...", "arguments": {...}}</tool_call>.\n' +
   'Available tools: workspace_read(path, start_line?, end_line?), workspace_write(path, content), workspace_list(dir), linux_exec(command, cwd?), mvm_exec(command), github_status(repo?), github_list_repos(owner?), github_clone(repo, branch?), github_pull(repo, branch?), github_push(repo, branch, message), prismpm_verify(target, action?), holo_publish(), holo_inspect(kappa?), lexlean_check(path), lexlean_verify(path, profile?), standards_lookup(query), stitch_fetch(url, method?), stitch_peer_status(peer_id?).';
 
-const BUILD_TOOL_INTENT_RE =
-  /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b|\b(github_status|github_list_repos|github_clone|github_pull|github_push|clone|pull|push)\b.*\b(repo|github|branch)\b|\b(run|exec|execute)\s+.*(command|linux|mvm|shell|bash)\b|\b(list|read|inspect)\s+(the\s+)?(files?|workspace|dir|directory)\b|\b(publish|inspect)\s+.*\.?holo\b|\b(lexlean|prismpm|stitch_peer|standards_lookup)\b/i;
+const TOOL_INTENT_RE =
+  /\b(workspace_read|workspace_write|workspace_list|linux_exec|mvm_exec|github_status|github_list_repos|github_clone|github_pull|github_push|prismpm_verify|holo_publish|holo_inspect|lexlean_check|lexlean_verify|standards_lookup|stitch_fetch|stitch_peer_status)\b|\b(check|show|inspect|list|clone|pull|push|sync)\s+(my\s+|the\s+)?(github|repo|repositories|branch)\b|\b(look\s+up|search)\s+(uor\s+)?standards\b|\b(run|exec|execute)\s+.*(command|linux|mvm|shell|bash)\b|\b(list|read|inspect)\s+(the\s+)?(?:(?:root|workspace|project)\s+)?(files?|workspace|dir|directory)\b|\b(publish|inspect)\s+.*\.?holo\b|\b(lexlean|prismpm|stitch_peer)\b/i;
 
 export const FOUNDRY_TOOL_NAMES = Object.freeze([
   'workspace_read',
@@ -194,6 +198,43 @@ export async function dispatchFoundryTool(call, tools) {
   }
 }
 
+export function sanitizeCasualChatHistory(messages) {
+  if (!Array.isArray(messages) || !messages.length) return [];
+  const sanitized = [];
+  for (const msg of messages) {
+    if (!msg || typeof msg.content !== 'string') {
+      if (msg) sanitized.push(msg);
+      continue;
+    }
+    if (msg.role !== 'assistant') {
+      sanitized.push(msg);
+      continue;
+    }
+    const trimmed = msg.content.trim();
+    if (
+      /^\{\s*"name"\s*:\s*"[^"]+"\s*,\s*"arguments"\s*:/.test(trimmed) &&
+      !/<tool_call>|<tool_response>/.test(trimmed)
+    ) {
+      let parsed = null;
+      try {
+        parsed = JSON.parse(trimmed);
+      } catch {
+        parsed = repairToolJson(trimmed);
+      }
+      const args = parsed?.arguments && typeof parsed.arguments === 'object' ? parsed.arguments : null;
+      const unwrapped = args
+        ? [args.message, args.text, args.reply, args.response].find((v) => typeof v === 'string' && v.trim())
+        : null;
+      if (unwrapped) {
+        sanitized.push({ ...msg, content: unwrapped.trim() });
+      }
+      continue;
+    }
+    sanitized.push(msg);
+  }
+  return sanitized;
+}
+
 export async function runUorR4AgentTurn({
   appId = null,
   chatId,
@@ -257,7 +298,12 @@ export async function runUorR4AgentTurn({
   }
 
   let transcript = '';
-  let turnMessages = Array.isArray(messages) ? [...messages] : [];
+  const hasToolIntent = TOOL_INTENT_RE.test(prompt);
+  const wantsToolPrompt = chatMode === 'local-agent' || hasToolIntent;
+  const isCasualChat = chatMode !== 'build' && !wantsToolPrompt;
+  let turnMessages = Array.isArray(messages)
+    ? (isCasualChat ? sanitizeCasualChatHistory(messages) : [...messages])
+    : [];
   let weightsMatched = true;
   let toolExecutions = 0;
   let updatedFiles = false;
@@ -267,12 +313,14 @@ export async function runUorR4AgentTurn({
   const isV13 = /^((uor-r4:)?qwen3-)/i.test(String(modelId || ''));
   const hasCustomGenerate = typeof generateFn === 'function';
   const useFoundryPrompt = isV13 || hasCustomGenerate;
-  const wantsToolPrompt = chatMode === 'local-agent' || (chatMode === 'build' && BUILD_TOOL_INTENT_RE.test(prompt));
-  const activeSystemPrompt = wantsToolPrompt
-    ? FOUNDRY_SYSTEM_PROMPT
-    : chatMode === 'build'
-      ? FOUNDRY_BUILD_SYSTEM_PROMPT
-      : FOUNDRY_CHAT_SYSTEM_PROMPT;
+  const activeSystemPrompt =
+    chatMode === 'local-agent' || (chatMode === 'build' && hasToolIntent)
+      ? FOUNDRY_SYSTEM_PROMPT
+      : chatMode === 'build'
+        ? FOUNDRY_BUILD_SYSTEM_PROMPT
+        : hasToolIntent
+          ? FOUNDRY_CHAT_TOOL_SYSTEM_PROMPT
+          : FOUNDRY_CHAT_SYSTEM_PROMPT;
 
   const maxRounds =
     Number.isInteger(maxToolRounds) && maxToolRounds >= 1 && maxToolRounds <= 12
@@ -289,7 +337,7 @@ export async function runUorR4AgentTurn({
       messages: round === 0 ? turnMessages : turnMessages.slice(0, -1),
       maxNewTokens: useFoundryPrompt ? maxNewTokens : 48,
       ...(useFoundryPrompt && typeof speculative === 'boolean' ? { speculative } : {}),
-      stopSequences: useFoundryPrompt ? ['</tool_call>'] : undefined,
+      stopSequences: useFoundryPrompt ? (chatMode === 'build' || wantsToolPrompt ? ['</tool_call>'] : []) : undefined,
       signal,
       onToken: ({ fullText }) => {
         void onText(roundPrefix + fullText);
