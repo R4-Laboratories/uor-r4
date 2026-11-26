@@ -1,0 +1,766 @@
+{
+  "pairs": 128,
+  "endpoints": 256,
+  "reference_sha256": "b95b52f26debef4dae7197baa2557b228fe60d583c466c8d3d78353271fe88fb",
+  "endpoints_sha256": "36da6cac65bd6c54c24b46256ad1897bffd0674de8a8663a783e34a62cbba11a",
+  "arms": {
+    "native": {
+      "endpoints": 256,
+      "pairs": 128,
+      "exact_endpoints": 24,
+      "exact_pairs": 0,
+      "gains_over_native": 0,
+      "losses_to_native": 0,
+      "both_earlier_exact": 24,
+      "exact_earlier_pairs": 0,
+      "wrong_heading": 16,
+      "neutral_noun_selected": 24,
+      "abstentions": 44,
+      "best_ties": 44,
+      "rows_with_only_one_eligible_tuple": 0,
+      "eligible_tuple_range": {
+        "min": 52,
+        "max": 384
+      },
+      "exact_with_supplied_heading": 24,
+      "paired_with_supplied_heading": 0
+    },
+    "governor_only": {
+      "endpoints": 256,
+      "pairs": 128,
+      "exact_endpoints": 0,
+      "exact_pairs": 0,
+      "gains_over_native": 0,
+      "losses_to_native": 0,
+      "both_earlier_exact": 0,
+      "exact_earlier_pairs": 0,
+      "wrong_heading": 120,
+      "neutral_noun_selected": 32,
+      "abstentions": 0,
+      "best_ties": 0,
+      "rows_with_only_one_eligible_tuple": 0,
+      "eligible_tuple_range": {
+        "min": 52,
+        "max": 384
+      },
+      "exact_with_supplied_heading": 0,
+      "paired_with_supplied_heading": 0
+    },
+    "nouns_only": {
+      "endpoints": 256,
+      "pairs": 128,
+      "exact_endpoints": 116,
+      "exact_pairs": 16,
+      "gains_over_native": 16,
+      "losses_to_native": 0,
+      "both_earlier_exact": 116,
+      "exact_earlier_pairs": 16,
+      "wrong_heading": 0,
+      "neutral_noun_selected": 0,
+      "abstentions": 36,
+      "best_ties": 36,
+      "rows_with_only_one_eligible_tuple": 0,
+      "eligible_tuple_range": {
+        "min": 2,
+        "max": 2
+      },
+      "exact_with_supplied_heading": 116,
+      "paired_with_supplied_heading": 16
+    },
+    "correct_link": {
+      "endpoints": 256,
+      "pairs": 128,
+      "exact_endpoints": 256,
+      "exact_pairs": 128,
+      "gains_over_native": 128,
+      "losses_to_native": 0,
+      "both_earlier_exact": 256,
+      "exact_earlier_pairs": 128,
+      "wrong_heading": 0,
+      "neutral_noun_selected": 0,
+      "abstentions": 0,
+      "best_ties": 0,
+      "rows_with_only_one_eligible_tuple": 256,
+      "eligible_tuple_range": {
+        "min": 1,
+        "max": 1
+      },
+      "exact_with_supplied_heading": 256,
+      "paired_with_supplied_heading": 128
+    },
+    "exchanged_link": {
+      "endpoints": 256,
+      "pairs": 128,
+      "exact_endpoints": 0,
+      "exact_pairs": 0,
+      "gains_over_native": 0,
+      "losses_to_native": 0,
+      "both_earlier_exact": 0,
+      "exact_earlier_pairs": 0,
+      "wrong_heading": 0,
+      "neutral_noun_selected": 0,
+      "abstentions": 0,
+      "best_ties": 0,
+      "rows_with_only_one_eligible_tuple": 256,
+      "eligible_tuple_range": {
+        "min": 1,
+        "max": 1
+      },
+      "exact_with_supplied_heading": 0,
+      "paired_with_supplied_heading": 0
+    }
+  },
+  "by_distance": {
+    "far": {
+      "native": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 4,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 4,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 12,
+        "neutral_noun_selected": 12,
+        "abstentions": 32,
+        "best_ties": 32,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 106,
+          "max": 384
+        },
+        "exact_with_supplied_heading": 4,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 40,
+        "neutral_noun_selected": 32,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 106,
+          "max": 384
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 48,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 48,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 32,
+        "best_ties": 32,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 48,
+        "paired_with_supplied_heading": 0
+      },
+      "correct_link": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 128,
+        "exact_pairs": 64,
+        "gains_over_native": 64,
+        "losses_to_native": 0,
+        "both_earlier_exact": 128,
+        "exact_earlier_pairs": 64,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 128,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 128,
+        "paired_with_supplied_heading": 64
+      },
+      "exchanged_link": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 128,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    },
+    "near": {
+      "native": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 20,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 20,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 4,
+        "neutral_noun_selected": 12,
+        "abstentions": 12,
+        "best_ties": 12,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 256
+        },
+        "exact_with_supplied_heading": 20,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 80,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 256
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 68,
+        "exact_pairs": 16,
+        "gains_over_native": 16,
+        "losses_to_native": 0,
+        "both_earlier_exact": 68,
+        "exact_earlier_pairs": 16,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 4,
+        "best_ties": 4,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 68,
+        "paired_with_supplied_heading": 16
+      },
+      "correct_link": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 128,
+        "exact_pairs": 64,
+        "gains_over_native": 64,
+        "losses_to_native": 0,
+        "both_earlier_exact": 128,
+        "exact_earlier_pairs": 64,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 128,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 128,
+        "paired_with_supplied_heading": 64
+      },
+      "exchanged_link": {
+        "endpoints": 128,
+        "pairs": 64,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 128,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    }
+  },
+  "by_family": {
+    "ceremony": {
+      "native": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 8,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 8,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 4,
+        "abstentions": 16,
+        "best_ties": 16,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 132,
+          "max": 374
+        },
+        "exact_with_supplied_heading": 8,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 24,
+        "neutral_noun_selected": 8,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 132,
+          "max": 374
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 32,
+        "exact_pairs": 4,
+        "gains_over_native": 4,
+        "losses_to_native": 0,
+        "both_earlier_exact": 32,
+        "exact_earlier_pairs": 4,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 12,
+        "best_ties": 12,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 32,
+        "paired_with_supplied_heading": 4
+      },
+      "correct_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 64,
+        "exact_pairs": 32,
+        "gains_over_native": 32,
+        "losses_to_native": 0,
+        "both_earlier_exact": 64,
+        "exact_earlier_pairs": 32,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 64,
+        "paired_with_supplied_heading": 32
+      },
+      "exchanged_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    },
+    "kitchen": {
+      "native": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 12,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 12,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 16,
+        "neutral_noun_selected": 8,
+        "abstentions": 4,
+        "best_ties": 4,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 378
+        },
+        "exact_with_supplied_heading": 12,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 24,
+        "neutral_noun_selected": 8,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 378
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 32,
+        "exact_pairs": 4,
+        "gains_over_native": 4,
+        "losses_to_native": 0,
+        "both_earlier_exact": 32,
+        "exact_earlier_pairs": 4,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 8,
+        "best_ties": 8,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 32,
+        "paired_with_supplied_heading": 4
+      },
+      "correct_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 64,
+        "exact_pairs": 32,
+        "gains_over_native": 32,
+        "losses_to_native": 0,
+        "both_earlier_exact": 64,
+        "exact_earlier_pairs": 32,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 64,
+        "paired_with_supplied_heading": 32
+      },
+      "exchanged_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    },
+    "survey": {
+      "native": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 4,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 4,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 8,
+        "best_ties": 8,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 156,
+          "max": 384
+        },
+        "exact_with_supplied_heading": 4,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 48,
+        "neutral_noun_selected": 8,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 156,
+          "max": 384
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 24,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 24,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 8,
+        "best_ties": 8,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 24,
+        "paired_with_supplied_heading": 0
+      },
+      "correct_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 64,
+        "exact_pairs": 32,
+        "gains_over_native": 32,
+        "losses_to_native": 0,
+        "both_earlier_exact": 64,
+        "exact_earlier_pairs": 32,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 64,
+        "paired_with_supplied_heading": 32
+      },
+      "exchanged_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    },
+    "theatre": {
+      "native": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 12,
+        "abstentions": 16,
+        "best_ties": 16,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 324
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "governor_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 24,
+        "neutral_noun_selected": 8,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 52,
+          "max": 324
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      },
+      "nouns_only": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 28,
+        "exact_pairs": 8,
+        "gains_over_native": 8,
+        "losses_to_native": 0,
+        "both_earlier_exact": 28,
+        "exact_earlier_pairs": 8,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 8,
+        "best_ties": 8,
+        "rows_with_only_one_eligible_tuple": 0,
+        "eligible_tuple_range": {
+          "min": 2,
+          "max": 2
+        },
+        "exact_with_supplied_heading": 28,
+        "paired_with_supplied_heading": 8
+      },
+      "correct_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 64,
+        "exact_pairs": 32,
+        "gains_over_native": 32,
+        "losses_to_native": 0,
+        "both_earlier_exact": 64,
+        "exact_earlier_pairs": 32,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 64,
+        "paired_with_supplied_heading": 32
+      },
+      "exchanged_link": {
+        "endpoints": 64,
+        "pairs": 32,
+        "exact_endpoints": 0,
+        "exact_pairs": 0,
+        "gains_over_native": 0,
+        "losses_to_native": 0,
+        "both_earlier_exact": 0,
+        "exact_earlier_pairs": 0,
+        "wrong_heading": 0,
+        "neutral_noun_selected": 0,
+        "abstentions": 0,
+        "best_ties": 0,
+        "rows_with_only_one_eligible_tuple": 64,
+        "eligible_tuple_range": {
+          "min": 1,
+          "max": 1
+        },
+        "exact_with_supplied_heading": 0,
+        "paired_with_supplied_heading": 0
+      }
+    }
+  },
+  "gate": {
+    "net_over_native": 128,
+    "net_over_exchanged": 128,
+    "gains_in_both_distances": true,
+    "no_family_loses": true
+  },
+  "pass": true
+}

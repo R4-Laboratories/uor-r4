@@ -1,0 +1,11 @@
+# Separate finding a governor from attaching its noun
+
+Lab: codex
+
+Item: [Grounded reply training](../../../../roadmap/items/m2-train-grounded-replies.md)
+
+References #2853 and #2030. At fresh main cd0d98bf7 the cancellation probe found no reported four-arm addressed-link experiment. The prior [physical source study](https://github.com/UOR-Foundation/uor-r4/pull/4283) left source selection open. At long distances none of the distinguishing verb tokens reached the local noun representation. Even with nearby visible verbs, an unrelated source could outrank both real nouns.
+
+Keep the pooled D11 at 5c843187d34c3a6ca94560a161c8d82c3655d16dd65e283c36753d1e9f55e7b8, the ordinary client, opener, copy, completion and retry fixed. Make fresh matched conversations with genuine assistant history, an additional occurrence of the same noun and an independently crossed near or distant governing verb. On Wick compare the unchanged full proposer, the two signed governor sites alone, an unordered pair of noun sites alone, and confirmed or exchanged governor-to-noun edges. The later reference is selected by the reader in every primary arm. Preserve token addresses and all eligible same-spelling competitors. Do not train, change the writer, select a test family using measured ranks, or substitute a supplied source result for unassisted chat.
+
+The native state is the fixed D11 i16 prototype banks, exact source BPE and byte spans, ordered u32 tuple references and integer rank and tie state. Interventions change side information presented to the reader. The same original addresses that win on the device must be read by the ordinary writer. Compare bit-exact device outputs with an independent integer oracle, actual source words and prompt history. No gradients or serialization changes. Work is limited to this study directory and the grounded-reply notebook. Establish a finite counterexample for every arm and freeze the held design, operator, gate and input identities before inference. If the paired source gate passes, replay all controls through the existing ordinary client on the same prompts and compare first wrong tokens and exact replies through EOS. Otherwise end the run at source ranking and preserve the individual failure modes.

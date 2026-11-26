@@ -1,0 +1,14 @@
+{
+  "folds": 5,
+  "cases": 1280,
+  "turns": 2560,
+  "unissued": 0,
+  "source_bound_device_turns": 1200,
+  "unsupported_zero_emission": 80,
+  "native_turns": 1280,
+  "original_writer_steps": 17160,
+  "third_releases": 528,
+  "signed_tables": [
+    "19716030c9440bc74f0d08a7b204015a731d963ffec97127a701ff24996b9c3c"
+  ]
+}

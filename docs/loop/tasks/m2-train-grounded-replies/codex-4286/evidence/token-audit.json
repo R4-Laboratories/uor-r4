@@ -1,0 +1,537 @@
+{
+  "arms": {
+    "correct_link": {
+      "replies": 256,
+      "returned_eos": 204,
+      "first_eos": 204,
+      "pairs_both_eos": 76,
+      "correct_prefix_at_cap": 52,
+      "retry": 128,
+      "first": [],
+      "returned": [],
+      "moved_relative_to_native": [
+        {
+          "old": null,
+          "new": null,
+          "count": 128
+        },
+        {
+          "old": 1,
+          "new": null,
+          "count": 64
+        },
+        {
+          "old": 8,
+          "new": null,
+          "count": 64
+        }
+      ],
+      "before_after_retry_changed": 0
+    },
+    "exchanged_link": {
+      "replies": 256,
+      "returned_eos": 0,
+      "first_eos": 0,
+      "pairs_both_eos": 0,
+      "correct_prefix_at_cap": 0,
+      "retry": 128,
+      "first": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 64
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 64
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 32
+        }
+      ],
+      "returned": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 64
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 64
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 32
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 32
+        }
+      ],
+      "moved_relative_to_native": [
+        {
+          "old": null,
+          "new": 1,
+          "count": 64
+        },
+        {
+          "old": null,
+          "new": 8,
+          "count": 64
+        },
+        {
+          "old": 1,
+          "new": 1,
+          "count": 64
+        },
+        {
+          "old": 8,
+          "new": 8,
+          "count": 64
+        }
+      ],
+      "before_after_retry_changed": 0
+    },
+    "governor_only": {
+      "replies": 256,
+      "returned_eos": 120,
+      "first_eos": 120,
+      "pairs_both_eos": 36,
+      "correct_prefix_at_cap": 32,
+      "retry": 144,
+      "first": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 30
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 22
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 11
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 11
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 15
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 15
+        }
+      ],
+      "returned": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 30
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 22
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 11
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 11
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 15
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 15
+        }
+      ],
+      "moved_relative_to_native": [
+        {
+          "old": null,
+          "new": null,
+          "count": 80
+        },
+        {
+          "old": null,
+          "new": 1,
+          "count": 24
+        },
+        {
+          "old": null,
+          "new": 8,
+          "count": 24
+        },
+        {
+          "old": 1,
+          "new": null,
+          "count": 36
+        },
+        {
+          "old": 1,
+          "new": 1,
+          "count": 28
+        },
+        {
+          "old": 8,
+          "new": null,
+          "count": 36
+        },
+        {
+          "old": 8,
+          "new": 8,
+          "count": 28
+        }
+      ],
+      "before_after_retry_changed": 0
+    },
+    "native": {
+      "replies": 256,
+      "returned_eos": 94,
+      "first_eos": 94,
+      "pairs_both_eos": 10,
+      "correct_prefix_at_cap": 34,
+      "retry": 160,
+      "first": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 40
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 24
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 12
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 12
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 20
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 20
+        }
+      ],
+      "returned": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 40
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 24
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 12
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 12
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 20
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 20
+        }
+      ],
+      "moved_relative_to_native": [
+        {
+          "old": null,
+          "new": null,
+          "count": 128
+        },
+        {
+          "old": 1,
+          "new": 1,
+          "count": 64
+        },
+        {
+          "old": 8,
+          "new": 8,
+          "count": 64
+        }
+      ],
+      "before_after_retry_changed": 0
+    },
+    "nouns_only": {
+      "replies": 256,
+      "returned_eos": 94,
+      "first_eos": 94,
+      "pairs_both_eos": 12,
+      "correct_prefix_at_cap": 42,
+      "retry": 192,
+      "first": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 46
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 14
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 7
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 7
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 23
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 23
+        }
+      ],
+      "returned": [
+        {
+          "position": 1,
+          "expected": 617,
+          "actual": 2997,
+          "count": 46
+        },
+        {
+          "position": 1,
+          "expected": 2997,
+          "actual": 617,
+          "count": 14
+        },
+        {
+          "position": 8,
+          "expected": 1,
+          "actual": 617,
+          "count": 7
+        },
+        {
+          "position": 8,
+          "expected": 340,
+          "actual": 617,
+          "count": 7
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 1,
+          "count": 23
+        },
+        {
+          "position": 8,
+          "expected": 617,
+          "actual": 340,
+          "count": 23
+        }
+      ],
+      "moved_relative_to_native": [
+        {
+          "old": null,
+          "new": null,
+          "count": 92
+        },
+        {
+          "old": null,
+          "new": 1,
+          "count": 18
+        },
+        {
+          "old": null,
+          "new": 8,
+          "count": 18
+        },
+        {
+          "old": 1,
+          "new": null,
+          "count": 22
+        },
+        {
+          "old": 1,
+          "new": 1,
+          "count": 42
+        },
+        {
+          "old": 8,
+          "new": null,
+          "count": 22
+        },
+        {
+          "old": 8,
+          "new": 8,
+          "count": 42
+        }
+      ],
+      "before_after_retry_changed": 0
+    }
+  },
+  "by_distance": [
+    {
+      "arm": "correct_link",
+      "distance": "far",
+      "pairs_both_eos": 38
+    },
+    {
+      "arm": "correct_link",
+      "distance": "near",
+      "pairs_both_eos": 38
+    },
+    {
+      "arm": "exchanged_link",
+      "distance": "far",
+      "pairs_both_eos": 0
+    },
+    {
+      "arm": "exchanged_link",
+      "distance": "near",
+      "pairs_both_eos": 0
+    },
+    {
+      "arm": "governor_only",
+      "distance": "far",
+      "pairs_both_eos": 24
+    },
+    {
+      "arm": "governor_only",
+      "distance": "near",
+      "pairs_both_eos": 12
+    },
+    {
+      "arm": "native",
+      "distance": "far",
+      "pairs_both_eos": 4
+    },
+    {
+      "arm": "native",
+      "distance": "near",
+      "pairs_both_eos": 6
+    },
+    {
+      "arm": "nouns_only",
+      "distance": "far",
+      "pairs_both_eos": 0
+    },
+    {
+      "arm": "nouns_only",
+      "distance": "near",
+      "pairs_both_eos": 12
+    }
+  ]
+}

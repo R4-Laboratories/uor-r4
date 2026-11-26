@@ -1,0 +1,9 @@
+{
+  "arm_reductions_with_exact_spans": 1280,
+  "cpu_oracle_matches_physical_results": true,
+  "d11_i16_banks_exact": true,
+  "per_arm_proposals": 55216,
+  "point_head_costs": 220320,
+  "proposal_bank_costs_eligibilities_and_gaps": 276080,
+  "rows": 256
+}

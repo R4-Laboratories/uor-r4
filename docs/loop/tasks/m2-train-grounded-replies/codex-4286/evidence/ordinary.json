@@ -1,0 +1,1652 @@
+{
+  "pair_count": 128,
+  "source_identity_disagreements": [],
+  "arms": [
+    {
+      "arm": "native",
+      "all": {
+        "endpoints": 256,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 116
+          },
+          {
+            "value": "take",
+            "count": 96
+          },
+          {
+            "value": "unresolved_fields",
+            "count": 44
+          }
+        ],
+        "valid_abstentions": 44,
+        "zero_bound_emission": 160,
+        "stock_trace_parity": 160,
+        "gold_scope_exact": 24,
+        "correct_writer_route": 96,
+        "exact_terminal": 94,
+        "authenticated_take_eos": 48,
+        "authenticated_defer_parity": 60,
+        "authenticated_defer_eos": 36,
+        "authenticated_defer_cap": 24,
+        "first_correct_prefix_at_cap": 34,
+        "returned_correct_prefix_at_cap": 34,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 190
+          },
+          {
+            "value": "max_tokens",
+            "count": 66
+          }
+        ],
+        "retries": 160,
+        "retry_steps": 4394,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          },
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          },
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ]
+      },
+      "take": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 56
+          },
+          {
+            "value": "take",
+            "count": 48
+          },
+          {
+            "value": "unresolved_fields",
+            "count": 24
+          }
+        ],
+        "valid_abstentions": 24,
+        "zero_bound_emission": 80,
+        "stock_trace_parity": 80,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 48,
+        "exact_terminal": 48,
+        "authenticated_take_eos": 48,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 96
+          },
+          {
+            "value": "max_tokens",
+            "count": 32
+          }
+        ],
+        "retries": 80,
+        "retry_steps": 2192,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 48
+          },
+          {
+            "value": 1,
+            "count": 40
+          },
+          {
+            "value": 8,
+            "count": 40
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 48
+          },
+          {
+            "value": 1,
+            "count": 40
+          },
+          {
+            "value": 8,
+            "count": 40
+          }
+        ]
+      },
+      "defer": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 60
+          },
+          {
+            "value": "take",
+            "count": 48
+          },
+          {
+            "value": "unresolved_fields",
+            "count": 20
+          }
+        ],
+        "valid_abstentions": 20,
+        "zero_bound_emission": 80,
+        "stock_trace_parity": 80,
+        "gold_scope_exact": 24,
+        "correct_writer_route": 48,
+        "exact_terminal": 46,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 60,
+        "authenticated_defer_eos": 36,
+        "authenticated_defer_cap": 24,
+        "first_correct_prefix_at_cap": 34,
+        "returned_correct_prefix_at_cap": 34,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 94
+          },
+          {
+            "value": "max_tokens",
+            "count": 34
+          }
+        ],
+        "retries": 80,
+        "retry_steps": 2202,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 80
+          },
+          {
+            "value": 1,
+            "count": 24
+          },
+          {
+            "value": 8,
+            "count": 24
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 80
+          },
+          {
+            "value": 1,
+            "count": 24
+          },
+          {
+            "value": 8,
+            "count": 24
+          }
+        ]
+      },
+      "by_distance": [
+        {
+          "distance": "far",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 48
+              },
+              {
+                "value": "take",
+                "count": 48
+              },
+              {
+                "value": "unresolved_fields",
+                "count": 32
+              }
+            ],
+            "valid_abstentions": 32,
+            "zero_bound_emission": 80,
+            "stock_trace_parity": 80,
+            "gold_scope_exact": 4,
+            "correct_writer_route": 48,
+            "exact_terminal": 48,
+            "authenticated_take_eos": 24,
+            "authenticated_defer_parity": 24,
+            "authenticated_defer_eos": 16,
+            "authenticated_defer_cap": 8,
+            "first_correct_prefix_at_cap": 16,
+            "returned_correct_prefix_at_cap": 16,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 96
+              },
+              {
+                "value": "max_tokens",
+                "count": 32
+              }
+            ],
+            "retries": 80,
+            "retry_steps": 2204,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ]
+          }
+        },
+        {
+          "distance": "near",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 68
+              },
+              {
+                "value": "take",
+                "count": 48
+              },
+              {
+                "value": "unresolved_fields",
+                "count": 12
+              }
+            ],
+            "valid_abstentions": 12,
+            "zero_bound_emission": 80,
+            "stock_trace_parity": 80,
+            "gold_scope_exact": 20,
+            "correct_writer_route": 48,
+            "exact_terminal": 46,
+            "authenticated_take_eos": 24,
+            "authenticated_defer_parity": 36,
+            "authenticated_defer_eos": 20,
+            "authenticated_defer_cap": 16,
+            "first_correct_prefix_at_cap": 18,
+            "returned_correct_prefix_at_cap": 18,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 94
+              },
+              {
+                "value": "max_tokens",
+                "count": 34
+              }
+            ],
+            "retries": 80,
+            "retry_steps": 2190,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ]
+          }
+        }
+      ],
+      "both_exact_eos": 10,
+      "both_original_source_reply_eos": 10,
+      "both_gold_scope_and_reply_eos": 0,
+      "paired_take_eos_and_defer_stock": 16
+    },
+    {
+      "arm": "governor_only",
+      "all": {
+        "endpoints": 256,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 144
+          },
+          {
+            "value": "take",
+            "count": 112
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 144,
+        "stock_trace_parity": 144,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 112,
+        "exact_terminal": 120,
+        "authenticated_take_eos": 68,
+        "authenticated_defer_parity": 84,
+        "authenticated_defer_eos": 52,
+        "authenticated_defer_cap": 32,
+        "first_correct_prefix_at_cap": 32,
+        "returned_correct_prefix_at_cap": 32,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 200
+          },
+          {
+            "value": "max_tokens",
+            "count": 56
+          }
+        ],
+        "retries": 144,
+        "retry_steps": 3910,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 152
+          },
+          {
+            "value": 1,
+            "count": 52
+          },
+          {
+            "value": 8,
+            "count": 52
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 152
+          },
+          {
+            "value": 1,
+            "count": 52
+          },
+          {
+            "value": 8,
+            "count": 52
+          }
+        ]
+      },
+      "take": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 60
+          },
+          {
+            "value": "take",
+            "count": 68
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 60,
+        "stock_trace_parity": 60,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 68,
+        "exact_terminal": 68,
+        "authenticated_take_eos": 68,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 104
+          },
+          {
+            "value": "max_tokens",
+            "count": 24
+          }
+        ],
+        "retries": 60,
+        "retry_steps": 1628,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 68
+          },
+          {
+            "value": 1,
+            "count": 30
+          },
+          {
+            "value": 8,
+            "count": 30
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 68
+          },
+          {
+            "value": 1,
+            "count": 30
+          },
+          {
+            "value": 8,
+            "count": 30
+          }
+        ]
+      },
+      "defer": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 84
+          },
+          {
+            "value": "take",
+            "count": 44
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 84,
+        "stock_trace_parity": 84,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 44,
+        "exact_terminal": 52,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 84,
+        "authenticated_defer_eos": 52,
+        "authenticated_defer_cap": 32,
+        "first_correct_prefix_at_cap": 32,
+        "returned_correct_prefix_at_cap": 32,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 96
+          },
+          {
+            "value": "max_tokens",
+            "count": 32
+          }
+        ],
+        "retries": 84,
+        "retry_steps": 2282,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 84
+          },
+          {
+            "value": 1,
+            "count": 22
+          },
+          {
+            "value": 8,
+            "count": 22
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 84
+          },
+          {
+            "value": 1,
+            "count": 22
+          },
+          {
+            "value": 8,
+            "count": 22
+          }
+        ]
+      },
+      "by_distance": [
+        {
+          "distance": "far",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 64
+              },
+              {
+                "value": "take",
+                "count": 64
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 64,
+            "stock_trace_parity": 64,
+            "gold_scope_exact": 0,
+            "correct_writer_route": 64,
+            "exact_terminal": 66,
+            "authenticated_take_eos": 40,
+            "authenticated_defer_parity": 40,
+            "authenticated_defer_eos": 26,
+            "authenticated_defer_cap": 14,
+            "first_correct_prefix_at_cap": 14,
+            "returned_correct_prefix_at_cap": 14,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 102
+              },
+              {
+                "value": "max_tokens",
+                "count": 26
+              }
+            ],
+            "retries": 64,
+            "retry_steps": 1764,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 80
+              },
+              {
+                "value": 1,
+                "count": 24
+              },
+              {
+                "value": 8,
+                "count": 24
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 80
+              },
+              {
+                "value": 1,
+                "count": 24
+              },
+              {
+                "value": 8,
+                "count": 24
+              }
+            ]
+          }
+        },
+        {
+          "distance": "near",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 80
+              },
+              {
+                "value": "take",
+                "count": 48
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 80,
+            "stock_trace_parity": 80,
+            "gold_scope_exact": 0,
+            "correct_writer_route": 48,
+            "exact_terminal": 54,
+            "authenticated_take_eos": 28,
+            "authenticated_defer_parity": 44,
+            "authenticated_defer_eos": 26,
+            "authenticated_defer_cap": 18,
+            "first_correct_prefix_at_cap": 18,
+            "returned_correct_prefix_at_cap": 18,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 98
+              },
+              {
+                "value": "max_tokens",
+                "count": 30
+              }
+            ],
+            "retries": 80,
+            "retry_steps": 2146,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 72
+              },
+              {
+                "value": 1,
+                "count": 28
+              },
+              {
+                "value": 8,
+                "count": 28
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 72
+              },
+              {
+                "value": 1,
+                "count": 28
+              },
+              {
+                "value": 8,
+                "count": 28
+              }
+            ]
+          }
+        }
+      ],
+      "both_exact_eos": 36,
+      "both_original_source_reply_eos": 36,
+      "both_gold_scope_and_reply_eos": 0,
+      "paired_take_eos_and_defer_stock": 60
+    },
+    {
+      "arm": "nouns_only",
+      "all": {
+        "endpoints": 256,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 156
+          },
+          {
+            "value": "invalid_binding",
+            "count": 36
+          },
+          {
+            "value": "take",
+            "count": 64
+          }
+        ],
+        "valid_abstentions": 36,
+        "zero_bound_emission": 192,
+        "stock_trace_parity": 192,
+        "gold_scope_exact": 116,
+        "correct_writer_route": 64,
+        "exact_terminal": 94,
+        "authenticated_take_eos": 36,
+        "authenticated_defer_parity": 80,
+        "authenticated_defer_eos": 46,
+        "authenticated_defer_cap": 34,
+        "first_correct_prefix_at_cap": 42,
+        "returned_correct_prefix_at_cap": 42,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 174
+          },
+          {
+            "value": "max_tokens",
+            "count": 82
+          }
+        ],
+        "retries": 192,
+        "retry_steps": 5278,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 136
+          },
+          {
+            "value": 1,
+            "count": 60
+          },
+          {
+            "value": 8,
+            "count": 60
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 136
+          },
+          {
+            "value": 1,
+            "count": 60
+          },
+          {
+            "value": 8,
+            "count": 60
+          }
+        ]
+      },
+      "take": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 76
+          },
+          {
+            "value": "invalid_binding",
+            "count": 16
+          },
+          {
+            "value": "take",
+            "count": 36
+          }
+        ],
+        "valid_abstentions": 16,
+        "zero_bound_emission": 92,
+        "stock_trace_parity": 92,
+        "gold_scope_exact": 36,
+        "correct_writer_route": 36,
+        "exact_terminal": 36,
+        "authenticated_take_eos": 36,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 88
+          },
+          {
+            "value": "max_tokens",
+            "count": 40
+          }
+        ],
+        "retries": 92,
+        "retry_steps": 2538,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 36
+          },
+          {
+            "value": 1,
+            "count": 46
+          },
+          {
+            "value": 8,
+            "count": 46
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 36
+          },
+          {
+            "value": 1,
+            "count": 46
+          },
+          {
+            "value": 8,
+            "count": 46
+          }
+        ]
+      },
+      "defer": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 80
+          },
+          {
+            "value": "invalid_binding",
+            "count": 20
+          },
+          {
+            "value": "take",
+            "count": 28
+          }
+        ],
+        "valid_abstentions": 20,
+        "zero_bound_emission": 100,
+        "stock_trace_parity": 100,
+        "gold_scope_exact": 80,
+        "correct_writer_route": 28,
+        "exact_terminal": 58,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 80,
+        "authenticated_defer_eos": 46,
+        "authenticated_defer_cap": 34,
+        "first_correct_prefix_at_cap": 42,
+        "returned_correct_prefix_at_cap": 42,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 86
+          },
+          {
+            "value": "max_tokens",
+            "count": 42
+          }
+        ],
+        "retries": 100,
+        "retry_steps": 2740,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 100
+          },
+          {
+            "value": 1,
+            "count": 14
+          },
+          {
+            "value": 8,
+            "count": 14
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 100
+          },
+          {
+            "value": 1,
+            "count": 14
+          },
+          {
+            "value": 8,
+            "count": 14
+          }
+        ]
+      },
+      "by_distance": [
+        {
+          "distance": "far",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 80
+              },
+              {
+                "value": "invalid_binding",
+                "count": 32
+              },
+              {
+                "value": "take",
+                "count": 16
+              }
+            ],
+            "valid_abstentions": 32,
+            "zero_bound_emission": 112,
+            "stock_trace_parity": 112,
+            "gold_scope_exact": 48,
+            "correct_writer_route": 16,
+            "exact_terminal": 40,
+            "authenticated_take_eos": 8,
+            "authenticated_defer_parity": 40,
+            "authenticated_defer_eos": 24,
+            "authenticated_defer_cap": 16,
+            "first_correct_prefix_at_cap": 24,
+            "returned_correct_prefix_at_cap": 24,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 80
+              },
+              {
+                "value": "max_tokens",
+                "count": 48
+              }
+            ],
+            "retries": 112,
+            "retry_steps": 3100,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 64
+              },
+              {
+                "value": 1,
+                "count": 32
+              },
+              {
+                "value": 8,
+                "count": 32
+              }
+            ]
+          }
+        },
+        {
+          "distance": "near",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 76
+              },
+              {
+                "value": "invalid_binding",
+                "count": 4
+              },
+              {
+                "value": "take",
+                "count": 48
+              }
+            ],
+            "valid_abstentions": 4,
+            "zero_bound_emission": 80,
+            "stock_trace_parity": 80,
+            "gold_scope_exact": 68,
+            "correct_writer_route": 48,
+            "exact_terminal": 54,
+            "authenticated_take_eos": 28,
+            "authenticated_defer_parity": 40,
+            "authenticated_defer_eos": 22,
+            "authenticated_defer_cap": 18,
+            "first_correct_prefix_at_cap": 18,
+            "returned_correct_prefix_at_cap": 18,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 94
+              },
+              {
+                "value": "max_tokens",
+                "count": 34
+              }
+            ],
+            "retries": 80,
+            "retry_steps": 2178,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 72
+              },
+              {
+                "value": 1,
+                "count": 28
+              },
+              {
+                "value": 8,
+                "count": 28
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 72
+              },
+              {
+                "value": 1,
+                "count": 28
+              },
+              {
+                "value": 8,
+                "count": 28
+              }
+            ]
+          }
+        }
+      ],
+      "both_exact_eos": 12,
+      "both_original_source_reply_eos": 8,
+      "both_gold_scope_and_reply_eos": 8,
+      "paired_take_eos_and_defer_stock": 16
+    },
+    {
+      "arm": "correct_link",
+      "all": {
+        "endpoints": 256,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 128
+          },
+          {
+            "value": "take",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 128,
+        "stock_trace_parity": 128,
+        "gold_scope_exact": 256,
+        "correct_writer_route": 128,
+        "exact_terminal": 204,
+        "authenticated_take_eos": 128,
+        "authenticated_defer_parity": 128,
+        "authenticated_defer_eos": 76,
+        "authenticated_defer_cap": 52,
+        "first_correct_prefix_at_cap": 52,
+        "returned_correct_prefix_at_cap": 52,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 204
+          },
+          {
+            "value": "max_tokens",
+            "count": 52
+          }
+        ],
+        "retries": 128,
+        "retry_steps": 3504,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 256
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 256
+          }
+        ]
+      },
+      "take": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "take",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 0,
+        "stock_trace_parity": 0,
+        "gold_scope_exact": 128,
+        "correct_writer_route": 128,
+        "exact_terminal": 128,
+        "authenticated_take_eos": 128,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 128
+          }
+        ],
+        "retries": 0,
+        "retry_steps": 0,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          }
+        ]
+      },
+      "defer": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 128,
+        "stock_trace_parity": 128,
+        "gold_scope_exact": 128,
+        "correct_writer_route": 0,
+        "exact_terminal": 76,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 128,
+        "authenticated_defer_eos": 76,
+        "authenticated_defer_cap": 52,
+        "first_correct_prefix_at_cap": 52,
+        "returned_correct_prefix_at_cap": 52,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 76
+          },
+          {
+            "value": "max_tokens",
+            "count": 52
+          }
+        ],
+        "retries": 128,
+        "retry_steps": 3504,
+        "first_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": null,
+            "count": 128
+          }
+        ]
+      },
+      "by_distance": [
+        {
+          "distance": "far",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 64
+              },
+              {
+                "value": "take",
+                "count": 64
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 64,
+            "stock_trace_parity": 64,
+            "gold_scope_exact": 128,
+            "correct_writer_route": 64,
+            "exact_terminal": 102,
+            "authenticated_take_eos": 64,
+            "authenticated_defer_parity": 64,
+            "authenticated_defer_eos": 38,
+            "authenticated_defer_cap": 26,
+            "first_correct_prefix_at_cap": 26,
+            "returned_correct_prefix_at_cap": 26,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 102
+              },
+              {
+                "value": "max_tokens",
+                "count": 26
+              }
+            ],
+            "retries": 64,
+            "retry_steps": 1764,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 128
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 128
+              }
+            ]
+          }
+        },
+        {
+          "distance": "near",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 64
+              },
+              {
+                "value": "take",
+                "count": 64
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 64,
+            "stock_trace_parity": 64,
+            "gold_scope_exact": 128,
+            "correct_writer_route": 64,
+            "exact_terminal": 102,
+            "authenticated_take_eos": 64,
+            "authenticated_defer_parity": 64,
+            "authenticated_defer_eos": 38,
+            "authenticated_defer_cap": 26,
+            "first_correct_prefix_at_cap": 26,
+            "returned_correct_prefix_at_cap": 26,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 102
+              },
+              {
+                "value": "max_tokens",
+                "count": 26
+              }
+            ],
+            "retries": 64,
+            "retry_steps": 1740,
+            "first_wrong_position": [
+              {
+                "value": null,
+                "count": 128
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": null,
+                "count": 128
+              }
+            ]
+          }
+        }
+      ],
+      "both_exact_eos": 76,
+      "both_original_source_reply_eos": 76,
+      "both_gold_scope_and_reply_eos": 76,
+      "paired_take_eos_and_defer_stock": 128
+    },
+    {
+      "arm": "exchanged_link",
+      "all": {
+        "endpoints": 256,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 128
+          },
+          {
+            "value": "take",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 128,
+        "stock_trace_parity": 128,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 128,
+        "exact_terminal": 0,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 204
+          },
+          {
+            "value": "max_tokens",
+            "count": 52
+          }
+        ],
+        "retries": 128,
+        "retry_steps": 3504,
+        "first_wrong_position": [
+          {
+            "value": 1,
+            "count": 128
+          },
+          {
+            "value": 8,
+            "count": 128
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": 1,
+            "count": 128
+          },
+          {
+            "value": 8,
+            "count": 128
+          }
+        ]
+      },
+      "take": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "defer",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 128,
+        "stock_trace_parity": 128,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 0,
+        "exact_terminal": 0,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 76
+          },
+          {
+            "value": "max_tokens",
+            "count": 52
+          }
+        ],
+        "retries": 128,
+        "retry_steps": 3504,
+        "first_wrong_position": [
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ]
+      },
+      "defer": {
+        "endpoints": 128,
+        "source_identity_disagreements": 0,
+        "rejected_winner": 0,
+        "observed_status": [
+          {
+            "value": "take",
+            "count": 128
+          }
+        ],
+        "valid_abstentions": 0,
+        "zero_bound_emission": 0,
+        "stock_trace_parity": 0,
+        "gold_scope_exact": 0,
+        "correct_writer_route": 128,
+        "exact_terminal": 0,
+        "authenticated_take_eos": 0,
+        "authenticated_defer_parity": 0,
+        "authenticated_defer_eos": 0,
+        "authenticated_defer_cap": 0,
+        "first_correct_prefix_at_cap": 0,
+        "returned_correct_prefix_at_cap": 0,
+        "observed_stops": [
+          {
+            "value": "eos",
+            "count": 128
+          }
+        ],
+        "retries": 0,
+        "retry_steps": 0,
+        "first_wrong_position": [
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ],
+        "returned_wrong_position": [
+          {
+            "value": 1,
+            "count": 64
+          },
+          {
+            "value": 8,
+            "count": 64
+          }
+        ]
+      },
+      "by_distance": [
+        {
+          "distance": "far",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 64
+              },
+              {
+                "value": "take",
+                "count": 64
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 64,
+            "stock_trace_parity": 64,
+            "gold_scope_exact": 0,
+            "correct_writer_route": 64,
+            "exact_terminal": 0,
+            "authenticated_take_eos": 0,
+            "authenticated_defer_parity": 0,
+            "authenticated_defer_eos": 0,
+            "authenticated_defer_cap": 0,
+            "first_correct_prefix_at_cap": 0,
+            "returned_correct_prefix_at_cap": 0,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 102
+              },
+              {
+                "value": "max_tokens",
+                "count": 26
+              }
+            ],
+            "retries": 64,
+            "retry_steps": 1764,
+            "first_wrong_position": [
+              {
+                "value": 1,
+                "count": 64
+              },
+              {
+                "value": 8,
+                "count": 64
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": 1,
+                "count": 64
+              },
+              {
+                "value": 8,
+                "count": 64
+              }
+            ]
+          }
+        },
+        {
+          "distance": "near",
+          "counts": {
+            "endpoints": 128,
+            "source_identity_disagreements": 0,
+            "rejected_winner": 0,
+            "observed_status": [
+              {
+                "value": "defer",
+                "count": 64
+              },
+              {
+                "value": "take",
+                "count": 64
+              }
+            ],
+            "valid_abstentions": 0,
+            "zero_bound_emission": 64,
+            "stock_trace_parity": 64,
+            "gold_scope_exact": 0,
+            "correct_writer_route": 64,
+            "exact_terminal": 0,
+            "authenticated_take_eos": 0,
+            "authenticated_defer_parity": 0,
+            "authenticated_defer_eos": 0,
+            "authenticated_defer_cap": 0,
+            "first_correct_prefix_at_cap": 0,
+            "returned_correct_prefix_at_cap": 0,
+            "observed_stops": [
+              {
+                "value": "eos",
+                "count": 102
+              },
+              {
+                "value": "max_tokens",
+                "count": 26
+              }
+            ],
+            "retries": 64,
+            "retry_steps": 1740,
+            "first_wrong_position": [
+              {
+                "value": 1,
+                "count": 64
+              },
+              {
+                "value": 8,
+                "count": 64
+              }
+            ],
+            "returned_wrong_position": [
+              {
+                "value": 1,
+                "count": 64
+              },
+              {
+                "value": 8,
+                "count": 64
+              }
+            ]
+          }
+        }
+      ],
+      "both_exact_eos": 0,
+      "both_original_source_reply_eos": 0,
+      "both_gold_scope_and_reply_eos": 0,
+      "paired_take_eos_and_defer_stock": 0
+    }
+  ]
+}
