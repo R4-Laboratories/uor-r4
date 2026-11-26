@@ -1,0 +1,4 @@
+cubin_path=/mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-stage/target/release/build/p5-eval-8db4f52a756df954/out/p5_s4_kernels.sm_89.cubin
+cubin_sha256=6afebd96a8bb9c908de07c2cd094b43af4dc29ef6f90c464b1b55436a77cda44
+ptx_float_opcode_hits=0
+float_opcode_hits=0

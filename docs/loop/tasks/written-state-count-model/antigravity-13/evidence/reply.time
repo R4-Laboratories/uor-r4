@@ -1,0 +1,23 @@
+	Command being timed: "/mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-stage/target/release/p5-eval reply /mnt/plexpool/uor-r4-corpus/runs/20261120-whole-context-36/input/c.tokens.u16 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate3-fullc/full-c.v3 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.weights /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.seal.json /home/callard/uor-codex/20261118-diagnostics/inputs/seed1.d11 /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-stage/tokenizer.json /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-stage/fresh256 /home/callard/uor-codex/20261119-rival-admission-29/count/cr-v1/r.tokens.u16 /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-r3/artifacts /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5-s4-r3/reply_report.json"
+	User time (seconds): 52.92
+	System time (seconds): 9.17
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:02.10
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4043496
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 1066453
+	Voluntary context switches: 364
+	Involuntary context switches: 570
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 3120
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
