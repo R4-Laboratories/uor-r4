@@ -1,0 +1,2070 @@
+{
+  "initial": {
+    "protected": 24,
+    "far": 40,
+    "eligible": 512,
+    "far_eligible": 256,
+    "far_hinge": 1464,
+    "far_strict_wins": 136,
+    "far_strict_losses": 104,
+    "pass": true
+  },
+  "batches": [
+    {
+      "batch": "root",
+      "count": {
+        "proposals": 246,
+        "changed": 246,
+        "protected": 241,
+        "far_improving": 98,
+        "protected_and_far_improving": 96,
+        "protected_and_far_improving_with_new_far": 0,
+        "protected_and_far_improving_with_net_far_gain": 0
+      },
+      "by_kind": [
+        {
+          "kind": "center",
+          "proposals": 14,
+          "far_improving": 4,
+          "protected": 12,
+          "both": 2
+        },
+        {
+          "kind": "coordinate",
+          "proposals": 232,
+          "far_improving": 94,
+          "protected": 229,
+          "both": 94
+        }
+      ],
+      "base": {
+        "id": null,
+        "proposal": null,
+        "hinge": 1464,
+        "strict_wins": 136,
+        "strict_losses": 104,
+        "changed": 0,
+        "near": 24,
+        "far": 40,
+        "lost_protected": [],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": null,
+        "lost_from_round_base": null
+      },
+      "free": {
+        "id": 237,
+        "proposal": {
+          "id": 237,
+          "kind": "center",
+          "sign": 0,
+          "slot": 7,
+          "axis": null,
+          "delta": [
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            -1,
+            0,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            0
+          ]
+        },
+        "hinge": 1048,
+        "strict_wins": 152,
+        "strict_losses": 92,
+        "changed": 20,
+        "near": 8,
+        "far": 40,
+        "lost_protected": [
+          "practice-class/park/16",
+          "practice-class/park/20",
+          "practice-class/park/24",
+          "practice-class/park/28",
+          "practice-class/water/16",
+          "practice-class/water/20",
+          "practice-class/water/24",
+          "practice-class/water/28",
+          "supplier-contract/park/16",
+          "supplier-contract/park/20",
+          "supplier-contract/park/24",
+          "supplier-contract/park/28",
+          "supplier-contract/water/16",
+          "supplier-contract/water/20",
+          "supplier-contract/water/24",
+          "supplier-contract/water/28"
+        ],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "protected": {
+        "id": 234,
+        "proposal": {
+          "id": 234,
+          "kind": "center",
+          "sign": 0,
+          "slot": 2,
+          "axis": null,
+          "delta": [
+            0,
+            -1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "hinge": 1392,
+        "strict_wins": 136,
+        "strict_losses": 104,
+        "changed": 9,
+        "near": 24,
+        "far": 40,
+        "lost_protected": [],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "safe_net_far_from_base": [
+        {
+          "net": -8,
+          "candidates": 21
+        },
+        {
+          "net": 0,
+          "candidates": 75
+        }
+      ],
+      "first_near_reject": {
+        "proposal": {
+          "id": 0,
+          "proposal": {
+            "id": 0,
+            "kind": "coordinate",
+            "sign": 0,
+            "slot": 0,
+            "axis": 1,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "hinge": 1464,
+          "strict_wins": 136,
+          "strict_losses": 104,
+          "changed": 1,
+          "near": 16,
+          "far": 40,
+          "lost_protected": [
+            "supplier-contract/park/0",
+            "supplier-contract/park/12",
+            "supplier-contract/park/4",
+            "supplier-contract/park/8",
+            "supplier-contract/water/0",
+            "supplier-contract/water/12",
+            "supplier-contract/water/4",
+            "supplier-contract/water/8"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/0",
+          "case_id": "03901c0ed6332fcd14708e89660fbcea732733f208406f1f3799c5341f5cf467",
+          "ordinal": 128,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 216,
+                "start": 208
+              },
+              "bpe": {
+                "end": 101,
+                "start": 97
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 113,
+                "start": 104
+              },
+              "bpe": {
+                "end": 66,
+                "start": 63
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 258,
+                "start": 249
+              },
+              "bpe": {
+                "end": 116,
+                "start": 113
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "may",
+              "bytes": {
+                "start": 221,
+                "end": 224
+              },
+              "bpe": {
+                "start": 102,
+                "end": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 104,
+                "end": 113
+              },
+              "bpe": {
+                "start": 63,
+                "end": 66
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 249,
+                "end": 258
+              },
+              "bpe": {
+                "start": 113,
+                "end": 116
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 225,
+                "end": 231
+              },
+              "tokens": {
+                "start": 104,
+                "end": 106
+              }
+            },
+            {
+              "bytes": {
+                "start": 122,
+                "end": 128
+              },
+              "tokens": {
+                "start": 69,
+                "end": 71
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 231,
+                "start": 225
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 232,
+                  "start": 226
+                },
+                "tokens": {
+                  "end": 106,
+                  "start": 104
+                }
+              },
+              "native_noun": {
+                "end": 101,
+                "start": 97
+              },
+              "noun": {
+                "end": 216,
+                "start": 208
+              },
+              "tokens": [
+                104,
+                106
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 128,
+                "start": 122
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 129,
+                  "start": 123
+                },
+                "tokens": {
+                  "end": 71,
+                  "start": 69
+                }
+              },
+              "native_noun": {
+                "end": 66,
+                "start": 63
+              },
+              "noun": {
+                "end": 113,
+                "start": 104
+              },
+              "tokens": [
+                69,
+                71
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "first_lower_hinge_near_reject": {
+        "proposal": {
+          "id": 237,
+          "proposal": {
+            "id": 237,
+            "kind": "center",
+            "sign": 0,
+            "slot": 7,
+            "axis": null,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              -1,
+              -1,
+              1,
+              -1,
+              1,
+              -1,
+              1,
+              -1,
+              -1,
+              1,
+              -1,
+              -1,
+              0,
+              -1,
+              -1,
+              1,
+              -1,
+              1,
+              0
+            ]
+          },
+          "hinge": 1048,
+          "strict_wins": 152,
+          "strict_losses": 92,
+          "changed": 20,
+          "near": 8,
+          "far": 40,
+          "lost_protected": [
+            "practice-class/park/16",
+            "practice-class/park/20",
+            "practice-class/park/24",
+            "practice-class/park/28",
+            "practice-class/water/16",
+            "practice-class/water/20",
+            "practice-class/water/24",
+            "practice-class/water/28",
+            "supplier-contract/park/16",
+            "supplier-contract/park/20",
+            "supplier-contract/park/24",
+            "supplier-contract/park/28",
+            "supplier-contract/water/16",
+            "supplier-contract/water/20",
+            "supplier-contract/water/24",
+            "supplier-contract/water/28"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/16",
+          "case_id": "b392b9ff07729d8483e5cc73c9e25fb594c10076a206ef481a3f4b760f1b8ab2",
+          "ordinal": 136,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 233,
+                "start": 225
+              },
+              "bpe": {
+                "end": 108,
+                "start": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 129,
+                "start": 120
+              },
+              "bpe": {
+                "end": 72,
+                "start": 69
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 260,
+                "start": 251
+              },
+              "bpe": {
+                "end": 118,
+                "start": 115
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "purchase",
+              "bytes": {
+                "start": 204,
+                "end": 212
+              },
+              "bpe": {
+                "start": 97,
+                "end": 101
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 120,
+                "end": 129
+              },
+              "bpe": {
+                "start": 69,
+                "end": 72
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 251,
+                "end": 260
+              },
+              "bpe": {
+                "start": 115,
+                "end": 118
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 213,
+                "end": 219
+              },
+              "tokens": {
+                "start": 101,
+                "end": 103
+              }
+            },
+            {
+              "bytes": {
+                "start": 108,
+                "end": 114
+              },
+              "tokens": {
+                "start": 66,
+                "end": 68
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 219,
+                "start": 213
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 220,
+                  "start": 214
+                },
+                "tokens": {
+                  "end": 103,
+                  "start": 101
+                }
+              },
+              "native_noun": {
+                "end": 108,
+                "start": 104
+              },
+              "noun": {
+                "end": 233,
+                "start": 225
+              },
+              "tokens": [
+                101,
+                103
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 114,
+                "start": 108
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 115,
+                  "start": 109
+                },
+                "tokens": {
+                  "end": 68,
+                  "start": 66
+                }
+              },
+              "native_noun": {
+                "end": 72,
+                "start": 69
+              },
+              "noun": {
+                "end": 129,
+                "start": 120
+              },
+              "tokens": [
+                66,
+                68
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "audit": {
+        "candidate_count": 246,
+        "comparison_rows_per_state": 256,
+        "complete_state_bytes_verified": 3307328,
+        "joint_rows_verified": 63232,
+        "pass": true,
+        "signed_edges_verified": 126464
+      }
+    },
+    {
+      "batch": "protected",
+      "count": {
+        "proposals": 246,
+        "changed": 246,
+        "protected": 241,
+        "far_improving": 94,
+        "protected_and_far_improving": 92,
+        "protected_and_far_improving_with_new_far": 0,
+        "protected_and_far_improving_with_net_far_gain": 0
+      },
+      "by_kind": [
+        {
+          "kind": "center",
+          "proposals": 14,
+          "far_improving": 4,
+          "protected": 12,
+          "both": 2
+        },
+        {
+          "kind": "coordinate",
+          "proposals": 232,
+          "far_improving": 90,
+          "protected": 229,
+          "both": 90
+        }
+      ],
+      "base": {
+        "id": null,
+        "proposal": null,
+        "hinge": 1392,
+        "strict_wins": 136,
+        "strict_losses": 104,
+        "changed": 0,
+        "near": 24,
+        "far": 40,
+        "lost_protected": [],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": null,
+        "lost_from_round_base": null
+      },
+      "free": {
+        "id": 237,
+        "proposal": {
+          "id": 237,
+          "kind": "center",
+          "sign": 0,
+          "slot": 7,
+          "axis": null,
+          "delta": [
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            -1,
+            0,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            0
+          ]
+        },
+        "hinge": 976,
+        "strict_wins": 152,
+        "strict_losses": 92,
+        "changed": 20,
+        "near": 8,
+        "far": 40,
+        "lost_protected": [
+          "practice-class/park/16",
+          "practice-class/park/20",
+          "practice-class/park/24",
+          "practice-class/park/28",
+          "practice-class/water/16",
+          "practice-class/water/20",
+          "practice-class/water/24",
+          "practice-class/water/28",
+          "supplier-contract/park/16",
+          "supplier-contract/park/20",
+          "supplier-contract/park/24",
+          "supplier-contract/park/28",
+          "supplier-contract/water/16",
+          "supplier-contract/water/20",
+          "supplier-contract/water/24",
+          "supplier-contract/water/28"
+        ],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "protected": {
+        "id": 240,
+        "proposal": {
+          "id": 240,
+          "kind": "center",
+          "sign": 1,
+          "slot": 2,
+          "axis": null,
+          "delta": [
+            0,
+            -1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "hinge": 1320,
+        "strict_wins": 136,
+        "strict_losses": 104,
+        "changed": 9,
+        "near": 24,
+        "far": 40,
+        "lost_protected": [],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "safe_net_far_from_base": [
+        {
+          "net": -8,
+          "candidates": 18
+        },
+        {
+          "net": 0,
+          "candidates": 74
+        }
+      ],
+      "first_near_reject": {
+        "proposal": {
+          "id": 0,
+          "proposal": {
+            "id": 0,
+            "kind": "coordinate",
+            "sign": 0,
+            "slot": 0,
+            "axis": 1,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "hinge": 1392,
+          "strict_wins": 136,
+          "strict_losses": 104,
+          "changed": 1,
+          "near": 16,
+          "far": 40,
+          "lost_protected": [
+            "supplier-contract/park/0",
+            "supplier-contract/park/12",
+            "supplier-contract/park/4",
+            "supplier-contract/park/8",
+            "supplier-contract/water/0",
+            "supplier-contract/water/12",
+            "supplier-contract/water/4",
+            "supplier-contract/water/8"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/0",
+          "case_id": "03901c0ed6332fcd14708e89660fbcea732733f208406f1f3799c5341f5cf467",
+          "ordinal": 128,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 216,
+                "start": 208
+              },
+              "bpe": {
+                "end": 101,
+                "start": 97
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 113,
+                "start": 104
+              },
+              "bpe": {
+                "end": 66,
+                "start": 63
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 258,
+                "start": 249
+              },
+              "bpe": {
+                "end": 116,
+                "start": 113
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "may",
+              "bytes": {
+                "start": 221,
+                "end": 224
+              },
+              "bpe": {
+                "start": 102,
+                "end": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 104,
+                "end": 113
+              },
+              "bpe": {
+                "start": 63,
+                "end": 66
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 249,
+                "end": 258
+              },
+              "bpe": {
+                "start": 113,
+                "end": 116
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 225,
+                "end": 231
+              },
+              "tokens": {
+                "start": 104,
+                "end": 106
+              }
+            },
+            {
+              "bytes": {
+                "start": 122,
+                "end": 128
+              },
+              "tokens": {
+                "start": 69,
+                "end": 71
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 231,
+                "start": 225
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 232,
+                  "start": 226
+                },
+                "tokens": {
+                  "end": 106,
+                  "start": 104
+                }
+              },
+              "native_noun": {
+                "end": 101,
+                "start": 97
+              },
+              "noun": {
+                "end": 216,
+                "start": 208
+              },
+              "tokens": [
+                104,
+                106
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 128,
+                "start": 122
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 129,
+                  "start": 123
+                },
+                "tokens": {
+                  "end": 71,
+                  "start": 69
+                }
+              },
+              "native_noun": {
+                "end": 66,
+                "start": 63
+              },
+              "noun": {
+                "end": 113,
+                "start": 104
+              },
+              "tokens": [
+                69,
+                71
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "first_lower_hinge_near_reject": {
+        "proposal": {
+          "id": 237,
+          "proposal": {
+            "id": 237,
+            "kind": "center",
+            "sign": 0,
+            "slot": 7,
+            "axis": null,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              -1,
+              -1,
+              1,
+              -1,
+              1,
+              -1,
+              1,
+              -1,
+              -1,
+              1,
+              -1,
+              -1,
+              0,
+              -1,
+              -1,
+              1,
+              -1,
+              1,
+              0
+            ]
+          },
+          "hinge": 976,
+          "strict_wins": 152,
+          "strict_losses": 92,
+          "changed": 20,
+          "near": 8,
+          "far": 40,
+          "lost_protected": [
+            "practice-class/park/16",
+            "practice-class/park/20",
+            "practice-class/park/24",
+            "practice-class/park/28",
+            "practice-class/water/16",
+            "practice-class/water/20",
+            "practice-class/water/24",
+            "practice-class/water/28",
+            "supplier-contract/park/16",
+            "supplier-contract/park/20",
+            "supplier-contract/park/24",
+            "supplier-contract/park/28",
+            "supplier-contract/water/16",
+            "supplier-contract/water/20",
+            "supplier-contract/water/24",
+            "supplier-contract/water/28"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/16",
+          "case_id": "b392b9ff07729d8483e5cc73c9e25fb594c10076a206ef481a3f4b760f1b8ab2",
+          "ordinal": 136,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 233,
+                "start": 225
+              },
+              "bpe": {
+                "end": 108,
+                "start": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 129,
+                "start": 120
+              },
+              "bpe": {
+                "end": 72,
+                "start": 69
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 260,
+                "start": 251
+              },
+              "bpe": {
+                "end": 118,
+                "start": 115
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "purchase",
+              "bytes": {
+                "start": 204,
+                "end": 212
+              },
+              "bpe": {
+                "start": 97,
+                "end": 101
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 120,
+                "end": 129
+              },
+              "bpe": {
+                "start": 69,
+                "end": 72
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 251,
+                "end": 260
+              },
+              "bpe": {
+                "start": 115,
+                "end": 118
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 213,
+                "end": 219
+              },
+              "tokens": {
+                "start": 101,
+                "end": 103
+              }
+            },
+            {
+              "bytes": {
+                "start": 108,
+                "end": 114
+              },
+              "tokens": {
+                "start": 66,
+                "end": 68
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 219,
+                "start": 213
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 220,
+                  "start": 214
+                },
+                "tokens": {
+                  "end": 103,
+                  "start": 101
+                }
+              },
+              "native_noun": {
+                "end": 108,
+                "start": 104
+              },
+              "noun": {
+                "end": 233,
+                "start": 225
+              },
+              "tokens": [
+                101,
+                103
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 114,
+                "start": 108
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 115,
+                  "start": 109
+                },
+                "tokens": {
+                  "end": 68,
+                  "start": 66
+                }
+              },
+              "native_noun": {
+                "end": 72,
+                "start": 69
+              },
+              "noun": {
+                "end": 129,
+                "start": 120
+              },
+              "tokens": [
+                66,
+                68
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "audit": {
+        "candidate_count": 246,
+        "comparison_rows_per_state": 256,
+        "complete_state_bytes_verified": 3307328,
+        "joint_rows_verified": 63232,
+        "pass": true,
+        "signed_edges_verified": 126464
+      }
+    },
+    {
+      "batch": "free",
+      "count": {
+        "proposals": 246,
+        "changed": 246,
+        "protected": 0,
+        "far_improving": 80,
+        "protected_and_far_improving": 0,
+        "protected_and_far_improving_with_new_far": 0,
+        "protected_and_far_improving_with_net_far_gain": 0
+      },
+      "by_kind": [
+        {
+          "kind": "center",
+          "proposals": 14,
+          "far_improving": 4,
+          "protected": 0,
+          "both": 0
+        },
+        {
+          "kind": "coordinate",
+          "proposals": 232,
+          "far_improving": 76,
+          "protected": 0,
+          "both": 0
+        }
+      ],
+      "base": {
+        "id": null,
+        "proposal": null,
+        "hinge": 1048,
+        "strict_wins": 152,
+        "strict_losses": 92,
+        "changed": 0,
+        "near": 8,
+        "far": 40,
+        "lost_protected": [
+          "practice-class/park/16",
+          "practice-class/park/20",
+          "practice-class/park/24",
+          "practice-class/park/28",
+          "practice-class/water/16",
+          "practice-class/water/20",
+          "practice-class/water/24",
+          "practice-class/water/28",
+          "supplier-contract/park/16",
+          "supplier-contract/park/20",
+          "supplier-contract/park/24",
+          "supplier-contract/park/28",
+          "supplier-contract/water/16",
+          "supplier-contract/water/20",
+          "supplier-contract/water/24",
+          "supplier-contract/water/28"
+        ],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": null,
+        "lost_from_round_base": null
+      },
+      "free": {
+        "id": 245,
+        "proposal": {
+          "id": 245,
+          "kind": "center",
+          "sign": 1,
+          "slot": 7,
+          "axis": null,
+          "delta": [
+            0,
+            -1,
+            0,
+            0,
+            1,
+            -1,
+            -1,
+            -1,
+            1,
+            0,
+            0,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            1
+          ]
+        },
+        "hinge": 632,
+        "strict_wins": 168,
+        "strict_losses": 80,
+        "changed": 27,
+        "near": 8,
+        "far": 40,
+        "lost_protected": [
+          "practice-class/park/16",
+          "practice-class/park/20",
+          "practice-class/park/24",
+          "practice-class/park/28",
+          "practice-class/water/16",
+          "practice-class/water/20",
+          "practice-class/water/24",
+          "practice-class/water/28",
+          "supplier-contract/park/16",
+          "supplier-contract/park/20",
+          "supplier-contract/park/24",
+          "supplier-contract/park/28",
+          "supplier-contract/water/16",
+          "supplier-contract/water/20",
+          "supplier-contract/water/24",
+          "supplier-contract/water/28"
+        ],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "protected": {
+        "id": null,
+        "proposal": null,
+        "hinge": 1048,
+        "strict_wins": 152,
+        "strict_losses": 92,
+        "changed": 0,
+        "near": 8,
+        "far": 40,
+        "lost_protected": [
+          "practice-class/park/16",
+          "practice-class/park/20",
+          "practice-class/park/24",
+          "practice-class/park/28",
+          "practice-class/water/16",
+          "practice-class/water/20",
+          "practice-class/water/24",
+          "practice-class/water/28",
+          "supplier-contract/park/16",
+          "supplier-contract/park/20",
+          "supplier-contract/park/24",
+          "supplier-contract/park/28",
+          "supplier-contract/water/16",
+          "supplier-contract/water/20",
+          "supplier-contract/water/24",
+          "supplier-contract/water/28"
+        ],
+        "far_gained": [],
+        "far_lost": [],
+        "gained_from_round_base": [],
+        "lost_from_round_base": []
+      },
+      "safe_net_far_from_base": [],
+      "first_near_reject": {
+        "proposal": {
+          "id": 0,
+          "proposal": {
+            "id": 0,
+            "kind": "coordinate",
+            "sign": 0,
+            "slot": 0,
+            "axis": 1,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "hinge": 1048,
+          "strict_wins": 152,
+          "strict_losses": 92,
+          "changed": 1,
+          "near": 0,
+          "far": 40,
+          "lost_protected": [
+            "practice-class/park/16",
+            "practice-class/park/20",
+            "practice-class/park/24",
+            "practice-class/park/28",
+            "practice-class/water/16",
+            "practice-class/water/20",
+            "practice-class/water/24",
+            "practice-class/water/28",
+            "supplier-contract/park/0",
+            "supplier-contract/park/12",
+            "supplier-contract/park/16",
+            "supplier-contract/park/20",
+            "supplier-contract/park/24",
+            "supplier-contract/park/28",
+            "supplier-contract/park/4",
+            "supplier-contract/park/8",
+            "supplier-contract/water/0",
+            "supplier-contract/water/12",
+            "supplier-contract/water/16",
+            "supplier-contract/water/20",
+            "supplier-contract/water/24",
+            "supplier-contract/water/28",
+            "supplier-contract/water/4",
+            "supplier-contract/water/8"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/0",
+          "case_id": "03901c0ed6332fcd14708e89660fbcea732733f208406f1f3799c5341f5cf467",
+          "ordinal": 128,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 216,
+                "start": 208
+              },
+              "bpe": {
+                "end": 101,
+                "start": 97
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 113,
+                "start": 104
+              },
+              "bpe": {
+                "end": 66,
+                "start": 63
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 258,
+                "start": 249
+              },
+              "bpe": {
+                "end": 116,
+                "start": 113
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "may",
+              "bytes": {
+                "start": 221,
+                "end": 224
+              },
+              "bpe": {
+                "start": 102,
+                "end": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 104,
+                "end": 113
+              },
+              "bpe": {
+                "start": 63,
+                "end": 66
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 249,
+                "end": 258
+              },
+              "bpe": {
+                "start": 113,
+                "end": 116
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 225,
+                "end": 231
+              },
+              "tokens": {
+                "start": 104,
+                "end": 106
+              }
+            },
+            {
+              "bytes": {
+                "start": 122,
+                "end": 128
+              },
+              "tokens": {
+                "start": 69,
+                "end": 71
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 231,
+                "start": 225
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 232,
+                  "start": 226
+                },
+                "tokens": {
+                  "end": 106,
+                  "start": 104
+                }
+              },
+              "native_noun": {
+                "end": 101,
+                "start": 97
+              },
+              "noun": {
+                "end": 216,
+                "start": 208
+              },
+              "tokens": [
+                104,
+                106
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 128,
+                "start": 122
+              },
+              "gap": 3,
+              "native": {
+                "bytes": {
+                  "end": 129,
+                  "start": 123
+                },
+                "tokens": {
+                  "end": 71,
+                  "start": 69
+                }
+              },
+              "native_noun": {
+                "end": 66,
+                "start": 63
+              },
+              "noun": {
+                "end": 113,
+                "start": 104
+              },
+              "tokens": [
+                69,
+                71
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "first_lower_hinge_near_reject": {
+        "proposal": {
+          "id": 22,
+          "proposal": {
+            "id": 22,
+            "kind": "coordinate",
+            "sign": 0,
+            "slot": 1,
+            "axis": 1,
+            "delta": [
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "hinge": 1044,
+          "strict_wins": 156,
+          "strict_losses": 92,
+          "changed": 1,
+          "near": 8,
+          "far": 40,
+          "lost_protected": [
+            "practice-class/park/16",
+            "practice-class/park/20",
+            "practice-class/park/24",
+            "practice-class/park/28",
+            "practice-class/water/16",
+            "practice-class/water/20",
+            "practice-class/water/24",
+            "practice-class/water/28",
+            "supplier-contract/park/16",
+            "supplier-contract/park/20",
+            "supplier-contract/park/24",
+            "supplier-contract/park/28",
+            "supplier-contract/water/16",
+            "supplier-contract/water/20",
+            "supplier-contract/water/24",
+            "supplier-contract/water/28"
+          ],
+          "far_gained": [],
+          "far_lost": [],
+          "gained_from_round_base": null,
+          "lost_from_round_base": null
+        },
+        "source": {
+          "pair": "supplier-contract/park/16",
+          "case_id": "b392b9ff07729d8483e5cc73c9e25fb594c10076a206ef481a3f4b760f1b8ab2",
+          "ordinal": 136,
+          "admission": "defer",
+          "first_source_error": "affirmed_noun",
+          "gold": [
+            {
+              "word": "estimate",
+              "bytes": {
+                "end": 233,
+                "start": 225
+              },
+              "bpe": {
+                "end": 108,
+                "start": 104
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 129,
+                "start": 120
+              },
+              "bpe": {
+                "end": 72,
+                "start": 69
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "end": 260,
+                "start": 251
+              },
+              "bpe": {
+                "end": 118,
+                "start": 115
+              }
+            }
+          ],
+          "chosen": [
+            {
+              "word": "purchase",
+              "bytes": {
+                "start": 204,
+                "end": 212
+              },
+              "bpe": {
+                "start": 97,
+                "end": 101
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 120,
+                "end": 129
+              },
+              "bpe": {
+                "start": 69,
+                "end": 72
+              }
+            },
+            {
+              "word": "quotation",
+              "bytes": {
+                "start": 251,
+                "end": 260
+              },
+              "bpe": {
+                "start": 115,
+                "end": 118
+              }
+            }
+          ],
+          "governors": [
+            {
+              "bytes": {
+                "start": 213,
+                "end": 219
+              },
+              "tokens": {
+                "start": 101,
+                "end": 103
+              }
+            },
+            {
+              "bytes": {
+                "start": 108,
+                "end": 114
+              },
+              "tokens": {
+                "start": 66,
+                "end": 68
+              }
+            }
+          ],
+          "expected_governors": [
+            {
+              "bytes": {
+                "end": 219,
+                "start": 213
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 220,
+                  "start": 214
+                },
+                "tokens": {
+                  "end": 103,
+                  "start": 101
+                }
+              },
+              "native_noun": {
+                "end": 108,
+                "start": 104
+              },
+              "noun": {
+                "end": 233,
+                "start": 225
+              },
+              "tokens": [
+                101,
+                103
+              ],
+              "visible_tokens": 2
+            },
+            {
+              "bytes": {
+                "end": 114,
+                "start": 108
+              },
+              "gap": 1,
+              "native": {
+                "bytes": {
+                  "end": 115,
+                  "start": 109
+                },
+                "tokens": {
+                  "end": 68,
+                  "start": 66
+                }
+              },
+              "native_noun": {
+                "end": 72,
+                "start": 69
+              },
+              "noun": {
+                "end": 129,
+                "start": 120
+              },
+              "tokens": [
+                66,
+                68
+              ],
+              "visible_tokens": 2
+            }
+          ],
+          "ties": 1
+        }
+      },
+      "audit": {
+        "candidate_count": 246,
+        "comparison_rows_per_state": 256,
+        "complete_state_bytes_verified": 3307328,
+        "joint_rows_verified": 63232,
+        "pass": true,
+        "signed_edges_verified": 126464
+      }
+    }
+  ],
+  "verified": {
+    "pass": true,
+    "batches": [
+      "root",
+      "protected",
+      "free"
+    ],
+    "compared_unique_batches": 3
+  },
+  "state_sha256": {
+    "protected": "a2f8d37a5304e557996d2a364ac064e96f9aeeed034357738a3c2989a81b8d8a",
+    "free": "050ac7a7d004a32ac831ea6fc56ee480d66f7e18e23c9990e02dda33f258b386"
+  },
+  "signed_edge_transitions": {
+    "free": [
+      {
+        "distance": "far",
+        "from": "loss",
+        "to": "loss",
+        "n": 80
+      },
+      {
+        "distance": "far",
+        "from": "loss",
+        "to": "tie",
+        "n": 8
+      },
+      {
+        "distance": "far",
+        "from": "loss",
+        "to": "win",
+        "n": 16
+      },
+      {
+        "distance": "far",
+        "from": "tie",
+        "to": "win",
+        "n": 16
+      },
+      {
+        "distance": "far",
+        "from": "win",
+        "to": "win",
+        "n": 136
+      },
+      {
+        "distance": "near",
+        "from": "loss",
+        "to": "loss",
+        "n": 136
+      },
+      {
+        "distance": "near",
+        "from": "win",
+        "to": "loss",
+        "n": 68
+      },
+      {
+        "distance": "near",
+        "from": "win",
+        "to": "win",
+        "n": 52
+      }
+    ],
+    "protected": [
+      {
+        "distance": "far",
+        "from": "loss",
+        "to": "loss",
+        "n": 104
+      },
+      {
+        "distance": "far",
+        "from": "tie",
+        "to": "tie",
+        "n": 16
+      },
+      {
+        "distance": "far",
+        "from": "win",
+        "to": "win",
+        "n": 136
+      },
+      {
+        "distance": "near",
+        "from": "loss",
+        "to": "loss",
+        "n": 136
+      },
+      {
+        "distance": "near",
+        "from": "win",
+        "to": "win",
+        "n": 120
+      }
+    ]
+  },
+  "fit_resources": "wall_s=29.91 user_s=70.40 system_s=25.79 peak_rss_kib=230132\n",
+  "transfer_resources": "wall_s=5.54 user_s=2.55 system_s=2.99 peak_rss_kib=916356\n"
+}

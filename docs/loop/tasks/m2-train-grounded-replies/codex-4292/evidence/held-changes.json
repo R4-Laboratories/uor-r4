@@ -1,0 +1,54 @@
+[
+  {
+    "distance": "far",
+    "arms": {
+      "protected": {
+        "prompts": 128,
+        "changed_source_tuple": 0,
+        "first_error_category_changed": 0,
+        "gained_exact": 0,
+        "lost_exact": 0
+      },
+      "free": {
+        "prompts": 128,
+        "changed_source_tuple": 32,
+        "first_error_category_changed": 32,
+        "gained_exact": 32,
+        "lost_exact": 0
+      },
+      "far_only": {
+        "prompts": 128,
+        "changed_source_tuple": 76,
+        "first_error_category_changed": 60,
+        "gained_exact": 56,
+        "lost_exact": 0
+      }
+    }
+  },
+  {
+    "distance": "near",
+    "arms": {
+      "protected": {
+        "prompts": 128,
+        "changed_source_tuple": 0,
+        "first_error_category_changed": 0,
+        "gained_exact": 0,
+        "lost_exact": 0
+      },
+      "free": {
+        "prompts": 128,
+        "changed_source_tuple": 20,
+        "first_error_category_changed": 20,
+        "gained_exact": 0,
+        "lost_exact": 20
+      },
+      "far_only": {
+        "prompts": 128,
+        "changed_source_tuple": 40,
+        "first_error_category_changed": 32,
+        "gained_exact": 0,
+        "lost_exact": 28
+      }
+    }
+  }
+]

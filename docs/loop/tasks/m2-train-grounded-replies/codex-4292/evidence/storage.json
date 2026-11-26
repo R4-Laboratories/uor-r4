@@ -1,0 +1,10 @@
+{
+  "taken_utc": "2026-11-26T15:39:33Z",
+  "measurement_apparent_bytes": 330758540,
+  "transfer_apparent_bytes": 9479925,
+  "grade_apparent_bytes": 2445225,
+  "study_tree_apparent_bytes": 4005973622,
+  "study_tree_allocated_bytes": 591831552,
+  "zfs_free_bytes": 43317217329152,
+  "observation": "Post-restore snapshot, including primary and supplemental local restores; peak was not sampled continuously."
+}

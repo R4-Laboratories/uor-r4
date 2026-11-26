@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "premise": true,
+  "geometry_members_reconstructed": 2,
+  "audited_unique_batches": 3,
+  "held_arms": 9,
+  "writer_token_rows": 0,
+  "measurement_sha256": "fe7485ee9e0a7073a7530e71aadf7eafad95a77ce8e3ca3bdbac32feb19c90bb",
+  "transfer_sha256": "5b123c70cf816cab45d44b8ff8ff7393662b99e851cf7d73d1f57bdf2bcfc359",
+  "grade_sha256": "e8137a30ecc3f51e832d4ef0dc35ef6198ea7b61d54b32a3a4084c8410662d73",
+  "writer_gate_sha256": "ab34102c2b4e86c94aa9f9ada4dbd089eabb8ab80a882ded847afec8de0020fe",
+  "substantive_disagreements": 0
+}

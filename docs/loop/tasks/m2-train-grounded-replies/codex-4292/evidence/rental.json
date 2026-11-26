@@ -1,0 +1,17 @@
+{
+  "pod": "vast-62712625",
+  "device": "RTX 4090",
+  "driver": "595.99.02",
+  "created_utc": "2026-11-26T15:24:07Z",
+  "deleted_utc": "2026-11-26T15:32:38Z",
+  "seconds": 511,
+  "quoted_usd_per_hour": 1.3544444444444443,
+  "estimated_compute_usd": 0.19225586419753085,
+  "invoice_verified": false,
+  "after_down": {
+    "running_pods": 0,
+    "hourly_usd": 0
+  },
+  "active_train_seconds": 4,
+  "role": "Independent physical repeat of the parent TRAIN menu only"
+}

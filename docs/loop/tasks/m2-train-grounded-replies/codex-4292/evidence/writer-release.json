@@ -1,0 +1,9 @@
+{
+  "gate_sha256": "ab34102c2b4e86c94aa9f9ada4dbd089eabb8ab80a882ded847afec8de0020fe",
+  "gate_pass": false,
+  "ordinary_capture_exit": 1,
+  "capture_created": false,
+  "tokens_created": false,
+  "first_wrong_reply_token": "NOT_RUN",
+  "exact_through_eos": "NOT_RUN"
+}

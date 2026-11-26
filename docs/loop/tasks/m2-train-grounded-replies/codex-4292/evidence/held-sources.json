@@ -1,0 +1,1066 @@
+{
+  "moves": [
+    {
+      "family": "boatyard-rigging",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 16
+    },
+    {
+      "family": "boatyard-rigging",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "kept",
+      "pairs": 8
+    },
+    {
+      "family": "boatyard-rigging",
+      "distance": "near",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "leather-tool-inspection",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 16
+    },
+    {
+      "family": "leather-tool-inspection",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "kept",
+      "pairs": 16
+    },
+    {
+      "family": "observatory-inventory",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "observatory-inventory",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "observatory-inventory",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "gained",
+      "pairs": 8
+    },
+    {
+      "family": "observatory-inventory",
+      "distance": "near",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "orchard-access",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "orchard-access",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "orchard-access",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "gained",
+      "pairs": 4
+    },
+    {
+      "family": "orchard-access",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "kept",
+      "pairs": 4
+    },
+    {
+      "family": "orchard-access",
+      "distance": "near",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    }
+  ],
+  "first_errors": [
+    {
+      "distance": "far",
+      "first": "affirmed_noun",
+      "n": 68
+    },
+    {
+      "distance": "far",
+      "first": "excluded_noun",
+      "n": 60
+    },
+    {
+      "distance": "near",
+      "first": "affirmed_noun",
+      "n": 16
+    },
+    {
+      "distance": "near",
+      "first": "excluded_noun",
+      "n": 24
+    },
+    {
+      "distance": "near",
+      "first": "none",
+      "n": 88
+    }
+  ],
+  "examples": [
+    {
+      "distance": "far",
+      "family": "observatory-inventory",
+      "pair": "observatory-inventory/snow/10",
+      "vs_parent": "neither",
+      "vs_far": "lost",
+      "rows": [
+        {
+          "case_id": "06aeca300feea3f10a86cac01e24df3312dd7ada08c7e3d4a7b4b9be1880fdd0",
+          "admission": "defer",
+          "gold": [
+            "sextant",
+            "gnomon",
+            "gnomon"
+          ],
+          "gold_bpe": [
+            {
+              "end": 108,
+              "start": 105
+            },
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 133,
+              "start": 129
+            }
+          ],
+          "parent": {
+            "terms": [
+              "our",
+              "chalk",
+              "our"
+            ],
+            "bpe": [
+              {
+                "start": 104,
+                "end": 105
+              },
+              {
+                "start": 96,
+                "end": 97
+              },
+              {
+                "start": 128,
+                "end": 129
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "sextant",
+              "gnomon",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 105,
+                "end": 108
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 129,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "our",
+              "chalk",
+              "our"
+            ],
+            "bpe": [
+              {
+                "start": 104,
+                "end": 105
+              },
+              {
+                "start": 96,
+                "end": 97
+              },
+              {
+                "start": 128,
+                "end": 129
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "984697380160dea57e79d9ae2c238258f1e00a3531813097cc46ceae3f5a2cee",
+          "admission": "take",
+          "gold": [
+            "gnomon",
+            "sextant",
+            "gnomon"
+          ],
+          "gold_bpe": [
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 108,
+              "start": 105
+            },
+            {
+              "end": 133,
+              "start": 129
+            }
+          ],
+          "parent": {
+            "terms": [
+              "chalk",
+              "our",
+              "our"
+            ],
+            "bpe": [
+              {
+                "start": 96,
+                "end": 97
+              },
+              {
+                "start": 104,
+                "end": 105
+              },
+              {
+                "start": 128,
+                "end": 129
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "gnomon",
+              "sextant",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 105,
+                "end": 108
+              },
+              {
+                "start": 129,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "chalk",
+              "our",
+              "our"
+            ],
+            "bpe": [
+              {
+                "start": 96,
+                "end": 97
+              },
+              {
+                "start": 104,
+                "end": 105
+              },
+              {
+                "start": 128,
+                "end": 129
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "far",
+      "family": "boatyard-rigging",
+      "pair": "boatyard-rigging/snow/10",
+      "vs_parent": "neither",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "cad859365dcefef556513dc47a96fea376a6ca54fd12a83af7514b0a11630705",
+          "admission": "defer",
+          "gold": [
+            "staysail",
+            "spinnaker",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 112,
+              "start": 109
+            },
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 142,
+              "start": 138
+            }
+          ],
+          "parent": {
+            "terms": [
+              "twine",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "twine",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "twine",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "070c29efc86e0043f73cf97cf9fda0151abf24f381e1f603e69e4012ca66b383",
+          "admission": "take",
+          "gold": [
+            "spinnaker",
+            "staysail",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 112,
+              "start": 109
+            },
+            {
+              "end": 142,
+              "start": 138
+            }
+          ],
+          "parent": {
+            "terms": [
+              "spinnaker",
+              "twine",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "spinnaker",
+              "twine",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 88,
+                "end": 92
+              },
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "spinnaker",
+              "twine",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 118,
+                "end": 120
+              },
+              {
+                "start": 138,
+                "end": 142
+              }
+            ],
+            "first": "excluded_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "observatory-inventory",
+      "pair": "observatory-inventory/snow/16",
+      "vs_parent": "kept",
+      "vs_far": "gained",
+      "rows": [
+        {
+          "case_id": "28c38a1141439b963d8d5bda87a877131d2a823ec35b916d034f5f87ff10792c",
+          "admission": "defer",
+          "gold": [
+            "sextant",
+            "gnomon",
+            "gnomon"
+          ],
+          "gold_bpe": [
+            {
+              "end": 102,
+              "start": 99
+            },
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 111,
+              "start": 107
+            }
+          ],
+          "parent": {
+            "terms": [
+              "sextant",
+              "gnomon",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 99,
+                "end": 102
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 107,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "dusk",
+              "gnomon",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 94,
+                "end": 97
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 107,
+                "end": 111
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "sextant",
+              "gnomon",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 99,
+                "end": 102
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 107,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          }
+        },
+        {
+          "case_id": "4e9520721619b2324c700cc17505b6e178d16b882f3e23344938cf19cb32b78e",
+          "admission": "take",
+          "gold": [
+            "gnomon",
+            "sextant",
+            "gnomon"
+          ],
+          "gold_bpe": [
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 102,
+              "start": 99
+            },
+            {
+              "end": 111,
+              "start": 107
+            }
+          ],
+          "parent": {
+            "terms": [
+              "gnomon",
+              "sextant",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 99,
+                "end": 102
+              },
+              {
+                "start": 107,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "chalk",
+              "our",
+              "our"
+            ],
+            "bpe": [
+              {
+                "start": 85,
+                "end": 86
+              },
+              {
+                "start": 98,
+                "end": 99
+              },
+              {
+                "start": 106,
+                "end": 107
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "gnomon",
+              "sextant",
+              "gnomon"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 99,
+                "end": 102
+              },
+              {
+                "start": 107,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "boatyard-rigging",
+      "pair": "boatyard-rigging/snow/16",
+      "vs_parent": "kept",
+      "vs_far": "kept",
+      "rows": [
+        {
+          "case_id": "7e8fb5107db90c9283a5ce79777419b9e08a96d5d26a622db4956f70f3d41c5d",
+          "admission": "defer",
+          "gold": [
+            "staysail",
+            "spinnaker",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 106,
+              "start": 103
+            },
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 120,
+              "start": 116
+            }
+          ],
+          "parent": {
+            "terms": [
+              "staysail",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "staysail",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "staysail",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          }
+        },
+        {
+          "case_id": "49e7324aceb8849f07d4f1f9f610f31557722b88fe941026cdd747909501c39b",
+          "admission": "take",
+          "gold": [
+            "spinnaker",
+            "staysail",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 106,
+              "start": 103
+            },
+            {
+              "end": 120,
+              "start": 116
+            }
+          ],
+          "parent": {
+            "terms": [
+              "spinnaker",
+              "staysail",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "spinnaker",
+              "staysail",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "spinnaker",
+              "staysail",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 116,
+                "end": 120
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "boatyard-rigging",
+      "pair": "boatyard-rigging/snow/0",
+      "vs_parent": "neither",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "2dc9c8c73bf783aab77e1122650e9770395829c079579b6faad5fb57d99709a0",
+          "admission": "defer",
+          "gold": [
+            "staysail",
+            "spinnaker",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 102,
+              "start": 99
+            },
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 122,
+              "start": 118
+            }
+          ],
+          "parent": {
+            "terms": [
+              "rigger",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "rigger",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "rigger",
+              "spinnaker",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "412f0c6d997bcb34f36b63f3e851af78401f4fa6345db5db94f1911af8d4fc24",
+          "admission": "take",
+          "gold": [
+            "spinnaker",
+            "staysail",
+            "spinnaker"
+          ],
+          "gold_bpe": [
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 102,
+              "start": 99
+            },
+            {
+              "end": 122,
+              "start": 118
+            }
+          ],
+          "parent": {
+            "terms": [
+              "spinnaker",
+              "rigger",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "spinnaker",
+              "rigger",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "retained": {
+            "terms": [
+              "spinnaker",
+              "rigger",
+              "spinnaker"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 103,
+                "end": 106
+              },
+              {
+                "start": 118,
+                "end": 122
+              }
+            ],
+            "first": "excluded_noun"
+          }
+        }
+      ]
+    }
+  ]
+}

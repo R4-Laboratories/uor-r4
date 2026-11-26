@@ -1,0 +1,692 @@
+{
+  "scope": "recorded mixed TRAIN, common far only",
+  "protected_moves": [
+    234,
+    240
+  ],
+  "residual_pairs": 24,
+  "residual_pair_ids": [
+    "building-evacuation/road/18",
+    "building-evacuation/road/22",
+    "building-evacuation/road/26",
+    "building-evacuation/road/30",
+    "building-evacuation/school/18",
+    "building-evacuation/school/22",
+    "building-evacuation/school/26",
+    "building-evacuation/school/30",
+    "enamel-display/road/18",
+    "enamel-display/road/22",
+    "enamel-display/road/26",
+    "enamel-display/road/30",
+    "enamel-display/school/18",
+    "enamel-display/school/22",
+    "enamel-display/school/26",
+    "enamel-display/school/30",
+    "planning-review/road/18",
+    "planning-review/road/22",
+    "planning-review/road/26",
+    "planning-review/road/30",
+    "planning-review/school/18",
+    "planning-review/school/22",
+    "planning-review/school/26",
+    "planning-review/school/30"
+  ],
+  "stages": {
+    "parent": {
+      "prompts": 48,
+      "both_governors": 48,
+      "correct_headings": 48,
+      "first_errors": {
+        "none": 0,
+        "signed_governor": 0,
+        "no_eligible_tuple": 0,
+        "joint_tie": 0,
+        "affirmed_noun": 24,
+        "excluded_noun": 24,
+        "heading": 0,
+        "link_witness": 0
+      },
+      "first_errors_by_admission": {
+        "defer": {
+          "affirmed_noun": 24
+        },
+        "take": {
+          "excluded_noun": 24
+        }
+      },
+      "strict_triplet_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "full_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "wrong_nouns": {
+        "count": 48,
+        "surfaces": {
+          "board": 16,
+          "piece": 16,
+          "space": 16
+        },
+        "intervening": 48,
+        "same_surface_as_gold": 0,
+        "joint_matches_signed_rival": 48,
+        "independent_matches_signed_rival": 48,
+        "signed_margin": {
+          "-25": 16,
+          "-18": 16,
+          "-10": 16
+        },
+        "hinge": 896
+      }
+    },
+    "after_234": {
+      "prompts": 48,
+      "both_governors": 48,
+      "correct_headings": 48,
+      "first_errors": {
+        "none": 0,
+        "signed_governor": 0,
+        "no_eligible_tuple": 0,
+        "joint_tie": 0,
+        "affirmed_noun": 24,
+        "excluded_noun": 24,
+        "heading": 0,
+        "link_witness": 0
+      },
+      "first_errors_by_admission": {
+        "defer": {
+          "affirmed_noun": 24
+        },
+        "take": {
+          "excluded_noun": 24
+        }
+      },
+      "strict_triplet_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "full_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "wrong_nouns": {
+        "count": 48,
+        "surfaces": {
+          "board": 16,
+          "piece": 16,
+          "space": 16
+        },
+        "intervening": 48,
+        "same_surface_as_gold": 0,
+        "joint_matches_signed_rival": 48,
+        "independent_matches_signed_rival": 48,
+        "signed_margin": {
+          "-25": 8,
+          "-18": 16,
+          "-16": 8,
+          "-10": 16
+        },
+        "hinge": 824
+      }
+    },
+    "after_240": {
+      "prompts": 48,
+      "both_governors": 48,
+      "correct_headings": 48,
+      "first_errors": {
+        "none": 0,
+        "signed_governor": 0,
+        "no_eligible_tuple": 0,
+        "joint_tie": 0,
+        "affirmed_noun": 24,
+        "excluded_noun": 24,
+        "heading": 0,
+        "link_witness": 0
+      },
+      "first_errors_by_admission": {
+        "defer": {
+          "affirmed_noun": 24
+        },
+        "take": {
+          "excluded_noun": 24
+        }
+      },
+      "strict_triplet_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "full_pairs": {
+        "zero": 24,
+        "one": 0,
+        "both": 0
+      },
+      "wrong_nouns": {
+        "count": 48,
+        "surfaces": {
+          "board": 16,
+          "piece": 16,
+          "space": 16
+        },
+        "intervening": 48,
+        "same_surface_as_gold": 0,
+        "joint_matches_signed_rival": 48,
+        "independent_matches_signed_rival": 48,
+        "signed_margin": {
+          "-18": 16,
+          "-16": 16,
+          "-10": 16
+        },
+        "hinge": 752
+      }
+    }
+  },
+  "joint_address_changes": 0,
+  "common_signed_edges": {
+    "first": {
+      "count": 256,
+      "transitions": {
+        "loss->loss": 104,
+        "tie->tie": 16,
+        "win->win": 136
+      },
+      "flipped": 0,
+      "margin_improved": 8,
+      "margin_worsened": 0,
+      "strongest_rival_changed": 0,
+      "hinge_delta": -72
+    },
+    "second": {
+      "count": 256,
+      "transitions": {
+        "loss->loss": 104,
+        "tie->tie": 16,
+        "win->win": 136
+      },
+      "flipped": 0,
+      "margin_improved": 8,
+      "margin_worsened": 0,
+      "strongest_rival_changed": 0,
+      "hinge_delta": -72
+    },
+    "total": {
+      "count": 256,
+      "transitions": {
+        "loss->loss": 104,
+        "tie->tie": 16,
+        "win->win": 136
+      },
+      "flipped": 0,
+      "margin_improved": 16,
+      "margin_worsened": 0,
+      "strongest_rival_changed": 0,
+      "hinge_delta": -144
+    }
+  },
+  "witness": {
+    "pair": "enamel-display/road/18",
+    "prompts": [
+      {
+        "row": 120,
+        "case_id": "3623e8691f18ca5904e36ee0e9f8f757aa888667995e17b50fa54bf2c50d4fa2",
+        "admission": "defer",
+        "expected_triplet": [
+          {
+            "bytes": [
+              278,
+              287
+            ],
+            "tokens": [
+              112,
+              115
+            ],
+            "surface": "medallion"
+          },
+          {
+            "bytes": [
+              153,
+              161
+            ],
+            "tokens": [
+              78,
+              79
+            ],
+            "surface": "ornament"
+          },
+          {
+            "bytes": [
+              302,
+              310
+            ],
+            "tokens": [
+              121,
+              122
+            ],
+            "surface": "ornament"
+          }
+        ],
+        "chosen_triplet": [
+          {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          {
+            "bytes": [
+              153,
+              161
+            ],
+            "tokens": [
+              78,
+              79
+            ],
+            "surface": "ornament"
+          },
+          {
+            "bytes": [
+              302,
+              310
+            ],
+            "tokens": [
+              121,
+              122
+            ],
+            "surface": "ornament"
+          }
+        ],
+        "wrong_attachment": {
+          "sign": "affirmed",
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ],
+            "surface": "keep"
+          },
+          "chosen_governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ],
+            "surface": "keep"
+          },
+          "gold_noun": {
+            "bytes": [
+              278,
+              287
+            ],
+            "tokens": [
+              112,
+              115
+            ],
+            "surface": "medallion"
+          },
+          "chosen_noun": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          "strongest_wrong": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          "independent_noun": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          }
+        },
+        "trajectory": [
+          {
+            "signed": {
+              "gold_cost": 31,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -25,
+              "loss": 26,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              602
+            ],
+            "joint_runner_up": [
+              0,
+              34,
+              562
+            ],
+            "joint_ties": 1
+          },
+          {
+            "signed": {
+              "gold_cost": 22,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -16,
+              "loss": 17,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              602
+            ],
+            "joint_runner_up": [
+              0,
+              34,
+              562
+            ],
+            "joint_ties": 1
+          },
+          {
+            "signed": {
+              "gold_cost": 22,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -16,
+              "loss": 17,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              602
+            ],
+            "joint_runner_up": [
+              0,
+              34,
+              562
+            ],
+            "joint_ties": 1
+          }
+        ]
+      },
+      {
+        "row": 121,
+        "case_id": "e8882bccfe4832beeb4c724c3671adec67453d648a6da42a9020500fca966bbe",
+        "admission": "take",
+        "expected_triplet": [
+          {
+            "bytes": [
+              153,
+              161
+            ],
+            "tokens": [
+              78,
+              79
+            ],
+            "surface": "ornament"
+          },
+          {
+            "bytes": [
+              278,
+              287
+            ],
+            "tokens": [
+              112,
+              115
+            ],
+            "surface": "medallion"
+          },
+          {
+            "bytes": [
+              302,
+              310
+            ],
+            "tokens": [
+              121,
+              122
+            ],
+            "surface": "ornament"
+          }
+        ],
+        "chosen_triplet": [
+          {
+            "bytes": [
+              153,
+              161
+            ],
+            "tokens": [
+              78,
+              79
+            ],
+            "surface": "ornament"
+          },
+          {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          {
+            "bytes": [
+              302,
+              310
+            ],
+            "tokens": [
+              121,
+              122
+            ],
+            "surface": "ornament"
+          }
+        ],
+        "wrong_attachment": {
+          "sign": "excluded",
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ],
+            "surface": "drop"
+          },
+          "chosen_governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ],
+            "surface": "drop"
+          },
+          "gold_noun": {
+            "bytes": [
+              278,
+              287
+            ],
+            "tokens": [
+              112,
+              115
+            ],
+            "surface": "medallion"
+          },
+          "chosen_noun": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          "strongest_wrong": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          },
+          "independent_noun": {
+            "bytes": [
+              240,
+              245
+            ],
+            "tokens": [
+              102,
+              103
+            ],
+            "surface": "piece"
+          }
+        },
+        "trajectory": [
+          {
+            "signed": {
+              "gold_cost": 31,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -25,
+              "loss": 26,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              606
+            ],
+            "joint_runner_up": [
+              0,
+              30,
+              598
+            ],
+            "joint_ties": 1
+          },
+          {
+            "signed": {
+              "gold_cost": 31,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -25,
+              "loss": 26,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              606
+            ],
+            "joint_runner_up": [
+              0,
+              30,
+              598
+            ],
+            "joint_ties": 1
+          },
+          {
+            "signed": {
+              "gold_cost": 22,
+              "gold_center": 2,
+              "rival_cost": 6,
+              "rival_center": 7,
+              "rival_site": 31,
+              "rival_ties": 1,
+              "rivals": [
+                31
+              ],
+              "margin": -16,
+              "loss": 17,
+              "outcome": "loss"
+            },
+            "joint_cost": [
+              0,
+              21,
+              606
+            ],
+            "joint_runner_up": [
+              0,
+              30,
+              598
+            ],
+            "joint_ties": 1
+          }
+        ]
+      }
+    ]
+  },
+  "next_comparison": "In a controlled source-read diagnostic, mask only the winning intervening address and compare against masking a nonwinning intervening address. Freeze the governors, state, remaining original candidates and tuple bank. Record the new strongest signed rival and whether both opposed prompts recover the exact original triplet with both governors."
+}

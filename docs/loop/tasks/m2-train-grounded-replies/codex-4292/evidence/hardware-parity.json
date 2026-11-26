@@ -1,0 +1,13 @@
+{
+  "hardware": [
+    "Wick RTX 4090",
+    "Vast RTX 4090"
+  ],
+  "driver": "595.99.02",
+  "raw_device_all_files_identical": true,
+  "manifested_members": 746,
+  "bytes_with_manifest": 107957610,
+  "raw_device_manifest_sha256": "bc82fd17b020d11d0913bd9996208d2f174dccaca8047f11a5b4d462bb310833",
+  "candidate_records_identical": true,
+  "election_identical": true
+}

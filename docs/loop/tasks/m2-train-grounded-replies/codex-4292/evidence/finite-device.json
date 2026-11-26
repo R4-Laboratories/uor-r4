@@ -1,0 +1,6 @@
+[
+  "coordinate order and center order, with singleton center deduplication",
+  "both moves reduce identical signed far loss, including exact ties",
+  "the safe move preserves the original near pair and the harmful move replaces it with a different pair at equal count",
+  "repeat the original move menu around the new base and saturate both i16 bounds"
+]

@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "source_gate_released": false,
+  "original_near_lost": [],
+  "matched_far_gains_lost": [
+    "observatory-inventory/snow/10",
+    "observatory-inventory/snow/14",
+    "observatory-inventory/snow/2",
+    "observatory-inventory/snow/6",
+    "observatory-inventory/spring/10",
+    "observatory-inventory/spring/14",
+    "observatory-inventory/spring/2",
+    "observatory-inventory/spring/6",
+    "orchard-access/snow/18",
+    "orchard-access/snow/22",
+    "orchard-access/snow/26",
+    "orchard-access/snow/30",
+    "orchard-access/spring/18",
+    "orchard-access/spring/22",
+    "orchard-access/spring/26",
+    "orchard-access/spring/30"
+  ],
+  "baseline": {
+    "near_exact": 40,
+    "far_exact": 0,
+    "near_full": 40,
+    "far_full": 0
+  },
+  "free": {
+    "near_exact": 32,
+    "far_exact": 16,
+    "near_full": 32,
+    "far_full": 16
+  },
+  "protected": {
+    "near_exact": 40,
+    "far_exact": 0,
+    "near_full": 40,
+    "far_full": 0
+  },
+  "far_only": {
+    "near_exact": 28,
+    "far_exact": 16,
+    "near_full": 28,
+    "far_full": 16
+  }
+}

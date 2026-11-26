@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "batches": 3,
+  "same_fresh_retry": true,
+  "rejected_tampered_edge": true,
+  "candidate_count_per_batch": 6,
+  "checked_state_bytes": 320064,
+  "checked_signed_edges": 252,
+  "checked_joint_rows": 126
+}

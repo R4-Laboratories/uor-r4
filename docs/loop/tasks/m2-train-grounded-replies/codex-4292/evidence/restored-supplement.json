@@ -1,0 +1,7 @@
+{
+  "pass": true,
+  "mirror_raw_manifest_sha256": "bc82fd17b020d11d0913bd9996208d2f174dccaca8047f11a5b4d462bb310833",
+  "reconstructed_raw_files": 746,
+  "reconstructed_grade_files": 249,
+  "identical_raw_batches": true
+}

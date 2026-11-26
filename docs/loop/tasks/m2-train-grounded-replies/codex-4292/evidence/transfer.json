@@ -1,0 +1,316 @@
+{
+  "all": {
+    "native": {
+      "exact": 0,
+      "full": 0,
+      "prompts": 12,
+      "governor_prompts": 0
+    },
+    "unfitted": {
+      "exact": 0,
+      "full": 0,
+      "prompts": 0,
+      "governor_prompts": 0
+    },
+    "gap": {
+      "exact": 0,
+      "full": 0,
+      "prompts": 0,
+      "governor_prompts": 256
+    },
+    "baseline": {
+      "exact": 40,
+      "full": 40,
+      "prompts": 88,
+      "governor_prompts": 256
+    },
+    "far_only": {
+      "exact": 44,
+      "full": 44,
+      "prompts": 116,
+      "governor_prompts": 256
+    },
+    "free": {
+      "exact": 48,
+      "full": 48,
+      "prompts": 100,
+      "governor_prompts": 256
+    },
+    "protected": {
+      "exact": 40,
+      "full": 40,
+      "prompts": 88,
+      "governor_prompts": 256
+    },
+    "correct_link": {
+      "exact": 128,
+      "full": 128,
+      "prompts": 256,
+      "governor_prompts": 256
+    },
+    "exchanged_link": {
+      "exact": 0,
+      "full": 0,
+      "prompts": 0,
+      "governor_prompts": 256
+    }
+  },
+  "distance": {
+    "far": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 0
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      },
+      "baseline": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      },
+      "far_only": {
+        "exact": 16,
+        "full": 16,
+        "prompts": 56,
+        "governor_prompts": 128
+      },
+      "free": {
+        "exact": 16,
+        "full": 16,
+        "prompts": 32,
+        "governor_prompts": 128
+      },
+      "protected": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      },
+      "correct_link": {
+        "exact": 64,
+        "full": 64,
+        "prompts": 128,
+        "governor_prompts": 128
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      }
+    },
+    "near": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 12,
+        "governor_prompts": 0
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      },
+      "baseline": {
+        "exact": 40,
+        "full": 40,
+        "prompts": 88,
+        "governor_prompts": 128
+      },
+      "far_only": {
+        "exact": 28,
+        "full": 28,
+        "prompts": 60,
+        "governor_prompts": 128
+      },
+      "free": {
+        "exact": 32,
+        "full": 32,
+        "prompts": 68,
+        "governor_prompts": 128
+      },
+      "protected": {
+        "exact": 40,
+        "full": 40,
+        "prompts": 88,
+        "governor_prompts": 128
+      },
+      "correct_link": {
+        "exact": 64,
+        "full": 64,
+        "prompts": 128,
+        "governor_prompts": 128
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 128
+      }
+    }
+  },
+  "family_distance": {
+    "boatyard-rigging/far": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 0,
+      "far_only": 0,
+      "free": 8,
+      "protected": 0,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "boatyard-rigging/near": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 8,
+      "far_only": 8,
+      "free": 8,
+      "protected": 8,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "leather-tool-inspection/far": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 0,
+      "far_only": 0,
+      "free": 8,
+      "protected": 0,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "leather-tool-inspection/near": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 16,
+      "far_only": 16,
+      "free": 16,
+      "protected": 16,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "observatory-inventory/far": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 0,
+      "far_only": 8,
+      "free": 0,
+      "protected": 0,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "observatory-inventory/near": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 8,
+      "far_only": 0,
+      "free": 0,
+      "protected": 8,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "orchard-access/far": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 0,
+      "far_only": 8,
+      "free": 0,
+      "protected": 0,
+      "correct_link": 16,
+      "exchanged_link": 0
+    },
+    "orchard-access/near": {
+      "native": 0,
+      "unfitted": 0,
+      "gap": 0,
+      "baseline": 8,
+      "far_only": 4,
+      "free": 8,
+      "protected": 8,
+      "correct_link": 16,
+      "exchanged_link": 0
+    }
+  },
+  "matched_pair_movements": {
+    "far": {
+      "free": {
+        "kept": 0,
+        "lost": 0,
+        "gained": 16
+      },
+      "protected": {
+        "kept": 0,
+        "lost": 0,
+        "gained": 0
+      },
+      "far_only": {
+        "kept": 0,
+        "lost": 0,
+        "gained": 16
+      }
+    },
+    "near": {
+      "free": {
+        "kept": 32,
+        "lost": 8,
+        "gained": 0
+      },
+      "protected": {
+        "kept": 40,
+        "lost": 0,
+        "gained": 0
+      },
+      "far_only": {
+        "kept": 28,
+        "lost": 12,
+        "gained": 0
+      }
+    }
+  },
+  "gate": {
+    "pass": false,
+    "gate": {
+      "train": false,
+      "retains_held_near": true,
+      "retains_matched_far_gains": false,
+      "improves_far": false,
+      "total_gain": false,
+      "gains_both_distances": false,
+      "full_links_both_distances": false,
+      "no_family_below_native": true,
+      "supplied_controls": true
+    },
+    "original_near": 40,
+    "near_lost": 0,
+    "far_only_gains": 16,
+    "far_only_gains_lost": 16
+  }
+}
