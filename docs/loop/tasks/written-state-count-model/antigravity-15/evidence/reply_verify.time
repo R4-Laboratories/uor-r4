@@ -1,0 +1,23 @@
+	Command being timed: "/tmp/p5b-run/target/release/p5b-eval reply-verify /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5a-s4-r3/artifacts/c_ppmi_s4.uors4p01 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate3-fullc/full-c.v3 /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.weights /mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.seal.json /home/callard/uor-codex/20261118-diagnostics/inputs/seed1.d11 /tmp/p5b-run/tokenizer.json /tmp/p5b-run/fresh256 /mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p5b-devtest/reply_verify.json"
+	User time (seconds): 19.54
+	System time (seconds): 3.79
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:23.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3976656
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 959808
+	Voluntary context switches: 378
+	Involuntary context switches: 212
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 4
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

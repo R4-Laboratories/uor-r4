@@ -1,0 +1,98 @@
+{
+  "fresh256_inputs_sha256": "1de2fc28607eff6bc412eee41a259d806ee1479b7c925059f00e9d3b54afa99a",
+  "phase": "Stage B5b Cold-Loaded Frozen S4 Reply Verification",
+  "r1_r2_m2_fresh256": {
+    "active_pairs": 128,
+    "active_row_hits": 256,
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "pairs": 128,
+    "rows": 256,
+    "shuffled_role_abstained": 135,
+    "shuffled_role_row_hits": 0
+  },
+  "r4_heldout_phrasing": {
+    "active_abstained": 20,
+    "active_in_stem": 120,
+    "active_oov_synonym": 80,
+    "active_pairs": 80,
+    "active_row_hits": 200,
+    "by_query": {
+      "Clarify my profession.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Clarify my quarters.": {
+        "hits": 0,
+        "total": 20
+      },
+      "Confirm my home location.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Confirm my job title.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Give the exact name of my job.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Give the exact place where I live.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Report what my job has become.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Report where my residence sits today.": {
+        "hits": 20,
+        "total": 20
+      },
+      "State my dwelling.": {
+        "hits": 20,
+        "total": 20
+      },
+      "State my occupation.": {
+        "hits": 0,
+        "total": 20
+      },
+      "Which town shelters me?": {
+        "hits": 20,
+        "total": 20
+      },
+      "Which trade do I practice?": {
+        "hits": 20,
+        "total": 20
+      }
+    },
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 200
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 182
+    },
+    "pairs": 120,
+    "rows": 240,
+    "shuffled_role_abstained": 117,
+    "shuffled_role_row_hits": 18
+  },
+  "s4_bytes": 1952698,
+  "s4_gpu_vs_cpu_divergences": 0,
+  "s4_sha256": "cd0e43859bcd72acfa08342d7ff08a0827c582c4cd8e1592218e6ca4c43f8771"
+}

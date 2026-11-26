@@ -1,0 +1,4 @@
+cubin_path=/tmp/p5b-run/target/release/build/p5b-eval-70588e03407feb18/out/p5b_kernels.sm_89.cubin
+cubin_sha256=209249f04e77fd855b5cd148c842ea18766b5a78bef1ad1f8e7179ed3bdf9612
+ptx_float_opcode_hits=0
+float_opcode_hits=0
