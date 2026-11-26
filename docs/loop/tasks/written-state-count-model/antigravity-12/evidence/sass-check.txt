@@ -1,0 +1,6 @@
+cubin_sha256=0e661e6c8ce95fb674439e2e954cff207cbc68584352b9cbca5bdaef9a855360
+nvcc_arch=compute_89
+compute_cap=8.9
+ptx_float_opcode_hits=0
+float_opcode_hits=0
+sm120_const_mov_aliases=0

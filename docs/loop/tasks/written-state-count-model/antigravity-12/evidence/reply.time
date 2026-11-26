@@ -1,0 +1,23 @@
+	Command being timed: "/workspace/p4-build/docs/loop/tasks/written-state-count-model/antigravity-12/p4-eval/target/release/p4-eval reply /workspace/p4-inputs/mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate3-fullc/full-c.v3 /workspace/p4-inputs/mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.weights /workspace/p4-inputs/mnt/plexpool/uor-r4-corpus/runs/20261125-antigravity-uorknc03/gate5-eval/fit/identity/a1s.seal.json /workspace/p4-inputs/home/callard/uor-codex/20261118-diagnostics/inputs/seed1.d11 /workspace/p4-inputs/local/tokenizer.json /workspace/p4-inputs/local/m2-fresh256 /workspace/p4-inputs/home/callard/uor-codex/20261119-rival-admission-29/count/cr-v1/r.tokens.u16 /workspace/p4-run/evidence/artifacts /workspace/p4-run/evidence/reply_report.json"
+	User time (seconds): 35.81
+	System time (seconds): 4.28
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:40.08
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 4022768
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 991500
+	Voluntary context switches: 315
+	Involuntary context switches: 73
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8608
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

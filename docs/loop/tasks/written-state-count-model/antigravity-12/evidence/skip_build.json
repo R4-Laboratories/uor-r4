@@ -1,0 +1,26 @@
+{
+  "c_corpus_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+  "families": [
+    "skip_lag2",
+    "skip_3_1",
+    "skip_4_1"
+  ],
+  "file_bytes": 80106901,
+  "max_bytes_budget": 80000000,
+  "per_family_bytes": [
+    19999994,
+    29999998,
+    29999998
+  ],
+  "per_family_ctxs": [
+    1113,
+    6411,
+    5827
+  ],
+  "per_family_entries": [
+    2854916,
+    4272892,
+    4274060
+  ],
+  "total_bytes": 79999990
+}

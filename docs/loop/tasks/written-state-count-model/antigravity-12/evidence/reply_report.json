@@ -1,0 +1,173 @@
+{
+  "fresh256_inputs_sha256": "1de2fc28607eff6bc412eee41a259d806ee1479b7c925059f00e9d3b54afa99a",
+  "phase": "Stage B4 P3 Clean-Anchor + 2-Hop PPMI S4 + R1/R2/R4 Panels",
+  "r1_r2_m2_fresh256": {
+    "active": {
+      "pairs_both_complete_distinct": 128,
+      "row_hits": 256,
+      "samples": [
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-home",
+          "ok": true,
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-home",
+          "ok": true,
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        }
+      ]
+    },
+    "gate_r1_ge_52_of_128": true,
+    "gate_r2_ge_200_of_256": true,
+    "no_memory": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    },
+    "paired_vs_no_memory": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "pairs": 128,
+    "rows": 256,
+    "shuffled_role": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    }
+  },
+  "r4_heldout_phrasing": {
+    "active_in_stem_rows_of_120": 120,
+    "active_oov_synonym_rows_of_120": 40,
+    "active_pairs": 60,
+    "active_row_hits": 160,
+    "gate_r4_ge_200_of_240": false,
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 26,
+      "beats_control": true,
+      "net_gain": 160
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 100
+    },
+    "pairs": 120,
+    "rows": 240,
+    "shuffled_role_row_hits": 60
+  },
+  "s4_artifact": {
+    "bytes": 4402792,
+    "contexts": 168948,
+    "d87_r_prop_home_tokens": 384,
+    "d87_r_prop_job_tokens": 371,
+    "d87_r_tokens_scanned": 15951644,
+    "hinge_epochs": [
+      {
+        "epoch": 1,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 9304702,
+        "updates_applied": 1592
+      },
+      {
+        "epoch": 2,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 5035864,
+        "updates_applied": 288
+      },
+      {
+        "epoch": 3,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 4249432,
+        "updates_applied": 288
+      }
+    ],
+    "home_anchor_names": [
+      " home",
+      " house",
+      " people",
+      " where",
+      " res",
+      " street",
+      " live",
+      " add",
+      " built"
+    ],
+    "job_anchor_names": [
+      " what",
+      " work",
+      " job",
+      " happen",
+      " stat",
+      " task"
+    ],
+    "mworld_spans_extracted": 24,
+    "mworld_train_episodes": 24,
+    "sha256": "d9f774388408dd15c0e49eb98643d9cc5b1914044d579e56027763fac446ed96",
+    "top_prop_home_preview": [
+      " cob",
+      " walking",
+      " complete",
+      " cars",
+      " rain",
+      " tea",
+      " city",
+      " Please",
+      " vine",
+      " kayak",
+      " town",
+      " finished",
+      " without",
+      " box",
+      " roof",
+      " bookshe"
+    ],
+    "top_prop_job_preview": [
+      " Your",
+      " tomorrow",
+      " happened",
+      " happening",
+      " Lily",
+      " doing",
+      " know",
+      " does",
+      " Why",
+      " think",
+      " decide",
+      " tell",
+      " ask",
+      " honest",
+      " understand",
+      " how"
+    ],
+    "total_hinge_updates": 2168
+  },
+  "s4_gpu_vs_cpu_divergences": 0
+}
