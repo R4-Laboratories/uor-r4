@@ -1,0 +1,16 @@
+--- src/contrast.rs
++++ src/contrast.rs
+@@ -39,8 +39,11 @@
+     let endpoint = packet::text(&fs::read(endpoint)?)?;
+     let ordered = packet::text(&fs::read(ordered)?)?;
+     check(
+-        reference.len() == 64 && endpoint.len() == 64 && ordered.len() == 64,
+-        "expected 64 paired selector prompts and both geometry packets",
++        !reference.is_empty()
++            && reference.len() % 2 == 0
++            && endpoint.len() == reference.len()
++            && ordered.len() == reference.len(),
++        "paired selector prompts and both geometry packets must have the same even length",
+     )?;
+     let mut records = Vec::new();
+     let mut pair_ids = BTreeSet::new();

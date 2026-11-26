@@ -1,0 +1,55 @@
+--- src/main.rs
++++ src/main.rs
+@@ -30,7 +30,7 @@
+ #[serde(deny_unknown_fields)]
+ struct Design {
+     wordings: [Wording; 4],
+-    facts: [(String, String, String); 2],
++    facts: Vec<(String, String, String)>,
+ }
+ 
+ #[derive(Deserialize)]
+@@ -492,11 +492,11 @@
+                     cell & 4 != 0
+                 };
+                 let job_requested = if contrast {
+-                    governor_first != (fact_index != 0)
++                    governor_first != (fact_index % 2 != 0)
+                 } else {
+                     cell & 8 != 0
+                 };
+-                let horizon = 3 + fact_index as u32;
++                let horizon = 3 + (fact_index % 2) as u32;
+                 let (role, other, first) = if job_requested {
+                     ("job", "home", 0)
+                 } else {
+@@ -701,7 +701,7 @@
+         }
+     }
+     check(
+-        rows.len() == if contrast { 64 } else { FRESH_ROWS },
++        rows.len() == if contrast { 256 } else { FRESH_ROWS },
+         "wrong fresh enrollment",
+     )?;
+     Ok(rows)
+@@ -862,6 +862,10 @@
+     let model = IntegerDiscreteModel::load(Path::new(artifact_path))?;
+     let history = serde_json::from_value(read(Path::new(history_path))?)?;
+-    let design = serde_json::from_value(read(Path::new(design_path))?)?;
++    let design: Design = serde_json::from_value(read(Path::new(design_path))?)?;
++    check(
++        design.facts.len() == if contrast { 8 } else { 2 },
++        "wrong number of independently declared fact pairs",
++    )?;
+     let rows = generate(
+         &codec, &protocol, &encoder, &model, &history, &design, contrast,
+     )?;
+@@ -870,7 +874,7 @@
+     }
+     emit(Path::new(output), &rows)?;
+     if contrast {
+-        println!("64 rows / 4 families / 32 selector pairs / 256 registered native tuples / 128 native actions / 128 original copy bodies");
++        println!("256 rows / 4 families / 128 selector pairs");
+     } else {
+         println!("256 rows / 4 families / 128 exact governor-only pairs / 1,024 registered native tuples / 512 native actions / 512 original copy bodies");
+     }

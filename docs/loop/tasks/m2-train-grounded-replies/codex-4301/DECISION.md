@@ -1,0 +1,5 @@
+# Decide the protected source experiment
+
+Lab codex. [M2](../../../../roadmap/items/m2-train-grounded-replies.md) requires an ordinary grounded reply with real source addresses. The previous integer median improved ordinary TRAIN reads but erased a measurable first/later switch before the exact writer. Four planning-review pairs reproduce that transition. They give us a training-independent regression constraint alongside the 24 near pairs already earned. The two protected populations currently belong to different state histories.
+
+The user chose one rented 4090 for this research. The candidate library, updates and ordinary read all reuse the native ordered integer representation. Full-tuple competitors can hide a successful local repair, so measure those competitors even when a normal read correctly selects the target. Require correct/swapped controls and an independent replay. Hold model election closed before using fresh wording. This unit makes no change to the conversation, generation or milestone bars. The fit, election, archive, transfer and hardware receipts must be available before delivery.

@@ -1,0 +1,21 @@
+{
+  "nominated_tuple_eligible": [
+    256,
+    256
+  ],
+  "order": [
+    "gold",
+    "same-spelling swap"
+  ],
+  "physical": {
+    "full_rows": [
+      256,
+      0
+    ],
+    "signed_rows": [
+      256,
+      0
+    ]
+  },
+  "rows": 256
+}

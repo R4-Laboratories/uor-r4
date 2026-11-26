@@ -1,0 +1,31 @@
+{
+  "provider": "Vast.ai",
+  "pod": "vast-62759868",
+  "device": "NVIDIA GeForce RTX 4090",
+  "driver": "590.48.01",
+  "compiler_cuda": "12.8",
+  "width_bytes": 13336,
+  "rate_usd_hour": 1.004,
+  "uptime_seconds": 883,
+  "estimated_compute_usd": 0.2462588888888889,
+  "billing_precision": "published rate times provider uptime, excludes fees",
+  "closed": "2026-11-26T22:21:32Z",
+  "provider_confirmation": "Provider status confirmed the account no longer lists vast-62759868.",
+  "raw_logs": [
+    {
+      "phase": "training and both guards",
+      "started": "2026-11-26T22:17:43Z",
+      "finished": "2026-11-26T22:17:49Z"
+    },
+    {
+      "phase": "four fresh states and two controls",
+      "started": "2026-11-26T22:20:14Z",
+      "finished": "2026-11-26T22:20:16Z"
+    }
+  ],
+  "custody": {
+    "archive_sha256": "8b9ad69748ccaf93c070e5462534147c323d5e6b87e47255a5b723738cc43076",
+    "bytes": 82918304,
+    "regular_files": 782
+  }
+}

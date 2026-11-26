@@ -1,0 +1,20 @@
+{
+  "gold": {
+    "rows": 256,
+    "unique": 256,
+    "focus": 256,
+    "full": 256,
+    "paired_directed": 128,
+    "paired_original": 128,
+    "paired_full": 128
+  },
+  "swapped": {
+    "rows": 256,
+    "unique": 256,
+    "focus": 256,
+    "full": 256,
+    "paired_directed": 128,
+    "paired_original": 0,
+    "paired_full": 128
+  }
+}

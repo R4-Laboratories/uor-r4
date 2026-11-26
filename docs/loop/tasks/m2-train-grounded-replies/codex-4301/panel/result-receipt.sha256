@@ -1,0 +1,5 @@
+d2ef8cf7e3aa89c05ab2f3773f802ac6fce2e1455cf54fcd5965e1703f4bdeb2  fresh-reduction-v1/SHA256SUMS
+34eebc6ff79638329fe837529c4e1dcbe70e045b542ec57864cf2ff1057898af  fresh-reduction-v1/comparison.json
+95194d794686a43b41c0a81339b2e5c3028888d3e4b7594c472177e1d031c820  fresh-cold-v1/cold.sha256
+f38d3f2c63a3af047f38ba830d7f8bc8bf8d195f9bd15ed9f1e27aad75b5b6ff  fresh-cold-v1/inputs.tar.zst
+d2ef8cf7e3aa89c05ab2f3773f802ac6fce2e1455cf54fcd5965e1703f4bdeb2  fresh-cold-v1/replay/SHA256SUMS

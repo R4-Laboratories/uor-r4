@@ -1,0 +1,98 @@
+{
+  "facts": [
+    ["apiary-and-bay", "city apiary keeper", "city alder bay"],
+    ["costume-and-harbor", "old costume tailor", "old mist harbor"],
+    ["museum-and-valley", "museum registrar", "museum fern valley"],
+    ["dispatch-and-ridge", "night shift dispatcher", "night cedar ridge"],
+    ["sound-and-ford", "radio sound engineer", "radio linden ford"],
+    ["pilot-and-basin", "river barge pilot", "river willow basin"],
+    ["rail-and-glen", "train safety inspector", "train maple glen"],
+    ["orchard-and-hollow", "apple orchard keeper", "apple ash hollow"]
+  ],
+  "wordings": [
+    {
+      "family": "courtroom-inventory-minutes",
+      "reference": "gavel",
+      "rival": "mallet",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the item left by the clerk beside the old file, the plain {noun}",
+      "far_after": "the plain {noun} is the item on the list the clerk gave us to {governor}",
+      "authorize": "accept",
+      "decline": "refuse",
+      "heading": "Summarize the court {noun}.",
+      "order": "Say my {first}, then my {second}, and alternate",
+      "ending": "Use {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "for the hearing {governor} the item the clerk put in the {selector} slot on the docket, the {first_occurrence} followed by the {second_occurrence}",
+        "after": "the {first_occurrence} and then the {second_occurrence} were entered in that order, the {selector} entry is the one the judge can now {governor}",
+        "marks": ["padded", "cracked"]
+      }
+    },
+    {
+      "family": "nursery-potting-schedule",
+      "reference": "trowel",
+      "rival": "planter",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the tool the day crew put on the top shelf, our spare {noun}",
+      "far_after": "our spare {noun} is the item on the list they gave the crew to {governor}",
+      "authorize": "save",
+      "decline": "skip",
+      "heading": "Check the garden {noun}.",
+      "order": "Give my {first} before my {second} and repeat in turn",
+      "ending": "Write {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} the tool on the list in the {selector} spot for this morning, the {first_occurrence} in the low tray and then the {second_occurrence}",
+        "after": "the schedule lists the {first_occurrence} and then the {second_occurrence} for the work due this morning, the {selector} one on that line is for the crew to {governor}",
+        "marks": ["painted", "bent"]
+      }
+    },
+    {
+      "family": "pantry-drinks-checklist",
+      "reference": "carafe",
+      "rival": "pitcher",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the vessel that lay by the sink all day, that glass {noun}",
+      "far_after": "that glass {noun} is on the list of things you have been told to {governor}",
+      "authorize": "keep",
+      "decline": "omit",
+      "heading": "Label the clean {noun}.",
+      "order": "Lead with my {first} and put my {second} next, then alternate",
+      "ending": "Return {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} just the item at the marked slot in the {selector} position on the list, the {first_occurrence} followed by the {second_occurrence}",
+        "after": "the {first_occurrence} comes before the {second_occurrence} on the list of vessels for the morning, and the {selector} listed item is the one you should {governor}",
+        "marks": ["sealed", "empty"]
+      }
+    },
+    {
+      "family": "pump-service-inspection-log",
+      "reference": "flange",
+      "rival": "coupling",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the part by the door that you tagged this morning, the steel {noun}",
+      "far_after": "the steel {noun} is the part that the boss has now asked the crew to {governor}",
+      "authorize": "retain",
+      "decline": "reject",
+      "heading": "Log the spare {noun}.",
+      "order": "Take turns with my {first} and my {second}, starting with my {first}",
+      "ending": "End after {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} the part marked on the sheet in the {selector} spot of the inspection log, with the {first_occurrence} ahead of the {second_occurrence}",
+        "after": "the {first_occurrence} was listed ahead of the {second_occurrence} before the pump stopped, and the {selector} part in that order is the one the night shift may {governor}",
+        "marks": ["smooth", "dented"]
+      }
+    }
+  ]
+}
