@@ -1,0 +1,106 @@
+{
+  "checkpoint_bytes_verified": 120024,
+  "disagreements": 0,
+  "individual_coordinate_records_verified": 512,
+  "quality_snapshots_verified": 9,
+  "rows": 4,
+  "signed_edges": 8,
+  "vote_steps": [
+    {
+      "agree": 1,
+      "cancelled": 1,
+      "far_direction_blocked_or_reversed": 1,
+      "far_only": 3,
+      "inactive": 57,
+      "moved": 4,
+      "near_direction_blocked_or_reversed": 2,
+      "near_only": 1,
+      "opposed": 2,
+      "step": 0
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 3,
+      "inactive": 57,
+      "moved": 5,
+      "near_direction_blocked_or_reversed": 1,
+      "near_only": 3,
+      "opposed": 1,
+      "step": 1
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 2
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 3
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 4
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 5
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 6
+    },
+    {
+      "agree": 0,
+      "cancelled": 0,
+      "far_direction_blocked_or_reversed": 0,
+      "far_only": 0,
+      "inactive": 64,
+      "moved": 0,
+      "near_direction_blocked_or_reversed": 0,
+      "near_only": 0,
+      "opposed": 0,
+      "step": 7
+    }
+  ]
+}

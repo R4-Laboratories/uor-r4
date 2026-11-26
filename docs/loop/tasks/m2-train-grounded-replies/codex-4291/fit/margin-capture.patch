@@ -1,0 +1,26 @@
+--- margin.cu
++++ margin-capture.cuh
+@@ -287,5 +287,8 @@
++#include "observe.cuh"
++
+ void run(Objective objective, const Packet &packet, const std::vector<Labels> &labels,
+-         const Learned &parent, const char *trace_path, const char *state_path, const char *final_path) {
++         const Learned &parent, const char *trace_path, const char *state_path, const char *final_path,
++         const MixedCapture *capture = nullptr) {
+     require_lease();
+     const uint32_t n = packet.rows.size();
+     const uint32_t events = 2 * n;
+@@ -354,6 +357,13 @@
+     std::vector<Nearest> before_costs(events * max_sites);
+     std::vector<Nearest> after_costs(events * max_sites);
+     initial_candidates.download(before_costs.data(), before_costs.size());
++
++    if (capture != nullptr) {
++        // Observe after all updates and before the first device measurement buffer is reused.
++        capture_mixed(*capture, geometry, authored, enrolled, measures, snapshots, parent,
++                      enrollment, history);
++    }
++
+     if (chosen_step == 0) {
+         after_costs = before_costs;
+     } else {

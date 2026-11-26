@@ -1,0 +1,9 @@
+[
+  "every active sign, slot and axis on the eight pre-update states",
+  "opposition with a residual, exact cancellation, agreement, one-sided votes, zero hinge and both i16 limits",
+  "inactive vote dimensions and strictly winning sign produce zero",
+  "opposition counts by sign, slot and axis with cancellation a subset",
+  "all nine states report hinge and strict wins and losses with exact parent strata",
+  "near axis 5 operands belong to an already won edge and emit no vote",
+  "changing distance labels changes the decomposition while preserving each exact net sum"
+]

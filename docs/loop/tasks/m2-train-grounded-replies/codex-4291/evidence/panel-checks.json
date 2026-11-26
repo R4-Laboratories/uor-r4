@@ -1,0 +1,119 @@
+{
+  "mixed": {
+    "endpoints": 256,
+    "pairs": 128,
+    "families": 8,
+    "by_distance": {
+      "far": {
+        "endpoints": 128,
+        "pairs": 64,
+        "gaps": {
+          "min": 11,
+          "max": 13
+        },
+        "tuples": {
+          "min": 114,
+          "max": 358
+        },
+        "nominal_reply_ids": {
+          "min": 25,
+          "max": 39
+        }
+      },
+      "near": {
+        "endpoints": 128,
+        "pairs": 64,
+        "gaps": {
+          "min": 1,
+          "max": 3
+        },
+        "tuples": {
+          "min": 86,
+          "max": 238
+        },
+        "nominal_reply_ids": {
+          "min": 25,
+          "max": 37
+        }
+      }
+    }
+  },
+  "far": {
+    "endpoints": 256,
+    "pairs": 128,
+    "families": 8,
+    "by_distance": {
+      "far": {
+        "endpoints": 256,
+        "pairs": 128,
+        "gaps": {
+          "min": 11,
+          "max": 13
+        },
+        "tuples": {
+          "min": 114,
+          "max": 390
+        },
+        "nominal_reply_ids": {
+          "min": 25,
+          "max": 39
+        }
+      }
+    }
+  },
+  "held": {
+    "endpoints": 256,
+    "pairs": 128,
+    "families": 4,
+    "by_distance": {
+      "far": {
+        "endpoints": 128,
+        "pairs": 64,
+        "gaps": {
+          "min": 11,
+          "max": 17
+        },
+        "tuples": {
+          "min": 100,
+          "max": 320
+        },
+        "nominal_reply_ids": {
+          "min": 28,
+          "max": 37
+        }
+      },
+      "near": {
+        "endpoints": 128,
+        "pairs": 64,
+        "gaps": {
+          "min": 1,
+          "max": 4
+        },
+        "tuples": {
+          "min": 52,
+          "max": 176
+        },
+        "nominal_reply_ids": {
+          "min": 28,
+          "max": 37
+        }
+      }
+    }
+  },
+  "common_far_pairs": 64,
+  "matched_b_pairs": 64,
+  "short_analogue_endpoints": 16,
+  "held_post_target_aside_endpoints": 16,
+  "held_novel_target_nouns": 8,
+  "historical_teacher_endpoints": 512,
+  "overlap": {
+    "families": 0,
+    "templates": 0,
+    "facts": 0,
+    "case_ids": 0,
+    "prompt_digests": 0,
+    "prompts": 0,
+    "held_target_words": 0
+  },
+  "rank_used_for_enrollment": false
+}

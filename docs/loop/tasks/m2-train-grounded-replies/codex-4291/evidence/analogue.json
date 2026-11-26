@@ -1,0 +1,62 @@
+[
+  {
+    "arm": "baseline",
+    "governor_order": "after",
+    "pairs": 8,
+    "won": 8
+  },
+  {
+    "arm": "baseline",
+    "governor_order": "before",
+    "pairs": 8,
+    "won": 0
+  },
+  {
+    "arm": "far_only",
+    "governor_order": "after",
+    "pairs": 8,
+    "won": 0
+  },
+  {
+    "arm": "far_only",
+    "governor_order": "before",
+    "pairs": 8,
+    "won": 8
+  },
+  {
+    "arm": "last_far",
+    "governor_order": "after",
+    "pairs": 8,
+    "won": 8
+  },
+  {
+    "arm": "last_far",
+    "governor_order": "before",
+    "pairs": 8,
+    "won": 8
+  },
+  {
+    "arm": "mixed_free",
+    "governor_order": "after",
+    "pairs": 8,
+    "won": 0
+  },
+  {
+    "arm": "mixed_free",
+    "governor_order": "before",
+    "pairs": 8,
+    "won": 0
+  },
+  {
+    "arm": "retained",
+    "governor_order": "after",
+    "pairs": 8,
+    "won": 8
+  },
+  {
+    "arm": "retained",
+    "governor_order": "before",
+    "pairs": 8,
+    "won": 0
+  }
+]

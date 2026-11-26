@@ -1,0 +1,12 @@
+{
+  "measurement": "measurement-v1",
+  "methods": "methods-v2",
+  "methods_sha256": "1480c9f725aef1a6f8de7e27fee4190f0dc582bc90dcffcecfc06be6d819c987",
+  "premise": true,
+  "checkpoint_rank_replays": 18,
+  "elections_reproduced": true,
+  "coordinate_votes_reproduced": true,
+  "grade": "grade-v1",
+  "client_token_trace": null,
+  "substantive_disagreements": 0
+}

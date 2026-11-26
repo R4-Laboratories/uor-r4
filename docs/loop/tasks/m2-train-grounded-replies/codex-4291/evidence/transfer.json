@@ -1,0 +1,621 @@
+{
+  "held": {
+    "all": {
+      "baseline": {
+        "exact": 48,
+        "full": 48,
+        "prompts": 96,
+        "governor_prompts": 256,
+        "neutral_prompts": 8
+      },
+      "far_only": {
+        "exact": 48,
+        "full": 48,
+        "prompts": 104,
+        "governor_prompts": 256,
+        "neutral_prompts": 72
+      },
+      "mixed_free": {
+        "exact": 44,
+        "full": 44,
+        "prompts": 100,
+        "governor_prompts": 256,
+        "neutral_prompts": 28
+      },
+      "retained": {
+        "exact": 48,
+        "full": 48,
+        "prompts": 96,
+        "governor_prompts": 256,
+        "neutral_prompts": 8
+      },
+      "last_far": {
+        "exact": 40,
+        "full": 40,
+        "prompts": 96,
+        "governor_prompts": 256,
+        "neutral_prompts": 56
+      },
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 4,
+        "governor_prompts": 0,
+        "neutral_prompts": 76
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 256,
+        "neutral_prompts": 24
+      },
+      "correct_link": {
+        "exact": 128,
+        "full": 128,
+        "prompts": 256,
+        "governor_prompts": 256,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 256,
+        "neutral_prompts": 0
+      }
+    },
+    "distance": {
+      "far": {
+        "baseline": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 16,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "far_only": {
+          "exact": 40,
+          "full": 40,
+          "prompts": 88,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "mixed_free": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 24,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "retained": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 16,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "last_far": {
+          "exact": 32,
+          "full": 32,
+          "prompts": 64,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "native": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 36
+        },
+        "unfitted": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 0
+        },
+        "gap": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 24
+        },
+        "correct_link": {
+          "exact": 64,
+          "full": 64,
+          "prompts": 128,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "exchanged_link": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        }
+      },
+      "near": {
+        "baseline": {
+          "exact": 40,
+          "full": 40,
+          "prompts": 80,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "far_only": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 16,
+          "governor_prompts": 128,
+          "neutral_prompts": 64
+        },
+        "mixed_free": {
+          "exact": 36,
+          "full": 36,
+          "prompts": 76,
+          "governor_prompts": 128,
+          "neutral_prompts": 20
+        },
+        "retained": {
+          "exact": 40,
+          "full": 40,
+          "prompts": 80,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "last_far": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 32,
+          "governor_prompts": 128,
+          "neutral_prompts": 56
+        },
+        "native": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 4,
+          "governor_prompts": 0,
+          "neutral_prompts": 40
+        },
+        "unfitted": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 0
+        },
+        "gap": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "correct_link": {
+          "exact": 64,
+          "full": 64,
+          "prompts": 128,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "exchanged_link": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        }
+      }
+    },
+    "family_distance": {
+      "courtroom-playback/far": {
+        "baseline": 0,
+        "far_only": 8,
+        "mixed_free": 0,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "courtroom-playback/near": {
+        "baseline": 0,
+        "far_only": 0,
+        "mixed_free": 8,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "edition-approval/far": {
+        "baseline": 0,
+        "far_only": 16,
+        "mixed_free": 8,
+        "retained": 0,
+        "last_far": 8,
+        "correct_link": 16
+      },
+      "edition-approval/near": {
+        "baseline": 16,
+        "far_only": 8,
+        "mixed_free": 8,
+        "retained": 16,
+        "last_far": 8,
+        "correct_link": 16
+      },
+      "ferry-access/far": {
+        "baseline": 0,
+        "far_only": 8,
+        "mixed_free": 0,
+        "retained": 0,
+        "last_far": 8,
+        "correct_link": 16
+      },
+      "ferry-access/near": {
+        "baseline": 8,
+        "far_only": 0,
+        "mixed_free": 8,
+        "retained": 8,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "pottery-sorting/far": {
+        "baseline": 8,
+        "far_only": 8,
+        "mixed_free": 0,
+        "retained": 8,
+        "last_far": 16,
+        "correct_link": 16
+      },
+      "pottery-sorting/near": {
+        "baseline": 16,
+        "far_only": 0,
+        "mixed_free": 12,
+        "retained": 16,
+        "last_far": 0,
+        "correct_link": 16
+      }
+    }
+  },
+  "bridge": {
+    "all": {
+      "baseline": {
+        "exact": 24,
+        "full": 24,
+        "prompts": 56,
+        "governor_prompts": 256,
+        "neutral_prompts": 8
+      },
+      "far_only": {
+        "exact": 48,
+        "full": 48,
+        "prompts": 112,
+        "governor_prompts": 256,
+        "neutral_prompts": 44
+      },
+      "mixed_free": {
+        "exact": 76,
+        "full": 76,
+        "prompts": 172,
+        "governor_prompts": 256,
+        "neutral_prompts": 16
+      },
+      "retained": {
+        "exact": 24,
+        "full": 24,
+        "prompts": 56,
+        "governor_prompts": 256,
+        "neutral_prompts": 8
+      },
+      "last_far": {
+        "exact": 48,
+        "full": 48,
+        "prompts": 112,
+        "governor_prompts": 256,
+        "neutral_prompts": 44
+      },
+      "native": {
+        "exact": 4,
+        "full": 0,
+        "prompts": 12,
+        "governor_prompts": 0,
+        "neutral_prompts": 56
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 256,
+        "neutral_prompts": 32
+      },
+      "correct_link": {
+        "exact": 128,
+        "full": 128,
+        "prompts": 256,
+        "governor_prompts": 256,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "prompts": 0,
+        "governor_prompts": 256,
+        "neutral_prompts": 0
+      }
+    },
+    "distance": {
+      "far": {
+        "baseline": {
+          "exact": 16,
+          "full": 16,
+          "prompts": 32,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "far_only": {
+          "exact": 48,
+          "full": 48,
+          "prompts": 96,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "mixed_free": {
+          "exact": 32,
+          "full": 32,
+          "prompts": 64,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "retained": {
+          "exact": 16,
+          "full": 16,
+          "prompts": 32,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "last_far": {
+          "exact": 48,
+          "full": 48,
+          "prompts": 104,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "native": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 24
+        },
+        "unfitted": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 0
+        },
+        "gap": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 32
+        },
+        "correct_link": {
+          "exact": 64,
+          "full": 64,
+          "prompts": 128,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "exchanged_link": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        }
+      },
+      "near": {
+        "baseline": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 24,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "far_only": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 16,
+          "governor_prompts": 128,
+          "neutral_prompts": 36
+        },
+        "mixed_free": {
+          "exact": 44,
+          "full": 44,
+          "prompts": 108,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "retained": {
+          "exact": 8,
+          "full": 8,
+          "prompts": 24,
+          "governor_prompts": 128,
+          "neutral_prompts": 8
+        },
+        "last_far": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 8,
+          "governor_prompts": 128,
+          "neutral_prompts": 44
+        },
+        "native": {
+          "exact": 4,
+          "full": 0,
+          "prompts": 12,
+          "governor_prompts": 0,
+          "neutral_prompts": 32
+        },
+        "unfitted": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 0,
+          "neutral_prompts": 0
+        },
+        "gap": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "correct_link": {
+          "exact": 64,
+          "full": 64,
+          "prompts": 128,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        },
+        "exchanged_link": {
+          "exact": 0,
+          "full": 0,
+          "prompts": 0,
+          "governor_prompts": 128,
+          "neutral_prompts": 0
+        }
+      }
+    },
+    "family_distance": {
+      "civic-hearing/far": {
+        "baseline": 8,
+        "far_only": 16,
+        "mixed_free": 16,
+        "retained": 8,
+        "last_far": 16,
+        "correct_link": 16
+      },
+      "civic-hearing/near": {
+        "baseline": 0,
+        "far_only": 0,
+        "mixed_free": 16,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "harbor-records/far": {
+        "baseline": 0,
+        "far_only": 8,
+        "mixed_free": 8,
+        "retained": 0,
+        "last_far": 16,
+        "correct_link": 16
+      },
+      "harbor-records/near": {
+        "baseline": 0,
+        "far_only": 0,
+        "mixed_free": 8,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "reading-room/far": {
+        "baseline": 0,
+        "far_only": 8,
+        "mixed_free": 0,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "reading-room/near": {
+        "baseline": 0,
+        "far_only": 0,
+        "mixed_free": 12,
+        "retained": 0,
+        "last_far": 0,
+        "correct_link": 16
+      },
+      "repair-school/far": {
+        "baseline": 8,
+        "far_only": 16,
+        "mixed_free": 8,
+        "retained": 8,
+        "last_far": 16,
+        "correct_link": 16
+      },
+      "repair-school/near": {
+        "baseline": 8,
+        "far_only": 0,
+        "mixed_free": 8,
+        "retained": 8,
+        "last_far": 0,
+        "correct_link": 16
+      }
+    }
+  },
+  "historical_retention": {
+    "historical_far_gains": 32,
+    "historical_near_losses": 8,
+    "arms": {
+      "baseline": {
+        "old_far_gains_kept": 0,
+        "old_near_wins_recovered": 8
+      },
+      "last_far": {
+        "old_far_gains_kept": 32,
+        "old_near_wins_recovered": 0
+      },
+      "far_only": {
+        "old_far_gains_kept": 24,
+        "old_near_wins_recovered": 0
+      },
+      "mixed_free": {
+        "old_far_gains_kept": 16,
+        "old_near_wins_recovered": 0
+      },
+      "retained": {
+        "old_far_gains_kept": 0,
+        "old_near_wins_recovered": 8
+      }
+    }
+  },
+  "gate": {
+    "pass": false,
+    "gate": {
+      "positive_training_retention_and_far_gain": false,
+      "retains_real_held_near_wins": true,
+      "retains_matched_far_gains": false,
+      "improves_far_over_parent": false,
+      "total_gain": false,
+      "gains_both_distances": true,
+      "full_links_both_distances": true,
+      "no_family_below_native": true,
+      "supplied_controls": true
+    },
+    "reference_sha256": "e20f6c544c5620f4c826636b6a9471303db7b91e438d5eac327a038424139350",
+    "endpoints_sha256": "86101be9cfbe2c2600ad3eb917fddc21572fa81ff529934675a31a1a958742ad",
+    "far_gain_retention_informative": true,
+    "original_near": 40,
+    "lost_near": 0,
+    "far_only_gains": 40,
+    "far_only_gains_lost": 40
+  }
+}

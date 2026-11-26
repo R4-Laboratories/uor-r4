@@ -1,0 +1,795 @@
+{
+  "premise": {
+    "mixed_eligible": 512,
+    "far_eligible": 512,
+    "common_far_signed_losses": 104,
+    "original_full_near": 24,
+    "common_far_losing_pairs": 24,
+    "pass": true
+  },
+  "states": {
+    "retained": "c4eb44e57970bf0695ecc0e4e358bd61c96c4c84cfab2f48c0f0e745889d0dc5",
+    "mixed_free": "b2b64bdba6b2d9624a10c0d145008072fdf0144f356c0fc0bc4e37dfa457c434",
+    "far_only": "d156060e1dd2a2b9765fb43567b06590d2e1acc1094a4fd19274179982e55eb7"
+  },
+  "mixed": {
+    "elected": {
+      "unconstrained": 7,
+      "retained": 0
+    },
+    "parent_near_full_pairs": 24,
+    "parent_common_far_full_pairs": 40,
+    "checkpoints": [
+      {
+        "step": 0,
+        "hinge": 2410,
+        "strict_wins": 256,
+        "near": {
+          "hinge": 946,
+          "strict_wins": 120,
+          "strict_losses": 136,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 1464,
+          "strict_wins": 136,
+          "strict_losses": 104,
+          "eligible": 256
+        },
+        "train_exact_pairs": 64,
+        "train_full_pairs": 64,
+        "protected_near_lost": 0,
+        "near_full": 24,
+        "common_far_full": 40,
+        "common_far_gained": 0,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 1,
+        "hinge": 900,
+        "strict_wins": 328,
+        "near": {
+          "hinge": 304,
+          "strict_wins": 180,
+          "strict_losses": 68,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 596,
+          "strict_wins": 148,
+          "strict_losses": 92,
+          "eligible": 256
+        },
+        "train_exact_pairs": 56,
+        "train_full_pairs": 56,
+        "protected_near_lost": 16,
+        "near_full": 32,
+        "common_far_full": 24,
+        "common_far_gained": 0,
+        "common_far_lost": 16,
+        "feasible": false
+      },
+      {
+        "step": 2,
+        "hinge": 1684,
+        "strict_wins": 312,
+        "near": {
+          "hinge": 1340,
+          "strict_wins": 112,
+          "strict_losses": 144,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 344,
+          "strict_wins": 200,
+          "strict_losses": 48,
+          "eligible": 256
+        },
+        "train_exact_pairs": 64,
+        "train_full_pairs": 64,
+        "protected_near_lost": 16,
+        "near_full": 24,
+        "common_far_full": 40,
+        "common_far_gained": 0,
+        "common_far_lost": 0,
+        "feasible": false
+      },
+      {
+        "step": 3,
+        "hinge": 780,
+        "strict_wins": 388,
+        "near": {
+          "hinge": 228,
+          "strict_wins": 204,
+          "strict_losses": 40,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 552,
+          "strict_wins": 184,
+          "strict_losses": 68,
+          "eligible": 256
+        },
+        "train_exact_pairs": 76,
+        "train_full_pairs": 76,
+        "protected_near_lost": 8,
+        "near_full": 40,
+        "common_far_full": 36,
+        "common_far_gained": 8,
+        "common_far_lost": 12,
+        "feasible": false
+      },
+      {
+        "step": 4,
+        "hinge": 580,
+        "strict_wins": 412,
+        "near": {
+          "hinge": 380,
+          "strict_wins": 204,
+          "strict_losses": 44,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 200,
+          "strict_wins": 208,
+          "strict_losses": 40,
+          "eligible": 256
+        },
+        "train_exact_pairs": 96,
+        "train_full_pairs": 96,
+        "protected_near_lost": 16,
+        "near_full": 48,
+        "common_far_full": 48,
+        "common_far_gained": 8,
+        "common_far_lost": 0,
+        "feasible": false
+      },
+      {
+        "step": 5,
+        "hinge": 842,
+        "strict_wins": 372,
+        "near": {
+          "hinge": 654,
+          "strict_wins": 148,
+          "strict_losses": 84,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 188,
+          "strict_wins": 224,
+          "strict_losses": 28,
+          "eligible": 256
+        },
+        "train_exact_pairs": 56,
+        "train_full_pairs": 56,
+        "protected_near_lost": 8,
+        "near_full": 16,
+        "common_far_full": 40,
+        "common_far_gained": 8,
+        "common_far_lost": 8,
+        "feasible": false
+      },
+      {
+        "step": 6,
+        "hinge": 348,
+        "strict_wins": 408,
+        "near": {
+          "hinge": 132,
+          "strict_wins": 220,
+          "strict_losses": 28,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 216,
+          "strict_wins": 188,
+          "strict_losses": 48,
+          "eligible": 256
+        },
+        "train_exact_pairs": 80,
+        "train_full_pairs": 80,
+        "protected_near_lost": 8,
+        "near_full": 48,
+        "common_far_full": 32,
+        "common_far_gained": 8,
+        "common_far_lost": 16,
+        "feasible": false
+      },
+      {
+        "step": 7,
+        "hinge": 208,
+        "strict_wins": 458,
+        "near": {
+          "hinge": 152,
+          "strict_wins": 230,
+          "strict_losses": 26,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 56,
+          "strict_wins": 228,
+          "strict_losses": 20,
+          "eligible": 256
+        },
+        "train_exact_pairs": 100,
+        "train_full_pairs": 100,
+        "protected_near_lost": 8,
+        "near_full": 48,
+        "common_far_full": 52,
+        "common_far_gained": 12,
+        "common_far_lost": 0,
+        "feasible": false
+      },
+      {
+        "step": 8,
+        "hinge": 256,
+        "strict_wins": 448,
+        "near": {
+          "hinge": 180,
+          "strict_wins": 208,
+          "strict_losses": 36,
+          "eligible": 256
+        },
+        "far": {
+          "hinge": 76,
+          "strict_wins": 240,
+          "strict_losses": 16,
+          "eligible": 256
+        },
+        "train_exact_pairs": 104,
+        "train_full_pairs": 104,
+        "protected_near_lost": 8,
+        "near_full": 40,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": false
+      }
+    ],
+    "votes": {
+      "active_axes": 512,
+      "coordinate_steps": 4096,
+      "opposed_coordinate_steps": 149,
+      "distinct_opposed_axes": 99,
+      "exact_cancellations": 34,
+      "per_sweep": [
+        {
+          "agree": 7,
+          "cancelled": 10,
+          "far_direction_blocked_or_reversed": 19,
+          "far_only": 79,
+          "inactive": 270,
+          "moved": 232,
+          "near_direction_blocked_or_reversed": 19,
+          "near_only": 128,
+          "opposed": 28,
+          "step": 0
+        },
+        {
+          "agree": 32,
+          "cancelled": 9,
+          "far_direction_blocked_or_reversed": 33,
+          "far_only": 123,
+          "inactive": 234,
+          "moved": 269,
+          "near_direction_blocked_or_reversed": 24,
+          "near_only": 75,
+          "opposed": 48,
+          "step": 1
+        },
+        {
+          "agree": 11,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 1,
+          "far_only": 86,
+          "inactive": 257,
+          "moved": 255,
+          "near_direction_blocked_or_reversed": 2,
+          "near_only": 155,
+          "opposed": 3,
+          "step": 2
+        },
+        {
+          "agree": 29,
+          "cancelled": 12,
+          "far_direction_blocked_or_reversed": 24,
+          "far_only": 134,
+          "inactive": 254,
+          "moved": 246,
+          "near_direction_blocked_or_reversed": 21,
+          "near_only": 62,
+          "opposed": 33,
+          "step": 3
+        },
+        {
+          "agree": 44,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 17,
+          "far_only": 78,
+          "inactive": 284,
+          "moved": 228,
+          "near_direction_blocked_or_reversed": 1,
+          "near_only": 88,
+          "opposed": 18,
+          "step": 4
+        },
+        {
+          "agree": 26,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 3,
+          "far_only": 59,
+          "inactive": 286,
+          "moved": 226,
+          "near_direction_blocked_or_reversed": 1,
+          "near_only": 137,
+          "opposed": 4,
+          "step": 5
+        },
+        {
+          "agree": 26,
+          "cancelled": 2,
+          "far_direction_blocked_or_reversed": 3,
+          "far_only": 82,
+          "inactive": 345,
+          "moved": 165,
+          "near_direction_blocked_or_reversed": 9,
+          "near_only": 49,
+          "opposed": 10,
+          "step": 6
+        },
+        {
+          "agree": 11,
+          "cancelled": 1,
+          "far_direction_blocked_or_reversed": 2,
+          "far_only": 69,
+          "inactive": 351,
+          "moved": 160,
+          "near_direction_blocked_or_reversed": 4,
+          "near_only": 76,
+          "opposed": 5,
+          "step": 7
+        }
+      ],
+      "examples": [
+        {
+          "step": 0,
+          "sign": 0,
+          "slot": 1,
+          "axis": 6,
+          "near": 8,
+          "far": -8,
+          "result_direction": 0
+        },
+        {
+          "step": 1,
+          "sign": 0,
+          "slot": 0,
+          "axis": 6,
+          "near": -52,
+          "far": 24,
+          "result_direction": -1
+        },
+        {
+          "step": 2,
+          "sign": 1,
+          "slot": 7,
+          "axis": 6,
+          "near": -8,
+          "far": 12,
+          "result_direction": 1
+        },
+        {
+          "step": 3,
+          "sign": 0,
+          "slot": 1,
+          "axis": 7,
+          "near": 4,
+          "far": -4,
+          "result_direction": 0
+        },
+        {
+          "step": 4,
+          "sign": 0,
+          "slot": 7,
+          "axis": 13,
+          "near": 8,
+          "far": -4,
+          "result_direction": 1
+        },
+        {
+          "step": 5,
+          "sign": 1,
+          "slot": 2,
+          "axis": 15,
+          "near": -24,
+          "far": 16,
+          "result_direction": -1
+        },
+        {
+          "step": 6,
+          "sign": 0,
+          "slot": 7,
+          "axis": 16,
+          "near": -8,
+          "far": 4,
+          "result_direction": -1
+        },
+        {
+          "step": 7,
+          "sign": 0,
+          "slot": 4,
+          "axis": 1,
+          "near": 4,
+          "far": -8,
+          "result_direction": -1
+        }
+      ]
+    },
+    "audit": {
+      "checkpoints": 120024,
+      "individual_votes": 4096,
+      "differences": 0,
+      "edge_replay": {
+        "events": 512,
+        "edges_compared": 16000,
+        "epoch_reads": 4608,
+        "disagreements": 0
+      }
+    }
+  },
+  "far_only": {
+    "elected": {
+      "unconstrained": 5,
+      "retained": 5
+    },
+    "parent_near_full_pairs": 0,
+    "parent_common_far_full_pairs": 40,
+    "checkpoints": [
+      {
+        "step": 0,
+        "hinge": 2232,
+        "strict_wins": 280,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 2232,
+          "strict_wins": 280,
+          "strict_losses": 200,
+          "eligible": 512
+        },
+        "train_exact_pairs": 80,
+        "train_full_pairs": 80,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 40,
+        "common_far_gained": 0,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 1,
+        "hinge": 1432,
+        "strict_wins": 320,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 1432,
+          "strict_wins": 320,
+          "strict_losses": 188,
+          "eligible": 512
+        },
+        "train_exact_pairs": 64,
+        "train_full_pairs": 64,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 32,
+        "common_far_gained": 0,
+        "common_far_lost": 8,
+        "feasible": true
+      },
+      {
+        "step": 2,
+        "hinge": 20,
+        "strict_wins": 496,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 20,
+          "strict_wins": 496,
+          "strict_losses": 4,
+          "eligible": 512
+        },
+        "train_exact_pairs": 128,
+        "train_full_pairs": 128,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 3,
+        "hinge": 116,
+        "strict_wins": 476,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 116,
+          "strict_wins": 476,
+          "strict_losses": 28,
+          "eligible": 512
+        },
+        "train_exact_pairs": 112,
+        "train_full_pairs": 112,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 48,
+        "common_far_gained": 16,
+        "common_far_lost": 8,
+        "feasible": true
+      },
+      {
+        "step": 4,
+        "hinge": 16,
+        "strict_wins": 504,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 16,
+          "strict_wins": 504,
+          "strict_losses": 8,
+          "eligible": 512
+        },
+        "train_exact_pairs": 120,
+        "train_full_pairs": 120,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 56,
+        "common_far_gained": 16,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 5,
+        "hinge": 0,
+        "strict_wins": 512,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 0,
+          "strict_wins": 512,
+          "strict_losses": 0,
+          "eligible": 512
+        },
+        "train_exact_pairs": 128,
+        "train_full_pairs": 128,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 6,
+        "hinge": 0,
+        "strict_wins": 512,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 0,
+          "strict_wins": 512,
+          "strict_losses": 0,
+          "eligible": 512
+        },
+        "train_exact_pairs": 128,
+        "train_full_pairs": 128,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 7,
+        "hinge": 0,
+        "strict_wins": 512,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 0,
+          "strict_wins": 512,
+          "strict_losses": 0,
+          "eligible": 512
+        },
+        "train_exact_pairs": 128,
+        "train_full_pairs": 128,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": true
+      },
+      {
+        "step": 8,
+        "hinge": 0,
+        "strict_wins": 512,
+        "near": {
+          "hinge": 0,
+          "strict_wins": 0,
+          "strict_losses": 0,
+          "eligible": 0
+        },
+        "far": {
+          "hinge": 0,
+          "strict_wins": 512,
+          "strict_losses": 0,
+          "eligible": 512
+        },
+        "train_exact_pairs": 128,
+        "train_full_pairs": 128,
+        "protected_near_lost": 0,
+        "near_full": 0,
+        "common_far_full": 64,
+        "common_far_gained": 24,
+        "common_far_lost": 0,
+        "feasible": true
+      }
+    ],
+    "votes": {
+      "active_axes": 512,
+      "coordinate_steps": 4096,
+      "opposed_coordinate_steps": 0,
+      "distinct_opposed_axes": 0,
+      "exact_cancellations": 0,
+      "per_sweep": [
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 132,
+          "inactive": 380,
+          "moved": 132,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 0
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 165,
+          "inactive": 347,
+          "moved": 165,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 1
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 62,
+          "inactive": 450,
+          "moved": 62,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 2
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 66,
+          "inactive": 446,
+          "moved": 66,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 3
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 25,
+          "inactive": 487,
+          "moved": 25,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 4
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 0,
+          "inactive": 512,
+          "moved": 0,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 5
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 0,
+          "inactive": 512,
+          "moved": 0,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 6
+        },
+        {
+          "agree": 0,
+          "cancelled": 0,
+          "far_direction_blocked_or_reversed": 0,
+          "far_only": 0,
+          "inactive": 512,
+          "moved": 0,
+          "near_direction_blocked_or_reversed": 0,
+          "near_only": 0,
+          "opposed": 0,
+          "step": 7
+        }
+      ],
+      "examples": []
+    },
+    "audit": {
+      "checkpoints": 120024,
+      "individual_votes": 4096,
+      "differences": 0,
+      "edge_replay": {
+        "events": 512,
+        "edges_compared": 19904,
+        "epoch_reads": 4608,
+        "disagreements": 0
+      }
+    }
+  },
+  "resources": "wall_s=21.95 user_s=10.98 system_s=10.98 peak_rss_kib=916520",
+  "measurement_sha256": "c1eb88fcbecd2a6658dee53b05d74862db0fbe42f45a2687345aa917f8a49dfb",
+  "grade_sha256": "6e9a69121c72fe7e6e894fcc7a14eedffd8f94960aaf0b6fd66a175d09f9a74c"
+}

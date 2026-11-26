@@ -1,0 +1,1833 @@
+{
+  "moves": [
+    {
+      "family": "courtroom-playback",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "courtroom-playback",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "courtroom-playback",
+      "distance": "near",
+      "vs_parent": "gained",
+      "vs_far_only": "gained",
+      "pairs": 8
+    },
+    {
+      "family": "courtroom-playback",
+      "distance": "near",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "edition-approval",
+      "distance": "far",
+      "vs_parent": "gained",
+      "vs_far_only": "kept",
+      "pairs": 8
+    },
+    {
+      "family": "edition-approval",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "edition-approval",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "gained",
+      "pairs": 8
+    },
+    {
+      "family": "edition-approval",
+      "distance": "near",
+      "vs_parent": "lost",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "ferry-access",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "ferry-access",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "ferry-access",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "gained",
+      "pairs": 8
+    },
+    {
+      "family": "ferry-access",
+      "distance": "near",
+      "vs_parent": "neither",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "pottery-sorting",
+      "distance": "far",
+      "vs_parent": "lost",
+      "vs_far_only": "neither",
+      "pairs": 8
+    },
+    {
+      "family": "pottery-sorting",
+      "distance": "far",
+      "vs_parent": "neither",
+      "vs_far_only": "lost",
+      "pairs": 8
+    },
+    {
+      "family": "pottery-sorting",
+      "distance": "near",
+      "vs_parent": "kept",
+      "vs_far_only": "gained",
+      "pairs": 12
+    },
+    {
+      "family": "pottery-sorting",
+      "distance": "near",
+      "vs_parent": "lost",
+      "vs_far_only": "neither",
+      "pairs": 4
+    }
+  ],
+  "first_errors": [
+    {
+      "distance": "far",
+      "first": "affirmed_noun",
+      "n": 52
+    },
+    {
+      "distance": "far",
+      "first": "excluded_noun",
+      "n": 52
+    },
+    {
+      "distance": "far",
+      "first": "none",
+      "n": 24
+    },
+    {
+      "distance": "near",
+      "first": "affirmed_noun",
+      "n": 36
+    },
+    {
+      "distance": "near",
+      "first": "excluded_noun",
+      "n": 16
+    },
+    {
+      "distance": "near",
+      "first": "none",
+      "n": 76
+    }
+  ],
+  "examples": [
+    {
+      "distance": "far",
+      "family": "edition-approval",
+      "pair": "edition-approval/book/18",
+      "vs_parent": "gained",
+      "vs_far": "kept",
+      "rows": [
+        {
+          "case_id": "756bd561dc259d633bcc6f160214b79dabfbbc0bef7839916bee8d93ebf3fff8",
+          "admission": "defer",
+          "gold": [
+            "lithograph",
+            "woodcut",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 126,
+              "start": 121
+            },
+            {
+              "end": 82,
+              "start": 80
+            },
+            {
+              "end": 133,
+              "start": 131
+            }
+          ],
+          "parent": {
+            "terms": [
+              "came",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 121,
+                "end": 126
+              },
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 121,
+                "end": 126
+              },
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          }
+        },
+        {
+          "case_id": "62e6dadbe6a6a0241854e993316d5ea7880a8bb3fcb8bf0649e9b58032a2827d",
+          "admission": "take",
+          "gold": [
+            "woodcut",
+            "lithograph",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 82,
+              "start": 80
+            },
+            {
+              "end": 126,
+              "start": 121
+            },
+            {
+              "end": 133,
+              "start": 131
+            }
+          ],
+          "parent": {
+            "terms": [
+              "woodcut",
+              "came",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 121,
+                "end": 126
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 80,
+                "end": 82
+              },
+              {
+                "start": 121,
+                "end": 126
+              },
+              {
+                "start": 131,
+                "end": 133
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "far",
+      "family": "pottery-sorting",
+      "pair": "pottery-sorting/book/10",
+      "vs_parent": "lost",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "6d86250959d2f14c2a64b2855753b518db9fe6a8efef8a3186cbfa3f18b3f6cb",
+          "admission": "defer",
+          "gold": [
+            "flagon",
+            "carafe",
+            "carafe"
+          ],
+          "gold_bpe": [
+            {
+              "end": 109,
+              "start": 107
+            },
+            {
+              "end": 66,
+              "start": 63
+            },
+            {
+              "end": 138,
+              "start": 135
+            }
+          ],
+          "parent": {
+            "terms": [
+              "flagon",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 107,
+                "end": 109
+              },
+              {
+                "start": 63,
+                "end": 66
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "might",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 110,
+                "end": 111
+              },
+              {
+                "start": 88,
+                "end": 91
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "set",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 117,
+                "end": 118
+              },
+              {
+                "start": 88,
+                "end": 91
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "dfc175a00ad494c9409137979167865e8987655edf4370de387af1a29f6c2a01",
+          "admission": "take",
+          "gold": [
+            "carafe",
+            "flagon",
+            "carafe"
+          ],
+          "gold_bpe": [
+            {
+              "end": 66,
+              "start": 63
+            },
+            {
+              "end": 109,
+              "start": 107
+            },
+            {
+              "end": 138,
+              "start": 135
+            }
+          ],
+          "parent": {
+            "terms": [
+              "carafe",
+              "flagon",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 66
+              },
+              {
+                "start": 107,
+                "end": 109
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "carafe",
+              "might",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 88,
+                "end": 91
+              },
+              {
+                "start": 110,
+                "end": 111
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "carafe",
+              "set",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 88,
+                "end": 91
+              },
+              {
+                "start": 117,
+                "end": 118
+              },
+              {
+                "start": 135,
+                "end": 138
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "far",
+      "family": "courtroom-playback",
+      "pair": "courtroom-playback/book/18",
+      "vs_parent": "neither",
+      "vs_far": "lost",
+      "rows": [
+        {
+          "case_id": "01aacf76006478123f2956dc81065edfe512c29479091109319cdc489f960583",
+          "admission": "defer",
+          "gold": [
+            "transcript",
+            "dialogue",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 127,
+              "start": 122
+            },
+            {
+              "end": 82,
+              "start": 78
+            },
+            {
+              "end": 139,
+              "start": 135
+            }
+          ],
+          "parent": {
+            "terms": [
+              "the",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 112,
+                "end": 113
+              },
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "transcript",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 122,
+                "end": 127
+              },
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "what",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "d73f1963e62ad9d125c50855d76afcf0676f0a61bcf1fd60ebc9fce1da81100e",
+          "admission": "take",
+          "gold": [
+            "dialogue",
+            "transcript",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 82,
+              "start": 78
+            },
+            {
+              "end": 127,
+              "start": 122
+            },
+            {
+              "end": 139,
+              "start": 135
+            }
+          ],
+          "parent": {
+            "terms": [
+              "dialogue",
+              "the",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 112,
+                "end": 113
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "dialogue",
+              "transcript",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 122,
+                "end": 127
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "dialogue",
+              "the",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 112,
+                "end": 113
+              },
+              {
+                "start": 135,
+                "end": 139
+              }
+            ],
+            "first": "excluded_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "far",
+      "family": "courtroom-playback",
+      "pair": "courtroom-playback/book/10",
+      "vs_parent": "neither",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "e87f8d76d9a84911d1ca8bc06073945e04eff49b6b998f9b01763ef6e3bea6aa",
+          "admission": "defer",
+          "gold": [
+            "transcript",
+            "dialogue",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 110,
+              "start": 105
+            },
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 135,
+              "start": 131
+            }
+          ],
+          "parent": {
+            "terms": [
+              "judge",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "judge",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "judge",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "4df983e5f814fa5bc6f51dc6bd80eae1cdf4cb171edee4fc62a51ac70076d7cb",
+          "admission": "take",
+          "gold": [
+            "dialogue",
+            "transcript",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 110,
+              "start": 105
+            },
+            {
+              "end": 135,
+              "start": 131
+            }
+          ],
+          "parent": {
+            "terms": [
+              "dialogue",
+              "judge",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "dialogue",
+              "judge",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "retained": {
+            "terms": [
+              "dialogue",
+              "judge",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 111,
+                "end": 112
+              },
+              {
+                "start": 131,
+                "end": 135
+              }
+            ],
+            "first": "excluded_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "courtroom-playback",
+      "pair": "courtroom-playback/book/16",
+      "vs_parent": "gained",
+      "vs_far": "gained",
+      "rows": [
+        {
+          "case_id": "0ff9e303eff93afa1e2adac5b5118141c6f2e3c4e8be88c848579ce3a30ba7a9",
+          "admission": "defer",
+          "gold": [
+            "transcript",
+            "dialogue",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 107,
+              "start": 102
+            },
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 119,
+              "start": 115
+            }
+          ],
+          "parent": {
+            "terms": [
+              "playback",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 97,
+                "end": 100
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "playback",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 97,
+                "end": 100
+              },
+              {
+                "start": 79,
+                "end": 83
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "transcript",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 102,
+                "end": 107
+              },
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "none"
+          }
+        },
+        {
+          "case_id": "30dbc6d2b3335f1b96421afb4048fbdce2e7b211cf9fcfb7ac7b3d28eaa679cc",
+          "admission": "take",
+          "gold": [
+            "dialogue",
+            "transcript",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 72,
+              "start": 68
+            },
+            {
+              "end": 107,
+              "start": 102
+            },
+            {
+              "end": 119,
+              "start": 115
+            }
+          ],
+          "parent": {
+            "terms": [
+              "dialogue",
+              "my",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 101,
+                "end": 102
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "dialogue",
+              "playback",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 79,
+                "end": 83
+              },
+              {
+                "start": 97,
+                "end": 100
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "dialogue",
+              "transcript",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 68,
+                "end": 72
+              },
+              {
+                "start": 102,
+                "end": 107
+              },
+              {
+                "start": 115,
+                "end": 119
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "edition-approval",
+      "pair": "edition-approval/book/16",
+      "vs_parent": "kept",
+      "vs_far": "gained",
+      "rows": [
+        {
+          "case_id": "9f1595cc8bd396601e8929ba2ec002fa0c15ff9f94c832630705965e0dd906ff",
+          "admission": "defer",
+          "gold": [
+            "lithograph",
+            "woodcut",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 106,
+              "start": 101
+            },
+            {
+              "end": 72,
+              "start": 70
+            },
+            {
+              "end": 113,
+              "start": 111
+            }
+          ],
+          "parent": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 101,
+                "end": 106
+              },
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "second",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 94,
+                "end": 97
+              },
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 101,
+                "end": 106
+              },
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "none"
+          }
+        },
+        {
+          "case_id": "352e0e8643a81b0b52eddc97bec5683370ae8488c7e83f0e8166d8bf9f6ef71e",
+          "admission": "take",
+          "gold": [
+            "woodcut",
+            "lithograph",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 72,
+              "start": 70
+            },
+            {
+              "end": 106,
+              "start": 101
+            },
+            {
+              "end": 113,
+              "start": 111
+            }
+          ],
+          "parent": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 101,
+                "end": 106
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "woodcut",
+              "Separately",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 87,
+                "end": 92
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "retained": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 101,
+                "end": 106
+              },
+              {
+                "start": 111,
+                "end": 113
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "edition-approval",
+      "pair": "edition-approval/book/0",
+      "vs_parent": "lost",
+      "vs_far": "lost",
+      "rows": [
+        {
+          "case_id": "fccd4639f132eec3005cc796b955e9111f0412c80a3f71cc607964dd3a3f1de6",
+          "admission": "defer",
+          "gold": [
+            "lithograph",
+            "woodcut",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 98,
+              "start": 93
+            },
+            {
+              "end": 65,
+              "start": 63
+            },
+            {
+              "end": 111,
+              "start": 109
+            }
+          ],
+          "parent": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 93,
+                "end": 98
+              },
+              {
+                "start": 63,
+                "end": 65
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "lithograph",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 93,
+                "end": 98
+              },
+              {
+                "start": 63,
+                "end": 65
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "printer",
+              "woodcut",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 99,
+                "end": 101
+              },
+              {
+                "start": 63,
+                "end": 65
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "f95006d9d2e83da35463b794159a2ac811219126e5b32f5b22fb0d87560f7de0",
+          "admission": "take",
+          "gold": [
+            "woodcut",
+            "lithograph",
+            "woodcut"
+          ],
+          "gold_bpe": [
+            {
+              "end": 65,
+              "start": 63
+            },
+            {
+              "end": 98,
+              "start": 93
+            },
+            {
+              "end": 111,
+              "start": 109
+            }
+          ],
+          "parent": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 65
+              },
+              {
+                "start": 93,
+                "end": 98
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "woodcut",
+              "lithograph",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 65
+              },
+              {
+                "start": 93,
+                "end": 98
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "none"
+          },
+          "retained": {
+            "terms": [
+              "woodcut",
+              "printer",
+              "woodcut"
+            ],
+            "bpe": [
+              {
+                "start": 77,
+                "end": 79
+              },
+              {
+                "start": 99,
+                "end": 101
+              },
+              {
+                "start": 109,
+                "end": 111
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "pottery-sorting",
+      "pair": "pottery-sorting/book/16",
+      "vs_parent": "lost",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "31cc469d0d865dfab37901a73726c3cba5c61fe576b4910fca9d067f641651a1",
+          "admission": "defer",
+          "gold": [
+            "flagon",
+            "carafe",
+            "carafe"
+          ],
+          "gold_bpe": [
+            {
+              "end": 99,
+              "start": 97
+            },
+            {
+              "end": 70,
+              "start": 67
+            },
+            {
+              "end": 110,
+              "start": 107
+            }
+          ],
+          "parent": {
+            "terms": [
+              "flagon",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 97,
+                "end": 99
+              },
+              {
+                "start": 67,
+                "end": 70
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "shelf",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 94,
+                "end": 95
+              },
+              {
+                "start": 74,
+                "end": 77
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "flagon",
+              "carafe",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 97,
+                "end": 99
+              },
+              {
+                "start": 74,
+                "end": 77
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "excluded_noun"
+          }
+        },
+        {
+          "case_id": "0c28972687b715f3a902a1cb65fc659951b5171766b68b18c737b0f3a0582d63",
+          "admission": "take",
+          "gold": [
+            "carafe",
+            "flagon",
+            "carafe"
+          ],
+          "gold_bpe": [
+            {
+              "end": 70,
+              "start": 67
+            },
+            {
+              "end": 99,
+              "start": 97
+            },
+            {
+              "end": 110,
+              "start": 107
+            }
+          ],
+          "parent": {
+            "terms": [
+              "carafe",
+              "flagon",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 67,
+                "end": 70
+              },
+              {
+                "start": 97,
+                "end": 99
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "none"
+          },
+          "far_only": {
+            "terms": [
+              "carafe",
+              "shelf",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 74,
+                "end": 77
+              },
+              {
+                "start": 94,
+                "end": 95
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "carafe",
+              "flagon",
+              "carafe"
+            ],
+            "bpe": [
+              {
+                "start": 67,
+                "end": 70
+              },
+              {
+                "start": 97,
+                "end": 99
+              },
+              {
+                "start": 107,
+                "end": 110
+              }
+            ],
+            "first": "none"
+          }
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "family": "courtroom-playback",
+      "pair": "courtroom-playback/book/0",
+      "vs_parent": "neither",
+      "vs_far": "neither",
+      "rows": [
+        {
+          "case_id": "2634e5f7d3410490c43669bd46fb3d43a7eb503907d2aac456afba49a73e47b1",
+          "admission": "defer",
+          "gold": [
+            "transcript",
+            "dialogue",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 101,
+              "start": 96
+            },
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 117,
+              "start": 113
+            }
+          ],
+          "parent": {
+            "terms": [
+              "judge",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 102,
+                "end": 103
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "far_only": {
+            "terms": [
+              "judge",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 102,
+                "end": 103
+              },
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "will",
+              "dialogue",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 103,
+                "end": 104
+              },
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        },
+        {
+          "case_id": "ebcce4c7b1b0b920969870b48ae1b2c5b9ac804753cb759222414246af91e5f2",
+          "admission": "take",
+          "gold": [
+            "dialogue",
+            "transcript",
+            "dialogue"
+          ],
+          "gold_bpe": [
+            {
+              "end": 67,
+              "start": 63
+            },
+            {
+              "end": 101,
+              "start": 96
+            },
+            {
+              "end": 117,
+              "start": 113
+            }
+          ],
+          "parent": {
+            "terms": [
+              "dialogue",
+              "judge",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 63,
+                "end": 67
+              },
+              {
+                "start": 102,
+                "end": 103
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "excluded_noun"
+          },
+          "far_only": {
+            "terms": [
+              "dialogue",
+              "judge",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 102,
+                "end": 103
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "affirmed_noun"
+          },
+          "retained": {
+            "terms": [
+              "dialogue",
+              "will",
+              "dialogue"
+            ],
+            "bpe": [
+              {
+                "start": 78,
+                "end": 82
+              },
+              {
+                "start": 103,
+                "end": 104
+              },
+              {
+                "start": 113,
+                "end": 117
+              }
+            ],
+            "first": "affirmed_noun"
+          }
+        }
+      ]
+    }
+  ]
+}
