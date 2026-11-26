@@ -1,0 +1,795 @@
+{
+  "losses": {
+    "strict": 256,
+    "original_rival_terms": {
+      "cabinet": 8,
+      "gate": 8,
+      "item": 64,
+      "measure": 32,
+      "old": 8,
+      "stairs": 8,
+      "the": 48,
+      "we": 32,
+      "what": 8,
+      "window": 8,
+      "work": 32
+    },
+    "original_rival_kinds": {
+      "other_word": 256
+    },
+    "changed_strongest": 152,
+    "old_margin_range": [
+      -24,
+      -1
+    ],
+    "new_margin_range": [
+      1,
+      21
+    ]
+  },
+  "cells": [
+    {
+      "family": "civic-hearing",
+      "distance": "far",
+      "movement": {
+        "gained": 8,
+        "kept": 8
+      }
+    },
+    {
+      "family": "civic-hearing",
+      "distance": "near",
+      "movement": {
+        "neither": 16
+      }
+    },
+    {
+      "family": "harbor-records",
+      "distance": "far",
+      "movement": {
+        "gained": 16
+      }
+    },
+    {
+      "family": "harbor-records",
+      "distance": "near",
+      "movement": {
+        "neither": 16
+      }
+    },
+    {
+      "family": "reading-room",
+      "distance": "far",
+      "movement": {
+        "neither": 16
+      }
+    },
+    {
+      "family": "reading-room",
+      "distance": "near",
+      "movement": {
+        "neither": 16
+      }
+    },
+    {
+      "family": "repair-school",
+      "distance": "far",
+      "movement": {
+        "gained": 8,
+        "kept": 8
+      }
+    },
+    {
+      "family": "repair-school",
+      "distance": "near",
+      "movement": {
+        "lost": 8,
+        "neither": 8
+      }
+    }
+  ],
+  "changed_source_counts": [
+    {
+      "family": "civic-hearing",
+      "distance": "far",
+      "change": "gained",
+      "admission": "defer",
+      "first": "affirmed_noun",
+      "wrong_slots": [
+        0
+      ],
+      "goal": "warrant",
+      "rival": "crowd",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "harbor-records",
+      "distance": "far",
+      "change": "gained",
+      "admission": "defer",
+      "first": "affirmed_noun",
+      "wrong_slots": [
+        0
+      ],
+      "goal": "dossier",
+      "rival": "last",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "harbor-records",
+      "distance": "far",
+      "change": "gained",
+      "admission": "defer",
+      "first": "affirmed_noun",
+      "wrong_slots": [
+        0
+      ],
+      "goal": "dossier",
+      "rival": "the",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "repair-school",
+      "distance": "far",
+      "change": "gained",
+      "admission": "defer",
+      "first": "affirmed_noun",
+      "wrong_slots": [
+        0
+      ],
+      "goal": "handbook",
+      "rival": "steps",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "repair-school",
+      "distance": "near",
+      "change": "lost",
+      "admission": "defer",
+      "first": "affirmed_noun",
+      "wrong_slots": [
+        0
+      ],
+      "goal": "handbook",
+      "rival": "this",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "civic-hearing",
+      "distance": "far",
+      "change": "gained",
+      "admission": "take",
+      "first": "excluded_noun",
+      "wrong_slots": [
+        1
+      ],
+      "goal": "warrant",
+      "rival": "crowd",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "harbor-records",
+      "distance": "far",
+      "change": "gained",
+      "admission": "take",
+      "first": "excluded_noun",
+      "wrong_slots": [
+        1
+      ],
+      "goal": "dossier",
+      "rival": "last",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "harbor-records",
+      "distance": "far",
+      "change": "gained",
+      "admission": "take",
+      "first": "excluded_noun",
+      "wrong_slots": [
+        1
+      ],
+      "goal": "dossier",
+      "rival": "the",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "repair-school",
+      "distance": "far",
+      "change": "gained",
+      "admission": "take",
+      "first": "excluded_noun",
+      "wrong_slots": [
+        1
+      ],
+      "goal": "handbook",
+      "rival": "steps",
+      "governor_addresses_held": true,
+      "prompts": 8
+    },
+    {
+      "family": "repair-school",
+      "distance": "near",
+      "change": "lost",
+      "admission": "take",
+      "first": "none",
+      "wrong_slots": [],
+      "goal": null,
+      "rival": null,
+      "governor_addresses_held": true,
+      "prompts": 8
+    }
+  ],
+  "lost_near": [
+    "repair-school/glass/16",
+    "repair-school/glass/20",
+    "repair-school/glass/24",
+    "repair-school/glass/28",
+    "repair-school/hill/16",
+    "repair-school/hill/20",
+    "repair-school/hill/24",
+    "repair-school/hill/28"
+  ],
+  "examples": [
+    {
+      "pair": "civic-hearing/glass/18",
+      "family": "civic-hearing",
+      "distance": "far",
+      "change": "gained",
+      "rows": [
+        {
+          "id": "384f8c2f51cc208c42080d202dffbbb129681a038bdad3e307df6528d90f907d",
+          "admission": "defer",
+          "goal": [
+            "warrant",
+            "petition",
+            "petition"
+          ],
+          "goal_bpe": [
+            {
+              "end": 132,
+              "start": 129
+            },
+            {
+              "end": 86,
+              "start": 83
+            },
+            {
+              "end": 140,
+              "start": 137
+            }
+          ],
+          "before": {
+            "terms": [
+              "crowd",
+              "petition",
+              "petition"
+            ],
+            "original_bpe": [
+              {
+                "start": 119,
+                "end": 122
+              },
+              {
+                "start": 83,
+                "end": 86
+              },
+              {
+                "start": 137,
+                "end": 140
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "warrant",
+              "petition",
+              "petition"
+            ],
+            "original_bpe": [
+              {
+                "start": 129,
+                "end": 132
+              },
+              {
+                "start": 83,
+                "end": 86
+              },
+              {
+                "start": 137,
+                "end": 140
+              }
+            ]
+          }
+        },
+        {
+          "id": "66a806db499b0749300fa56815e48315722e29da3b2189059c699e0c2ceae379",
+          "admission": "take",
+          "goal": [
+            "petition",
+            "warrant",
+            "petition"
+          ],
+          "goal_bpe": [
+            {
+              "end": 86,
+              "start": 83
+            },
+            {
+              "end": 132,
+              "start": 129
+            },
+            {
+              "end": 140,
+              "start": 137
+            }
+          ],
+          "before": {
+            "terms": [
+              "petition",
+              "crowd",
+              "petition"
+            ],
+            "original_bpe": [
+              {
+                "start": 83,
+                "end": 86
+              },
+              {
+                "start": 119,
+                "end": 122
+              },
+              {
+                "start": 137,
+                "end": 140
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "petition",
+              "warrant",
+              "petition"
+            ],
+            "original_bpe": [
+              {
+                "start": 83,
+                "end": 86
+              },
+              {
+                "start": 129,
+                "end": 132
+              },
+              {
+                "start": 137,
+                "end": 140
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "pair": "harbor-records/glass/10",
+      "family": "harbor-records",
+      "distance": "far",
+      "change": "gained",
+      "rows": [
+        {
+          "id": "e652b3a17899af2402a6f88ac6a7dccdda9047e57866ac457ff2283ff124a58a",
+          "admission": "defer",
+          "goal": [
+            "dossier",
+            "manifest",
+            "manifest"
+          ],
+          "goal_bpe": [
+            {
+              "end": 109,
+              "start": 106
+            },
+            {
+              "end": 69,
+              "start": 66
+            },
+            {
+              "end": 132,
+              "start": 129
+            }
+          ],
+          "before": {
+            "terms": [
+              "last",
+              "manifest",
+              "manifest"
+            ],
+            "original_bpe": [
+              {
+                "start": 115,
+                "end": 116
+              },
+              {
+                "start": 66,
+                "end": 69
+              },
+              {
+                "start": 129,
+                "end": 132
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "dossier",
+              "manifest",
+              "manifest"
+            ],
+            "original_bpe": [
+              {
+                "start": 106,
+                "end": 109
+              },
+              {
+                "start": 66,
+                "end": 69
+              },
+              {
+                "start": 129,
+                "end": 132
+              }
+            ]
+          }
+        },
+        {
+          "id": "fa3e1623584fb1b3ebc70eda80da5a096dfb5a84fdd25162fe2993217c0ba84f",
+          "admission": "take",
+          "goal": [
+            "manifest",
+            "dossier",
+            "manifest"
+          ],
+          "goal_bpe": [
+            {
+              "end": 69,
+              "start": 66
+            },
+            {
+              "end": 109,
+              "start": 106
+            },
+            {
+              "end": 132,
+              "start": 129
+            }
+          ],
+          "before": {
+            "terms": [
+              "manifest",
+              "last",
+              "manifest"
+            ],
+            "original_bpe": [
+              {
+                "start": 66,
+                "end": 69
+              },
+              {
+                "start": 115,
+                "end": 116
+              },
+              {
+                "start": 129,
+                "end": 132
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "manifest",
+              "dossier",
+              "manifest"
+            ],
+            "original_bpe": [
+              {
+                "start": 66,
+                "end": 69
+              },
+              {
+                "start": 106,
+                "end": 109
+              },
+              {
+                "start": 129,
+                "end": 132
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "pair": "repair-school/glass/18",
+      "family": "repair-school",
+      "distance": "far",
+      "change": "gained",
+      "rows": [
+        {
+          "id": "e3f69b6296117f7d08c92f752065b5b3426460ab768daf078eb827f9fc920a48",
+          "admission": "defer",
+          "goal": [
+            "handbook",
+            "manual",
+            "manual"
+          ],
+          "goal_bpe": [
+            {
+              "end": 119,
+              "start": 116
+            },
+            {
+              "end": 81,
+              "start": 79
+            },
+            {
+              "end": 130,
+              "start": 128
+            }
+          ],
+          "before": {
+            "terms": [
+              "steps",
+              "manual",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 107,
+                "end": 108
+              },
+              {
+                "start": 79,
+                "end": 81
+              },
+              {
+                "start": 128,
+                "end": 130
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "handbook",
+              "manual",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 116,
+                "end": 119
+              },
+              {
+                "start": 79,
+                "end": 81
+              },
+              {
+                "start": 128,
+                "end": 130
+              }
+            ]
+          }
+        },
+        {
+          "id": "eba7a4425d332e554fe7c75b74a25d675544982519677d0474de3865268097ee",
+          "admission": "take",
+          "goal": [
+            "manual",
+            "handbook",
+            "manual"
+          ],
+          "goal_bpe": [
+            {
+              "end": 81,
+              "start": 79
+            },
+            {
+              "end": 119,
+              "start": 116
+            },
+            {
+              "end": 130,
+              "start": 128
+            }
+          ],
+          "before": {
+            "terms": [
+              "manual",
+              "steps",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 79,
+                "end": 81
+              },
+              {
+                "start": 107,
+                "end": 108
+              },
+              {
+                "start": 128,
+                "end": 130
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "manual",
+              "handbook",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 79,
+                "end": 81
+              },
+              {
+                "start": 116,
+                "end": 119
+              },
+              {
+                "start": 128,
+                "end": 130
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "pair": "repair-school/glass/16",
+      "family": "repair-school",
+      "distance": "near",
+      "change": "lost",
+      "rows": [
+        {
+          "id": "b305d173a8b134f1405b76bc1cee8e4d4947bea30c093570ea7a99f8ce7073e8",
+          "admission": "defer",
+          "goal": [
+            "handbook",
+            "manual",
+            "manual"
+          ],
+          "goal_bpe": [
+            {
+              "end": 101,
+              "start": 98
+            },
+            {
+              "end": 72,
+              "start": 70
+            },
+            {
+              "end": 112,
+              "start": 110
+            }
+          ],
+          "before": {
+            "terms": [
+              "handbook",
+              "manual",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 98,
+                "end": 101
+              },
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 110,
+                "end": 112
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "this",
+              "manual",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 97,
+                "end": 98
+              },
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 110,
+                "end": 112
+              }
+            ]
+          }
+        },
+        {
+          "id": "66904c3ddc0664d0dcaa68b7718b6eccd5ee4676467548775d90d0f07504029f",
+          "admission": "take",
+          "goal": [
+            "manual",
+            "handbook",
+            "manual"
+          ],
+          "goal_bpe": [
+            {
+              "end": 72,
+              "start": 70
+            },
+            {
+              "end": 101,
+              "start": 98
+            },
+            {
+              "end": 112,
+              "start": 110
+            }
+          ],
+          "before": {
+            "terms": [
+              "manual",
+              "handbook",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 98,
+                "end": 101
+              },
+              {
+                "start": 110,
+                "end": 112
+              }
+            ]
+          },
+          "after": {
+            "terms": [
+              "manual",
+              "handbook",
+              "manual"
+            ],
+            "original_bpe": [
+              {
+                "start": 70,
+                "end": 72
+              },
+              {
+                "start": 98,
+                "end": 101
+              },
+              {
+                "start": 110,
+                "end": 112
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

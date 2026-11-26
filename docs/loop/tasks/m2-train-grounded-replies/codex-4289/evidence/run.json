@@ -1,0 +1,255 @@
+{
+  "measurement": "v2",
+  "grade": "v1",
+  "input_manifest": "fea0169668b6bd195e51cf032947f574f33a6584ef4affe4ebb7beeb5aa2f9b0",
+  "measurement_manifest": "718ab57fc9f71967d7050a0fc1721de5cd13a504a7aa837a8e90b1bae2ffb22a",
+  "grade_manifest": "d1c48e1ddf0be5af78275eb3fe9ccbe4d97988abd6659a74f63a8b90b36e75c7",
+  "decision_sha256": "3f96974a8daed9f245341f4dc32cff1989a7935fc11845b7a5f327f7966b072d",
+  "resources": "wall_s=10.59 user_s=3.61 system_s=6.54 peak_rss_kib=917296",
+  "device": "0, NVIDIA GeForce RTX 4090, GPU-7c813ad0-2151-bb1d-5efb-a3340b9a6a41, 595.99.02, 24080 MiB",
+  "states": {
+    "inherited": "c4eb44e57970bf0695ecc0e4e358bd61c96c4c84cfab2f48c0f0e745889d0dc5",
+    "contrastive": "a6a994b5ed2cf0c2bf715ba3c7f9d3aa4a51e8337f98873370723d64bcffbc7c",
+    "attraction_only": "a5eb776e6859f2b60732e82b0e62fecab694855e2b46e8b70d83bb04beaf2823"
+  },
+  "training": {
+    "contrastive": {
+      "chosen_step": 6,
+      "eligible": 512,
+      "lexical_bytes_preserved": true,
+      "mode": "contrastive",
+      "reconstructed_final_state": true,
+      "reconstructed_selected_state": true,
+      "rows": 256,
+      "signed_edges": 512,
+      "trajectory": [
+        {
+          "hinge": 3120,
+          "step": 0,
+          "wins": 248
+        },
+        {
+          "hinge": 2352,
+          "step": 1,
+          "wins": 268
+        },
+        {
+          "hinge": 272,
+          "step": 2,
+          "wins": 452
+        },
+        {
+          "hinge": 104,
+          "step": 3,
+          "wins": 484
+        },
+        {
+          "hinge": 76,
+          "step": 4,
+          "wins": 476
+        },
+        {
+          "hinge": 12,
+          "step": 5,
+          "wins": 508
+        },
+        {
+          "hinge": 0,
+          "step": 6,
+          "wins": 512
+        },
+        {
+          "hinge": 0,
+          "step": 7,
+          "wins": 512
+        },
+        {
+          "hinge": 0,
+          "step": 8,
+          "wins": 512
+        }
+      ]
+    },
+    "attraction_only": {
+      "chosen_step": 8,
+      "eligible": 512,
+      "lexical_bytes_preserved": true,
+      "mode": "positive",
+      "reconstructed_final_state": true,
+      "reconstructed_selected_state": true,
+      "rows": 256,
+      "signed_edges": 512,
+      "trajectory": [
+        {
+          "hinge": 3120,
+          "step": 0,
+          "wins": 248
+        },
+        {
+          "hinge": 4192,
+          "step": 1,
+          "wins": 256
+        },
+        {
+          "hinge": 1888,
+          "step": 2,
+          "wins": 312
+        },
+        {
+          "hinge": 3952,
+          "step": 3,
+          "wins": 248
+        },
+        {
+          "hinge": 1708,
+          "step": 4,
+          "wins": 328
+        },
+        {
+          "hinge": 3240,
+          "step": 5,
+          "wins": 256
+        },
+        {
+          "hinge": 1536,
+          "step": 6,
+          "wins": 328
+        },
+        {
+          "hinge": 3180,
+          "step": 7,
+          "wins": 264
+        },
+        {
+          "hinge": 1524,
+          "step": 8,
+          "wins": 316
+        }
+      ]
+    },
+    "source_pairs": {
+      "baseline": {
+        "exact_pairs": 64,
+        "full_pairs": 64,
+        "exact_rows": 136
+      },
+      "correct_link": {
+        "exact_pairs": 128,
+        "full_pairs": 128,
+        "exact_rows": 256
+      },
+      "exchanged_link": {
+        "exact_pairs": 0,
+        "full_pairs": 0,
+        "exact_rows": 0
+      },
+      "governor_gap": {
+        "exact_pairs": 0,
+        "full_pairs": 0,
+        "exact_rows": 0
+      },
+      "learned": {
+        "exact_pairs": 128,
+        "full_pairs": 128,
+        "exact_rows": 256
+      },
+      "native": {
+        "exact_pairs": 0,
+        "full_pairs": 0,
+        "exact_rows": 4
+      },
+      "positive": {
+        "exact_pairs": 72,
+        "full_pairs": 72,
+        "exact_rows": 160
+      },
+      "unfitted": {
+        "exact_pairs": 0,
+        "full_pairs": 0,
+        "exact_rows": 0
+      }
+    }
+  },
+  "signed_margin_checks": {
+    "initial": {
+      "events": 512,
+      "edges_compared": 19072,
+      "epoch_reads": 512,
+      "disagreements": 0
+    },
+    "contrastive": {
+      "events": 512,
+      "edges_compared": 19072,
+      "epoch_reads": 4608,
+      "disagreements": 0
+    },
+    "attraction_only": {
+      "events": 512,
+      "edges_compared": 19072,
+      "epoch_reads": 4608,
+      "disagreements": 0
+    }
+  },
+  "cold_predictions": {
+    "baseline": {
+      "train": {
+        "pass": true,
+        "trace": "78760ab510025ceb1cd4c710ddaab526601fd47f5264f0afbf4fcebe701cfed2",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25832,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      },
+      "held": {
+        "pass": true,
+        "trace": "0b76646bd59d1212db27234c605e9bfcf362a9efc5a2b678f9df1b72657843fa",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25844,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      }
+    },
+    "contrastive": {
+      "train": {
+        "pass": true,
+        "trace": "076969c50bd27534f5a7a7de1452b137cbec399fad99747accf42a9637c4c727",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25856,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      },
+      "held": {
+        "pass": true,
+        "trace": "0fec85d5bcd5f74117ee21448aa80fa8361b0d4a0cbb4080f768773972183667",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25796,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      }
+    },
+    "positive": {
+      "train": {
+        "pass": true,
+        "trace": "a90b7c30c579d752bb298b15cb8ae67c30eb9c287a707200a576a23c4721bc4b",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25784,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      },
+      "held": {
+        "pass": true,
+        "trace": "b560bbbf28eb513bf6186f9060583ce41a6bf676734817ddd5d2d2370bc76ae8",
+        "decisions": 256,
+        "differences": 0,
+        "fields_compared": 25760,
+        "gap_decisions": 256,
+        "gap_differences": 0
+      }
+    }
+  }
+}

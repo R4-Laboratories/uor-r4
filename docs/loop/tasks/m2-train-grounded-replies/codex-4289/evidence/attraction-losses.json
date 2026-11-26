@@ -1,0 +1,922 @@
+{
+  "events": 512,
+  "eligible": 512,
+  "missing_gold": 0,
+  "unadmitted": 0,
+  "no_wrong_occurrence": 0,
+  "eligible_losses": 256,
+  "loss_to_win": 80,
+  "before_hinge": 3120,
+  "after_hinge": 1524,
+  "before_outcomes": {
+    "loss": 256,
+    "tie": 8,
+    "win": 248
+  },
+  "after_outcomes": {
+    "loss": 172,
+    "tie": 24,
+    "win": 316
+  },
+  "transitions": {
+    "loss": {
+      "loss": 152,
+      "tie": 24,
+      "win": 80
+    },
+    "tie": {
+      "loss": 8,
+      "tie": 0,
+      "win": 0
+    },
+    "win": {
+      "loss": 12,
+      "tie": 0,
+      "win": 236
+    }
+  },
+  "strict_losses_that_beat_all_original": 80,
+  "beat_old_but_still_wrong": 0,
+  "beat_old_but_now_tied": 0,
+  "original_pivot_changed": 172,
+  "initial_minimum_ties": 4,
+  "original_loss_categories": {
+    "other_word": {
+      "loss": 152,
+      "tie": 24,
+      "win": 80
+    }
+  },
+  "step": 8,
+  "by_sign": {
+    "affirmed": {
+      "events": 256,
+      "eligible": 256,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 124,
+      "loss_to_win": 36,
+      "before_hinge": 1548,
+      "after_hinge": 708,
+      "before_outcomes": {
+        "loss": 124,
+        "tie": 8,
+        "win": 124
+      },
+      "after_outcomes": {
+        "loss": 88,
+        "tie": 12,
+        "win": 156
+      },
+      "transitions": {
+        "loss": {
+          "loss": 76,
+          "tie": 12,
+          "win": 36
+        },
+        "tie": {
+          "loss": 8,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 4,
+          "tie": 0,
+          "win": 120
+        }
+      },
+      "strict_losses_that_beat_all_original": 36,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 80,
+      "initial_minimum_ties": 4,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 76,
+          "tie": 12,
+          "win": 36
+        }
+      }
+    },
+    "excluded": {
+      "events": 256,
+      "eligible": 256,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 132,
+      "loss_to_win": 44,
+      "before_hinge": 1572,
+      "after_hinge": 816,
+      "before_outcomes": {
+        "loss": 132,
+        "win": 124
+      },
+      "after_outcomes": {
+        "loss": 84,
+        "tie": 12,
+        "win": 160
+      },
+      "transitions": {
+        "loss": {
+          "loss": 76,
+          "tie": 12,
+          "win": 44
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 8,
+          "tie": 0,
+          "win": 116
+        }
+      },
+      "strict_losses_that_beat_all_original": 44,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 92,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 76,
+          "tie": 12,
+          "win": 44
+        }
+      }
+    }
+  },
+  "by_family": {
+    "academy-selection": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 40,
+      "loss_to_win": 12,
+      "before_hinge": 648,
+      "after_hinge": 140,
+      "before_outcomes": {
+        "loss": 40,
+        "win": 24
+      },
+      "after_outcomes": {
+        "loss": 28,
+        "win": 36
+      },
+      "transitions": {
+        "loss": {
+          "loss": 28,
+          "tie": 0,
+          "win": 12
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 24
+        }
+      },
+      "strict_losses_that_beat_all_original": 12,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 24,
+      "initial_minimum_ties": 4,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 28,
+          "win": 12
+        }
+      }
+    },
+    "checkpoint-release": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 32,
+      "loss_to_win": 28,
+      "before_hinge": 128,
+      "after_hinge": 4,
+      "before_outcomes": {
+        "loss": 32,
+        "win": 32
+      },
+      "after_outcomes": {
+        "tie": 4,
+        "win": 60
+      },
+      "transitions": {
+        "loss": {
+          "loss": 0,
+          "tie": 4,
+          "win": 28
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 32
+        }
+      },
+      "strict_losses_that_beat_all_original": 28,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 16,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "tie": 4,
+          "win": 28
+        }
+      }
+    },
+    "club-inventory": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 40,
+      "loss_to_win": 8,
+      "before_hinge": 672,
+      "after_hinge": 200,
+      "before_outcomes": {
+        "loss": 40,
+        "win": 24
+      },
+      "after_outcomes": {
+        "loss": 24,
+        "tie": 8,
+        "win": 32
+      },
+      "transitions": {
+        "loss": {
+          "loss": 24,
+          "tie": 8,
+          "win": 8
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 24
+        }
+      },
+      "strict_losses_that_beat_all_original": 8,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 4,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 24,
+          "tie": 8,
+          "win": 8
+        }
+      }
+    },
+    "dance-practice": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 40,
+      "loss_to_win": 8,
+      "before_hinge": 344,
+      "after_hinge": 380,
+      "before_outcomes": {
+        "loss": 40,
+        "win": 24
+      },
+      "after_outcomes": {
+        "loss": 32,
+        "win": 32
+      },
+      "transitions": {
+        "loss": {
+          "loss": 32,
+          "tie": 0,
+          "win": 8
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 24
+        }
+      },
+      "strict_losses_that_beat_all_original": 8,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 28,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 32,
+          "win": 8
+        }
+      }
+    },
+    "gallery-review": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 40,
+      "loss_to_win": 16,
+      "before_hinge": 392,
+      "after_hinge": 68,
+      "before_outcomes": {
+        "loss": 40,
+        "win": 24
+      },
+      "after_outcomes": {
+        "loss": 12,
+        "tie": 12,
+        "win": 40
+      },
+      "transitions": {
+        "loss": {
+          "loss": 12,
+          "tie": 12,
+          "win": 16
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 24
+        }
+      },
+      "strict_losses_that_beat_all_original": 16,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 16,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 12,
+          "tie": 12,
+          "win": 16
+        }
+      }
+    },
+    "music-rehearsal": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 24,
+      "loss_to_win": 8,
+      "before_hinge": 176,
+      "after_hinge": 40,
+      "before_outcomes": {
+        "loss": 24,
+        "win": 40
+      },
+      "after_outcomes": {
+        "loss": 16,
+        "win": 48
+      },
+      "transitions": {
+        "loss": {
+          "loss": 16,
+          "tie": 0,
+          "win": 8
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 0,
+          "tie": 0,
+          "win": 40
+        }
+      },
+      "strict_losses_that_beat_all_original": 8,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 16,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 16,
+          "win": 8
+        }
+      }
+    },
+    "trail-collection": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 8,
+      "loss_to_win": 0,
+      "before_hinge": 40,
+      "after_hinge": 168,
+      "before_outcomes": {
+        "loss": 8,
+        "tie": 8,
+        "win": 48
+      },
+      "after_outcomes": {
+        "loss": 24,
+        "win": 40
+      },
+      "transitions": {
+        "loss": {
+          "loss": 8,
+          "tie": 0,
+          "win": 0
+        },
+        "tie": {
+          "loss": 8,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 8,
+          "tie": 0,
+          "win": 40
+        }
+      },
+      "strict_losses_that_beat_all_original": 0,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 40,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 8
+        }
+      }
+    },
+    "transit-inspection": {
+      "events": 64,
+      "eligible": 64,
+      "missing_gold": 0,
+      "unadmitted": 0,
+      "no_wrong_occurrence": 0,
+      "eligible_losses": 32,
+      "loss_to_win": 0,
+      "before_hinge": 720,
+      "after_hinge": 524,
+      "before_outcomes": {
+        "loss": 32,
+        "win": 32
+      },
+      "after_outcomes": {
+        "loss": 36,
+        "win": 28
+      },
+      "transitions": {
+        "loss": {
+          "loss": 32,
+          "tie": 0,
+          "win": 0
+        },
+        "tie": {
+          "loss": 0,
+          "tie": 0,
+          "win": 0
+        },
+        "win": {
+          "loss": 4,
+          "tie": 0,
+          "win": 28
+        }
+      },
+      "strict_losses_that_beat_all_original": 0,
+      "beat_old_but_still_wrong": 0,
+      "beat_old_but_now_tied": 0,
+      "original_pivot_changed": 28,
+      "initial_minimum_ties": 0,
+      "original_loss_categories": {
+        "other_word": {
+          "loss": 32
+        }
+      }
+    }
+  },
+  "all_four_signed_edges_won_before": 44,
+  "all_four_signed_edges_won_after": 60,
+  "examples": [
+    {
+      "id": "063941a13077ebc24d41fac69d65e657ea7664bde1858d637b13bcb476f1d7f4",
+      "family": "trail-collection",
+      "admission": "take",
+      "sign": 1,
+      "governor": {
+        "bytes": [
+          225,
+          229
+        ],
+        "tokens": [
+          104,
+          105
+        ],
+        "word": "drop"
+      },
+      "gold": {
+        "bytes": [
+          278,
+          283
+        ],
+        "tokens": [
+          119,
+          121
+        ],
+        "word": "token"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          230,
+          234
+        ],
+        "tokens": [
+          105,
+          106
+        ],
+        "word": "what"
+      },
+      "new_rival": {
+        "bytes": [
+          230,
+          234
+        ],
+        "tokens": [
+          105,
+          106
+        ],
+        "word": "what"
+      },
+      "old_margin": -3,
+      "old_pivot_after": -10,
+      "new_margin": -10,
+      "transition": "loss_to_loss"
+    },
+    {
+      "id": "0b248b166139daeaf4cd8ad28bd60a9ced3a6e88118e50c1aca666de9be4f39f",
+      "family": "club-inventory",
+      "admission": "defer",
+      "sign": 0,
+      "governor": {
+        "bytes": [
+          229,
+          233
+        ],
+        "tokens": [
+          102,
+          103
+        ],
+        "word": "keep"
+      },
+      "gold": {
+        "bytes": [
+          281,
+          286
+        ],
+        "tokens": [
+          117,
+          119
+        ],
+        "word": "badge"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          238,
+          242
+        ],
+        "tokens": [
+          104,
+          106
+        ],
+        "word": "item"
+      },
+      "new_rival": {
+        "bytes": [
+          238,
+          242
+        ],
+        "tokens": [
+          104,
+          106
+        ],
+        "word": "item"
+      },
+      "old_margin": -20,
+      "old_pivot_after": 0,
+      "new_margin": 0,
+      "transition": "loss_to_tie"
+    },
+    {
+      "id": "010cb8ef2cdeee1e4a4c9a10cd80236caae4a89ba9ead2716a6b7302d167d950",
+      "family": "checkpoint-release",
+      "admission": "defer",
+      "sign": 0,
+      "governor": {
+        "bytes": [
+          238,
+          243
+        ],
+        "tokens": [
+          104,
+          105
+        ],
+        "word": "clear"
+      },
+      "gold": {
+        "bytes": [
+          290,
+          296
+        ],
+        "tokens": [
+          118,
+          119
+        ],
+        "word": "ticket"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          249,
+          252
+        ],
+        "tokens": [
+          106,
+          107
+        ],
+        "word": "the"
+      },
+      "new_rival": {
+        "bytes": [
+          249,
+          252
+        ],
+        "tokens": [
+          106,
+          107
+        ],
+        "word": "the"
+      },
+      "old_margin": -5,
+      "old_pivot_after": 3,
+      "new_margin": 3,
+      "transition": "loss_to_win"
+    },
+    {
+      "id": "55b96d7c596b6de2a792e0725f0c690c4baac569bd6bdb873c3fcf636553d55c",
+      "family": "trail-collection",
+      "admission": "defer",
+      "sign": 0,
+      "governor": {
+        "bytes": [
+          227,
+          231
+        ],
+        "tokens": [
+          102,
+          103
+        ],
+        "word": "keep"
+      },
+      "gold": {
+        "bytes": [
+          280,
+          285
+        ],
+        "tokens": [
+          117,
+          119
+        ],
+        "word": "token"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          269,
+          273
+        ],
+        "tokens": [
+          113,
+          115
+        ],
+        "word": "hike"
+      },
+      "new_rival": {
+        "bytes": [
+          232,
+          236
+        ],
+        "tokens": [
+          103,
+          104
+        ],
+        "word": "what"
+      },
+      "old_margin": 0,
+      "old_pivot_after": -2,
+      "new_margin": -4,
+      "transition": "tie_to_loss"
+    },
+    {
+      "id": "1e4ee0616972dbcc57f4cef16feacf1613b17596b1863cabdfaa6e28f8590df4",
+      "family": "transit-inspection",
+      "admission": "take",
+      "sign": 0,
+      "governor": {
+        "bytes": [
+          156,
+          161
+        ],
+        "tokens": [
+          76,
+          77
+        ],
+        "word": "clear"
+      },
+      "gold": {
+        "bytes": [
+          97,
+          103
+        ],
+        "tokens": [
+          61,
+          62
+        ],
+        "word": "ticket"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          204,
+          208
+        ],
+        "tokens": [
+          87,
+          88
+        ],
+        "word": "case"
+      },
+      "new_rival": {
+        "bytes": [
+          204,
+          208
+        ],
+        "tokens": [
+          87,
+          88
+        ],
+        "word": "case"
+      },
+      "old_margin": 7,
+      "old_pivot_after": -4,
+      "new_margin": -4,
+      "transition": "win_to_loss"
+    },
+    {
+      "id": "0c8c3a94646ab561b99c65bf008f8362d8c5ee89b5cdae362ac1295ee6d2592d",
+      "family": "academy-selection",
+      "admission": "defer",
+      "sign": 1,
+      "governor": {
+        "bytes": [
+          203,
+          209
+        ],
+        "tokens": [
+          94,
+          96
+        ],
+        "word": "reject"
+      },
+      "gold": {
+        "bytes": [
+          148,
+          154
+        ],
+        "tokens": [
+          75,
+          78
+        ],
+        "word": "sketch"
+      },
+      "old_kind": "neutral_same_spelling_occurrence",
+      "old_rival": {
+        "bytes": [
+          107,
+          113
+        ],
+        "tokens": [
+          63,
+          66
+        ],
+        "word": "sketch"
+      },
+      "new_rival": {
+        "bytes": [
+          158,
+          161
+        ],
+        "tokens": [
+          79,
+          80
+        ],
+        "word": "for"
+      },
+      "old_margin": 12,
+      "old_pivot_after": 26,
+      "new_margin": 10,
+      "transition": "win_to_win"
+    },
+    {
+      "id": "05cf9b1a24426a070b2b34f8051f7fcfdb162ddab682672cebb830181e4b0558",
+      "family": "gallery-review",
+      "admission": "take",
+      "sign": 0,
+      "governor": {
+        "bytes": [
+          195,
+          201
+        ],
+        "tokens": [
+          94,
+          96
+        ],
+        "word": "accept"
+      },
+      "gold": {
+        "bytes": [
+          138,
+          146
+        ],
+        "tokens": [
+          75,
+          79
+        ],
+        "word": "portrait"
+      },
+      "old_kind": "other_word",
+      "old_rival": {
+        "bytes": [
+          191,
+          194
+        ],
+        "tokens": [
+          92,
+          94
+        ],
+        "word": "may"
+      },
+      "new_rival": {
+        "bytes": [
+          147,
+          149
+        ],
+        "tokens": [
+          79,
+          80
+        ],
+        "word": "is"
+      },
+      "old_margin": 7,
+      "old_pivot_after": 8,
+      "new_margin": 7,
+      "transition": "win_to_win"
+    }
+  ]
+}

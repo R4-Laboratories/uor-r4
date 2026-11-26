@@ -1,0 +1,3405 @@
+{
+  "pairs": 128,
+  "endpoints": 256,
+  "reference_sha256": "bcc617eb26d2a32ed8332bce70146583517cd9d52e523e9b4bb9acbdf1c5d7cf",
+  "endpoints_sha256": "045e5418a8a62b28ed8c49ec74820e7ebf0e0542d5cb26f74ba1bfb1ad8f73f1",
+  "all_source_endpoints_sha256": "6ce6a3794738c7621519b7da6a795ada421b51a0d40201f8d2873c189e7ca368",
+  "arms": {
+    "baseline": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 56,
+      "exact_pairs": 24,
+      "full_rows": 56,
+      "full_pairs": 24,
+      "earlier_pairs": 24,
+      "governor_rows": 256,
+      "neutral_rows": 8,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 120,
+        "excluded_noun": 80,
+        "none": 56
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 24,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 24,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 20,
+        "lost": 0,
+        "kept": 4,
+        "neither": 104
+      },
+      "vs_unfitted": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_distance": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 104,
+        "kept": 24,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      }
+    },
+    "correct_link": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 256,
+      "exact_pairs": 128,
+      "full_rows": 256,
+      "full_pairs": 128,
+      "earlier_pairs": 128,
+      "governor_rows": 256,
+      "neutral_rows": 0,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "none": 256
+      },
+      "vs_inherited": {
+        "gained": 104,
+        "lost": 0,
+        "kept": 24,
+        "neither": 0
+      },
+      "vs_positive": {
+        "gained": 104,
+        "lost": 0,
+        "kept": 24,
+        "neither": 0
+      },
+      "vs_native": {
+        "gained": 124,
+        "lost": 0,
+        "kept": 4,
+        "neither": 0
+      },
+      "vs_unfitted": {
+        "gained": 128,
+        "lost": 0,
+        "kept": 0,
+        "neither": 0
+      },
+      "vs_distance": {
+        "gained": 128,
+        "lost": 0,
+        "kept": 0,
+        "neither": 0
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 128,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 128,
+        "lost": 0,
+        "kept": 0,
+        "neither": 0
+      }
+    },
+    "exchanged_link": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 0,
+      "exact_pairs": 0,
+      "full_rows": 0,
+      "full_pairs": 0,
+      "earlier_pairs": 0,
+      "governor_rows": 256,
+      "neutral_rows": 0,
+      "exchanged_rows": 256,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 256
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 0,
+        "lost": 4,
+        "kept": 0,
+        "neither": 124
+      },
+      "vs_unfitted": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_distance": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 128,
+        "kept": 0,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      }
+    },
+    "governor_gap": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 0,
+      "exact_pairs": 0,
+      "full_rows": 0,
+      "full_pairs": 0,
+      "earlier_pairs": 0,
+      "governor_rows": 256,
+      "neutral_rows": 32,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 164,
+        "excluded_noun": 92
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 0,
+        "lost": 4,
+        "kept": 0,
+        "neither": 124
+      },
+      "vs_unfitted": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_distance": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 128,
+        "kept": 0,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      }
+    },
+    "learned": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 112,
+      "exact_pairs": 48,
+      "full_rows": 112,
+      "full_pairs": 48,
+      "earlier_pairs": 48,
+      "governor_rows": 256,
+      "neutral_rows": 44,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 96,
+        "excluded_noun": 48,
+        "none": 112
+      },
+      "vs_inherited": {
+        "gained": 32,
+        "lost": 8,
+        "kept": 16,
+        "neither": 72
+      },
+      "vs_positive": {
+        "gained": 32,
+        "lost": 8,
+        "kept": 16,
+        "neither": 72
+      },
+      "vs_native": {
+        "gained": 48,
+        "lost": 4,
+        "kept": 0,
+        "neither": 76
+      },
+      "vs_unfitted": {
+        "gained": 48,
+        "lost": 0,
+        "kept": 0,
+        "neither": 80
+      },
+      "vs_distance": {
+        "gained": 48,
+        "lost": 0,
+        "kept": 0,
+        "neither": 80
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 80,
+        "kept": 48,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 48,
+        "lost": 0,
+        "kept": 0,
+        "neither": 80
+      }
+    },
+    "native": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 12,
+      "exact_pairs": 4,
+      "full_rows": 0,
+      "full_pairs": 0,
+      "earlier_pairs": 4,
+      "governor_rows": 0,
+      "neutral_rows": 56,
+      "exchanged_rows": 0,
+      "ties": 40,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 160,
+        "excluded_noun": 44,
+        "joint_tie": 40,
+        "none": 12
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 20,
+        "kept": 4,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 20,
+        "kept": 4,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 4,
+        "neither": 124
+      },
+      "vs_unfitted": {
+        "gained": 4,
+        "lost": 0,
+        "kept": 0,
+        "neither": 124
+      },
+      "vs_distance": {
+        "gained": 4,
+        "lost": 0,
+        "kept": 0,
+        "neither": 124
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 124,
+        "kept": 4,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 4,
+        "lost": 0,
+        "kept": 0,
+        "neither": 124
+      }
+    },
+    "positive": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 72,
+      "exact_pairs": 24,
+      "full_rows": 72,
+      "full_pairs": 24,
+      "earlier_pairs": 24,
+      "governor_rows": 256,
+      "neutral_rows": 8,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 0,
+      "errors": {
+        "affirmed_noun": 104,
+        "excluded_noun": 80,
+        "none": 72
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 24,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 24,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 20,
+        "lost": 0,
+        "kept": 4,
+        "neither": 104
+      },
+      "vs_unfitted": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_distance": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 104,
+        "kept": 24,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 24,
+        "lost": 0,
+        "kept": 0,
+        "neither": 104
+      }
+    },
+    "unfitted": {
+      "rows": 256,
+      "pairs": 128,
+      "exact_rows": 0,
+      "exact_pairs": 0,
+      "full_rows": 0,
+      "full_pairs": 0,
+      "earlier_pairs": 0,
+      "governor_rows": 0,
+      "neutral_rows": 0,
+      "exchanged_rows": 0,
+      "ties": 0,
+      "no_eligible": 256,
+      "errors": {
+        "signed_governor": 256
+      },
+      "vs_inherited": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_positive": {
+        "gained": 0,
+        "lost": 24,
+        "kept": 0,
+        "neither": 104
+      },
+      "vs_native": {
+        "gained": 0,
+        "lost": 4,
+        "kept": 0,
+        "neither": 124
+      },
+      "vs_unfitted": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_distance": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      },
+      "vs_correct": {
+        "gained": 0,
+        "lost": 128,
+        "kept": 0,
+        "neither": 0
+      },
+      "vs_exchanged": {
+        "gained": 0,
+        "lost": 0,
+        "kept": 0,
+        "neither": 128
+      }
+    }
+  },
+  "by_distance": {
+    "far": {
+      "baseline": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 32,
+        "exact_pairs": 16,
+        "full_rows": 32,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 60,
+          "excluded_noun": 36,
+          "none": 32
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 48,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        }
+      },
+      "correct_link": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 128,
+        "exact_pairs": 64,
+        "full_rows": 128,
+        "full_pairs": 64,
+        "earlier_pairs": 64,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 128
+        },
+        "vs_inherited": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 64,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 128,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 128
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "governor_gap": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 128,
+        "neutral_rows": 32,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 100,
+          "excluded_noun": 28
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "learned": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 104,
+        "exact_pairs": 48,
+        "full_rows": 104,
+        "full_pairs": 48,
+        "earlier_pairs": 48,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 16,
+          "excluded_noun": 8,
+          "none": 104
+        },
+        "vs_inherited": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_unfitted": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 48,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 48,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "native": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 24,
+        "exchanged_rows": 0,
+        "ties": 20,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 76,
+          "excluded_noun": 32,
+          "joint_tie": 20
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "positive": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 48,
+        "exact_pairs": 16,
+        "full_rows": 48,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 48,
+          "excluded_noun": 32,
+          "none": 48
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 48,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 48
+        }
+      },
+      "unfitted": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 128,
+        "errors": {
+          "signed_governor": 128
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 48
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      }
+    },
+    "near": {
+      "baseline": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 24,
+        "exact_pairs": 8,
+        "full_rows": 24,
+        "full_pairs": 8,
+        "earlier_pairs": 8,
+        "governor_rows": 128,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 60,
+          "excluded_noun": 44,
+          "none": 24
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 4,
+          "neither": 56
+        },
+        "vs_unfitted": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_distance": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 56,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        }
+      },
+      "correct_link": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 128,
+        "exact_pairs": 64,
+        "full_rows": 128,
+        "full_pairs": 64,
+        "earlier_pairs": 64,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 128
+        },
+        "vs_inherited": {
+          "gained": 56,
+          "lost": 0,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 56,
+          "lost": 0,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 60,
+          "lost": 0,
+          "kept": 4,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 64,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 64,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 128,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 128
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "governor_gap": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 128,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 64,
+          "excluded_noun": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "learned": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 8,
+        "exact_pairs": 0,
+        "full_rows": 8,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 128,
+        "neutral_rows": 44,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 80,
+          "excluded_noun": 40,
+          "none": 8
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      },
+      "native": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 12,
+        "exact_pairs": 4,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 4,
+        "governor_rows": 0,
+        "neutral_rows": 32,
+        "exchanged_rows": 0,
+        "ties": 20,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 84,
+          "excluded_noun": 12,
+          "joint_tie": 20,
+          "none": 12
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 4,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 4,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 4,
+          "neither": 60
+        },
+        "vs_unfitted": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_distance": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 60,
+          "kept": 4,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 60
+        }
+      },
+      "positive": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 24,
+        "exact_pairs": 8,
+        "full_rows": 24,
+        "full_pairs": 8,
+        "earlier_pairs": 8,
+        "governor_rows": 128,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 56,
+          "excluded_noun": 48,
+          "none": 24
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 4,
+          "neither": 56
+        },
+        "vs_unfitted": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_distance": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 56,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 56
+        }
+      },
+      "unfitted": {
+        "rows": 128,
+        "pairs": 64,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 128,
+        "errors": {
+          "signed_governor": 128
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 56
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 60
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 64,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 64
+        }
+      }
+    }
+  },
+  "by_family": {
+    "civic-hearing": {
+      "baseline": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 16,
+        "exact_pairs": 8,
+        "full_rows": 16,
+        "full_pairs": 8,
+        "earlier_pairs": 8,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 24,
+          "excluded_noun": 24,
+          "none": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_unfitted": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_distance": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 24,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        }
+      },
+      "correct_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 64,
+        "exact_pairs": 32,
+        "full_rows": 64,
+        "full_pairs": 32,
+        "earlier_pairs": 32,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 64
+        },
+        "vs_inherited": {
+          "gained": 24,
+          "lost": 0,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 24,
+          "lost": 0,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 32,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 64,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "governor_gap": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 36,
+          "excluded_noun": 28
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "learned": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 32,
+        "exact_pairs": 16,
+        "full_rows": 32,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 16,
+          "excluded_noun": 16,
+          "none": 32
+        },
+        "vs_inherited": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 8,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 8,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "native": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 12,
+        "exchanged_rows": 0,
+        "ties": 8,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 44,
+          "excluded_noun": 12,
+          "joint_tie": 8
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "positive": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 16,
+        "exact_pairs": 8,
+        "full_rows": 16,
+        "full_pairs": 8,
+        "earlier_pairs": 8,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 24,
+          "excluded_noun": 24,
+          "none": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 8,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_unfitted": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_distance": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 24,
+          "kept": 8,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 8,
+          "lost": 0,
+          "kept": 0,
+          "neither": 24
+        }
+      },
+      "unfitted": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 64,
+        "errors": {
+          "signed_governor": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 8,
+          "kept": 0,
+          "neither": 24
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      }
+    },
+    "harbor-records": {
+      "baseline": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 8,
+        "exact_pairs": 0,
+        "full_rows": 8,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 32,
+          "excluded_noun": 24,
+          "none": 8
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "correct_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 64,
+        "exact_pairs": 32,
+        "full_rows": 64,
+        "full_pairs": 32,
+        "earlier_pairs": 32,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 64
+        },
+        "vs_inherited": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 32,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 64,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "governor_gap": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 36,
+          "excluded_noun": 28
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "learned": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 32,
+        "exact_pairs": 16,
+        "full_rows": 32,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 64,
+        "neutral_rows": 12,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 16,
+          "excluded_noun": 16,
+          "none": 32
+        },
+        "vs_inherited": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "native": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 16,
+        "exchanged_rows": 0,
+        "ties": 16,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 36,
+          "excluded_noun": 12,
+          "joint_tie": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "positive": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 16,
+        "exact_pairs": 0,
+        "full_rows": 16,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 32,
+          "excluded_noun": 16,
+          "none": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "unfitted": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 64,
+        "errors": {
+          "signed_governor": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      }
+    },
+    "reading-room": {
+      "baseline": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 48,
+          "excluded_noun": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "correct_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 64,
+        "exact_pairs": 32,
+        "full_rows": 64,
+        "full_pairs": 32,
+        "earlier_pairs": 32,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 64
+        },
+        "vs_inherited": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 32,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 64,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "governor_gap": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 48,
+          "excluded_noun": 16
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "learned": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 8,
+        "exact_pairs": 0,
+        "full_rows": 8,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 24,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 44,
+          "excluded_noun": 12,
+          "none": 8
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "native": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 28,
+        "exchanged_rows": 0,
+        "ties": 4,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 52,
+          "excluded_noun": 8,
+          "joint_tie": 4
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "positive": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 40,
+          "excluded_noun": 24
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "unfitted": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 64,
+        "errors": {
+          "signed_governor": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      }
+    },
+    "repair-school": {
+      "baseline": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 32,
+        "exact_pairs": 16,
+        "full_rows": 32,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 16,
+          "excluded_noun": 16,
+          "none": 32
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 12,
+          "lost": 0,
+          "kept": 4,
+          "neither": 16
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "correct_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 64,
+        "exact_pairs": 32,
+        "full_rows": 64,
+        "full_pairs": 32,
+        "earlier_pairs": 32,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "none": 64
+        },
+        "vs_inherited": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_positive": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_native": {
+          "gained": 28,
+          "lost": 0,
+          "kept": 4,
+          "neither": 0
+        },
+        "vs_unfitted": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_distance": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 32,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 32,
+          "lost": 0,
+          "kept": 0,
+          "neither": 0
+        }
+      },
+      "exchanged_link": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 64,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 28
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "governor_gap": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 64,
+        "neutral_rows": 8,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 44,
+          "excluded_noun": 20
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 28
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      },
+      "learned": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 40,
+        "exact_pairs": 16,
+        "full_rows": 40,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 20,
+          "excluded_noun": 4,
+          "none": 40
+        },
+        "vs_inherited": {
+          "gained": 8,
+          "lost": 8,
+          "kept": 8,
+          "neither": 8
+        },
+        "vs_positive": {
+          "gained": 8,
+          "lost": 8,
+          "kept": 8,
+          "neither": 8
+        },
+        "vs_native": {
+          "gained": 16,
+          "lost": 4,
+          "kept": 0,
+          "neither": 12
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "native": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 12,
+        "exact_pairs": 4,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 4,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 12,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 28,
+          "excluded_noun": 12,
+          "joint_tie": 12,
+          "none": 12
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 12,
+          "kept": 4,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 12,
+          "kept": 4,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 4,
+          "neither": 28
+        },
+        "vs_unfitted": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 28
+        },
+        "vs_distance": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 28
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 28,
+          "kept": 4,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 4,
+          "lost": 0,
+          "kept": 0,
+          "neither": 28
+        }
+      },
+      "positive": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 40,
+        "exact_pairs": 16,
+        "full_rows": 40,
+        "full_pairs": 16,
+        "earlier_pairs": 16,
+        "governor_rows": 64,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 0,
+        "errors": {
+          "affirmed_noun": 8,
+          "excluded_noun": 16,
+          "none": 40
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 16,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 12,
+          "lost": 0,
+          "kept": 4,
+          "neither": 16
+        },
+        "vs_unfitted": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_distance": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 16,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 16,
+          "lost": 0,
+          "kept": 0,
+          "neither": 16
+        }
+      },
+      "unfitted": {
+        "rows": 64,
+        "pairs": 32,
+        "exact_rows": 0,
+        "exact_pairs": 0,
+        "full_rows": 0,
+        "full_pairs": 0,
+        "earlier_pairs": 0,
+        "governor_rows": 0,
+        "neutral_rows": 0,
+        "exchanged_rows": 0,
+        "ties": 0,
+        "no_eligible": 64,
+        "errors": {
+          "signed_governor": 64
+        },
+        "vs_inherited": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_positive": {
+          "gained": 0,
+          "lost": 16,
+          "kept": 0,
+          "neither": 16
+        },
+        "vs_native": {
+          "gained": 0,
+          "lost": 4,
+          "kept": 0,
+          "neither": 28
+        },
+        "vs_unfitted": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_distance": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        },
+        "vs_correct": {
+          "gained": 0,
+          "lost": 32,
+          "kept": 0,
+          "neither": 0
+        },
+        "vs_exchanged": {
+          "gained": 0,
+          "lost": 0,
+          "kept": 0,
+          "neither": 32
+        }
+      }
+    }
+  },
+  "gate": {
+    "genuine_training_loss_flip": true,
+    "gain_over_inherited": true,
+    "far_gain_over_inherited": true,
+    "near_retention": false,
+    "net_over_native_and_unfitted": true,
+    "both_distances_over_native_and_unfitted": false,
+    "full_links_at_both_distances": false,
+    "no_family_below_native": true,
+    "supplied_controls": true
+  },
+  "pass": false
+}

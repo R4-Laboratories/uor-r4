@@ -1,0 +1,508 @@
+{
+  "by_distance": [
+    {
+      "distance": "far",
+      "counts": [
+        {
+          "error": "affirmed_noun",
+          "rows": 16
+        },
+        {
+          "error": "excluded_noun",
+          "rows": 8
+        },
+        {
+          "error": "none",
+          "rows": 104
+        }
+      ],
+      "first_wrong_noun_surfaces": [
+        {
+          "term": "you",
+          "rows": 16
+        },
+        {
+          "term": "club",
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "counts": [
+        {
+          "error": "affirmed_noun",
+          "rows": 80
+        },
+        {
+          "error": "excluded_noun",
+          "rows": 40
+        },
+        {
+          "error": "none",
+          "rows": 8
+        }
+      ],
+      "first_wrong_noun_surfaces": [
+        {
+          "term": "Separately",
+          "rows": 36
+        },
+        {
+          "term": "that",
+          "rows": 16
+        },
+        {
+          "term": "brochure",
+          "rows": 12
+        },
+        {
+          "term": "harbor",
+          "rows": 12
+        },
+        {
+          "term": "our",
+          "rows": 12
+        },
+        {
+          "term": "this",
+          "rows": 12
+        },
+        {
+          "term": "manual",
+          "rows": 8
+        },
+        {
+          "term": "may",
+          "rows": 8
+        },
+        {
+          "term": "you",
+          "rows": 4
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "07f0d5f3c4be6c31718702e62e1540276efe222b3f046a2a14101f836c9b7886",
+      "pair": "reading-room/glass/26",
+      "family": "reading-room",
+      "distance": "far",
+      "admission": "defer",
+      "error": "affirmed_noun",
+      "ties": 1,
+      "eligible": 254,
+      "governors": [
+        "keep",
+        "drop"
+      ],
+      "read_governors": [
+        "keep",
+        "drop"
+      ],
+      "gold": [
+        "pamphlet",
+        "brochure",
+        "brochure"
+      ],
+      "selected": [
+        "club",
+        "brochure",
+        "brochure"
+      ],
+      "gold_bpe": [
+        {
+          "end": 125,
+          "start": 121
+        },
+        {
+          "end": 82,
+          "start": 79
+        },
+        {
+          "end": 132,
+          "start": 129
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 113,
+          "end": 114
+        },
+        {
+          "start": 79,
+          "end": 82
+        },
+        {
+          "start": 129,
+          "end": 132
+        }
+      ],
+      "neutral_bpe": {
+        "end": 89,
+        "start": 86
+      },
+      "score": [
+        0,
+        45,
+        576
+      ],
+      "next_score": [
+        0,
+        46,
+        508
+      ]
+    },
+    {
+      "id": "3807cf0744cf167ddb53b086ec5fe76906c48f89d50d5669d1be909f3357c8b9",
+      "pair": "reading-room/hill/6",
+      "family": "reading-room",
+      "distance": "far",
+      "admission": "take",
+      "error": "excluded_noun",
+      "ties": 1,
+      "eligible": 360,
+      "governors": [
+        "keep",
+        "drop"
+      ],
+      "read_governors": [
+        "keep",
+        "drop"
+      ],
+      "gold": [
+        "brochure",
+        "pamphlet",
+        "brochure"
+      ],
+      "selected": [
+        "brochure",
+        "you",
+        "brochure"
+      ],
+      "gold_bpe": [
+        {
+          "end": 87,
+          "start": 84
+        },
+        {
+          "end": 112,
+          "start": 108
+        },
+        {
+          "end": 132,
+          "start": 129
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 84,
+          "end": 87
+        },
+        {
+          "start": 112,
+          "end": 113
+        },
+        {
+          "start": 129,
+          "end": 132
+        }
+      ],
+      "neutral_bpe": {
+        "end": 70,
+        "start": 67
+      },
+      "score": [
+        0,
+        55,
+        528
+      ],
+      "next_score": [
+        0,
+        57,
+        562
+      ]
+    },
+    {
+      "id": "005e834fcce84b6cbc23a508868fced6f93bc8fbcdb31c02b5e1378ab75249b8",
+      "pair": "civic-hearing/hill/6",
+      "family": "civic-hearing",
+      "distance": "far",
+      "admission": "take",
+      "error": "none",
+      "ties": 1,
+      "eligible": 172,
+      "governors": [
+        "clear",
+        "block"
+      ],
+      "read_governors": [
+        "clear",
+        "block"
+      ],
+      "gold": [
+        "petition",
+        "warrant",
+        "petition"
+      ],
+      "selected": [
+        "petition",
+        "warrant",
+        "petition"
+      ],
+      "gold_bpe": [
+        {
+          "end": 87,
+          "start": 84
+        },
+        {
+          "end": 116,
+          "start": 113
+        },
+        {
+          "end": 142,
+          "start": 139
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 84,
+          "end": 87
+        },
+        {
+          "start": 113,
+          "end": 116
+        },
+        {
+          "start": 139,
+          "end": 142
+        }
+      ],
+      "neutral_bpe": {
+        "end": 74,
+        "start": 71
+      },
+      "score": [
+        0,
+        44,
+        630
+      ],
+      "next_score": [
+        0,
+        48,
+        582
+      ]
+    },
+    {
+      "id": "0099aa4b7fe0abd1cf233f165283cab7280aac97354503dbc61f004d8c245690",
+      "pair": "reading-room/glass/12",
+      "family": "reading-room",
+      "distance": "near",
+      "admission": "take",
+      "error": "affirmed_noun",
+      "ties": 1,
+      "eligible": 136,
+      "governors": [
+        "keep",
+        "drop"
+      ],
+      "read_governors": [
+        "keep",
+        "drop"
+      ],
+      "gold": [
+        "brochure",
+        "pamphlet",
+        "brochure"
+      ],
+      "selected": [
+        "brochure",
+        "Separately",
+        "brochure"
+      ],
+      "gold_bpe": [
+        {
+          "end": 87,
+          "start": 84
+        },
+        {
+          "end": 102,
+          "start": 98
+        },
+        {
+          "end": 112,
+          "start": 109
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 67,
+          "end": 70
+        },
+        {
+          "start": 91,
+          "end": 96
+        },
+        {
+          "start": 109,
+          "end": 112
+        }
+      ],
+      "neutral_bpe": {
+        "end": 70,
+        "start": 67
+      },
+      "score": [
+        0,
+        81,
+        532
+      ],
+      "next_score": [
+        0,
+        86,
+        574
+      ]
+    },
+    {
+      "id": "0070cd925671b894162c3367067f3660331eb27e9c06c3c63664c3547e7aec8b",
+      "pair": "civic-hearing/hill/16",
+      "family": "civic-hearing",
+      "distance": "near",
+      "admission": "take",
+      "error": "excluded_noun",
+      "ties": 1,
+      "eligible": 104,
+      "governors": [
+        "clear",
+        "block"
+      ],
+      "read_governors": [
+        "clear",
+        "block"
+      ],
+      "gold": [
+        "petition",
+        "warrant",
+        "petition"
+      ],
+      "selected": [
+        "petition",
+        "that",
+        "petition"
+      ],
+      "gold_bpe": [
+        {
+          "end": 75,
+          "start": 72
+        },
+        {
+          "end": 110,
+          "start": 107
+        },
+        {
+          "end": 118,
+          "start": 115
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 72,
+          "end": 75
+        },
+        {
+          "start": 106,
+          "end": 107
+        },
+        {
+          "start": 115,
+          "end": 118
+        }
+      ],
+      "neutral_bpe": {
+        "end": 86,
+        "start": 83
+      },
+      "score": [
+        0,
+        69,
+        600
+      ],
+      "next_score": [
+        0,
+        73,
+        544
+      ]
+    },
+    {
+      "id": "66904c3ddc0664d0dcaa68b7718b6eccd5ee4676467548775d90d0f07504029f",
+      "pair": "repair-school/glass/16",
+      "family": "repair-school",
+      "distance": "near",
+      "admission": "take",
+      "error": "none",
+      "ties": 1,
+      "eligible": 106,
+      "governors": [
+        "follow",
+        "forget"
+      ],
+      "read_governors": [
+        "follow",
+        "forget"
+      ],
+      "gold": [
+        "manual",
+        "handbook",
+        "manual"
+      ],
+      "selected": [
+        "manual",
+        "handbook",
+        "manual"
+      ],
+      "gold_bpe": [
+        {
+          "end": 72,
+          "start": 70
+        },
+        {
+          "end": 101,
+          "start": 98
+        },
+        {
+          "end": 112,
+          "start": 110
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 70,
+          "end": 72
+        },
+        {
+          "start": 98,
+          "end": 101
+        },
+        {
+          "start": 110,
+          "end": 112
+        }
+      ],
+      "neutral_bpe": {
+        "end": 80,
+        "start": 78
+      },
+      "score": [
+        0,
+        67,
+        518
+      ],
+      "next_score": [
+        0,
+        75,
+        538
+      ]
+    }
+  ]
+}

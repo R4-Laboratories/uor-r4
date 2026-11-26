@@ -1,0 +1,251 @@
+{
+  "synthetic": true,
+  "raw_signed_events": 512,
+  "joined_signed_events": 512,
+  "training_transition_counts": {
+    "loss": {
+      "loss": 1,
+      "tie": 1,
+      "win": 2
+    },
+    "tie": {
+      "loss": 0,
+      "tie": 0,
+      "win": 0
+    },
+    "win": {
+      "loss": 1,
+      "tie": 1,
+      "win": 505
+    }
+  },
+  "release_cases": 15,
+  "passing": 2,
+  "cases": [
+    {
+      "case": "release/threshold_eight.json",
+      "pass": true,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/control_eight.json",
+      "pass": true,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/inherited_seven.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": false,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/native_seven.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": false,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/unfitted_seven.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": false,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/one_sided.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": false,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/far_gain_flat.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": false,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/near_retention_drop.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": false,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/missing_far_full.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": false,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/missing_near_full.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": false,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/missing_far_correct.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": false
+      }
+    },
+    {
+      "case": "release/missing_near_correct.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": false
+      }
+    },
+    {
+      "case": "release/one_exchanged_exact.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": true,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": false
+      }
+    },
+    {
+      "case": "release/no_genuine_loss.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": false,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    },
+    {
+      "case": "release/no_loss_flip.json",
+      "pass": false,
+      "gate": {
+        "genuine_training_loss_flip": false,
+        "gain_over_inherited": true,
+        "far_gain_over_inherited": true,
+        "near_retention": true,
+        "net_over_native_and_unfitted": true,
+        "both_distances_over_native_and_unfitted": true,
+        "full_links_at_both_distances": true,
+        "no_family_below_native": true,
+        "supplied_controls": true
+      }
+    }
+  ]
+}
