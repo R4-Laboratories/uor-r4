@@ -1,0 +1,16 @@
+[package]
+name = "original-occurrence-panel"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[[bin]]
+name = "original-occurrence-panel"
+path = "enroll.rs"
+
+[dependencies]
+serde_json = "=1.0.154"
+sha2 = "=0.10.9"
+uor-r4-tokenizer = { path = "tokenizer" }

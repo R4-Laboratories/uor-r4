@@ -1,0 +1,786 @@
+[
+  {
+    "row": 120,
+    "case_id": "3623e8691f18ca5904e36ee0e9f8f757aa888667995e17b50fa54bf2c50d4fa2",
+    "pair_id": "enamel-display/road/18",
+    "admission": "defer",
+    "family": "enamel-display",
+    "failed_sign": 0,
+    "governor": {
+      "word": "keep",
+      "bytes": [
+        231,
+        235
+      ],
+      "bpe": [
+        100,
+        101
+      ]
+    },
+    "gold": {
+      "site": 39,
+      "word": "medallion",
+      "bytes": [
+        278,
+        287
+      ],
+      "bpe": [
+        112,
+        115
+      ],
+      "cost": 22,
+      "center": 2
+    },
+    "old_winner": {
+      "site": 31,
+      "word": "piece",
+      "bytes": [
+        240,
+        245
+      ],
+      "bpe": [
+        102,
+        103
+      ]
+    },
+    "matched_control": {
+      "site": 30,
+      "word": "the",
+      "bytes": [
+        236,
+        239
+      ],
+      "bpe": [
+        101,
+        102
+      ]
+    },
+    "neutral": {
+      "gold_rank": 5,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ]
+        },
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        },
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "affirmed_noun"
+    },
+    "winner": {
+      "gold_rank": 4,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 30,
+          "word": "the",
+          "bytes": [
+            236,
+            239
+          ],
+          "bpe": [
+            101,
+            102
+          ],
+          "cost": 19,
+          "center": 7
+        },
+        {
+          "site": 32,
+          "word": "found",
+          "bytes": [
+            246,
+            251
+          ],
+          "bpe": [
+            103,
+            104
+          ],
+          "cost": 19,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 30,
+          "word": "the",
+          "bytes": [
+            236,
+            239
+          ],
+          "bpe": [
+            101,
+            102
+          ],
+          "cost": 19,
+          "center": 7
+        },
+        {
+          "site": 32,
+          "word": "found",
+          "bytes": [
+            246,
+            251
+          ],
+          "bpe": [
+            103,
+            104
+          ],
+          "cost": 19,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 32,
+          "word": "found",
+          "bytes": [
+            246,
+            251
+          ],
+          "bpe": [
+            103,
+            104
+          ]
+        },
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        },
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "affirmed_noun"
+    },
+    "control": {
+      "gold_rank": 4,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ]
+        },
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        },
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "affirmed_noun"
+    }
+  },
+  {
+    "row": 121,
+    "case_id": "e8882bccfe4832beeb4c724c3671adec67453d648a6da42a9020500fca966bbe",
+    "pair_id": "enamel-display/road/18",
+    "admission": "take",
+    "family": "enamel-display",
+    "failed_sign": 1,
+    "governor": {
+      "word": "drop",
+      "bytes": [
+        231,
+        235
+      ],
+      "bpe": [
+        100,
+        101
+      ]
+    },
+    "gold": {
+      "site": 39,
+      "word": "medallion",
+      "bytes": [
+        278,
+        287
+      ],
+      "bpe": [
+        112,
+        115
+      ],
+      "cost": 22,
+      "center": 2
+    },
+    "old_winner": {
+      "site": 31,
+      "word": "piece",
+      "bytes": [
+        240,
+        245
+      ],
+      "bpe": [
+        102,
+        103
+      ]
+    },
+    "matched_control": {
+      "site": 30,
+      "word": "the",
+      "bytes": [
+        236,
+        239
+      ],
+      "bpe": [
+        101,
+        102
+      ]
+    },
+    "neutral": {
+      "gold_rank": 5,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        },
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "excluded_noun"
+    },
+    "winner": {
+      "gold_rank": 4,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 30,
+          "word": "the",
+          "bytes": [
+            236,
+            239
+          ],
+          "bpe": [
+            101,
+            102
+          ],
+          "cost": 15,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 30,
+          "word": "the",
+          "bytes": [
+            236,
+            239
+          ],
+          "bpe": [
+            101,
+            102
+          ],
+          "cost": 15,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 30,
+          "word": "the",
+          "bytes": [
+            236,
+            239
+          ],
+          "bpe": [
+            101,
+            102
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        },
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "excluded_noun"
+    },
+    "control": {
+      "gold_rank": 4,
+      "gold_ties": 1,
+      "signed_winners": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "strongest_remaining_wrong": [
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ],
+          "cost": 6,
+          "center": 7
+        }
+      ],
+      "joint_selected": [
+        {
+          "site": 16,
+          "word": "ornament",
+          "bytes": [
+            153,
+            161
+          ],
+          "bpe": [
+            78,
+            79
+          ]
+        },
+        {
+          "site": 31,
+          "word": "piece",
+          "bytes": [
+            240,
+            245
+          ],
+          "bpe": [
+            102,
+            103
+          ]
+        },
+        {
+          "site": 42,
+          "word": "ornament",
+          "bytes": [
+            302,
+            310
+          ],
+          "bpe": [
+            121,
+            122
+          ]
+        }
+      ],
+      "joint_governors": [
+        {
+          "word": 20,
+          "governor": {
+            "bytes": [
+              106,
+              110
+            ],
+            "tokens": [
+              66,
+              67
+            ]
+          }
+        },
+        {
+          "word": 43,
+          "governor": {
+            "bytes": [
+              231,
+              235
+            ],
+            "tokens": [
+              100,
+              101
+            ]
+          }
+        }
+      ],
+      "joint_ties": 1,
+      "heading_correct": true,
+      "governors_correct": true,
+      "full": false,
+      "first_source_error": "excluded_noun"
+    }
+  }
+]

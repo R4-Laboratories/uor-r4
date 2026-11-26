@@ -1,0 +1,1966 @@
+{
+  "cases": [
+    "unique_gold_recovery",
+    "control_retains_loss",
+    "second_rival",
+    "equal_surface_distinct_addresses",
+    "governor_at_omitted_noun_address_survives",
+    "tied_gold_abstention",
+    "lowest_equal_center",
+    "untouched_row",
+    "explicit_ineligible_request",
+    "tied_wrong_group_loses_exactly_one_site",
+    "rejects_changed_center",
+    "rejects_changed_governor_bound"
+  ],
+  "coverage": {
+    "candidate_triples_in_reference": 91,
+    "enrolled_candidates_by_arm": [
+      15,
+      11,
+      12
+    ],
+    "i16_coordinate_differences": 36192,
+    "joint_fields": 1761,
+    "other_polarity_candidates_retained_in_reference": 30,
+    "signed_fields": 439,
+    "unfulfilled_requests_by_arm": [
+      0,
+      1,
+      0
+    ],
+    "unrequested_rows_by_arm": [
+      5,
+      0,
+      2
+    ],
+    "untouched_rows": 1
+  },
+  "manifested_inputs": {
+    "banks": "661a27c5fa91e5ef936372a5aab5dee2cf26c60c4451c54fb2a2fb085d5eebac",
+    "control.jsonl": "041c80c60f59df7786d1657d520f3bc2206ec1820a0c2839b59e5d015da785f7",
+    "control.ranks.jsonl": "73490a81b690887ff3dec77b5988360df4545fb98e0c505c35319356410151b0",
+    "labels": "7e262d6821fde9e5841a9156d0a64969c9a78fedb73ab8147922a713606a514e",
+    "masks": "175b53f963f9cf246f0206c81b0499ced237db6095fb8f46a6f1cf6b608b1d9b",
+    "neutral.jsonl": "6aa0eca6c54aa20a51975853d19f0e75a056335b5f77debbb63c136b7c2e4fa1",
+    "neutral.ranks.jsonl": "763f962684e9e438bedcab6a3a64e9baf0ac8680ec5e3835710956ca6b90c509",
+    "source": "c735750ba302647196bc1d6c7ba92d84c68bd0d27fb7e1f87b6f11bda1c2d711",
+    "state": "9c074c675e8a6207920b4c7399a624e5622079f9c7532ffab26aa9f5c614dc2c",
+    "text": "3566156642e570d08a141c6e00f8cb44c0869aa2a86f1ae4e20a9c4969237d81",
+    "winner.jsonl": "40de42caf111f38855761ddb76986bfe680bb2b7e83193d1b33f29d9631df51f",
+    "winner.ranks.jsonl": "a656b278a5fd7c0d046c6acdb8196ac4affc34aa2d60064e4eea87dcba8bdfdc"
+  },
+  "pass": true,
+  "rows": 6,
+  "scope": "non-author finite device differential on Wick",
+  "signed": {
+    "0": [
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 3,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 1,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 2,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 1,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "site": 0,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      }
+    ],
+    "1": [
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "rank": 1,
+            "site": 4,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 2,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              8
+            ],
+            "noun": {
+              "bytes": [
+                25,
+                28
+              ],
+              "surface": "nut",
+              "tokens": [
+                4,
+                5
+              ]
+            },
+            "rank": 3,
+            "site": 3,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            8
+          ],
+          "noun": {
+            "bytes": [
+              25,
+              28
+            ],
+            "surface": "nut",
+            "tokens": [
+              4,
+              5
+            ]
+          },
+          "site": 3,
+          "transport_center": 0
+        },
+        "gold_rank": 3,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "site": 4,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "site": 4,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 1,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              8
+            ],
+            "noun": {
+              "bytes": [
+                25,
+                28
+              ],
+              "surface": "nut",
+              "tokens": [
+                4,
+                5
+              ]
+            },
+            "rank": 2,
+            "site": 3,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            8
+          ],
+          "noun": {
+            "bytes": [
+              25,
+              28
+            ],
+            "surface": "nut",
+            "tokens": [
+              4,
+              5
+            ]
+          },
+          "site": 3,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "rank": 1,
+            "site": 4,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              8
+            ],
+            "noun": {
+              "bytes": [
+                25,
+                28
+              ],
+              "surface": "nut",
+              "tokens": [
+                4,
+                5
+              ]
+            },
+            "rank": 2,
+            "site": 3,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            8
+          ],
+          "noun": {
+            "bytes": [
+              25,
+              28
+            ],
+            "surface": "nut",
+            "tokens": [
+              4,
+              5
+            ]
+          },
+          "site": 3,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "site": 4,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                29,
+                33
+              ],
+              "surface": "gear",
+              "tokens": [
+                5,
+                6
+              ]
+            },
+            "site": 4,
+            "transport_center": 0
+          }
+        ]
+      }
+    ],
+    "2": [
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 2,
+            "site": 2,
+            "ties": 2,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 2,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 1,
+            "site": 0,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 1,
+            "site": 2,
+            "ties": 2,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 1,
+        "gold_ties": 2,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "site": 0,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      }
+    ],
+    "4": [
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 3,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 3,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              9
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 3,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          }
+        ]
+      }
+    ],
+    "5": [
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 1,
+            "site": 2,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 3,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 3,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 1,
+            "site": 2,
+            "ties": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 2,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 2,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ]
+      },
+      {
+        "candidates": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "rank": 1,
+            "site": 1,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "rank": 1,
+            "site": 2,
+            "ties": 2,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              4
+            ],
+            "noun": {
+              "bytes": [
+                15,
+                24
+              ],
+              "surface": "medallion",
+              "tokens": [
+                3,
+                4
+              ]
+            },
+            "rank": 3,
+            "site": 0,
+            "ties": 1,
+            "transport_center": 0
+          }
+        ],
+        "gold": {
+          "cost": [
+            0,
+            4
+          ],
+          "noun": {
+            "bytes": [
+              15,
+              24
+            ],
+            "surface": "medallion",
+            "tokens": [
+              3,
+              4
+            ]
+          },
+          "site": 0,
+          "transport_center": 0
+        },
+        "gold_rank": 3,
+        "gold_ties": 1,
+        "strongest_wrong": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ],
+        "winners": [
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                5,
+                9
+              ],
+              "surface": "drop",
+              "tokens": [
+                1,
+                2
+              ]
+            },
+            "site": 1,
+            "transport_center": 0
+          },
+          {
+            "cost": [
+              0,
+              1
+            ],
+            "noun": {
+              "bytes": [
+                10,
+                14
+              ],
+              "surface": "drop",
+              "tokens": [
+                2,
+                3
+              ]
+            },
+            "site": 2,
+            "transport_center": 0
+          }
+        ]
+      }
+    ]
+  }
+}

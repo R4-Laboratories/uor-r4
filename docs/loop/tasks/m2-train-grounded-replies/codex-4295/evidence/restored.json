@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "archive_sha256": "3d0d0f3cb49018ea29d13c310155912ecbb33469e3ea4f855e44d44c371bcb45",
+  "verified_members": 212,
+  "measurement_sha256": "ae9471af842a490d39a9b114fd096e194cb61ba9158c495adbbcddae35278fb8",
+  "independent_audit_sha256": "2df4107410187d6e4583a1b0dcb5218a5f58b292018213c07df8bc5cb46c6d22",
+  "grade_summary_sha256": "8d72eb6e72f4a9fbb7fa9c44ef26c373051fba46a53b5ce785fd71d75a9f9c5f",
+  "regraded_files": 11,
+  "disagreements": 0
+}

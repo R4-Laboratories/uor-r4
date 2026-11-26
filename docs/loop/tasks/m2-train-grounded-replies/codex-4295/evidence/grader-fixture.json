@@ -1,0 +1,451 @@
+{
+  "arm": {
+    "neutral": {
+      "prompts": 48,
+      "exact_prompts": 0,
+      "exact_tuples": 0,
+      "pairs": 24,
+      "complete_pairs": 0,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 48,
+      "gold_ranks": [
+        {
+          "value": 2,
+          "n": 32
+        },
+        {
+          "value": 3,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 32
+        },
+        {
+          "value": 2,
+          "n": 16
+        }
+      ],
+      "gold_unique_first": 0,
+      "gold_tied_first": 0,
+      "gold_below_first": 48,
+      "joint_ties": 0,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 24
+        },
+        {
+          "value": "excluded_noun",
+          "n": 24
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": "echo",
+          "n": 48
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "echo"
+          ],
+          "n": 48
+        }
+      ],
+      "matched_controls": 46
+    },
+    "winner": {
+      "prompts": 48,
+      "exact_prompts": 16,
+      "exact_tuples": 16,
+      "pairs": 24,
+      "complete_pairs": 8,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 32,
+      "gold_ranks": [
+        {
+          "value": 1,
+          "n": 32
+        },
+        {
+          "value": 2,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 32
+        },
+        {
+          "value": 2,
+          "n": 16
+        }
+      ],
+      "gold_unique_first": 16,
+      "gold_tied_first": 16,
+      "gold_below_first": 16,
+      "joint_ties": 16,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 8
+        },
+        {
+          "value": "excluded_noun",
+          "n": 8
+        },
+        {
+          "value": "joint_tie",
+          "n": 16
+        },
+        {
+          "value": "none",
+          "n": 16
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": null,
+          "n": 16
+        },
+        {
+          "value": "hat",
+          "n": 16
+        },
+        {
+          "value": "test",
+          "n": 16
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "echo",
+            "hat"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "hat"
+          ],
+          "n": 32
+        }
+      ],
+      "matched_controls": 46
+    },
+    "control": {
+      "prompts": 48,
+      "exact_prompts": 0,
+      "exact_tuples": 0,
+      "pairs": 24,
+      "complete_pairs": 0,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 48,
+      "gold_ranks": [
+        {
+          "value": 2,
+          "n": 32
+        },
+        {
+          "value": 3,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 32
+        },
+        {
+          "value": 2,
+          "n": 16
+        }
+      ],
+      "gold_unique_first": 0,
+      "gold_tied_first": 0,
+      "gold_below_first": 48,
+      "joint_ties": 0,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 24
+        },
+        {
+          "value": "excluded_noun",
+          "n": 24
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": "echo",
+          "n": 48
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "echo"
+          ],
+          "n": 48
+        }
+      ],
+      "matched_controls": 46
+    }
+  },
+  "by_family": [
+    {
+      "family": "finite",
+      "pairs": 24,
+      "winning_omission_exact_prompts": 16,
+      "winning_omission_full_pairs": 8,
+      "gold_rank_changes": [
+        {
+          "value": [
+            2,
+            1
+          ],
+          "n": 32
+        },
+        {
+          "value": [
+            3,
+            2
+          ],
+          "n": 16
+        }
+      ],
+      "original_winner": [
+        {
+          "value": "echo",
+          "n": 48
+        }
+      ],
+      "new_signed_winners": [
+        {
+          "value": [
+            "hat"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "test"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "test",
+            "hat"
+          ],
+          "n": 16
+        }
+      ],
+      "new_joint_winner": [
+        {
+          "value": null,
+          "n": 16
+        },
+        {
+          "value": "hat",
+          "n": 16
+        },
+        {
+          "value": "test",
+          "n": 16
+        }
+      ]
+    }
+  ],
+  "identities": [
+    {
+      "pair_id": "pair0",
+      "matched_both": false,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair1",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair10",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair11",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair12",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair13",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair14",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair15",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair16",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair17",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair19",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair2",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair20",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair21",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair23",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair3",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair4",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair5",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair6",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    },
+    {
+      "pair_id": "pair7",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair8",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "pair9",
+      "matched_both": true,
+      "neutral": false,
+      "winner": true,
+      "control": false
+    }
+  ],
+  "matched_pairs": 23,
+  "recovered_matched_pairs": 7,
+  "remaining_when_winner_omitted": [
+    {
+      "value": "gold tied at lowest signed cost",
+      "n": 16
+    },
+    {
+      "value": "other signed occurrence outranks gold",
+      "n": 16
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "prompts": 48,
+  "comparisons": 144,
+  "pairs": 24,
+  "matched_pairs": 24,
+  "complete_pairs": {
+    "neutral": 0,
+    "winner": 0,
+    "control": 0
+  },
+  "production_and_independent_rank_tie_address_disagreements": 0
+}

@@ -1,0 +1,25 @@
+{
+  "controls_missing": 0,
+  "enrolled_pairs": 24,
+  "enrolled_rows": 48,
+  "historical_neutral_and_234_fields": 30644,
+  "inputs": {
+    "banks": "ace9145ac71f66a01e9fed62bb33357634270d4be8ec4f1604e865b134a3a663",
+    "coordinates": "4d2c2fd91363fe3d60e76846dda5b5b4460e7d00d78836fd3523397edcdd7f90",
+    "historical_234_edges": "d3b935f9a80a7d73e5e2dc87c9a941c0105bb52c4c6f167dc69ce6ba7bf8d001",
+    "historical_234_joint": "ba10fa4045a9108f4e3bf95732619945a0b8812a820f368978a80f8468d6aef8",
+    "historical_234_state": "3fdbb743c7bf1e712dc387987b02be334569024597165bac5b58106bcc4cfe5d",
+    "historical_240_edges": "84daf5c0bd1fb0dde8b0eccda1dcdff3e5fa7d9590e3d7bac13a471900849388",
+    "historical_240_joint": "0ca919e7124859ef78246df5d30c4b6abbcae497c9691275aec562050f9aafb0",
+    "historical_240_state": "a2f8d37a5304e557996d2a364ac064e96f9aeeed034357738a3c2989a81b8d8a",
+    "labels": "094b7d91c7beb3b81c0d8f05e9cd7e06eb068d02c640f1fee5f8f79ba815b1df",
+    "masks": "63fa5dacbb2875d17c11a2706fc365463e49b1f8d54efc0ceddb13bcaaee7eeb",
+    "panel_rows": "d6170b8625a5b295a2da1b29af5532efa962ffd54d53c03ec91bb3ba422af3b9",
+    "references": "b474449396acdcf616a5da89ed457cb3cbf79426734d61e7a86885942417af17",
+    "residuals": "9d23a96d98dcb1667627e18009415bca0b110febb0ee6285031d9d29bb52c17f",
+    "text": "fd0e73c63927ceaa18a613c9cae63e6cea1682f404fedd559a8fe95f0c1dcc65"
+  },
+  "pass": true,
+  "schema": 1,
+  "unmasked_rows": 208
+}

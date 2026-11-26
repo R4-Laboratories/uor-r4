@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "coverage": {
+    "candidate_triples_in_reference": 63680,
+    "enrolled_candidates_by_arm": [
+      1920,
+      1872,
+      1872
+    ],
+    "i16_coordinate_differences": 300571648,
+    "joint_fields": 77316,
+    "other_polarity_candidates_retained_in_reference": 3840,
+    "signed_fields": 46608,
+    "unfulfilled_requests_by_arm": [
+      0,
+      0,
+      0
+    ],
+    "unrequested_rows_by_arm": [
+      48,
+      0,
+      0
+    ],
+    "untouched_rows": 208
+  },
+  "enrolled_rows": 48,
+  "enrolled_pairs": 24,
+  "unmasked_rows": 208,
+  "controls_missing": 0,
+  "historical_neutral_and_234_fields": 30644
+}

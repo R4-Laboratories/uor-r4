@@ -1,0 +1,13 @@
+{
+  "host": "wick",
+  "boot_utc": "2026-11-26T18:02:12Z",
+  "verified_utc": "2026-11-26T18:18:14Z",
+  "prior_merge": "8e3282748d9893249a237305de0af9c2c163710b",
+  "prior_measurement_manifest": "fe7485ee9e0a7073a7530e71aadf7eafad95a77ce8e3ca3bdbac32feb19c90bb",
+  "prior_protected_state": "a2f8d37a5304e557996d2a364ac064e96f9aeeed034357738a3c2989a81b8d8a",
+  "prior_residual_summary": "9d23a96d98dcb1667627e18009415bca0b110febb0ee6285031d9d29bb52c17f",
+  "strict_measurement_readback": true,
+  "strict_residual_readback": true,
+  "boot_epoch": 1795716132,
+  "boot_source": "Linux /proc/stat btime"
+}

@@ -1,0 +1,556 @@
+{
+  "arm": {
+    "neutral": {
+      "prompts": 48,
+      "exact_prompts": 0,
+      "exact_tuples": 0,
+      "pairs": 24,
+      "complete_pairs": 0,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 48,
+      "gold_ranks": [
+        {
+          "value": 3,
+          "n": 16
+        },
+        {
+          "value": 5,
+          "n": 16
+        },
+        {
+          "value": 6,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 48
+        }
+      ],
+      "gold_unique_first": 0,
+      "gold_tied_first": 0,
+      "gold_below_first": 48,
+      "joint_ties": 0,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 24
+        },
+        {
+          "value": "excluded_noun",
+          "n": 24
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": "board",
+          "n": 16
+        },
+        {
+          "value": "piece",
+          "n": 16
+        },
+        {
+          "value": "space",
+          "n": 16
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "board"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "piece"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "space"
+          ],
+          "n": 16
+        }
+      ],
+      "matched_controls": 48
+    },
+    "winner": {
+      "prompts": 48,
+      "exact_prompts": 0,
+      "exact_tuples": 0,
+      "pairs": 24,
+      "complete_pairs": 0,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 48,
+      "gold_ranks": [
+        {
+          "value": 2,
+          "n": 16
+        },
+        {
+          "value": 4,
+          "n": 16
+        },
+        {
+          "value": 5,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 48
+        }
+      ],
+      "gold_unique_first": 0,
+      "gold_tied_first": 0,
+      "gold_below_first": 48,
+      "joint_ties": 0,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 24
+        },
+        {
+          "value": "excluded_noun",
+          "n": 24
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": "back",
+          "n": 16
+        },
+        {
+          "value": "found",
+          "n": 8
+        },
+        {
+          "value": "the",
+          "n": 24
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "drill",
+            "the",
+            "back"
+          ],
+          "n": 8
+        },
+        {
+          "value": [
+            "the"
+          ],
+          "n": 24
+        },
+        {
+          "value": [
+            "the",
+            "back"
+          ],
+          "n": 8
+        },
+        {
+          "value": [
+            "the",
+            "found"
+          ],
+          "n": 8
+        }
+      ],
+      "matched_controls": 48
+    },
+    "control": {
+      "prompts": 48,
+      "exact_prompts": 0,
+      "exact_tuples": 0,
+      "pairs": 24,
+      "complete_pairs": 0,
+      "one_side": 0,
+      "all_governors": 48,
+      "correct_headings": 48,
+      "gold_ranks": [
+        {
+          "value": 2,
+          "n": 16
+        },
+        {
+          "value": 4,
+          "n": 16
+        },
+        {
+          "value": 5,
+          "n": 16
+        }
+      ],
+      "gold_tie_counts": [
+        {
+          "value": 1,
+          "n": 48
+        }
+      ],
+      "gold_unique_first": 0,
+      "gold_tied_first": 0,
+      "gold_below_first": 48,
+      "joint_ties": 0,
+      "first_source_errors": [
+        {
+          "value": "affirmed_noun",
+          "n": 24
+        },
+        {
+          "value": "excluded_noun",
+          "n": 24
+        }
+      ],
+      "failed_role_joint_surfaces": [
+        {
+          "value": "board",
+          "n": 16
+        },
+        {
+          "value": "piece",
+          "n": 16
+        },
+        {
+          "value": "space",
+          "n": 16
+        }
+      ],
+      "strongest_remaining_wrong_surfaces": [
+        {
+          "value": [
+            "board"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "piece"
+          ],
+          "n": 16
+        },
+        {
+          "value": [
+            "space"
+          ],
+          "n": 16
+        }
+      ],
+      "matched_controls": 48
+    }
+  },
+  "by_family": [
+    {
+      "family": "building-evacuation",
+      "pairs": 8,
+      "winning_omission_exact_prompts": 0,
+      "winning_omission_full_pairs": 0,
+      "gold_rank_changes": [
+        {
+          "value": [
+            6,
+            5
+          ],
+          "n": 16
+        }
+      ],
+      "original_winner": [
+        {
+          "value": "space",
+          "n": 16
+        }
+      ],
+      "new_signed_winners": [
+        {
+          "value": [
+            "drill",
+            "the",
+            "back"
+          ],
+          "n": 8
+        },
+        {
+          "value": [
+            "the",
+            "back"
+          ],
+          "n": 8
+        }
+      ],
+      "new_joint_winner": [
+        {
+          "value": "back",
+          "n": 16
+        }
+      ]
+    },
+    {
+      "family": "enamel-display",
+      "pairs": 8,
+      "winning_omission_exact_prompts": 0,
+      "winning_omission_full_pairs": 0,
+      "gold_rank_changes": [
+        {
+          "value": [
+            5,
+            4
+          ],
+          "n": 16
+        }
+      ],
+      "original_winner": [
+        {
+          "value": "piece",
+          "n": 16
+        }
+      ],
+      "new_signed_winners": [
+        {
+          "value": [
+            "the"
+          ],
+          "n": 8
+        },
+        {
+          "value": [
+            "the",
+            "found"
+          ],
+          "n": 8
+        }
+      ],
+      "new_joint_winner": [
+        {
+          "value": "found",
+          "n": 8
+        },
+        {
+          "value": "the",
+          "n": 8
+        }
+      ]
+    },
+    {
+      "family": "planning-review",
+      "pairs": 8,
+      "winning_omission_exact_prompts": 0,
+      "winning_omission_full_pairs": 0,
+      "gold_rank_changes": [
+        {
+          "value": [
+            3,
+            2
+          ],
+          "n": 16
+        }
+      ],
+      "original_winner": [
+        {
+          "value": "board",
+          "n": 16
+        }
+      ],
+      "new_signed_winners": [
+        {
+          "value": [
+            "the"
+          ],
+          "n": 16
+        }
+      ],
+      "new_joint_winner": [
+        {
+          "value": "the",
+          "n": 16
+        }
+      ]
+    }
+  ],
+  "identities": [
+    {
+      "pair_id": "building-evacuation/road/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/road/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/road/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/road/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/school/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/school/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/school/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "building-evacuation/school/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/road/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/road/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/road/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/road/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/school/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/school/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/school/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "enamel-display/school/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/road/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/road/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/road/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/road/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/school/18",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/school/22",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/school/26",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    },
+    {
+      "pair_id": "planning-review/school/30",
+      "matched_both": true,
+      "neutral": false,
+      "winner": false,
+      "control": false
+    }
+  ],
+  "matched_pairs": 24,
+  "recovered_matched_pairs": 0,
+  "remaining_when_winner_omitted": [
+    {
+      "value": "other signed occurrence outranks gold",
+      "n": 48
+    }
+  ]
+}

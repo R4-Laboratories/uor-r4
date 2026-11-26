@@ -1,0 +1,26 @@
+--- a/src/replay.rs
++++ b/src/replay.rs
+@@ -191,7 +191,22 @@
+     arm: Arm,
+     coverage: &mut Coverage,
+ ) -> Value {
+-    let by_site = candidates(row, signs, arm, coverage);
++    predict_omitting(ordinal, row, signs, banks, arm, coverage, None)
++}
++
++pub fn predict_omitting(
++    ordinal: usize,
++    row: &Row,
++    signs: &[Sign; 2],
++    banks: &[Bank; 3],
++    arm: Arm,
++    coverage: &mut Coverage,
++    omission: Option<(usize, usize)>,
++) -> Value {
++    let mut by_site = candidates(row, signs, arm, coverage);
++    if let Some((sign, site)) = omission {
++        by_site[sign][site].clear();
++    }
+     let costs = frozen_costs(row, banks, coverage);
+     let independent: [Value; 2] = std::array::from_fn(|head| {
+         let mut all: Vec<_> = by_site[head].iter().flatten().copied().collect();

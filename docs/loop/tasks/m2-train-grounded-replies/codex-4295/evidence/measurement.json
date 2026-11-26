@@ -1,0 +1,10 @@
+{
+  "measurement_sha256": "ae9471af842a490d39a9b114fd096e194cb61ba9158c495adbbcddae35278fb8",
+  "grade_sha256": "f3570c7fca46fd961183cc2985845928c02f04a94c45145ba409f58d0fdc9490",
+  "audit_sha256": "2df4107410187d6e4583a1b0dcb5218a5f58b292018213c07df8bc5cb46c6d22",
+  "device": "0, NVIDIA GeForce RTX 4090, GPU-7c813ad0-2151-bb1d-5efb-a3340b9a6a41, 595.99.02, 24080 MiB",
+  "start_utc": "2026-11-26T18:20:35.925365781Z",
+  "end_utc": "2026-11-26T18:20:36.331748008Z",
+  "lease_resources": "wall_s=0.36 user_s=0.12 system_s=0.25 peak_rss_kib=229656",
+  "capture_tree_apparent_bytes": 1411702
+}
