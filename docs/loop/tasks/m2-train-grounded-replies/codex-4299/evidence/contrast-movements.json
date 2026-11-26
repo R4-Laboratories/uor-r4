@@ -1,0 +1,52 @@
+{
+  "far": [
+    {
+      "from": "baseline",
+      "to": "endpoint",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    },
+    {
+      "from": "ordered_base",
+      "to": "ordered",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    },
+    {
+      "from": "endpoint",
+      "to": "ordered",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    },
+    {
+      "from": "baseline",
+      "to": "endpoint_full",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    },
+    {
+      "from": "ordered_base",
+      "to": "ordered_full",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    },
+    {
+      "from": "endpoint_full",
+      "to": "ordered_full",
+      "full_gained": [],
+      "full_lost": [],
+      "exact_gained": [],
+      "exact_lost": []
+    }
+  ]
+}

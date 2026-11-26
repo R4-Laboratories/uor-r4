@@ -1,0 +1,9 @@
+{"arm":"baseline","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"ordered_base","pairs":32,"full":0,"correct_source_flips":4,"distinct_reads":4,"pairs_with_abstention":0}
+{"arm":"endpoint","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"ordered","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"endpoint_full","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"ordered_full","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"far_only","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}
+{"arm":"correct_link","pairs":32,"full":32,"correct_source_flips":32,"distinct_reads":32,"pairs_with_abstention":0}
+{"arm":"exchanged_link","pairs":32,"full":0,"correct_source_flips":0,"distinct_reads":0,"pairs_with_abstention":0}

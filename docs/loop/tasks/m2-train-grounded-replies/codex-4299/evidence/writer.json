@@ -1,0 +1,23 @@
+{
+  "status": "NOT_RUN",
+  "reason": "fresh source gate",
+  "passing": [],
+  "arms": {
+    "endpoint": [
+      "train_new_far_pair",
+      "improves_far",
+      "total_gain",
+      "gains_both_distances",
+      "full_links_both_distances",
+      "no_family_below_native"
+    ],
+    "ordered": [
+      "train_new_far_pair",
+      "improves_far",
+      "total_gain",
+      "gains_both_distances",
+      "full_links_both_distances",
+      "no_family_below_native"
+    ]
+  }
+}

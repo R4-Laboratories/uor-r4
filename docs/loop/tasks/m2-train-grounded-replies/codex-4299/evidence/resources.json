@@ -1,0 +1,17 @@
+{
+  "fitter": "wall_s=0.22 user_s=0.03 system_s=0.18 peak_rss_kib=303952",
+  "train": "wall_s=9.98 user_s=4.09 system_s=6.14 peak_rss_kib=303952",
+  "held": "wall_s=6.74 user_s=2.81 system_s=3.93 peak_rss_kib=229936",
+  "gpu": "0, NVIDIA GeForce RTX 4090, GPU-7c813ad0-2151-bb1d-5efb-a3340b9a6a41, 595.99.02, 24080 MiB",
+  "train_bytes": 14593995,
+  "held_bytes": 11476938,
+  "allocated_before_archive": 261768192,
+  "training_rows": 256,
+  "fixed_assignments": 512,
+  "state_bytes": 13336,
+  "tagged_bytes": 13352,
+  "scored_train_states_per_arm": 18,
+  "held_arms_per_panel": 13,
+  "primary_prompts": 256,
+  "contrast_prompts": 64
+}

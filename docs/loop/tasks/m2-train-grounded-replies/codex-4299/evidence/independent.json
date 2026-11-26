@@ -1,0 +1,49 @@
+{
+  "train": {
+    "pass": true,
+    "assignments": 512,
+    "assignments_sha256": "1da469386c9d9c26e89a9ed10b6ba1f2e1c653e1a3a5c929dceebc490c376bb6",
+    "equal_minimum_slot_assignments": 0,
+    "ordered_changed_assigned_edges": 256,
+    "arms": {
+      "endpoint": {
+        "joint_fields": 464234,
+        "states_checked": 18,
+        "active_unsupported_slots": 2,
+        "nonunique_scalar_medians": 18,
+        "zero_median_words": 116,
+        "selection": {
+          "chosen": "full",
+          "qualified": true,
+          "feasible_proposals": 17
+        }
+      },
+      "ordered": {
+        "joint_fields": 465024,
+        "states_checked": 18,
+        "active_unsupported_slots": 2,
+        "nonunique_scalar_medians": 44,
+        "zero_median_words": 86,
+        "selection": {
+          "chosen": "full",
+          "qualified": true,
+          "feasible_proposals": 1
+        }
+      }
+    }
+  },
+  "fresh": {
+    "pass": true,
+    "writer_released": [],
+    "cohorts": {
+      "contrast": {
+        "physical_lanes": 13,
+        "joint_fields": 79892
+      },
+      "held": {
+        "physical_lanes": 13,
+        "joint_fields": 317566
+      }
+    }
+  }
+}

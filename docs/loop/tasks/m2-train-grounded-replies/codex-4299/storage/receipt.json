@@ -1,0 +1,14 @@
+{
+  "archive_version": "v1",
+  "archive_sha256": "cd2c44d79d3f8a2d07ca1e0480e4c3d632e6af194cbaf72bf9389a7ec54812b2",
+  "packet_sha256": "eb0f11f9051e6fe5239853e8788da5e4fadfb8be3147fe4c3e4c07b3d7f42cb6",
+  "members_sha256": "7b62fb4cd7fa16cebcfb19496fe4b3259303c1612f572398f5b1d6234902181e",
+  "members": 1985,
+  "archive_bytes": 18274913,
+  "schema": "uor-r4.codex-4299.store/1",
+  "repo": "caseyallard/uor-r4-store",
+  "path": "results/codex/fixed-assignment-median-20261126-cd2c44d79d3f",
+  "revision": "ee6864137f0d4bcc5e2da2baf059068c90a13345",
+  "cold_replay_sha256": "d18845aedca51f56639ff92258b63f700165741b46b6060dff9dc30b18d82aff",
+  "verified_immutable_readback": true
+}

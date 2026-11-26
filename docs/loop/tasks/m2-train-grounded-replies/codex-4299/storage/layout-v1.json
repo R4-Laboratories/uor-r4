@@ -1,0 +1,30 @@
+{
+  "schema": "uor-r4.codex-4299.archive-layout/1",
+  "methods": "methods-v2",
+  "panel": "panel/panel-v1",
+  "train": "train-v1",
+  "held": "held-v1",
+  "grade": "grade-v1",
+  "release": "release-v1",
+  "permit": "permit-v1",
+  "train_audit": "audit/train-v1",
+  "held_audit": "audit/held-v1",
+  "adapter": "client/methods-v2",
+  "client_fixture": "client/fixture-v2",
+  "writer_version": "v1",
+  "additional_seals": [
+    "audit/premise-v1",
+    "audit/panel-v1",
+    "audit/FIT-v1",
+    "audit/FIT-v2",
+    "audit/gate-fixture-v1",
+    "audit/fixture-v2",
+    "audit/train-v2",
+    "fit/finite-v2",
+    "core-fixture-v2",
+    "report-methods-v1",
+    "report-v1",
+    "analysis/train-v1",
+    "analysis/held-v1"
+  ]
+}

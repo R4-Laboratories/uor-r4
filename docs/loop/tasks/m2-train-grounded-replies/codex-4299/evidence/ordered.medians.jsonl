@@ -1,0 +1,16 @@
+{"id":0,"sign":0,"slot":0,"active":true,"support":64,"medians":[0,0,0,-2,0,2,-2,2,0,0,-2,0]}
+{"id":1,"sign":0,"slot":1,"active":true,"support":16,"medians":[-2,0,0,0,0,-2,2,-2,2,2,-4,0]}
+{"id":2,"sign":0,"slot":2,"active":true,"support":8,"medians":[-2,2,4,2,4,-2,-2,-2,4,2,-4,2]}
+{"id":3,"sign":0,"slot":3,"active":true,"support":64,"medians":[-2,0,-2,0,2,-2,6,0,-6,4,-2,-2]}
+{"id":4,"sign":0,"slot":4,"active":true,"support":16,"medians":[0,0,0,0,0,-2,0,0,0,0,0,-2]}
+{"id":5,"sign":0,"slot":5,"active":true,"support":0,"medians":null}
+{"id":6,"sign":0,"slot":6,"active":true,"support":40,"medians":[0,0,0,0,0,0,4,0,2,4,-4,0]}
+{"id":7,"sign":0,"slot":7,"active":true,"support":48,"medians":[0,0,0,0,0,-2,0,0,0,0,0,-2]}
+{"id":8,"sign":1,"slot":0,"active":true,"support":64,"medians":[0,0,0,-2,0,2,-2,2,0,0,-2,0]}
+{"id":9,"sign":1,"slot":1,"active":true,"support":16,"medians":[-2,0,0,0,0,-2,2,-2,2,2,-4,0]}
+{"id":10,"sign":1,"slot":2,"active":true,"support":8,"medians":[-2,2,4,2,4,-2,-2,-2,4,2,-4,2]}
+{"id":11,"sign":1,"slot":3,"active":true,"support":64,"medians":[-2,0,-2,0,2,-2,6,0,-6,4,-2,-2]}
+{"id":12,"sign":1,"slot":4,"active":true,"support":16,"medians":[0,0,0,0,0,-2,0,0,0,0,0,-2]}
+{"id":13,"sign":1,"slot":5,"active":true,"support":0,"medians":null}
+{"id":14,"sign":1,"slot":6,"active":true,"support":40,"medians":[0,0,0,0,0,0,4,0,2,4,-4,0]}
+{"id":15,"sign":1,"slot":7,"active":true,"support":48,"medians":[0,0,0,0,0,-2,0,0,0,0,0,-2]}

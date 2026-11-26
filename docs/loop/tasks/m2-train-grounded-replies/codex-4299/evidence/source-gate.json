@@ -1,0 +1,62 @@
+{
+  "pairs": 128,
+  "arms": {
+    "endpoint": {
+      "arm": "endpoint",
+      "pairs": 128,
+      "reference_sha256": "870d9aa26db5958ce95a9f6cdf48c54fb73d98be30276f723d8128f3099fca2c",
+      "endpoints_sha256": "83db1692e47f69e31b40f84bcd39ed4d9acc3a3a4da8eb24e24740234a11816e",
+      "protected_near_lost": [],
+      "held_near_lost": [],
+      "matched_far_gains": [],
+      "matched_far_gains_lost": [],
+      "matched_far_informative": false,
+      "gate": {
+        "retained_train_sources": true,
+        "train_reduced_loss": true,
+        "train_new_far_pair": false,
+        "retains_held_near": true,
+        "retains_matched_far_gains": true,
+        "improves_far": false,
+        "total_gain": false,
+        "gains_both_distances": false,
+        "full_links_both_distances": false,
+        "no_family_below_native": false,
+        "supplied_controls": true
+      },
+      "pass": false
+    },
+    "ordered": {
+      "arm": "ordered",
+      "pairs": 128,
+      "reference_sha256": "870d9aa26db5958ce95a9f6cdf48c54fb73d98be30276f723d8128f3099fca2c",
+      "endpoints_sha256": "83db1692e47f69e31b40f84bcd39ed4d9acc3a3a4da8eb24e24740234a11816e",
+      "protected_near_lost": [],
+      "held_near_lost": [],
+      "matched_far_gains": [],
+      "matched_far_gains_lost": [],
+      "matched_far_informative": false,
+      "gate": {
+        "retained_train_sources": true,
+        "train_reduced_loss": true,
+        "train_new_far_pair": false,
+        "retains_held_near": true,
+        "retains_matched_far_gains": true,
+        "improves_far": false,
+        "total_gain": false,
+        "gains_both_distances": false,
+        "full_links_both_distances": false,
+        "no_family_below_native": false,
+        "supplied_controls": true
+      },
+      "pass": false
+    }
+  },
+  "passing": [],
+  "reference_sha256": "870d9aa26db5958ce95a9f6cdf48c54fb73d98be30276f723d8128f3099fca2c",
+  "endpoints_sha256": "83db1692e47f69e31b40f84bcd39ed4d9acc3a3a4da8eb24e24740234a11816e",
+  "gate": {
+    "at_least_one_trained_arm": false
+  },
+  "pass": false
+}

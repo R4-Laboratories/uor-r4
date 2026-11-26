@@ -1,0 +1,44 @@
+{
+  "schema": "uor-r4.codex-4299.cold-restore/1",
+  "pass": true,
+  "disagreements": 0,
+  "train_sha256": "21e5f1fe76aec2c2e9f75accb0716b1f6368cc6a59a80f6753e0c1414ccaf7c6",
+  "held_sha256": "05dd083267541084c00d9a8f7d85ce266d7be7ecdd8912124ef977cb51675065",
+  "panel_sha256": "80bbfaa53532c8e113000445285721c1e52d6f060b51a880a7c17681980c4a93",
+  "grade_sha256": "c2ba21fb4dfeecb27658d848cbff147eb187df7f2ef7642823205d62f8c78034",
+  "release_sha256": "5747e212ba208c1481bee56985cf84859267950c1e5a4fe56755e7c2de405ff2",
+  "permit_sha256": "b4470e20a08faa4f7622a1322035345b280a3d98e92d15dd17b70f2f65e40ff4",
+  "selection_sha256": "05874fa23bbab1a5cc7c12b715de4cab0f398b05a84edea35c6f0bbc530e1268",
+  "gate_sha256": "3e0c617a9be22bd1b5ad7951db3b7ebaaaf47f1978e5c4f87f982b83887e7c17",
+  "independent_train": true,
+  "independent_held": true,
+  "train_elections": 2,
+  "train_candidates": 36,
+  "held_sets": 2,
+  "held_lanes": 26,
+  "typed_replayed_lanes": 8,
+  "compared_files": 184,
+  "writer": {
+    "status": "NOT_RUN",
+    "reason": "fresh source gate",
+    "passing": [],
+    "arms": {
+      "endpoint": [
+        "train_new_far_pair",
+        "improves_far",
+        "total_gain",
+        "gains_both_distances",
+        "full_links_both_distances",
+        "no_family_below_native"
+      ],
+      "ordered": [
+        "train_new_far_pair",
+        "improves_far",
+        "total_gain",
+        "gains_both_distances",
+        "full_links_both_distances",
+        "no_family_below_native"
+      ]
+    }
+  }
+}
