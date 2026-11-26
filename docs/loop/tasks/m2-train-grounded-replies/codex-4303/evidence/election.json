@@ -1,0 +1,32 @@
+{
+  "choice": {
+    "m": "m26",
+    "e": "e2",
+    "combined": "m26-e2",
+    "gain_m": true,
+    "gain_e": true,
+    "lost_guard_reads": 0,
+    "rank": [
+      0,
+      -2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -64,
+      -2,
+      -2,
+      0,
+      2768,
+      1762,
+      4582,
+      2932,
+      2,
+      26
+    ]
+  },
+  "grids": 232,
+  "protected": 120,
+  "protected_both_gains": 66
+}

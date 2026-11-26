@@ -1,0 +1,98 @@
+{
+  "facts": [
+    ["day-weather-and-crossing", "day weather clerk", "day birch crossing"],
+    ["spring-paper-and-point", "spring paper maker", "spring fox point"],
+    ["fall-clock-and-field", "fall clock tuner", "fall elm field"],
+    ["new-stage-and-shore", "new stage hand", "new pine shore"]
+  ],
+  "wordings": [
+    {
+      "family": "joinery-crate-tag",
+      "reference": "chisel",
+      "rival": "saw",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "please {governor} the tool we left on the top rack, the spare {noun}",
+      "far_after": "the spare {noun} from the top rack is for you to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "reject",
+      "heading": "Check the crate {noun}.",
+      "order": "Start on my {first} and turn to my {second} in alternation",
+      "ending": "Finish in {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} the tool at the marked {selector} place in our crate, the {first_occurrence} followed there by the {second_occurrence}",
+        "after": "we packed the {first_occurrence} and next the {second_occurrence}, so the tool at the {selector} place in our crate is yours to {governor}",
+        "marks": ["narrow", "broad"]
+      }
+    },
+    {
+      "family": "coastal-lamp-shift",
+      "reference": "lantern",
+      "rival": "torch",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "for the night watch {governor} the light we took down at dusk, the {noun}",
+      "far_after": "the {noun} that still smokes is the one the crew shall {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "refuse",
+      "heading": "Review the quay {noun}.",
+      "order": "Give precedence to my {first} over my {second} and take turns",
+      "ending": "Make {count} separate sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "at the quay gate {governor} one light only from the {selector} listed berth on the lamp sheet, the {first_occurrence} and then the {second_occurrence}",
+        "after": "we put down the {first_occurrence} ahead of the {second_occurrence}, and the keeper chose the {selector} listed berth as the light for us to {governor}",
+        "marks": ["caged", "hooded"]
+      }
+    },
+    {
+      "family": "upholstery-bench-ticket",
+      "reference": "cushion",
+      "rival": "blanket",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the cloth with a stain right at its edge, the {noun}",
+      "far_after": "the {noun} with the stain at its edge is easy to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "ignore",
+      "heading": "Check the bench {noun}.",
+      "order": "Alternate starting with my {first} and following with my {second}",
+      "ending": "Limit it to {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "at the bench {governor} the piece from the {selector} place on our job ticket, which lists the {first_occurrence} before the {second_occurrence}",
+        "after": "the job ticket set the {first_occurrence} in front of the {second_occurrence} at the bench, and the piece in the {selector} listed place is the one to {governor}",
+        "marks": ["striped", "plain"]
+      }
+    },
+    {
+      "family": "glass-room-set-aside",
+      "reference": "beaker",
+      "rival": "flask",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} the vessel we left on the rear mat, the {noun}",
+      "far_after": "the {noun} on the rear mat is the vessel we can {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "bypass",
+      "heading": "Note the glass room {noun}.",
+      "order": "Switch between my {first} and my {second} after every sentence",
+      "ending": "Stop at {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} only the glass at the {selector} marked place along the tray, from the {first_occurrence} by the window to the {second_occurrence}",
+        "after": "the tray starts with the {first_occurrence} by the window and ends with the {second_occurrence}, and the glass in the {selector} marked place is the one to {governor}",
+        "marks": ["tall", "wide"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# A blank context line in the measured unified diff must keep its leading space.
+generator.patch whitespace=-blank-at-eol

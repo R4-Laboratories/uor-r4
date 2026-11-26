@@ -1,0 +1,407 @@
+[
+  {
+    "alias": "baseline",
+    "state_sha256": "e1adbc1c8edbc0e30fa81e610d5fd47baf7ea44e178bb78ae11a44d4fe4f7977",
+    "metrics": {
+      "blocked": 0,
+      "debt": 4288,
+      "fixed_ids": [
+        "salvage-tool-invoice/black-sugar-and-park/18",
+        "salvage-tool-invoice/cold-mill-and-dale/18",
+        "salvage-tool-invoice/high-bridge-and-cove/18",
+        "salvage-tool-invoice/lake-ferry-and-bank/18",
+        "salvage-tool-invoice/rain-index-and-creek/18",
+        "salvage-tool-invoice/red-court-and-view/18",
+        "salvage-tool-invoice/snow-patrol-and-pass/18"
+      ],
+      "fixed_pairs": 7,
+      "fixed_rows": 22,
+      "full": 0,
+      "full_ids": [],
+      "other_losses": 0,
+      "retain_admit": 0,
+      "source": 0,
+      "source_ids": [],
+      "worst": 2587
+    },
+    "target_eligibility": {
+      "opposing_cheaper": 128,
+      "strict_own": 128
+    },
+    "fixed_relations": {
+      "both_absent": 128,
+      "requested_cheaper": 22,
+      "third_cheaper": 106
+    },
+    "free_relations": {
+      "requested_absent": 128,
+      "third_cheaper": 128
+    },
+    "retain_status": {
+      "opposing_cheaper": 128
+    },
+    "control_verbs": [
+      {
+        "verb": "accept",
+        "status": {
+          "strict_own": 64
+        }
+      },
+      {
+        "verb": "bypass",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "ignore",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "refuse",
+        "status": {
+          "strict_own": 32
+        }
+      },
+      {
+        "verb": "reject",
+        "status": {
+          "strict_own": 32
+        }
+      }
+    ],
+    "membership_changes": {}
+  },
+  {
+    "alias": "margin",
+    "state_sha256": "8191354d5a9a947bec333243ec5f95967765899c64664409d08f7996879ab73f",
+    "metrics": {
+      "blocked": 0,
+      "debt": 4224,
+      "fixed_ids": [
+        "salvage-tool-invoice/black-sugar-and-park/18",
+        "salvage-tool-invoice/cold-mill-and-dale/18",
+        "salvage-tool-invoice/high-bridge-and-cove/18",
+        "salvage-tool-invoice/lake-ferry-and-bank/18",
+        "salvage-tool-invoice/rain-index-and-creek/18",
+        "salvage-tool-invoice/red-court-and-view/18",
+        "salvage-tool-invoice/snow-patrol-and-pass/18"
+      ],
+      "fixed_pairs": 7,
+      "fixed_rows": 22,
+      "full": 0,
+      "full_ids": [],
+      "other_losses": 0,
+      "retain_admit": 0,
+      "source": 0,
+      "source_ids": [],
+      "worst": 2571
+    },
+    "target_eligibility": {
+      "opposing_cheaper": 128,
+      "strict_own": 128
+    },
+    "fixed_relations": {
+      "both_absent": 128,
+      "requested_cheaper": 22,
+      "third_cheaper": 106
+    },
+    "free_relations": {
+      "requested_absent": 128,
+      "third_cheaper": 128
+    },
+    "retain_status": {
+      "opposing_cheaper": 128
+    },
+    "control_verbs": [
+      {
+        "verb": "accept",
+        "status": {
+          "strict_own": 64
+        }
+      },
+      {
+        "verb": "bypass",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "ignore",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "refuse",
+        "status": {
+          "strict_own": 32
+        }
+      },
+      {
+        "verb": "reject",
+        "status": {
+          "strict_own": 32
+        }
+      }
+    ],
+    "membership_changes": {}
+  },
+  {
+    "alias": "eligibility",
+    "state_sha256": "024a41599432e0cd617cb5202d85f6a28e67643e443216b82c1a9f0335b1a0c8",
+    "metrics": {
+      "blocked": 0,
+      "debt": 7468,
+      "fixed_ids": [
+        "salvage-tool-invoice/black-sugar-and-park/18",
+        "salvage-tool-invoice/cold-mill-and-dale/18",
+        "salvage-tool-invoice/high-bridge-and-cove/18",
+        "salvage-tool-invoice/lake-ferry-and-bank/18",
+        "salvage-tool-invoice/rain-index-and-creek/18",
+        "salvage-tool-invoice/red-court-and-view/18",
+        "salvage-tool-invoice/snow-patrol-and-pass/18"
+      ],
+      "fixed_pairs": 7,
+      "fixed_rows": 22,
+      "full": 0,
+      "full_ids": [],
+      "other_losses": 0,
+      "retain_admit": 128,
+      "source": 0,
+      "source_ids": [],
+      "worst": 4467
+    },
+    "target_eligibility": {
+      "opposing_cheaper": 64,
+      "strict_own": 192
+    },
+    "fixed_relations": {
+      "both_absent": 64,
+      "requested_cheaper": 22,
+      "third_cheaper": 170
+    },
+    "free_relations": {
+      "requested_absent": 64,
+      "third_cheaper": 192
+    },
+    "retain_status": {
+      "strict_own": 128
+    },
+    "control_verbs": [
+      {
+        "verb": "accept",
+        "status": {
+          "strict_own": 64
+        }
+      },
+      {
+        "verb": "bypass",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "ignore",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "refuse",
+        "status": {
+          "strict_own": 32
+        }
+      },
+      {
+        "verb": "reject",
+        "status": {
+          "strict_own": 32
+        }
+      }
+    ],
+    "membership_changes": {
+      "cove": 32,
+      "long": 64,
+      "number": 64,
+      "retain": 128,
+      "salvage": 64,
+      "snare": 64,
+      "stall": 128,
+      "task": 256,
+      "usher": 32,
+      "wrench": 64
+    }
+  },
+  {
+    "alias": "combined",
+    "state_sha256": "6409a7438ac8aa2ad4f6be80413c482681a1deab67957f71a2a6307ad55dcad4",
+    "metrics": {
+      "blocked": 0,
+      "debt": 7308,
+      "fixed_ids": [
+        "salvage-tool-invoice/black-sugar-and-park/18",
+        "salvage-tool-invoice/cold-mill-and-dale/18",
+        "salvage-tool-invoice/high-bridge-and-cove/18",
+        "salvage-tool-invoice/lake-ferry-and-bank/18",
+        "salvage-tool-invoice/rain-index-and-creek/18",
+        "salvage-tool-invoice/red-court-and-view/18",
+        "salvage-tool-invoice/snow-patrol-and-pass/18"
+      ],
+      "fixed_pairs": 7,
+      "fixed_rows": 22,
+      "full": 0,
+      "full_ids": [],
+      "other_losses": 0,
+      "retain_admit": 128,
+      "source": 0,
+      "source_ids": [],
+      "worst": 4403
+    },
+    "target_eligibility": {
+      "opposing_cheaper": 64,
+      "strict_own": 192
+    },
+    "fixed_relations": {
+      "both_absent": 64,
+      "requested_cheaper": 22,
+      "third_cheaper": 170
+    },
+    "free_relations": {
+      "requested_absent": 64,
+      "third_cheaper": 192
+    },
+    "retain_status": {
+      "strict_own": 128
+    },
+    "control_verbs": [
+      {
+        "verb": "accept",
+        "status": {
+          "strict_own": 64
+        }
+      },
+      {
+        "verb": "bypass",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "ignore",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "refuse",
+        "status": {
+          "strict_own": 32
+        }
+      },
+      {
+        "verb": "reject",
+        "status": {
+          "strict_own": 32
+        }
+      }
+    ],
+    "membership_changes": {
+      "cove": 32,
+      "long": 64,
+      "number": 64,
+      "retain": 128,
+      "salvage": 64,
+      "snare": 64,
+      "stall": 128,
+      "task": 256,
+      "usher": 32,
+      "wrench": 64
+    }
+  },
+  {
+    "alias": "wrong",
+    "state_sha256": "ebda8ca30963c4bdb310d9ef17ad4deff930de50f1d92dda433fa6aa321fd710",
+    "metrics": {
+      "blocked": 0,
+      "debt": 4288,
+      "fixed_ids": [
+        "salvage-tool-invoice/black-sugar-and-park/18",
+        "salvage-tool-invoice/cold-mill-and-dale/18",
+        "salvage-tool-invoice/high-bridge-and-cove/18",
+        "salvage-tool-invoice/lake-ferry-and-bank/18",
+        "salvage-tool-invoice/rain-index-and-creek/18",
+        "salvage-tool-invoice/red-court-and-view/18",
+        "salvage-tool-invoice/snow-patrol-and-pass/18"
+      ],
+      "fixed_pairs": 7,
+      "fixed_rows": 22,
+      "full": 0,
+      "full_ids": [],
+      "other_losses": 0,
+      "retain_admit": 0,
+      "source": 0,
+      "source_ids": [],
+      "worst": 2587
+    },
+    "target_eligibility": {
+      "opposing_cheaper": 128,
+      "strict_own": 128
+    },
+    "fixed_relations": {
+      "both_absent": 128,
+      "requested_cheaper": 22,
+      "third_cheaper": 106
+    },
+    "free_relations": {
+      "requested_absent": 128,
+      "third_cheaper": 128
+    },
+    "retain_status": {
+      "opposing_cheaper": 128
+    },
+    "control_verbs": [
+      {
+        "verb": "accept",
+        "status": {
+          "strict_own": 64
+        }
+      },
+      {
+        "verb": "bypass",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "ignore",
+        "status": {
+          "opposing_cheaper": 32
+        }
+      },
+      {
+        "verb": "refuse",
+        "status": {
+          "strict_own": 32
+        }
+      },
+      {
+        "verb": "reject",
+        "status": {
+          "strict_own": 32
+        }
+      }
+    ],
+    "membership_changes": {
+      "alternating": 64,
+      "cove": 32,
+      "drum": 192,
+      "hung": 64,
+      "instrument": 64,
+      "reads": 32,
+      "stage": 96
+    }
+  }
+]

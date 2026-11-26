@@ -1,0 +1,102 @@
+{
+  "facts": [
+    ["cold-mill-and-dale", "cold mill guide", "cold oak dale"],
+    ["high-bridge-and-cove", "high bridge tender", "high sand cove"],
+    ["red-court-and-view", "red court usher", "red hill view"],
+    ["rain-index-and-creek", "rain index clerk", "rain brook creek"],
+    ["lake-ferry-and-bank", "lake ferry mate", "lake stone bank"],
+    ["black-sugar-and-park", "black sugar worker", "black reed park"],
+    ["green-loom-and-road", "green loom setter", "green cliff road"],
+    ["snow-patrol-and-pass", "snow trail ranger", "snow frost pass"]
+  ],
+  "wordings": [
+    {
+      "family": "band-room-audition",
+      "reference": "drum",
+      "rival": "bell",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "by the stage {governor} the sound kit we hung above the box, the {noun}",
+      "far_after": "the {noun} we hung just above the box is the one to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "ignore",
+      "heading": "Report the stage {noun}.",
+      "order": "Put my {first} up front and my {second} next, alternating thereafter",
+      "ending": "Make the response {count} sentences long",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "at sound check {governor} the instrument having the {selector} place on the stand list, read from the {first_occurrence} through the {second_occurrence}",
+        "after": "read from the {first_occurrence} through the {second_occurrence} on the stand list, where the instrument in the {selector} place is the one to {governor}",
+        "marks": ["snare", "bass"]
+      }
+    },
+    {
+      "family": "wash-room-shift",
+      "reference": "bucket",
+      "rival": "bin",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "after this wash {governor} the tub we placed just inside the door, the {noun}",
+      "far_after": "the {noun} inside the door is the item for the staff to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "bypass",
+      "heading": "Name the wash room {noun}.",
+      "order": "Set my {first} and my {second} in rotation in that order",
+      "ending": "Count out {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} one vessel at the {selector} chalk line on the floor, reading the {first_occurrence} and the {second_occurrence} from left to right",
+        "after": "from left to right the floor chart reads {first_occurrence} then {second_occurrence}, and the vessel on the {selector} chalk line is for the staff to {governor}",
+        "marks": ["blue", "brown"]
+      }
+    },
+    {
+      "family": "stable-tack-rack",
+      "reference": "saddle",
+      "rival": "halter",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "after the ride {governor} the tack we left just outside the stall, the {noun}",
+      "far_after": "the {noun} outside the stall is the piece we agreed to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "reject",
+      "heading": "Identify the stable {noun}.",
+      "order": "Write my {first} before introducing my {second} and cycle those details",
+      "ending": "Stick to {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "after the morning ride {governor} only the piece with the {selector} tag on the rack, where the {first_occurrence} is nearer the stall than the {second_occurrence}",
+        "after": "the {first_occurrence} is nearer the stall than the {second_occurrence} and their tags follow that order, so the piece with the {selector} tag is the one we can {governor}",
+        "marks": ["black", "tan"]
+      }
+    },
+    {
+      "family": "salvage-tool-invoice",
+      "reference": "hammer",
+      "rival": "wrench",
+      "neutral": "",
+      "near_before": "",
+      "near_after": "",
+      "far_before": "{governor} just the tool we found near the back wall, the {noun}",
+      "far_after": "the {noun} found near the back wall is the tool to {governor}",
+      "authorize": "retain",
+      "alternate_authorize": "accept",
+      "decline": "refuse",
+      "heading": "Describe the salvage {noun}.",
+      "order": "Take up my {first} and switch to my {second}, repeating the sequence",
+      "ending": "The answer runs for {count} sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "for the invoice {governor} the tool listed under the {selector} lot number, with our {first_occurrence} followed by our {second_occurrence}",
+        "after": "our {first_occurrence} was entered before our {second_occurrence} on the invoice, and beneath the {selector} lot number sits the tool the buyer shall {governor}",
+        "marks": ["steel", "rubber"]
+      }
+    }
+  ]
+}

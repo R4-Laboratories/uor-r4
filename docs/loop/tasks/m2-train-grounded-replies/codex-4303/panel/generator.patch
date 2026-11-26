@@ -1,0 +1,103 @@
+--- src/main.rs
++++ src/main.rs
+@@ -53,6 +53,8 @@
+     far_before: String,
+     far_after: String,
+     authorize: String,
++    #[serde(default)]
++    alternate_authorize: Option<String>,
+     decline: String,
+     heading: String,
+     order: String,
+@@ -62,8 +64,7 @@
+ }
+ 
+ impl Wording {
+-    fn scope(&self, noun: &str, take: bool, far: bool, governor_first: bool) -> String {
+-        let governor = if take { &self.authorize } else { &self.decline };
++    fn scope(&self, noun: &str, governor: &str, far: bool, governor_first: bool) -> String {
+         let template = match (far, governor_first) {
+             (false, true) => &self.near_before,
+             (false, false) => &self.near_after,
+@@ -467,13 +468,24 @@
+         .ok_or("missing native role-action reader schema")?;
+     let signatures = reader.signatures();
+     let mut rows = Vec::new();
+-    for wording in &design.wordings {
++    for (wording_index, wording) in design.wordings.iter().enumerate() {
++        let alternate = wording.alternate_authorize.as_deref();
+         check(
+             wording.authorize != wording.decline
+-                && wording.authorize.len() == wording.decline.len(),
++                && wording.authorize.len() == wording.decline.len()
++                && alternate.is_none_or(|term| {
++                    contrast
++                        && term != wording.authorize
++                        && term != wording.decline
++                        && term.len() == wording.authorize.len()
++                }),
+             "governor alternatives must be distinct and keep noun byte slots",
+         )?;
+         for (fact_index, (fact, job, home)) in design.facts.iter().enumerate() {
++            let authorize = match alternate {
++                Some(term) if (wording_index + fact_index / 2) % 2 == 1 => term,
++                _ => wording.authorize.as_str(),
++            };
+             for cell in 0u8..32 {
+                 let far = cell & 2 != 0;
+                 let governor_first = cell & 16 != 0;
+@@ -509,9 +521,9 @@
+                 };
+                 let term = |authorizes| {
+                     if authorizes {
+-                        &wording.authorize
++                        authorize
+                     } else {
+-                        &wording.decline
++                        wording.decline.as_str()
+                     }
+                 };
+                 let selector = if choose_first { "first" } else { "later" };
+@@ -540,9 +552,9 @@
+                 };
+                 let reference_clause = match &contrast_clause {
+                     Some((clause, _)) => clause.clone(),
+-                    None => wording.scope(&wording.reference, take, far, governor_first),
++                    None => wording.scope(&wording.reference, term(take), far, governor_first),
+                 };
+-                let rival_clause = wording.scope(&wording.rival, !take, far, governor_first);
++                let rival_clause = wording.scope(&wording.rival, term(!take), far, governor_first);
+                 let neutral = wording.neutral.replace("{noun}", &wording.reference);
+                 // The scope proposer requires the different noun to follow both
+                 // same-spelling occurrences for all four ordered tuples to exist.
+@@ -701,7 +713,7 @@
+         }
+     }
+     check(
+-        rows.len() == if contrast { 256 } else { FRESH_ROWS },
++        rows.len() == if contrast { 32 * design.facts.len() } else { FRESH_ROWS },
+         "wrong fresh enrollment",
+     )?;
+     Ok(rows)
+@@ -863,7 +875,11 @@
+     let history = serde_json::from_value(read(Path::new(history_path))?)?;
+     let design: Design = serde_json::from_value(read(Path::new(design_path))?)?;
+     check(
+-        design.facts.len() == if contrast { 8 } else { 2 },
++        if contrast {
++            matches!(design.facts.len(), 4 | 8)
++        } else {
++            design.facts.len() == 2
++        },
+         "wrong number of independently declared fact pairs",
+     )?;
+     let rows = generate(
+@@ -874,7 +890,7 @@
+     }
+     emit(Path::new(output), &rows)?;
+     if contrast {
+-        println!("256 rows / 4 families / 128 selector pairs");
++        println!("{} rows / 4 families / {} selector pairs", rows.len(), rows.len() / 2);
+     } else {
+         println!("256 rows / 4 families / 128 exact governor-only pairs / 1,024 registered native tuples / 512 native actions / 512 original copy bodies");
+     }

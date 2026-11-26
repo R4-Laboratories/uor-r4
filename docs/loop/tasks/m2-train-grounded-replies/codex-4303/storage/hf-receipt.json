@@ -1,0 +1,30 @@
+{
+  "dataset": "caseyallard/uor-r4-store",
+  "private": true,
+  "prefix": "results/codex/third-margin-retain-20261126-e3457681969e",
+  "revision": "f15d6215df2024314e22bc114641161fab42c2e2",
+  "verified_forced_readback": true,
+  "total_bytes": 105203244,
+  "objects": [
+    {
+      "name": "SHA256SUMS",
+      "bytes": 252,
+      "sha256": "b48de569ac7f5fb2fc24fd3b21d2dd565c1190563dc1df82c206cd10e34e610a"
+    },
+    {
+      "name": "archive.json",
+      "bytes": 386,
+      "sha256": "391aba75e687f03e46d27e70ea7191cdb57f80fa1fc9cfe8a79dfafd49f42522"
+    },
+    {
+      "name": "cold.json",
+      "bytes": 331,
+      "sha256": "e9acae74646fea468939a5f487e819d73235f58a23f93de9e7825d94ac1ae20f"
+    },
+    {
+      "name": "third-margin-retain-v1.tar.zst",
+      "bytes": 105202275,
+      "sha256": "e3457681969e64ac68c2d1cee37ce8c65aae71fa63e82b77fcafe17452265114"
+    }
+  ]
+}
