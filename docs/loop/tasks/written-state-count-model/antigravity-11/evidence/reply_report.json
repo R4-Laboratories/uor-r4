@@ -1,0 +1,118 @@
+{
+  "fresh256_inputs_sha256": "1de2fc28607eff6bc412eee41a259d806ee1479b7c925059f00e9d3b54afa99a",
+  "phase": "Stage B3c P3 Balanced S4 + D87 R Co-occurrence Propagation + R1/R2/R4 Panels",
+  "r1_r2_m2_fresh256": {
+    "active": {
+      "pairs_both_complete_distinct": 104,
+      "row_hits": 232,
+      "samples": [
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-home",
+          "ok": true,
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-home",
+          "ok": true,
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        }
+      ]
+    },
+    "gate_r1_ge_52_of_128": true,
+    "gate_r2_ge_200_of_256": true,
+    "no_memory": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    },
+    "paired_vs_no_memory": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 232
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 208
+    },
+    "pairs": 128,
+    "rows": 256,
+    "shuffled_role": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 24
+    }
+  },
+  "r4_heldout_phrasing": {
+    "active_in_stem_rows_of_120": 100,
+    "active_oov_synonym_rows_of_120": 40,
+    "active_pairs": 40,
+    "active_row_hits": 140,
+    "gate_r4_ge_200_of_240": false,
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 24,
+      "beats_control": true,
+      "net_gain": 140
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 60
+    },
+    "pairs": 120,
+    "rows": 240,
+    "shuffled_role_row_hits": 80
+  },
+  "s4_artifact": {
+    "bytes": 1318602,
+    "contexts": 50289,
+    "d87_r_prop_home_tokens": 256,
+    "d87_r_prop_job_tokens": 256,
+    "d87_r_tokens_scanned": 15951644,
+    "hinge_epochs": [
+      {
+        "epoch": 1,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 10876083,
+        "updates_applied": 2237
+      },
+      {
+        "epoch": 2,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 5265628,
+        "updates_applied": 288
+      },
+      {
+        "epoch": 3,
+        "exact_top1": 48,
+        "examples": 48,
+        "total_hinge_loss_q16": 4479196,
+        "updates_applied": 288
+      }
+    ],
+    "mworld_spans_extracted": 24,
+    "mworld_train_episodes": 24,
+    "sha256": "e0d0a9b6a86ea64702826864f86d2d3accff3711c7a284f847240e4ea478b64d",
+    "total_hinge_updates": 2813
+  },
+  "s4_gpu_vs_cpu_divergences": 0
+}
