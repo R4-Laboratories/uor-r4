@@ -1,0 +1,462 @@
+{
+  "by_distance": [
+    {
+      "distance": "far",
+      "counts": [
+        {
+          "error": "affirmed_noun",
+          "rows": 88
+        },
+        {
+          "error": "excluded_noun",
+          "rows": 40
+        }
+      ],
+      "first_wrong_noun_surfaces": [
+        {
+          "term": "you",
+          "rows": 20
+        },
+        {
+          "term": "editor",
+          "rows": 16
+        },
+        {
+          "term": "item",
+          "rows": 16
+        },
+        {
+          "term": "slip",
+          "rows": 16
+        },
+        {
+          "term": "the",
+          "rows": 16
+        },
+        {
+          "term": "lunch",
+          "rows": 12
+        },
+        {
+          "term": "packet",
+          "rows": 8
+        },
+        {
+          "term": "truck",
+          "rows": 8
+        },
+        {
+          "term": "and",
+          "rows": 4
+        },
+        {
+          "term": "box",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "distance": "near",
+      "counts": [
+        {
+          "error": "affirmed_noun",
+          "rows": 68
+        },
+        {
+          "error": "excluded_noun",
+          "rows": 44
+        },
+        {
+          "error": "none",
+          "rows": 16
+        }
+      ],
+      "first_wrong_noun_surfaces": [
+        {
+          "term": "that",
+          "rows": 32
+        },
+        {
+          "term": "can",
+          "rows": 24
+        },
+        {
+          "term": "must",
+          "rows": 16
+        },
+        {
+          "term": "our",
+          "rows": 16
+        },
+        {
+          "term": "you",
+          "rows": 12
+        },
+        {
+          "term": "brief",
+          "rows": 4
+        },
+        {
+          "term": "receipt",
+          "rows": 4
+        },
+        {
+          "term": "the",
+          "rows": 4
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "0016f32757fdb368f3ec9c5f53ecc4ae2b5bdd657c76e3a1478d9d25d9173513",
+      "pair": "shipping/night/10",
+      "family": "shipping",
+      "distance": "far",
+      "admission": "take",
+      "error": "affirmed_noun",
+      "ties": 1,
+      "eligible": 326,
+      "governors": [
+        "keep",
+        "drop"
+      ],
+      "read_governors": [
+        "keep",
+        "drop"
+      ],
+      "gold": [
+        "receipt",
+        "stub",
+        "receipt"
+      ],
+      "selected": [
+        "box",
+        "the",
+        "the"
+      ],
+      "gold_bpe": [
+        {
+          "end": 65,
+          "start": 61
+        },
+        {
+          "end": 107,
+          "start": 105
+        },
+        {
+          "end": 133,
+          "start": 129
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 96,
+          "end": 97
+        },
+        {
+          "start": 118,
+          "end": 119
+        },
+        {
+          "start": 128,
+          "end": 129
+        }
+      ],
+      "neutral_bpe": {
+        "end": 92,
+        "start": 88
+      },
+      "score": [
+        0,
+        51,
+        534
+      ],
+      "next_score": [
+        0,
+        65,
+        614
+      ]
+    },
+    {
+      "id": "07bceb255fded1507de5e549d2a2f292ce117b4fc991f2389fbf5a5335f77927",
+      "pair": "auction/night/10",
+      "family": "auction",
+      "distance": "far",
+      "admission": "take",
+      "error": "excluded_noun",
+      "ties": 1,
+      "eligible": 156,
+      "governors": [
+        "clear",
+        "block"
+      ],
+      "read_governors": [
+        "clear",
+        "block"
+      ],
+      "gold": [
+        "bid",
+        "deal",
+        "bid"
+      ],
+      "selected": [
+        "bid",
+        "you",
+        "bid"
+      ],
+      "gold_bpe": [
+        {
+          "end": 63,
+          "start": 61
+        },
+        {
+          "end": 102,
+          "start": 100
+        },
+        {
+          "end": 124,
+          "start": 122
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 61,
+          "end": 63
+        },
+        {
+          "start": 102,
+          "end": 103
+        },
+        {
+          "start": 122,
+          "end": 124
+        }
+      ],
+      "neutral_bpe": {
+        "end": 86,
+        "start": 84
+      },
+      "score": [
+        0,
+        75,
+        580
+      ],
+      "next_score": [
+        0,
+        76,
+        600
+      ]
+    },
+    {
+      "id": "09656af6a7a30eefdb37f48d7e1205efbf3b3770b94afd0eacc051f646bd5950",
+      "pair": "editorial/night/8",
+      "family": "editorial",
+      "distance": "near",
+      "admission": "take",
+      "error": "affirmed_noun",
+      "ties": 1,
+      "eligible": 166,
+      "governors": [
+        "accept",
+        "reject"
+      ],
+      "read_governors": [
+        "accept",
+        "reject"
+      ],
+      "gold": [
+        "brief",
+        "draft",
+        "brief"
+      ],
+      "selected": [
+        "brief",
+        "you",
+        "brief"
+      ],
+      "gold_bpe": [
+        {
+          "end": 64,
+          "start": 61
+        },
+        {
+          "end": 93,
+          "start": 91
+        },
+        {
+          "end": 105,
+          "start": 102
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 80,
+          "end": 83
+        },
+        {
+          "start": 93,
+          "end": 94
+        },
+        {
+          "start": 102,
+          "end": 105
+        }
+      ],
+      "neutral_bpe": {
+        "end": 83,
+        "start": 80
+      },
+      "score": [
+        0,
+        56,
+        484
+      ],
+      "next_score": [
+        0,
+        57,
+        490
+      ]
+    },
+    {
+      "id": "0359d26acf53718c67fc9b41bc1bcc6b551f9a0fb44b7c688f121c25a29f5602",
+      "pair": "auction/night/20",
+      "family": "auction",
+      "distance": "near",
+      "admission": "take",
+      "error": "excluded_noun",
+      "ties": 1,
+      "eligible": 78,
+      "governors": [
+        "clear",
+        "block"
+      ],
+      "read_governors": [
+        "clear",
+        "block"
+      ],
+      "gold": [
+        "bid",
+        "deal",
+        "bid"
+      ],
+      "selected": [
+        "bid",
+        "our",
+        "bid"
+      ],
+      "gold_bpe": [
+        {
+          "end": 82,
+          "start": 80
+        },
+        {
+          "end": 96,
+          "start": 94
+        },
+        {
+          "end": 104,
+          "start": 102
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 80,
+          "end": 82
+        },
+        {
+          "start": 93,
+          "end": 94
+        },
+        {
+          "start": 102,
+          "end": 104
+        }
+      ],
+      "neutral_bpe": {
+        "end": 67,
+        "start": 65
+      },
+      "score": [
+        0,
+        31,
+        466
+      ],
+      "next_score": [
+        0,
+        34,
+        488
+      ]
+    },
+    {
+      "id": "1388c866febe3326943583addcc684cabdcaa7771046786109ad6df5e6c6a3a3",
+      "pair": "editorial/night/24",
+      "family": "editorial",
+      "distance": "near",
+      "admission": "take",
+      "error": "none",
+      "ties": 1,
+      "eligible": 94,
+      "governors": [
+        "accept",
+        "reject"
+      ],
+      "read_governors": [
+        "accept",
+        "reject"
+      ],
+      "gold": [
+        "brief",
+        "draft",
+        "brief"
+      ],
+      "selected": [
+        "brief",
+        "draft",
+        "brief"
+      ],
+      "gold_bpe": [
+        {
+          "end": 68,
+          "start": 65
+        },
+        {
+          "end": 96,
+          "start": 94
+        },
+        {
+          "end": 103,
+          "start": 100
+        }
+      ],
+      "read_bpe": [
+        {
+          "start": 65,
+          "end": 68
+        },
+        {
+          "start": 94,
+          "end": 96
+        },
+        {
+          "start": 100,
+          "end": 103
+        }
+      ],
+      "neutral_bpe": {
+        "end": 82,
+        "start": 79
+      },
+      "score": [
+        0,
+        32,
+        518
+      ],
+      "next_score": [
+        0,
+        37,
+        512
+      ]
+    }
+  ]
+}

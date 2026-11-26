@@ -1,0 +1,66 @@
+{
+  "pairs": 128,
+  "endpoints": 256,
+  "reference_sha256": "b95b52f26debef4dae7197baa2557b228fe60d583c466c8d3d78353271fe88fb",
+  "endpoints_sha256": "de08392988a560de2cd26b1d4035dab0c4593b32b21b5cd77785c350642f8149",
+  "arms": {
+    "correct_link": {
+      "exact_pairs": 128,
+      "exact_rows": 256,
+      "full_link_pairs": 128,
+      "governor_rows": 256
+    },
+    "corrupt_noun": {
+      "exact_pairs": 0,
+      "exact_rows": 0,
+      "full_link_pairs": 0,
+      "governor_rows": 256
+    },
+    "exchanged_link": {
+      "exact_pairs": 0,
+      "exact_rows": 0,
+      "full_link_pairs": 0,
+      "governor_rows": 256
+    },
+    "flipped_sign": {
+      "exact_pairs": 0,
+      "exact_rows": 0,
+      "full_link_pairs": 0,
+      "governor_rows": 0
+    },
+    "governor_gap": {
+      "exact_pairs": 0,
+      "exact_rows": 0,
+      "full_link_pairs": 0,
+      "governor_rows": 256
+    },
+    "learned": {
+      "exact_pairs": 128,
+      "exact_rows": 256,
+      "full_link_pairs": 128,
+      "governor_rows": 256
+    },
+    "native": {
+      "exact_pairs": 0,
+      "exact_rows": 24,
+      "full_link_pairs": 0,
+      "governor_rows": 0
+    },
+    "unfitted": {
+      "exact_pairs": 0,
+      "exact_rows": 0,
+      "full_link_pairs": 0,
+      "governor_rows": 0
+    }
+  },
+  "by_distance": {
+    "far": {
+      "exact_pairs": 64,
+      "full_link_pairs": 64
+    },
+    "near": {
+      "exact_pairs": 64,
+      "full_link_pairs": 64
+    }
+  }
+}

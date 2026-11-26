@@ -1,0 +1,91 @@
+{
+  "bytes": 13336,
+  "banks": [
+    {
+      "arm": "learned",
+      "sign": 0,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "a6645b42e9b1d6944d3a00599ea957a47ecfba4a66e843072d56bb8cee211398"
+    },
+    {
+      "arm": "learned",
+      "sign": 0,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "db284fe6a7281fc2d8fea0183dd1f93eaf820ea888248c749d61855535b9f555"
+    },
+    {
+      "arm": "learned",
+      "sign": 1,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "ae68903804452a06926994770e858ffb0da3f797841f6aa38d4141947ddfc992"
+    },
+    {
+      "arm": "learned",
+      "sign": 1,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "db284fe6a7281fc2d8fea0183dd1f93eaf820ea888248c749d61855535b9f555"
+    },
+    {
+      "arm": "corrupt_noun",
+      "sign": 0,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "a6645b42e9b1d6944d3a00599ea957a47ecfba4a66e843072d56bb8cee211398"
+    },
+    {
+      "arm": "corrupt_noun",
+      "sign": 0,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "c446ebd7d8ad5768799d55462158d6b9e130829b665e45324a5db87bb6945e58"
+    },
+    {
+      "arm": "corrupt_noun",
+      "sign": 1,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "ae68903804452a06926994770e858ffb0da3f797841f6aa38d4141947ddfc992"
+    },
+    {
+      "arm": "corrupt_noun",
+      "sign": 1,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "95252dfb0caa91902b9500945f9681902d7a1311532f5abb7da8f3e5c4bce924"
+    },
+    {
+      "arm": "flipped_sign",
+      "sign": 0,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "ae68903804452a06926994770e858ffb0da3f797841f6aa38d4141947ddfc992"
+    },
+    {
+      "arm": "flipped_sign",
+      "sign": 0,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "db284fe6a7281fc2d8fea0183dd1f93eaf820ea888248c749d61855535b9f555"
+    },
+    {
+      "arm": "flipped_sign",
+      "sign": 1,
+      "bank": "lexical",
+      "count": 4,
+      "sha256": "a6645b42e9b1d6944d3a00599ea957a47ecfba4a66e843072d56bb8cee211398"
+    },
+    {
+      "arm": "flipped_sign",
+      "sign": 1,
+      "bank": "transport",
+      "count": 8,
+      "sha256": "db284fe6a7281fc2d8fea0183dd1f93eaf820ea888248c749d61855535b9f555"
+    }
+  ],
+  "corrupted_only_transport": true,
+  "signed_banks_exchanged": true
+}
