@@ -1,0 +1,22 @@
+{
+  "provider": "vast",
+  "instance": "vast-62755564",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "gpu_uuid": "GPU-f9afc849-5fb5-d7c6-c8d5-3154e9a2bd25",
+  "driver": "580.95.05",
+  "phase_times_utc": {
+    "primary_start": "2026-11-26T21:29:45.480275505Z",
+    "primary_end": "2026-11-26T21:29:48.319237606Z",
+    "layout_start": "2026-11-26T21:34:03.210452601Z",
+    "layout_end": "2026-11-26T21:34:03.980478576Z"
+  },
+  "provider_uptime_s": 671,
+  "quoted_usd_per_h": 0.869,
+  "estimated_compute_usd": 0.16197194444444443,
+  "deleted_at_utc": "2026-11-26T21:35:32Z",
+  "full_pod_job_archive": {
+    "sha256": "8e3d6dc1a1fce0f3fc32484a89fff1211221e3e603dc59b6352e3068007fab9f",
+    "files": 213,
+    "bytes": 37721660
+  }
+}

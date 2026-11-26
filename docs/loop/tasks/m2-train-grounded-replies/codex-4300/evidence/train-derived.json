@@ -1,0 +1,985 @@
+{
+  "requests": 64,
+  "prompts": 64,
+  "pairs": 32,
+  "both_correct_before": 0,
+  "both_correct_after": 0,
+  "lost_previously_correct_pairs": 0,
+  "complete_paired_reproductions": [],
+  "stable_requested_row_matches": 8,
+  "exact_failing_row_matches": 0,
+  "exact_failing_row_matches_on_later": 0,
+  "local_and_conditioned_win_to_loss": {
+    "requests": 12,
+    "prompts": 12,
+    "on_first": 4,
+    "on_later": 8,
+    "third_site_on_both_passes": 12,
+    "examples_by_family": [
+      {
+        "row_index": 37,
+        "request": 37,
+        "pair_id": "building-evacuation/school/18",
+        "selector": "later",
+        "sign": -1,
+        "family": "building-evacuation",
+        "governor": {
+          "index": 20,
+          "text": "block",
+          "bytes": {
+            "start": 108,
+            "end": 113
+          },
+          "tokens": {
+            "start": 65,
+            "end": 66
+          }
+        },
+        "requested": {
+          "index": 31,
+          "text": "corridor",
+          "bytes": {
+            "start": 235,
+            "end": 243
+          },
+          "tokens": {
+            "start": 99,
+            "end": 104
+          }
+        },
+        "rival": {
+          "index": 27,
+          "text": "corridor",
+          "bytes": {
+            "start": 210,
+            "end": 218
+          },
+          "tokens": {
+            "start": 91,
+            "end": 96
+          }
+        },
+        "before": {
+          "requested_local": [
+            0,
+            102
+          ],
+          "rival_local": [
+            0,
+            109
+          ],
+          "requested_complete": [
+            0,
+            108,
+            602
+          ],
+          "rival_complete": [
+            0,
+            115,
+            654
+          ],
+          "requested_center": 1,
+          "rival_center": 6,
+          "native_site": {
+            "index": 8,
+            "bytes": {
+              "start": 118,
+              "end": 123
+            },
+            "tokens": {
+              "start": 67,
+              "end": 68
+            },
+            "text": "space"
+          },
+          "native_governors": [
+            {
+              "index": 50,
+              "bytes": {
+                "start": 271,
+                "end": 276
+              },
+              "tokens": {
+                "start": 115,
+                "end": 116
+              },
+              "text": "clear"
+            },
+            {
+              "index": 20,
+              "bytes": {
+                "start": 108,
+                "end": 113
+              },
+              "tokens": {
+                "start": 65,
+                "end": 66
+              },
+              "text": "block"
+            }
+          ]
+        },
+        "after": {
+          "requested_local": [
+            0,
+            96
+          ],
+          "rival_local": [
+            0,
+            93
+          ],
+          "requested_complete": [
+            0,
+            110,
+            602
+          ],
+          "rival_complete": [
+            0,
+            107,
+            654
+          ],
+          "requested_center": 1,
+          "rival_center": 6,
+          "native_site": {
+            "index": 8,
+            "bytes": {
+              "start": 118,
+              "end": 123
+            },
+            "tokens": {
+              "start": 67,
+              "end": 68
+            },
+            "text": "space"
+          },
+          "native_governors": [
+            {
+              "index": 50,
+              "bytes": {
+                "start": 271,
+                "end": 276
+              },
+              "tokens": {
+                "start": 115,
+                "end": 116
+              },
+              "text": "clear"
+            },
+            {
+              "index": 20,
+              "bytes": {
+                "start": 108,
+                "end": 113
+              },
+              "tokens": {
+                "start": 65,
+                "end": 66
+              },
+              "text": "block"
+            }
+          ]
+        }
+      },
+      {
+        "row_index": 21,
+        "request": 21,
+        "pair_id": "drill-rotation/school/18",
+        "selector": "later",
+        "sign": -1,
+        "family": "drill-rotation",
+        "governor": {
+          "index": 19,
+          "text": "forget",
+          "bytes": {
+            "start": 108,
+            "end": 114
+          },
+          "tokens": {
+            "start": 66,
+            "end": 67
+          }
+        },
+        "requested": {
+          "index": 29,
+          "text": "protocol",
+          "bytes": {
+            "start": 233,
+            "end": 241
+          },
+          "tokens": {
+            "start": 99,
+            "end": 102
+          }
+        },
+        "rival": {
+          "index": 25,
+          "text": "protocol",
+          "bytes": {
+            "start": 211,
+            "end": 219
+          },
+          "tokens": {
+            "start": 93,
+            "end": 96
+          }
+        },
+        "before": {
+          "requested_local": [
+            0,
+            94
+          ],
+          "rival_local": [
+            0,
+            98
+          ],
+          "requested_complete": [
+            0,
+            108,
+            528
+          ],
+          "rival_complete": [
+            0,
+            112,
+            560
+          ],
+          "requested_center": 1,
+          "rival_center": 6,
+          "native_site": {
+            "index": 7,
+            "bytes": {
+              "start": 120,
+              "end": 124
+            },
+            "tokens": {
+              "start": 68,
+              "end": 69
+            },
+            "text": "came"
+          },
+          "native_governors": [
+            {
+              "index": 47,
+              "bytes": {
+                "start": 269,
+                "end": 275
+              },
+              "tokens": {
+                "start": 114,
+                "end": 115
+              },
+              "text": "follow"
+            },
+            {
+              "index": 19,
+              "bytes": {
+                "start": 108,
+                "end": 114
+              },
+              "tokens": {
+                "start": 66,
+                "end": 67
+              },
+              "text": "forget"
+            }
+          ]
+        },
+        "after": {
+          "requested_local": [
+            0,
+            96
+          ],
+          "rival_local": [
+            0,
+            94
+          ],
+          "requested_complete": [
+            0,
+            111,
+            560
+          ],
+          "rival_complete": [
+            0,
+            109,
+            592
+          ],
+          "requested_center": 1,
+          "rival_center": 6,
+          "native_site": {
+            "index": 6,
+            "bytes": {
+              "start": 115,
+              "end": 119
+            },
+            "tokens": {
+              "start": 67,
+              "end": 68
+            },
+            "text": "what"
+          },
+          "native_governors": [
+            {
+              "index": 47,
+              "bytes": {
+                "start": 269,
+                "end": 275
+              },
+              "tokens": {
+                "start": 114,
+                "end": 115
+              },
+              "text": "follow"
+            },
+            {
+              "index": 19,
+              "bytes": {
+                "start": 108,
+                "end": 114
+              },
+              "tokens": {
+                "start": 66,
+                "end": 67
+              },
+              "text": "forget"
+            }
+          ]
+        }
+      },
+      {
+        "row_index": 4,
+        "request": 4,
+        "pair_id": "planning-review/school/18",
+        "selector": "first",
+        "sign": -1,
+        "family": "planning-review",
+        "governor": {
+          "index": 20,
+          "text": "reject",
+          "bytes": {
+            "start": 109,
+            "end": 115
+          },
+          "tokens": {
+            "start": 65,
+            "end": 67
+          }
+        },
+        "requested": {
+          "index": 25,
+          "text": "proposal",
+          "bytes": {
+            "start": 201,
+            "end": 209
+          },
+          "tokens": {
+            "start": 89,
+            "end": 93
+          }
+        },
+        "rival": {
+          "index": 29,
+          "text": "proposal",
+          "bytes": {
+            "start": 224,
+            "end": 232
+          },
+          "tokens": {
+            "start": 96,
+            "end": 100
+          }
+        },
+        "before": {
+          "requested_local": [
+            0,
+            70
+          ],
+          "rival_local": [
+            0,
+            75
+          ],
+          "requested_complete": [
+            0,
+            81,
+            556
+          ],
+          "rival_complete": [
+            0,
+            86,
+            472
+          ],
+          "requested_center": 6,
+          "rival_center": 1,
+          "native_site": {
+            "index": 21,
+            "bytes": {
+              "start": 181,
+              "end": 184
+            },
+            "tokens": {
+              "start": 84,
+              "end": 85
+            },
+            "text": "our"
+          },
+          "native_governors": [
+            {
+              "index": 48,
+              "bytes": {
+                "start": 261,
+                "end": 267
+              },
+              "tokens": {
+                "start": 111,
+                "end": 113
+              },
+              "text": "accept"
+            },
+            {
+              "index": 20,
+              "bytes": {
+                "start": 109,
+                "end": 115
+              },
+              "tokens": {
+                "start": 65,
+                "end": 67
+              },
+              "text": "reject"
+            }
+          ]
+        },
+        "after": {
+          "requested_local": [
+            0,
+            78
+          ],
+          "rival_local": [
+            0,
+            73
+          ],
+          "requested_complete": [
+            0,
+            93,
+            556
+          ],
+          "rival_complete": [
+            0,
+            88,
+            472
+          ],
+          "requested_center": 6,
+          "rival_center": 1,
+          "native_site": {
+            "index": 21,
+            "bytes": {
+              "start": 181,
+              "end": 184
+            },
+            "tokens": {
+              "start": 84,
+              "end": 85
+            },
+            "text": "our"
+          },
+          "native_governors": [
+            {
+              "index": 48,
+              "bytes": {
+                "start": 261,
+                "end": 267
+              },
+              "tokens": {
+                "start": 111,
+                "end": 113
+              },
+              "text": "accept"
+            },
+            {
+              "index": 20,
+              "bytes": {
+                "start": 109,
+                "end": 115
+              },
+              "tokens": {
+                "start": 65,
+                "end": 67
+              },
+              "text": "reject"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "patterns": [
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "tie",
+          "loss",
+          "third site",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ]
+      ],
+      "n": 4
+    },
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ]
+      ],
+      "n": 4
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ]
+      ],
+      "n": 4
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ]
+      ],
+      "n": 4
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "third site",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ]
+      ],
+      "n": 8
+    }
+  ],
+  "paired_cases": [
+    {
+      "id": "building-evacuation/road/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/road/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/road/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/road/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/school/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/school/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/school/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "building-evacuation/school/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/road/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/road/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/road/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/road/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/school/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/school/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/school/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "drill-rotation/school/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/road/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/road/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/road/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/road/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/school/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/school/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/school/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "enamel-display/school/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/road/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/road/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/road/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/road/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/school/10",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/school/18",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/school/2",
+      "sign": -1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    },
+    {
+      "id": "planning-review/school/26",
+      "sign": 1,
+      "before_both": false,
+      "after_both": false,
+      "before_both_with_governor": false,
+      "after_both_with_governor": false,
+      "identical": false
+    }
+  ]
+}

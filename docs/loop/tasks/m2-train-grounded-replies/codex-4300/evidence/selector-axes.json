@@ -1,0 +1,130 @@
+{
+  "historical": {
+    "links": 8,
+    "union": [
+      22,
+      24,
+      25,
+      26,
+      27,
+      29
+    ],
+    "per_axis": [
+      {
+        "axis": 22,
+        "links": 8
+      },
+      {
+        "axis": 24,
+        "links": 8
+      },
+      {
+        "axis": 25,
+        "links": 8
+      },
+      {
+        "axis": 26,
+        "links": 8
+      },
+      {
+        "axis": 27,
+        "links": 8
+      },
+      {
+        "axis": 29,
+        "links": 8
+      }
+    ],
+    "by_gap": [
+      {
+        "gap": 18,
+        "links": 4,
+        "support": [
+          22,
+          24,
+          25,
+          26,
+          27,
+          29
+        ]
+      },
+      {
+        "gap": 25,
+        "links": 4,
+        "support": [
+          22,
+          24,
+          25,
+          26,
+          27,
+          29
+        ]
+      }
+    ]
+  },
+  "train_layout": {
+    "links": 8,
+    "union": [
+      20,
+      21,
+      23,
+      28,
+      30,
+      31
+    ],
+    "per_axis": [
+      {
+        "axis": 20,
+        "links": 8
+      },
+      {
+        "axis": 21,
+        "links": 8
+      },
+      {
+        "axis": 23,
+        "links": 8
+      },
+      {
+        "axis": 28,
+        "links": 8
+      },
+      {
+        "axis": 30,
+        "links": 8
+      },
+      {
+        "axis": 31,
+        "links": 8
+      }
+    ],
+    "by_gap": [
+      {
+        "gap": 18,
+        "links": 4,
+        "support": [
+          20,
+          21,
+          23,
+          28,
+          30,
+          31
+        ]
+      },
+      {
+        "gap": 25,
+        "links": 4,
+        "support": [
+          20,
+          21,
+          23,
+          28,
+          30,
+          31
+        ]
+      }
+    ]
+  },
+  "common_axes": [],
+  "support_sets_disjoint": true
+}

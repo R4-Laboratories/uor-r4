@@ -1,0 +1,165 @@
+{
+  "pairs": 4,
+  "rows": 8,
+  "before_correct": 4,
+  "after_correct": 0,
+  "before_with_governor": 4,
+  "after_with_governor": 0,
+  "lost_pairs": 4,
+  "matching_full_signatures": 4,
+  "matching_failed_later_rows": 4,
+  "results": [
+    {
+      "pair_id": "matched-train/planning-review/road/10",
+      "sign": 1,
+      "before_correct": true,
+      "after_correct": false,
+      "before_with_governor": true,
+      "after_with_governor": false,
+      "signature": [
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ]
+        ],
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "rival_better",
+            "rival_better",
+            "rival",
+            true
+          ]
+        ]
+      ]
+    },
+    {
+      "pair_id": "matched-train/planning-review/road/2",
+      "sign": -1,
+      "before_correct": true,
+      "after_correct": false,
+      "before_with_governor": true,
+      "after_with_governor": false,
+      "signature": [
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ]
+        ],
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "rival_better",
+            "rival_better",
+            "rival",
+            true
+          ]
+        ]
+      ]
+    },
+    {
+      "pair_id": "matched-train/planning-review/school/10",
+      "sign": 1,
+      "before_correct": true,
+      "after_correct": false,
+      "before_with_governor": true,
+      "after_with_governor": false,
+      "signature": [
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ]
+        ],
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "rival_better",
+            "rival_better",
+            "rival",
+            true
+          ]
+        ]
+      ]
+    },
+    {
+      "pair_id": "matched-train/planning-review/school/2",
+      "sign": -1,
+      "before_correct": true,
+      "after_correct": false,
+      "before_with_governor": true,
+      "after_with_governor": false,
+      "signature": [
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ]
+        ],
+        [
+          [
+            "requested_better",
+            "requested_better",
+            "requested",
+            true
+          ],
+          [
+            "rival_better",
+            "rival_better",
+            "rival",
+            true
+          ]
+        ]
+      ]
+    }
+  ]
+}

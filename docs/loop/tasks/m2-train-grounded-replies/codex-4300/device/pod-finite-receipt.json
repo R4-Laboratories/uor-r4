@@ -1,0 +1,57 @@
+{
+  "lab": "codex",
+  "stage": "finite",
+  "wick_run_root": "/mnt/plexpool/uor-r4-corpus/runs/20261126-codex-switch-source-competition",
+  "wick_build": {
+    "location": "device/build-v1",
+    "manifest_sha256": "4f53338e8243351c9aedcb5de1ffd1e604146f709451cbfd8dcb717cd6f91c20",
+    "binary_sha256": "7cd831ddec22535ecc94783cef2dae34db1d71a0428e4b40bfe8d5a43b4437d1",
+    "standalone_binary_sha256": "2bd85f7280e6ffec0026f686e64f4376ee6f74aa6d0924816ce56a6291430da0",
+    "compiler": "NVCC 13.1.115",
+    "target": "sm_89",
+    "ptx_present": false,
+    "forbidden_sass_check": "PASS",
+    "inherited_attachments_and_predict_sass_byte_equal": true
+  },
+  "portable": {
+    "location": "device/pod-payloads-v1",
+    "manifest_sha256": "3a41c40283434bf1bd368cabc9f14e3da6b10d3f5b8796f385e4974949c31f0c",
+    "finite_sha256": "10d72ce8ad9d4366ad3918d189f9d5f6e7d129d8cf4444c43871cae3bbfea0f4",
+    "finite_manifest_sha256": "da126e1a31df55d956e859b89b6713dd01d424a5a731e1619b66537dd16166bd",
+    "research_sha256": "eeed2ffe0338fc119c92ab4adf7a3b2ceb9ab67c6b58058e131ccf906c0e1c79",
+    "research_manifest_sha256": "bad4069ea6a5172ddf9d8027be5676289643ef1cc4c1350e6f00fd3e37ace4fb"
+  },
+  "hosted_execution": {
+    "provider": "vast",
+    "instance_id": "vast-62755564",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_uuid": "GPU-f9afc849-5fb5-d7c6-c8d5-3154e9a2bd25",
+    "driver": "580.95.05",
+    "compute_capability": "8.9",
+    "started_at_utc": "2026-11-26T21:28:04.683177871Z",
+    "finished_at_utc": "2026-11-26T21:28:05.710304739Z",
+    "runtime_api": 13010,
+    "driver_api": 13000,
+    "exit_code": 0,
+    "standalone_wall_s": 0.316,
+    "first_wall_s": 0.284,
+    "repeat_wall_s": 0.294,
+    "physical_rows": 3,
+    "requests": 9,
+    "standalone_native_trace_byte_equal": true,
+    "deterministic_rerun_byte_equal": true
+  },
+  "wick_import": {
+    "raw_location": "device/finite-v1",
+    "raw_manifest_sha256": "ebf080d3bd2e052d880558060b0f096ac4b173176074fcfb1b09a0a30b0f221c",
+    "custody_location": "device/finite-v1-lease",
+    "custody_manifest_sha256": "80c57d62511bdcf0041142ab1baf45f782887a1dd0dffcc62bea343684b5b0d9",
+    "checks_location": "device/pod-import-finite-v1",
+    "checks_manifest_sha256": "35c979d79d28b667c4580a0b57c15c0fc6b4579996aa6f7e94881e0dc17433d2",
+    "checks_json_sha256": "b72784879606ea1f4f174a27de34b49dc2f737eb6cdd4b1a9c739e0816efa132",
+    "assertions_passed": 14,
+    "malformed_requests_rejected": 8,
+    "native_trace_sha256": "6dc19ae2adcb65ac3ed905bdb8122d3e0c5d5d6607d53a8df2bca142c3d7d6e0",
+    "request_trace_sha256": "a44d8b6aaf4cda7d360936e4cab6de95236bef25a7033ca16d3cb31afa6ee2b2"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "family": "planning-review",
+    "marks": ["red", "small"],
+    "before": "at the meeting {governor} what the board put in the red file, the {selector} already on file in our folder, our {first_occurrence} and our {second_occurrence}",
+    "after": "our {first_occurrence} and our {second_occurrence} put in the red file, the {selector} is what we can, when the small board meets, {governor}"
+  },
+  {
+    "family": "drill-rotation",
+    "marks": ["retired", "next"],
+    "before": "during drills {governor} what came down from the team on duty, the {selector} printed on the wall at the meeting, the {first_occurrence} and the {second_occurrence}",
+    "after": "the {first_occurrence} and the {second_occurrence} on the wall at the meeting, the {selector} is what we have, once the next bell sounds, to {governor}"
+  },
+  {
+    "family": "building-evacuation",
+    "marks": ["unused", "locked"],
+    "before": "for the drill {governor} the space marked on the back of the plan, the {selector} marked on the back of the plan, that {first_occurrence} and that {second_occurrence}",
+    "after": "that {first_occurrence} and that {second_occurrence} marked on the back of the plan, the {selector} is what we might, before the whole floor is empty, {governor}"
+  },
+  {
+    "family": "enamel-display",
+    "marks": ["chipped", "red"],
+    "before": "from the tray {governor} the piece found by the door at noon, the {selector} found by the door at noon on the cloth, your {first_occurrence} and your {second_occurrence}",
+    "after": "your {first_occurrence} and your {second_occurrence} on the cloth by the door at noon, the {selector} is the one you can, once the display case is full, {governor}"
+  }
+]

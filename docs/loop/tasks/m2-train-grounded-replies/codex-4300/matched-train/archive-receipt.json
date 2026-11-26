@@ -1,0 +1,16 @@
+{
+  "schema": "uor-r4.codex-4300.layout-zfs-store/1",
+  "pass": true,
+  "rows": 8,
+  "pairs": 4,
+  "independent_replays": 2,
+  "identical_outputs": 6,
+  "primary_archive_sha256": "a13331a29bff362ade409def5c36dbef13e74261977b1c7b0f8bbc47027d5086",
+  "summary_sha256": "53af3e74e887fa765ed50f957e60eb6aa8cbe4c429180cea40463509529be40f",
+  "archive_sha256": "73e8ba0338d892833077e7d9f5c14aa29466322d38dc3acdfdaddeaafd5ac200",
+  "packet_sha256": "343128b3d1bdd943b5b1a6e864e762254dfdc92397415393e1c82ea21c958263",
+  "members_sha256": "d1e2bec6624b5e7a2f195bb6fc37f7c2d604126f139a69c42dbaeeba4392266f",
+  "members": 150,
+  "archive_bytes": 1296025,
+  "replay_sha256": "915d74605e2fb3f53324904524780a5092abc68f547aeb71c95edeed20d411b9"
+}

@@ -1,0 +1,11 @@
+{
+  "archive_version": "v1",
+  "compute_venue": "vast",
+  "archive_sha256": "a13331a29bff362ade409def5c36dbef13e74261977b1c7b0f8bbc47027d5086",
+  "packet_sha256": "ba5e0c8a7452ec8ad64465df6c4ed517076f25b34e061ee756f419e78114f682",
+  "members_sha256": "6f7d1f20ce4724c431e7a099d6c86cfa9a5e4309f4e5fe199a987fd450d19894",
+  "members": 520,
+  "archive_bytes": 41181058,
+  "schema": "uor-r4.codex-4300.zfs-store/1",
+  "cold_replay_sha256": "d58a0bf85983fbfd4b2abb21eb41a0d80bfac58600b85659d03ff07d3104bde9"
+}

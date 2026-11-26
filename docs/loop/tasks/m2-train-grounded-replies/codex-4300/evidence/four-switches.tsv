@@ -1,0 +1,17 @@
+pair	selector	signed_role	state	governor	requested	rival	local_requested_lex_transport	local_rival_lex_transport	conditioned_requested_lex_transport_bank	conditioned_rival_lex_transport_bank	native_source	native_source_BPE	native_cost	native_governor	native_opposite	native_heading	classification
+lantern-cupboard-sort/cuff-and-orchard/10	first	affirmative	before	keep	snuffer	snuffer	[0,54]	[0,55]	[0,80,572]	[0,81,536]	snuffer	{"start":70,"end":73}	[0,80,572]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/10	first	affirmative	after	keep	snuffer	snuffer	[0,64]	[0,65]	[0,84,572]	[0,85,536]	snuffer	{"start":70,"end":73}	[0,84,572]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/10	later	affirmative	before	keep	snuffer	snuffer	[0,51]	[0,54]	[0,77,536]	[0,80,572]	snuffer	{"start":77,"end":80}	[0,77,536]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/10	later	affirmative	after	keep	snuffer	snuffer	[0,73]	[0,64]	[0,93,536]	[0,84,572]	snuffer	{"start":70,"end":73}	[0,84,572]	keep	room	snuffer	local loss
+lantern-cupboard-sort/cuff-and-orchard/2	first	excluded	before	drop	snuffer	snuffer	[0,54]	[0,55]	[0,80,600]	[0,81,548]	snuffer	{"start":70,"end":73}	[0,80,600]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/2	first	excluded	after	drop	snuffer	snuffer	[0,64]	[0,65]	[0,84,600]	[0,85,548]	snuffer	{"start":70,"end":73}	[0,84,600]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/2	later	excluded	before	drop	snuffer	snuffer	[0,51]	[0,54]	[0,77,548]	[0,80,600]	snuffer	{"start":77,"end":80}	[0,77,548]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/cuff-and-orchard/2	later	excluded	after	drop	snuffer	snuffer	[0,73]	[0,64]	[0,93,548]	[0,84,600]	snuffer	{"start":70,"end":73}	[0,84,600]	drop	room	snuffer	local loss
+lantern-cupboard-sort/textile-and-marsh/10	first	affirmative	before	keep	snuffer	snuffer	[0,54]	[0,55]	[0,80,572]	[0,81,536]	snuffer	{"start":67,"end":70}	[0,80,572]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/10	first	affirmative	after	keep	snuffer	snuffer	[0,64]	[0,65]	[0,84,572]	[0,85,536]	snuffer	{"start":67,"end":70}	[0,84,572]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/10	later	affirmative	before	keep	snuffer	snuffer	[0,51]	[0,54]	[0,77,536]	[0,80,572]	snuffer	{"start":74,"end":77}	[0,77,536]	keep	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/10	later	affirmative	after	keep	snuffer	snuffer	[0,73]	[0,64]	[0,93,536]	[0,84,572]	snuffer	{"start":67,"end":70}	[0,84,572]	keep	room	snuffer	local loss
+lantern-cupboard-sort/textile-and-marsh/2	first	excluded	before	drop	snuffer	snuffer	[0,54]	[0,55]	[0,80,600]	[0,81,548]	snuffer	{"start":67,"end":70}	[0,80,600]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/2	first	excluded	after	drop	snuffer	snuffer	[0,64]	[0,65]	[0,84,600]	[0,85,548]	snuffer	{"start":67,"end":70}	[0,84,600]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/2	later	excluded	before	drop	snuffer	snuffer	[0,51]	[0,54]	[0,77,548]	[0,80,600]	snuffer	{"start":74,"end":77}	[0,77,548]	drop	room	snuffer	requested wins
+lantern-cupboard-sort/textile-and-marsh/2	later	excluded	after	drop	snuffer	snuffer	[0,73]	[0,64]	[0,93,548]	[0,84,600]	snuffer	{"start":67,"end":70}	[0,84,600]	drop	room	snuffer	local loss

@@ -1,0 +1,1483 @@
+{
+  "historical": {
+    "all": {
+      "pairs": 32,
+      "before_correct": 4,
+      "after_correct": 0,
+      "before_with_governor": 4,
+      "after_with_governor": 0,
+      "before_consensus_correct": 4,
+      "after_consensus_correct": 0,
+      "before_distinct": 4,
+      "after_distinct": 0,
+      "lost": 4,
+      "retained": 0,
+      "gained": 0
+    },
+    "lost_four": [
+      {
+        "pair_id": "lantern-cupboard-sort/cuff-and-orchard/10",
+        "role": "affirmative",
+        "sign": 1,
+        "family": "lantern-cupboard-sort",
+        "fact": "cuff-and-orchard",
+        "historical_lost": true,
+        "rows": [
+          34,
+          35
+        ],
+        "before": {
+          "correct": true,
+          "consensus_correct": true,
+          "with_governor": true,
+          "distinct": true
+        },
+        "after": {
+          "correct": false,
+          "consensus_correct": false,
+          "with_governor": false,
+          "distinct": false
+        },
+        "signature": [
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ],
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "loss",
+              "loss",
+              "same-word rival",
+              true
+            ]
+          ]
+        ]
+      },
+      {
+        "pair_id": "lantern-cupboard-sort/cuff-and-orchard/2",
+        "role": "excluded",
+        "sign": -1,
+        "family": "lantern-cupboard-sort",
+        "fact": "cuff-and-orchard",
+        "historical_lost": true,
+        "rows": [
+          32,
+          33
+        ],
+        "before": {
+          "correct": true,
+          "consensus_correct": true,
+          "with_governor": true,
+          "distinct": true
+        },
+        "after": {
+          "correct": false,
+          "consensus_correct": false,
+          "with_governor": false,
+          "distinct": false
+        },
+        "signature": [
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ],
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "loss",
+              "loss",
+              "same-word rival",
+              true
+            ]
+          ]
+        ]
+      },
+      {
+        "pair_id": "lantern-cupboard-sort/textile-and-marsh/10",
+        "role": "affirmative",
+        "sign": 1,
+        "family": "lantern-cupboard-sort",
+        "fact": "textile-and-marsh",
+        "historical_lost": true,
+        "rows": [
+          42,
+          43
+        ],
+        "before": {
+          "correct": true,
+          "consensus_correct": true,
+          "with_governor": true,
+          "distinct": true
+        },
+        "after": {
+          "correct": false,
+          "consensus_correct": false,
+          "with_governor": false,
+          "distinct": false
+        },
+        "signature": [
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ],
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "loss",
+              "loss",
+              "same-word rival",
+              true
+            ]
+          ]
+        ]
+      },
+      {
+        "pair_id": "lantern-cupboard-sort/textile-and-marsh/2",
+        "role": "excluded",
+        "sign": -1,
+        "family": "lantern-cupboard-sort",
+        "fact": "textile-and-marsh",
+        "historical_lost": true,
+        "rows": [
+          40,
+          41
+        ],
+        "before": {
+          "correct": true,
+          "consensus_correct": true,
+          "with_governor": true,
+          "distinct": true
+        },
+        "after": {
+          "correct": false,
+          "consensus_correct": false,
+          "with_governor": false,
+          "distinct": false
+        },
+        "signature": [
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ],
+          [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "loss",
+              "loss",
+              "same-word rival",
+              true
+            ]
+          ]
+        ]
+      }
+    ],
+    "rows": {
+      "requests": 8,
+      "rows": 8,
+      "families": [
+        "lantern-cupboard-sort"
+      ],
+      "before": {
+        "stage": {
+          "requested wins": 8
+        },
+        "local": {
+          "win": 8
+        },
+        "joint": {
+          "win": 8
+        },
+        "native": {
+          "requested": 8
+        }
+      },
+      "after": {
+        "stage": {
+          "local loss": 4,
+          "requested wins": 4
+        },
+        "local": {
+          "loss": 4,
+          "win": 4
+        },
+        "joint": {
+          "loss": 4,
+          "win": 4
+        },
+        "native": {
+          "requested": 4,
+          "same-word rival": 4
+        }
+      }
+    }
+  },
+  "original_train": {
+    "enrolled_prompts": 256,
+    "by_row": {
+      "requests": 288,
+      "rows": 256,
+      "families": [
+        "building-evacuation",
+        "drill-rotation",
+        "enamel-display",
+        "market-redemption",
+        "planning-review",
+        "practice-class",
+        "storm-drainage",
+        "supplier-contract"
+      ],
+      "before": {
+        "stage": {
+          "local loss": 16,
+          "local tie": 8,
+          "requested wins": 256,
+          "third site at correct governor": 8
+        },
+        "local": {
+          "loss": 16,
+          "tie": 8,
+          "win": 264
+        },
+        "joint": {
+          "loss": 24,
+          "win": 264
+        },
+        "native": {
+          "requested": 256,
+          "same-word rival": 16,
+          "third site": 16
+        }
+      },
+      "after": {
+        "stage": {
+          "requested wins": 288
+        },
+        "local": {
+          "win": 288
+        },
+        "joint": {
+          "win": 288
+        },
+        "native": {
+          "requested": 288
+        }
+      }
+    },
+    "matched_selectors": {
+      "pairs": 0,
+      "before_correct": 0,
+      "after_correct": 0,
+      "before_with_governor": 0,
+      "after_with_governor": 0,
+      "before_consensus_correct": 0,
+      "after_consensus_correct": 0,
+      "before_distinct": 0,
+      "after_distinct": 0,
+      "lost": 0,
+      "retained": 0,
+      "gained": 0
+    },
+    "row_signature_recurrence": {
+      "requests": 288,
+      "matching_requests": 256,
+      "matching_unique_rows": 224,
+      "matching_requests_same_sign": 256,
+      "examples": [
+        {
+          "row_index": 2,
+          "request": 2,
+          "family": "planning-review",
+          "role": "excluded",
+          "requested": {
+            "index": 12,
+            "text": "proposal",
+            "bytes": {
+              "start": 144,
+              "end": 152
+            },
+            "tokens": {
+              "start": 77,
+              "end": 81
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 106,
+              "end": 114
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 3,
+          "request": 3,
+          "family": "planning-review",
+          "role": "affirmative",
+          "requested": {
+            "index": 12,
+            "text": "proposal",
+            "bytes": {
+              "start": 144,
+              "end": 152
+            },
+            "tokens": {
+              "start": 77,
+              "end": 81
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 106,
+              "end": 114
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 6,
+          "request": 6,
+          "family": "planning-review",
+          "role": "excluded",
+          "requested": {
+            "index": 12,
+            "text": "proposal",
+            "bytes": {
+              "start": 144,
+              "end": 152
+            },
+            "tokens": {
+              "start": 77,
+              "end": 81
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 106,
+              "end": 114
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 7,
+          "request": 7,
+          "family": "planning-review",
+          "role": "affirmative",
+          "requested": {
+            "index": 12,
+            "text": "proposal",
+            "bytes": {
+              "start": 144,
+              "end": 152
+            },
+            "tokens": {
+              "start": 77,
+              "end": 81
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 106,
+              "end": 114
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        }
+      ]
+    },
+    "by_rival_position": [
+      {
+        "rival_is_original_heading": false,
+        "before_after": {
+          "requests": 256,
+          "rows": 256,
+          "families": [
+            "building-evacuation",
+            "drill-rotation",
+            "enamel-display",
+            "market-redemption",
+            "planning-review",
+            "practice-class",
+            "storm-drainage",
+            "supplier-contract"
+          ],
+          "before": {
+            "stage": {
+              "local loss": 16,
+              "local tie": 8,
+              "requested wins": 224,
+              "third site at correct governor": 8
+            },
+            "local": {
+              "loss": 16,
+              "tie": 8,
+              "win": 232
+            },
+            "joint": {
+              "loss": 24,
+              "win": 232
+            },
+            "native": {
+              "requested": 224,
+              "same-word rival": 16,
+              "third site": 16
+            }
+          },
+          "after": {
+            "stage": {
+              "requested wins": 256
+            },
+            "local": {
+              "win": 256
+            },
+            "joint": {
+              "win": 256
+            },
+            "native": {
+              "requested": 256
+            }
+          }
+        },
+        "row_signature_recurrence": {
+          "requests": 256,
+          "matching_requests": 224,
+          "matching_unique_rows": 224,
+          "matching_requests_same_sign": 224,
+          "examples": [
+            {
+              "row_index": 2,
+              "request": 2,
+              "family": "planning-review",
+              "role": "excluded",
+              "requested": {
+                "index": 12,
+                "text": "proposal",
+                "bytes": {
+                  "start": 144,
+                  "end": 152
+                },
+                "tokens": {
+                  "start": 77,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 5,
+                "text": "proposal",
+                "bytes": {
+                  "start": 106,
+                  "end": 114
+                },
+                "tokens": {
+                  "start": 65,
+                  "end": 69
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 3,
+              "request": 3,
+              "family": "planning-review",
+              "role": "affirmative",
+              "requested": {
+                "index": 12,
+                "text": "proposal",
+                "bytes": {
+                  "start": 144,
+                  "end": 152
+                },
+                "tokens": {
+                  "start": 77,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 5,
+                "text": "proposal",
+                "bytes": {
+                  "start": 106,
+                  "end": 114
+                },
+                "tokens": {
+                  "start": 65,
+                  "end": 69
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 6,
+              "request": 6,
+              "family": "planning-review",
+              "role": "excluded",
+              "requested": {
+                "index": 12,
+                "text": "proposal",
+                "bytes": {
+                  "start": 144,
+                  "end": 152
+                },
+                "tokens": {
+                  "start": 77,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 5,
+                "text": "proposal",
+                "bytes": {
+                  "start": 106,
+                  "end": 114
+                },
+                "tokens": {
+                  "start": 65,
+                  "end": 69
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 7,
+              "request": 7,
+              "family": "planning-review",
+              "role": "affirmative",
+              "requested": {
+                "index": 12,
+                "text": "proposal",
+                "bytes": {
+                  "start": 144,
+                  "end": 152
+                },
+                "tokens": {
+                  "start": 77,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 5,
+                "text": "proposal",
+                "bytes": {
+                  "start": 106,
+                  "end": 114
+                },
+                "tokens": {
+                  "start": 65,
+                  "end": 69
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "rival_is_original_heading": true,
+        "before_after": {
+          "requests": 32,
+          "rows": 32,
+          "families": [
+            "market-redemption"
+          ],
+          "before": {
+            "stage": {
+              "requested wins": 32
+            },
+            "local": {
+              "win": 32
+            },
+            "joint": {
+              "win": 32
+            },
+            "native": {
+              "requested": 32
+            }
+          },
+          "after": {
+            "stage": {
+              "requested wins": 32
+            },
+            "local": {
+              "win": 32
+            },
+            "joint": {
+              "win": 32
+            },
+            "native": {
+              "requested": 32
+            }
+          }
+        },
+        "row_signature_recurrence": {
+          "requests": 32,
+          "matching_requests": 32,
+          "matching_unique_rows": 32,
+          "matching_requests_same_sign": 32,
+          "examples": [
+            {
+              "row_index": 224,
+              "request": 225,
+              "family": "market-redemption",
+              "role": "excluded",
+              "requested": {
+                "index": 6,
+                "text": "coupon",
+                "bytes": {
+                  "start": 103,
+                  "end": 109
+                },
+                "tokens": {
+                  "start": 64,
+                  "end": 67
+                }
+              },
+              "rival": {
+                "index": 32,
+                "text": "coupon",
+                "bytes": {
+                  "start": 238,
+                  "end": 244
+                },
+                "tokens": {
+                  "start": 111,
+                  "end": 114
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 225,
+              "request": 227,
+              "family": "market-redemption",
+              "role": "affirmative",
+              "requested": {
+                "index": 6,
+                "text": "coupon",
+                "bytes": {
+                  "start": 103,
+                  "end": 109
+                },
+                "tokens": {
+                  "start": 64,
+                  "end": 67
+                }
+              },
+              "rival": {
+                "index": 32,
+                "text": "coupon",
+                "bytes": {
+                  "start": 238,
+                  "end": 244
+                },
+                "tokens": {
+                  "start": 111,
+                  "end": 114
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 226,
+              "request": 229,
+              "family": "market-redemption",
+              "role": "excluded",
+              "requested": {
+                "index": 15,
+                "text": "coupon",
+                "bytes": {
+                  "start": 145,
+                  "end": 151
+                },
+                "tokens": {
+                  "start": 78,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 32,
+                "text": "coupon",
+                "bytes": {
+                  "start": 236,
+                  "end": 242
+                },
+                "tokens": {
+                  "start": 111,
+                  "end": 114
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            },
+            {
+              "row_index": 227,
+              "request": 231,
+              "family": "market-redemption",
+              "role": "affirmative",
+              "requested": {
+                "index": 15,
+                "text": "coupon",
+                "bytes": {
+                  "start": 145,
+                  "end": 151
+                },
+                "tokens": {
+                  "start": 78,
+                  "end": 81
+                }
+              },
+              "rival": {
+                "index": 32,
+                "text": "coupon",
+                "bytes": {
+                  "start": 236,
+                  "end": 242
+                },
+                "tokens": {
+                  "start": 111,
+                  "end": 114
+                }
+              },
+              "signature": [
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ],
+                [
+                  "win",
+                  "win",
+                  "requested",
+                  true
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "train_derived": {
+    "enrolled_prompts": 64,
+    "all": {
+      "pairs": 32,
+      "before_correct": 0,
+      "after_correct": 0,
+      "before_with_governor": 0,
+      "after_with_governor": 0,
+      "before_consensus_correct": 0,
+      "after_consensus_correct": 0,
+      "before_distinct": 4,
+      "after_distinct": 4,
+      "lost": 0,
+      "retained": 0,
+      "gained": 0
+    },
+    "rows": {
+      "requests": 64,
+      "rows": 64,
+      "families": [
+        "building-evacuation",
+        "drill-rotation",
+        "enamel-display",
+        "planning-review"
+      ],
+      "before": {
+        "stage": {
+          "local loss": 28,
+          "local tie": 4,
+          "requested wins": 12,
+          "third site at correct governor": 20
+        },
+        "local": {
+          "loss": 28,
+          "tie": 4,
+          "win": 32
+        },
+        "joint": {
+          "loss": 32,
+          "win": 32
+        },
+        "native": {
+          "requested": 12,
+          "same-word rival": 16,
+          "third site": 36
+        }
+      },
+      "after": {
+        "stage": {
+          "local loss": 36,
+          "requested wins": 8,
+          "third site at correct governor": 20
+        },
+        "local": {
+          "loss": 36,
+          "win": 28
+        },
+        "joint": {
+          "loss": 36,
+          "win": 28
+        },
+        "native": {
+          "requested": 8,
+          "same-word rival": 8,
+          "third site": 48
+        }
+      }
+    },
+    "by_family": [
+      {
+        "family": "building-evacuation",
+        "counts": {
+          "pairs": 8,
+          "before_correct": 0,
+          "after_correct": 0,
+          "before_with_governor": 0,
+          "after_with_governor": 0,
+          "before_consensus_correct": 0,
+          "after_consensus_correct": 0,
+          "before_distinct": 0,
+          "after_distinct": 0,
+          "lost": 0,
+          "retained": 0,
+          "gained": 0
+        }
+      },
+      {
+        "family": "drill-rotation",
+        "counts": {
+          "pairs": 8,
+          "before_correct": 0,
+          "after_correct": 0,
+          "before_with_governor": 0,
+          "after_with_governor": 0,
+          "before_consensus_correct": 0,
+          "after_consensus_correct": 0,
+          "before_distinct": 4,
+          "after_distinct": 4,
+          "lost": 0,
+          "retained": 0,
+          "gained": 0
+        }
+      },
+      {
+        "family": "enamel-display",
+        "counts": {
+          "pairs": 8,
+          "before_correct": 0,
+          "after_correct": 0,
+          "before_with_governor": 0,
+          "after_with_governor": 0,
+          "before_consensus_correct": 0,
+          "after_consensus_correct": 0,
+          "before_distinct": 0,
+          "after_distinct": 0,
+          "lost": 0,
+          "retained": 0,
+          "gained": 0
+        }
+      },
+      {
+        "family": "planning-review",
+        "counts": {
+          "pairs": 8,
+          "before_correct": 0,
+          "after_correct": 0,
+          "before_with_governor": 0,
+          "after_with_governor": 0,
+          "before_consensus_correct": 0,
+          "after_consensus_correct": 0,
+          "before_distinct": 0,
+          "after_distinct": 0,
+          "lost": 0,
+          "retained": 0,
+          "gained": 0
+        }
+      }
+    ],
+    "paired_losses": [],
+    "matching_full_pair_signature": [],
+    "matching_full_pair_signature_same_sign": [],
+    "row_signature_recurrence": {
+      "requests": 64,
+      "matching_requests": 8,
+      "matching_unique_rows": 8,
+      "matching_requests_same_sign": 8,
+      "examples": [
+        {
+          "row_index": 1,
+          "request": 1,
+          "family": "planning-review",
+          "role": "excluded",
+          "requested": {
+            "index": 9,
+            "text": "proposal",
+            "bytes": {
+              "start": 125,
+              "end": 133
+            },
+            "tokens": {
+              "start": 70,
+              "end": 74
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 102,
+              "end": 110
+            },
+            "tokens": {
+              "start": 63,
+              "end": 67
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 3,
+          "request": 3,
+          "family": "planning-review",
+          "role": "affirmative",
+          "requested": {
+            "index": 9,
+            "text": "proposal",
+            "bytes": {
+              "start": 125,
+              "end": 133
+            },
+            "tokens": {
+              "start": 70,
+              "end": 74
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 102,
+              "end": 110
+            },
+            "tokens": {
+              "start": 63,
+              "end": 67
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 9,
+          "request": 9,
+          "family": "planning-review",
+          "role": "excluded",
+          "requested": {
+            "index": 9,
+            "text": "proposal",
+            "bytes": {
+              "start": 123,
+              "end": 131
+            },
+            "tokens": {
+              "start": 72,
+              "end": 76
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 100,
+              "end": 108
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        },
+        {
+          "row_index": 11,
+          "request": 11,
+          "family": "planning-review",
+          "role": "affirmative",
+          "requested": {
+            "index": 9,
+            "text": "proposal",
+            "bytes": {
+              "start": 123,
+              "end": 131
+            },
+            "tokens": {
+              "start": 72,
+              "end": 76
+            }
+          },
+          "rival": {
+            "index": 5,
+            "text": "proposal",
+            "bytes": {
+              "start": 100,
+              "end": 108
+            },
+            "tokens": {
+              "start": 65,
+              "end": 69
+            }
+          },
+          "signature": [
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ],
+            [
+              "win",
+              "win",
+              "requested",
+              true
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "witnesses": [
+    {
+      "pair_id": "lantern-cupboard-sort/cuff-and-orchard/2",
+      "selector": "first",
+      "role": "excluded",
+      "request": 32,
+      "row_index": 32,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/cuff-and-orchard/2",
+      "selector": "later",
+      "role": "excluded",
+      "request": 33,
+      "row_index": 33,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/cuff-and-orchard/10",
+      "selector": "first",
+      "role": "affirmative",
+      "request": 34,
+      "row_index": 34,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/cuff-and-orchard/10",
+      "selector": "later",
+      "role": "affirmative",
+      "request": 35,
+      "row_index": 35,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/textile-and-marsh/2",
+      "selector": "first",
+      "role": "excluded",
+      "request": 40,
+      "row_index": 40,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/textile-and-marsh/2",
+      "selector": "later",
+      "role": "excluded",
+      "request": 41,
+      "row_index": 41,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/textile-and-marsh/10",
+      "selector": "first",
+      "role": "affirmative",
+      "request": 42,
+      "row_index": 42,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ]
+    },
+    {
+      "pair_id": "lantern-cupboard-sort/textile-and-marsh/10",
+      "selector": "later",
+      "role": "affirmative",
+      "request": 43,
+      "row_index": 43,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ]
+    }
+  ]
+}

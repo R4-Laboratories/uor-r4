@@ -1,0 +1,298 @@
+{
+  "requests": 8,
+  "prompts": 8,
+  "pairs": 4,
+  "both_correct_before": 4,
+  "both_correct_after": 0,
+  "lost_previously_correct_pairs": 4,
+  "complete_paired_reproductions": [
+    {
+      "id": "matched-train/planning-review/road/10",
+      "sign": 1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/road/2",
+      "sign": -1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/school/10",
+      "sign": 1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/school/2",
+      "sign": -1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    }
+  ],
+  "stable_requested_row_matches": 4,
+  "exact_failing_row_matches": 4,
+  "exact_failing_row_matches_on_later": 4,
+  "local_and_conditioned_win_to_loss": {
+    "requests": 4,
+    "prompts": 4,
+    "on_first": 0,
+    "on_later": 4,
+    "third_site_on_both_passes": 0,
+    "examples_by_family": [
+      {
+        "row_index": 1,
+        "request": 1,
+        "pair_id": "matched-train/planning-review/school/2",
+        "selector": "later",
+        "sign": -1,
+        "family": "planning-review",
+        "governor": {
+          "index": 37,
+          "text": "reject",
+          "bytes": {
+            "start": 195,
+            "end": 201
+          },
+          "tokens": {
+            "start": 92,
+            "end": 94
+          }
+        },
+        "requested": {
+          "index": 9,
+          "text": "proposal",
+          "bytes": {
+            "start": 125,
+            "end": 133
+          },
+          "tokens": {
+            "start": 70,
+            "end": 74
+          }
+        },
+        "rival": {
+          "index": 5,
+          "text": "proposal",
+          "bytes": {
+            "start": 102,
+            "end": 110
+          },
+          "tokens": {
+            "start": 63,
+            "end": 67
+          }
+        },
+        "before": {
+          "requested_local": [
+            0,
+            67
+          ],
+          "rival_local": [
+            0,
+            70
+          ],
+          "requested_complete": [
+            0,
+            105,
+            512
+          ],
+          "rival_complete": [
+            0,
+            108,
+            566
+          ],
+          "requested_center": 3,
+          "rival_center": 3,
+          "native_site": {
+            "index": 9,
+            "bytes": {
+              "start": 125,
+              "end": 133
+            },
+            "tokens": {
+              "start": 70,
+              "end": 74
+            },
+            "text": "proposal"
+          },
+          "native_governors": [
+            {
+              "index": 50,
+              "bytes": {
+                "start": 276,
+                "end": 282
+              },
+              "tokens": {
+                "start": 118,
+                "end": 120
+              },
+              "text": "accept"
+            },
+            {
+              "index": 37,
+              "bytes": {
+                "start": 195,
+                "end": 201
+              },
+              "tokens": {
+                "start": 92,
+                "end": 94
+              },
+              "text": "reject"
+            }
+          ]
+        },
+        "after": {
+          "requested_local": [
+            0,
+            81
+          ],
+          "rival_local": [
+            0,
+            68
+          ],
+          "requested_complete": [
+            0,
+            110,
+            506
+          ],
+          "rival_complete": [
+            0,
+            97,
+            560
+          ],
+          "requested_center": 3,
+          "rival_center": 3,
+          "native_site": {
+            "index": 5,
+            "bytes": {
+              "start": 102,
+              "end": 110
+            },
+            "tokens": {
+              "start": 63,
+              "end": 67
+            },
+            "text": "proposal"
+          },
+          "native_governors": [
+            {
+              "index": 50,
+              "bytes": {
+                "start": 276,
+                "end": 282
+              },
+              "tokens": {
+                "start": 118,
+                "end": 120
+              },
+              "text": "accept"
+            },
+            {
+              "index": 37,
+              "bytes": {
+                "start": 195,
+                "end": 201
+              },
+              "tokens": {
+                "start": 92,
+                "end": 94
+              },
+              "text": "reject"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "patterns": [
+    {
+      "selector": "first",
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 4
+    },
+    {
+      "selector": "later",
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ]
+      ],
+      "n": 4
+    }
+  ],
+  "paired_cases": [
+    {
+      "id": "matched-train/planning-review/road/10",
+      "sign": 1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/road/2",
+      "sign": -1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/school/10",
+      "sign": 1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    },
+    {
+      "id": "matched-train/planning-review/school/2",
+      "sign": -1,
+      "before_both": true,
+      "after_both": false,
+      "before_both_with_governor": true,
+      "after_both_with_governor": false,
+      "identical": true
+    }
+  ]
+}

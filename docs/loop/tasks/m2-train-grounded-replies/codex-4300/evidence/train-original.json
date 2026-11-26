@@ -1,0 +1,95 @@
+{
+  "requests": 288,
+  "prompts": 256,
+  "pairs": 0,
+  "both_correct_before": 0,
+  "both_correct_after": 0,
+  "lost_previously_correct_pairs": 0,
+  "complete_paired_reproductions": [],
+  "stable_requested_row_matches": 256,
+  "exact_failing_row_matches": 0,
+  "exact_failing_row_matches_on_later": 0,
+  "local_and_conditioned_win_to_loss": {
+    "requests": 0,
+    "prompts": 0,
+    "on_first": 0,
+    "on_later": 0,
+    "third_site_on_both_passes": 0,
+    "examples_by_family": []
+  },
+  "patterns": [
+    {
+      "selector": null,
+      "signature": [
+        [
+          "loss",
+          "loss",
+          "same-word rival",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 16
+    },
+    {
+      "selector": null,
+      "signature": [
+        [
+          "tie",
+          "loss",
+          "third site",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 8
+    },
+    {
+      "selector": null,
+      "signature": [
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 256
+    },
+    {
+      "selector": null,
+      "signature": [
+        [
+          "win",
+          "win",
+          "third site",
+          true
+        ],
+        [
+          "win",
+          "win",
+          "requested",
+          true
+        ]
+      ],
+      "n": 8
+    }
+  ],
+  "paired_cases": []
+}

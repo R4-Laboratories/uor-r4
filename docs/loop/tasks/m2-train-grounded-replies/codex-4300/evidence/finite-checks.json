@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "mixed row and sign order including repeated physical rows",
+    "request-native serializer agrees with standalone native output",
+    "all-site joint pass matches exact rank_joint conditioned arms",
+    "same-surface distinct-address local win reverses under free joint completion",
+    "exact requested governor forced over cheaper governor, opposite free",
+    "untouched third-site native winner and tied legal headings",
+    "excluded governor fixed while affirmative and heading remain free",
+    "locally eligible site with no legal joint completion",
+    "equal signed lexical costs fail strict sign",
+    "overlapping word and noun kept as an ineligible original address",
+    "role-ineligible heading site cannot be invented as attachment",
+    "site cost ties and first minimizing transport center",
+    "native bank tiebreak appears in constrained runner",
+    "native runner can be a strictly higher governor at the same unique tuple"
+  ],
+  "total": 14
+}
