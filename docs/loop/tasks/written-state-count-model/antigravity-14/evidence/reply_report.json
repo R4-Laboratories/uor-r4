@@ -1,0 +1,266 @@
+{
+  "fresh256_inputs_sha256": "1de2fc28607eff6bc412eee41a259d806ee1479b7c925059f00e9d3b54afa99a",
+  "phase": "Stage B5a P3 Doc-Freq + Per-Anchor Quota + 3-Candidate Abstention S4",
+  "r1_r2_m2_fresh256": {
+    "active": {
+      "abstained_rows": 0,
+      "pairs_both_complete_distinct": 128,
+      "row_hits": 256,
+      "samples": [
+        {
+          "abstained": false,
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-job",
+          "ok": true,
+          "query": "What is my current job?",
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "abstained": false,
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-home",
+          "ok": true,
+          "query": "Where do I currently live?",
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        },
+        {
+          "abstained": false,
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-job",
+          "ok": true,
+          "query": "What is my current job?",
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "abstained": false,
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-home",
+          "ok": true,
+          "query": "Where do I currently live?",
+          "reply": "porphyry belvedere.",
+          "stratum": "length2/q0"
+        }
+      ]
+    },
+    "gate_r1_ge_52_of_128": true,
+    "gate_r2_ge_200_of_256": true,
+    "no_memory": {
+      "abstained_rows": 256,
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    },
+    "paired_vs_no_memory": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 256
+    },
+    "pairs": 128,
+    "rows": 256,
+    "shuffled_role": {
+      "abstained_rows": 135,
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    }
+  },
+  "r4_heldout_phrasing": {
+    "active_abstained_rows": 20,
+    "active_in_stem_rows_of_120": 120,
+    "active_oov_synonym_rows_of_120": 80,
+    "active_pairs": 80,
+    "active_row_hits": 200,
+    "by_query": {
+      "Clarify my profession.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Clarify my quarters.": {
+        "hits": 0,
+        "total": 20
+      },
+      "Confirm my home location.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Confirm my job title.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Give the exact name of my job.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Give the exact place where I live.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Report what my job has become.": {
+        "hits": 20,
+        "total": 20
+      },
+      "Report where my residence sits today.": {
+        "hits": 20,
+        "total": 20
+      },
+      "State my dwelling.": {
+        "hits": 20,
+        "total": 20
+      },
+      "State my occupation.": {
+        "hits": 0,
+        "total": 20
+      },
+      "Which town shelters me?": {
+        "hits": 20,
+        "total": 20
+      },
+      "Which trade do I practice?": {
+        "hits": 20,
+        "total": 20
+      }
+    },
+    "gate_r4_ge_200_of_240": true,
+    "no_memory_abstained_rows": 240,
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 200
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 182
+    },
+    "pairs": 120,
+    "rows": 240,
+    "shuffled_role_abstained_rows": 117,
+    "shuffled_role_row_hits": 18
+  },
+  "s4_artifact": {
+    "bytes": 1952698,
+    "c_active_words": 65536,
+    "c_prop_home_atoms": 1232,
+    "c_prop_job_atoms": 1291,
+    "c_tokens_scanned": 2075608357,
+    "c_unique_tracked_atoms": 279602,
+    "c_words_parsed": 333859944,
+    "contexts": 74841,
+    "hinge_epochs": [
+      {
+        "epoch": 1,
+        "exact_top1": 51,
+        "examples": 72,
+        "total_hinge_loss_q16": 50828143,
+        "updates_applied": 4977
+      },
+      {
+        "epoch": 2,
+        "exact_top1": 71,
+        "examples": 72,
+        "total_hinge_loss_q16": 14545078,
+        "updates_applied": 2614
+      },
+      {
+        "epoch": 3,
+        "exact_top1": 72,
+        "examples": 72,
+        "total_hinge_loss_q16": 8178824,
+        "updates_applied": 1872
+      }
+    ],
+    "home_anchor_names": [
+      " home",
+      " house",
+      " street",
+      " live",
+      " address",
+      " location",
+      " residence"
+    ],
+    "job_anchor_names": [
+      " work",
+      " job",
+      " task",
+      " role",
+      " status",
+      " duty",
+      " employment"
+    ],
+    "multi_token_stem_pairs_emitted": 6594,
+    "mworld_spans_extracted": 24,
+    "mworld_train_episodes": 24,
+    "ppmi_config": {
+      "max_freq_per_doc": 32,
+      "min_cand_docs": 32,
+      "min_ctx_docs": 256,
+      "per_anchor_cap": 256,
+      "prop_cap": 1792,
+      "top_words": 65536
+    },
+    "sha256": "cd0e43859bcd72acfa08342d7ff08a0827c582c4cd8e1592218e6ca4c43f8771",
+    "single_token_prop_emitted": 310,
+    "top_prop_home_preview": [
+      " cobblestone (m=181228, b=94, f=3697, d=1693)",
+      " pavement (m=159026, b=97, f=8643, d=4226)",
+      " rainy (m=156682, b=95, f=10055, d=4477)",
+      " puddles (m=150739, b=96, f=10564, d=4755)",
+      " bustling (m=150587, b=96, f=8811, d=4046)",
+      " dusk (m=147671, b=96, f=19398, d=8143)",
+      " storefronts (m=144008, b=88, f=1616, d=768)",
+      " cobblestones (m=143174, b=90, f=2684, d=1301)",
+      " neon (m=140481, b=95, f=51775, d=14407)",
+      " asphalt (m=138899, b=88, f=4861, d=2172)",
+      " pedestrians (m=138770, b=88, f=3277, d=1300)",
+      " umbrellas (m=136118, b=86, f=3188, d=1276)",
+      " streetlamps (m=135490, b=82, f=493, d=254)",
+      " sidewalk (m=134604, b=83, f=2897, d=1051)",
+      " foggy (m=134389, b=87, f=1803, d=889)",
+      " alley (m=133286, b=101, f=16039, d=5386)",
+      " shopfronts (m=131204, b=84, f=391, d=201)",
+      " stalls (m=130741, b=82, f=6525, d=2719)",
+      " wet (m=128831, b=89, f=37220, d=14790)",
+      " streetlights (m=128791, b=87, f=1067, d=554)",
+      " awnings (m=128508, b=82, f=984, d=491)",
+      " streetlamp (m=124849, b=86, f=892, d=440)",
+      " crosswalk (m=124830, b=79, f=1408, d=445)",
+      " reflecting (m=124246, b=86, f=28134, d=13472)"
+    ],
+    "top_prop_job_preview": [
+      " arabic (m=97116, b=49, f=30324, d=10488)",
+      " dailctic (m=95232, b=47, f=12565, d=10283)",
+      " tunisian (m=90263, b=47, f=31166, d=10284)",
+      " derja (m=83693, b=50, f=42707, d=10299)",
+      " translator (m=79183, b=46, f=14075, d=9177)",
+      " officers (m=78528, b=61, f=4554, d=1194)",
+      " internship (m=77714, b=64, f=1672, d=421)",
+      " discrimination (m=75547, b=67, f=3097, d=1075)",
+      " graduate (m=73263, b=69, f=2600, d=990)",
+      " duties (m=72906, b=72, f=4636, d=2044)",
+      " unemployment (m=72642, b=81, f=2797, d=767)",
+      " career (m=69846, b=76, f=37870, d=8774)",
+      " wages (m=69791, b=76, f=3089, d=896)",
+      " jobs (m=69140, b=65, f=12269, d=3996)",
+      " wage (m=68463, b=72, f=4407, d=1013)",
+      " practices (m=67778, b=70, f=19816, d=8623)",
+      " hiring (m=66896, b=77, f=4452, d=1784)",
+      " employers (m=66545, b=71, f=2172, d=821)",
+      " roles (m=66296, b=84, f=31250, d=10599)",
+      " education (m=65938, b=83, f=19666, d=6536)",
+      " competencies (m=65406, b=62, f=919, d=488)",
+      " employer (m=64785, b=74, f=4729, d=1291)",
+      " logically (m=63202, b=54, f=10830, d=6576)",
+      " uncredited (m=62121, b=53, f=466, d=115)"
+    ],
+    "total_hinge_updates": 9463,
+    "train_examples": 72
+  },
+  "s4_gpu_vs_cpu_divergences": 0
+}

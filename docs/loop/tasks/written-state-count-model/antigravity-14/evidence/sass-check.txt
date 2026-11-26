@@ -1,0 +1,4 @@
+cubin_path=/tmp/p5a-wick-target/release/build/p5a-eval-65e0a92ba759f870/out/p5a_s4_kernels.sm_89.cubin
+cubin_sha256=6afebd96a8bb9c908de07c2cd094b43af4dc29ef6f90c464b1b55436a77cda44
+ptx_float_opcode_hits=0
+float_opcode_hits=0
