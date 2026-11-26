@@ -9,11 +9,13 @@ use sha2::{Digest, Sha256};
 use std::io::{self, BufRead, Read as IoRead, Write};
 use std::path::{Path, PathBuf};
 use std::process;
+#[cfg(feature = "p1-count-serving")]
+use uor_r4_count_runtime::p4_serving::{P4Session, P4_MAX_CONTEXT};
 use uor_r4_integer::bundle::{create_test_bundle_with_byte_vocab, Bundle};
 use uor_r4_integer::config::ReadMode;
 #[cfg(feature = "p1-count-serving")]
 use uor_r4_integer::discrete_d11::count_deployment::{
-    self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA,
+    self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
 use uor_r4_integer::discrete_d11::pair_rank;
 use uor_r4_integer::generation::conversation::{
@@ -2268,15 +2270,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         }
     };
     #[cfg(feature = "p1-count-serving")]
-    let (model, p1) = (deployment.model, deployment.state);
+    let (model, p1, p4) = (deployment.model, deployment.state, deployment.p4);
     #[cfg(feature = "p1-count-serving")]
-    if cli.p1_trace && p1.is_none() {
+    if cli.p1_trace && p1.is_none() && p4.is_none() {
         return Err(IntegerError::Invalid(
-            "--p1-trace requires count state".into(),
+            "--p1-trace requires count or P4 state".into(),
         ));
     }
     #[cfg(feature = "p1-count-serving")]
-    let profile_start = profile_start.filter(|_| p1.is_some());
+    let profile_start = profile_start.filter(|_| p1.is_some() || p4.is_some());
     let mut text_mode = None;
     let encoded;
     let prompt = if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
@@ -2311,6 +2313,13 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             .as_deref()
             .ok_or_else(|| IntegerError::Invalid("missing discrete prompt".into()))?
     };
+    #[cfg(feature = "p1-count-serving")]
+    let context_limit = if p4.is_some() {
+        P4_MAX_CONTEXT
+    } else {
+        model.shape().context as usize
+    };
+    #[cfg(not(feature = "p1-count-serving"))]
     let context_limit = model.shape().context as usize;
     if prompt.len() > context_limit {
         return Err(IntegerError::Invalid(format!(
@@ -2379,12 +2388,68 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let mut count_masses = Vec::new();
     #[cfg(feature = "p1-count-serving")]
     let mut p1_steps = Vec::new();
+    #[cfg(feature = "p1-count-serving")]
+    let mut p4_steps = Vec::new();
+    #[cfg(feature = "p1-count-serving")]
+    let mut p4_session = if let Some(_engine) = &p4 {
+        let mut s = P4Session::new();
+        let prompt_u16: Vec<u16> = prompt
+            .iter()
+            .map(|&id| {
+                u16::try_from(id)
+                    .map_err(|e| IntegerError::Invalid(format!("invalid P4 token id: {e}")))
+            })
+            .collect::<Result<Vec<u16>>>()?;
+        s.sync_prompt(&prompt_u16)
+            .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+        Some(s)
+    } else {
+        None
+    };
     let mut s2_steps = Vec::new();
     #[cfg(feature = "p1-count-serving")]
     let decode_start = profile_start.map(|_| std::time::Instant::now());
     for _ in 0..decode_tokens {
         #[cfg(feature = "p1-count-serving")]
-        let p1_winner = if let Some(engine) = &p1 {
+        let p4_winner = if let (Some(engine), Some(session)) = (&p4, &mut p4_session) {
+            let (id, observation) = session
+                .step(&engine.inner, read_enabled, cli.p1_trace)
+                .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+            if let Some(st) = observation {
+                p4_steps.push(serde_json::json!({
+                    "token": st.token_id,
+                    "bucket": st.bucket,
+                    "highest_order": st.highest_order,
+                    "mass_q48": st.mass_q48,
+                    "top_ties": st.top_ties,
+                    "mass_sha256": st.mass_sha256,
+                    "prefix_sha256": st.prefix_sha256,
+                    "context_tokens": st.context_tokens,
+                    "pick_pos": st.pick_pos,
+                    "pick_distance": st.pick_distance,
+                    "pick_ties": st.pick_ties,
+                    "pick_successor": st.pick_successor,
+                    "pick_class": st.pick_class,
+                    "s3_pkey": st.s3_pkey,
+                    "s3_backoff_key": st.s3_backoff_key,
+                    "s3_mode": st.s3_mode,
+                    "s2_skip_keys": st.s2_skip_keys,
+                    "s2_skip_hit_mask": st.s2_skip_hit_mask,
+                    "cache_hit_state": st.cache_hit_state,
+                    "s4_role_scores": st.s4_role_scores,
+                    "s4_role_choice": st.s4_role_choice,
+                }));
+            }
+            Some(u32::from(id))
+        } else {
+            None
+        };
+        #[cfg(not(feature = "p1-count-serving"))]
+        let p4_winner: Option<u32> = None;
+        #[cfg(feature = "p1-count-serving")]
+        let p1_winner = if p4_winner.is_some() {
+            p4_winner
+        } else if let Some(engine) = &p1 {
             let (id, observation) = engine.next(&context, read_enabled, cli.p1_trace)?;
             if let Some(step) = observation {
                 p1_steps.push(step);
@@ -2394,7 +2459,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             None
         };
         #[cfg(not(feature = "p1-count-serving"))]
-        let p1_winner: Option<u32> = None;
+        let p1_winner: Option<u32> = p4_winner;
         let ordinary = if let Some(id) = p1_winner {
             id
         } else if let Some(table) = model.active_s2() {
@@ -2428,7 +2493,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         };
         generated_ids.push(prediction);
         #[cfg(feature = "p1-count-serving")]
-        if p1.is_some() && prediction == 1 {
+        if (p1.is_some() || p4.is_some()) && prediction == 1 {
             break;
         }
         if text_mode
@@ -2441,6 +2506,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             context.remove(0);
         }
         context.push(prediction);
+        #[cfg(feature = "p1-count-serving")]
+        if let Some(session) = &mut p4_session {
+            let tok_u16 = u16::try_from(prediction).map_err(|e| {
+                IntegerError::Invalid(format!("invalid P4 generated token id: {e}"))
+            })?;
+            session
+                .observe_generated(tok_u16)
+                .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+        }
     }
     #[cfg(feature = "p1-count-serving")]
     if let (Some(open), Some(decode)) = (profile_start, decode_start) {
@@ -2464,6 +2538,24 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         "prompt_ids": prompt,
         "generated_ids": generated_ids,
     });
+    #[cfg(feature = "p1-count-serving")]
+    if let Some(engine) = &p4 {
+        record["decoding"] =
+            "greedy P4 S0-S6 integer runtime (UORKNC03 + S3 + S2-skip + CausalSessionCache + S4 + S6)"
+                .into();
+        record["p4_sha256"] = engine.artifact_sha256.as_str().into();
+        if let Some(identity) = &deployment.identity {
+            record["artifact_sha256"] = identity.artifact_sha256.as_str().into();
+            record["model_schema"] = COUNT_SCHEMA_P4.into();
+            record["p4_state_sha256"] = engine.artifact_sha256.as_str().into();
+            record["p4_trunk_sha256"] = model.artifact_sha256().into();
+        }
+        if cli.p1_trace {
+            record["p4_steps"] = p4_steps.into();
+            record["p4_components"] = engine.component_digests.clone();
+        }
+        record["read_enabled"] = read_enabled.into();
+    }
     #[cfg(feature = "p1-count-serving")]
     if let Some(engine) = &p1 {
         record["decoding"] = "greedy complete count and fitted native A1 mixture".into();

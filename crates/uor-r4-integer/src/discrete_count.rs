@@ -2,7 +2,13 @@ use crate::{discrete_d11::IntegerDiscreteModel, IntegerError, Result};
 use serde::Deserialize;
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};
-use uor_r4_count_runtime::{CompactCountLookup, FrozenPickMixture, PickClassRule};
+use uor_r4_count_runtime::{
+    p3_state::{BrierS6Weights, S4ConjunctionTable},
+    p4_serving::{
+        CompactS2SkipView, CompactS3View, P4State, MAGIC_UORS2C01, MAGIC_UORS3C01, P4_MAX_CONTEXT,
+    },
+    CompactCountLookup, FrozenPickMixture, PickClassRule,
+};
 
 const A1_TRUNK: &str = "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d";
 
@@ -205,6 +211,9 @@ impl<'a> P1<'a> {
 }
 
 pub const SCHEMA: &str = "uor-r4.lut-discrete-count/1";
+pub const SCHEMA_P4: &str = "uor-r4.lut-discrete-p4/1";
+pub const MAGIC_P4_STATE: &[u8; 8] = b"UORP4A01";
+const UORP4A01_HEADER_BYTES: usize = 8 + 7 * 8 + 7 * 32;
 const MAX_DEPLOYMENT_HEADER: usize = 4096;
 
 #[derive(Deserialize, serde::Serialize)]
@@ -224,11 +233,161 @@ pub struct DeploymentIdentity {
     pub state_bytes: usize,
 }
 
+pub struct P4<'a> {
+    pub inner: P4State<'a>,
+    pub artifact_sha256: String,
+    pub component_digests: Value,
+}
+
+struct P4ParsedComponents<'a> {
+    inner: P4State<'a>,
+    component_digests: Value,
+}
+
+impl<'a> P4<'a> {
+    #[allow(clippy::too_many_arguments)]
+    fn validate_slices(
+        model: &IntegerDiscreteModel,
+        fit_json: &[u8],
+        a1s_weights_bytes: &[u8],
+        counts_bytes: &'a [u8],
+        s3_bytes: &'a [u8],
+        s2_skip_bytes: &'a [u8],
+        s4_bytes: &[u8],
+        s6_bytes: &[u8],
+    ) -> Result<P4ParsedComponents<'a>> {
+        if model.shape().vocabulary != 4096
+            || model.shape().blocks != 4
+            || (model.shape().context != 192 && model.shape().context != P4_MAX_CONTEXT as u32)
+        {
+            return Err(invalid("P4 trunk shape mismatch"));
+        }
+        let manifest: Fit = serde_json::from_slice(fit_json)?;
+        let prepared = &manifest.prepared;
+        if prepared.trunk_sha256 != model.artifact_sha256() {
+            return Err(invalid("P4 fit trunk digest mismatch"));
+        }
+        let fit_digest: [u8; 32] = Sha256::digest(fit_json).into();
+        let a1s_weights =
+            FrozenPickMixture::from_bytes(a1s_weights_bytes, fit_digest).map_err(invalid)?;
+        manifest.validate_weights(&a1s_weights)?;
+        if a1s_weights.rule() != PickClassRule::Five || manifest.arm.as_deref() != Some("a1s") {
+            return Err(invalid("P4 requires 5-class A1s Pick mixture"));
+        }
+        let c_sha = digest(&prepared.c_sha256)?;
+        let r_sha = digest(
+            prepared
+                .r_sha256
+                .as_deref()
+                .ok_or_else(|| invalid("P4 fit manifest has no R digest"))?,
+        )?;
+        let compact_sha = digest(&prepared.compact_sha256)?;
+        // Counts may carry order <= 10 (production Wick full-c.v3 is order 10; lower orders
+        // populate only active ML columns while inactive columns remain 0 in the 22-expert mix).
+        let counts =
+            CompactCountLookup::from_bytes(counts_bytes, c_sha, compact_sha).map_err(invalid)?;
+        if s3_bytes.get(..8) != Some(MAGIC_UORS3C01.as_slice()) {
+            return Err(invalid("P4 expects UORS3C01 compact S3 section"));
+        }
+        let s3 = CompactS3View::from_bytes(s3_bytes).map_err(invalid)?;
+        if s3.train_sha256 != c_sha {
+            return Err(invalid("P4 S3 train_sha256 mismatch"));
+        }
+        if s2_skip_bytes.get(..8) != Some(MAGIC_UORS2C01.as_slice()) {
+            return Err(invalid("P4 expects UORS2C01 compact S2-skip section"));
+        }
+        let s2_skip = CompactS2SkipView::from_bytes(s2_skip_bytes).map_err(invalid)?;
+        if s2_skip.c_corpus_sha256 != c_sha {
+            return Err(invalid("P4 S2-skip c_corpus_sha256 mismatch"));
+        }
+        let s4_sha: [u8; 32] = Sha256::digest(s4_bytes).into();
+        let s6_sha: [u8; 32] = Sha256::digest(s6_bytes).into();
+        let s4 = S4ConjunctionTable::from_bytes(s4_bytes, c_sha, s4_sha).map_err(invalid)?;
+        let s6 = BrierS6Weights::from_bytes(s6_bytes, r_sha, s6_sha).map_err(invalid)?;
+        let codes = model.identity_pick_codes()?;
+
+        let a1s_sha: [u8; 32] = Sha256::digest(a1s_weights_bytes).into();
+        let component_digests = json!({
+            "fit_manifest_sha256": hex::encode(fit_digest),
+            "a1s_weights_sha256": hex::encode(a1s_sha),
+            "count_sha256": prepared.compact_sha256,
+            "s3_sha256": hex::encode(s3.bytes_sha256),
+            "s2_skip_sha256": hex::encode(s2_skip.bytes_sha256),
+            "s4_sha256": hex::encode(s4_sha),
+            "s6_sha256": hex::encode(s6_sha),
+        });
+        let inner = P4State::from_components(
+            counts,
+            compact_sha,
+            a1s_weights,
+            a1s_sha,
+            fit_digest,
+            s3,
+            s2_skip,
+            s4,
+            s4_sha,
+            s6,
+            s6_sha,
+            codes,
+        )
+        .map_err(invalid)?;
+        Ok(P4ParsedComponents {
+            inner,
+            component_digests,
+        })
+    }
+
+    pub fn load(bytes: &'a [u8], model: &IntegerDiscreteModel) -> Result<Self> {
+        let (header, body) = bytes
+            .split_at_checked(UORP4A01_HEADER_BYTES)
+            .ok_or_else(|| invalid("truncated P4 state package"))?;
+        if &header[..8] != MAGIC_P4_STATE {
+            return Err(invalid("unknown P4 package format"));
+        }
+        let mut lens = [0usize; 7];
+        let mut total_expected = 0usize;
+        for (i, len_out) in lens.iter_mut().enumerate() {
+            let word = &header[8 + i * 8..8 + (i + 1) * 8];
+            let l_u64 = u64::from_le_bytes(word.try_into().map_err(invalid)?);
+            let l = usize::try_from(l_u64).map_err(|_| invalid("P4 section size overflow"))?;
+            *len_out = l;
+            total_expected = total_expected
+                .checked_add(l)
+                .ok_or_else(|| invalid("P4 total state size overflow"))?;
+        }
+        if body.len() != total_expected {
+            return Err(invalid("P4 body length mismatch"));
+        }
+        let mut slices: [&[u8]; 7] = [&[]; 7];
+        let mut cur = body;
+        for (i, &l) in lens.iter().enumerate() {
+            let (head, tail) = cur
+                .split_at_checked(l)
+                .ok_or_else(|| invalid("truncated P4 section"))?;
+            let exp_digest = &header[64 + i * 32..64 + (i + 1) * 32];
+            if Sha256::digest(head)[..] != *exp_digest {
+                return Err(invalid(format!("P4 section {i} SHA-256 mismatch")));
+            }
+            slices[i] = head;
+            cur = tail;
+        }
+        let parsed = Self::validate_slices(
+            model, slices[0], slices[1], slices[2], slices[3], slices[4], slices[5], slices[6],
+        )?;
+        Ok(Self {
+            inner: parsed.inner,
+            artifact_sha256: hex::encode(Sha256::digest(bytes)),
+            component_digests: parsed.component_digests,
+        })
+    }
+}
+
 /// Ordinary discrete client state. Embedded compact tables borrow the artifact
 /// buffer directly. For retained D31 callers they instead borrow the sidecar.
 pub struct DiscreteCountModel<'a> {
     pub model: IntegerDiscreteModel,
     pub state: Option<P1<'a>>,
+    pub p4: Option<Box<P4<'a>>>,
     pub identity: Option<DeploymentIdentity>,
 }
 
@@ -254,9 +413,9 @@ fn deployment_header(bytes: &[u8]) -> Result<Option<(DeploymentHeader, usize)>> 
         schema: &'a str,
     }
     if serde_json::from_slice::<Schema<'_>>(header_bytes)
-        .map(|header| header.schema)
+        .map(|header| header.schema == SCHEMA || header.schema == SCHEMA_P4)
         .ok()
-        != Some(SCHEMA)
+        != Some(true)
     {
         return Ok(None);
     }
@@ -370,7 +529,7 @@ pub fn load_client_artifact(
                     schema: &'a str,
                 }
                 let is_deployment = serde_json::from_slice::<Schema<'_>>(&header_buf)
-                    .map(|s| s.schema == SCHEMA)
+                    .map(|s| s.schema == SCHEMA || s.schema == SCHEMA_P4)
                     .unwrap_or(false);
                 if is_deployment {
                     let header: DeploymentHeader = serde_json::from_slice(&header_buf)?;
@@ -426,6 +585,10 @@ pub fn load_client_artifact(
                     if reader.read(&mut tail)? != 0 {
                         return Err(invalid("embedded count state length mismatch"));
                     }
+                    let is_p4_magic = state_bytes.get(..8) == Some(MAGIC_P4_STATE.as_slice());
+                    if (header.schema == SCHEMA_P4) != is_p4_magic {
+                        return Err(invalid("embedded deployment schema/magic mismatch"));
+                    }
                     full_hasher.update(&state_bytes);
                     return Ok(ClientArtifactFile::Embedded {
                         model,
@@ -460,6 +623,7 @@ impl<'a> DiscreteCountModel<'a> {
         Ok(Self {
             model,
             state,
+            p4: None,
             identity: None,
         })
     }
@@ -470,6 +634,18 @@ impl<'a> DiscreteCountModel<'a> {
         expected_state_sha256: &str,
         identity: DeploymentIdentity,
     ) -> Result<Self> {
+        if state_bytes.get(..8) == Some(MAGIC_P4_STATE.as_slice()) {
+            let p4 = P4::load(state_bytes, &model)?;
+            if p4.artifact_sha256 != expected_state_sha256 {
+                return Err(invalid("embedded P4 state digest mismatch"));
+            }
+            return Ok(Self {
+                model,
+                state: None,
+                p4: Some(Box::new(p4)),
+                identity: Some(identity),
+            });
+        }
         let state = P1::load(state_bytes, &model)?;
         if state.artifact_sha256 != expected_state_sha256 {
             return Err(invalid("embedded P1 state digest mismatch"));
@@ -477,6 +653,7 @@ impl<'a> DiscreteCountModel<'a> {
         Ok(Self {
             model,
             state: Some(state),
+            p4: None,
             identity: Some(identity),
         })
     }
@@ -487,6 +664,10 @@ impl<'a> DiscreteCountModel<'a> {
         };
         if sidecar.is_some() {
             return Err(reject_sidecar());
+        }
+        let is_p4_magic = state.get(..8) == Some(MAGIC_P4_STATE.as_slice());
+        if (header.schema == SCHEMA_P4) != is_p4_magic {
+            return Err(invalid("embedded deployment schema/magic mismatch"));
         }
         let model = IntegerDiscreteModel::from_bytes(trunk)?;
         if model.artifact_sha256() != header.trunk_sha256 {
@@ -504,6 +685,132 @@ impl<'a> DiscreteCountModel<'a> {
             },
         )
     }
+}
+
+/// Encode the 288-byte `UORP4A01` header and compute the exact state container digest across
+/// all 7 component slices without copying them into a temporary combined `Vec<u8>`.
+fn build_p4_state_header(
+    slices: [&[u8]; 7],
+) -> Result<([u8; UORP4A01_HEADER_BYTES], usize, String)> {
+    let mut hdr = [0u8; UORP4A01_HEADER_BYTES];
+    hdr[..8].copy_from_slice(MAGIC_P4_STATE);
+    let mut body_bytes = 0usize;
+    let mut hasher = Sha256::new();
+    for (i, slice) in slices.iter().enumerate() {
+        let l = slice.len();
+        hdr[8 + i * 8..8 + (i + 1) * 8].copy_from_slice(&(l as u64).to_le_bytes());
+        let d: [u8; 32] = Sha256::digest(slice).into();
+        hdr[64 + i * 32..64 + (i + 1) * 32].copy_from_slice(&d);
+        body_bytes = body_bytes
+            .checked_add(l)
+            .ok_or_else(|| invalid("P4 state size overflow"))?;
+    }
+    hasher.update(hdr);
+    for slice in slices {
+        hasher.update(slice);
+    }
+    let state_len = UORP4A01_HEADER_BYTES
+        .checked_add(body_bytes)
+        .ok_or_else(|| invalid("P4 total state length overflow"))?;
+    Ok((hdr, state_len, hex::encode(hasher.finalize())))
+}
+
+/// Encode the 7 validated P4 components into a contiguous `UORP4A01` state byte buffer (test helper).
+#[allow(clippy::too_many_arguments)]
+pub fn encode_p4_state_bytes(
+    fit_json: &[u8],
+    a1s_weights: &[u8],
+    counts_v3: &[u8],
+    s3_compact: &[u8],
+    s2_skip_compact: &[u8],
+    s4_table: &[u8],
+    s6_weights: &[u8],
+) -> Result<Vec<u8>> {
+    let slices = [
+        fit_json,
+        a1s_weights,
+        counts_v3,
+        s3_compact,
+        s2_skip_compact,
+        s4_table,
+        s6_weights,
+    ];
+    let (hdr, total, _) = build_p4_state_header(slices)?;
+    let mut out = Vec::with_capacity(total);
+    out.extend_from_slice(&hdr);
+    for s in slices {
+        out.extend_from_slice(s);
+    }
+    Ok(out)
+}
+
+/// Stream a validated lossless `uor-r4.lut-discrete-p4/1` deployment package atomically to `path`
+/// without allocating an intermediate multi-GB buffer.
+#[allow(clippy::too_many_arguments)]
+pub fn write_p4_deployment(
+    trunk: &[u8],
+    fit_json: &[u8],
+    a1s_weights: &[u8],
+    counts_v3: &[u8],
+    s3_compact: &[u8],
+    s2_skip_compact: &[u8],
+    s4_table: &[u8],
+    s6_weights: &[u8],
+    path: &std::path::Path,
+) -> Result<()> {
+    use std::io::{BufWriter, Write};
+
+    let model = IntegerDiscreteModel::from_bytes(trunk)?;
+    let _validated = P4::validate_slices(
+        &model,
+        fit_json,
+        a1s_weights,
+        counts_v3,
+        s3_compact,
+        s2_skip_compact,
+        s4_table,
+        s6_weights,
+    )?;
+    let slices = [
+        fit_json,
+        a1s_weights,
+        counts_v3,
+        s3_compact,
+        s2_skip_compact,
+        s4_table,
+        s6_weights,
+    ];
+    let (p4_hdr, state_bytes, state_sha256) = build_p4_state_header(slices)?;
+    let header = serde_json::to_vec(&DeploymentHeader {
+        schema: SCHEMA_P4.into(),
+        trunk_bytes: trunk.len(),
+        state_bytes,
+        trunk_sha256: model.artifact_sha256().into(),
+        state_sha256,
+    })?;
+    let file_name = path
+        .file_name()
+        .and_then(|s| s.to_str())
+        .ok_or_else(|| invalid("P4 deployment output path has no file name"))?;
+    let tmp_path = path.with_file_name(format!(".{file_name}.tmp.{}", std::process::id()));
+    let write_res = (|| -> Result<()> {
+        let file = std::fs::File::create_new(&tmp_path)?;
+        let mut output = BufWriter::with_capacity(1 << 20, file);
+        output.write_all(crate::discrete_d11::MAGIC)?;
+        output.write_all(&(header.len() as u64).to_le_bytes())?;
+        output.write_all(&header)?;
+        output.write_all(trunk)?;
+        output.write_all(&p4_hdr)?;
+        for s in slices {
+            output.write_all(s)?;
+        }
+        output.flush()?;
+        output.get_ref().sync_all()?;
+        std::fs::hard_link(&tmp_path, path)?;
+        Ok(())
+    })();
+    let _ = std::fs::remove_file(&tmp_path);
+    write_res
 }
 
 /// Write a lossless deployment using the same component validation as serving.

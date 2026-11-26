@@ -53,6 +53,20 @@ pub mod p3_state {
     include!("kn_ceiling/runtime/p3_state.rs");
 }
 
+pub mod p4_serving {
+    use crate::{
+        code_pick, invalid,
+        kn_score::KN_BASE_MASS,
+        p3_state::{
+            apply_lawful_stop_and_rep_guard, s4_pair_key, BrierS6Weights, LawfulStopConfig,
+            S4ConjunctionTable, S4ControlMode, StopGuardTrace,
+        },
+        CompactCountLookup, FrozenPickMixture, PickClassRule, Result,
+    };
+    use sha2::{Digest, Sha256};
+    include!("kn_ceiling/runtime/p4_serving.rs");
+}
+
 #[derive(Debug)]
 pub struct Error(String);
 impl std::fmt::Display for Error {
