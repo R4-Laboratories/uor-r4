@@ -1,0 +1,44 @@
+{
+  "strongest": {
+    "pairs": 32,
+    "full": 0,
+    "correct_source_flips": 0,
+    "distinct_reads": 0,
+    "pairs_with_abstention": 0
+  },
+  "all": {
+    "pairs": 32,
+    "full": 0,
+    "correct_source_flips": 0,
+    "distinct_reads": 0,
+    "pairs_with_abstention": 0
+  },
+  "ordered-all": {
+    "pairs": 32,
+    "full": 0,
+    "correct_source_flips": 4,
+    "distinct_reads": 12,
+    "pairs_with_abstention": 0
+  },
+  "ordered_base": {
+    "pairs": 32,
+    "full": 0,
+    "correct_source_flips": 4,
+    "distinct_reads": 12,
+    "pairs_with_abstention": 0
+  },
+  "correct_link": {
+    "pairs": 32,
+    "full": 32,
+    "correct_source_flips": 32,
+    "distinct_reads": 32,
+    "pairs_with_abstention": 0
+  },
+  "exchanged_link": {
+    "pairs": 32,
+    "full": 0,
+    "correct_source_flips": 0,
+    "distinct_reads": 0,
+    "pairs_with_abstention": 0
+  }
+}

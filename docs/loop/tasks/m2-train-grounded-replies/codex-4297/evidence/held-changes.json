@@ -1,0 +1,38 @@
+[
+  {
+    "from": "baseline",
+    "to": "strongest",
+    "rows": 256,
+    "joint_read_changes": 0,
+    "three_noun_address_changes": 0,
+    "full_prompts_gained": 0,
+    "full_prompts_lost": 0
+  },
+  {
+    "from": "strongest",
+    "to": "all",
+    "rows": 256,
+    "joint_read_changes": 0,
+    "three_noun_address_changes": 0,
+    "full_prompts_gained": 0,
+    "full_prompts_lost": 0
+  },
+  {
+    "from": "all",
+    "to": "ordered-all",
+    "rows": 256,
+    "joint_read_changes": 80,
+    "three_noun_address_changes": 80,
+    "full_prompts_gained": 0,
+    "full_prompts_lost": 0
+  },
+  {
+    "from": "ordered_base",
+    "to": "ordered-all",
+    "rows": 256,
+    "joint_read_changes": 0,
+    "three_noun_address_changes": 0,
+    "full_prompts_gained": 0,
+    "full_prompts_lost": 0
+  }
+]

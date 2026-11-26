@@ -1,0 +1,47 @@
+{
+  "schema": "uor-r4.codex-4297.client-selection-fixture/1",
+  "pass": true,
+  "cases": [
+    {
+      "scenario": "singleton",
+      "passing": [
+        "ordered-all"
+      ],
+      "lanes": 5,
+      "stock_cases": 2,
+      "planned_cases": 10,
+      "graded_token_cases": 10
+    },
+    {
+      "scenario": "mixed",
+      "passing": [
+        "strongest",
+        "all"
+      ],
+      "lanes": 6,
+      "stock_cases": 2,
+      "planned_cases": 12,
+      "graded_token_cases": 12
+    },
+    {
+      "scenario": "all",
+      "passing": [
+        "strongest",
+        "all",
+        "ordered-all"
+      ],
+      "lanes": 7,
+      "stock_cases": 2,
+      "planned_cases": 14,
+      "graded_token_cases": 14
+    }
+  ],
+  "refused_empty": true,
+  "forged_gate_checks": 8,
+  "invalid_token_ledgers_rejected": 4,
+  "per_lane_first_four_checked": true,
+  "differential_extra_lane_rejected": true,
+  "source": "sealed historical ordinary records with correct supplied traces reused for synthetic trained and baseline lanes",
+  "generated_replies": 0,
+  "gpu_runs": 0
+}

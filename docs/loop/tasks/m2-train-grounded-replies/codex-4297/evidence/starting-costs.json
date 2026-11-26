@@ -1,0 +1,27 @@
+{
+  "far_edges": 256,
+  "endpoint_gold": {
+    "min": 4,
+    "median": 17,
+    "max": 24
+  },
+  "ordered_gold": {
+    "min": 27,
+    "median": 42,
+    "max": 63
+  },
+  "endpoint_rival": {
+    "min": 6,
+    "median": 14,
+    "max": 36
+  },
+  "ordered_rival": {
+    "min": 6,
+    "median": 21.5,
+    "max": 39
+  },
+  "gold_cost_increases": 256,
+  "rival_cost_increases": 64,
+  "changed_gold_center": 16,
+  "changed_rival_site": 72
+}

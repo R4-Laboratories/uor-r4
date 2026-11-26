@@ -1,0 +1,40 @@
+--- src/main.rs
++++ src/main.rs
+@@ -1,0 +2,4 @@
++mod bridge;
++mod contrast;
++#[allow(dead_code)]
++mod packet;
+@@ -213,0 +218 @@
++    ordered: bool,
+@@ -254,9 +259 @@
+-        let prefix = &tokens[..tokens.len().min(2)];
+-        let suffix: Vec<_> = tokens.iter().rev().take(2).copied().collect();
+-        let (gov, noun) = if forward {
+-            (prefix, suffix.as_slice())
+-        } else {
+-            (suffix.as_slice(), prefix)
+-        };
+-        out[20..26].copy_from_slice(&projection(gov, roots)?[8..14]);
+-        out[26..32].copy_from_slice(&projection(noun, roots)?[8..14]);
++        out[20..32].copy_from_slice(&bridge::ends(tokens, roots, forward, ordered)?);
+@@ -267,0 +265 @@
++    ordered: bool,
+@@ -358 +356 @@
+-                for v in transport(&tape, w, site, n, &features, &self.roots)? {
++                for v in transport(&tape, w, site, n, &features, &self.roots, self.ordered)? {
+@@ -385 +383 @@
+-fn pack(text: &str, history: &str, model: &str, codec: &str, output: &str) -> Result<()> {
++fn pack(text: &str, history: &str, model: &str, codec: &str, output: &str, ordered: bool) -> Result<()> {
+@@ -416,0 +415 @@
++        ordered,
+@@ -557 +556,5 @@
+-        [op, t, h, m, c, o] if op == "pack" => pack(t, h, m, c, o),
++        [op, t, h, m, c, o] if op == "pack" || op == "pack-ordered" =>
++            pack(t, h, m, c, o, op == "pack-ordered"),
++        [op, a, b] if op == "compare-bridge" => bridge::compare(a, b),
++        [op, r, a, b] if op == "compare-contrast" => contrast::compare(r, a, b),
++        [op, m, c] if op == "bridge-fixture" => bridge::fixture(m, c),
+@@ -559 +562 @@
+-        _ => Err("use pack TEXT_ARRAY HISTORY MODEL CODEC NEW_DIR or supervise REFERENCE COORDINATES NEW_LABELS NEW_AID".into()),
++        _ => Err("use pack|pack-ordered TEXT_ARRAY HISTORY MODEL CODEC NEW_DIR, compare-bridge ENDPOINT ORDERED, compare-contrast REFERENCE ENDPOINT ORDERED, bridge-fixture MODEL CODEC, or supervise REFERENCE COORDINATES NEW_LABELS NEW_AID".into()),

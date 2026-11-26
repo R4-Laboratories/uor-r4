@@ -1,0 +1,159 @@
+--- src/main.rs
++++ src/main.rs
+@@ -37,0 +38,8 @@
++struct Contrast {
++    before: String,
++    after: String,
++    marks: [String; 2],
++}
++
++#[derive(Deserialize)]
++#[serde(deny_unknown_fields)]
+@@ -52,0 +61 @@
++    contrast: Option<Contrast>,
+@@ -436,0 +446 @@
++    contrast: bool,
+@@ -468 +477,0 @@
+-                let take = cell & 1 != 0;
+@@ -470,2 +478,0 @@
+-                let neutral_before = cell & 4 != 0;
+-                let job_requested = cell & 8 != 0;
+@@ -472,0 +480,19 @@
++                if contrast && (!far || cell & 4 != 0) {
++                    continue;
++                }
++                let take = if contrast {
++                    cell & 8 != 0
++                } else {
++                    cell & 1 != 0
++                };
++                let choose_first = cell & 1 == 0;
++                let neutral_before = if contrast {
++                    !choose_first
++                } else {
++                    cell & 4 != 0
++                };
++                let job_requested = if contrast {
++                    governor_first != (fact_index != 0)
++                } else {
++                    cell & 8 != 0
++                };
+@@ -484 +510,35 @@
+-                let reference_clause = wording.scope(&wording.reference, take, far, governor_first);
++                let term = |authorizes| {
++                    if authorizes {
++                        &wording.authorize
++                    } else {
++                        &wording.decline
++                    }
++                };
++                let selector = if choose_first { "first" } else { "later" };
++                let contrast_clause = if contrast {
++                    let spec = wording
++                        .contrast
++                        .as_ref()
++                        .ok_or("missing contrast grammar")?;
++                    let template = if governor_first {
++                        &spec.before
++                    } else {
++                        &spec.after
++                    };
++                    let occurrences = spec
++                        .marks
++                        .each_ref()
++                        .map(|mark| format!("{mark} {}", wording.reference));
++                    let clause = template
++                        .replace("{first_occurrence}", &occurrences[0])
++                        .replace("{second_occurrence}", &occurrences[1])
++                        .replace("{selector}", selector)
++                        .replace("{governor}", term(take));
++                    Some((clause, occurrences))
++                } else {
++                    None
++                };
++                let reference_clause = match &contrast_clause {
++                    Some((clause, _)) => clause.clone(),
++                    None => wording.scope(&wording.reference, take, far, governor_first),
++                };
+@@ -489 +549,3 @@
+-                let first_sentence = if neutral_before {
++                let first_sentence = if contrast {
++                    reference_clause.clone()
++                } else if neutral_before {
+@@ -520 +582,12 @@
+-                let ref_owner = location(&user, &reference_clause, &wording.reference)?;
++                let (ref_owner, neutral_bytes) = if let Some((_, occurrences)) = &contrast_clause {
++                    let target = usize::from(!choose_first);
++                    (
++                        location(&user, &occurrences[target], &wording.reference)?,
++                        location(&user, &occurrences[1 - target], &wording.reference)?,
++                    )
++                } else {
++                    (
++                        location(&user, &reference_clause, &wording.reference)?,
++                        location(&user, &neutral, &wording.reference)?,
++                    )
++                };
+@@ -528,7 +600,0 @@
+-                let term = |authorizes| {
+-                    if authorizes {
+-                        &wording.authorize
+-                    } else {
+-                        &wording.decline
+-                    }
+-                };
+@@ -539 +604,0 @@
+-                let neutral_bytes = location(&user, &neutral, &wording.reference)?;
+@@ -589 +654 @@
+-                rows.push(json!({
++                let mut row = json!({
+@@ -622 +687,13 @@
+-                }));
++                });
++                if contrast {
++                    let bytes = location(&user, &reference_clause, selector)?;
++                    let framed = Span {
++                        start: bytes.start + 1,
++                        end: bytes.end + 1,
++                    };
++                    row["contrast"] = json!({
++                        "selector":selector,"bytes":bytes,
++                        "tokens":covering_tokens(codec, &turn, framed)?
++                    });
++                }
++                rows.push(row);
+@@ -626 +703,4 @@
+-    check(rows.len() == FRESH_ROWS, "wrong fresh enrollment")?;
++    check(
++        rows.len() == if contrast { 64 } else { FRESH_ROWS },
++        "wrong fresh enrollment",
++    )?;
+@@ -767,2 +847,3 @@
+-    let [codec_path, artifact_path, history_path, design_path, output] = args.as_slice() else {
+-        return Err("usage: governor-links-panel CODEC ARTIFACT HISTORY GRAMMAR NEW_DIR".into());
++    let (contrast, args) = match args.as_slice() {
++        [flag, rest @ ..] if flag == "--contrast" => (true, rest),
++        rest => (false, rest),
+@@ -769,0 +851,6 @@
++    let [codec_path, artifact_path, history_path, design_path, output] = args else {
++        return Err(
++            "usage: governor-links-panel [--contrast] CODEC ARTIFACT HISTORY GRAMMAR NEW_DIR"
++                .into(),
++        );
++    };
+@@ -778,2 +865,6 @@
+-    let rows = generate(&codec, &protocol, &encoder, &model, &history, &design)?;
+-    fixture(&rows, protocol.eos_id)?;
++    let rows = generate(
++        &codec, &protocol, &encoder, &model, &history, &design, contrast,
++    )?;
++    if !contrast {
++        fixture(&rows, protocol.eos_id)?;
++    }
+@@ -781 +872,5 @@
+-    println!("256 rows / 4 families / 128 exact governor-only pairs / 1,024 registered native tuples / 512 native actions / 512 original copy bodies");
++    if contrast {
++        println!("64 rows / 4 families / 32 selector pairs / 256 registered native tuples / 128 native actions / 128 original copy bodies");
++    } else {
++        println!("256 rows / 4 families / 128 exact governor-only pairs / 1,024 registered native tuples / 512 native actions / 512 original copy bodies");
++    }

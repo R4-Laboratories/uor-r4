@@ -1,0 +1,17 @@
+{
+  "archive_version": "v2",
+  "archive_sha256": "ce1e6257e0a1e81605dfef5d4fcf6e1360e3b85c7a0ebb71321327cca77c730f",
+  "packet_sha256": "992b5cd34fc0d54fea008c1d1a23888ee916984f0e719f21bcfc0d2088880e0f",
+  "members_sha256": "68a764d8d5424b7e673f79f5fb8212415e048888dd21a1c4e310f2f6273b8f71",
+  "members": 4862,
+  "source_member_bytes": 858171429,
+  "archive_bytes": 49601300,
+  "upload_bytes": 50218483,
+  "pack_zfs_allocated_bytes": 78771200,
+  "schema": "uor-r4.codex-4297.store/1",
+  "repo": "caseyallard/uor-r4-store",
+  "path": "results/codex/all-outranker-interval-20261126-ce1e6257e0a1",
+  "revision": "f988e81d12a8fe0cf0711e358c6ce3d218e3b352",
+  "cold_replay_sha256": "d39c895314fb594072a5330b99587006f6408a29dad857262428d01adecb9a30",
+  "verified_immutable_readback": true
+}

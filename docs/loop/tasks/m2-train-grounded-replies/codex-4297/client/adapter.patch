@@ -1,0 +1,188 @@
+--- run-wick.sh
++++ run-wick.sh
+@@ -2,6 +2,7 @@
+ # Run the admitted client measurement and the standing SM89 writer differential on Wick.
+ set -euo pipefail
+ here=$(cd "$(dirname "$0")" && pwd)
++source "$here/lanes-wick.sh"
+ runs=/mnt/plexpool/uor-r4-corpus/runs
+ study="$runs/20261126-codex-all-outranker-interval"
+ client_root="$study/client"
+@@ -35,6 +36,7 @@
+ [[ $here == "$client_root"/* ]]
+ pin "$model_sha" "$model"
+ pin "$codec_sha" "$codec"
++verify "$here"
+ case ${1:?capture or writer} in
+ capture)
+     gate=$(realpath "${2:?approved gate summary}")
+@@ -54,9 +56,12 @@
+     verify "$(dirname "$endpoints")"
+     verify "$(dirname "$gate")"
+     pin "$approved_sha" "$gate"
++    grep -Fxq "$(sha "$gate")  ./summary.json" "$(dirname "$gate")/SHA256SUMS"
++    [[ $endpoints == "$(dirname "$gate")/endpoints.jsonl" ]]
++    grep -Fxq "$(sha "$endpoints")  ./endpoints.jsonl" "$(dirname "$endpoints")/SHA256SUMS"
++    selection=$(read_gate "$gate")
+     pairs=$(jq -er --arg endpoints "$(sha "$endpoints")" --arg ref "$(sha "$reference")" '
+-       select(.pass==true and .endpoints_sha256==$endpoints and .reference_sha256==$ref and
+-         (.pairs | .==floor and .>0)) | .pairs' "$gate")
++       select(.pass and .pairs==128 and .endpoints_sha256==$endpoints and .reference_sha256==$ref)|.pairs' <<< "$selection")
+     pin "$stock_sha" "$stock_model"
+     pin a4f89685e5bb252dba8892a1649c679c8b9d0c05898ea4d29b495cc546be81bc "$client"
+     pin a2ee99a856e727b606e34ac8effa7123668653a4e7c14a454a9ac8fcbc15ea75 "$stock_client"
+@@ -67,6 +72,9 @@
+
+     umask 077
+     mkdir "$out"
++    printf '%s\n' "$selection" > "$out/selection.json"
++    plan_capture "$out" "$reference" "$endpoints" "$model" "$stock_model"
++    cmp "$frozen_panel/fresh/jobs.tsv" <(jq -r 'select(.arm=="native") | [.fold,.id] | @tsv' "$out/plan.jsonl")
+     date -u +%FT%T.%NZ > "$out/start.utc"
+     printf '%s\n' "$workers" > "$out/workers.txt"
+     { uname -sr; lscpu | awk -F ': *' '$1=="Architecture" || $1=="CPU(s)" || $1=="Model name"'; } > "$out/host.txt"
+@@ -74,7 +82,7 @@
+     sha256sum "$gate" "$(dirname "$gate")/SHA256SUMS" "$endpoints" "$(dirname "$endpoints")/SHA256SUMS" \
+       "$frozen_panel/../SHA256SUMS" "$reference" "$client" "$stock_client" "$codec" "$origin_history" \
+       "$prior/observe-case-wick.sh" "$prior/raw.jq" "$prior/score.jq" \
+-      "$here/"{run-wick.sh,common.jq,plan.jq,grade.jq,summary.jq} > "$out/dispatch.sha256"
++      "$here/SHA256SUMS" > "$out/dispatch.sha256"
+
+     mkdir "$out/history"
+     jq -ce --argjson count "$((pairs * 2))" '
+@@ -97,23 +105,6 @@
+           ' "$out/history/$lane.json" > "$out/history/$lane.ok"
+     done
+
+-    jq -ce -L "$here" --slurpfile device "$endpoints" -f "$here/plan.jq" "$reference" > "$out/plan.jsonl"
+-    cmp "$frozen_panel/fresh/jobs.tsv" <(jq -r 'select(.arm=="native") | [.fold,.id] | @tsv' "$out/plan.jsonl")
+-    for lane in stock native baseline strongest all ordered-all correct_link exchanged_link; do
+-        mkdir -p "$out/$lane/fresh/"{plain,trace,wire}
+-    done
+-    # The row observer and writer differential use the same eight-column predecessor job layout.
+-    jq -r --arg path "$out" --arg model "$model" --arg stock_model "$stock_model" '
+-        [.[] | select(.arm=="native")] as $native |
+-        ($native | to_entries[] | .key as $i | .value |
+-          ["stock","fresh",.fold,.id,$stock_model,"-","-",if $i<4 then 1 else 0 end] | @tsv),
+-        (to_entries[] | .key as $i | .value |
+-          [.arm,"fresh",.fold,.id,$model,($path+"/"+.arm+"/fresh/wire/"+.id+".json"),"-",
+-           if $i<28 then 1 else 0 end] | @tsv)' \
+-        -s "$out/plan.jsonl" > "$out/jobs.tsv"
+-    while IFS=$'\t' read -r arm id wire; do
+-        printf '%s\n' "$wire" > "$out/$arm/fresh/wire/$id.json"
+-    done < <(jq -r '[.arm,.id,(.wire|tojson)] | @tsv' "$out/plan.jsonl")
+     sha256sum --strict --quiet -c "$out/dispatch.sha256"
+     export codec frozen_panel out
+     binary=$stock_client
+@@ -124,26 +115,7 @@
+     awk -F '\t' '$1!="stock"' "$out/jobs.tsv" | tr '\t\n' '\0\0' |
+         xargs -0 -r -n8 -P"$workers" bash "$prior/observe-case-wick.sh"
+
+-    while IFS=$'\t' read -r arm cohort _fold id _artifact _wire _field _plain; do
+-        lane="$out/$arm/$cohort"
+-        raw="$lane/trace/$id"
+-        code=$(cat "$raw.exit")
+-        if [[ $code == 0 ]]; then
+-            jq -ce --arg id "$id" '{id:$id,exit:0,record:.}' "$raw.json"
+-        else
+-            jq -nc --arg id "$id" --argjson code "$code" '{id:$id,exit:$code,record:null}'
+-        fi >> "$lane/rows.jsonl"
+-    done < "$out/jobs.tsv"
+-    mkdir "$out/grade"
+-    for arm in native baseline strongest all ordered-all correct_link exchanged_link; do
+-        jq -nce -L "$here" -L "$prior" --arg arm "$arm" --arg model "$model_sha" \
+-           --arg stock_model "$stock_sha" --arg codec_hash "$codec_sha" \
+-           --slurpfile reference "$reference" --slurpfile device "$endpoints" --slurpfile codec "$codec" \
+-           --slurpfile stock "$out/stock/fresh/rows.jsonl" -f "$here/grade.jq" \
+-           "$out/$arm/fresh/rows.jsonl" > "$out/grade/$arm.jsonl"
+-    done
+-    jq -es -L "$here" --argjson pair_count "$pairs" -f "$here/summary.jq" \
+-        "$out/grade/"*.jsonl > "$out/grade/summary.json"
++    collect_capture "$out" "$reference" "$endpoints" "$model" "$stock_model" "$model_sha" "$stock_sha"
+     date -u +%FT%T.%NZ > "$out/complete.utc"
+     seal "$out"
+     verify "$out"
+@@ -154,6 +126,19 @@
+     label=${3:-writer-v1}
+     [[ $capture =~ ^$client_root/capture-v[1-9][0-9]*$ && $label =~ ^writer-v[1-9][0-9]*$ ]]
+     verify "$capture"
++    sha256sum --strict --quiet -c "$capture/dispatch.sha256"
++    grep -Fxq "$(sha256sum "$here/SHA256SUMS")" "$capture/dispatch.sha256"
++    read -r _ gate < "$capture/dispatch.sha256"
++    [[ $gate =~ ^$study/grade-v[1-9][0-9]*/summary\.json$ ]]
++    cmp "$capture/selection.json" <(read_gate "$gate")
++    selected=$(lanes_from "$capture/selection.json")
++    pairs=$(pairs_from "$capture/selection.json")
++    jq -e '.pass and .pairs==128' "$capture/selection.json" >/dev/null
++    cmp "$capture/jobs.tsv" <(write_jobs "$capture" "$selected" "$pairs" "$model" "$stock_model")
++    cmp "$capture/grade/summary.json" <(
++        jq -es -L "$here" --argjson selected "$selected" --argjson pair_count "$pairs" \
++            --slurpfile plan "$capture/plan.jsonl" -f "$here/summary.jq" "$capture/grade/"*.jsonl
++    )
+     jq -e '.source_identity_disagreements | length == 0' "$capture/grade/summary.json" >/dev/null
+     lease="$margin/device-build-v1/source/codex-4281/fit/device-wick.sh"
+     recipe="$margin/physical-methods-v1/docs/loop/tasks/m2-train-grounded-replies/codex-4278/replay/capture-wick.sh"
+@@ -166,6 +151,7 @@
+     export CUDA_DISABLE_PTX_JIT=1 CUDA_FORCE_PTX_JIT=0
+     bash "$lease" "$client_root/$label-lease" bash "$recipe" "$capture" "$bridge" "$device" "$codec" "$client_root/$label"
+     verify "$client_root/$label"
++    check_differential "$capture" "$client_root/$label"
+     ;;
+ *) exit 64 ;;
+ esac
+--- plan.jq
++++ plan.jq
+@@ -1,5 +1,8 @@
+ include "common";
++include "lanes";
+
++assert_ok(declared_lanes($selected); "ordinary plan lanes are not admitted") |
++
+ assert_ok(length > 0 and (map(.id) | length == (unique | length));
+   "panel enrollment is empty or duplicated") |
+ assert_ok(($device | length) == length and ($device | map(.case_id) | length == (unique | length));
+@@ -23,7 +26,7 @@
+   ($r.gold_binding.first_role | IN("home","job")) and
+   ($r.gold_binding.pending | IN("stop","continue"));
+   "second turn is not bound to registered original bytes and generated history for " + $r.id) |
+-(arms[]) as $arm |
++($selected[]) as $arm |
+ $rank.arms[$arm] as $candidate |
+ assert_ok(
+   ($candidate.selection == null and $candidate.tokens == null) or
+@@ -33,7 +36,8 @@
+    all($candidate.tokens[]; span_ok($r.prompt | length)));
+   "invalid winner addresses for " + $r.id + "/" + $arm) |
+ {
+-  id: $r.id, arm: $arm, fold: $r.fold, selection: $candidate.selection,
++  id: $r.id, arm: $arm, fold: $r.fold, pair_id:$r.admission_pair, admission:$r.admission,
++  selection: $candidate.selection,
+   wire: ({prompt_sha256:$r.structural_prompt_sha256,
+           first_role:$r.gold_binding.first_role,pending:$r.gold_binding.pending} +
+     (if $arm == "native" then {learned_field:"scope"}
+--- summary.jq
++++ summary.jq
+@@ -1,4 +1,5 @@
+ include "common";
++include "lanes";
+
+ def tally(condition): map(select(condition)) | length;
+ def distribution: group_by(.) | map({value:.[0],count:length});
+@@ -27,15 +28,14 @@
+     returned_wrong_position:(map(.returned.first_wrong.position) | distribution)
+   };
+
+-assert_ok(length == $pair_count * 2 * (arms | length);
+-  "ordinary readout does not cover the reviewed paired panel") |
++checked_rows($plan; $selected; $pair_count) |
+ . as $all |
+ {
+   pair_count:$pair_count,
+   source_identity_disagreements:[
+     $all[] | select(.source_identity_ok | not) | {id,arm,pair_id,disposition}],
+   arms:[
+-    (arms[]) as $arm |
++    ($selected[]) as $arm |
+     [$all[] | select(.arm == $arm)] as $rows |
+     assert_ok(($rows | map(.id) | unique | length) == $pair_count * 2;
+       "ordinary arm duplicates cases: " + $arm) |

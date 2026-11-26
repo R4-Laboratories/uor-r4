@@ -1,0 +1,12 @@
+{
+  "train_manifest": "6e9fd72f162e28b9ae028d6e1539e7f887511e4a815ae5f8b829d895ac55f6bc",
+  "held_manifest": "c3380117565c4fde730dcb486854db1561c4b80feba08aa244b098fe8af57b96",
+  "train_pass": true,
+  "held_pass": true,
+  "train_batches": 6,
+  "native_states": 414,
+  "joint_fields": 10683948,
+  "signed_fields": 24131316,
+  "held_raw_fields": 364628,
+  "writer_released": []
+}

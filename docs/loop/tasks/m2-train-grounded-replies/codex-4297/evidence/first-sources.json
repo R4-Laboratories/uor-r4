@@ -1,0 +1,653 @@
+{
+  "near": {
+    "admission": "defer",
+    "case_id": "07c5a4f2f863e9ad668ebab419008b3ae97096571ffd88908273e37b875d61ce",
+    "distance": "near",
+    "expected": {
+      "address": {
+        "bytes": [
+          185,
+          194
+        ],
+        "tokens": [
+          94,
+          97
+        ]
+      },
+      "surface": "burnisher"
+    },
+    "first_error": "affirmed",
+    "gold_governors": [
+      {
+        "bytes": [
+          210,
+          214
+        ],
+        "tokens": [
+          102,
+          103
+        ]
+      },
+      {
+        "bytes": [
+          119,
+          123
+        ],
+        "tokens": [
+          70,
+          71
+        ]
+      }
+    ],
+    "gold_nouns": [
+      {
+        "bytes": [
+          185,
+          194
+        ],
+        "tokens": [
+          94,
+          97
+        ]
+      },
+      {
+        "bytes": [
+          97,
+          103
+        ],
+        "tokens": [
+          63,
+          65
+        ]
+      },
+      {
+        "bytes": [
+          238,
+          244
+        ],
+        "tokens": [
+          113,
+          115
+        ]
+      }
+    ],
+    "links": [
+      {
+        "best": [
+          0,
+          22
+        ],
+        "eligible": 20,
+        "governor": {
+          "bytes": [
+            210,
+            214
+          ],
+          "tokens": [
+            102,
+            103
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            199,
+            204
+          ],
+          "tokens": [
+            98,
+            101
+          ]
+        },
+        "rival": [
+          36,
+          63
+        ],
+        "site": 22,
+        "site_ties": 1,
+        "word": 38,
+        "word_ties": 1
+      },
+      {
+        "best": [
+          0,
+          34
+        ],
+        "eligible": 32,
+        "governor": {
+          "bytes": [
+            119,
+            123
+          ],
+          "tokens": [
+            70,
+            71
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            65
+          ]
+        },
+        "rival": [
+          36,
+          33
+        ],
+        "site": 4,
+        "site_ties": 1,
+        "word": 22,
+        "word_ties": 1
+      }
+    ],
+    "observed": {
+      "address": {
+        "bytes": [
+          199,
+          204
+        ],
+        "tokens": [
+          98,
+          101
+        ]
+      },
+      "surface": "clerk"
+    },
+    "pair_id": "mint-die-examination/kiln-and-ridge/0",
+    "prompt_sha256": "2d95740f80b1079a5fd1b3ff32fb8a44c9c83b3365bfdd0d6800fae07c41c48c",
+    "row": 64,
+    "tuple": {
+      "addresses": [
+        {
+          "bytes": [
+            199,
+            204
+          ],
+          "tokens": [
+            98,
+            101
+          ]
+        },
+        {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            65
+          ]
+        },
+        {
+          "bytes": [
+            238,
+            244
+          ],
+          "tokens": [
+            113,
+            115
+          ]
+        }
+      ],
+      "bank": 524,
+      "best": [
+        0,
+        56,
+        524
+      ],
+      "eligible": 138,
+      "ordinal": 87,
+      "rival": [
+        0,
+        66,
+        530
+      ],
+      "rival_bank": 530,
+      "sites": [
+        22,
+        4,
+        28
+      ],
+      "ties": 1
+    }
+  },
+  "endpoint_far": {
+    "admission": "defer",
+    "case_id": "49cb243782216e3ab15fd569f19462c579a59d397e55210a412d909f1600049a",
+    "distance": "far",
+    "expected": {
+      "address": {
+        "bytes": [
+          232,
+          239
+        ],
+        "tokens": [
+          105,
+          107
+        ]
+      },
+      "surface": "distaff"
+    },
+    "first_error": "affirmed",
+    "gold_governors": [
+      {
+        "bytes": [
+          294,
+          300
+        ],
+        "tokens": [
+          120,
+          122
+        ]
+      },
+      {
+        "bytes": [
+          158,
+          164
+        ],
+        "tokens": [
+          79,
+          81
+        ]
+      }
+    ],
+    "gold_nouns": [
+      {
+        "bytes": [
+          232,
+          239
+        ],
+        "tokens": [
+          105,
+          107
+        ]
+      },
+      {
+        "bytes": [
+          97,
+          103
+        ],
+        "tokens": [
+          63,
+          66
+        ]
+      },
+      {
+        "bytes": [
+          322,
+          328
+        ],
+        "tokens": [
+          130,
+          133
+        ]
+      }
+    ],
+    "links": [
+      {
+        "best": [
+          0,
+          32
+        ],
+        "eligible": 30,
+        "governor": {
+          "bytes": [
+            294,
+            300
+          ],
+          "tokens": [
+            120,
+            122
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            243,
+            247
+          ],
+          "tokens": [
+            108,
+            109
+          ]
+        },
+        "rival": [
+          36,
+          73
+        ],
+        "site": 29,
+        "site_ties": 1,
+        "word": 53,
+        "word_ties": 1
+      },
+      {
+        "best": [
+          0,
+          34
+        ],
+        "eligible": 33,
+        "governor": {
+          "bytes": [
+            158,
+            164
+          ],
+          "tokens": [
+            79,
+            81
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            66
+          ]
+        },
+        "rival": [
+          40,
+          83
+        ],
+        "site": 4,
+        "site_ties": 1,
+        "word": 30,
+        "word_ties": 1
+      }
+    ],
+    "observed": {
+      "address": {
+        "bytes": [
+          243,
+          247
+        ],
+        "tokens": [
+          108,
+          109
+        ]
+      },
+      "surface": "must"
+    },
+    "pair_id": "mill-spindle-service/kiln-and-ridge/2",
+    "prompt_sha256": "4f6385cc05055865bcb82f0ab99c858488ee8f46140ee4be62dcb37068f51d8b",
+    "row": 2,
+    "tuple": {
+      "addresses": [
+        {
+          "bytes": [
+            243,
+            247
+          ],
+          "tokens": [
+            108,
+            109
+          ]
+        },
+        {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            66
+          ]
+        },
+        {
+          "bytes": [
+            322,
+            328
+          ],
+          "tokens": [
+            130,
+            133
+          ]
+        }
+      ],
+      "bank": 560,
+      "best": [
+        0,
+        66,
+        560
+      ],
+      "eligible": 210,
+      "ordinal": 113,
+      "rival": [
+        0,
+        68,
+        562
+      ],
+      "rival_bank": 562,
+      "sites": [
+        29,
+        4,
+        43
+      ],
+      "ties": 1
+    }
+  },
+  "ordered_far": {
+    "admission": "defer",
+    "case_id": "49cb243782216e3ab15fd569f19462c579a59d397e55210a412d909f1600049a",
+    "distance": "far",
+    "expected": {
+      "address": {
+        "bytes": [
+          232,
+          239
+        ],
+        "tokens": [
+          105,
+          107
+        ]
+      },
+      "surface": "distaff"
+    },
+    "first_error": "affirmed",
+    "gold_governors": [
+      {
+        "bytes": [
+          294,
+          300
+        ],
+        "tokens": [
+          120,
+          122
+        ]
+      },
+      {
+        "bytes": [
+          158,
+          164
+        ],
+        "tokens": [
+          79,
+          81
+        ]
+      }
+    ],
+    "gold_nouns": [
+      {
+        "bytes": [
+          232,
+          239
+        ],
+        "tokens": [
+          105,
+          107
+        ]
+      },
+      {
+        "bytes": [
+          97,
+          103
+        ],
+        "tokens": [
+          63,
+          66
+        ]
+      },
+      {
+        "bytes": [
+          322,
+          328
+        ],
+        "tokens": [
+          130,
+          133
+        ]
+      }
+    ],
+    "links": [
+      {
+        "best": [
+          0,
+          37
+        ],
+        "eligible": 30,
+        "governor": {
+          "bytes": [
+            294,
+            300
+          ],
+          "tokens": [
+            120,
+            122
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            281,
+            286
+          ],
+          "tokens": [
+            117,
+            118
+          ]
+        },
+        "rival": [
+          36,
+          103
+        ],
+        "site": 37,
+        "site_ties": 1,
+        "word": 53,
+        "word_ties": 1
+      },
+      {
+        "best": [
+          0,
+          58
+        ],
+        "eligible": 33,
+        "governor": {
+          "bytes": [
+            158,
+            164
+          ],
+          "tokens": [
+            79,
+            81
+          ]
+        },
+        "link_ties": 1,
+        "noun": {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            66
+          ]
+        },
+        "rival": [
+          40,
+          121
+        ],
+        "site": 4,
+        "site_ties": 1,
+        "word": 30,
+        "word_ties": 1
+      }
+    ],
+    "observed": {
+      "address": {
+        "bytes": [
+          281,
+          286
+        ],
+        "tokens": [
+          117,
+          118
+        ]
+      },
+      "surface": "frame"
+    },
+    "pair_id": "mill-spindle-service/kiln-and-ridge/2",
+    "prompt_sha256": "4f6385cc05055865bcb82f0ab99c858488ee8f46140ee4be62dcb37068f51d8b",
+    "row": 2,
+    "tuple": {
+      "addresses": [
+        {
+          "bytes": [
+            281,
+            286
+          ],
+          "tokens": [
+            117,
+            118
+          ]
+        },
+        {
+          "bytes": [
+            97,
+            103
+          ],
+          "tokens": [
+            63,
+            66
+          ]
+        },
+        {
+          "bytes": [
+            322,
+            328
+          ],
+          "tokens": [
+            130,
+            133
+          ]
+        }
+      ],
+      "bank": 522,
+      "best": [
+        0,
+        95,
+        522
+      ],
+      "eligible": 210,
+      "ordinal": 129,
+      "rival": [
+        0,
+        96,
+        542
+      ],
+      "rival_bank": 542,
+      "sites": [
+        37,
+        4,
+        43
+      ],
+      "ties": 1
+    }
+  }
+}

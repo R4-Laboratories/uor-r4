@@ -1,0 +1,36 @@
+{
+  "status": "NOT_RUN",
+  "reason": "fresh source gate",
+  "passing": [],
+  "arms": {
+    "strongest": [
+      "train_new_far_pair",
+      "retains_matched_far_gains",
+      "improves_far",
+      "total_gain",
+      "gains_both_distances",
+      "full_links_both_distances",
+      "no_family_below_native"
+    ],
+    "all": [
+      "train_new_far_pair",
+      "retains_matched_far_gains",
+      "improves_far",
+      "total_gain",
+      "gains_both_distances",
+      "full_links_both_distances",
+      "no_family_below_native"
+    ],
+    "ordered-all": [
+      "retained_train_sources",
+      "train_reduced_loss",
+      "train_new_far_pair",
+      "retains_matched_far_gains",
+      "improves_far",
+      "total_gain",
+      "gains_both_distances",
+      "full_links_both_distances",
+      "no_family_below_native"
+    ]
+  }
+}

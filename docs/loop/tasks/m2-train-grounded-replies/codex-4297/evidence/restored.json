@@ -1,0 +1,19 @@
+{
+  "schema": "uor-r4.codex-4297.cold-replay/1",
+  "pass": true,
+  "disagreements": 0,
+  "measurement_sha256": "428e0ceaf4ab32abf31ca108ec225d92c1cba25f296d0a9f23349f3230f6f880",
+  "held_sha256": "04ee5fd082a001dfa4a1b98de286dac5068e4c72306f5a06a6686766ee4abda5",
+  "grade_sha256": "374dbfef3df0c30f91d497105949c11fad81c589cbc636d0864822814ece8ac1",
+  "release_sha256": "6bade455991ceb65efe6cb3fe470875a1430750a31bac562104d0e24d4249a10",
+  "train_permit_sha256": "fffeba7d6c2ba50ea90bddd82e904ffb7eddbdaf4e5e2fc5aeeb7c59588855e6",
+  "summary_sha256": "950ec7690b44d7c432fd072c89ef6b5193ccdf1f7fed3386e3c84debd701c0ed",
+  "held_sets": 2,
+  "lanes_per_set": 12,
+  "independent_held_readback": true,
+  "cpu_replay_lanes": 6,
+  "train_audited_batches": 6,
+  "train_elections": 6,
+  "compared_files": 133,
+  "writer": "NOT_RUN"
+}

@@ -1,0 +1,48 @@
+{
+  "hardware": "0, NVIDIA GeForce RTX 4090, GPU-7c813ad0-2151-bb1d-5efb-a3340b9a6a41, 595.99.02, 24080 MiB",
+  "train_lease": "wall_s=18.76 user_s=39.84 system_s=13.98 peak_rss_kib=230924",
+  "transfer_lease": "wall_s=6.45 user_s=2.49 system_s=3.96 peak_rss_kib=231108",
+  "measurement_bytes": 267582097,
+  "held_bytes": 10548060,
+  "zfs_allocated_before_archive": 698594816,
+  "raw_state_bytes": 13336,
+  "tagged_bundle_bytes": 13352,
+  "rounds": [
+    {
+      "arm": "strongest",
+      "round": 1,
+      "physical_training": "wall_s=0.81 user_s=0.63 system_s=0.17 peak_rss_kib=230604",
+      "source_grade": "wall_s=1.99 user_s=5.92 system_s=2.08 peak_rss_kib=108180"
+    },
+    {
+      "arm": "strongest",
+      "round": 2,
+      "physical_training": "wall_s=0.81 user_s=0.65 system_s=0.15 peak_rss_kib=230860",
+      "source_grade": "wall_s=1.99 user_s=5.92 system_s=2.08 peak_rss_kib=108100"
+    },
+    {
+      "arm": "all",
+      "round": 1,
+      "physical_training": "wall_s=0.80 user_s=0.64 system_s=0.15 peak_rss_kib=230920",
+      "source_grade": "wall_s=1.98 user_s=5.91 system_s=2.06 peak_rss_kib=108180"
+    },
+    {
+      "arm": "all",
+      "round": 2,
+      "physical_training": "wall_s=0.80 user_s=0.64 system_s=0.15 peak_rss_kib=230924",
+      "source_grade": "wall_s=1.98 user_s=5.93 system_s=2.02 peak_rss_kib=108084"
+    },
+    {
+      "arm": "ordered-all",
+      "round": 1,
+      "physical_training": "wall_s=0.83 user_s=0.65 system_s=0.17 peak_rss_kib=230604",
+      "source_grade": "wall_s=1.99 user_s=5.87 system_s=2.12 peak_rss_kib=108180"
+    },
+    {
+      "arm": "ordered-all",
+      "round": 2,
+      "physical_training": "wall_s=0.81 user_s=0.65 system_s=0.16 peak_rss_kib=230844",
+      "source_grade": "wall_s=1.99 user_s=5.92 system_s=2.05 peak_rss_kib=108096"
+    }
+  ]
+}

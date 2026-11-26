@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "checks": [
+    "all 68 proposal IDs and their fixed steps",
+    "strongest tied pivot, strict margins, and equal-gold exclusion",
+    "strongest versus every strict outranker with both objectives recomputed",
+    "same near count with a changed original pair identity is rejected",
+    "supplied original address positive and exchanged-address negative",
+    "the next round re-mines a changed pivot and excludes satisfied edges",
+    "inactive proposal, whole-bank proposal and saturation at both i16 bounds"
+  ]
+}

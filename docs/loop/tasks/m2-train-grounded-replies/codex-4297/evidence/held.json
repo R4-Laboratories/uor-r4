@@ -1,0 +1,846 @@
+{
+  "all": {
+    "native": {
+      "exact": 4,
+      "full": 0,
+      "earlier": 4,
+      "prompts": 16,
+      "full_prompts": 0,
+      "governor_prompts": 0,
+      "neutral_prompts": 24
+    },
+    "unfitted": {
+      "exact": 0,
+      "full": 0,
+      "earlier": 0,
+      "prompts": 0,
+      "full_prompts": 0,
+      "governor_prompts": 0,
+      "neutral_prompts": 0
+    },
+    "gap": {
+      "exact": 0,
+      "full": 0,
+      "earlier": 0,
+      "prompts": 0,
+      "full_prompts": 0,
+      "governor_prompts": 256,
+      "neutral_prompts": 32
+    },
+    "ordered_gap": {
+      "exact": 0,
+      "full": 0,
+      "earlier": 0,
+      "prompts": 0,
+      "full_prompts": 0,
+      "governor_prompts": 256,
+      "neutral_prompts": 32
+    },
+    "baseline": {
+      "exact": 32,
+      "full": 32,
+      "earlier": 32,
+      "prompts": 64,
+      "full_prompts": 64,
+      "governor_prompts": 256,
+      "neutral_prompts": 16
+    },
+    "ordered_base": {
+      "exact": 32,
+      "full": 32,
+      "earlier": 32,
+      "prompts": 64,
+      "full_prompts": 64,
+      "governor_prompts": 256,
+      "neutral_prompts": 24
+    },
+    "far_only": {
+      "exact": 36,
+      "full": 36,
+      "earlier": 36,
+      "prompts": 80,
+      "full_prompts": 80,
+      "governor_prompts": 256,
+      "neutral_prompts": 20
+    },
+    "strongest": {
+      "exact": 32,
+      "full": 32,
+      "earlier": 32,
+      "prompts": 64,
+      "full_prompts": 64,
+      "governor_prompts": 256,
+      "neutral_prompts": 16
+    },
+    "all": {
+      "exact": 32,
+      "full": 32,
+      "earlier": 32,
+      "prompts": 64,
+      "full_prompts": 64,
+      "governor_prompts": 256,
+      "neutral_prompts": 16
+    },
+    "ordered-all": {
+      "exact": 32,
+      "full": 32,
+      "earlier": 32,
+      "prompts": 64,
+      "full_prompts": 64,
+      "governor_prompts": 256,
+      "neutral_prompts": 24
+    },
+    "correct_link": {
+      "exact": 128,
+      "full": 128,
+      "earlier": 128,
+      "prompts": 256,
+      "full_prompts": 256,
+      "governor_prompts": 256,
+      "neutral_prompts": 0
+    },
+    "exchanged_link": {
+      "exact": 0,
+      "full": 0,
+      "earlier": 0,
+      "prompts": 0,
+      "full_prompts": 0,
+      "governor_prompts": 256,
+      "neutral_prompts": 0
+    }
+  },
+  "distance": {
+    "far": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 4,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 8
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 32
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 32
+      },
+      "baseline": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "ordered_base": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 24
+      },
+      "far_only": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 40,
+        "full_prompts": 40,
+        "governor_prompts": 128,
+        "neutral_prompts": 4
+      },
+      "strongest": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "ordered-all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 24
+      },
+      "correct_link": {
+        "exact": 64,
+        "full": 64,
+        "earlier": 64,
+        "prompts": 128,
+        "full_prompts": 128,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      }
+    },
+    "near": {
+      "native": {
+        "exact": 4,
+        "full": 0,
+        "earlier": 4,
+        "prompts": 12,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 16
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "baseline": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "ordered_base": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "far_only": {
+        "exact": 20,
+        "full": 20,
+        "earlier": 20,
+        "prompts": 40,
+        "full_prompts": 40,
+        "governor_prompts": 128,
+        "neutral_prompts": 16
+      },
+      "strongest": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "all": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 128,
+        "neutral_prompts": 8
+      },
+      "ordered-all": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "correct_link": {
+        "exact": 64,
+        "full": 64,
+        "earlier": 64,
+        "prompts": 128,
+        "full_prompts": 128,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 128,
+        "neutral_prompts": 0
+      }
+    }
+  },
+  "family": {
+    "mill-spindle-service": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 4
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "baseline": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "ordered_base": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "far_only": {
+        "exact": 24,
+        "full": 24,
+        "earlier": 24,
+        "prompts": 48,
+        "full_prompts": 48,
+        "governor_prompts": 64,
+        "neutral_prompts": 4
+      },
+      "strongest": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "all": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "ordered-all": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "correct_link": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      }
+    },
+    "mint-die-examination": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 4,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 12
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "baseline": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_base": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "far_only": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 4
+      },
+      "strongest": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered-all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "correct_link": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      }
+    },
+    "piston-bay-parts": {
+      "native": {
+        "exact": 4,
+        "full": 0,
+        "earlier": 4,
+        "prompts": 8,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 8
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "baseline": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_base": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "far_only": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 12
+      },
+      "strongest": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered-all": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "correct_link": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      }
+    },
+    "titration-bench-clearance": {
+      "native": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 4,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "unfitted": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 0,
+        "neutral_prompts": 0
+      },
+      "gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "ordered_gap": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "baseline": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "ordered_base": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "far_only": {
+        "exact": 12,
+        "full": 12,
+        "earlier": 12,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "strongest": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "all": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "ordered-all": {
+        "exact": 16,
+        "full": 16,
+        "earlier": 16,
+        "prompts": 32,
+        "full_prompts": 32,
+        "governor_prompts": 64,
+        "neutral_prompts": 8
+      },
+      "correct_link": {
+        "exact": 32,
+        "full": 32,
+        "earlier": 32,
+        "prompts": 64,
+        "full_prompts": 64,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      },
+      "exchanged_link": {
+        "exact": 0,
+        "full": 0,
+        "earlier": 0,
+        "prompts": 0,
+        "full_prompts": 0,
+        "governor_prompts": 64,
+        "neutral_prompts": 0
+      }
+    }
+  },
+  "movements": {
+    "far": [
+      {
+        "from": "baseline",
+        "to": "strongest",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "strongest",
+        "to": "all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "all",
+        "to": "ordered-all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "ordered_base",
+        "to": "ordered-all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      }
+    ],
+    "near": [
+      {
+        "from": "baseline",
+        "to": "strongest",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "strongest",
+        "to": "all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "all",
+        "to": "ordered-all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      },
+      {
+        "from": "ordered_base",
+        "to": "ordered-all",
+        "full_gained": [],
+        "full_lost": [],
+        "exact_gained": [],
+        "exact_lost": []
+      }
+    ]
+  }
+}

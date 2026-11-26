@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "header_bytes": 16,
+  "state_bytes": 13336,
+  "recovered_payload_bytes": 13336,
+  "strongest_election": 1,
+  "all_rivals_election": 2,
+  "near_identity_substitution_rejected": true,
+  "no_feasible_election_rejected": true,
+  "positive_writer_gate": true,
+  "exchanged_control_leak_rejected": true,
+  "historical_primary_rows_rejoined": 256,
+  "matched_control_flips": 32,
+  "fixed_address_control_flips": 0
+}
