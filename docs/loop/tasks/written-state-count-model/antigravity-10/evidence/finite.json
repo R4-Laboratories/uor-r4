@@ -1,0 +1,13 @@
+{
+  "brier_checked": 256,
+  "brier_divergent": 0,
+  "cubin_sha256": "b0792044b35cd164b5a572b1904b770ef714c521d5b8350e3d17ee4a4c97e54d",
+  "divergent": 0,
+  "rows_checked": 269,
+  "s2_checked": 4,
+  "s2_divergent": 0,
+  "s3_checked": 5,
+  "s3_divergent": 0,
+  "s4_checked": 4,
+  "s4_divergent": 0
+}

@@ -1,0 +1,114 @@
+{
+  "fresh256_inputs_sha256": "1de2fc28607eff6bc412eee41a259d806ee1479b7c925059f00e9d3b54afa99a",
+  "phase": "Stage B3b P3 S4 + R1/R2/R4 Reply Panels",
+  "r1_r2_m2_fresh256": {
+    "active": {
+      "pairs_both_complete_distinct": 64,
+      "row_hits": 192,
+      "samples": [
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-forward-home",
+          "ok": false,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "basalt loggia.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-job",
+          "ok": true,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        },
+        {
+          "accepted_0": "porphyry belvedere.",
+          "id": "fresh-diverse-length2-00-swap0-q0-reverse-home",
+          "ok": false,
+          "reply": "basalt loggia.",
+          "stratum": "length2/q0"
+        }
+      ]
+    },
+    "gate_r1_ge_52_of_128": true,
+    "gate_r2_ge_200_of_256": false,
+    "no_memory": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 0
+    },
+    "paired_vs_no_memory": {
+      "band_ceil": 28,
+      "beats_control": true,
+      "net_gain": 192
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 32,
+      "beats_control": true,
+      "net_gain": 148
+    },
+    "pairs": 128,
+    "rows": 256,
+    "shuffled_role": {
+      "pairs_both_complete_distinct": 0,
+      "row_hits": 44
+    }
+  },
+  "r4_heldout_phrasing": {
+    "active_in_stem_rows_of_120": 120,
+    "active_oov_synonym_rows_of_120": 20,
+    "active_pairs": 60,
+    "active_row_hits": 140,
+    "gate_r4_ge_200_of_240": false,
+    "no_memory_row_hits": 0,
+    "paired_vs_no_memory": {
+      "band_ceil": 24,
+      "beats_control": true,
+      "net_gain": 140
+    },
+    "paired_vs_shuffled_role": {
+      "band_ceil": 30,
+      "beats_control": true,
+      "net_gain": 80
+    },
+    "pairs": 120,
+    "rows": 240,
+    "shuffled_role_row_hits": 60
+  },
+  "s4_artifact": {
+    "bytes": 941100,
+    "contexts": 35994,
+    "hinge_epochs": [
+      {
+        "epoch": 1,
+        "exact_top1": 16,
+        "examples": 16,
+        "total_hinge_loss_q16": 0,
+        "updates_applied": 0
+      },
+      {
+        "epoch": 2,
+        "exact_top1": 16,
+        "examples": 16,
+        "total_hinge_loss_q16": 0,
+        "updates_applied": 0
+      },
+      {
+        "epoch": 3,
+        "exact_top1": 16,
+        "examples": 16,
+        "total_hinge_loss_q16": 0,
+        "updates_applied": 0
+      }
+    ],
+    "mworld_spans_extracted": 8,
+    "mworld_train_episodes": 8,
+    "sha256": "51503f769d8d96dfbf298f446fb92a9a5234d91ee70eb0b596293278c827b594"
+  },
+  "s4_gpu_vs_cpu_divergences": 0
+}

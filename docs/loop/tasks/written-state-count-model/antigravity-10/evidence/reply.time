@@ -1,0 +1,23 @@
+	Command being timed: "/workspace/antigravity-b3b-p3-eval/bin/p3-eval reply /workspace/antigravity-b3b-p3-eval/inputs/full-c.v3 /workspace/antigravity-b3b-p3-eval/inputs/a1s/a1s.weights /workspace/antigravity-b3b-p3-eval/inputs/a1s/a1s.seal.json /workspace/antigravity-b3b-p3-eval/inputs/seed1.d11 /workspace/antigravity-b3b-p3-eval/repo/.uor-models/research/issue-1019/tokenizer/tokenizer.json /workspace/antigravity-b3b-p3-eval/inputs/fresh256 /workspace/antigravity-b3b-p3-eval/inputs/r.tokens.u16 /workspace/antigravity-b3b-p3-eval/run-v3/evidence/artifacts /workspace/antigravity-b3b-p3-eval/run-v3/evidence/reply_report.json"
+	User time (seconds): 43.90
+	System time (seconds): 3.54
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:47.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3977276
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 976056
+	Voluntary context switches: 691
+	Involuntary context switches: 60
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 1848
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

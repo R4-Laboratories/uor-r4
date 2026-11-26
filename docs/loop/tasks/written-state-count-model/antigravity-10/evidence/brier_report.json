@@ -1,0 +1,248 @@
+{
+  "arms": [
+    {
+      "all": {
+        "bits_q12": "266763100419",
+        "bpb_micro": "2970006",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "arm": "p3_s6_brier",
+      "ci_minus_p1_all_q12": [
+        "133889856028",
+        "149144211487"
+      ],
+      "ci_minus_p1_novel_q12": [
+        "131022574151",
+        "146121388830"
+      ],
+      "clears_080_rstar": false,
+      "clears_090_rstar": false,
+      "clears_095_rstar": false,
+      "epochs": [
+        {
+          "buckets_updated": 11658,
+          "epoch": 1,
+          "fell": true,
+          "mean_brier_after_q32": "1822914699",
+          "mean_brier_before_q32": "2717923805"
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 2,
+          "fell": true,
+          "mean_brier_after_q32": "1813733258",
+          "mean_brier_before_q32": "1822914699"
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 3,
+          "fell": true,
+          "mean_brier_after_q32": "1810675254",
+          "mean_brier_before_q32": "1813733258"
+        }
+      ],
+      "extra": {
+        "experts": 15
+      },
+      "gate_brier_1pct_fewer_bits": false,
+      "novel": {
+        "bits_q12": "248405015594",
+        "bpb_micro": "3791349",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "237750491676",
+        "bpb_micro": "3793030",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "pct_of_p1_bps": 21213,
+      "ratio_vs_rstar_bps": 20735,
+      "response": {
+        "bits_q12": "253805151537",
+        "bpb_micro": "3212781",
+        "bytes": 19286759,
+        "targets": 9523958
+      }
+    },
+    {
+      "all": {
+        "bits_q12": "264703382020",
+        "bpb_micro": "2947074",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "arm": "p3_s6_s3_brier",
+      "ci_minus_p1_all_q12": [
+        "131871526966",
+        "146956930336"
+      ],
+      "ci_minus_p1_novel_q12": [
+        "128973874645",
+        "143960109865"
+      ],
+      "clears_080_rstar": false,
+      "clears_090_rstar": false,
+      "clears_095_rstar": false,
+      "epochs": [
+        {
+          "buckets_updated": 11658,
+          "epoch": 1,
+          "fell": true,
+          "mean_brier_after_q32": "1822859918",
+          "mean_brier_before_q32": "2717923805",
+          "s3_cells_updated": 4276312
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 2,
+          "fell": true,
+          "mean_brier_after_q32": "1813616868",
+          "mean_brier_before_q32": "1822859918",
+          "s3_cells_updated": 4203231
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 3,
+          "fell": true,
+          "mean_brier_after_q32": "1810519248",
+          "mean_brier_before_q32": "1813616868",
+          "s3_cells_updated": 4095256
+        }
+      ],
+      "extra": {
+        "experts": 15,
+        "golden_shell_sha": "e4c4d1a8c571828221271c76f9062c05e87d0a7f3cc4e1922ff62dd1d8b2c42c"
+      },
+      "gate_brier_1pct_fewer_bits": false,
+      "novel": {
+        "bits_q12": "246354942425",
+        "bpb_micro": "3760059",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "235829473815",
+        "bpb_micro": "3762382",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "pct_of_p1_bps": 21049,
+      "ratio_vs_rstar_bps": 20575,
+      "response": {
+        "bits_q12": "251879168627",
+        "bpb_micro": "3188401",
+        "bytes": 19286759,
+        "targets": 9523958
+      }
+    },
+    {
+      "all": {
+        "bits_q12": "253232957863",
+        "bpb_micro": "2819368",
+        "bytes": 21928475,
+        "targets": 10807417
+      },
+      "arm": "p3_s6_s2_err_brier",
+      "ci_minus_p1_all_q12": [
+        "121209818234",
+        "134777343214"
+      ],
+      "ci_minus_p1_novel_q12": [
+        "118203252846",
+        "131663685039"
+      ],
+      "clears_080_rstar": false,
+      "clears_090_rstar": false,
+      "clears_095_rstar": false,
+      "epochs": [
+        {
+          "buckets_updated": 11658,
+          "epoch": 1,
+          "fell": true,
+          "mean_brier_after_q32": "1755971764",
+          "mean_brier_before_q32": "2691884819",
+          "s2_cells_updated": 1379008
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 2,
+          "fell": true,
+          "mean_brier_after_q32": "1750376945",
+          "mean_brier_before_q32": "1755971764",
+          "s2_cells_updated": 1376310
+        },
+        {
+          "buckets_updated": 11658,
+          "epoch": 3,
+          "fell": true,
+          "mean_brier_after_q32": "1750121343",
+          "mean_brier_before_q32": "1750376945",
+          "s2_cells_updated": 1374938
+        }
+      ],
+      "extra": {
+        "experts": 16,
+        "s2_bytes": 22281057,
+        "s2_entries": 2480021
+      },
+      "gate_brier_1pct_fewer_bits": false,
+      "novel": {
+        "bits_q12": "234784728937",
+        "bpb_micro": "3583466",
+        "bytes": 15995822,
+        "targets": 7566174
+      },
+      "novel_response": {
+        "bits_q12": "224734521040",
+        "bpb_micro": "3585376",
+        "bytes": 15302949,
+        "targets": 7258229
+      },
+      "pct_of_p1_bps": 20137,
+      "ratio_vs_rstar_bps": 19683,
+      "response": {
+        "bits_q12": "240738320768",
+        "bpb_micro": "3047375",
+        "bytes": 19286759,
+        "targets": 9523958
+      }
+    }
+  ],
+  "dev_tune_targets": 10807417,
+  "p1_a1s_baseline": {
+    "all": {
+      "bits_q12": "125750699315",
+      "bpb_micro": "1400045",
+      "bytes": 21928475,
+      "targets": 10807417
+    },
+    "novel": {
+      "bits_q12": "110369395384",
+      "bpb_micro": "1684543",
+      "bytes": 15995822,
+      "targets": 7566174
+    },
+    "novel_response": {
+      "bits_q12": "105799873721",
+      "bpb_micro": "1687913",
+      "bytes": 15302949,
+      "targets": 7258229
+    },
+    "response": {
+      "bits_q12": "119029052958",
+      "bpb_micro": "1506724",
+      "bytes": 19286759,
+      "targets": 9523958
+    },
+    "rstar_devtune_bpb_micro": "1432318"
+  },
+  "phase": "Stage B3b P3 DEV-tune Brier error-write",
+  "s2_spot_check_divergences": 0,
+  "s3_spot_check_divergences": 0,
+  "shifted_batch_parity": true,
+  "spot_check_divergences": 0,
+  "spot_check_probes": 13153
+}

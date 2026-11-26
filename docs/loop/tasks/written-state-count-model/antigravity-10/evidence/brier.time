@@ -1,0 +1,23 @@
+	Command being timed: "/workspace/antigravity-b3b-p3-eval/bin/p3-eval brier /workspace/antigravity-b3b-p3-eval/inputs/tune_c420 /workspace/antigravity-b3b-p3-eval/inputs/r.tokens.u16 /workspace/antigravity-b3b-p3-eval/inputs/seed1.d11 /workspace/antigravity-b3b-p3-eval/inputs/r-65536.tape /workspace/antigravity-b3b-p3-eval/inputs/pick.rows /workspace/antigravity-b3b-p3-eval/inputs/tune-65536.tape /workspace/antigravity-b3b-p3-eval/inputs/devtune-pick.rows /workspace/antigravity-b3b-p3-eval/inputs/a1s/a1s.weights /workspace/antigravity-b3b-p3-eval/inputs/a1s/a1s.seal.json /workspace/antigravity-b3b-p3-eval/inputs/golden_shell.uors3t02 /workspace/antigravity-b3b-p3-eval/run-v3/evidence/artifacts /workspace/antigravity-b3b-p3-eval/run-v3/evidence/brier_report.json"
+	User time (seconds): 23.70
+	System time (seconds): 10.83
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:34.55
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6808216
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3943434
+	Voluntary context switches: 588
+	Involuntary context switches: 71
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 656
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
