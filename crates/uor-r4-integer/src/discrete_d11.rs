@@ -30,6 +30,7 @@ pub use s2_expert::{s2_route_key, S2ExpertPrediction, S2ExpertRead, S2RankedToke
 mod assertion_retrieval;
 #[path = "contextual_source.rs"]
 pub mod contextual_source;
+pub mod native_occurrence;
 pub mod native_opening;
 pub mod pair_rank;
 mod rival_admission;
@@ -1359,6 +1360,7 @@ impl DiscreteTrunkTables {
 pub struct IntegerDiscreteModel {
     count_mixer: Option<crate::count_mixer::CountMixer>,
     opening: Option<native_opening::State>,
+    occurrence: Option<native_occurrence::State>,
     role_policy: Option<RolePolicy>,
     contextual_source: Option<contextual_source::SourcePolicy>,
     pair_rank: Option<pair_rank::Policy>,
@@ -2545,14 +2547,21 @@ impl IntegerDiscreteModel {
         if opening_base && schema != DISCRETE_TRUNK_SCHEMA {
             return Err(invalid("native opening requires a plain nested D11 trunk"));
         }
-        if schema == native_opening::SCHEMA {
+        if matches!(
+            schema.as_str(),
+            native_opening::SCHEMA | native_occurrence::SCHEMA
+        ) {
             let expected_body = expected_len
                 .map(|len| {
                     len.checked_sub(16 + header_len)
                         .ok_or_else(|| invalid("native opening header exceeds file size"))
                 })
                 .transpose()?;
-            let mut model = native_opening::read_from(&mut reader, &encoded_header, expected_body)?;
+            let mut model = if schema == native_occurrence::SCHEMA {
+                native_occurrence::read_from(&mut reader, &encoded_header, expected_body)?
+            } else {
+                native_opening::read_from(&mut reader, &encoded_header, expected_body)?
+            };
             model.artifact_sha256 = reader.finalize();
             return Ok(model);
         }
@@ -2790,6 +2799,7 @@ impl IntegerDiscreteModel {
         Ok(Self {
             count_mixer: None,
             opening: None,
+            occurrence: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -2834,13 +2844,20 @@ impl IntegerDiscreteModel {
             schema: String,
         }
         let schema = serde_json::from_slice::<Schema>(encoded_header)?.schema;
-        if schema == native_opening::SCHEMA {
+        if matches!(
+            schema.as_str(),
+            native_opening::SCHEMA | native_occurrence::SCHEMA
+        ) {
             if !allow_role {
                 return Err(invalid("nested native opening artifacts are invalid"));
             }
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
-            let mut model = native_opening::read_from(&mut reader, encoded_header, expected_body)?;
+            let mut model = if schema == native_occurrence::SCHEMA {
+                native_occurrence::read_from(&mut reader, encoded_header, expected_body)?
+            } else {
+                native_opening::read_from(&mut reader, encoded_header, expected_body)?
+            };
             model.artifact_sha256 = hex::encode(Sha256::digest(bytes));
             return Ok(model);
         }
@@ -3196,6 +3213,7 @@ impl IntegerDiscreteModel {
         Ok(Self {
             count_mixer: None,
             opening: None,
+            occurrence: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -3274,6 +3292,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.occurrence.is_some() {
+            return native_occurrence::SCHEMA;
+        }
         if self.opening.is_some() {
             return native_opening::SCHEMA;
         }
@@ -4545,7 +4566,7 @@ impl IntegerDiscreteModel {
     /// Evaluate a causal token prefix (`1..=context`) and return the read vector,
     /// admitted cells, top-8 ranked tokens, and top-1 prediction.
     pub fn evaluate_prefix(&self, prefix: &[u32]) -> Result<DiscretePrefixEvaluation> {
-        self.evaluate_prefix_internal(prefix, false)
+        self.evaluate_prefix_internal(prefix, false, native_occurrence::OpeningChoice::Learned)
             .map(|traced| traced.evaluation)
     }
 
@@ -4566,12 +4587,30 @@ impl IntegerDiscreteModel {
     /// Evaluate a causal token prefix and retain the exact read decisions made
     /// by the same production path. This is a qualification observation only.
     pub fn evaluate_prefix_traced(&self, prefix: &[u32]) -> Result<DiscreteTracedPrefixEvaluation> {
-        self.evaluate_prefix_internal(prefix, true)
+        self.evaluate_prefix_internal(prefix, true, native_occurrence::OpeningChoice::Learned)
     }
 
     /// Identity of the native state and frozen D11 trunk in the loaded artifact.
     pub fn native_opening_identity(&self) -> Option<native_opening::Identity<'_>> {
         self.opening.as_ref().map(native_opening::identity)
+    }
+
+    pub fn native_occurrence_identity(&self) -> Option<native_occurrence::Identity<'_>> {
+        self.occurrence
+            .as_ref()
+            .map(native_occurrence::State::identity)
+    }
+
+    /// Observe the ordinary learned path alongside explicit source-position interventions.
+    pub fn observe_native_occurrence(
+        &self,
+        prefix: &[u32],
+        raw_target: Option<u32>,
+        target: u32,
+        gold_pos: Option<u16>,
+        rival_pos: Option<u16>,
+    ) -> Result<native_occurrence::Replay> {
+        native_occurrence::replay(self, prefix, raw_target, target, gold_pos, rival_pos)
     }
 
     /// Score two original IDs and canonical space at a fitted opening, and
@@ -4586,11 +4625,12 @@ impl IntegerDiscreteModel {
     }
 
     /// The causal geometric read shared by prediction and the contextual
-    /// source projector. It does not invoke any role or source selector.
+    /// source projector. A fitted occurrence can supply the trunk pointer.
     fn causal_geometric_read(
         &self,
         prefix: &[u32],
         trace: Option<&mut Vec<u32>>,
+        source: native_occurrence::OpeningChoice,
     ) -> Result<(FlockReadParts, Option<TrunkPointerObservation>)> {
         let plan = build_row_plan(prefix.len())?;
         let (mut blocks, relation_scores, relation_trace) = match self.read_mode {
@@ -4605,9 +4645,16 @@ impl IntegerDiscreteModel {
         };
         let pointer = match (&self.trunk, self.state_transport_knockout) {
             (Some(trunk), false) => {
-                let choice = match &self.opening {
-                    Some(head) => head.decide(self, prefix)?.map(|decision| decision.selected),
-                    None => None,
+                let fitted_source = self
+                    .occurrence
+                    .as_ref()
+                    .and_then(|reader| reader.choose(prefix, &self.codebook_roots, source));
+                let choice = match (fitted_source, &self.opening) {
+                    (Some(candidate), _) => Some(candidate.token),
+                    (None, Some(head)) => {
+                        head.decide(self, prefix)?.map(|decision| decision.selected)
+                    }
+                    (None, None) => None,
                 };
                 Some(trunk.apply_joint_pointer_gate(
                     prefix,
@@ -4636,6 +4683,7 @@ impl IntegerDiscreteModel {
         &self,
         prefix: &[u32],
         retain_trace: bool,
+        source: native_occurrence::OpeningChoice,
     ) -> Result<DiscreteTracedPrefixEvaluation> {
         self.validate_prefix(prefix)?;
         let vocab = self.shape.vocabulary;
@@ -4712,7 +4760,7 @@ impl IntegerDiscreteModel {
         }
         let mut trace_words = Vec::new();
         let ((q_blocks, relation_scores, relation_trace_words), trunk_pointer) =
-            self.causal_geometric_read(prefix, retain_trace.then_some(&mut trace_words))?;
+            self.causal_geometric_read(prefix, retain_trace.then_some(&mut trace_words), source)?;
 
         let mut occupied = [false; 256];
         for &cell in &self.cells {

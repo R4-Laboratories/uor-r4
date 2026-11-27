@@ -402,7 +402,11 @@ pub(super) fn observe(
     let ids = [target as u16, rival as u16, SPACE as u16];
     let scores = ids.map(|id| decision.row.map_or(0, |row| row.score(id)));
     let ranks = std::array::from_fn(|i| rank(decision.row, priors, ids[i], scores[i]));
-    let scored = model.evaluate_prefix_traced(prefix)?;
+    let scored = model.evaluate_prefix_internal(
+        prefix,
+        true,
+        super::native_occurrence::OpeningChoice::Fallback,
+    )?;
     if scored.trunk_pointer.map(|gate| gate.selected_token) != Some(decision.selected) {
         return Err(invalid(
             "opening readout choice differs from the geometric writer input",

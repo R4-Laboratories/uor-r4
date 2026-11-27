@@ -121,3 +121,12 @@ path = "src/bin/pack-native-opening.rs"
 [[bin]]
 name = "verify-native-opening"
 path = "src/bin/verify-native-opening.rs"
+
+[[bin]]
+name = "pack-native-occurrence"
+path = "src/bin/pack-native-occurrence.rs"
+required-features = ["serving-wasm"]
+
+[[bin]]
+name = "verify-native-occurrence"
+path = "src/bin/verify-native-occurrence.rs"

@@ -1,0 +1,20 @@
+{
+  "distinct_genuine_target_ids": 122,
+  "genuine": 4345,
+  "parsed_genuine": 188,
+  "partition": {
+    "nonlexical_genuine": 122,
+    "other_colon": 114570,
+    "source_absent": 61,
+    "source_unique": 5,
+    "unparsed_genuine": 4157
+  },
+  "rows": 118915,
+  "schema": "uor-r4.canonical-donor-source-admission/1",
+  "supported_source_target_ids": [
+    287,
+    318,
+    671,
+    1042
+  ]
+}

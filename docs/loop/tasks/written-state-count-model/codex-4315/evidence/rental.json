@@ -1,0 +1,49 @@
+[
+  {
+    "ts": "2026-11-27T15:33:56Z",
+    "event": "up",
+    "lab": "codex",
+    "session": "occurrence-4315",
+    "pod": "vast-62876969",
+    "gpu": "4090",
+    "count": 1,
+    "dc": "Vast Maryland, US",
+    "usd_per_h": 0.869,
+    "gpu_choice": "explicit"
+  },
+  {
+    "ts": "2026-11-27T15:34:19Z",
+    "event": "ssh-ready",
+    "lab": "codex",
+    "session": "occurrence-4315",
+    "pod": "vast-62876969",
+    "create_to_ssh_s": 23
+  },
+  {
+    "ts": "2026-11-27T15:34:20Z",
+    "event": "lease",
+    "lab": "codex",
+    "session": "occurrence-4315",
+    "pod": "vast-62876969",
+    "gpus": [
+      0
+    ],
+    "hours": 1
+  },
+  {
+    "ts": "2026-11-27T15:43:24Z",
+    "event": "release",
+    "lab": "codex",
+    "session": "occurrence-4315",
+    "pod": "vast-62876969"
+  },
+  {
+    "ts": "2026-11-27T15:43:27Z",
+    "event": "down",
+    "lab": "codex",
+    "session": "occurrence-4315",
+    "pod": "vast-62876969",
+    "usd_per_h": 0.869,
+    "uptime_s": 569
+  }
+]

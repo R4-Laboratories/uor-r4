@@ -1,0 +1,463 @@
+{
+  "controlled": {
+    "Direction · subject before value": {
+      "assignments": 200,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 27,
+          "paired": 57,
+          "rows": 239
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_source": {
+          "crossed": 24,
+          "paired": 48,
+          "rows": 143
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 8
+        }
+      },
+      "groups": 100,
+      "learned_first_in_oracle_realizable_rows": 3,
+      "learned_selected_gold_changed_by_writer": 140,
+      "learned_sources_in_oracle_realizable_rows": 3,
+      "rows": 400
+    },
+    "Direction · value before subject": {
+      "assignments": 200,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 69,
+          "paired": 139,
+          "rows": 339
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_source": {
+          "crossed": 42,
+          "paired": 84,
+          "rows": 236
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 6
+        }
+      },
+      "groups": 100,
+      "learned_first_in_oracle_realizable_rows": 3,
+      "learned_selected_gold_changed_by_writer": 233,
+      "learned_sources_in_oracle_realizable_rows": 3,
+      "rows": 400
+    },
+    "Fact order · side 0 first": {
+      "assignments": 200,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 49,
+          "paired": 101,
+          "rows": 292
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 4
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 4
+        },
+        "learned_source": {
+          "crossed": 34,
+          "paired": 68,
+          "rows": 190
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 6
+        }
+      },
+      "groups": 100,
+      "learned_first_in_oracle_realizable_rows": 4,
+      "learned_selected_gold_changed_by_writer": 186,
+      "learned_sources_in_oracle_realizable_rows": 4,
+      "rows": 400
+    },
+    "Fact order · side 1 first": {
+      "assignments": 200,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 47,
+          "paired": 95,
+          "rows": 286
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        },
+        "learned_source": {
+          "crossed": 32,
+          "paired": 64,
+          "rows": 189
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 8
+        }
+      },
+      "groups": 100,
+      "learned_first_in_oracle_realizable_rows": 2,
+      "learned_selected_gold_changed_by_writer": 187,
+      "learned_sources_in_oracle_realizable_rows": 2,
+      "rows": 400
+    },
+    "Family · archive": {
+      "assignments": 100,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 25,
+          "paired": 50,
+          "rows": 140
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "learned_source": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 6
+        }
+      },
+      "groups": 50,
+      "learned_first_in_oracle_realizable_rows": 0,
+      "learned_selected_gold_changed_by_writer": 2,
+      "learned_sources_in_oracle_realizable_rows": 0,
+      "rows": 200
+    },
+    "Family · courtyard": {
+      "assignments": 100,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 23,
+          "paired": 46,
+          "rows": 138
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 1
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 1
+        },
+        "learned_source": {
+          "crossed": 20,
+          "paired": 40,
+          "rows": 130
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        }
+      },
+      "groups": 50,
+      "learned_first_in_oracle_realizable_rows": 1,
+      "learned_selected_gold_changed_by_writer": 129,
+      "learned_sources_in_oracle_realizable_rows": 1,
+      "rows": 200
+    },
+    "Family · greenhouse": {
+      "assignments": 100,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 22,
+          "paired": 48,
+          "rows": 148
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        },
+        "learned_source": {
+          "crossed": 22,
+          "paired": 44,
+          "rows": 99
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 2
+        }
+      },
+      "groups": 50,
+      "learned_first_in_oracle_realizable_rows": 2,
+      "learned_selected_gold_changed_by_writer": 97,
+      "learned_sources_in_oracle_realizable_rows": 2,
+      "rows": 200
+    },
+    "Family · regatta": {
+      "assignments": 100,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 26,
+          "paired": 52,
+          "rows": 152
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 3
+        },
+        "learned_source": {
+          "crossed": 24,
+          "paired": 48,
+          "rows": 148
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 4
+        }
+      },
+      "groups": 50,
+      "learned_first_in_oracle_realizable_rows": 3,
+      "learned_selected_gold_changed_by_writer": 145,
+      "learned_sources_in_oracle_realizable_rows": 3,
+      "rows": 200
+    },
+    "all": {
+      "assignments": 400,
+      "endpoints": {
+        "gold_above_rival": {
+          "crossed": 96,
+          "paired": 196,
+          "rows": 578
+        },
+        "learned_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 6
+        },
+        "learned_joint": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 6
+        },
+        "learned_source": {
+          "crossed": 66,
+          "paired": 132,
+          "rows": 379
+        },
+        "marker_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 0
+        },
+        "oracle_first": {
+          "crossed": 0,
+          "paired": 0,
+          "rows": 14
+        }
+      },
+      "groups": 200,
+      "learned_first_in_oracle_realizable_rows": 6,
+      "learned_selected_gold_changed_by_writer": 373,
+      "learned_sources_in_oracle_realizable_rows": 6,
+      "rows": 800
+    }
+  },
+  "example_group_id": "01e4a5e07f001f4ed88724dc",
+  "fact_position": {
+    "requested first fact": {
+      "endpoints": {
+        "gold_above_rival": 329,
+        "learned_first": 3,
+        "learned_joint": 3,
+        "learned_source": 187,
+        "marker_first": 0,
+        "oracle_first": 7
+      },
+      "rows": 400
+    },
+    "requested second fact": {
+      "endpoints": {
+        "gold_above_rival": 249,
+        "learned_first": 3,
+        "learned_joint": 3,
+        "learned_source": 192,
+        "marker_first": 0,
+        "oracle_first": 7
+      },
+      "rows": 400
+    }
+  },
+  "genuine_absence": {
+    "subject_unbound": {
+      "diagnostic_rival_choices": 14,
+      "diagnostic_target_choices": 16,
+      "diagnostic_target_emissions": 0,
+      "no_read": 70,
+      "rows": 200,
+      "unsupported_reads": 130
+    },
+    "value_omitted": {
+      "diagnostic_rival_choices": 8,
+      "diagnostic_target_choices": 0,
+      "diagnostic_target_emissions": 0,
+      "no_read": 2,
+      "rows": 400,
+      "unsupported_reads": 398
+    }
+  },
+  "human": {
+    "absent": {
+      "expected_space_emitted": 2,
+      "expected_space_rows": 2,
+      "first_exact": 2,
+      "immediate_spaces": 21,
+      "native_lexical_exact": 0,
+      "native_lexical_exact_after_expected_space": 0,
+      "native_lexical_observed": 29,
+      "rows": 29
+    },
+    "correct": {
+      "expected_space_emitted": 2,
+      "expected_space_rows": 2,
+      "first_exact": 4,
+      "immediate_spaces": 6,
+      "native_lexical_exact": 2,
+      "native_lexical_exact_after_expected_space": 0,
+      "native_lexical_observed": 29,
+      "rows": 29
+    },
+    "learned": {
+      "expected_space_emitted": 0,
+      "expected_space_rows": 2,
+      "first_exact": 0,
+      "immediate_spaces": 5,
+      "native_lexical_exact": 0,
+      "native_lexical_exact_after_expected_space": 0,
+      "native_lexical_observed": 27,
+      "rows": 29
+    },
+    "marker": {
+      "expected_space_emitted": 2,
+      "expected_space_rows": 2,
+      "first_exact": 2,
+      "immediate_spaces": 21,
+      "native_lexical_exact": 0,
+      "native_lexical_exact_after_expected_space": 0,
+      "native_lexical_observed": 29,
+      "rows": 29
+    },
+    "swapped": {
+      "expected_space_emitted": 2,
+      "expected_space_rows": 2,
+      "first_exact": 2,
+      "immediate_spaces": 2,
+      "native_lexical_exact": 0,
+      "native_lexical_exact_after_expected_space": 0,
+      "native_lexical_observed": 29,
+      "rows": 29
+    }
+  },
+  "observations_sha256": "eba57d864bc5bd04a4933e8bdbb34bfed93c4a5898c57c16569b874e0cf0ddbb",
+  "panel_manifest_sha256": "5a405952795ed13cff8d7737ee2027f021664252bfeed1d7e7f52f4213602dd8",
+  "schema": "uor-r4.shared-occurrence-text-report/1",
+  "supplementary_format_rows": 32
+}

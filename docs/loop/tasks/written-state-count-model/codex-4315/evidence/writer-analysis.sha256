@@ -1,0 +1,5 @@
+ebd608a8bec3a102043f4e39b7b497cc5d3fedf294012bc41fb24a72ae3a68ff  receipt.json
+e8e65823aa8d22f9d67e558b8d76b42acb11fe59e285550f723470e74d05ecf6  build.log
+53ce165ed66c930cd63fff9cd148ffa93ca673f51e20067369c6fcf770a3ec54  rejected.log
+245009dc860345acef6019f26ba6c66805b717b96b8d384d043d73014dc96f32  target/release/writer-identity
+8429d4d9981100c95b41c6701435b1282bf1cd33ff1c0919d50d1eff9444b4ed  docs/loop/tasks/written-state-count-model/codex-4315/analysis/src/bin/writer-identity.rs

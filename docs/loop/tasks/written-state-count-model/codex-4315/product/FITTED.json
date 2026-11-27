@@ -1,0 +1,90 @@
+{
+  "schema": "uor-r4.native-occurrence-product-replay/1",
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-shared-source/product-validation-v1/fitted",
+  "compiler": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+  "source_manifest_sha256": "8b70cb5469ea9ff6775335a92204bcf62a3f8937dde378300492ffc88a7d6f4e",
+  "build_log_sha256": "7d2756c6885f244e08322cd923ddd4aee1c67d85b88f7ccc71911291b4aaad46",
+  "binary_manifest_sha256": "1652633117dc750f0e6aa3b309684c0952e18df8e381e799f678e478267fcc07",
+  "receipt_manifest_sha256": "3b28ded7bf072540c0b2ee5f0cc2e4f925c0c58ae712ec2a57f4e81574bb3f37",
+  "inputs_manifest_sha256": "1d9cf9aaf509953e55f13e74bfbcf89b9e84fda1b6b08d954094524fb308e108",
+  "go_sha256": "dc5fc69e733a6e66507bce60b407b72724afc1d7bdef5c6945bbc2ef4d771ee1",
+  "weights_sha256": "c4c2cb4139f1af761da5c5d6dcc656dab81ad9a813646c3efef7be672ca5a08a",
+  "held_observations_sha256": "eba57d864bc5bd04a4933e8bdbb34bfed93c4a5898c57c16569b874e0cf0ddbb",
+  "held_panel_sha256": "72777c51eb6a0b45484214aabb4e2e554e369fa7af203f2d59755fc2ac5032ac",
+  "artifact": {
+    "artifact_bytes": 1202143657,
+    "artifact_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+    "occurrence": {
+      "feature_spec_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+      "fit_sha256": "c0d0c61fa0c6d283c8f3abc2398f240405fa0ba9f4c39bbf88c3ed8f358961a7",
+      "marker_sha256": "d782af466c2ebdfba1304158a3f995b50937c434de6ee5a505f8c49cc944f143",
+      "state_bytes": 5162,
+      "state_sha256": "34c4fc99c7eae52f748bf88441600b0ae65c8600b00a6aa87d83e545fec0dfea",
+      "token_classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23"
+    },
+    "schema": "uor-r4.lut-discrete-native-occurrence/1"
+  },
+  "native_state": {
+    "fitted_words": 513,
+    "raw_weight_bytes": 1026,
+    "class_bytes": 4096,
+    "exact_reconstructed_payload_bytes": true
+  },
+  "archive": {
+    "path": "native-occurrence-product.tar.zst",
+    "sha256": "1b9a22c602b1f4ef9b54047820c8ab3b98a3b927d07cb9559be79e27c2ed7764",
+    "bytes": 348279090,
+    "payload_manifest_sha256": "e6797662f50f10d3fcde3df98d0fd520f8f4ee12d082d334b4504adb6c8c7675",
+    "reopen_log_sha256": "2757e3b88a041a4f018a8645f8bd8cf094ba9b39a30e53253aa0f7c013a55c8e",
+    "restored_member_hashes_exact": true
+  },
+  "parity": {
+    "reopened_exact_device_rows": 1461,
+    "cold_replay_sha256": "e4922dd5589ed69a24e421a4c85add26199143e8778e6a94c20ee40c01eba444",
+    "fields": [
+      "raw prompt and annotation identity",
+      "parsed bounds",
+      "candidate position and original ID",
+      "candidate admission and packed root geometry",
+      "active feature IDs and exact signed score",
+      "rank and top ties",
+      "NoRead and selected source",
+      "all five actual gate IDs and first admitted cells",
+      "opening and emitted-space lexical follow-up IDs"
+    ]
+  },
+  "ordinary": {
+    "actual_raw_and_text_processes": 6,
+    "raw_and_text_prefix_and_emission_exact": true,
+    "examples": [
+      {
+        "cohort": "controlled",
+        "pair_id": "0aed30bc813510055e0d9be2",
+        "side": 0,
+        "prompt_ids": 91,
+        "emitted_ids": [
+          7
+        ]
+      },
+      {
+        "cohort": "coqa",
+        "pair_id": "076de2ed6887d9b5048059ad",
+        "side": 0,
+        "prompt_ids": 107,
+        "emitted_ids": [
+          7
+        ]
+      },
+      {
+        "cohort": "single_paragraph",
+        "pair_id": "8580b04fbe10c6ed8cde0b4f-space",
+        "side": 0,
+        "prompt_ids": 89,
+        "emitted_ids": [
+          223,
+          223
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "uor-r4.shared-occurrence-go/1",
+  "authorized": true,
+  "fit": "TEST FITNESS: FIT",
+  "lab": "codex",
+  "session": "occurrence-4315",
+  "reviewer": "occ_initial_fit",
+  "source_commit": "8097abc4b0d7cc573aca819396f2bc303d05ac0e",
+  "approved_sha256": "e61e3d2f74034ef640ca839b0521c3b62183695c9ba715a89b38f188bb7b21ce",
+  "device_uuid": "GPU-d5cd848e-c0ed-2d40-7a99-b8e8caf0919c",
+  "pod": "vast-62876969",
+  "approved_utc": "2026-11-27T15:42:15Z",
+  "controlled_groups": 200,
+  "minimum_joint_groups": 113
+}

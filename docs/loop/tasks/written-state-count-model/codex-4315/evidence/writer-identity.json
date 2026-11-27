@@ -1,0 +1,792 @@
+{
+  "by_supplied_id": {
+    "1033": {
+      "cell": 164,
+      "emitted_id": 1033,
+      "rank_in_exact_code": 1,
+      "root_code": 18618,
+      "rows": 4,
+      "zero_distance_candidates": 1
+    },
+    "1071": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 43,
+      "root_code": 35243,
+      "rows": 12,
+      "zero_distance_candidates": 217
+    },
+    "1079": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 45,
+      "root_code": 61389,
+      "rows": 14,
+      "zero_distance_candidates": 212
+    },
+    "1124": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 55,
+      "root_code": 26437,
+      "rows": 10,
+      "zero_distance_candidates": 225
+    },
+    "1202": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 55,
+      "root_code": 47768,
+      "rows": 12,
+      "zero_distance_candidates": 228
+    },
+    "1241": {
+      "cell": 237,
+      "emitted_id": 8,
+      "rank_in_exact_code": 61,
+      "root_code": 56574,
+      "rows": 20,
+      "zero_distance_candidates": 231
+    },
+    "1296": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 61,
+      "root_code": 47768,
+      "rows": 16,
+      "zero_distance_candidates": 228
+    },
+    "1528": {
+      "cell": 33,
+      "emitted_id": 11,
+      "rank_in_exact_code": 69,
+      "root_code": 4146,
+      "rows": 14,
+      "zero_distance_candidates": 214
+    },
+    "1710": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 87,
+      "root_code": 52719,
+      "rows": 6,
+      "zero_distance_candidates": 220
+    },
+    "1728": {
+      "cell": 207,
+      "emitted_id": 17,
+      "rank_in_exact_code": 90,
+      "root_code": 65244,
+      "rows": 12,
+      "zero_distance_candidates": 226
+    },
+    "1755": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 76,
+      "root_code": 21622,
+      "rows": 8,
+      "zero_distance_candidates": 210
+    },
+    "1775": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 80,
+      "root_code": 35243,
+      "rows": 10,
+      "zero_distance_candidates": 217
+    },
+    "1808": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 91,
+      "root_code": 47768,
+      "rows": 8,
+      "zero_distance_candidates": 228
+    },
+    "1912": {
+      "cell": 33,
+      "emitted_id": 11,
+      "rank_in_exact_code": 89,
+      "root_code": 4146,
+      "rows": 16,
+      "zero_distance_candidates": 214
+    },
+    "1913": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 85,
+      "root_code": 21622,
+      "rows": 20,
+      "zero_distance_candidates": 210
+    },
+    "1956": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 100,
+      "root_code": 26437,
+      "rows": 12,
+      "zero_distance_candidates": 225
+    },
+    "2026": {
+      "cell": 237,
+      "emitted_id": 8,
+      "rank_in_exact_code": 105,
+      "root_code": 56574,
+      "rows": 8,
+      "zero_distance_candidates": 231
+    },
+    "2046": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 96,
+      "root_code": 35243,
+      "rows": 12,
+      "zero_distance_candidates": 217
+    },
+    "2057": {
+      "cell": 169,
+      "emitted_id": 9,
+      "rank_in_exact_code": 100,
+      "root_code": 39098,
+      "rows": 12,
+      "zero_distance_candidates": 218
+    },
+    "2095": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 98,
+      "root_code": 35243,
+      "rows": 18,
+      "zero_distance_candidates": 217
+    },
+    "2154": {
+      "cell": 237,
+      "emitted_id": 8,
+      "rank_in_exact_code": 113,
+      "root_code": 56574,
+      "rows": 16,
+      "zero_distance_candidates": 231
+    },
+    "2214": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 104,
+      "root_code": 61389,
+      "rows": 12,
+      "zero_distance_candidates": 212
+    },
+    "2294": {
+      "cell": 154,
+      "emitted_id": 5,
+      "rank_in_exact_code": 108,
+      "root_code": 43913,
+      "rows": 6,
+      "zero_distance_candidates": 213
+    },
+    "2466": {
+      "cell": 207,
+      "emitted_id": 17,
+      "rank_in_exact_code": 131,
+      "root_code": 65244,
+      "rows": 14,
+      "zero_distance_candidates": 226
+    },
+    "2470": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 119,
+      "root_code": 61389,
+      "rows": 8,
+      "zero_distance_candidates": 212
+    },
+    "2495": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 126,
+      "root_code": 52719,
+      "rows": 4,
+      "zero_distance_candidates": 220
+    },
+    "2537": {
+      "cell": 25,
+      "emitted_id": 2537,
+      "rank_in_exact_code": 1,
+      "root_code": 36929,
+      "rows": 10,
+      "zero_distance_candidates": 1
+    },
+    "2570": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 122,
+      "root_code": 21622,
+      "rows": 12,
+      "zero_distance_candidates": 210
+    },
+    "2596": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 136,
+      "root_code": 26437,
+      "rows": 14,
+      "zero_distance_candidates": 225
+    },
+    "2631": {
+      "cell": 18,
+      "emitted_id": 7,
+      "rank_in_exact_code": 126,
+      "root_code": 8961,
+      "rows": 8,
+      "zero_distance_candidates": 214
+    },
+    "2661": {
+      "cell": 18,
+      "emitted_id": 7,
+      "rank_in_exact_code": 128,
+      "root_code": 8961,
+      "rows": 6,
+      "zero_distance_candidates": 214
+    },
+    "2798": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 144,
+      "root_code": 52719,
+      "rows": 12,
+      "zero_distance_candidates": 220
+    },
+    "2810": {
+      "cell": 169,
+      "emitted_id": 9,
+      "rank_in_exact_code": 143,
+      "root_code": 39098,
+      "rows": 10,
+      "zero_distance_candidates": 218
+    },
+    "2870": {
+      "cell": 154,
+      "emitted_id": 5,
+      "rank_in_exact_code": 139,
+      "root_code": 43913,
+      "rows": 6,
+      "zero_distance_candidates": 213
+    },
+    "2891": {
+      "cell": 33,
+      "emitted_id": 11,
+      "rank_in_exact_code": 143,
+      "root_code": 4146,
+      "rows": 10,
+      "zero_distance_candidates": 214
+    },
+    "2899": {
+      "cell": 71,
+      "emitted_id": 2,
+      "rank_in_exact_code": 144,
+      "root_code": 30292,
+      "rows": 10,
+      "zero_distance_candidates": 215
+    },
+    "2942": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 148,
+      "root_code": 35243,
+      "rows": 14,
+      "zero_distance_candidates": 217
+    },
+    "2966": {
+      "cell": 18,
+      "emitted_id": 7,
+      "rank_in_exact_code": 145,
+      "root_code": 8961,
+      "rows": 12,
+      "zero_distance_candidates": 214
+    },
+    "2970": {
+      "cell": 33,
+      "emitted_id": 11,
+      "rank_in_exact_code": 147,
+      "root_code": 4146,
+      "rows": 8,
+      "zero_distance_candidates": 214
+    },
+    "2988": {
+      "cell": 116,
+      "emitted_id": 31,
+      "rank_in_exact_code": 147,
+      "root_code": 17767,
+      "rows": 4,
+      "zero_distance_candidates": 213
+    },
+    "3023": {
+      "cell": 48,
+      "emitted_id": 30,
+      "rank_in_exact_code": 170,
+      "root_code": 291,
+      "rows": 14,
+      "zero_distance_candidates": 236
+    },
+    "3065": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 149,
+      "root_code": 21622,
+      "rows": 4,
+      "zero_distance_candidates": 210
+    },
+    "3122": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 168,
+      "root_code": 47768,
+      "rows": 12,
+      "zero_distance_candidates": 228
+    },
+    "3156": {
+      "cell": 154,
+      "emitted_id": 5,
+      "rank_in_exact_code": 156,
+      "root_code": 43913,
+      "rows": 14,
+      "zero_distance_candidates": 213
+    },
+    "3159": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 169,
+      "root_code": 26437,
+      "rows": 8,
+      "zero_distance_candidates": 225
+    },
+    "3210": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 157,
+      "root_code": 21622,
+      "rows": 8,
+      "zero_distance_candidates": 210
+    },
+    "3234": {
+      "cell": 207,
+      "emitted_id": 17,
+      "rank_in_exact_code": 174,
+      "root_code": 65244,
+      "rows": 14,
+      "zero_distance_candidates": 226
+    },
+    "3260": {
+      "cell": 48,
+      "emitted_id": 30,
+      "rank_in_exact_code": 185,
+      "root_code": 291,
+      "rows": 10,
+      "zero_distance_candidates": 236
+    },
+    "3262": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 167,
+      "root_code": 35243,
+      "rows": 12,
+      "zero_distance_candidates": 217
+    },
+    "3290": {
+      "cell": 33,
+      "emitted_id": 11,
+      "rank_in_exact_code": 165,
+      "root_code": 4146,
+      "rows": 8,
+      "zero_distance_candidates": 214
+    },
+    "3349": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 167,
+      "root_code": 61389,
+      "rows": 4,
+      "zero_distance_candidates": 212
+    },
+    "3355": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 165,
+      "root_code": 21622,
+      "rows": 12,
+      "zero_distance_candidates": 210
+    },
+    "3385": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 167,
+      "root_code": 21622,
+      "rows": 2,
+      "zero_distance_candidates": 210
+    },
+    "3399": {
+      "cell": 18,
+      "emitted_id": 7,
+      "rank_in_exact_code": 171,
+      "root_code": 8961,
+      "rows": 12,
+      "zero_distance_candidates": 214
+    },
+    "3452": {
+      "cell": 48,
+      "emitted_id": 30,
+      "rank_in_exact_code": 196,
+      "root_code": 291,
+      "rows": 10,
+      "zero_distance_candidates": 236
+    },
+    "3457": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 189,
+      "root_code": 47768,
+      "rows": 12,
+      "zero_distance_candidates": 228
+    },
+    "3527": {
+      "cell": 18,
+      "emitted_id": 7,
+      "rank_in_exact_code": 179,
+      "root_code": 8961,
+      "rows": 14,
+      "zero_distance_candidates": 214
+    },
+    "3530": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 175,
+      "root_code": 21622,
+      "rows": 8,
+      "zero_distance_candidates": 210
+    },
+    "3583": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 188,
+      "root_code": 52719,
+      "rows": 12,
+      "zero_distance_candidates": 220
+    },
+    "3596": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 189,
+      "root_code": 52719,
+      "rows": 16,
+      "zero_distance_candidates": 220
+    },
+    "3598": {
+      "cell": 116,
+      "emitted_id": 31,
+      "rank_in_exact_code": 182,
+      "root_code": 17767,
+      "rows": 4,
+      "zero_distance_candidates": 213
+    },
+    "3646": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 189,
+      "root_code": 35243,
+      "rows": 6,
+      "zero_distance_candidates": 217
+    },
+    "3654": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 198,
+      "root_code": 26437,
+      "rows": 8,
+      "zero_distance_candidates": 225
+    },
+    "3710": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 193,
+      "root_code": 35243,
+      "rows": 12,
+      "zero_distance_candidates": 217
+    },
+    "3724": {
+      "cell": 252,
+      "emitted_id": 29,
+      "rank_in_exact_code": 197,
+      "root_code": 52719,
+      "rows": 2,
+      "zero_distance_candidates": 220
+    },
+    "3789": {
+      "cell": 184,
+      "emitted_id": 13,
+      "rank_in_exact_code": 198,
+      "root_code": 35243,
+      "rows": 12,
+      "zero_distance_candidates": 217
+    },
+    "3793": {
+      "cell": 207,
+      "emitted_id": 17,
+      "rank_in_exact_code": 208,
+      "root_code": 65244,
+      "rows": 8,
+      "zero_distance_candidates": 226
+    },
+    "3795": {
+      "cell": 71,
+      "emitted_id": 2,
+      "rank_in_exact_code": 197,
+      "root_code": 30292,
+      "rows": 8,
+      "zero_distance_candidates": 215
+    },
+    "3797": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 194,
+      "root_code": 61389,
+      "rows": 10,
+      "zero_distance_candidates": 212
+    },
+    "3814": {
+      "cell": 222,
+      "emitted_id": 21,
+      "rank_in_exact_code": 195,
+      "root_code": 61389,
+      "rows": 12,
+      "zero_distance_candidates": 212
+    },
+    "3815": {
+      "cell": 154,
+      "emitted_id": 5,
+      "rank_in_exact_code": 196,
+      "root_code": 43913,
+      "rows": 14,
+      "zero_distance_candidates": 213
+    },
+    "3816": {
+      "cell": 101,
+      "emitted_id": 74,
+      "rank_in_exact_code": 193,
+      "root_code": 21622,
+      "rows": 16,
+      "zero_distance_candidates": 210
+    },
+    "3984": {
+      "cell": 139,
+      "emitted_id": 1,
+      "rank_in_exact_code": 222,
+      "root_code": 47768,
+      "rows": 14,
+      "zero_distance_candidates": 228
+    },
+    "4027": {
+      "cell": 237,
+      "emitted_id": 8,
+      "rank_in_exact_code": 227,
+      "root_code": 56574,
+      "rows": 10,
+      "zero_distance_candidates": 231
+    },
+    "4065": {
+      "cell": 3,
+      "emitted_id": 3,
+      "rank_in_exact_code": 213,
+      "root_code": 12816,
+      "rows": 4,
+      "zero_distance_candidates": 214
+    },
+    "885": {
+      "cell": 86,
+      "emitted_id": 6,
+      "rank_in_exact_code": 42,
+      "root_code": 26437,
+      "rows": 14,
+      "zero_distance_candidates": 225
+    }
+  },
+  "census": {
+    "emitted_cell_matches_supplied_cell": 800,
+    "emitted_exact_id": 14,
+    "emitted_smallest_id_at_supplied_code": 800,
+    "rows": 800,
+    "supplied_rank_beyond_top_eight": 786,
+    "target_cell_admitted_first": 800,
+    "wrong_different_code": 0,
+    "wrong_emission": 786,
+    "wrong_eos": 74,
+    "wrong_lower_id": 786,
+    "wrong_same_code": 786,
+    "zero_distance_rank_by_row": {
+      "1": 14,
+      "100": 24,
+      "104": 12,
+      "105": 8,
+      "108": 6,
+      "113": 16,
+      "119": 8,
+      "122": 12,
+      "126": 12,
+      "128": 6,
+      "131": 14,
+      "136": 14,
+      "139": 6,
+      "143": 20,
+      "144": 22,
+      "145": 12,
+      "147": 12,
+      "148": 14,
+      "149": 4,
+      "156": 14,
+      "157": 8,
+      "165": 20,
+      "167": 18,
+      "168": 12,
+      "169": 8,
+      "170": 14,
+      "171": 12,
+      "174": 14,
+      "175": 8,
+      "179": 14,
+      "182": 4,
+      "185": 10,
+      "188": 12,
+      "189": 34,
+      "193": 28,
+      "194": 10,
+      "195": 12,
+      "196": 24,
+      "197": 10,
+      "198": 20,
+      "208": 8,
+      "213": 4,
+      "222": 14,
+      "227": 10,
+      "42": 14,
+      "43": 12,
+      "45": 14,
+      "55": 22,
+      "61": 36,
+      "69": 14,
+      "76": 8,
+      "80": 10,
+      "85": 20,
+      "87": 6,
+      "89": 16,
+      "90": 12,
+      "91": 8,
+      "96": 12,
+      "98": 18
+    },
+    "zero_distance_rank_by_supplied_id": {
+      "1": 2,
+      "100": 2,
+      "104": 1,
+      "105": 1,
+      "108": 1,
+      "113": 1,
+      "119": 1,
+      "122": 1,
+      "126": 2,
+      "128": 1,
+      "131": 1,
+      "136": 1,
+      "139": 1,
+      "143": 2,
+      "144": 2,
+      "145": 1,
+      "147": 2,
+      "148": 1,
+      "149": 1,
+      "156": 1,
+      "157": 1,
+      "165": 2,
+      "167": 3,
+      "168": 1,
+      "169": 1,
+      "170": 1,
+      "171": 1,
+      "174": 1,
+      "175": 1,
+      "179": 1,
+      "182": 1,
+      "185": 1,
+      "188": 1,
+      "189": 3,
+      "193": 2,
+      "194": 1,
+      "195": 1,
+      "196": 2,
+      "197": 2,
+      "198": 2,
+      "208": 1,
+      "213": 1,
+      "222": 1,
+      "227": 1,
+      "42": 1,
+      "43": 1,
+      "45": 1,
+      "55": 2,
+      "61": 2,
+      "69": 1,
+      "76": 1,
+      "80": 1,
+      "85": 1,
+      "87": 1,
+      "89": 1,
+      "90": 1,
+      "91": 1,
+      "96": 1,
+      "98": 1
+    },
+    "zero_distance_tie_size_by_row": {
+      "1": 14,
+      "210": 90,
+      "212": 60,
+      "213": 48,
+      "214": 112,
+      "215": 18,
+      "217": 108,
+      "218": 22,
+      "220": 52,
+      "225": 66,
+      "226": 48,
+      "228": 74,
+      "231": 54,
+      "236": 34
+    },
+    "zero_distance_tie_size_by_supplied_id": {
+      "1": 2,
+      "210": 9,
+      "212": 6,
+      "213": 6,
+      "214": 11,
+      "215": 2,
+      "217": 9,
+      "218": 2,
+      "220": 6,
+      "225": 6,
+      "226": 4,
+      "228": 6,
+      "231": 4,
+      "236": 3
+    }
+  },
+  "controlled_groups": 200,
+  "distinct_emitted_ids": 18,
+  "distinct_supplied_ids": 76,
+  "inputs_sha256": {
+    "cells": "fae89184d30bacc4ef16af6339cb458e92891dd91a43cf237cdbc473deb60383",
+    "observations": "eba57d864bc5bd04a4933e8bdbb34bfed93c4a5898c57c16569b874e0cf0ddbb",
+    "roots": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a",
+    "trunk": "c69c748209abad27c3be2bff7ed438fa12df54bdd83b546d9dda9331112ba577"
+  },
+  "schema": "uor-r4.occurrence-writer-identity/1",
+  "vocabulary_distinct_exact_codes": 388,
+  "vocabulary_size": 4096,
+  "writer_root_words_equal_feature_roots": true
+}

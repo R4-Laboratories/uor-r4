@@ -1,0 +1,30 @@
+# CoQA dev v1.0 text-only review. Columns are conversation ID, turn, topic, in-passage rival token, and review rationale.
+34bbwhlwhab1k7k3vhca2pei8rowil	1	cycling-career	shadow	The passage directly describes the rider as reformed amid discussion of other riders.
+3e47sobeyqws69eyeqc9qv7fgb9civ	1	at-sea-rescue	guard	The passage names the woman rescued at sea and identifies the rescuers separately.
+3jwh6j9i9sd1a5xjx6t6kjxekv8bnk	1	photo-publication	two	The excerpt names the outlet that published the photos.
+3kyqyyshyv7c7nvfchkpuyljdkmdot	1	mortgage-employment	job	The single named person is the broker whose job loss the excerpt describes.
+3zazr5xv01ie1z38eu0vqqa5bfgcze	1	road-accident	car	The accident sentence gives its state directly.
+3efvcay5l39mph8rfwh40aqw343j88	2	island-fiction	river	The named protagonist performs the main action and a different named person appears as his companion.
+3snlul3wo4nqi434lkumchld4juult	1	hide-and-seek	game	The text gives a number of leaves and connects it to Danny's size.
+3vfjci1k4zzigkxm6z21uetl12ogrn	1	ranch-adventure	getting	The attribution identifies the speaker who advised staying away.
+3z3zlgnnsiuha76yy56h6uu71bh3q1	12	pavilion-adventure	pole	The excerpt describes the chain and gives the name directly.
+3a1pq49wvhh8nbtgsb549nn9bzth12	1	school-commute	house	The opening sentence states the regular destination and another sentence mentions a distinct location.
+3dr23u6we5exclen4th8uq9rb42tel	1	farm-kitten	house	The opening sentence gives the kitten's color.
+3kjyx6qcm9bk0t44npsesoa4dxbjv9	1	winter-story	branches	The passage states the season directly.
+3m1cvsfp605hus5j7klrt28d6hiqak	1	farm-visit	brother	The passage identifies the visitor and distinguishes the visitor's brother.
+3sb5n7y3o34ugqdncmjmaisyr7d0gm	1	railroad-fiction	train	The opening clause gives the monster's name.
+374tnbha8bviqa3mnqz7woqka65yqj	1	literary-anniversary	new	The passage names the author whose death anniversary it describes.
+3bv8hq2zzw1okamzsb7tnxrm7eha6f	1	neighbor-dogs	houses	The first sentence gives both names and establishes the relationship in the question.
+3gu1kf0o4i11dq9wdl6yo829k14pb7	1	aviation-emergency	base	The person who checks the engine and contacts the base is the pilot.
+3tk8ojtym1lgm472i2xypkwgnt8pv1	2	childhood-outdoors	truck	The opening clause states the subject's childhood activity before describing the accident.
+3wakvudhuwgr3je2hqtctc3c8ld7us	3	language-and-internet	diary	The passage distinguishes the two experts and names Geoffrey's affiliation.
+3iuzpwiu1o7sq2arvkxmf5tv0xokwz	1	mongol-history	under	The council's proclamation gives the date in the question.
+3ydtzai2wxgebz5ld4llfye57zv14z	1	media-formats	live	The passage identifies the medium as the subject of the stated activities.
+3z3zlgnnsiuha76yy56h6uu712v3qx	1	commercial-ports	clay	The excerpt names the port and gives separate information about its exports.
+3ga6afukooo4xe7vffjnxg26ark3ha	1	public-office	said	The position appears in explicit apposition to the person's name. The opening ID is shared elsewhere.
+3leiz60cdjzc31w52aq4o09x5yqz95	1	sport-preference	football	The text explicitly compares sports and repeats the answer token elsewhere.
+3hmigg0u4l6ck63q1wi7ax5kfwwy8c	1	official-languages	Today	The passage gives the count. The canonical digit opening occurs more than once.
+3g5w44veu7iwtgkrgft4t27767kgke	1	film-title	count	The film is named in the passage. The canonical opening ID lacks an exact supported occurrence.
+3qxnc7eipivf1gqfygdci16bnvn90b	2	color-preferences	yellow	John's color is given directly. The canonical answer capitalizes the opening word that the passage prints in lowercase.
+33lk57mylt5u8gs4bgqv5venyoxzs3	1	wakeup-time	storm	The waking time appears explicitly. The canonical opening case differs from the passage.
+36zn444ytrytfyb14vl0lv1w5ryio8	7	debut-album	songs	The excerpt directly identifies the album and its release year while the quote boundary changes the opening token.

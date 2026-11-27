@@ -1,0 +1,448 @@
+{
+  "schema": "uor-r4.native-occurrence-product-fixture/1",
+  "scope": "Planted prompt-only fit and cold writer alias on one reused #4314 controlled prompt",
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-shared-source/product-validation-v1/finite-positive",
+  "compiler": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+  "build_log_sha256": "7d2756c6885f244e08322cd923ddd4aee1c67d85b88f7ccc71911291b4aaad46",
+  "source_manifest_sha256": "8b70cb5469ea9ff6775335a92204bcf62a3f8937dde378300492ffc88a7d6f4e",
+  "binary_manifest_sha256": "1652633117dc750f0e6aa3b309684c0952e18df8e381e799f678e478267fcc07",
+  "fixture_manifest_sha256": "1e38768cfd6fe0185c74b262b797fa7602f65d6fa2354091acbe83908325a25c",
+  "unit_tests": {
+    "passed": 35,
+    "failed": 0,
+    "wasm32_library": "PASS"
+  },
+  "zero": {
+    "pack": {
+      "artifact_bytes": 1202143657,
+      "artifact_sha256": "16a97f00cb42b9ac52da014278dd502012c3d58ec35e80a5c06de6a675512533",
+      "occurrence": {
+        "feature_spec_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+        "fit_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+        "marker_sha256": "d782af466c2ebdfba1304158a3f995b50937c434de6ee5a505f8c49cc944f143",
+        "state_bytes": 5162,
+        "state_sha256": "d2c9df87c8f65e4a078e05e65405d276cb79e8c5305eb83422a6b81b6b735777",
+        "token_classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23"
+      },
+      "schema": "uor-r4.lut-discrete-native-occurrence/1"
+    },
+    "best_score": 0,
+    "best_ties": 36,
+    "winner": null,
+    "event": {
+      "emitted_id": 1,
+      "first_admitted_cell": 139,
+      "gate_id": 931,
+      "lexical": null,
+      "source_pos": null
+    }
+  },
+  "planted": {
+    "pack": {
+      "artifact_bytes": 1202143657,
+      "artifact_sha256": "a95511bdfe37e040c0412db19d364e8263145d6b33c2a5720a9a819e0939ccd9",
+      "occurrence": {
+        "feature_spec_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+        "fit_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+        "marker_sha256": "d782af466c2ebdfba1304158a3f995b50937c434de6ee5a505f8c49cc944f143",
+        "state_bytes": 5162,
+        "state_sha256": "719569eaab88ee096c574acd8975c05a0d41dc9becc9e60bdb57c610a8cbd800",
+        "token_classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23"
+      },
+      "schema": "uor-r4.lut-discrete-native-occurrence/1"
+    },
+    "gold_pos": 21,
+    "rival_pos": 32,
+    "best_score": 128,
+    "best_ties": 1,
+    "arms": {
+      "absent": {
+        "emitted_id": 1,
+        "first_admitted_cell": 139,
+        "gate_id": 931,
+        "lexical": null,
+        "source_pos": null
+      },
+      "correct": {
+        "emitted_id": 6,
+        "first_admitted_cell": 86,
+        "gate_id": 1623,
+        "lexical": null,
+        "source_pos": 21
+      },
+      "learned": {
+        "emitted_id": 6,
+        "first_admitted_cell": 86,
+        "gate_id": 1623,
+        "lexical": null,
+        "source_pos": 21
+      },
+      "marker": {
+        "emitted_id": 1,
+        "first_admitted_cell": 139,
+        "gate_id": 931,
+        "lexical": null,
+        "source_pos": null
+      },
+      "swapped": {
+        "emitted_id": 31,
+        "first_admitted_cell": 116,
+        "gate_id": 2143,
+        "lexical": null,
+        "source_pos": 32
+      }
+    }
+  },
+  "ordinary": {
+    "equal_prompt_and_emission": true,
+    "prompt_length": 69,
+    "raw_generated": [
+      6,
+      2
+    ],
+    "text_generated": [
+      6,
+      2
+    ]
+  },
+  "instrument_correction": {
+    "detail": "The initial finite fixture command populated NoRead but missed the intended feature weights. The retried finite witness populated and exercised the score.",
+    "preserved_custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-shared-source/product-validation-v1/finite"
+  },
+  "transport_validation": {
+    "manifest_sha256": "bc0066cdd7964ddfd45320c3f986e0d3af97e54c4c9c712abfae140fd099c3ba",
+    "cases": {
+      "out_of_bound_weight": "REFUSED",
+      "noncanonical_token_classes": "REFUSED",
+      "known_size_truncated_carrier": "REFUSED"
+    }
+  },
+  "device_differential": {
+    "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-shared-source/product-validation-v1/finite-device",
+    "manifest_sha256": "13971d906c2c5001854df065e2749aea74760e922170f4ec619a23514fa5bc0c",
+    "inputs_manifest_sha256": "16458b13954c5a8f71a56b4099c7348cc67ed9a72e29217ea75b9f0e8411d958",
+    "artifact": {
+      "artifact_bytes": 1202143657,
+      "artifact_sha256": "bff6c2c34245425f3af368316c3697036c47164bda0c3d8c4ba9c248abeb9832",
+      "occurrence": {
+        "feature_spec_sha256": "dfa61825eeae77042d8f6e541e801f55e5e65e1f53946ca9f4dd72813f6e6acb",
+        "fit_sha256": "4c8c72e0b0ad449a2e9d695bb335bc8258033a9ed1a844f462278969c798692d",
+        "marker_sha256": "d782af466c2ebdfba1304158a3f995b50937c434de6ee5a505f8c49cc944f143",
+        "state_bytes": 5162,
+        "state_sha256": "60ee7bcac8861d88b8ad39e8d0d136839f62eea053e73c3e845cc73f20da10d3",
+        "token_classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23"
+      },
+      "schema": "uor-r4.lut-discrete-native-occurrence/1"
+    },
+    "exact_cuda_cold_rows": 5,
+    "artifact_state_preserves_all_native_bytes": true,
+    "lexical_fixture_ordinary_raw_cli": {
+      "matches": true,
+      "generated_ids": [
+        261
+      ]
+    },
+    "cases": [
+      {
+        "pair_id": "probe-261",
+        "parsed_start": 4,
+        "parsed_end": 11,
+        "gold_pos": 6,
+        "rival_pos": 9,
+        "winner_pos": 6,
+        "best_score": 16,
+        "best_ties": 1,
+        "arms": {
+          "absent": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "correct": {
+            "emitted_id": 261,
+            "first_admitted_cell": 148,
+            "gate_id": 261,
+            "lexical": null,
+            "source_pos": 6
+          },
+          "learned": {
+            "emitted_id": 261,
+            "first_admitted_cell": 148,
+            "gate_id": 261,
+            "lexical": null,
+            "source_pos": 6
+          },
+          "marker": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "swapped": {
+            "emitted_id": 21,
+            "first_admitted_cell": 222,
+            "gate_id": 260,
+            "lexical": null,
+            "source_pos": 9
+          }
+        }
+      },
+      {
+        "pair_id": "probe-262",
+        "parsed_start": 4,
+        "parsed_end": 11,
+        "gold_pos": 6,
+        "rival_pos": 9,
+        "winner_pos": 6,
+        "best_score": 16,
+        "best_ties": 1,
+        "arms": {
+          "absent": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "correct": {
+            "emitted_id": 6,
+            "first_admitted_cell": 86,
+            "gate_id": 262,
+            "lexical": null,
+            "source_pos": 6
+          },
+          "learned": {
+            "emitted_id": 6,
+            "first_admitted_cell": 86,
+            "gate_id": 262,
+            "lexical": null,
+            "source_pos": 6
+          },
+          "marker": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "swapped": {
+            "emitted_id": 21,
+            "first_admitted_cell": 222,
+            "gate_id": 260,
+            "lexical": null,
+            "source_pos": 9
+          }
+        }
+      },
+      {
+        "pair_id": "finite-empty",
+        "parsed_start": 4,
+        "parsed_end": 11,
+        "gold_pos": null,
+        "rival_pos": null,
+        "winner_pos": null,
+        "best_score": null,
+        "best_ties": 0,
+        "arms": {
+          "absent": {
+            "emitted_id": 31,
+            "first_admitted_cell": 116,
+            "gate_id": 287,
+            "lexical": null,
+            "source_pos": null
+          },
+          "correct": {
+            "emitted_id": 31,
+            "first_admitted_cell": 116,
+            "gate_id": 287,
+            "lexical": null,
+            "source_pos": null
+          },
+          "learned": {
+            "emitted_id": 31,
+            "first_admitted_cell": 116,
+            "gate_id": 287,
+            "lexical": null,
+            "source_pos": null
+          },
+          "marker": {
+            "emitted_id": 31,
+            "first_admitted_cell": 116,
+            "gate_id": 287,
+            "lexical": null,
+            "source_pos": null
+          },
+          "swapped": {
+            "emitted_id": 31,
+            "first_admitted_cell": 116,
+            "gate_id": 287,
+            "lexical": null,
+            "source_pos": null
+          }
+        }
+      },
+      {
+        "pair_id": "finite-boundary-aligned",
+        "parsed_start": 4,
+        "parsed_end": 11,
+        "gold_pos": 6,
+        "rival_pos": 9,
+        "winner_pos": 6,
+        "best_score": 16,
+        "best_ties": 1,
+        "arms": {
+          "absent": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "correct": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 261,
+              "first_admitted_cell": 148,
+              "gate_id": 261,
+              "source_pos": 6
+            },
+            "source_pos": null
+          },
+          "learned": {
+            "emitted_id": 261,
+            "first_admitted_cell": 148,
+            "gate_id": 261,
+            "lexical": null,
+            "source_pos": 6
+          },
+          "marker": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "swapped": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 21,
+              "first_admitted_cell": 222,
+              "gate_id": 260,
+              "source_pos": 9
+            },
+            "source_pos": null
+          }
+        }
+      },
+      {
+        "pair_id": "finite-unscoped",
+        "parsed_start": null,
+        "parsed_end": null,
+        "gold_pos": 6,
+        "rival_pos": 9,
+        "winner_pos": null,
+        "best_score": null,
+        "best_ties": 0,
+        "arms": {
+          "absent": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "correct": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "learned": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "marker": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          },
+          "swapped": {
+            "emitted_id": 223,
+            "first_admitted_cell": 255,
+            "gate_id": 223,
+            "lexical": {
+              "emitted_id": 223,
+              "first_admitted_cell": 255,
+              "gate_id": 223,
+              "source_pos": null
+            },
+            "source_pos": null
+          }
+        }
+      }
+    ]
+  }
+}

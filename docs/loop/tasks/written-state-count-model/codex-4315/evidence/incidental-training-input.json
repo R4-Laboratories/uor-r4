@@ -1,0 +1,15 @@
+{
+  "schema": "uor-r4.held-target-in-train-prompts/1",
+  "positive_training_prefixes": 800,
+  "held_rows": 800,
+  "distinct_held_answer_ids": 76,
+  "distinct_held_target_ids_appearing_as_tokens_in_any_positive_training_prefix": 1,
+  "held_target_occurrences_appearing_as_tokens_in_any_positive_training_prefix": 12,
+  "matches": [
+    {
+      "held_target_id": 2057,
+      "held_target_rows": 12
+    }
+  ],
+  "supervised_held_target_overlap": 0
+}

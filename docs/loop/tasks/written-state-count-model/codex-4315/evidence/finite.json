@@ -1,0 +1,24 @@
+{
+  "alias_emitted_id": 6,
+  "alias_original_id": 262,
+  "base_sha256": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+  "controls": [
+    "unique learned source beats all eligible occurrences",
+    "source rank reads all eligible positions",
+    "supplied lexical source reaches original ID",
+    "supplied swapped source selects actual rival ID",
+    "writer alias changes a real lexical gate ID",
+    "NoRead on tied score",
+    "NoRead on empty fact candidates",
+    "unauthenticated fact scope fails closed for supplied sources",
+    "forced NoRead reproduces frozen fallback",
+    "delayed reference does not force lexical ID at colon",
+    "integer state exact save/reload",
+    "finite training conservation and reverse-order atomic accumulation",
+    "full CUDA replay in reverse order"
+  ],
+  "fixture_marker_gate": 223,
+  "lexical_original_id": 261,
+  "probe_bank": 128,
+  "status": "pass"
+}

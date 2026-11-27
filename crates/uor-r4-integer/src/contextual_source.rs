@@ -600,7 +600,11 @@ impl IntegerDiscreteModel {
             let code = trunk.compute_rec_code(prefix, &self.codebook_roots)?;
             return Ok(expand_recurrence_code(code));
         }
-        let ((blocks, _, _), _) = self.causal_geometric_read(prefix, None)?;
+        let ((blocks, _, _), _) = self.causal_geometric_read(
+            prefix,
+            None,
+            super::native_occurrence::OpeningChoice::Learned,
+        )?;
         let blocks: [[i32; 8]; 4] = blocks
             .try_into()
             .map_err(|_| invalid("contextual source D11 read width differs from 32"))?;
