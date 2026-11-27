@@ -1,0 +1,25 @@
+[package]
+name = "gate0-kit"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Standalone pure-integer Gate 0 corpus & unwrapped evaluation kit (antigravity-1).
+# Detached from the workspace; zero floats, zero softmax, zero matmul, zero GPU dependency.
+[workspace]
+
+[dependencies]
+d87-split-audit = { path = "../../../../../labs/d87-split-audit/instrument" }
+hex = "0.4"
+m2-student-corpus-ingest = { path = "../../../../../labs/m2-student-corpus-ingest/instrument" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10.8"
+uor-r4-core = { path = "../../../../../../crates/uor-r4-core" }
+uor-r4-count-runtime = { path = "../../../../../../crates/uor-r4-discrete/count-runtime" }
+uor-r4-integer = { path = "../../../../../../crates/uor-r4-integer", features = ["p1-count-serving"] }
+uor-r4-tokenizer = { path = "../../../../../../crates/uor-r4-tokenizer" }
+zstd = "0.14"
+
+[patch.crates-io]
+arrayref = { path = "../../../../../../third_party/arrayref" }

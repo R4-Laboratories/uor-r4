@@ -27,6 +27,8 @@ both before any mechanism is promoted.
 
 **November 17, 2026.** The November 16 decision changes the model route that the original D86 sequence below supported. The interfaces and finite fixtures remain available. Use the written-state S0–S6 contract to identify which are actually consumed by P1–P4. Record a new decision before treating a different model run as fulfillment of I6. [Written-state decision](../../loop/tasks/written-state-count-model/claude-409/DECISION.md)
 
+**November 27, 2026 (`antigravity-1`, Gate 0).** Clean `DialogueProtocol::literal_roles_v2` answer-only D87 splits (`TRAIN` `737.5M` tok, `train-100m` `100.5M` tok, `DEV-tune`, sealed `DEV-test`) and the unwrapped `E1–E4` baseline evaluator (`gate0-kit`, `$0.00` GPU) landed with frozen `p4.d11` failing unwrapped E2 (`955‰` `" We"`), E3 (`0/128`), and E4 (`0/100`), preparing the Gate 1 native-integer Butterfly-Rotor pilot. [Gate 0 Report](../../loop/tasks/end-to-end-integration/antigravity-1/REPORT.md)
+
 - One common `Read` result and interface, whose reference implementation is the native Q31
   first-pick read that D86 step 6 trains and serves (ADR-0007 Amendment 1). The Hamming copy and
   ask heads come second. Flock, route and relation adapters wait for a second consumer.

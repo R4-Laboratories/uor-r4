@@ -1,0 +1,102 @@
+{
+  "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "e1_likelihood_and_shuffle": {
+    "all_answer": {
+      "bits_q12": "573451338",
+      "bytes": 97806,
+      "micro_bpb": 1431433,
+      "targets": 51490,
+      "top1": 30437,
+      "top1_permille": 591
+    },
+    "counterfactual_prompt_shuffle": {
+      "ci95_hi_micro_bpb": 105286,
+      "ci95_lo_micro_bpb": 67031,
+      "delta_micro_bpb": 85100,
+      "prompt_conditioned_pass": true,
+      "swapped_prompt_micro_bpb": 1516533,
+      "true_prompt_micro_bpb": 1431433
+    },
+    "gold_eos": {
+      "targets": 82,
+      "top1": 18,
+      "top1_permille": 219
+    },
+    "in_context_answer": {
+      "bytes": 63434,
+      "micro_bpb": 1310025,
+      "targets": 39404
+    },
+    "max_answer_tokens_per_rec": 256,
+    "novel_absent_answer": {
+      "bits_q12": "206048741",
+      "bytes": 29298,
+      "micro_bpb": 1717007,
+      "targets": 9829,
+      "top1": 3346,
+      "top1_permille": 340
+    },
+    "records": 256
+  },
+  "e2_freerun_collapse": {
+    "cap_truncation": 200,
+    "cap_truncation_permille": 1000,
+    "counterfactual_pairs": 64,
+    "distinct_first_tokens": 5,
+    "diverge_by_step1": 6,
+    "diverge_by_step3": 13,
+    "diverge_by_step3_permille": 203,
+    "fourgram_loop_permille": 950,
+    "fourgram_loops": 190,
+    "gate_e2_pass": false,
+    "gen_cap": 128,
+    "modal_first_token_count": 191,
+    "modal_first_token_id": 799,
+    "modal_first_token_permille": 955,
+    "modal_first_token_surface": " We",
+    "natural_eos": 0,
+    "natural_eos_permille": 0,
+    "premature_eos": 0,
+    "prompts": 200
+  },
+  "e3_unwrapped_m2": {
+    "abstention_64": {
+      "abstained": 0,
+      "total": 64
+    },
+    "active": {
+      "arm": "active",
+      "bar_52_of_128_pass": false,
+      "complete": 0,
+      "pairs_both_complete_distinct": 0,
+      "rows": 256
+    },
+    "no_memory": {
+      "arm": "no_memory",
+      "bar_52_of_128_pass": false,
+      "complete": 0,
+      "pairs_both_complete_distinct": 0,
+      "rows": 256
+    },
+    "no_regex_span_stripping": true,
+    "no_score_forcing": true,
+    "panel": "m2-fresh256-unwrapped",
+    "role_swapped": {
+      "arm": "role_swapped",
+      "bar_52_of_128_pass": false,
+      "complete": 0,
+      "pairs_both_complete_distinct": 0,
+      "rows": 256
+    }
+  },
+  "e4_checkable_micro": {
+    "arithmetic_40": 0,
+    "long_distance_qa_40": 0,
+    "passed": 0,
+    "rust_micro_20": 0,
+    "total": 100
+  },
+  "model_kind": "frozen_p4_unwrapped",
+  "schema": "uor-r4.gate0-unwrapped-eval/1",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+}

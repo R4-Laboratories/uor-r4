@@ -1,0 +1,207 @@
+{
+  "answer_bytes": 4882372,
+  "answer_targets": 2519395,
+  "dropped_bytes": 0,
+  "empty_skipped": 0,
+  "fallback_tokens": 385257,
+  "files": [
+    {
+      "bytes": 7610660,
+      "file": "dev-tune.tokens.u16",
+      "sha256": "99b714a67415d92e42750577110d9ce405625d93adabbd906739bbfca60d9c78"
+    },
+    {
+      "bytes": 3805298,
+      "file": "dev-tune.mask.u8",
+      "sha256": "643fccbbd63f38f4ac61dbedff02d75964c91809d9b277e75a27e5a8fbd30199"
+    },
+    {
+      "bytes": 3805298,
+      "file": "dev-tune.segment.u8",
+      "sha256": "cd9cb02db32e930b11b94567fa84e9897694a2424ce6ba9e25a42639d56d410d"
+    },
+    {
+      "bytes": 3805298,
+      "file": "dev-tune.novel.u8",
+      "sha256": "6239ac461ebb4e32fe8f170290ffd78c6d3149e0214b67e8068a485816e29fe4"
+    },
+    {
+      "bytes": 3805298,
+      "file": "dev-tune.absent.u8",
+      "sha256": "8860f193f6f069037ac87f2a590a3a6ddd1d3ba72c0b3a0de148a6aa08cc658b"
+    }
+  ],
+  "framing": "protocol-v2-answer",
+  "id_bytes_sha256": "befb22f6908751ae522a80336afa584eb2c24e36a10b90ad3105e39271a48ac9",
+  "max_record_tokens": 24790,
+  "novel": {
+    "absent_response_bytes": 1202923,
+    "absent_response_targets": 363673,
+    "classes": {
+      "novel": {
+        "bytes": 4568670,
+        "response_bytes": 3876202,
+        "response_targets": 1813761,
+        "targets": 2122144
+      },
+      "seen": {
+        "bytes": 2875102,
+        "response_bytes": 1006170,
+        "response_targets": 708465,
+        "targets": 1648444
+      },
+      "short_context": {
+        "bytes": 77259,
+        "response_bytes": 0,
+        "response_targets": 0,
+        "targets": 32040
+      }
+    },
+    "novel_absent_response_bytes": 1073644,
+    "novel_absent_response_targets": 313771,
+    "rule": "13-gram TRAIN overlap (claude-411) crossed with 2048-token absent-from-context mask"
+  },
+  "openings": {
+    "distinct_first_tokens": 104,
+    "token_we_count": 8,
+    "token_we_id": 799,
+    "token_we_share_ppm": 2825,
+    "top_20": [
+      {
+        "count": 1429,
+        "share_ppm": 504768,
+        "surface": " ",
+        "token_id": 223
+      },
+      {
+        "count": 181,
+        "share_ppm": 63935,
+        "surface": " The",
+        "token_id": 287
+      },
+      {
+        "count": 147,
+        "share_ppm": 51925,
+        "surface": " Let",
+        "token_id": 1042
+      },
+      {
+        "count": 125,
+        "share_ppm": 44154,
+        "surface": " He",
+        "token_id": 318
+      },
+      {
+        "count": 79,
+        "share_ppm": 27905,
+        "surface": " A",
+        "token_id": 439
+      },
+      {
+        "count": 70,
+        "share_ppm": 24726,
+        "surface": " I",
+        "token_id": 340
+      },
+      {
+        "count": 62,
+        "share_ppm": 21900,
+        "surface": " S",
+        "token_id": 301
+      },
+      {
+        "count": 46,
+        "share_ppm": 16248,
+        "surface": " F",
+        "token_id": 598
+      },
+      {
+        "count": 45,
+        "share_ppm": 15895,
+        "surface": " C",
+        "token_id": 772
+      },
+      {
+        "count": 37,
+        "share_ppm": 13069,
+        "surface": " P",
+        "token_id": 971
+      },
+      {
+        "count": 32,
+        "share_ppm": 11303,
+        "surface": " B",
+        "token_id": 376
+      },
+      {
+        "count": 30,
+        "share_ppm": 10596,
+        "surface": " M",
+        "token_id": 379
+      },
+      {
+        "count": 30,
+        "share_ppm": 10596,
+        "surface": " N",
+        "token_id": 2237
+      },
+      {
+        "count": 29,
+        "share_ppm": 10243,
+        "surface": " There",
+        "token_id": 1526
+      },
+      {
+        "count": 26,
+        "share_ppm": 9184,
+        "surface": " In",
+        "token_id": 955
+      },
+      {
+        "count": 22,
+        "share_ppm": 7771,
+        "surface": " T",
+        "token_id": 273
+      },
+      {
+        "count": 21,
+        "share_ppm": 7417,
+        "surface": " It",
+        "token_id": 427
+      },
+      {
+        "count": 20,
+        "share_ppm": 7064,
+        "surface": " U",
+        "token_id": 3184
+      },
+      {
+        "count": 20,
+        "share_ppm": 7064,
+        "surface": " Sh",
+        "token_id": 3506
+      },
+      {
+        "count": 19,
+        "share_ppm": 6711,
+        "surface": " “",
+        "token_id": 1228
+      }
+    ],
+    "total_answer_turns": 2831
+  },
+  "records": 2670,
+  "records_le_2048": 2042,
+  "response_bytes": 4882372,
+  "response_targets": 2522226,
+  "split": "dev-tune",
+  "split_key": "claude-411/d87-split/v1",
+  "target_bytes": 7521031,
+  "targets": 3802628,
+  "targets_gt_2048": 1000603,
+  "template_capped": 0,
+  "text_bytes": 7521031,
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "tokens": 3805298,
+  "unit": "antigravity-1-gate0"
+}
