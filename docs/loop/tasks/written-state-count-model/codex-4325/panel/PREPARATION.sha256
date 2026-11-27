@@ -1,0 +1,16 @@
+49c9fa9904e3187e160dc86b1dad45a9ac64976fdd0569f19f43beb4c0bf2928  crates/uor-r4-tokenizer/Cargo.toml
+a3cc412d013b2f0037329ed5aba0d7ff23503d9f718dbef6937ca9111106c8b9  crates/uor-r4-tokenizer/src/bin/train-bpe.rs
+d3f70a92165ae08a1a359bf77fb83c1f0fa95fe609bbaa51d723758a01254a56  crates/uor-r4-tokenizer/src/dialogue.rs
+977f823c5c78f981e788c7bbe7694deb4d466a64ae0152e43f05e50d58f951eb  crates/uor-r4-tokenizer/src/lib.rs
+8395558e249e869a9d18105d6304eb2d4e747f39b7e8aa652328c02fccefeeb5  crates/uor-r4-tokenizer/src/training.rs
+6cceda9da9cd77cf6dd64d4131c8bafec2d90703e4d9a915b44ad38b5dcf64d0  docs/loop/tasks/written-state-count-model/codex-4323/panel/src/design.rs
+3cc2f8bbbe5b33aea6b3f914b2f78af1a12ecfd81ffb4c86f3e7338a475f89df  docs/loop/tasks/written-state-count-model/codex-4324/panel/src/archive.rs
+5df10f39b87f183bbe098ac5c86aeb24bdfb76a939ef4b58f918910657aa1114  docs/loop/tasks/written-state-count-model/codex-4324/panel/src/design.rs
+81444b2c7cbc0fd1f9778a0aa305d3e608f806069348f84a8d8d0b92cc071e92  docs/loop/tasks/written-state-count-model/codex-4325/panel/Cargo.lock
+28eb56afc428c4b491de8a5ef94aaf74a9d7132c0b2e3859f0f51164406854e4  docs/loop/tasks/written-state-count-model/codex-4325/panel/Cargo.toml
+1a608f023bf77ea112590c06b2b4fcf4744d459ab82fdbfc0e80599a239777e6  docs/loop/tasks/written-state-count-model/codex-4325/panel/audit.jq
+e6cba71b172509a5dcba87c2fafe9a137d331fb1c15286ae087a5af48f037672  docs/loop/tasks/written-state-count-model/codex-4325/panel/src/design.rs
+f00b54144050c87b9fd8dfcde624116b5260635137532a52b6de76aa3edb24c7  docs/loop/tasks/written-state-count-model/codex-4325/panel/src/generate.rs
+5d6f656615d605b21f28b6872bcbeec916198248cdc68340cd743524ae605f45  docs/loop/tasks/written-state-count-model/codex-4325/panel/src/main.rs
+768dee63f505df47f2eba8d45c8728f11c7ec6c93498447c8aa3b1cac41ec3b8  docs/loop/tasks/written-state-count-model/codex-4325/panel/src/rehearsal.rs
+b3775e9fd8daeaa0492dce20c258231b1136dd2377402cdc9f5a4c73600825b8  docs/loop/tasks/written-state-count-model/codex-4325/panel/target/release/joint-release-panel

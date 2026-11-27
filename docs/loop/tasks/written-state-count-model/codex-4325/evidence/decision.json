@@ -1,0 +1,24 @@
+{
+  "fresh_quartets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "fresh_equal_length_quartets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "improved_families": [],
+  "more_quartets": false,
+  "equal_length_gain": false,
+  "multiple_families": false,
+  "retained_all": false,
+  "prior_pair_identity_losses_summed_by_model_and_split": 334,
+  "direct_lengths_preserved": false,
+  "fresh_sides_preserved": false,
+  "joint_advantage": false,
+  "advance_to_source_discovery": false
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "model": "balanced",
+    "steps": 2336,
+    "requests": 512,
+    "median_ms_per_request": 0.685558361328125,
+    "median_emitted_steps_per_second": 6655.159148173931,
+    "runs": [
+      351005881,
+      350992290,
+      354278639
+    ]
+  },
+  {
+    "model": "candidate",
+    "steps": 2320,
+    "requests": 512,
+    "median_ms_per_request": 0.68087839453125,
+    "median_emitted_steps_per_second": 6655.006292451876,
+    "runs": [
+      348609738,
+      359936280,
+      344674445
+    ]
+  },
+  {
+    "model": "first-period",
+    "steps": 2400,
+    "requests": 512,
+    "median_ms_per_request": 0.716671705078125,
+    "median_emitted_steps_per_second": 6540.651691403125,
+    "runs": [
+      376775148,
+      361532387,
+      366935913
+    ]
+  },
+  {
+    "model": "joint",
+    "steps": 1584,
+    "requests": 512,
+    "median_ms_per_request": 0.46963921484375,
+    "median_emitted_steps_per_second": 6587.503560641327,
+    "runs": [
+      240455278,
+      238593428,
+      240653022
+    ]
+  }
+]

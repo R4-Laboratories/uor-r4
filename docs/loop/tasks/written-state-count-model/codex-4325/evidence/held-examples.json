@@ -1,0 +1,1162 @@
+[
+  {
+    "pair_id": "jf-held-JhD0300-d",
+    "side": 1,
+    "family": "held-direct-trip",
+    "scope": false,
+    "directive": "Show me which entries fill the first three places on the form.",
+    "reply": "lemon. foot plant",
+    "positions": [
+      27,
+      29,
+      31,
+      33
+    ],
+    "expected": [
+      2466,
+      16,
+      2155,
+      1531,
+      1
+    ],
+    "old": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        2155,
+        1531,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        45,
+        24,
+        -22
+      ],
+      "addresses": [
+        29,
+        31
+      ]
+    },
+    "first": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        2155,
+        1531,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        184,
+        52,
+        -22
+      ],
+      "addresses": [
+        29,
+        31
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -63
+      ],
+      "addresses": []
+    },
+    "n": 32
+  },
+  {
+    "pair_id": "jf-held-JhD0000-d",
+    "side": 0,
+    "family": "held-direct-cafeteria",
+    "scope": false,
+    "directive": "Give me the first entry only.",
+    "reply": "lemon.",
+    "positions": [
+      29,
+      31,
+      33,
+      35
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1531,
+        2614,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        50,
+        19,
+        -18
+      ],
+      "addresses": [
+        31,
+        33
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1531,
+        2614,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        155,
+        47,
+        -18
+      ],
+      "addresses": [
+        31,
+        33
+      ]
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -74
+      ],
+      "addresses": []
+    },
+    "n": 64
+  },
+  {
+    "pair_id": "jf-held-JhD0200-d",
+    "side": 0,
+    "family": "held-direct-bakery",
+    "scope": false,
+    "directive": "Copy the first entry and the next one, then stop.",
+    "reply": "lemon. foot",
+    "positions": [
+      26,
+      28,
+      30,
+      32
+    ],
+    "expected": [
+      2466,
+      16,
+      2155,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -11
+      ],
+      "addresses": []
+    },
+    "first": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2155,
+        2614,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        144,
+        98,
+        -21
+      ],
+      "addresses": [
+        28,
+        30
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -132
+      ],
+      "addresses": []
+    },
+    "n": 32
+  },
+  {
+    "pair_id": "jf-held-JhD0000-d",
+    "side": 1,
+    "family": "held-direct-cafeteria",
+    "scope": false,
+    "directive": "Give me the first entry and the one that follows it.",
+    "reply": "lemon. plant",
+    "positions": [
+      29,
+      31,
+      33,
+      35
+    ],
+    "expected": [
+      2466,
+      16,
+      1531,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        1531,
+        2614,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        26,
+        21,
+        -20
+      ],
+      "addresses": [
+        31,
+        33
+      ]
+    },
+    "first": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1531,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        118,
+        -1
+      ],
+      "addresses": [
+        31
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -65
+      ],
+      "addresses": []
+    },
+    "n": 64
+  },
+  {
+    "pair_id": "jf-held-JhD0100-d",
+    "side": 1,
+    "family": "held-direct-garden-club",
+    "scope": false,
+    "directive": "Use the entry at the top of the list. Include the next entry as well.",
+    "reply": "lemon. plant",
+    "positions": [
+      26,
+      28,
+      30,
+      32
+    ],
+    "expected": [
+      2466,
+      16,
+      1531,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        1531,
+        2155,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        9,
+        6,
+        -20
+      ],
+      "addresses": [
+        28,
+        30
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        1531,
+        2155,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        51,
+        70,
+        -20
+      ],
+      "addresses": [
+        28,
+        30
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -258
+      ],
+      "addresses": []
+    },
+    "n": 64
+  },
+  {
+    "pair_id": "jf-held-Jh0300-s1",
+    "side": 0,
+    "family": "held-withdrawal",
+    "scope": true,
+    "directive": "The later note was withdrawn. Earlier 'give the value at the head by itself'. Later 'give the first two values together'.",
+    "reply": "lemon.",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -30
+      ],
+      "addresses": []
+    },
+    "first": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -89
+      ],
+      "addresses": []
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -143
+      ],
+      "addresses": []
+    },
+    "n": 16
+  },
+  {
+    "pair_id": "jf-held-Jh0700-s1",
+    "side": 0,
+    "family": "held-translation",
+    "scope": true,
+    "directive": "I translated both messages. The clear one says 'output only the value in the first field'. The noisy one says 'output the values in the first two fields'. Apply the clear message.",
+    "reply": "lemon.",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -31
+      ],
+      "addresses": []
+    },
+    "first": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2614,
+        2155,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        148,
+        41,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -40
+      ],
+      "addresses": []
+    },
+    "n": 8
+  },
+  {
+    "pair_id": "jf-held-Jh0500-s1",
+    "side": 0,
+    "family": "held-forward",
+    "scope": true,
+    "directive": "Send me the result of the forwarded note. Forwarded 'use a reply of one item'. Shelved 'use a reply of two items'.",
+    "reply": "lemon.",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2169,
+        2222,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        37,
+        9,
+        -22
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -35
+      ],
+      "addresses": []
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -424
+      ],
+      "addresses": []
+    },
+    "n": 8
+  },
+  {
+    "pair_id": "jf-held-Jh0100-s1",
+    "side": 0,
+    "family": "held-drawer",
+    "scope": true,
+    "directive": "The rule in the upper drawer is binding. Upper include just the lead value. Lower include the lead value and the value beside it.",
+    "reply": "lemon.",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2169,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        80,
+        18,
+        -19
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2169,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        262,
+        79,
+        -19
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -45
+      ],
+      "addresses": []
+    },
+    "n": 72
+  },
+  {
+    "pair_id": "jf-held-Jh0000-s1",
+    "side": 0,
+    "family": "held-edition",
+    "scope": true,
+    "directive": "This is the morning edition. The morning editor said 'print the topmost field and nothing else'. The evening editor said 'print the topmost field and the following field'.",
+    "reply": "lemon.",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2222,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        65,
+        23,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2330,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        458,
+        -63
+      ],
+      "addresses": [
+        30
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        2330,
+        1
+      ],
+      "b_required": false,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        253,
+        -255
+      ],
+      "addresses": [
+        30
+      ]
+    },
+    "n": 40
+  },
+  {
+    "pair_id": "jf-held-Jh0300-s1",
+    "side": 1,
+    "family": "held-withdrawal",
+    "scope": true,
+    "directive": "The later note was withdrawn. Earlier 'give the first two values together'. Later 'give the value at the head by itself'.",
+    "reply": "lemon. bark",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      2222,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -7
+      ],
+      "addresses": []
+    },
+    "first": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2222,
+        2169,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        31,
+        6,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -108
+      ],
+      "addresses": []
+    },
+    "n": 16
+  },
+  {
+    "pair_id": "jf-held-Jh0000-s1",
+    "side": 1,
+    "family": "held-edition",
+    "scope": true,
+    "directive": "This is the morning edition. The morning editor said 'print the topmost field and the following field'. The evening editor said 'print the topmost field and nothing else'.",
+    "reply": "lemon. ash",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      2330,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2222,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        58,
+        23,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        2330,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        383,
+        -87
+      ],
+      "addresses": [
+        30
+      ]
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        2330,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        184,
+        -246
+      ],
+      "addresses": [
+        30
+      ]
+    },
+    "n": 8
+  },
+  {
+    "pair_id": "jf-held-Jh0000-s2",
+    "side": 1,
+    "family": "held-edition",
+    "scope": true,
+    "directive": "This is the evening edition. The morning editor said 'print the topmost field and nothing else'. The evening editor said 'print the topmost field and the following field'.",
+    "reply": "lemon. ash",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      2330,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2222,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        73,
+        23,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2222,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        334,
+        42,
+        -23
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "joint": {
+      "exact": true,
+      "wrong": null,
+      "ids": [
+        2466,
+        16,
+        2330,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": true,
+      "terminal": true,
+      "scores": [
+        138,
+        -130
+      ],
+      "addresses": [
+        30
+      ]
+    },
+    "n": 16
+  },
+  {
+    "pair_id": "jf-held-Jh0100-s1",
+    "side": 1,
+    "family": "held-drawer",
+    "scope": true,
+    "directive": "The rule in the upper drawer is binding. Upper include the lead value and the value beside it. Lower include just the lead value.",
+    "reply": "lemon. ash",
+    "positions": [
+      21,
+      30,
+      38,
+      46
+    ],
+    "expected": [
+      2466,
+      16,
+      2330,
+      1
+    ],
+    "old": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2169,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        40,
+        18,
+        -19
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "first": {
+      "exact": false,
+      "wrong": 4,
+      "ids": [
+        2466,
+        16,
+        2330,
+        2169,
+        1
+      ],
+      "b_required": true,
+      "b_reached": true,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        103,
+        59,
+        -19
+      ],
+      "addresses": [
+        30,
+        38
+      ]
+    },
+    "joint": {
+      "exact": false,
+      "wrong": 3,
+      "ids": [
+        2466,
+        16,
+        1
+      ],
+      "b_required": true,
+      "b_reached": false,
+      "b_right": false,
+      "terminal": true,
+      "scores": [
+        -196
+      ],
+      "addresses": []
+    },
+    "n": 72
+  }
+]

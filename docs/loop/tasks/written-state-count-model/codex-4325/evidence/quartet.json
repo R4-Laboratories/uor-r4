@@ -1,0 +1,1358 @@
+[
+  {
+    "all": {
+      "rows": 320,
+      "exact": 144,
+      "early": 176,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 176,
+      "b_reached": 8,
+      "b_right": 8,
+      "b_right_after_supplied_first": 104,
+      "b_reached_after_supplied_first": 176,
+      "exact_short": 136,
+      "exact_long": 8,
+      "id_pairs": {
+        "n": 160,
+        "exact": 0,
+        "ceiling": 160
+      },
+      "ceiling": 320
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 128,
+      "early": 128,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 8,
+      "b_right": 8,
+      "b_right_after_supplied_first": 56,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 120,
+      "exact_long": 8,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 64,
+      "exact": 16,
+      "early": 48,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 48,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 48,
+      "b_reached_after_supplied_first": 48,
+      "exact_short": 16,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "ceiling": 64
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 32,
+          "exact": 16,
+          "early": 16,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 16,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 16,
+          "b_reached_after_supplied_first": 16,
+          "exact_short": 16,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 32,
+          "exact": 0,
+          "early": 32,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 32,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 32,
+          "b_reached_after_supplied_first": 32,
+          "exact_short": 0,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 48,
+        "exact": 0,
+        "ceiling": 48
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "agreed-speaker",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "check-mark",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "dial-setting",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "instruction-aside",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "recording-time",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "rule-elimination",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "spoken-label",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "trailing-star",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 320,
+      "exact": 152,
+      "early": 128,
+      "late": 40,
+      "other": 0,
+      "cap": 0,
+      "b_required": 176,
+      "b_reached": 104,
+      "b_right": 64,
+      "b_right_after_supplied_first": 104,
+      "b_reached_after_supplied_first": 176,
+      "exact_short": 104,
+      "exact_long": 48,
+      "id_pairs": {
+        "n": 160,
+        "exact": 24,
+        "ceiling": 160
+      },
+      "ceiling": 320
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 104,
+      "early": 112,
+      "late": 40,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 64,
+      "b_right": 24,
+      "b_right_after_supplied_first": 56,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 80,
+      "exact_long": 24,
+      "id_pairs": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 64,
+      "exact": 48,
+      "early": 16,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 48,
+      "b_reached": 40,
+      "b_right": 40,
+      "b_right_after_supplied_first": 48,
+      "b_reached_after_supplied_first": 48,
+      "exact_short": 24,
+      "exact_long": 24,
+      "id_pairs": {
+        "n": 32,
+        "exact": 16,
+        "ceiling": 32
+      },
+      "ceiling": 64
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 32,
+          "exact": 16,
+          "early": 16,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 16,
+          "b_reached": 8,
+          "b_right": 8,
+          "b_right_after_supplied_first": 16,
+          "b_reached_after_supplied_first": 16,
+          "exact_short": 8,
+          "exact_long": 8,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 32,
+          "exact": 32,
+          "early": 0,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 32,
+          "b_reached": 32,
+          "b_right": 32,
+          "b_right_after_supplied_first": 32,
+          "b_reached_after_supplied_first": 32,
+          "exact_short": 16,
+          "exact_long": 16,
+          "id_pairs": {
+            "n": 16,
+            "exact": 16,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 48,
+        "exact": 0,
+        "ceiling": 48
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "agreed-speaker",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "check-mark",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "dial-setting",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "instruction-aside",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "recording-time",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "rule-elimination",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "spoken-label",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "trailing-star",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 320,
+      "exact": 80,
+      "early": 168,
+      "late": 72,
+      "other": 0,
+      "cap": 8,
+      "b_required": 176,
+      "b_reached": 96,
+      "b_right": 24,
+      "b_right_after_supplied_first": 32,
+      "b_reached_after_supplied_first": 176,
+      "exact_short": 64,
+      "exact_long": 16,
+      "id_pairs": {
+        "n": 160,
+        "exact": 8,
+        "ceiling": 160
+      },
+      "ceiling": 320
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 64,
+      "early": 136,
+      "late": 56,
+      "other": 0,
+      "cap": 8,
+      "b_required": 128,
+      "b_reached": 64,
+      "b_right": 8,
+      "b_right_after_supplied_first": 8,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 56,
+      "exact_long": 8,
+      "id_pairs": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 64,
+      "exact": 16,
+      "early": 32,
+      "late": 16,
+      "other": 0,
+      "cap": 0,
+      "b_required": 48,
+      "b_reached": 32,
+      "b_right": 16,
+      "b_right_after_supplied_first": 24,
+      "b_reached_after_supplied_first": 48,
+      "exact_short": 8,
+      "exact_long": 8,
+      "id_pairs": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "ceiling": 64
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 32,
+          "exact": 8,
+          "early": 16,
+          "late": 8,
+          "other": 0,
+          "cap": 0,
+          "b_required": 16,
+          "b_reached": 16,
+          "b_right": 8,
+          "b_right_after_supplied_first": 8,
+          "b_reached_after_supplied_first": 16,
+          "exact_short": 0,
+          "exact_long": 8,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 32,
+          "exact": 8,
+          "early": 16,
+          "late": 8,
+          "other": 0,
+          "cap": 0,
+          "b_required": 32,
+          "b_reached": 16,
+          "b_right": 8,
+          "b_right_after_supplied_first": 16,
+          "b_reached_after_supplied_first": 32,
+          "exact_short": 8,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 48,
+        "exact": 0,
+        "ceiling": 48
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "agreed-speaker",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "check-mark",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "dial-setting",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "instruction-aside",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "recording-time",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "rule-elimination",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "spoken-label",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "trailing-star",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 320,
+      "exact": 144,
+      "early": 176,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 176,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 160,
+      "b_reached_after_supplied_first": 176,
+      "exact_short": 144,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 160,
+        "exact": 0,
+        "ceiling": 160
+      },
+      "ceiling": 320
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 128,
+      "early": 128,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 128,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 128,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 64,
+      "exact": 16,
+      "early": 48,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 48,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 32,
+      "b_reached_after_supplied_first": 48,
+      "exact_short": 16,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "ceiling": 64
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 32,
+          "exact": 16,
+          "early": 16,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 16,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 16,
+          "b_reached_after_supplied_first": 16,
+          "exact_short": 16,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 32,
+          "exact": 0,
+          "early": 32,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 32,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 16,
+          "b_reached_after_supplied_first": 32,
+          "exact_short": 0,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "ceiling": 32
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 48,
+        "exact": 0,
+        "ceiling": 48
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "agreed-speaker",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "check-mark",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "dial-setting",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "instruction-aside",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "recording-time",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "rule-elimination",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "spoken-label",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "trailing-star",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  }
+]

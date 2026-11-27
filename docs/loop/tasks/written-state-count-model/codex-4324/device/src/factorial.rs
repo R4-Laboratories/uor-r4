@@ -2,6 +2,10 @@ use super::*;
 
 #[path = "factorial/finite.rs"]
 mod finite;
+#[allow(unexpected_cfgs)]
+#[cfg(feature = "joint-release")]
+#[path = "../../../codex-4325/device/src/joint.rs"]
+mod joint;
 #[path = "factorial/run.rs"]
 mod run;
 
@@ -224,7 +228,7 @@ impl Decision {
             if self.intervention.is_some() { 3 } else { 1 },
             self.row,
             self.row,
-            self.requested_count,
+            self.intervention.map_or(0, |_| self.requested_count),
             0,
             submitted_pos,
             attempted.id,
@@ -312,17 +316,19 @@ impl Decision {
     }
 }
 
+struct ReleasedOpening {
+    opening: Step,
+    period: Step,
+    prefix: Row,
+}
+
 impl Replayer {
-    fn factorial<'a>(&self, rows: &[&'a Input]) -> Result<Vec<FactorialObservation<'a>>> {
+    fn released_openings(
+        &self,
+        core: &[&PanelRow],
+        gpu_scores: &CudaSlice<i32>,
+    ) -> Result<Vec<ReleasedOpening>> {
         let stream = &self.device.stream;
-        let core: Vec<_> = rows.iter().map(|row| &row.core).collect();
-        let instructions = Instructions::from_panel(stream, &core)?;
-        let gpu_scores = self.kernel.scores(stream, &instructions, &self.state)?;
-        let scores = stream.clone_dtoh(&gpu_scores)?;
-        let fences = core
-            .iter()
-            .map(|row| row.boundaries().map(|(fence, _, _)| fence as u32))
-            .collect::<Result<Vec<_>>>()?;
         let originals: Vec<_> = core.iter().map(|row| Row::opening(row)).collect();
         let opening: Vec<_> = self
             .device
@@ -339,7 +345,7 @@ impl Replayer {
         let proposals = self
             .device
             .events(&before_period.iter().collect::<Vec<_>>(), 1)?;
-        let mut records = vec![0; rows.len() * COMMIT_STRIDE];
+        let mut records = vec![0; core.len() * COMMIT_STRIDE];
         for (((row, opening), proposal), record) in core
             .iter()
             .zip(&opening)
@@ -356,36 +362,55 @@ impl Replayer {
             }
             record[..4].copy_from_slice(&[proposal.native_proposal, PERIOD_STAGE, 0, 1]);
         }
-        let periods = self.kernel.select(stream, &records, &gpu_scores)?;
-        let mut active = Vec::with_capacity(rows.len() * ARMS_FACTORIAL.len());
-        for (row, (((prefix, open), writer), period)) in before_period
+        let periods = self.kernel.select(stream, &records, gpu_scores)?;
+        before_period
             .iter()
             .zip(opening)
             .zip(proposals)
             .zip(periods)
+            .map(|(((prefix, open), writer), period)| {
+                if period
+                    != (Commit {
+                        id: PERIOD,
+                        source: 3,
+                        next: 0,
+                        refusal: 0,
+                    })
+                {
+                    return Err("CUDA changed the supplied period".into());
+                }
+                Ok(ReleasedOpening {
+                    opening: opening_step(open),
+                    prefix: prefix.self_feed(period.id),
+                    period: period.step(writer, PERIOD_STAGE, None, NONE, NONE),
+                })
+            })
+            .collect()
+    }
+
+    fn factorial<'a>(&self, rows: &[&'a Input]) -> Result<Vec<FactorialObservation<'a>>> {
+        let stream = &self.device.stream;
+        let core: Vec<_> = rows.iter().map(|row| &row.core).collect();
+        let instructions = Instructions::from_panel(stream, &core)?;
+        let gpu_scores = self.kernel.scores(stream, &instructions, &self.state)?;
+        let scores = stream.clone_dtoh(&gpu_scores)?;
+        let fences = core
+            .iter()
+            .map(|row| row.boundaries().map(|(fence, _, _)| fence as u32))
+            .collect::<Result<Vec<_>>>()?;
+        let mut active = Vec::with_capacity(rows.len() * ARMS_FACTORIAL.len());
+        for (row, opening) in self
+            .released_openings(&core, &gpu_scores)?
+            .into_iter()
             .enumerate()
         {
-            if period
-                != (Commit {
-                    id: PERIOD,
-                    source: 3,
-                    next: 0,
-                    refusal: 0,
-                })
-            {
-                return Err("CUDA changed the supplied period".into());
-            }
-            let opening = opening_step(open);
-            let after_period = prefix.self_feed(period.id);
-            let stage = period.next;
-            let period = period.step(writer, PERIOD_STAGE, None, NONE, NONE);
             for arm in &ARMS_FACTORIAL {
                 active.push(ActiveArm {
                     row,
                     arm,
-                    stage,
-                    prefix: after_period.clone(),
-                    steps: [&opening, &period]
+                    stage: 0,
+                    prefix: opening.prefix.clone(),
+                    steps: [&opening.opening, &opening.period]
                         .into_iter()
                         .map(|step| TraceStep {
                             step: duplicate_step(step),
@@ -468,4 +493,11 @@ impl Replayer {
     }
 }
 
-pub(crate) use run::command;
+pub(crate) fn command() -> Option<Result<()>> {
+    #[allow(unexpected_cfgs)]
+    #[cfg(feature = "joint-release")]
+    return joint::command();
+    #[allow(unexpected_cfgs)]
+    #[cfg(not(feature = "joint-release"))]
+    return run::command();
+}

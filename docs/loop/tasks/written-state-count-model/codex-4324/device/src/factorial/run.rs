@@ -1,11 +1,11 @@
 use super::*;
 
-const CANDIDATE_IMAGE: &str = "e69ffddfd7682113109fba31a43ba644d833cf90e3cc69830e1edf85d56171e7";
+pub(super) const CANDIDATE_IMAGE: &str = "e69ffddfd7682113109fba31a43ba644d833cf90e3cc69830e1edf85d56171e7";
 const BALANCED_IMAGE: &str = "e6981880ef98f5e3ea5327e12e84ca3f184acbfa7c742525af31e31b86721402";
-const CANDIDATE_STATE: &str = "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91";
+pub(super) const CANDIDATE_STATE: &str = "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91";
 const BALANCED_STATE: &str = "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e";
 
-fn load_panel(path: &str) -> Result<(String, Vec<Input>)> {
+pub(super) fn load_panel(path: &str) -> Result<(String, Vec<Input>)> {
     let hash = digest(path)?;
     let rows: Vec<Input> = BufReader::new(File::open(path)?)
         .lines()
@@ -50,7 +50,7 @@ impl Checkpoint<'_> {
     }
 }
 
-fn write_observations(path: &Path, rows: &[FactorialObservation<'_>]) -> Result<()> {
+pub(super) fn write_observations(path: &Path, rows: &[FactorialObservation<'_>]) -> Result<()> {
     let mut output = BufWriter::new(OpenOptions::new().create_new(true).write(true).open(path)?);
     for row in rows {
         serde_json::to_writer(&mut output, row)?;

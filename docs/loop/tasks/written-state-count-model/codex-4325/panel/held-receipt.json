@@ -1,0 +1,1137 @@
+{
+  "archive_rows_checked": 5188,
+  "archive_template_signatures_checked": 493,
+  "archives": {
+    "20261127-codex-period-margin": "2d10cc6d64a4197385ca83482f4e93b45a888d3ed10dcf7e18f892d7091c240c",
+    "20261127-codex-postperiod": "56091ad40d7e5da6f3d6742e02f04e37cdb01171fc3fddb4acba9bcf4f11b876",
+    "20261127-codex-release-factorial": "ed25f9d7daa1087fbd7c42423acb6a3a8ec75d5bd123f6fe49804fe75c8fdbd5",
+    "20261127-codex-scope-trace": "54781b20590b75f9ef29a7dea59ad1cb0b8f973fbc3fe1b0836c4927e0eccf58",
+    "20261127-codex-source-choice": "2b6abf25514e9a744a447659388003994ea5a0d1e92c50dd7934337da0968b7c"
+  },
+  "authorship": {
+    "fresh_scoped_and_train_direct": "Codex panel agent-authored templates and deterministic instances",
+    "held_direct": "Separate Codex product replay agent-authored count directives; panel agent adapted the suggested fact frames into matched four-entry lists",
+    "rehearsal": null
+  },
+  "cap": 5,
+  "fresh": {
+    "direct_families": {
+      "held-direct-bakery": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2155": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2169": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2222": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2330": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2466": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2614": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2680": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      },
+      "held-direct-cafeteria": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2155": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2169": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2222": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2330": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2466": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2614": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2680": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      },
+      "held-direct-garden-club": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2155": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2169": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2222": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2330": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2466": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2614": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2680": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      },
+      "held-direct-trip": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2155": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2169": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2222": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2330": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2466": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2614": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2680": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      }
+    },
+    "direct_one_two_pairs": 64,
+    "direct_two_three_pairs": 64,
+    "equal_length_clause_order_pairs": 128,
+    "equal_length_direct_pairs": 64,
+    "equal_length_quartets": 32,
+    "equal_length_selector_pairs": 64,
+    "labels": {
+      "1531": "plant",
+      "2155": "foot",
+      "2169": "shelf",
+      "2222": "bark",
+      "2330": "ash",
+      "2466": "lemon",
+      "2614": "clay",
+      "2680": "knee"
+    },
+    "prefix_max": 159,
+    "prefix_min": 89,
+    "rows": 512,
+    "scoped_families": {
+      "held-advisors": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-drawer": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-edition": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-forward": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-ink": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-public-copy": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-translation": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "held-withdrawal": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1531": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2155": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2169": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2222": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2330": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2466": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2614": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2680": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      }
+    },
+    "scoped_quartets": 64
+  },
+  "fresh_exact_overlap": {
+    "prior_or_other_split_contexts": 0,
+    "prior_or_other_split_encoded_prompts": 0,
+    "prior_or_other_split_prompts": 0,
+    "prior_or_other_split_source_token_ids": 0,
+    "prior_or_other_split_template_signatures": 0
+  },
+  "fresh_template_strings_checked": 96,
+  "schema": "codex-4325.joint-release-panel/1",
+  "split": "held",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "total_pairs": 256,
+  "total_post_b_pairs": 64,
+  "total_rows": 512
+}

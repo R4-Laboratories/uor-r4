@@ -1,0 +1,7 @@
+a5bb3087a0d4b53b1543083a2f292c1e94e49624f9d9bdfa86c355e2290bd554  downloaded/results/codex/joint-release-20261127/joint-release.tar.zst
+44bc77094bc4f5512ec6744f846020d52bf42831a96754209a02fcf57b39403c  restored-first-period/product-v1/first-period/artifact.d11
+277cd792af0ef2ba49515737c4382201baa4ce52f679f50ee0c18372cc40eba7  restored-joint/product-v1/joint/artifact.d11
+164c2438245ccb3d000f635fa59aa3ec2af520c082f8ab6385636919a8aec443  product-replay-v1/first-period/held/client.jsonl
+bf5d059b31b46d598522012930349cb4b55bcebd815591382e948ef4585afae1  product-replay-v1/first-period/held/cold.jsonl
+73a00c8148128ad06324fbbc474c2361fb1553b6ca1f1d97e512a7bd09f0ea79  product-replay-v1/joint/held/client.jsonl
+9735ebcdfec6212d8f04ee7ba1f43e6135cf3f74156f6ec774294d1608a17ace  product-replay-v1/joint/held/cold.jsonl

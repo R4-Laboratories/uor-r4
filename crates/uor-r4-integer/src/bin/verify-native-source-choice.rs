@@ -13,6 +13,10 @@ use uor_r4_integer::discrete_d11::{
     IntegerDiscreteModel,
 };
 
+#[cfg(feature = "release-factorial-diagnostic")]
+#[path = "shared/verify_release_factorial.rs"]
+mod verify_release_factorial;
+
 type CliResult<T> = Result<T, Box<dyn std::error::Error>>;
 
 #[derive(Serialize)]
@@ -26,6 +30,15 @@ struct Observation<'a> {
 fn main() -> CliResult<()> {
     const USAGE: &str = "usage: verify-native-source-choice ARTIFACT PANEL.jsonl [DEVICE.jsonl]";
     let args: Vec<_> = env::args_os().skip(1).collect();
+    #[cfg(feature = "release-factorial-diagnostic")]
+    if let Some((mode, args)) = args.split_first() {
+        if mode == "--release-factorial" {
+            return verify_release_factorial::run(
+                args,
+                "verify-native-source-choice --release-factorial",
+            );
+        }
+    }
     let (artifact, panel, mut device) = match args.as_slice() {
         [artifact, panel] => (artifact, panel, None),
         [artifact, panel, device] => (artifact, panel, Some(BufReader::new(File::open(device)?))),

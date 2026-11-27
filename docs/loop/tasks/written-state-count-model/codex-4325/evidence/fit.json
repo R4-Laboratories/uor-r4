@@ -1,0 +1,93 @@
+{
+  "authenticated_sha256": "617610c09ff270c345ad8495b6c2cbe1b43018a972412f7216a26cacbf379f73",
+  "coordinate_cap": 16,
+  "elapsed_ms": 12355,
+  "epochs": 4,
+  "image_sha256": "43c00194967c4ad875b642274a9e9eede1251dd63c9be67ea293f1012409b0e7",
+  "initial_weights_sha256": "52f84dc839628abfe20f18f43a579393f4c29da79052247a68ee815e3622cd38",
+  "input_sha256": "ed20c8b0789d86585baee78dd26cff0bfa188ba28b83e74ecca88ff38213f698",
+  "linked_weights_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91",
+  "margin": 8,
+  "outputs": {
+    "first-period": {
+      "changed_residual_bytes": 2402,
+      "changed_residual_words": 1645,
+      "identical_refit": true,
+      "integer_round_trip": true,
+      "slot_audit_sha256": "f4ceff11cb4fdfbaec1566b22502973ac27b7a98834e0187f44f2eb5f2ee1f14",
+      "stages": [
+        {
+          "actual_coordinate_writes": 12704,
+          "capped_coordinate_opportunities": 98304,
+          "copy_targets": 5056,
+          "link_visits": 7312260,
+          "repeated_coordinate_visits": 1481594,
+          "repeated_coordinate_writes": 11016,
+          "slots": 6144,
+          "stop_targets": 1088,
+          "unique_coordinate_visits": 5830666,
+          "violated_margins": 794
+        },
+        {
+          "actual_coordinate_writes": 0,
+          "capped_coordinate_opportunities": 0,
+          "copy_targets": 0,
+          "link_visits": 0,
+          "repeated_coordinate_visits": 0,
+          "repeated_coordinate_writes": 0,
+          "slots": 0,
+          "stop_targets": 0,
+          "unique_coordinate_visits": 0,
+          "violated_margins": 0
+        }
+      ],
+      "train_elapsed_ms": 974,
+      "train_scores_sha256": "d3a8df88bb7104873d4072d4c9a301021dc4d02f1dddd3c8a4fca45929eb1693",
+      "weights_sha256": "95713285aaa96d3bcbc19ce43c67385f0f479479b5cf6339270bd82c1df902b0"
+    },
+    "joint": {
+      "changed_residual_bytes": 3159,
+      "changed_residual_words": 2081,
+      "identical_refit": true,
+      "integer_round_trip": true,
+      "slot_audit_sha256": "ddc4eb82f04fdce0b8adf9f831e48801d26916c64c4a5254ac5636fc89d44ac8",
+      "stages": [
+        {
+          "actual_coordinate_writes": 11920,
+          "capped_coordinate_opportunities": 49152,
+          "copy_targets": 1984,
+          "link_visits": 3836880,
+          "repeated_coordinate_visits": 810016,
+          "repeated_coordinate_writes": 10436,
+          "slots": 3072,
+          "stop_targets": 1088,
+          "unique_coordinate_visits": 3026864,
+          "violated_margins": 745
+        },
+        {
+          "actual_coordinate_writes": 4848,
+          "capped_coordinate_opportunities": 49152,
+          "copy_targets": 1536,
+          "link_visits": 3475380,
+          "repeated_coordinate_visits": 671578,
+          "repeated_coordinate_writes": 4198,
+          "slots": 3072,
+          "stop_targets": 1536,
+          "unique_coordinate_visits": 2803802,
+          "violated_margins": 303
+        }
+      ],
+      "train_elapsed_ms": 723,
+      "train_scores_sha256": "63fe81dac59c0c9335cd10a60bbaf559fa1c89ab6d89ca35ccb328cf9bef4c87",
+      "weights_sha256": "2216c08d143fa15de31a7c31e009c791b5e56ad845f35bd89327afdbdcc29525"
+    }
+  },
+  "pass": true,
+  "post_b_authenticated_rows": 496,
+  "roots_sha256": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a",
+  "rows": 768,
+  "schedule_sha256": "1cb1cf2e2410adbce7430fd7db86911bc8ee1046b3d4d62ef7d401e99737650a",
+  "slots_per_arm": 6144,
+  "state_bytes": 49158,
+  "state_words": 24579
+}

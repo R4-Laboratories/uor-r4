@@ -463,7 +463,17 @@ fn duplicate_step(step: &Step) -> Step {
 
 impl Replayer {
     pub(super) fn open(files: &Files<'_>, image: &str, sha: &str, state: &[i16]) -> Result<Self> {
-        if digest(files.copy)? != COPY_SHA || state.len() != STATE_WORDS {
+        Self::open_width(files, image, sha, state, STATE_WORDS)
+    }
+
+    fn open_width(
+        files: &Files<'_>,
+        image: &str,
+        sha: &str,
+        state: &[i16],
+        expected_words: usize,
+    ) -> Result<Self> {
+        if digest(files.copy)? != COPY_SHA || state.len() != expected_words {
             return Err("frozen #4318 copy cubin digest or choice state width mismatch".into());
         }
         let device = Device::open(files)?;

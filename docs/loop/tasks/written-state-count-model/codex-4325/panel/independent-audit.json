@@ -1,0 +1,70 @@
+{
+  "schema": "codex-4325.panel-audit/1",
+  "train": {
+    "rows": 512,
+    "quartets": 64,
+    "equal_length_quartets": 40,
+    "equal_length_selector_edges": 80,
+    "equal_length_order_edges": 128,
+    "direct_1v2_pairs": 64,
+    "direct_2v3_pairs": 64,
+    "equal_length_direct_pairs": 64
+  },
+  "held": {
+    "rows": 512,
+    "quartets": 64,
+    "equal_length_quartets": 32,
+    "equal_length_selector_edges": 64,
+    "equal_length_order_edges": 128,
+    "direct_1v2_pairs": 64,
+    "direct_2v3_pairs": 64,
+    "equal_length_direct_pairs": 64
+  },
+  "old_rows_checked": 5188,
+  "excluded_rows_checked": 3908,
+  "combined_train_rows": 768,
+  "train_contrast_1_pairs": 112,
+  "rehearsal": [
+    {
+      "cohort": "rehearsal-4322",
+      "rows": 192
+    },
+    {
+      "cohort": "rehearsal-4323",
+      "rows": 64
+    }
+  ],
+  "fresh_train_held_overlap": {
+    "prefixes": 0,
+    "pair_ids": 0,
+    "prompts": 0,
+    "contexts": 0,
+    "directives": 0,
+    "source_ids": 0
+  },
+  "fresh_train_archive_overlap": {
+    "prefixes": 0,
+    "pair_ids": 0,
+    "prompts": 0,
+    "contexts": 0,
+    "directives": 0,
+    "source_ids": 0
+  },
+  "held_archive_overlap": {
+    "prefixes": 0,
+    "pair_ids": 0,
+    "prompts": 0,
+    "contexts": 0,
+    "directives": 0,
+    "source_ids": 0
+  },
+  "complete_fit_tape_vs_excluded": {
+    "prefixes": 0,
+    "pair_ids": 0,
+    "prompts": 0,
+    "contexts": 0,
+    "directives": 0,
+    "source_ids": 0
+  },
+  "matched_pairs_validated": 640
+}

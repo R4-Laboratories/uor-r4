@@ -1,0 +1,1470 @@
+{
+  "archive_rows_checked": 5188,
+  "archive_template_signatures_checked": 493,
+  "archives": {
+    "20261127-codex-period-margin": "2d10cc6d64a4197385ca83482f4e93b45a888d3ed10dcf7e18f892d7091c240c",
+    "20261127-codex-postperiod": "56091ad40d7e5da6f3d6742e02f04e37cdb01171fc3fddb4acba9bcf4f11b876",
+    "20261127-codex-release-factorial": "ed25f9d7daa1087fbd7c42423acb6a3a8ec75d5bd123f6fe49804fe75c8fdbd5",
+    "20261127-codex-scope-trace": "54781b20590b75f9ef29a7dea59ad1cb0b8f973fbc3fe1b0836c4927e0eccf58",
+    "20261127-codex-source-choice": "2b6abf25514e9a744a447659388003994ea5a0d1e92c50dd7934337da0968b7c"
+  },
+  "authorship": {
+    "fresh_scoped_and_train_direct": "Codex panel agent-authored templates and deterministic instances",
+    "held_direct": "Separate Codex product replay agent-authored count directives; panel agent adapted the suggested fact frames into matched four-entry lists",
+    "rehearsal": [
+      {
+        "cohort": "rehearsal-4322",
+        "input_rows": 768,
+        "pairs": 96,
+        "run": "20261127-codex-source-choice",
+        "selected_pair_variant_counts": {
+          "inclusion:0:0": 6,
+          "inclusion:0:1": 6,
+          "inclusion:1:0": 6,
+          "inclusion:1:1": 6,
+          "movement:0:0": 6,
+          "movement:0:1": 6,
+          "movement:1:0": 6,
+          "movement:1:1": 6,
+          "orders:0:0": 6,
+          "orders:0:1": 6,
+          "orders:1:0": 6,
+          "orders:1:1": 6,
+          "quota:0:0": 6,
+          "quota:0:1": 6,
+          "quota:1:0": 6,
+          "quota:1:1": 6
+        },
+        "selected_source_row_ids": [
+          "3a2491704d2e0c877f92d1f0:0",
+          "3a2491704d2e0c877f92d1f0:1",
+          "e860d9dc995ff391331296ab:0",
+          "e860d9dc995ff391331296ab:1",
+          "015f180b6477c20336ca8f49:0",
+          "015f180b6477c20336ca8f49:1",
+          "2692a22669b67d434ab6786a:0",
+          "2692a22669b67d434ab6786a:1",
+          "3bf7462fdc82c1c2b5509f5b:0",
+          "3bf7462fdc82c1c2b5509f5b:1",
+          "1cfff9158b0c345cda768123:0",
+          "1cfff9158b0c345cda768123:1",
+          "285fc50b5e169c4629d00c2e:0",
+          "285fc50b5e169c4629d00c2e:1",
+          "86c0cd311a1b7bf9e853d53e:0",
+          "86c0cd311a1b7bf9e853d53e:1",
+          "12c38bf35d39611c01ab8814:0",
+          "12c38bf35d39611c01ab8814:1",
+          "d8de675cb9599dfe2ae9ac35:0",
+          "d8de675cb9599dfe2ae9ac35:1",
+          "5cb3e1fc8fb5ab3dfdabe494:0",
+          "5cb3e1fc8fb5ab3dfdabe494:1",
+          "2e49a277e8a58a4b4af636de:0",
+          "2e49a277e8a58a4b4af636de:1",
+          "2178c8cbc1a4ee41f365b8f2:0",
+          "2178c8cbc1a4ee41f365b8f2:1",
+          "fc31e37b54eac1b21d0a0f31:0",
+          "fc31e37b54eac1b21d0a0f31:1",
+          "a7891e543403a30cb7cfb1b6:0",
+          "a7891e543403a30cb7cfb1b6:1",
+          "08388d5f3a53d4eceabef9ce:0",
+          "08388d5f3a53d4eceabef9ce:1",
+          "1a0efcc4ec91d6127ec2c9b3:0",
+          "1a0efcc4ec91d6127ec2c9b3:1",
+          "7ff6b64827872f92f4ce031e:0",
+          "7ff6b64827872f92f4ce031e:1",
+          "7a8dc81b8e121b31aecaf51e:0",
+          "7a8dc81b8e121b31aecaf51e:1",
+          "57842351cf4af2ca0130cc35:0",
+          "57842351cf4af2ca0130cc35:1",
+          "677e27838cc28e86b806e532:0",
+          "677e27838cc28e86b806e532:1",
+          "76cbb7db04e6c1da0b804976:0",
+          "76cbb7db04e6c1da0b804976:1",
+          "c860cd94365660e0e5a94063:0",
+          "c860cd94365660e0e5a94063:1",
+          "9a3385ede1804a3fdac3f392:0",
+          "9a3385ede1804a3fdac3f392:1",
+          "7c8ce3d3cf6f2ed297104a0b:0",
+          "7c8ce3d3cf6f2ed297104a0b:1",
+          "aaa7a266ff6139f9ebded947:0",
+          "aaa7a266ff6139f9ebded947:1",
+          "6063796402c856496d69133c:0",
+          "6063796402c856496d69133c:1",
+          "a6a7de2ad3b9c12678fca0ee:0",
+          "a6a7de2ad3b9c12678fca0ee:1",
+          "a7a3e564b39020735b2796eb:0",
+          "a7a3e564b39020735b2796eb:1",
+          "53fe9e4e0511ba1f2ec716bb:0",
+          "53fe9e4e0511ba1f2ec716bb:1",
+          "f706de9f346ffa141817fb15:0",
+          "f706de9f346ffa141817fb15:1",
+          "2fca39ffc9b578fd2e83705e:0",
+          "2fca39ffc9b578fd2e83705e:1",
+          "86ee9f083079ae083d68853e:0",
+          "86ee9f083079ae083d68853e:1",
+          "7bdd2b1b4b66bee89b155153:0",
+          "7bdd2b1b4b66bee89b155153:1",
+          "3d1afa02220c23fbfeb1d6a3:0",
+          "3d1afa02220c23fbfeb1d6a3:1",
+          "8208d40db0cd0477ae6c7d87:0",
+          "8208d40db0cd0477ae6c7d87:1",
+          "797ff9784ee9bde8425769d0:0",
+          "797ff9784ee9bde8425769d0:1",
+          "c4df8f766b1cee4e9a259284:0",
+          "c4df8f766b1cee4e9a259284:1",
+          "6e064d085840122c4e4385e7:0",
+          "6e064d085840122c4e4385e7:1",
+          "f84ba0a6d466b9326ec5b6c5:0",
+          "f84ba0a6d466b9326ec5b6c5:1",
+          "fecc3ed6beaca3686c80f053:0",
+          "fecc3ed6beaca3686c80f053:1",
+          "97f6f238d5603dabcb683b52:0",
+          "97f6f238d5603dabcb683b52:1",
+          "a6b444c8548430c8c4c159ea:0",
+          "a6b444c8548430c8c4c159ea:1",
+          "dbd2d51f14ab27fe8a7a7434:0",
+          "dbd2d51f14ab27fe8a7a7434:1",
+          "92e0953d42fd53887aa7d13b:0",
+          "92e0953d42fd53887aa7d13b:1",
+          "4c93dd502e95cb951f3d7eb0:0",
+          "4c93dd502e95cb951f3d7eb0:1",
+          "ebb1af3da6b50a909cf38195:0",
+          "ebb1af3da6b50a909cf38195:1",
+          "a3367a3dc1a337804555fd07:0",
+          "a3367a3dc1a337804555fd07:1",
+          "95cce8f001d562494c8b74ea:0",
+          "95cce8f001d562494c8b74ea:1",
+          "4b905b8c312f273c1d569f64:0",
+          "4b905b8c312f273c1d569f64:1",
+          "ce6b1aa931e8a6e3e39eabbe:0",
+          "ce6b1aa931e8a6e3e39eabbe:1",
+          "95da369bc4454271d6ef232d:0",
+          "95da369bc4454271d6ef232d:1",
+          "f7141445dc764883c6f699a6:0",
+          "f7141445dc764883c6f699a6:1",
+          "c0eeab50c6c5c0315ce66dd8:0",
+          "c0eeab50c6c5c0315ce66dd8:1",
+          "92eb7dc4de12ed51a1579b59:0",
+          "92eb7dc4de12ed51a1579b59:1",
+          "3cf06ee02922576d1de2fdff:0",
+          "3cf06ee02922576d1de2fdff:1",
+          "05c9fae226598c3075adec92:0",
+          "05c9fae226598c3075adec92:1",
+          "9d7b6a0c463366ea3e92d6d2:0",
+          "9d7b6a0c463366ea3e92d6d2:1",
+          "b52695c6c7fd85306d8f79db:0",
+          "b52695c6c7fd85306d8f79db:1",
+          "ff31d3435bf37dccda42a942:0",
+          "ff31d3435bf37dccda42a942:1",
+          "da52f81fc00bc9eebe875ac2:0",
+          "da52f81fc00bc9eebe875ac2:1",
+          "b32c0a868cade7385123c721:0",
+          "b32c0a868cade7385123c721:1",
+          "5b508e00f7b4c0541b4083ee:0",
+          "5b508e00f7b4c0541b4083ee:1",
+          "000af4eb42934032327987f1:0",
+          "000af4eb42934032327987f1:1",
+          "f0991445a3bbc27e02d486eb:0",
+          "f0991445a3bbc27e02d486eb:1",
+          "6b6d9c8ed6537c66a9293102:0",
+          "6b6d9c8ed6537c66a9293102:1",
+          "9a277119b65335689bd701d8:0",
+          "9a277119b65335689bd701d8:1",
+          "2df67a2eb41fb3e55875d59b:0",
+          "2df67a2eb41fb3e55875d59b:1",
+          "a634057a7f5ff8d69fbba896:0",
+          "a634057a7f5ff8d69fbba896:1",
+          "347c8fc0a5e3af1a886baac1:0",
+          "347c8fc0a5e3af1a886baac1:1",
+          "215c965cf478c1be4ad1e907:0",
+          "215c965cf478c1be4ad1e907:1",
+          "a62cc7e62828dae1d57dd40e:0",
+          "a62cc7e62828dae1d57dd40e:1",
+          "0d485ef3cc07ba5504e29751:0",
+          "0d485ef3cc07ba5504e29751:1",
+          "d362a921b5e9d1e4ccb17b36:0",
+          "d362a921b5e9d1e4ccb17b36:1",
+          "9f21c0664554ed4e1a72c735:0",
+          "9f21c0664554ed4e1a72c735:1",
+          "9f54a139198fd1f7cded2a1b:0",
+          "9f54a139198fd1f7cded2a1b:1",
+          "a2fcad92efcd5efd6d3d96ed:0",
+          "a2fcad92efcd5efd6d3d96ed:1",
+          "12c6c84a34919181f67ac667:0",
+          "12c6c84a34919181f67ac667:1",
+          "05e0ee1a85e6642f10ffb115:0",
+          "05e0ee1a85e6642f10ffb115:1",
+          "dca4d5ae78f23d0fc3125255:0",
+          "dca4d5ae78f23d0fc3125255:1",
+          "10d6f0af4bbabd3154743ad0:0",
+          "10d6f0af4bbabd3154743ad0:1",
+          "403a4285350804a6ab25ce3a:0",
+          "403a4285350804a6ab25ce3a:1",
+          "5e9c13d8235bf712116d513d:0",
+          "5e9c13d8235bf712116d513d:1",
+          "3e6a88dfcfdf19598315a78f:0",
+          "3e6a88dfcfdf19598315a78f:1",
+          "2a731da3372a5630f69995bf:0",
+          "2a731da3372a5630f69995bf:1",
+          "fb993129ce3d59c4b3701bc6:0",
+          "fb993129ce3d59c4b3701bc6:1",
+          "543746c88709de1491353ef7:0",
+          "543746c88709de1491353ef7:1",
+          "782b69dc924780da3cb77778:0",
+          "782b69dc924780da3cb77778:1",
+          "700e2ef8a5c6e41e4078c5ec:0",
+          "700e2ef8a5c6e41e4078c5ec:1",
+          "99acbc62633601ad0e661459:0",
+          "99acbc62633601ad0e661459:1",
+          "d576c1017ab34ae193f73e1b:0",
+          "d576c1017ab34ae193f73e1b:1",
+          "806ae6b80b21388cd623b080:0",
+          "806ae6b80b21388cd623b080:1",
+          "7e88bac6e02fd8bb83955382:0",
+          "7e88bac6e02fd8bb83955382:1",
+          "d622a7f50c5bfcb2548baba9:0",
+          "d622a7f50c5bfcb2548baba9:1",
+          "9056d6ec8b39414ccbba08ad:0",
+          "9056d6ec8b39414ccbba08ad:1",
+          "eab743dde6a90dce44b570a3:0",
+          "eab743dde6a90dce44b570a3:1"
+        ],
+        "source_panel": 4321,
+        "split": "train",
+        "split_manifest_sha256": "950ecd4cfcab28b9f55f36fdf5b4c4431f9a92c100a364e3b583f1b4140a59c2",
+        "study": 4322
+      },
+      {
+        "cohort": "rehearsal-4323",
+        "input_rows": 512,
+        "pairs": 32,
+        "run": "20261127-codex-scope-trace",
+        "selected_pair_variant_counts": {
+          "approved-draft:0:0": 1,
+          "approved-draft:0:1": 1,
+          "approved-draft:0:2": 1,
+          "approved-draft:0:3": 1,
+          "archive-adopt:0:0": 1,
+          "archive-adopt:0:1": 1,
+          "archive-adopt:0:2": 1,
+          "archive-adopt:0:3": 1,
+          "clerk-clock:0:0": 1,
+          "clerk-clock:0:1": 1,
+          "clerk-clock:0:2": 1,
+          "clerk-clock:0:3": 1,
+          "direct-train:0:0": 1,
+          "direct-train:0:1": 1,
+          "direct-train:0:2": 1,
+          "direct-train:0:3": 1,
+          "second-slip:0:0": 1,
+          "second-slip:0:1": 1,
+          "second-slip:0:2": 1,
+          "second-slip:0:3": 1,
+          "training-repeat:0:0": 1,
+          "training-repeat:0:1": 1,
+          "training-repeat:0:2": 1,
+          "training-repeat:0:3": 1,
+          "training-slash:0:0": 1,
+          "training-slash:0:1": 1,
+          "training-slash:0:2": 1,
+          "training-slash:0:3": 1,
+          "unquoted-vs:0:0": 1,
+          "unquoted-vs:0:1": 1,
+          "unquoted-vs:0:2": 1,
+          "unquoted-vs:0:3": 1
+        },
+        "selected_source_row_ids": [
+          "4969cea3088ba5eab2a7b3cb:0",
+          "4969cea3088ba5eab2a7b3cb:1",
+          "ea40ead542967518e0f9ebdc:0",
+          "ea40ead542967518e0f9ebdc:1",
+          "e6495523261a7089a1633784:0",
+          "e6495523261a7089a1633784:1",
+          "6d9f2bc6bb8204570579fb66:0",
+          "6d9f2bc6bb8204570579fb66:1",
+          "f55d16dcc3485c5ab935f94d:0",
+          "f55d16dcc3485c5ab935f94d:1",
+          "860aee03ded2f4042466ca48:0",
+          "860aee03ded2f4042466ca48:1",
+          "a173a11e43cb3132f60e1242:0",
+          "a173a11e43cb3132f60e1242:1",
+          "f575563d41d6568f4a1d59c2:0",
+          "f575563d41d6568f4a1d59c2:1",
+          "a27a8b1ffb915f598d454c02:0",
+          "a27a8b1ffb915f598d454c02:1",
+          "f30a614cf51fc22786331bc0:0",
+          "f30a614cf51fc22786331bc0:1",
+          "f2431bb1111a3ee49cd0469d:0",
+          "f2431bb1111a3ee49cd0469d:1",
+          "34ceae4d676565574d8bc2c6:0",
+          "34ceae4d676565574d8bc2c6:1",
+          "4e9e18fa9ffd186dffce3846:0",
+          "4e9e18fa9ffd186dffce3846:1",
+          "2495b5e3c60898adfa733530:0",
+          "2495b5e3c60898adfa733530:1",
+          "bd9de100053ecfe40ae5f9df:0",
+          "bd9de100053ecfe40ae5f9df:1",
+          "73d6b213010a602164005257:0",
+          "73d6b213010a602164005257:1",
+          "adee24e6d111f18aa6004824:0",
+          "adee24e6d111f18aa6004824:1",
+          "cf86732b7e105d6fb9d405cd:0",
+          "cf86732b7e105d6fb9d405cd:1",
+          "591a949082397790663dcd9e:0",
+          "591a949082397790663dcd9e:1",
+          "086120db2c6424fb2dc2a94e:0",
+          "086120db2c6424fb2dc2a94e:1",
+          "6e6a2239ff8c680673db7ef0:0",
+          "6e6a2239ff8c680673db7ef0:1",
+          "ddc654363e291393eea411f0:0",
+          "ddc654363e291393eea411f0:1",
+          "3bdad4d83e74170c70273063:0",
+          "3bdad4d83e74170c70273063:1",
+          "bf460394601c36b5579f827d:0",
+          "bf460394601c36b5579f827d:1",
+          "3cebf00704c024b8709f2c16:0",
+          "3cebf00704c024b8709f2c16:1",
+          "d39b87d064e0ed8f40e5edff:0",
+          "d39b87d064e0ed8f40e5edff:1",
+          "f196296c38a6b840ee99e427:0",
+          "f196296c38a6b840ee99e427:1",
+          "af68ae6744c5e4314eb822e8:0",
+          "af68ae6744c5e4314eb822e8:1",
+          "c535174054b362a2fbd42a8d:0",
+          "c535174054b362a2fbd42a8d:1",
+          "db58c86d9423a03b3711d2d1:0",
+          "db58c86d9423a03b3711d2d1:1",
+          "f4ddfc4f78d59f6b78bf1976:0",
+          "f4ddfc4f78d59f6b78bf1976:1",
+          "10124a7eb6aa1276407a6334:0",
+          "10124a7eb6aa1276407a6334:1"
+        ],
+        "source_panel": 4323,
+        "split": "train",
+        "split_manifest_sha256": "9ee087a117e91bc9fe6ed87ec073565a0c2db2bd13d2bf4e7fd34638ba4d90ae",
+        "study": 4323
+      }
+    ]
+  },
+  "cap": 5,
+  "fresh": {
+    "direct_families": {
+      "training-direct-copy-limit": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1536": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1765": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1913": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2553": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2643": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2798": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3012": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      },
+      "training-direct-early-items": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1536": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1765": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1913": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2553": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2643": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2798": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3012": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      },
+      "training-direct-last-item": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1536": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1765": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1913": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2553": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2643": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2798": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3012": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      },
+      "training-direct-opening": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1536": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1765": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1913": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2553": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2643": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2798": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3012": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      }
+    },
+    "direct_one_two_pairs": 64,
+    "direct_two_three_pairs": 64,
+    "equal_length_clause_order_pairs": 128,
+    "equal_length_direct_pairs": 64,
+    "equal_length_quartets": 40,
+    "equal_length_selector_pairs": 80,
+    "labels": {
+      "1233": "dress",
+      "1536": "cast",
+      "1765": "purple",
+      "1913": "seed",
+      "2553": "gate",
+      "2643": "bean",
+      "2798": "toast",
+      "3012": "shoe"
+    },
+    "prefix_max": 164,
+    "prefix_min": 90,
+    "rows": 512,
+    "scoped_families": {
+      "training-circuit": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-layout-approval": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-live-dead": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-pending": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-raised-tag": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-signed-slip": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-transfer-desk": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "training-valid-window": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1233": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1536": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1765": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1913": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2553": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2643": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2798": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3012": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      }
+    },
+    "scoped_quartets": 64
+  },
+  "fresh_exact_overlap": {
+    "prior_or_other_split_contexts": 0,
+    "prior_or_other_split_encoded_prompts": 0,
+    "prior_or_other_split_prompts": 0,
+    "prior_or_other_split_source_token_ids": 0,
+    "prior_or_other_split_template_signatures": 0
+  },
+  "fresh_template_strings_checked": 96,
+  "schema": "codex-4325.joint-release-panel/1",
+  "split": "train",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "total_pairs": 384,
+  "total_post_b_pairs": 112,
+  "total_rows": 768
+}

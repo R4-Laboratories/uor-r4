@@ -1,0 +1,47 @@
+[
+  {
+    "scoped_selector_at_period": {
+      "both_copy": 112,
+      "both_stop": 16
+    },
+    "direct_two_three_after_authenticated_b": {
+      "both_copy": 32,
+      "inverted": 32
+    },
+    "model": "balanced"
+  },
+  {
+    "scoped_selector_at_period": {
+      "both_copy": 96,
+      "both_stop": 24,
+      "inverted": 8
+    },
+    "direct_two_three_after_authenticated_b": {
+      "both_copy": 32,
+      "inverted": 32
+    },
+    "model": "linked"
+  },
+  {
+    "scoped_selector_at_period": {
+      "both_copy": 104,
+      "both_stop": 16,
+      "correct_flip": 8
+    },
+    "direct_two_three_after_authenticated_b": {
+      "both_copy": 64
+    },
+    "model": "first-period"
+  },
+  {
+    "scoped_selector_at_period": {
+      "both_copy": 24,
+      "both_stop": 104
+    },
+    "direct_two_three_after_authenticated_b": {
+      "both_copy": 32,
+      "both_stop": 32
+    },
+    "model": "joint"
+  }
+]

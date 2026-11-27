@@ -1,0 +1,10 @@
+{
+  "checked_words": 4096,
+  "touched_by_both": 402,
+  "nonzero_net_both": 384,
+  "opposing_net": 205,
+  "reinforcing_net": 179,
+  "exactly_cancelled": 20,
+  "nonzero_stored": 2081,
+  "largest_absolute_partial": 28
+}

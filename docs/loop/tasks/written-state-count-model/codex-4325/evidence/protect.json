@@ -1,0 +1,366 @@
+[
+  {
+    "all": {
+      "rows": 100,
+      "exact": 100,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 100,
+      "b_right": 100,
+      "b_right_after_supplied_first": 100,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 50,
+      "id_pairs": {
+        "n": 50,
+        "exact": 50,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "scoped": {
+      "rows": 0,
+      "exact": 0,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 0,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 0,
+      "b_reached_after_supplied_first": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 0,
+        "exact": 0,
+        "ceiling": 0
+      },
+      "ceiling": 0
+    },
+    "direct": {
+      "rows": 100,
+      "exact": 100,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 100,
+      "b_right": 100,
+      "b_right_after_supplied_first": 100,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 50,
+      "id_pairs": {
+        "n": 50,
+        "exact": 50,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "direct_by_length": [
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 100,
+          "exact": 100,
+          "early": 0,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 100,
+          "b_reached": 100,
+          "b_right": 100,
+          "b_right_after_supplied_first": 100,
+          "b_reached_after_supplied_first": 100,
+          "exact_short": 50,
+          "exact_long": 50,
+          "id_pairs": {
+            "n": 50,
+            "exact": 50,
+            "ceiling": 50
+          },
+          "ceiling": 100
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 100,
+      "exact": 100,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 100,
+      "b_right": 100,
+      "b_right_after_supplied_first": 100,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 50,
+      "id_pairs": {
+        "n": 50,
+        "exact": 50,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "scoped": {
+      "rows": 0,
+      "exact": 0,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 0,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 0,
+      "b_reached_after_supplied_first": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 0,
+        "exact": 0,
+        "ceiling": 0
+      },
+      "ceiling": 0
+    },
+    "direct": {
+      "rows": 100,
+      "exact": 100,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 100,
+      "b_right": 100,
+      "b_right_after_supplied_first": 100,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 50,
+      "id_pairs": {
+        "n": 50,
+        "exact": 50,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "direct_by_length": [
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 100,
+          "exact": 100,
+          "early": 0,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 100,
+          "b_reached": 100,
+          "b_right": 100,
+          "b_right_after_supplied_first": 100,
+          "b_reached_after_supplied_first": 100,
+          "exact_short": 50,
+          "exact_long": 50,
+          "id_pairs": {
+            "n": 50,
+            "exact": 50,
+            "ceiling": 50
+          },
+          "ceiling": 100
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 100,
+      "exact": 50,
+      "early": 25,
+      "late": 25,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 75,
+      "b_right": 50,
+      "b_right_after_supplied_first": 50,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 50,
+        "exact": 0,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "scoped": {
+      "rows": 0,
+      "exact": 0,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 0,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 0,
+      "b_reached_after_supplied_first": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 0,
+        "exact": 0,
+        "ceiling": 0
+      },
+      "ceiling": 0
+    },
+    "direct": {
+      "rows": 100,
+      "exact": 50,
+      "early": 25,
+      "late": 25,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 75,
+      "b_right": 50,
+      "b_right_after_supplied_first": 50,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 50,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 50,
+        "exact": 0,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "direct_by_length": [
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 100,
+          "exact": 50,
+          "early": 25,
+          "late": 25,
+          "other": 0,
+          "cap": 0,
+          "b_required": 100,
+          "b_reached": 75,
+          "b_right": 50,
+          "b_right_after_supplied_first": 50,
+          "b_reached_after_supplied_first": 100,
+          "exact_short": 50,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 50,
+            "exact": 0,
+            "ceiling": 50
+          },
+          "ceiling": 100
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 100,
+      "exact": 25,
+      "early": 50,
+      "late": 25,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 50,
+      "b_right": 25,
+      "b_right_after_supplied_first": 50,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 25,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 50,
+        "exact": 0,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "scoped": {
+      "rows": 0,
+      "exact": 0,
+      "early": 0,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 0,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 0,
+      "b_reached_after_supplied_first": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 0,
+        "exact": 0,
+        "ceiling": 0
+      },
+      "ceiling": 0
+    },
+    "direct": {
+      "rows": 100,
+      "exact": 25,
+      "early": 50,
+      "late": 25,
+      "other": 0,
+      "cap": 0,
+      "b_required": 100,
+      "b_reached": 50,
+      "b_right": 25,
+      "b_right_after_supplied_first": 50,
+      "b_reached_after_supplied_first": 100,
+      "exact_short": 25,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 50,
+        "exact": 0,
+        "ceiling": 50
+      },
+      "ceiling": 100
+    },
+    "direct_by_length": [
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 100,
+          "exact": 25,
+          "early": 50,
+          "late": 25,
+          "other": 0,
+          "cap": 0,
+          "b_required": 100,
+          "b_reached": 50,
+          "b_right": 25,
+          "b_right_after_supplied_first": 50,
+          "b_reached_after_supplied_first": 100,
+          "exact_short": 25,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 50,
+            "exact": 0,
+            "ceiling": 50
+          },
+          "ceiling": 100
+        }
+      }
+    ]
+  }
+]

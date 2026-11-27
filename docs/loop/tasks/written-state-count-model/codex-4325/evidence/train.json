@@ -1,0 +1,1358 @@
+[
+  {
+    "all": {
+      "rows": 768,
+      "exact": 270,
+      "early": 226,
+      "late": 272,
+      "other": 0,
+      "cap": 4,
+      "b_required": 496,
+      "b_reached": 480,
+      "b_right": 208,
+      "b_right_after_supplied_first": 216,
+      "b_reached_after_supplied_first": 496,
+      "exact_short": 110,
+      "exact_long": 160,
+      "id_pairs": {
+        "n": 384,
+        "exact": 84,
+        "ceiling": 384
+      },
+      "ceiling": 768
+    },
+    "scoped": {
+      "rows": 312,
+      "exact": 22,
+      "early": 158,
+      "late": 132,
+      "other": 0,
+      "cap": 4,
+      "b_required": 156,
+      "b_reached": 144,
+      "b_right": 12,
+      "b_right_after_supplied_first": 20,
+      "b_reached_after_supplied_first": 156,
+      "exact_short": 10,
+      "exact_long": 12,
+      "id_pairs": {
+        "n": 156,
+        "exact": 0,
+        "ceiling": 156
+      },
+      "ceiling": 312
+    },
+    "direct": {
+      "rows": 456,
+      "exact": 248,
+      "early": 68,
+      "late": 140,
+      "other": 0,
+      "cap": 0,
+      "b_required": 340,
+      "b_reached": 336,
+      "b_right": 196,
+      "b_right_after_supplied_first": 196,
+      "b_reached_after_supplied_first": 340,
+      "exact_short": 100,
+      "exact_long": 148,
+      "id_pairs": {
+        "n": 228,
+        "exact": 84,
+        "ceiling": 228
+      },
+      "ceiling": 456
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 232,
+          "exact": 88,
+          "early": 68,
+          "late": 76,
+          "other": 0,
+          "cap": 0,
+          "b_required": 116,
+          "b_reached": 112,
+          "b_right": 36,
+          "b_right_after_supplied_first": 36,
+          "b_reached_after_supplied_first": 116,
+          "exact_short": 52,
+          "exact_long": 36,
+          "id_pairs": {
+            "n": 116,
+            "exact": 36,
+            "ceiling": 116
+          },
+          "ceiling": 232
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 224,
+          "exact": 160,
+          "early": 0,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 224,
+          "b_reached": 224,
+          "b_right": 160,
+          "b_right_after_supplied_first": 160,
+          "b_reached_after_supplied_first": 224,
+          "exact_short": 48,
+          "exact_long": 112,
+          "id_pairs": {
+            "n": 112,
+            "exact": 48,
+            "ceiling": 112
+          },
+          "ceiling": 224
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 40,
+        "exact": 0,
+        "ceiling": 40
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "training-circuit",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-layout-approval",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-live-dead",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-pending",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-raised-tag",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-signed-slip",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-transfer-desk",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-valid-window",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 768,
+      "exact": 340,
+      "early": 236,
+      "late": 192,
+      "other": 0,
+      "cap": 0,
+      "b_required": 496,
+      "b_reached": 408,
+      "b_right": 216,
+      "b_right_after_supplied_first": 216,
+      "b_reached_after_supplied_first": 496,
+      "exact_short": 172,
+      "exact_long": 168,
+      "id_pairs": {
+        "n": 384,
+        "exact": 80,
+        "ceiling": 384
+      },
+      "ceiling": 768
+    },
+    "scoped": {
+      "rows": 312,
+      "exact": 96,
+      "early": 136,
+      "late": 80,
+      "other": 0,
+      "cap": 0,
+      "b_required": 156,
+      "b_reached": 100,
+      "b_right": 20,
+      "b_right_after_supplied_first": 20,
+      "b_reached_after_supplied_first": 156,
+      "exact_short": 76,
+      "exact_long": 20,
+      "id_pairs": {
+        "n": 156,
+        "exact": 20,
+        "ceiling": 156
+      },
+      "ceiling": 312
+    },
+    "direct": {
+      "rows": 456,
+      "exact": 244,
+      "early": 100,
+      "late": 112,
+      "other": 0,
+      "cap": 0,
+      "b_required": 340,
+      "b_reached": 308,
+      "b_right": 196,
+      "b_right_after_supplied_first": 196,
+      "b_reached_after_supplied_first": 340,
+      "exact_short": 96,
+      "exact_long": 148,
+      "id_pairs": {
+        "n": 228,
+        "exact": 60,
+        "ceiling": 228
+      },
+      "ceiling": 456
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 232,
+          "exact": 84,
+          "early": 100,
+          "late": 48,
+          "other": 0,
+          "cap": 0,
+          "b_required": 116,
+          "b_reached": 84,
+          "b_right": 36,
+          "b_right_after_supplied_first": 36,
+          "b_reached_after_supplied_first": 116,
+          "exact_short": 48,
+          "exact_long": 36,
+          "id_pairs": {
+            "n": 116,
+            "exact": 12,
+            "ceiling": 116
+          },
+          "ceiling": 232
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 224,
+          "exact": 160,
+          "early": 0,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 224,
+          "b_reached": 224,
+          "b_right": 160,
+          "b_right_after_supplied_first": 160,
+          "b_reached_after_supplied_first": 224,
+          "exact_short": 48,
+          "exact_long": 112,
+          "id_pairs": {
+            "n": 112,
+            "exact": 48,
+            "ceiling": 112
+          },
+          "ceiling": 224
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 40,
+        "exact": 0,
+        "ceiling": 40
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "training-circuit",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-layout-approval",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-live-dead",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-pending",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-raised-tag",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-signed-slip",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-transfer-desk",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-valid-window",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 768,
+      "exact": 276,
+      "early": 188,
+      "late": 304,
+      "other": 0,
+      "cap": 0,
+      "b_required": 496,
+      "b_reached": 494,
+      "b_right": 190,
+      "b_right_after_supplied_first": 192,
+      "b_reached_after_supplied_first": 496,
+      "exact_short": 134,
+      "exact_long": 142,
+      "id_pairs": {
+        "n": 384,
+        "exact": 44,
+        "ceiling": 384
+      },
+      "ceiling": 768
+    },
+    "scoped": {
+      "rows": 312,
+      "exact": 52,
+      "early": 126,
+      "late": 134,
+      "other": 0,
+      "cap": 0,
+      "b_required": 156,
+      "b_reached": 154,
+      "b_right": 20,
+      "b_right_after_supplied_first": 22,
+      "b_reached_after_supplied_first": 156,
+      "exact_short": 32,
+      "exact_long": 20,
+      "id_pairs": {
+        "n": 156,
+        "exact": 16,
+        "ceiling": 156
+      },
+      "ceiling": 312
+    },
+    "direct": {
+      "rows": 456,
+      "exact": 224,
+      "early": 62,
+      "late": 170,
+      "other": 0,
+      "cap": 0,
+      "b_required": 340,
+      "b_reached": 340,
+      "b_right": 170,
+      "b_right_after_supplied_first": 170,
+      "b_reached_after_supplied_first": 340,
+      "exact_short": 102,
+      "exact_long": 122,
+      "id_pairs": {
+        "n": 228,
+        "exact": 28,
+        "ceiling": 228
+      },
+      "ceiling": 456
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 232,
+          "exact": 106,
+          "early": 62,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 116,
+          "b_reached": 116,
+          "b_right": 52,
+          "b_right_after_supplied_first": 52,
+          "b_reached_after_supplied_first": 116,
+          "exact_short": 54,
+          "exact_long": 52,
+          "id_pairs": {
+            "n": 116,
+            "exact": 22,
+            "ceiling": 116
+          },
+          "ceiling": 232
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 224,
+          "exact": 118,
+          "early": 0,
+          "late": 106,
+          "other": 0,
+          "cap": 0,
+          "b_required": 224,
+          "b_reached": 224,
+          "b_right": 118,
+          "b_right_after_supplied_first": 118,
+          "b_reached_after_supplied_first": 224,
+          "exact_short": 48,
+          "exact_long": 70,
+          "id_pairs": {
+            "n": 112,
+            "exact": 6,
+            "ceiling": 112
+          },
+          "ceiling": 224
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 40,
+        "exact": 0,
+        "ceiling": 40
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "training-circuit",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-layout-approval",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-live-dead",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-pending",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-raised-tag",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-signed-slip",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-transfer-desk",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-valid-window",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 768,
+      "exact": 582,
+      "early": 140,
+      "late": 46,
+      "other": 0,
+      "cap": 40,
+      "b_required": 496,
+      "b_reached": 444,
+      "b_right": 398,
+      "b_right_after_supplied_first": 450,
+      "b_reached_after_supplied_first": 496,
+      "exact_short": 290,
+      "exact_long": 292,
+      "id_pairs": {
+        "n": 384,
+        "exact": 204,
+        "ceiling": 384
+      },
+      "ceiling": 768
+    },
+    "scoped": {
+      "rows": 312,
+      "exact": 212,
+      "early": 98,
+      "late": 2,
+      "other": 0,
+      "cap": 8,
+      "b_required": 156,
+      "b_reached": 122,
+      "b_right": 120,
+      "b_right_after_supplied_first": 154,
+      "b_reached_after_supplied_first": 156,
+      "exact_short": 92,
+      "exact_long": 120,
+      "id_pairs": {
+        "n": 156,
+        "exact": 56,
+        "ceiling": 156
+      },
+      "ceiling": 312
+    },
+    "direct": {
+      "rows": 456,
+      "exact": 370,
+      "early": 42,
+      "late": 44,
+      "other": 0,
+      "cap": 32,
+      "b_required": 340,
+      "b_reached": 322,
+      "b_right": 278,
+      "b_right_after_supplied_first": 296,
+      "b_reached_after_supplied_first": 340,
+      "exact_short": 198,
+      "exact_long": 172,
+      "id_pairs": {
+        "n": 228,
+        "exact": 148,
+        "ceiling": 228
+      },
+      "ceiling": 456
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 232,
+          "exact": 202,
+          "early": 30,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 116,
+          "b_reached": 110,
+          "b_right": 110,
+          "b_right_after_supplied_first": 116,
+          "b_reached_after_supplied_first": 116,
+          "exact_short": 92,
+          "exact_long": 110,
+          "id_pairs": {
+            "n": 116,
+            "exact": 86,
+            "ceiling": 116
+          },
+          "ceiling": 232
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 224,
+          "exact": 168,
+          "early": 12,
+          "late": 44,
+          "other": 0,
+          "cap": 32,
+          "b_required": 224,
+          "b_reached": 212,
+          "b_right": 168,
+          "b_right_after_supplied_first": 180,
+          "b_reached_after_supplied_first": 224,
+          "exact_short": 106,
+          "exact_long": 62,
+          "id_pairs": {
+            "n": 112,
+            "exact": 62,
+            "ceiling": 112
+          },
+          "ceiling": 224
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 16,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 40,
+        "exact": 8,
+        "ceiling": 40
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 40,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 48,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "training-circuit",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-layout-approval",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-live-dead",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-pending",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 8,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 8,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 16,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 16,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-raised-tag",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-signed-slip",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-transfer-desk",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "training-valid-window",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 8,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 16,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 16,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  }
+]

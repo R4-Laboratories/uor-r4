@@ -10,6 +10,9 @@ publish = false
 default = ["release-factorial"]
 release-factorial = []
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(feature, values("joint-release"))'] }
+
 [[bin]]
 name = "release-factorial-device"
 path = "../../codex-4323/device/src/main.rs"

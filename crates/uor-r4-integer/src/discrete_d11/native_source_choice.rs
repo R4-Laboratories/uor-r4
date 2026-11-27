@@ -30,6 +30,10 @@ const POSITION_STATE_WORDS: usize = WEIGHTS + FEATURE_WORDS;
 const POSITION_STATE_BYTES: usize = POSITION_STATE_WORDS * 2;
 const LINK_STATE_WORDS: usize = POSITION_STATE_WORDS + FEATURE_WORDS;
 const LINK_STATE_BYTES: usize = LINK_STATE_WORDS * 2;
+const RELEASE_STATE_WORDS: usize = LINK_STATE_WORDS + FEATURE_WORDS;
+const RELEASE_STATE_BYTES: usize = RELEASE_STATE_WORDS * 2;
+const LINKED_INITIAL_SHA256: &str =
+    "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91";
 const CAP: usize = 5;
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -71,6 +75,7 @@ impl State {
     fn read(reader: &mut dyn Read, envelope: &Envelope) -> Result<Self> {
         let mut bytes = vec![0; envelope.state_bytes];
         reader.read_exact(&mut bytes)?;
+        validate_state_layout(&bytes)?;
         if hex::encode(Sha256::digest(&bytes)) != envelope.state_sha256 {
             return Err(invalid("native source choice state digest mismatch"));
         }
@@ -127,11 +132,30 @@ pub(super) fn read_from(
 }
 
 fn valid_state_bytes(len: usize) -> bool {
-    matches!(len, WEIGHT_BYTES | POSITION_STATE_BYTES | LINK_STATE_BYTES)
+    matches!(
+        len,
+        WEIGHT_BYTES | POSITION_STATE_BYTES | LINK_STATE_BYTES | RELEASE_STATE_BYTES
+    )
+}
+
+fn validate_state_layout(bytes: &[u8]) -> Result<()> {
+    if !valid_state_bytes(bytes.len()) {
+        return Err(invalid("incomplete native source choice state"));
+    }
+    if bytes.len() == RELEASE_STATE_BYTES
+        && hex::encode(Sha256::digest(&bytes[..LINK_STATE_BYTES])) != LINKED_INITIAL_SHA256
+    {
+        return Err(invalid(
+            "native release residual requires the frozen #4323 linked state",
+        ));
+    }
+    Ok(())
 }
 
 /// Write the three signed little-endian action rows, optional first-release
-/// position and link rows (in that order), and byte-identical #4319 artifact.
+/// position and link rows, optional shared release residual (in that order),
+/// and byte-identical #4319 artifact. The release residual requires the exact
+/// linked #4323 action, position and link rows.
 /// Publish the destination only after writing and verification succeed.
 pub fn write_artifact(
     base: impl Read,
@@ -139,16 +163,12 @@ pub fn write_artifact(
     fit_sha256: [u8; 32],
     mut output: impl Write,
 ) -> Result<()> {
-    let mut bytes = Vec::with_capacity(LINK_STATE_BYTES);
+    let mut bytes = Vec::with_capacity(RELEASE_STATE_BYTES);
     weights
         .by_ref()
-        .take((LINK_STATE_BYTES + 1) as u64)
+        .take((RELEASE_STATE_BYTES + 1) as u64)
         .read_to_end(&mut bytes)?;
-    if !valid_state_bytes(bytes.len()) {
-        return Err(invalid(
-            "native source choice weights need the original action rows and zero, one or two complete first-release rows",
-        ));
-    }
+    validate_state_layout(&bytes)?;
     let envelope = Envelope {
         schema: SCHEMA.to_owned(),
         base_bytes: BASE_BYTES,
@@ -256,6 +276,16 @@ fn score(state: &State, model: &IntegerDiscreteModel, prefix: &[u32], stage: usi
         }
         if let Some(link) = state.weights.get(POSITION_STATE_WORDS..LINK_STATE_WORDS) {
             score += native_word_ending::link_sum(prefix, &model.codebook_roots, link);
+        }
+    }
+    if stage < 2 {
+        if let Some(release) = state.weights.get(LINK_STATE_WORDS..RELEASE_STATE_WORDS) {
+            score += native_word_ending::addressed_link_sum(
+                prefix,
+                &model.codebook_roots,
+                release,
+                stage * (FEATURE_WORDS / 2),
+            );
         }
     }
     score

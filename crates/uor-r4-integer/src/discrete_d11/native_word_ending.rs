@@ -107,6 +107,15 @@ pub(super) fn scope_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16]) -> i
 }
 
 pub(super) fn link_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16]) -> i32 {
+    addressed_link_sum(prefix, roots, weights, 0)
+}
+
+pub(super) fn addressed_link_sum(
+    prefix: &[u32],
+    roots: &[[u8; 4]],
+    weights: &[i16],
+    address_xor: usize,
+) -> i32 {
     weighted_instruction(prefix, weights, 0, |instruction, tally| {
         let mut previous = [0; LINK_WINDOW];
         for (index, &id) in instruction.iter().enumerate() {
@@ -114,8 +123,8 @@ pub(super) fn link_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16]) -> i3
             for distance in 2..=index.min(LINK_WINDOW) {
                 let earlier = previous[(index - distance) % LINK_WINDOW];
                 let phase = position_phase(distance);
-                tally.include(bucket(ordered_roots(earlier, later) ^ phase));
-                tally.include(HALF + bucket(ordered_roots(later, earlier) ^ phase));
+                tally.include(bucket(ordered_roots(earlier, later) ^ phase) ^ address_xor);
+                tally.include((HALF + bucket(ordered_roots(later, earlier) ^ phase)) ^ address_xor);
             }
             previous[index % LINK_WINDOW] = later;
         }
@@ -601,5 +610,20 @@ mod tests {
         body.extend([0; 20]);
         // Distances 2 through 16 give 15 unique keys in each half for this root.
         assert_eq!(link_sum(&prefix(&body), &roots, &[1; WEIGHTS]), 30);
+    }
+
+    #[test]
+    fn release_residual_swaps_the_oriented_bucket_halves_after_b() {
+        let roots = std::array::from_fn::<_, 7, _>(|id| [id as u8, 0, 0, 0]);
+        let prompt = prefix(&[LF, LF, QUESTION, 1, 5, 6, 3]);
+        let mut residual = [0; WEIGHTS];
+        residual[819] = -7;
+        residual[2929] = -4;
+        assert_eq!(addressed_link_sum(&prompt, &roots, &residual, 0), -11);
+        assert_eq!(addressed_link_sum(&prompt, &roots, &residual, HALF), 0);
+        residual[819 ^ HALF] = -17;
+        residual[2929 ^ HALF] = 23;
+        assert_eq!(addressed_link_sum(&prompt, &roots, &residual, 0), -11);
+        assert_eq!(addressed_link_sum(&prompt, &roots, &residual, HALF), 6);
     }
 }

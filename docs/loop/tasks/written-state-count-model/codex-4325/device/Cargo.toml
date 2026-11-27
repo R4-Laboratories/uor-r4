@@ -1,0 +1,22 @@
+[package]
+name = "joint-release-device"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[features]
+default = ["joint-release"]
+joint-release = ["release-factorial"]
+release-factorial = []
+
+[[bin]]
+name = "joint-release-device"
+path = "../../codex-4323/device/src/main.rs"
+
+[dependencies]
+cudarc = { path = "../../../../../../third_party/cudarc-0.19.10", default-features = false, features = ["std", "driver", "cuda-12080", "dynamic-linking"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"

@@ -1,0 +1,1358 @@
+[
+  {
+    "all": {
+      "rows": 512,
+      "exact": 80,
+      "early": 224,
+      "late": 208,
+      "other": 0,
+      "cap": 32,
+      "b_required": 320,
+      "b_reached": 240,
+      "b_right": 32,
+      "b_right_after_supplied_first": 33,
+      "b_reached_after_supplied_first": 320,
+      "exact_short": 48,
+      "exact_long": 32,
+      "id_pairs": {
+        "n": 256,
+        "exact": 0,
+        "ceiling": 256
+      },
+      "ceiling": 512
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 16,
+      "early": 128,
+      "late": 112,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 112,
+      "b_right": 0,
+      "b_right_after_supplied_first": 1,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 16,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 256,
+      "exact": 64,
+      "early": 96,
+      "late": 96,
+      "other": 0,
+      "cap": 32,
+      "b_required": 192,
+      "b_reached": 128,
+      "b_right": 32,
+      "b_right_after_supplied_first": 32,
+      "b_reached_after_supplied_first": 192,
+      "exact_short": 32,
+      "exact_long": 32,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 128,
+          "exact": 32,
+          "early": 64,
+          "late": 32,
+          "other": 0,
+          "cap": 0,
+          "b_required": 64,
+          "b_reached": 32,
+          "b_right": 0,
+          "b_right_after_supplied_first": 0,
+          "b_reached_after_supplied_first": 64,
+          "exact_short": 32,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 128,
+          "exact": 32,
+          "early": 32,
+          "late": 64,
+          "other": 0,
+          "cap": 32,
+          "b_required": 128,
+          "b_reached": 96,
+          "b_right": 32,
+          "b_right_after_supplied_first": 32,
+          "b_reached_after_supplied_first": 128,
+          "exact_short": 0,
+          "exact_long": 32,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "held-advisors",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-drawer",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-edition",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-forward",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-ink",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-public-copy",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-translation",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-withdrawal",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 512,
+      "exact": 56,
+      "early": 232,
+      "late": 224,
+      "other": 0,
+      "cap": 0,
+      "b_required": 320,
+      "b_reached": 256,
+      "b_right": 32,
+      "b_right_after_supplied_first": 33,
+      "b_reached_after_supplied_first": 320,
+      "exact_short": 24,
+      "exact_long": 32,
+      "id_pairs": {
+        "n": 256,
+        "exact": 0,
+        "ceiling": 256
+      },
+      "ceiling": 512
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 24,
+      "early": 136,
+      "late": 96,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 96,
+      "b_right": 0,
+      "b_right_after_supplied_first": 1,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 24,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 256,
+      "exact": 32,
+      "early": 96,
+      "late": 128,
+      "other": 0,
+      "cap": 0,
+      "b_required": 192,
+      "b_reached": 160,
+      "b_right": 32,
+      "b_right_after_supplied_first": 32,
+      "b_reached_after_supplied_first": 192,
+      "exact_short": 0,
+      "exact_long": 32,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 128,
+          "exact": 0,
+          "early": 64,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 64,
+          "b_reached": 64,
+          "b_right": 0,
+          "b_right_after_supplied_first": 0,
+          "b_reached_after_supplied_first": 64,
+          "exact_short": 0,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 128,
+          "exact": 32,
+          "early": 32,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 128,
+          "b_reached": 96,
+          "b_right": 32,
+          "b_right_after_supplied_first": 32,
+          "b_reached_after_supplied_first": 128,
+          "exact_short": 0,
+          "exact_long": 32,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "held-advisors",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-drawer",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-edition",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-forward",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-ink",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-public-copy",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-translation",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-withdrawal",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 512,
+      "exact": 128,
+      "early": 184,
+      "late": 200,
+      "other": 0,
+      "cap": 0,
+      "b_required": 320,
+      "b_reached": 304,
+      "b_right": 104,
+      "b_right_after_supplied_first": 104,
+      "b_reached_after_supplied_first": 320,
+      "exact_short": 24,
+      "exact_long": 104,
+      "id_pairs": {
+        "n": 256,
+        "exact": 0,
+        "ceiling": 256
+      },
+      "ceiling": 512
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 32,
+      "early": 120,
+      "late": 104,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 112,
+      "b_right": 8,
+      "b_right_after_supplied_first": 8,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 24,
+      "exact_long": 8,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 256,
+      "exact": 96,
+      "early": 64,
+      "late": 96,
+      "other": 0,
+      "cap": 0,
+      "b_required": 192,
+      "b_reached": 192,
+      "b_right": 96,
+      "b_right_after_supplied_first": 96,
+      "b_reached_after_supplied_first": 192,
+      "exact_short": 0,
+      "exact_long": 96,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 128,
+          "exact": 32,
+          "early": 64,
+          "late": 32,
+          "other": 0,
+          "cap": 0,
+          "b_required": 64,
+          "b_reached": 64,
+          "b_right": 32,
+          "b_right_after_supplied_first": 32,
+          "b_reached_after_supplied_first": 64,
+          "exact_short": 0,
+          "exact_long": 32,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 128,
+          "exact": 64,
+          "early": 0,
+          "late": 64,
+          "other": 0,
+          "cap": 0,
+          "b_required": 128,
+          "b_reached": 128,
+          "b_right": 64,
+          "b_right_after_supplied_first": 64,
+          "b_reached_after_supplied_first": 128,
+          "exact_short": 0,
+          "exact_long": 64,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "held-advisors",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-drawer",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-edition",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-forward",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-ink",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-public-copy",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-translation",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-withdrawal",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "all": {
+      "rows": 512,
+      "exact": 192,
+      "early": 320,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 320,
+      "b_reached": 24,
+      "b_right": 24,
+      "b_right_after_supplied_first": 208,
+      "b_reached_after_supplied_first": 320,
+      "exact_short": 168,
+      "exact_long": 24,
+      "id_pairs": {
+        "n": 256,
+        "exact": 8,
+        "ceiling": 256
+      },
+      "ceiling": 512
+    },
+    "scoped": {
+      "rows": 256,
+      "exact": 128,
+      "early": 128,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 128,
+      "b_reached": 24,
+      "b_right": 24,
+      "b_right_after_supplied_first": 80,
+      "b_reached_after_supplied_first": 128,
+      "exact_short": 104,
+      "exact_long": 24,
+      "id_pairs": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct": {
+      "rows": 256,
+      "exact": 64,
+      "early": 192,
+      "late": 0,
+      "other": 0,
+      "cap": 0,
+      "b_required": 192,
+      "b_reached": 0,
+      "b_right": 0,
+      "b_right_after_supplied_first": 128,
+      "b_reached_after_supplied_first": 192,
+      "exact_short": 64,
+      "exact_long": 0,
+      "id_pairs": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      },
+      "ceiling": 256
+    },
+    "direct_by_length": [
+      {
+        "contrast": 0,
+        "stats": {
+          "rows": 128,
+          "exact": 64,
+          "early": 64,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 64,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 64,
+          "b_reached_after_supplied_first": 64,
+          "exact_short": 64,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      },
+      {
+        "contrast": 1,
+        "stats": {
+          "rows": 128,
+          "exact": 0,
+          "early": 128,
+          "late": 0,
+          "other": 0,
+          "cap": 0,
+          "b_required": 128,
+          "b_reached": 0,
+          "b_right": 0,
+          "b_right_after_supplied_first": 64,
+          "b_reached_after_supplied_first": 128,
+          "exact_short": 0,
+          "exact_long": 0,
+          "id_pairs": {
+            "n": 64,
+            "exact": 0,
+            "ceiling": 64
+          },
+          "ceiling": 128
+        }
+      }
+    ],
+    "crossed": {
+      "contexts": {
+        "n": 64,
+        "exact": 0,
+        "ceiling": 64
+      },
+      "equal_length_contexts": {
+        "n": 32,
+        "exact": 0,
+        "ceiling": 32
+      },
+      "clauses": {
+        "n": 128,
+        "exact": 8,
+        "ceiling": 128
+      },
+      "selectors": {
+        "n": 128,
+        "exact": 0,
+        "ceiling": 128
+      }
+    },
+    "crossed_families": [
+      {
+        "family": "held-advisors",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-drawer",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-edition",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-forward",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-ink",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 8,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-public-copy",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-translation",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      },
+      {
+        "family": "held-withdrawal",
+        "stats": {
+          "contexts": {
+            "n": 8,
+            "exact": 0,
+            "ceiling": 8
+          },
+          "equal_length_contexts": {
+            "n": 0,
+            "exact": 0,
+            "ceiling": 0
+          },
+          "clauses": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          },
+          "selectors": {
+            "n": 16,
+            "exact": 0,
+            "ceiling": 16
+          }
+        }
+      }
+    ]
+  }
+]
