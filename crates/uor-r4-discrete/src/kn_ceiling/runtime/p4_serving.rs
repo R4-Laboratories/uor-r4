@@ -1622,6 +1622,7 @@ pub struct P4StepTrace {
     pub bucket: usize,
     pub s4_role_scores: [i64; 3],
     pub s4_role_choice: Option<u8>,
+    pub s4_source: Option<S4SourceTrace>,
     pub token_id: u16,
     pub mass_q48: u64,
     pub top_ties: u32,
@@ -1641,6 +1642,7 @@ pub struct P4State<'a> {
     pub fit_manifest_sha256: [u8; 32],
     pub s4_sha256: [u8; 32],
     pub s6_sha256: [u8; 32],
+    state_sha256: Option<[u8; 32]>,
 }
 
 impl<'a> P4State<'a> {
@@ -1694,7 +1696,18 @@ impl<'a> P4State<'a> {
             fit_manifest_sha256,
             s4_sha256,
             s6_sha256,
+            state_sha256: None,
         })
+    }
+
+    /// Record the already validated digest of the enclosing UORP4A01 package.
+    pub fn with_state_sha256(mut self, state_sha256: [u8; 32]) -> Self {
+        self.state_sha256 = Some(state_sha256);
+        self
+    }
+
+    pub fn state_sha256(&self) -> Option<[u8; 32]> {
+        self.state_sha256
     }
 }
 
@@ -1736,14 +1749,16 @@ impl P4Session {
             ],
             acc_buf: vec![0u128; P4_VOCAB],
             scores_buf: vec![1u64; P4_VOCAB],
-            pair_keys_buf: Vec::with_capacity(256),
+            pair_keys_buf: Vec::with_capacity(24 * 23 / 2),
         }
     }
 
     pub fn sync_prompt(&mut self, context: &[u16]) -> Result<()> {
         let bos_start = context.iter().rposition(|&id| id == 0).unwrap_or(0);
         let rec = &context[bos_start..];
-        if rec.is_empty() || rec.len() > P4_MAX_CONTEXT || rec.contains(&1) {
+        // Literal dialogue keeps the EOS of each completed assistant turn in the
+        // record. Only the last token determines whether this prompt is open.
+        if rec.is_empty() || rec.len() > P4_MAX_CONTEXT || rec.last() == Some(&1) {
             return Err(invalid(
                 "P4 decoding needs an open causal record <= 2048 tokens",
             ));
@@ -1797,6 +1812,11 @@ impl P4Session {
         let tail = &self.history[tail_start..];
         for i in 0..tail.len() {
             for j in (i + 1)..tail.len() {
+                // A squarefree conjunction needs distinct IDs. Repeated tokens are
+                // routine during decoding and should never allocate an error.
+                if tail[i] == tail[j] {
+                    continue;
+                }
                 if let Ok(pk) = s4_pair_key(tail[i], tail[j]) {
                     self.pair_keys_buf.push(pk);
                 }
@@ -1804,16 +1824,19 @@ impl P4Session {
         }
         self.pair_keys_buf.sort_unstable();
         self.pair_keys_buf.dedup();
-        let cands = [(1u8, 0u16), (2u8, 0u16), (3u8, 0u16)];
         let scores = state
             .s4
-            .vote_candidates(&self.pair_keys_buf, &cands, S4ControlMode::Active);
-        let arr = [scores[0], scores[1], scores[2]];
-        let best_role = state
-            .s4
-            .pick_pointer(&self.pair_keys_buf, &cands, S4ControlMode::Active)
-            .map(|(idx, _score)| (idx + 1) as u8);
-        (arr, best_role)
+            .vote_active_candidates(&self.pair_keys_buf, &[(1, 0), (2, 0), (3, 0)]);
+        // The frozen trace retains its historical lowest-role tie break.
+        let mut best = 0;
+        let mut choice = None;
+        for (index, &score) in scores.iter().enumerate() {
+            if score > best {
+                best = score;
+                choice = Some(index as u8 + 1);
+            }
+        }
+        (scores, choice)
     }
 
     /// Score all legal non-BOS tokens `1..4096` into `self.scores_buf`, returning
@@ -1824,8 +1847,20 @@ impl P4Session {
         read_enabled: bool,
         trace: bool,
     ) -> Result<(u16, Option<P4StepTrace>)> {
+        self.step_with_source(state, read_enabled, trace, None)
+    }
+
+    /// Score and emit from the same P4 state, optionally applying a bound source gate
+    /// to the pre-argmax Q48 masses.
+    pub fn step_with_source(
+        &mut self,
+        state: &P4State<'_>,
+        read_enabled: bool,
+        trace: bool,
+        source_gate: Option<(&S4SourceGate, S4SourceMode)>,
+    ) -> Result<(u16, Option<P4StepTrace>)> {
         let (tok, trace_opt, _guard) =
-            self.step_with_stop_guard(state, read_enabled, trace, None)?;
+            self.step_inner(state, read_enabled, trace, None, source_gate)?;
         Ok((tok, trace_opt))
     }
 
@@ -1839,8 +1874,22 @@ impl P4Session {
         trace: bool,
         stop_guard: Option<(&[u16], bool, LawfulStopConfig)>,
     ) -> Result<(u16, Option<P4StepTrace>, Option<StopGuardTrace>)> {
+        self.step_inner(state, read_enabled, trace, stop_guard, None)
+    }
+
+    fn step_inner(
+        &mut self,
+        state: &P4State<'_>,
+        read_enabled: bool,
+        trace: bool,
+        stop_guard: Option<(&[u16], bool, LawfulStopConfig)>,
+        source_gate: Option<(&S4SourceGate, S4SourceMode)>,
+    ) -> Result<(u16, Option<P4StepTrace>, Option<StopGuardTrace>)> {
         if self.history.is_empty() || self.history.len() > P4_MAX_CONTEXT {
             return Err(invalid("P4Session has invalid active history length"));
+        }
+        if source_gate.is_some_and(|(gate, _)| state.state_sha256 != Some(gate.p4_state_sha256())) {
+            return Err(invalid("S4 source gate does not bind the active P4 state"));
         }
         let pick = read_enabled
             .then(|| code_pick(&state.codes, &self.history))
@@ -1949,6 +1998,25 @@ impl P4Session {
             self.scores_buf[id] = ((self.acc_buf[id] >> 32) as u64).clamp(1, P4_Q48_ONE);
         }
 
+        let (s4_role_scores, s4_role_choice) = if trace
+            || (pick.is_some()
+                && source_gate.is_some_and(|(_, mode)| mode != S4SourceMode::Disabled))
+        {
+            self.evaluate_s4_roles(state)
+        } else {
+            ([0; 3], None)
+        };
+        let s4_source = source_gate.map(|(gate, mode)| {
+            gate.apply(
+                mode,
+                pick_class,
+                s4_role_scores,
+                pick.map(|(pos, _, _)| pos + 1),
+                &self.history,
+                &mut self.scores_buf,
+            )
+        });
+
         let guard_trace = if let Some((generated, span_exhausted, cfg)) = stop_guard {
             let gt = apply_lawful_stop_and_rep_guard(
                 generated,
@@ -1987,7 +2055,6 @@ impl P4Session {
             for &tok in &self.history {
                 ph.update(tok.to_le_bytes());
             }
-            let (s4_role_scores, s4_role_choice) = self.evaluate_s4_roles(state);
             Some(P4StepTrace {
                 context_tokens: self.history.len(),
                 prefix_sha256: hex_lower(&ph.finalize()),
@@ -2006,6 +2073,7 @@ impl P4Session {
                 bucket: bucket_2640,
                 s4_role_scores,
                 s4_role_choice,
+                s4_source,
                 token_id: best_id,
                 mass_q48: best_mass,
                 top_ties,

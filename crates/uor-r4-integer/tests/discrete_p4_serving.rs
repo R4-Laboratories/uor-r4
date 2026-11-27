@@ -15,8 +15,8 @@ use uor_r4_count_runtime::{
     p4_serving::{
         encode_compact_s2_skip_from_uors2s01, encode_compact_s3_from_uors3t02, golden_shell_pkey,
         skip_keys_for_prefix, starling_7_neighbours, CausalSessionCache, CompactS2SkipView,
-        CompactS3View, P4Session, H4_ROOTS, H4_SHELL, P4_EXPERTS, P4_MAX_CONTEXT, P4_NORM_BUDGET,
-        P4_Q48_ONE, P4_TOTAL_BUCKETS, P4_UNIFORM_MASS, P4_VOCAB,
+        CompactS3View, P4Session, S4SourceGate, S4SourceMode, H4_ROOTS, H4_SHELL, P4_EXPERTS,
+        P4_MAX_CONTEXT, P4_NORM_BUDGET, P4_Q48_ONE, P4_TOTAL_BUCKETS, P4_UNIFORM_MASS, P4_VOCAB,
     },
     PickClassRule,
 };
@@ -963,12 +963,88 @@ fn p4_deployment_end_to_end_bit_exact_and_uor_chat_cli() {
         u64::from(top_id)
     );
     assert_eq!(parsed["p4_steps"][0]["mass_sha256"], trace.mass_sha256);
+    assert!(parsed["p4_steps"][0].get("s4_source").is_none());
     assert_eq!(parsed["p4_steps"].as_array().unwrap().len(), 4);
     let stderr = String::from_utf8_lossy(&chat_out.stderr);
     assert!(
         stderr.contains("uor-r4.p1-client-timing/1"),
         "missing timing: {stderr}"
     );
+
+    let gate_path = dir.join("source-gate.uors4g01");
+    let digest = p4.inner.state_sha256().unwrap();
+    assert_eq!(hex::encode(digest), p4.artifact_sha256);
+    let gate = S4SourceGate::new(digest, [44; 32], [64; 20]).unwrap();
+    fs::write(&gate_path, gate.encode_bytes()).unwrap();
+    sess.sync_prompt(&pref).unwrap();
+    let (disabled, disabled_trace) = sess
+        .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Disabled)))
+        .unwrap();
+    assert_eq!(disabled, top_id);
+    assert_eq!(disabled_trace.unwrap().mass_sha256, trace.mass_sha256);
+    let base = sess.last_scores_q48().to_vec();
+    let (active, active_trace) = sess
+        .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Active)))
+        .unwrap();
+    let active_trace = active_trace.unwrap();
+    let source = active_trace.s4_source.unwrap();
+    assert_eq!(source.source_pos, Some(2));
+    assert_eq!(source.source_token, Some(5));
+    assert!(source.transfer_q48 > 0);
+    let mut expected = base;
+    expected[5] += source.transfer_q48;
+    expected[usize::from(source.rival_token.unwrap())] -= source.transfer_q48;
+    assert_eq!(sess.last_scores_q48(), expected);
+
+    let gated_cli = |mode: &str| {
+        Command::new(env!("CARGO_BIN_EXE_uor-chat"))
+            .args([
+                "--discrete",
+                p4_path.to_str().unwrap(),
+                "--prompt-ids",
+                "0,2,5",
+                "--max-tokens",
+                "1",
+                "--p1-trace",
+                "--p4-source-gate",
+                gate_path.to_str().unwrap(),
+                "--p4-source-mode",
+                mode,
+            ])
+            .output()
+            .unwrap()
+    };
+    let chat = gated_cli("active");
+    assert!(
+        chat.status.success(),
+        "{}",
+        String::from_utf8_lossy(&chat.stderr)
+    );
+    let parsed: serde_json::Value = serde_json::from_slice(&chat.stdout).unwrap();
+    assert_eq!(parsed["generated_ids"][0], active);
+    assert_eq!(
+        parsed["p4_steps"][0]["mass_sha256"],
+        active_trace.mass_sha256
+    );
+    assert_eq!(parsed["p4_steps"][0]["s4_source"]["source_pos"], 2);
+    assert_eq!(
+        parsed["p4_source_gate"]["p4_state_sha256"],
+        p4.artifact_sha256
+    );
+
+    let wrong_gate = S4SourceGate::new([45; 32], [44; 32], [64; 20]).unwrap();
+    fs::write(&gate_path, wrong_gate.encode_bytes()).unwrap();
+    assert!(sess
+        .step_with_source(
+            &p4.inner,
+            true,
+            false,
+            Some((&wrong_gate, S4SourceMode::Active))
+        )
+        .is_err());
+    let chat = gated_cli("active");
+    assert!(!chat.status.success());
+    assert!(String::from_utf8_lossy(&chat.stderr).contains("P4 state SHA-256 mismatch"));
 
     // Refuse overwrite without leaving temp files behind
     assert!(write_p4_deployment(
@@ -983,6 +1059,13 @@ fn p4_deployment_end_to_end_bit_exact_and_uor_chat_cli() {
         &p4_path,
     )
     .is_err());
+
+    // Preserve previous assistant turns while opening the next response.
+    let dialogue = [0, 5, 7, 1, 9, 7];
+    sess.sync_prompt(&dialogue).unwrap();
+    assert_eq!(sess.history(), &dialogue);
+    assert!(sess.sync_prompt(&[0, 5, 7, 1]).is_err());
+    assert!(sess.observe_generated(1).is_err());
 
     // BOS-less prompt and >2048 sliding window must match cold sync_prompt(history) bit-for-bit
     sess.sync_prompt(&[2, 5, 7]).unwrap();

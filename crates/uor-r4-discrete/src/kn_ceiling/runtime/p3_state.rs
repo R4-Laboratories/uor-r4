@@ -497,28 +497,7 @@ impl S4ConjunctionTable {
         match mode {
             S4ControlMode::NoMemory => scores,
             S4ControlMode::Active => {
-                for &key in pair_keys {
-                    let Some(cidx) = self.find_ctx(key) else {
-                        continue;
-                    };
-                    let ctx = &self.contexts[cidx];
-                    let end = ctx.offset + ctx.len;
-                    let mut idx = ctx.offset;
-                    while idx < end {
-                        let e = self.entries[idx];
-                        let ptr = (e.role_class, e.span_offset);
-                        let vote = ((u64::from(e.count) << 16) / ctx.total) as i64
-                            + i64::from(e.err_i8) * 512;
-                        let mut c = 0usize;
-                        while c < candidates.len() {
-                            if candidates[c] == ptr {
-                                scores[c] += vote;
-                            }
-                            c += 1;
-                        }
-                        idx += 1;
-                    }
-                }
+                self.add_active_votes(pair_keys, candidates, &mut scores);
                 scores
             }
             S4ControlMode::ShuffledRole { seed } => {
@@ -547,6 +526,36 @@ impl S4ConjunctionTable {
                     i += 1;
                 }
                 self.vote_candidates(pair_keys, &permuted, S4ControlMode::Active)
+            }
+        }
+    }
+
+    /// The same active votes as `vote_candidates`, without allocating the score buffer.
+    pub fn vote_active_candidates<const N: usize>(
+        &self,
+        pair_keys: &[u32],
+        candidates: &[(u8, u16); N],
+    ) -> [i64; N] {
+        let mut scores = [0; N];
+        self.add_active_votes(pair_keys, candidates, &mut scores);
+        scores
+    }
+
+    fn add_active_votes(&self, pair_keys: &[u32], candidates: &[(u8, u16)], scores: &mut [i64]) {
+        for &key in pair_keys {
+            let Some(cidx) = self.find_ctx(key) else {
+                continue;
+            };
+            let ctx = &self.contexts[cidx];
+            for entry in &self.entries[ctx.offset..ctx.offset + ctx.len] {
+                let pointer = (entry.role_class, entry.span_offset);
+                let vote = ((u64::from(entry.count) << 16) / ctx.total) as i64
+                    + i64::from(entry.err_i8) * 512;
+                for (candidate, score) in candidates.iter().zip(scores.iter_mut()) {
+                    if *candidate == pointer {
+                        *score += vote;
+                    }
+                }
             }
         }
     }

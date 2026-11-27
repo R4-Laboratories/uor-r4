@@ -59,11 +59,18 @@ pub mod p4_serving {
         kn_score::KN_BASE_MASS,
         p3_state::{
             apply_lawful_stop_and_rep_guard, s4_pair_key, BrierS6Weights, LawfulStopConfig,
-            S4ConjunctionTable, S4ControlMode, StopGuardTrace,
+            S4ConjunctionTable, StopGuardTrace,
         },
         CompactCountLookup, FrozenPickMixture, PickClassRule, Result,
     };
     use sha2::{Digest, Sha256};
+    mod s4_source {
+        use super::{invalid, Digest, Result, Sha256, P4_Q48_ONE, P4_VOCAB};
+        include!("kn_ceiling/runtime/s4_source.rs");
+    }
+    pub use s4_source::{
+        S4SourceGate, S4SourceMode, S4SourceTrace, S4_SOURCE_GATE_BYTES, S4_SOURCE_WEIGHT_COUNT,
+    };
     include!("kn_ceiling/runtime/p4_serving.rs");
 }
 

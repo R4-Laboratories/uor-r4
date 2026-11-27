@@ -374,9 +374,10 @@ impl<'a> P4<'a> {
         let parsed = Self::validate_slices(
             model, slices[0], slices[1], slices[2], slices[3], slices[4], slices[5], slices[6],
         )?;
+        let state_sha256: [u8; 32] = Sha256::digest(bytes).into();
         Ok(Self {
-            inner: parsed.inner,
-            artifact_sha256: hex::encode(Sha256::digest(bytes)),
+            inner: parsed.inner.with_state_sha256(state_sha256),
+            artifact_sha256: hex::encode(state_sha256),
             component_digests: parsed.component_digests,
         })
     }

@@ -10,7 +10,9 @@ use std::io::{self, BufRead, Read as IoRead, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 #[cfg(feature = "p1-count-serving")]
-use uor_r4_count_runtime::p4_serving::{P4Session, P4_MAX_CONTEXT};
+use uor_r4_count_runtime::p4_serving::{
+    P4Session, S4SourceGate, S4SourceMode, P4_MAX_CONTEXT, S4_SOURCE_GATE_BYTES,
+};
 use uor_r4_integer::bundle::{create_test_bundle_with_byte_vocab, Bundle};
 use uor_r4_integer::config::ReadMode;
 #[cfg(feature = "p1-count-serving")]
@@ -69,6 +71,10 @@ struct CliArgs {
     p1_path: Option<PathBuf>,
     #[cfg(feature = "p1-count-serving")]
     p1_trace: bool,
+    #[cfg(feature = "p1-count-serving")]
+    p4_source_gate: Option<PathBuf>,
+    #[cfg(feature = "p1-count-serving")]
+    p4_source_mode: Option<S4SourceMode>,
     ordered_role_trace: bool,
     role_replay: Option<RoleReplay>,
     pair_replay: pair_rank::Replay,
@@ -323,6 +329,10 @@ impl Default for CliArgs {
             p1_path: None,
             #[cfg(feature = "p1-count-serving")]
             p1_trace: false,
+            #[cfg(feature = "p1-count-serving")]
+            p4_source_gate: None,
+            #[cfg(feature = "p1-count-serving")]
+            p4_source_mode: None,
             ordered_role_trace: false,
             role_replay: None,
             pair_replay: pair_rank::Replay::default(),
@@ -385,6 +395,12 @@ fn print_usage() {
     );
     #[cfg(feature = "p1-count-serving")]
     eprintln!("      --p1-trace              Record per-token Pick and count decisions and full mass hashes");
+    #[cfg(feature = "p1-count-serving")]
+    eprintln!(
+        "      --p4-source-gate <FILE> Apply a fitted source gate bound to the embedded P4 state"
+    );
+    #[cfg(feature = "p1-count-serving")]
+    eprintln!("      --p4-source-mode <MODE> active (default), disabled, wrong-address, role-blind, shuffled-role");
     eprintln!("      --discrete <ARTIFACT>   UORLUT01 discrete artifact; one-shot");
     #[cfg(feature = "p1-count-serving")]
     eprintln!("                              Counts may be embedded in the artifact");
@@ -581,6 +597,29 @@ fn parse_cli_args() -> CliArgs {
             }
             #[cfg(feature = "p1-count-serving")]
             "--p1-trace" => args.p1_trace = true,
+            #[cfg(feature = "p1-count-serving")]
+            "--p4-source-gate" => {
+                idx += 1;
+                args.p4_source_gate = Some(PathBuf::from(raw.get(idx).unwrap_or_else(|| {
+                    eprintln!("--p4-source-gate requires a fitted gate file");
+                    process::exit(1);
+                })));
+            }
+            #[cfg(feature = "p1-count-serving")]
+            "--p4-source-mode" => {
+                idx += 1;
+                args.p4_source_mode = Some(match raw.get(idx).map(String::as_str) {
+                    Some("active") => S4SourceMode::Active,
+                    Some("disabled") => S4SourceMode::Disabled,
+                    Some("wrong-address") => S4SourceMode::WrongAddress,
+                    Some("role-blind") => S4SourceMode::RoleBlind,
+                    Some("shuffled-role") => S4SourceMode::ShuffledRole,
+                    _ => {
+                        eprintln!("--p4-source-mode expects active, disabled, wrong-address, role-blind, or shuffled-role");
+                        process::exit(1);
+                    }
+                });
+            }
             "--ordered-role-trace" => args.ordered_role_trace = true,
             "--pair-rank-reversed" => {
                 args.pair_replay.orientation = pair_rank::Orientation::Reversed
@@ -1121,6 +1160,16 @@ fn parse_cli_args() -> CliArgs {
     #[cfg(feature = "p1-count-serving")]
     if args.p1_path.is_some() && args.discrete_path.is_none() {
         eprintln!("--p1-state requires its fitted --discrete trunk");
+        process::exit(1);
+    }
+    #[cfg(feature = "p1-count-serving")]
+    if args.p4_source_gate.is_some() && (args.discrete_path.is_none() || args.p1_path.is_some()) {
+        eprintln!("--p4-source-gate requires an embedded P4 --discrete deployment");
+        process::exit(1);
+    }
+    #[cfg(feature = "p1-count-serving")]
+    if args.p4_source_mode.is_some() && args.p4_source_gate.is_none() {
+        eprintln!("--p4-source-mode requires --p4-source-gate");
         process::exit(1);
     }
     if args.ordered_role_trace && args.discrete_path.is_none() {
@@ -2272,6 +2321,25 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     #[cfg(feature = "p1-count-serving")]
     let (model, p1, p4) = (deployment.model, deployment.state, deployment.p4);
     #[cfg(feature = "p1-count-serving")]
+    let p4_source = if let Some(path) = &cli.p4_source_gate {
+        let p4_state_sha256 = p4
+            .as_ref()
+            .and_then(|engine| engine.inner.state_sha256())
+            .ok_or_else(|| {
+                IntegerError::Invalid("--p4-source-gate requires an embedded P4 deployment".into())
+            })?;
+        let mut bytes = Vec::with_capacity(S4_SOURCE_GATE_BYTES + 1);
+        std::fs::File::open(path)?
+            .take((S4_SOURCE_GATE_BYTES + 1) as u64)
+            .read_to_end(&mut bytes)?;
+        let gate = S4SourceGate::from_bytes(&bytes, p4_state_sha256)
+            .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+        let mode = cli.p4_source_mode.unwrap_or(S4SourceMode::Active);
+        Some((gate, mode, hex::encode(Sha256::digest(&bytes))))
+    } else {
+        None
+    };
+    #[cfg(feature = "p1-count-serving")]
     if cli.p1_trace && p1.is_none() && p4.is_none() {
         return Err(IntegerError::Invalid(
             "--p1-trace requires count or P4 state".into(),
@@ -2413,10 +2481,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         #[cfg(feature = "p1-count-serving")]
         let p4_winner = if let (Some(engine), Some(session)) = (&p4, &mut p4_session) {
             let (id, observation) = session
-                .step(&engine.inner, read_enabled, cli.p1_trace)
+                .step_with_source(
+                    &engine.inner,
+                    read_enabled,
+                    cli.p1_trace,
+                    p4_source.as_ref().map(|(gate, mode, _)| (gate, *mode)),
+                )
                 .map_err(|e| IntegerError::Invalid(e.to_string()))?;
             if let Some(st) = observation {
-                p4_steps.push(serde_json::json!({
+                let mut step_record = serde_json::json!({
                     "token": st.token_id,
                     "bucket": st.bucket,
                     "highest_order": st.highest_order,
@@ -2438,7 +2511,22 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                     "cache_hit_state": st.cache_hit_state,
                     "s4_role_scores": st.s4_role_scores,
                     "s4_role_choice": st.s4_role_choice,
-                }));
+                });
+                if let Some(source) = st.s4_source {
+                    step_record["s4_source"] = serde_json::json!({
+                        "resolved_role": source.resolved_role,
+                        "effective_role": source.effective_role,
+                        "gate_index": source.gate_index,
+                        "source_pos": source.source_pos,
+                        "source_token": source.source_token,
+                        "rival_token": source.rival_token,
+                        "weight_i8": source.weight_i8,
+                        "transfer_q48": source.transfer_q48,
+                        "source_mass_before_q48": source.source_mass_before_q48,
+                        "rival_mass_before_q48": source.rival_mass_before_q48,
+                    });
+                }
+                p4_steps.push(step_record);
             }
             Some(u32::from(id))
         } else {
@@ -2553,6 +2641,14 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         if cli.p1_trace {
             record["p4_steps"] = p4_steps.into();
             record["p4_components"] = engine.component_digests.clone();
+        }
+        if let Some((gate, mode, digest)) = &p4_source {
+            record["p4_source_gate"] = serde_json::json!({
+                "sha256": digest,
+                "p4_state_sha256": hex::encode(gate.p4_state_sha256()),
+                "train_sha256": hex::encode(gate.train_sha256()),
+                "mode": mode.as_str(),
+            });
         }
         record["read_enabled"] = read_enabled.into();
     }

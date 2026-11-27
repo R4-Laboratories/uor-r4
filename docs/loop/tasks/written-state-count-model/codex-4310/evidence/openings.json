@@ -1,0 +1,459 @@
+{
+  "binding": {
+    "d87_tokenizer_sha256": "d36d3e8700a123e620012df77de195f244fbdb4d05d9e1aa7e77fa9407590f89",
+    "full_train_response_mask_sha256": "2bdbb283e7dcb12709a0cc3c4ce86f3c5d7032aab0b3171f85ebe3b1bdb1a2a8",
+    "full_train_sha256": "c6cba29ead4c745fb47b3f87007d982e72defc9f04102a268709ba0d34d51460",
+    "gpu_generation_sha256": "31b3f86fc602f1ecc82d89b0632907792d9fe52b1d9a2941b16896012aea81a8",
+    "natural_fit_sha256": "e5b1c14eb96686b7fdee3f78bd70634f79b114e2912d5c53aca635c791edcc52",
+    "natural_held_sha256": "d8630bf60f06cc65ff4b32732cf5b1b5aba2a2837008408a207e32b950d24ef0",
+    "p4_tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+    "r_sha256": "5875b173ad19aefbdd38929af8d88c15344333e941f44128d5e0a67b50102a0a"
+  },
+  "classification": "post-hoc descriptive corpus census and readback of existing GPU generation",
+  "corpus_markers_authenticated_by_original_role_mask": true,
+  "d87_newline_and_assistant_marker_ids": [
+    201,
+    35,
+    560,
+    652,
+    714,
+    28
+  ],
+  "differing_single_id_token_bytes_in_vocabulary": 0,
+  "interpretation_limit": "Exposure in R does not assign causality to an individual example or fitted component. The response mask authenticates onset but does not separate the donor reasoning and final answer.",
+  "natural_conversation_openings": {
+    "frozen": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 3,
+      "matches_by_prefix_length": [
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 22,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        },
+        {
+          "count": 1,
+          "id": 287
+        }
+      ]
+    },
+    "human_fit_gold": {
+      "eligible_by_prefix_length": [
+        64,
+        64,
+        64,
+        64,
+        63
+      ],
+      "first_id_distinct": 32,
+      "matches_by_prefix_length": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows": 64,
+      "top_first_ids": [
+        {
+          "count": 7,
+          "id": 340
+        },
+        {
+          "count": 6,
+          "id": 223
+        },
+        {
+          "count": 5,
+          "id": 617
+        },
+        {
+          "count": 5,
+          "id": 1336
+        },
+        {
+          "count": 3,
+          "id": 287
+        }
+      ]
+    },
+    "human_free_gold": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 18,
+      "matches_by_prefix_length": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 3,
+          "id": 223
+        },
+        {
+          "count": 2,
+          "id": 287
+        },
+        {
+          "count": 2,
+          "id": 301
+        },
+        {
+          "count": 2,
+          "id": 1526
+        },
+        {
+          "count": 2,
+          "id": 2496
+        }
+      ]
+    },
+    "learned": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 2,
+      "matches_by_prefix_length": [
+        23,
+        23,
+        23,
+        23,
+        23
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 23,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        }
+      ]
+    },
+    "role-blind": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 3,
+      "matches_by_prefix_length": [
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 22,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        },
+        {
+          "count": 1,
+          "id": 287
+        }
+      ]
+    },
+    "shuffled-role": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 7,
+      "matches_by_prefix_length": [
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 18,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        },
+        {
+          "count": 1,
+          "id": 287
+        },
+        {
+          "count": 1,
+          "id": 318
+        },
+        {
+          "count": 1,
+          "id": 363
+        }
+      ]
+    },
+    "wrong-address": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 2,
+      "matches_by_prefix_length": [
+        23,
+        23,
+        23,
+        23,
+        23
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 23,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        }
+      ]
+    },
+    "zero": {
+      "eligible_by_prefix_length": [
+        24,
+        24,
+        24,
+        24,
+        24
+      ],
+      "first_id_distinct": 3,
+      "matches_by_prefix_length": [
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "rows": 24,
+      "top_first_ids": [
+        {
+          "count": 22,
+          "id": 799
+        },
+        {
+          "count": 1,
+          "id": 201
+        },
+        {
+          "count": 1,
+          "id": 287
+        }
+      ]
+    }
+  },
+  "p4_newline_and_assistant_marker_ids": [
+    201,
+    35,
+    560,
+    652,
+    714,
+    28
+  ],
+  "prefix_lengths": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "probe_definition": "Most frequent exact first 16 IDs of the already saved learned free conversations. Counts at each length use the nested prefix of that same probe.",
+  "probe_first_id": 799,
+  "r": {
+    "any_position_prefix_occurrences_by_length": [
+      15411,
+      5409,
+      1674,
+      554,
+      1
+    ],
+    "any_position_records_with_prefix_by_length": [
+      3768,
+      3681,
+      1634,
+      550,
+      1
+    ],
+    "assistant_openings": {
+      "eligible_by_prefix_length": [
+        4345,
+        4345,
+        4345,
+        4345,
+        4345
+      ],
+      "first_id_distinct": 10,
+      "matches_by_prefix_length": [
+        3897,
+        3897,
+        1659,
+        554,
+        1
+      ],
+      "rows": 4345,
+      "top_first_ids": [
+        {
+          "count": 3897,
+          "id": 799
+        },
+        {
+          "count": 271,
+          "id": 287
+        },
+        {
+          "count": 97,
+          "id": 1399
+        },
+        {
+          "count": 27,
+          "id": 223
+        },
+        {
+          "count": 25,
+          "id": 310
+        }
+      ]
+    },
+    "excluded_marker_matches_without_role_transition": 473,
+    "openings_by_turn_number": {
+      "1": {
+        "eligible_by_prefix_length": [
+          4060,
+          4060,
+          4060,
+          4060,
+          4060
+        ],
+        "first_id_distinct": 10,
+        "matches_by_prefix_length": [
+          3646,
+          3646,
+          1566,
+          520,
+          1
+        ],
+        "rows": 4060,
+        "top_first_ids": [
+          {
+            "count": 3646,
+            "id": 799
+          },
+          {
+            "count": 240,
+            "id": 287
+          },
+          {
+            "count": 97,
+            "id": 1399
+          },
+          {
+            "count": 26,
+            "id": 223
+          },
+          {
+            "count": 25,
+            "id": 310
+          }
+        ]
+      },
+      "2": {
+        "eligible_by_prefix_length": [
+          285,
+          285,
+          285,
+          285,
+          285
+        ],
+        "first_id_distinct": 4,
+        "matches_by_prefix_length": [
+          251,
+          251,
+          93,
+          34,
+          0
+        ],
+        "rows": 285,
+        "top_first_ids": [
+          {
+            "count": 251,
+            "id": 799
+          },
+          {
+            "count": 31,
+            "id": 287
+          },
+          {
+            "count": 2,
+            "id": 3184
+          },
+          {
+            "count": 1,
+            "id": 223
+          }
+        ]
+      }
+    },
+    "records": 4060,
+    "records_by_assistant_markers": {
+      "1": 3775,
+      "2": 285
+    },
+    "records_with_probe_first_id_after_assistant_marker": 3670,
+    "tokens_including_bos_and_eos": 15951644
+  },
+  "r_provenance": "D87 donor TRAIN, every 128th original record beginning from index zero. The source packs reasoning followed by the final answer when reasoning exists. R segment and class labels encode the split rather than assistant roles.",
+  "schema": "uor-r4.s4-train-openings/1"
+}
