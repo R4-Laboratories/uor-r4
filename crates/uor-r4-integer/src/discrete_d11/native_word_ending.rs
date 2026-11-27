@@ -63,7 +63,7 @@ pub fn identity(model: &IntegerDiscreteModel) -> Option<Identity<'_>> {
     })
 }
 
-fn canonical_digest(value: &str) -> bool {
+pub(super) fn canonical_digest(value: &str) -> bool {
     value.len() == 64
         && value
             .bytes()
@@ -89,38 +89,51 @@ impl State {
     }
 
     fn score(&self, prefix: &[u32], roots: &[[u8; 4]]) -> i32 {
-        let Some(instruction) = instruction_tokens(prefix) else {
-            return 0;
-        };
-        let mut seen = [0u64; WEIGHTS / u64::BITS as usize];
-        let mut score = 0;
-        let mut include = |bucket: usize| {
-            let cell = &mut seen[bucket >> 6];
-            let bit = 1u64 << (bucket & 63);
-            if (*cell & bit) == 0 {
-                *cell |= bit;
-                score += i32::from(self.weights[bucket]);
-            }
-        };
-        let mut previous: Option<u16> = None;
-        for id in instruction {
-            let root = pack_4block_roots(roots[*id as usize]);
-            include(bucket(root));
-            if let Some(previous) = previous {
-                include(HALF + bucket(previous.rotate_left(5) ^ root));
-            }
-            previous = Some(root);
-        }
-        score
+        feature_sum(prefix, roots, &self.weights[..], 0)
     }
 }
 
+pub(super) fn feature_sum(
+    prefix: &[u32],
+    roots: &[[u8; 4]],
+    weights: &[i16],
+    mut score: i32,
+) -> i32 {
+    let Some(instruction) = instruction_tokens(prefix) else {
+        return 0;
+    };
+    let mut seen = [0u64; WEIGHTS / u64::BITS as usize];
+    let mut include = |bucket: usize| {
+        let cell = &mut seen[bucket >> 6];
+        let bit = 1u64 << (bucket & 63);
+        if (*cell & bit) == 0 {
+            *cell |= bit;
+            score += i32::from(weights[bucket]);
+        }
+    };
+    let mut previous: Option<u16> = None;
+    for id in instruction {
+        let root = pack_4block_roots(roots[*id as usize]);
+        include(bucket(root));
+        if let Some(previous) = previous {
+            include(HALF + bucket(previous.rotate_left(5) ^ root));
+        }
+        previous = Some(root);
+    }
+    score
+}
+
 fn instruction_tokens(prefix: &[u32]) -> Option<&[u32]> {
+    let before = before_instruction(prefix)?;
+    Some(&prefix[before.len()..prefix.len() - native_opening::ASSISTANT_MARKER.len()])
+}
+
+pub(super) fn before_instruction(prefix: &[u32]) -> Option<&[u32]> {
     let body = prefix.strip_suffix(&native_opening::ASSISTANT_MARKER)?;
     let separator = body.windows(2).rposition(|pair| pair == [LF, LF])?;
     let question = &body[separator + 2..];
     let boundary = question.iter().rposition(|&id| id == QUESTION)?;
-    Some(&question[boundary + 1..])
+    Some(&body[..separator + 2 + boundary + 1])
 }
 
 fn bucket(code: u16) -> usize {

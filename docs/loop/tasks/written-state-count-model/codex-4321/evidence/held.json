@@ -1,0 +1,383 @@
+{
+  "overall": {
+    "correct": {
+      "rows": 800,
+      "exact": 800,
+      "exact_short": 400,
+      "exact_long": 400,
+      "exact_pairs": 400,
+      "reached_both": 400,
+      "reached_both_active": 400,
+      "gained_vs_native": 800,
+      "lost_vs_native": 0,
+      "natural_eos": 0,
+      "selected_eos": 800,
+      "open_cap": 0,
+      "first_wrong_short": {
+        "null": 400
+      },
+      "first_wrong_long": {
+        "null": 400
+      }
+    },
+    "learned": {
+      "rows": 800,
+      "exact": 325,
+      "exact_short": 75,
+      "exact_long": 250,
+      "exact_pairs": 50,
+      "reached_both": 400,
+      "reached_both_active": 400,
+      "gained_vs_native": 325,
+      "lost_vs_native": 0,
+      "natural_eos": 0,
+      "selected_eos": 800,
+      "open_cap": 0,
+      "first_wrong_short": {
+        "null": 75,
+        "3": 200,
+        "4": 125
+      },
+      "first_wrong_long": {
+        "null": 250,
+        "4": 150
+      }
+    },
+    "native": {
+      "rows": 800,
+      "exact": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "exact_pairs": 0,
+      "reached_both": 200,
+      "reached_both_active": 0,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "natural_eos": 0,
+      "selected_eos": 0,
+      "open_cap": 800,
+      "first_wrong_short": {
+        "3": 400
+      },
+      "first_wrong_long": {
+        "3": 400
+      }
+    },
+    "opposite": {
+      "rows": 800,
+      "exact": 0,
+      "exact_short": 0,
+      "exact_long": 0,
+      "exact_pairs": 0,
+      "reached_both": 400,
+      "reached_both_active": 400,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "natural_eos": 0,
+      "selected_eos": 800,
+      "open_cap": 0,
+      "first_wrong_short": {
+        "3": 200,
+        "4": 200
+      },
+      "first_wrong_long": {
+        "3": 200,
+        "4": 200
+      }
+    },
+    "swapped": {
+      "rows": 800,
+      "exact": 250,
+      "exact_short": 25,
+      "exact_long": 225,
+      "exact_pairs": 0,
+      "reached_both": 400,
+      "reached_both_active": 400,
+      "gained_vs_native": 250,
+      "lost_vs_native": 0,
+      "natural_eos": 0,
+      "selected_eos": 800,
+      "open_cap": 0,
+      "first_wrong_short": {
+        "null": 25,
+        "3": 200,
+        "4": 175
+      },
+      "first_wrong_long": {
+        "null": 225,
+        "4": 175
+      }
+    }
+  },
+  "contrasts": {
+    "0": {
+      "conditional": {
+        "pairs": 200,
+        "correct": 0,
+        "inverted": 0,
+        "any_sign_flip": 0,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 125,
+          "reversed": 50,
+          "tied": 25
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 200
+          }
+        ]
+      },
+      "by_arm": {
+        "correct": {
+          "rows": 400,
+          "exact": 400,
+          "exact_short": 200,
+          "exact_long": 200,
+          "exact_pairs": 200,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 400,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "null": 200
+          },
+          "first_wrong_long": {
+            "null": 200
+          }
+        },
+        "learned": {
+          "rows": 400,
+          "exact": 75,
+          "exact_short": 0,
+          "exact_long": 75,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 75,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "3": 200
+          },
+          "first_wrong_long": {
+            "null": 75,
+            "4": 125
+          }
+        },
+        "native": {
+          "rows": 400,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 0,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 0,
+          "gained_vs_native": 0,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 0,
+          "open_cap": 400,
+          "first_wrong_short": {
+            "3": 200
+          },
+          "first_wrong_long": {
+            "3": 200
+          }
+        },
+        "opposite": {
+          "rows": 400,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 0,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 0,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "3": 200
+          },
+          "first_wrong_long": {
+            "3": 200
+          }
+        },
+        "swapped": {
+          "rows": 400,
+          "exact": 100,
+          "exact_short": 0,
+          "exact_long": 100,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 100,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "3": 200
+          },
+          "first_wrong_long": {
+            "null": 100,
+            "4": 100
+          }
+        }
+      }
+    },
+    "1": {
+      "conditional": {
+        "pairs": 200,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 150,
+          "reversed": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 125
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "eos"
+            ],
+            "n": 25
+          }
+        ]
+      },
+      "by_arm": {
+        "correct": {
+          "rows": 400,
+          "exact": 400,
+          "exact_short": 200,
+          "exact_long": 200,
+          "exact_pairs": 200,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 400,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "null": 200
+          },
+          "first_wrong_long": {
+            "null": 200
+          }
+        },
+        "learned": {
+          "rows": 400,
+          "exact": 250,
+          "exact_short": 75,
+          "exact_long": 175,
+          "exact_pairs": 50,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 250,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "null": 75,
+            "4": 125
+          },
+          "first_wrong_long": {
+            "null": 175,
+            "4": 25
+          }
+        },
+        "native": {
+          "rows": 400,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 0,
+          "exact_pairs": 0,
+          "reached_both": 0,
+          "reached_both_active": 0,
+          "gained_vs_native": 0,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 0,
+          "open_cap": 400,
+          "first_wrong_short": {
+            "3": 200
+          },
+          "first_wrong_long": {
+            "3": 200
+          }
+        },
+        "opposite": {
+          "rows": 400,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 0,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 0,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "4": 200
+          },
+          "first_wrong_long": {
+            "4": 200
+          }
+        },
+        "swapped": {
+          "rows": 400,
+          "exact": 150,
+          "exact_short": 25,
+          "exact_long": 125,
+          "exact_pairs": 0,
+          "reached_both": 200,
+          "reached_both_active": 200,
+          "gained_vs_native": 150,
+          "lost_vs_native": 0,
+          "natural_eos": 0,
+          "selected_eos": 400,
+          "open_cap": 0,
+          "first_wrong_short": {
+            "null": 25,
+            "4": 175
+          },
+          "first_wrong_long": {
+            "null": 125,
+            "4": 75
+          }
+        }
+      }
+    }
+  }
+}

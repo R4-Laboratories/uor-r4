@@ -149,3 +149,15 @@ path = "src/bin/verify-native-word-ending.rs"
 name = "verify-native-postperiod"
 path = "src/bin/verify-native-postperiod.rs"
 required-features = ["postperiod-diagnostic"]
+
+[[bin]]
+name = "pack-native-source-choice"
+path = "src/bin/pack-native-source-choice.rs"
+
+[[bin]]
+name = "verify-native-source-choice"
+path = "src/bin/verify-native-source-choice.rs"
+
+[[bin]]
+name = "serve-native-source-choice"
+path = "src/bin/serve-native-source-choice.rs"

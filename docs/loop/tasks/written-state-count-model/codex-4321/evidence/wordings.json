@@ -1,0 +1,898 @@
+[
+  {
+    "contrast": 0,
+    "family": "deadline",
+    "variant": 0,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "Close the reply once you give the opening mark",
+    "long_instruction": "Close the reply after giving the word beyond the opening mark",
+    "score_pairs": [
+      {
+        "value": [
+          57,
+          113
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "deadline",
+    "variant": 0,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "Close the reply once you give the opening mark.",
+    "long_instruction": "Close the reply after giving the word beyond the opening mark.",
+    "score_pairs": [
+      {
+        "value": [
+          57,
+          113
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "deadline",
+    "variant": 1,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "Finish with the mark, without the next word",
+    "long_instruction": "Finish with the next word, after the mark",
+    "score_pairs": [
+      {
+        "value": [
+          47,
+          47
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "deadline",
+    "variant": 1,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "Finish with the mark, without the next word.",
+    "long_instruction": "Finish with the next word, after the mark.",
+    "score_pairs": [
+      {
+        "value": [
+          53,
+          47
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "line",
+    "variant": 0,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Draw the line ahead of word two",
+    "long_instruction": "Draw the line beyond word two",
+    "score_pairs": [
+      {
+        "value": [
+          90,
+          130
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "line",
+    "variant": 0,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Draw the line ahead of word two.",
+    "long_instruction": "Draw the line beyond word two.",
+    "score_pairs": [
+      {
+        "value": [
+          91,
+          131
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "line",
+    "variant": 1,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Word two stays outside the answer, never inside",
+    "long_instruction": "Word two stays inside the answer, never outside",
+    "score_pairs": [
+      {
+        "value": [
+          67,
+          67
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "line",
+    "variant": 1,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Word two stays outside the answer, never inside.",
+    "long_instruction": "Word two stays inside the answer, never outside.",
+    "score_pairs": [
+      {
+        "value": [
+          62,
+          56
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "printing",
+    "variant": 0,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "Print just before word two is reached",
+    "long_instruction": "Print until after word two is reached",
+    "score_pairs": [
+      {
+        "value": [
+          84,
+          90
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "printing",
+    "variant": 0,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "Print just before word two is reached.",
+    "long_instruction": "Print until after word two is reached.",
+    "score_pairs": [
+      {
+        "value": [
+          84,
+          90
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "printing",
+    "variant": 1,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "At word two, leave it off the printed answer",
+    "long_instruction": "At word two, put it on the printed answer",
+    "score_pairs": [
+      {
+        "value": [
+          53,
+          47
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "printing",
+    "variant": 1,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "At word two, leave it off the printed answer.",
+    "long_instruction": "At word two, put it on the printed answer.",
+    "score_pairs": [
+      {
+        "value": [
+          53,
+          47
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "remaining",
+    "variant": 0,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Zero words belong beyond the opening mark",
+    "long_instruction": "One word belongs beyond the opening mark",
+    "score_pairs": [
+      {
+        "value": [
+          92,
+          97
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "remaining",
+    "variant": 0,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Zero words belong beyond the opening mark.",
+    "long_instruction": "One word belongs beyond the opening mark.",
+    "score_pairs": [
+      {
+        "value": [
+          92,
+          97
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "remaining",
+    "variant": 1,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Use one word for the whole answer. Count the opening word",
+    "long_instruction": "Use two words for the whole answer. Count the opening word",
+    "score_pairs": [
+      {
+        "value": [
+          59,
+          90
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 0,
+    "family": "remaining",
+    "variant": 1,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Use one word for the whole answer. Count the opening word.",
+    "long_instruction": "Use two words for the whole answer. Count the opening word.",
+    "score_pairs": [
+      {
+        "value": [
+          65,
+          96
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "ceiling",
+    "variant": 0,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "The reply has exactly two words and no more",
+    "long_instruction": "The reply has exactly three words and no more",
+    "score_pairs": [
+      {
+        "value": [
+          -2,
+          13
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 12
+  },
+  {
+    "contrast": 1,
+    "family": "ceiling",
+    "variant": 0,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "The reply has exactly two words and no more.",
+    "long_instruction": "The reply has exactly three words and no more.",
+    "score_pairs": [
+      {
+        "value": [
+          -2,
+          13
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 13
+  },
+  {
+    "contrast": 1,
+    "family": "ceiling",
+    "variant": 1,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "The allowance is two words total. Use it all",
+    "long_instruction": "The allowance is three words total. Use it all",
+    "score_pairs": [
+      {
+        "value": [
+          -30,
+          6
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 12
+  },
+  {
+    "contrast": 1,
+    "family": "ceiling",
+    "variant": 1,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "The allowance is two words total. Use it all.",
+    "long_instruction": "The allowance is three words total. Use it all.",
+    "score_pairs": [
+      {
+        "value": [
+          -30,
+          6
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 13
+  },
+  {
+    "contrast": 1,
+    "family": "editor",
+    "variant": 0,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Keep word two. Drop word three",
+    "long_instruction": "Keep word three. Drop word four",
+    "score_pairs": [
+      {
+        "value": [
+          5,
+          15
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "editor",
+    "variant": 0,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Keep word two. Drop word three.",
+    "long_instruction": "Keep word three. Drop word four.",
+    "score_pairs": [
+      {
+        "value": [
+          6,
+          23
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "editor",
+    "variant": 1,
+    "marked": false,
+    "pairs": 12,
+    "short_instruction": "Remove word three from the reply, retaining word two",
+    "long_instruction": "Retain word three in the reply, removing word four",
+    "score_pairs": [
+      {
+        "value": [
+          6,
+          33
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "editor",
+    "variant": 1,
+    "marked": true,
+    "pairs": 13,
+    "short_instruction": "Remove word three from the reply, retaining word two.",
+    "long_instruction": "Retain word three in the reply, removing word four.",
+    "score_pairs": [
+      {
+        "value": [
+          6,
+          41
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "handoff",
+    "variant": 0,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "Leave the third word unspoken and finish",
+    "long_instruction": "Speak the third word aloud and finish",
+    "score_pairs": [
+      {
+        "value": [
+          12,
+          26
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "handoff",
+    "variant": 0,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "Leave the third word unspoken and finish.",
+    "long_instruction": "Speak the third word aloud and finish.",
+    "score_pairs": [
+      {
+        "value": [
+          10,
+          24
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "handoff",
+    "variant": 1,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "The third word stays on the page, the second goes out",
+    "long_instruction": "The second word goes out, and so does the third on the page",
+    "score_pairs": [
+      {
+        "value": [
+          -5,
+          -8
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "eos"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "handoff",
+    "variant": 1,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "The third word stays on the page, the second goes out.",
+    "long_instruction": "The second word goes out, and so does the third on the page.",
+    "score_pairs": [
+      {
+        "value": [
+          -5,
+          -8
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "eos",
+          "eos"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "transcript",
+    "variant": 0,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "The transcript ends just ahead of the third word",
+    "long_instruction": "The transcript ends just beyond the third word",
+    "score_pairs": [
+      {
+        "value": [
+          37,
+          62
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "transcript",
+    "variant": 0,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "The transcript ends just ahead of the third word.",
+    "long_instruction": "The transcript ends just beyond the third word.",
+    "score_pairs": [
+      {
+        "value": [
+          43,
+          68
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "transcript",
+    "variant": 1,
+    "marked": false,
+    "pairs": 13,
+    "short_instruction": "Cut the transcript before word three and never after it",
+    "long_instruction": "Cut the transcript after word three and never before it",
+    "score_pairs": [
+      {
+        "value": [
+          14,
+          3
+        ],
+        "pairs": 13
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 13
+      }
+    ],
+    "complete_pairs": 0
+  },
+  {
+    "contrast": 1,
+    "family": "transcript",
+    "variant": 1,
+    "marked": true,
+    "pairs": 12,
+    "short_instruction": "Cut the transcript before word three and never after it.",
+    "long_instruction": "Cut the transcript after word three and never before it.",
+    "score_pairs": [
+      {
+        "value": [
+          14,
+          3
+        ],
+        "pairs": 12
+      }
+    ],
+    "choices": [
+      {
+        "value": [
+          "copy",
+          "copy"
+        ],
+        "pairs": 12
+      }
+    ],
+    "complete_pairs": 0
+  }
+]

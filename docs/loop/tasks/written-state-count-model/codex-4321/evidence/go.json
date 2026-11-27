@@ -1,0 +1,11 @@
+{
+  "schema": "uor-r4.source-choice-go/1",
+  "authorized": true,
+  "test_fitness": "FIT",
+  "approved_sha256": "b55b86a253e5d786e308ab4963d51f3298deae0293fc4b10fcc147c7d133f55a",
+  "source_commit": "edf86aef6b6059b854a9ddfa731faec48ac7501f",
+  "device_uuid": "GPU-3265b863-16b6-9f25-3bf5-4386fa6a53c3",
+  "choice_cubin_sha256": "e6981880ef98f5e3ea5327e12e84ca3f184acbfa7c742525af31e31b86721402",
+  "signed_at": "2026-11-27T19:36:22Z",
+  "lab": "codex"
+}

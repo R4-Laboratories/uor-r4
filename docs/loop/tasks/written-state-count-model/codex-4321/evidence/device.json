@@ -1,0 +1,16 @@
+{
+  "arms": [
+    "native",
+    "learned",
+    "swapped",
+    "correct",
+    "opposite"
+  ],
+  "choice_weights_sha256": "90f25068372afe973bd1f833a997aebe60cf843d6e5f6a71f042068005af8b6c",
+  "elapsed_ms": 41816,
+  "image_sha256": "e6981880ef98f5e3ea5327e12e84ca3f184acbfa7c742525af31e31b86721402",
+  "input_sha256": "14a7b7a378822198c33e84db3f69769dd8a6d1d5e3cb4569e23efee0e5431ced",
+  "pairs": 400,
+  "pass": true,
+  "rows": 800
+}

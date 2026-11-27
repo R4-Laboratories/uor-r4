@@ -1,0 +1,51 @@
+{
+  "contrasts": [
+    {
+      "oriented": 60,
+      "reversed": 0,
+      "same_decision": 132,
+      "score_ties": 0
+    },
+    {
+      "oriented": 192,
+      "reversed": 0,
+      "same_decision": 0,
+      "score_ties": 0
+    }
+  ],
+  "elapsed_ms": 272,
+  "epochs": 8,
+  "image_sha256": "e6981880ef98f5e3ea5327e12e84ca3f184acbfa7c742525af31e31b86721402",
+  "initial_state": "zero",
+  "input_sha256": "581aa82bb33ef19138639328a362b64e454013e63d3d1ab0d419239e2c67c822",
+  "margin": 8,
+  "pair_margin": 16,
+  "pairs": 384,
+  "roots_sha256": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a",
+  "rows": 768,
+  "stages": [
+    {
+      "abstained": 0,
+      "difference_updates": 1,
+      "exact": 636,
+      "individual_updates": 211,
+      "reachable": 768
+    },
+    {
+      "abstained": 0,
+      "difference_updates": 0,
+      "exact": 516,
+      "individual_updates": 132,
+      "reachable": 576
+    },
+    {
+      "abstained": 0,
+      "difference_updates": 0,
+      "exact": 192,
+      "individual_updates": 1,
+      "reachable": 192
+    }
+  ],
+  "training_order": "panel order then side-0 panel order for pair differences, independently by stage",
+  "weights_sha256": "90f25068372afe973bd1f833a997aebe60cf843d6e5f6a71f042068005af8b6c"
+}

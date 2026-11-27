@@ -1,0 +1,186 @@
+[
+  {
+    "contrast": 0,
+    "overall": {
+      "pairs": 200,
+      "reached_both": 200,
+      "oriented_and_reached": 0,
+      "oriented_but_early_failure": 0,
+      "actual_both_actions_correct": 0,
+      "oriented_lost_after_shared_action": 0,
+      "gained_vs_native_pairs": 0,
+      "lost_vs_native_pairs": 0,
+      "gained_vs_swapped_pairs": 0,
+      "lost_vs_swapped_pairs": 0,
+      "wrong_before_common_token": 0,
+      "wrong_at_common_token": 200,
+      "wrong_after_common_token": 125
+    },
+    "families": [
+      {
+        "family": "deadline",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 50
+        }
+      },
+      {
+        "family": "line",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 25
+        }
+      },
+      {
+        "family": "printing",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 25
+        }
+      },
+      {
+        "family": "remaining",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 25
+        }
+      }
+    ]
+  },
+  {
+    "contrast": 1,
+    "overall": {
+      "pairs": 200,
+      "reached_both": 200,
+      "oriented_and_reached": 50,
+      "oriented_but_early_failure": 0,
+      "actual_both_actions_correct": 50,
+      "oriented_lost_after_shared_action": 0,
+      "gained_vs_native_pairs": 50,
+      "lost_vs_native_pairs": 0,
+      "gained_vs_swapped_pairs": 50,
+      "lost_vs_swapped_pairs": 0,
+      "wrong_before_common_token": 0,
+      "wrong_at_common_token": 150,
+      "wrong_after_common_token": 0
+    },
+    "families": [
+      {
+        "family": "ceiling",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 50,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 50,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 50,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 50,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 0,
+          "wrong_after_common_token": 0
+        }
+      },
+      {
+        "family": "editor",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 0
+        }
+      },
+      {
+        "family": "handoff",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 0
+        }
+      },
+      {
+        "family": "transcript",
+        "counts": {
+          "pairs": 50,
+          "reached_both": 50,
+          "oriented_and_reached": 0,
+          "oriented_but_early_failure": 0,
+          "actual_both_actions_correct": 0,
+          "oriented_lost_after_shared_action": 0,
+          "gained_vs_native_pairs": 0,
+          "lost_vs_native_pairs": 0,
+          "gained_vs_swapped_pairs": 0,
+          "lost_vs_swapped_pairs": 0,
+          "wrong_before_common_token": 0,
+          "wrong_at_common_token": 50,
+          "wrong_after_common_token": 0
+        }
+      }
+    ]
+  }
+]

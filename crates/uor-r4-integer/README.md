@@ -281,3 +281,26 @@ CLI summary wall time includes bundle loading and request generation through
 JSONL output, but excludes the final summary write and sealing. Model step time
 is nested within that total and must not be added to it. Consult the project
 current-state and experiment records for measured results and their scope.
+
+### Native source-choice serving
+
+`serve-native-source-choice ARTIFACT.d11` loads a packed source-choice D11
+through the discrete model loader. It reads one JSON object per line from
+standard input. Each request has two fields:
+
+- `prefix` contains the complete tokenized prompt, ending with the assistant marker.
+- `positions` contains four zero-based token positions in the prompt, in factual
+  reply order starting with the supplied opening address.
+
+The server authenticates the opening address and supplies the first period.
+Each subsequent learned action may copy the next authenticated original address,
+select EOS, or use the ordinary writer. The reply contains the writer events
+with committed token IDs and source-choice trace fields. Generation ends at EOS
+or after five commits. The client supplies token IDs and factual positions.
+
+`pack-native-source-choice BASE.d11 WEIGHTS.i16le NEW.d11 FIT_SHA256`
+packages the pinned word-ending D11 byte-for-byte with 24,582 bytes of
+little-endian signed state. Each of the three consecutive stage rows stores
+4,096 weights followed by a signed bias. `verify-native-source-choice ARTIFACT.d11
+PANEL.jsonl DEVICE.jsonl` compares complete cold event traces with device
+replay and reports the first divergent field.
