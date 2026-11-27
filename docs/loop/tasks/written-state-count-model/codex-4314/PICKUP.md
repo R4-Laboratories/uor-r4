@@ -1,0 +1,7 @@
+# Next grounded opening experiment
+
+The tested weights can address different rows when the question changes. They rarely supply the requested word in those rows. On 748/800 held openings the selected row was populated but lacked that word. The two equal-budget fits and every four-way score comparison are recoverable from the [report](REPORT.md) and [pinned archives](compute/README.md).
+
+Retain the corrected protocol-2 donor and the existing writer. The next candidate is a shared integer score on a prompt occurrence given the requested subject. Train with both assignments, positive source identity and the opposite occurrence as rival. Reserve whole wording families and answer IDs, so a learned word table cannot pass through vocabulary overlap. Log both candidate scores and addresses for each question, and instrument the chosen original ID before and after the writer. Run supplied-correct, swapped-source and missing-source controls on a separate finite panel including a lexical ID the fixed writer can reproduce. This measures two different dependencies, selecting the right source and realizing its first token. An ordinary reply through EOS is justified once a fresh held comparison passes its registered source and token gates.
+
+Occurrence selection applies to answers present in the prompt. Open-ended prose and reasoning still require their own held generation tests. The legacy full-turn or job/home diagnostics can supply mechanisms to test, while generalization has to be measured on new wording and on actual human questions.

@@ -30,6 +30,7 @@ pub use s2_expert::{s2_route_key, S2ExpertPrediction, S2ExpertRead, S2RankedToke
 mod assertion_retrieval;
 #[path = "contextual_source.rs"]
 pub mod contextual_source;
+pub mod native_opening;
 pub mod pair_rank;
 mod rival_admission;
 pub use assertion_retrieval::pack_assertion_retrieval;
@@ -875,7 +876,7 @@ impl DiscreteSparseCountTable {
     /// or per-key `BTreeMap` heap allocations.
     fn from_triple_bytes(slice: &[u8], vocabulary: usize) -> Result<Self> {
         let mut cursor = slice;
-        Self::from_triple_reader(&mut cursor, slice.len(), vocabulary)
+        Self::from_triple_reader(&mut cursor, slice.len(), vocabulary, false)
     }
 
     /// Stream and validate `byte_len` little-endian `[key, token, count]` triple bytes
@@ -884,6 +885,7 @@ impl DiscreteSparseCountTable {
         reader: &mut R,
         byte_len: usize,
         vocabulary: usize,
+        grow_from_payload: bool,
     ) -> Result<Self> {
         if !byte_len.is_multiple_of(12) {
             return Err(invalid(
@@ -892,16 +894,18 @@ impl DiscreteSparseCountTable {
         }
         let n = byte_len / 12;
         let mut keys = Vec::new();
-        keys.try_reserve_exact(n)
-            .map_err(|_| invalid("sparse trunk count table keys exceed available memory"))?;
         let mut tokens = Vec::new();
-        tokens
-            .try_reserve_exact(n)
-            .map_err(|_| invalid("sparse trunk count table tokens exceed available memory"))?;
         let mut counts = Vec::new();
-        counts
-            .try_reserve_exact(n)
-            .map_err(|_| invalid("sparse trunk count table counts exceed available memory"))?;
+        if !grow_from_payload {
+            keys.try_reserve_exact(n)
+                .map_err(|_| invalid("sparse trunk count table keys exceed available memory"))?;
+            tokens
+                .try_reserve_exact(n)
+                .map_err(|_| invalid("sparse trunk count table tokens exceed available memory"))?;
+            counts
+                .try_reserve_exact(n)
+                .map_err(|_| invalid("sparse trunk count table counts exceed available memory"))?;
+        }
         let mut prev: Option<(u32, u16)> = None;
         let mut strictly_sorted = true;
         // 5,120 triples (61,440 B) keeps the streaming chunk on the stack with zero heap buffer.
@@ -918,6 +922,18 @@ impl DiscreteSparseCountTable {
                     _ => crate::IntegerError::from(e),
                 })?;
             remaining -= step;
+            if grow_from_payload {
+                let records = step / 12;
+                keys.try_reserve(records).map_err(|_| {
+                    invalid("sparse trunk count table keys exceed available memory")
+                })?;
+                tokens.try_reserve(records).map_err(|_| {
+                    invalid("sparse trunk count table tokens exceed available memory")
+                })?;
+                counts.try_reserve(records).map_err(|_| {
+                    invalid("sparse trunk count table counts exceed available memory")
+                })?;
+            }
             for chunk in buf[..step].chunks_exact(12) {
                 let key = u32::from_le_bytes([chunk[0], chunk[1], chunk[2], chunk[3]]);
                 let tok_u32 = u32::from_le_bytes([chunk[4], chunk[5], chunk[6], chunk[7]]);
@@ -1292,6 +1308,7 @@ impl DiscreteTrunkTables {
         prefix: &[u32],
         q_blocks: &mut [[i32; 8]],
         codebook_roots: &[[u8; 4]],
+        opening_choice: Option<u16>,
     ) -> Result<TrunkPointerObservation> {
         if q_blocks.len() != 4 {
             return Err(invalid("joint-pointer trunk gate requires 4 blocks"));
@@ -1307,12 +1324,14 @@ impl DiscreteTrunkTables {
         let pointer_succ = orbit_root_causal_successor(prefix, codebook_roots)?;
         let query_token = u16::try_from(prefix[prefix.len() - 1])
             .map_err(|_| invalid("query token overflows u16"))?;
-        let chosen_tok = self.select_level3_joint_pointer_global(
-            query_token,
-            read_code,
-            rec_code,
-            pointer_succ.map(|(_, token)| token),
-        );
+        let chosen_tok = opening_choice.unwrap_or_else(|| {
+            self.select_level3_joint_pointer_global(
+                query_token,
+                read_code,
+                rec_code,
+                pointer_succ.map(|(_, token)| token),
+            )
+        });
         let target_roots = codebook_roots
             .get(usize::from(chosen_tok))
             .copied()
@@ -1339,6 +1358,7 @@ impl DiscreteTrunkTables {
 #[derive(Clone, Debug)]
 pub struct IntegerDiscreteModel {
     count_mixer: Option<crate::count_mixer::CountMixer>,
+    opening: Option<native_opening::State>,
     role_policy: Option<RolePolicy>,
     contextual_source: Option<contextual_source::SourcePolicy>,
     pair_rank: Option<pair_rank::Policy>,
@@ -2469,8 +2489,21 @@ impl IntegerDiscreteModel {
         reader: R,
         expected_len: Option<u64>,
     ) -> Result<Self> {
+        Self::read_reader(reader, expected_len, false)
+    }
+
+    fn read_reader<R: std::io::Read>(
+        reader: R,
+        expected_len: Option<u64>,
+        opening_base: bool,
+    ) -> Result<Self> {
         use std::io::Read;
 
+        if opening_base && expected_len.is_some_and(|len| len > native_opening::MAX_BASE_BYTES) {
+            return Err(invalid(
+                "native opening nested trunk byte length exceeds fit layout",
+            ));
+        }
         let mut reader = HashingReader::new(reader);
         let mut preamble = [0u8; 16];
         reader
@@ -2489,7 +2522,12 @@ impl IntegerDiscreteModel {
             preamble[14],
             preamble[15],
         ]);
-        if header_len > MAX_HEADER {
+        let max_header = if opening_base {
+            native_opening::MAX_BASE_HEADER
+        } else {
+            MAX_HEADER
+        };
+        if header_len > max_header || expected_len.is_some_and(|len| len < 16 + header_len) {
             return Err(invalid("UORLUT01 header length out of bounds"));
         }
         let mut encoded_header = Vec::new();
@@ -2504,6 +2542,20 @@ impl IntegerDiscreteModel {
             schema: String,
         }
         let schema = serde_json::from_slice::<Schema>(&encoded_header)?.schema;
+        if opening_base && schema != DISCRETE_TRUNK_SCHEMA {
+            return Err(invalid("native opening requires a plain nested D11 trunk"));
+        }
+        if schema == native_opening::SCHEMA {
+            let expected_body = expected_len
+                .map(|len| {
+                    len.checked_sub(16 + header_len)
+                        .ok_or_else(|| invalid("native opening header exceeds file size"))
+                })
+                .transpose()?;
+            let mut model = native_opening::read_from(&mut reader, &encoded_header, expected_body)?;
+            model.artifact_sha256 = reader.finalize();
+            return Ok(model);
+        }
         if !matches!(
             schema.as_str(),
             DISCRETE_TRUNK_SCHEMA | DISCRETE_S2_SCHEMA | DISCRETE_S2_EXPERT_SCHEMA
@@ -2516,14 +2568,14 @@ impl IntegerDiscreteModel {
         }
 
         let parsed = parse_and_validate_lut_header(&encoded_header, true)?;
+        if opening_base {
+            native_opening::validate_base(
+                &parsed.header.shape,
+                parsed.header.tokenizer_sha256.as_deref(),
+            )?;
+        }
         let unaligned = 16 + (header_len as usize);
         let data_start = unaligned + (ALIGN - unaligned % ALIGN) % ALIGN;
-        read_exact_zeros(
-            &mut reader,
-            data_start - unaligned,
-            "UORLUT01 header padding is missing or non-zero",
-        )?;
-
         // Validate monotonic alignment layout and section metadata up front.
         let mut prev_end = 0usize;
         for entry in &parsed.header.tables {
@@ -2541,31 +2593,42 @@ impl IntegerDiscreteModel {
             }
             prev_end = end;
         }
-        if let Some(total_len) = expected_len {
-            let expected_end = (data_start as u64)
-                .checked_add(prev_end as u64)
-                .ok_or_else(|| invalid("table end overflow"))?;
-            if expected_end != total_len {
-                return Err(invalid(
-                    "discrete UORLUT01 file length disagrees with section table layout",
-                ));
-            }
+        let expected_end = (data_start as u64)
+            .checked_add(prev_end as u64)
+            .ok_or_else(|| invalid("table end overflow"))?;
+        if opening_base && expected_end > native_opening::MAX_BASE_BYTES {
+            return Err(invalid(
+                "native opening nested trunk byte length exceeds fit layout",
+            ));
         }
-        for (idx, name) in [
-            (4usize, "discrete.trunk.step_candidates"),
-            (5, "discrete.trunk.norm_candidates"),
-            (6, "discrete.trunk.unigram"),
+        if expected_len.is_some_and(|len| len != expected_end) {
+            return Err(invalid(
+                "discrete UORLUT01 file length disagrees with section table layout",
+            ));
+        }
+        for (idx, name, words) in [
+            (4usize, "discrete.trunk.step_candidates", 64),
+            (5, "discrete.trunk.norm_candidates", 4),
+            (6, "discrete.trunk.unigram", 1 + parsed.vocab),
         ] {
             let entry = &parsed.header.tables[idx];
             if entry.name != name || entry.kind != SectionKind::U32 {
                 return Err(invalid(format!("trunk table {name} name or kind mismatch")));
             }
-            validate_section_spec(entry, SectionKind::U32, entry.len)?;
+            validate_section_spec(entry, SectionKind::U32, words)?;
         }
         for (offset, name) in SPARSE_TRUNK_TABLE_NAMES.iter().enumerate() {
             let entry = &parsed.header.tables[7 + offset];
             if entry.name != *name || entry.kind != SectionKind::U32 {
                 return Err(invalid(format!("trunk table {name} name or kind mismatch")));
+            }
+            if opening_base
+                && (!entry.len.is_multiple_of(3)
+                    || entry.len / 3 > native_opening::MAX_BASE_TABLE_TRIPLES)
+            {
+                return Err(invalid(format!(
+                    "nested sparse trunk table {name} exceeds fit layout"
+                )));
             }
             validate_section_spec(entry, SectionKind::U32, entry.len)?;
         }
@@ -2603,6 +2666,11 @@ impl IntegerDiscreteModel {
                 .ok_or_else(|| invalid("missing table discrete.position_frames"))?;
             validate_section_spec(entry, SectionKind::U32, parsed.blocks * 16)?;
         }
+        read_exact_zeros(
+            &mut reader,
+            data_start - unaligned,
+            "UORLUT01 header padding is missing or non-zero",
+        )?;
 
         let mut raw_table_bytes = None;
         let mut raw_cells_bytes = None;
@@ -2630,6 +2698,7 @@ impl IntegerDiscreteModel {
                     &mut reader,
                     span_bytes,
                     parsed.vocab,
+                    opening_base,
                 )?);
             } else if parsed.has_s2 && idx == 19 {
                 let bytes = read_exact_vec(&mut reader, span_bytes, &sec_msg)?;
@@ -2720,6 +2789,7 @@ impl IntegerDiscreteModel {
         let artifact_sha256 = reader.finalize();
         Ok(Self {
             count_mixer: None,
+            opening: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -2764,6 +2834,16 @@ impl IntegerDiscreteModel {
             schema: String,
         }
         let schema = serde_json::from_slice::<Schema>(encoded_header)?.schema;
+        if schema == native_opening::SCHEMA {
+            if !allow_role {
+                return Err(invalid("nested native opening artifacts are invalid"));
+            }
+            let mut reader = &bytes[end_header..];
+            let expected_body = Some(reader.len() as u64);
+            let mut model = native_opening::read_from(&mut reader, encoded_header, expected_body)?;
+            model.artifact_sha256 = hex::encode(Sha256::digest(bytes));
+            return Ok(model);
+        }
         if matches!(
             schema.as_str(),
             pair_rank::SCHEMA | pair_rank::CANDIDATE_SCHEMA
@@ -3115,6 +3195,7 @@ impl IntegerDiscreteModel {
         let artifact_sha256 = hex::encode(Sha256::digest(bytes));
         Ok(Self {
             count_mixer: None,
+            opening: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -3193,6 +3274,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.opening.is_some() {
+            return native_opening::SCHEMA;
+        }
         if let Some(bindings) = self.pair_rank_bindings() {
             return bindings.geometry.schema();
         }
@@ -4485,6 +4569,22 @@ impl IntegerDiscreteModel {
         self.evaluate_prefix_internal(prefix, true)
     }
 
+    /// Identity of the native state and frozen D11 trunk in the loaded artifact.
+    pub fn native_opening_identity(&self) -> Option<native_opening::Identity<'_>> {
+        self.opening.as_ref().map(native_opening::identity)
+    }
+
+    /// Score two original IDs and canonical space at a fitted opening, and
+    /// verify which original ID the ordinary geometric writer emits.
+    pub fn observe_native_opening(
+        &self,
+        prefix: &[u32],
+        target: u32,
+        rival: u32,
+    ) -> Result<Option<native_opening::Observation>> {
+        native_opening::observe(self, prefix, target, rival)
+    }
+
     /// The causal geometric read shared by prediction and the contextual
     /// source projector. It does not invoke any role or source selector.
     fn causal_geometric_read(
@@ -4505,11 +4605,31 @@ impl IntegerDiscreteModel {
         };
         let pointer = match (&self.trunk, self.state_transport_knockout) {
             (Some(trunk), false) => {
-                Some(trunk.apply_joint_pointer_gate(prefix, &mut blocks, &self.codebook_roots)?)
+                let choice = match &self.opening {
+                    Some(head) => head.decide(self, prefix)?.map(|decision| decision.selected),
+                    None => None,
+                };
+                Some(trunk.apply_joint_pointer_gate(
+                    prefix,
+                    &mut blocks,
+                    &self.codebook_roots,
+                    choice,
+                )?)
             }
             _ => None,
         };
         Ok(((blocks, relation_scores, relation_trace), pointer))
+    }
+
+    fn validate_prefix(&self, prefix: &[u32]) -> Result<()> {
+        let context = self.shape.context as usize;
+        if prefix.is_empty() || prefix.len() > context {
+            return Err(invalid("prefix length must be in 1..=context"));
+        }
+        if prefix.iter().any(|&tok| tok >= self.shape.vocabulary) {
+            return Err(invalid("prefix token ID outside vocabulary"));
+        }
+        Ok(())
     }
 
     fn evaluate_prefix_internal(
@@ -4517,14 +4637,8 @@ impl IntegerDiscreteModel {
         prefix: &[u32],
         retain_trace: bool,
     ) -> Result<DiscreteTracedPrefixEvaluation> {
+        self.validate_prefix(prefix)?;
         let vocab = self.shape.vocabulary;
-        let context = self.shape.context as usize;
-        if prefix.is_empty() || prefix.len() > context {
-            return Err(invalid("prefix length must be in 1..=context"));
-        }
-        if prefix.iter().any(|&tok| tok >= vocab) {
-            return Err(invalid("prefix token ID outside vocabulary"));
-        }
         if let Some(table) = self.active_s2() {
             let read = table.predict_expert(prefix)?;
             let best = read.top8[0];
@@ -4877,9 +4991,9 @@ mod tests {
         }
     }
 
-    fn build_discrete_uorlut01(
+    fn build_discrete_uorlut01<const BLOCKS: usize>(
         shape: DiscreteLutShape,
-        tokens: &[[[i32; 8]; 2]],
+        tokens: &[[[i32; 8]; BLOCKS]],
         routes: &[u32],
         gates: &[i32],
     ) -> Vec<u8> {
@@ -4888,7 +5002,7 @@ mod tests {
             .iter()
             .map(|blocks| {
                 let r0 = root_id(&blocks[0]).unwrap() as u32;
-                let r1 = root_id(&blocks[1]).unwrap() as u32;
+                let r1 = root_id(&blocks[BLOCKS - 1]).unwrap() as u32;
                 (r0 << 4) + r1
             })
             .collect();
@@ -4938,15 +5052,325 @@ mod tests {
                 geometry_sha256: "33".repeat(32),
             },
         };
-        let json = serde_json::to_vec(&header).unwrap();
+        encode_discrete_fixture(&header, &blob)
+    }
+
+    fn encode_discrete_fixture(header: &DiscreteLutHeader, blob: &[u8]) -> Vec<u8> {
+        let json = serde_json::to_vec(header).unwrap();
         let mut out = Vec::with_capacity(16 + json.len() + ALIGN + blob.len());
         out.extend_from_slice(MAGIC);
         out.extend_from_slice(&(json.len() as u64).to_le_bytes());
         out.extend_from_slice(&json);
         let pad = (ALIGN - out.len() % ALIGN) % ALIGN;
         out.resize(out.len() + pad, 0);
-        out.extend_from_slice(&blob);
+        out.extend_from_slice(blob);
         out
+    }
+
+    #[test]
+    fn native_opening_packs_and_replays_the_gate_and_ordinary_writer() {
+        use std::io::Cursor;
+
+        use super::native_opening::{self, Mode};
+
+        let shape = DiscreteLutShape {
+            vocabulary: 4096,
+            blocks: 4,
+            context: 192,
+            kept_cells: 4,
+            stages: expected_stages(192).unwrap(),
+            read_mode: "route".to_owned(),
+            read_kept: 0,
+            read_sweeps: 0,
+            read_position: 0,
+            objective_policy: "nearest_address_margin_v1".to_owned(),
+            read_initialization: "zero_gates_v1".to_owned(),
+            seed: 7,
+            epoch: 1,
+        };
+        let steps = 4 * shape.stages as usize;
+        let mut tokens = vec![[A; 4]; shape.vocabulary as usize];
+        tokens[5] = [NEG_A; 4];
+        tokens[6] = [B; 4];
+        tokens[9] = [B; 4];
+        tokens[native_opening::SPACE as usize] = [D_ROOT; 4];
+        let bare = build_discrete_uorlut01(shape, &tokens, &vec![0; steps], &vec![0; steps]);
+        let header_end = 16 + u64::from_le_bytes(bare[8..16].try_into().unwrap()) as usize;
+        let mut header: DiscreteLutHeader = serde_json::from_slice(&bare[16..header_end]).unwrap();
+        let mut blob = bare[header_end.next_multiple_of(ALIGN)..].to_vec();
+        header.schema = DISCRETE_TRUNK_SCHEMA.to_owned();
+        header.tokenizer_sha256 = Some(native_opening::CANONICAL_TOKENIZER_SHA256.to_owned());
+        let mut priors = vec![0u32; 4097];
+        priors[1] = 20;
+        priors[6] = 10;
+        priors[7] = 10;
+        priors[native_opening::SPACE as usize + 1] = 15;
+        for (name, values) in [
+            ("discrete.trunk.step_candidates", [0u32; 64].as_slice()),
+            ("discrete.trunk.norm_candidates", [0u32; 4].as_slice()),
+            ("discrete.trunk.unigram", priors.as_slice()),
+        ]
+        .into_iter()
+        .chain(SPARSE_TRUNK_TABLE_NAMES.iter().map(|&name| (name, &[][..])))
+        {
+            let data: Vec<u8> = values.iter().flat_map(|x| x.to_le_bytes()).collect();
+            header.tables.push(SectionSpec {
+                name: name.to_owned(),
+                kind: SectionKind::U32,
+                len: values.len(),
+                span: push_section(&mut blob, &data),
+            });
+        }
+        let base = encode_discrete_fixture(&header, &blob);
+        let frozen = IntegerDiscreteModel::from_bytes(&base).unwrap();
+        // With identity frames and one question token the four roots are
+        // unchanged. NEG_A is root 1 and B is root 14 in each block.
+        let a_code = 0x1111u16;
+        let b_code = 0xeeeeu16;
+        let a_key =
+            (4 << native_opening::LEVEL_SHIFT) | native_opening::MARKER_BUCKET | u32::from(a_code);
+        let b_key =
+            (4 << native_opening::LEVEL_SHIFT) | native_opening::MARKER_BUCKET | u32::from(b_code);
+        let mut rows = vec![
+            (0, 1, 0, -1),
+            (0, 1, 5, 0),
+            (0, 1, 6, 0),
+            (native_opening::MARKER_BUCKET, 6, 5, -1),
+            (native_opening::MARKER_BUCKET, 6, 6, 2),
+            (native_opening::MARKER_BUCKET, 6, 9, 3),
+            (a_key, 4, 5, 2),
+            (a_key, 4, 6, -1),
+            (a_key, 4, native_opening::SPACE, 0),
+            (b_key, 3, 5, 6),
+        ];
+        rows.sort_unstable();
+        let tsv: String = rows
+            .into_iter()
+            .map(|(key, support, token, score)| format!("{key}\t{support}\t{token}\t{score}\n"))
+            .collect();
+        let pack = |mode, tsv: &str| {
+            let mut bytes = Vec::new();
+            native_opening::write_artifact(
+                Cursor::new(&base),
+                tsv.as_bytes(),
+                mode,
+                [7; 32],
+                &mut bytes,
+            )
+            .unwrap();
+            bytes
+        };
+        let bytes = pack(Mode::Marker, &tsv);
+        let served = IntegerDiscreteModel::from_reader(Cursor::new(&bytes)).unwrap();
+        assert_eq!(
+            served.artifact_sha256(),
+            IntegerDiscreteModel::from_bytes(&bytes)
+                .unwrap()
+                .artifact_sha256(),
+        );
+        let identity = served.native_opening_identity().unwrap();
+        assert_eq!(identity.base_sha256, frozen.artifact_sha256());
+        assert_eq!(identity.fit_sha256, "07".repeat(32));
+
+        let with_marker = |first| {
+            let mut prefix = vec![first];
+            prefix.extend(native_opening::ASSISTANT_MARKER);
+            prefix
+        };
+        let a = with_marker(5);
+        let b = with_marker(6);
+        let opened = served.observe_native_opening(&a, 5, 6).unwrap().unwrap();
+        assert_eq!(opened.question_state, Some(a_code));
+        assert_eq!(opened.key, Some(a_key));
+        assert_eq!(opened.support, 4);
+        assert_eq!(opened.scores, [2, -1, 0]);
+        assert_eq!(opened.ranks, [1, 4096, 3]);
+        assert_eq!((opened.selected, opened.emitted), (5, 5));
+        assert_eq!(served.evaluate_prefix(&a).unwrap().prediction, 5);
+
+        let swapped = served.observe_native_opening(&b, 5, 6).unwrap().unwrap();
+        assert_eq!(swapped.question_state, Some(b_code));
+        assert_eq!(swapped.key, Some(native_opening::MARKER_BUCKET));
+        assert_eq!((swapped.selected, swapped.emitted), (9, 6));
+        let marker_only = served
+            .observe_native_opening(&native_opening::ASSISTANT_MARKER, 5, 6)
+            .unwrap()
+            .unwrap();
+        assert_eq!(marker_only.question_state, Some(0));
+
+        let mut near_miss = a.clone();
+        near_miss[1] += 1;
+        let miss = served
+            .observe_native_opening(&near_miss, 5, 6)
+            .unwrap()
+            .unwrap();
+        assert_eq!(
+            (miss.question_state, miss.key, miss.support),
+            (None, Some(0), 1)
+        );
+        assert_eq!(miss.scores, [0, 0, 0]);
+        assert_eq!(miss.ranks, [2, 3, 1]);
+        assert_eq!(miss.emitted, native_opening::SPACE);
+
+        let colon_bytes = pack(Mode::Colon, "0\t1\t0\t-1\n");
+        let colon = IntegerDiscreteModel::from_bytes(&colon_bytes).unwrap();
+        for prefix in [&a, &b, &near_miss] {
+            let observation = colon.observe_native_opening(prefix, 0, 5).unwrap().unwrap();
+            assert_eq!(observation.question_state, None);
+            assert_eq!(observation.keys, [0, 1 << 20, 2 << 20, 3 << 20, 4 << 20]);
+            assert_eq!(observation.scores, [-1, 0, 0]);
+            assert_eq!(observation.ranks, [4096, 2, 1]);
+            assert_eq!(observation.emitted, native_opening::SPACE);
+        }
+
+        let none = IntegerDiscreteModel::from_bytes(&pack(Mode::Marker, "")).unwrap();
+        let missing = none.observe_native_opening(&a, 5, 6).unwrap().unwrap();
+        assert_eq!(
+            (missing.key, missing.support, missing.scores),
+            (None, 0, [0; 3])
+        );
+        assert_eq!((missing.selected, missing.emitted), (0, 0));
+        let non_colon = &[6, native_opening::SPACE];
+        assert!(served
+            .observe_native_opening(non_colon, 5, 6)
+            .unwrap()
+            .is_none());
+        assert_eq!(
+            served.evaluate_prefix_traced(non_colon).unwrap(),
+            frozen.evaluate_prefix_traced(non_colon).unwrap()
+        );
+
+        let outer_end = 16 + u64::from_le_bytes(bytes[8..16].try_into().unwrap()) as usize;
+        let envelope: serde_json::Value = serde_json::from_slice(&bytes[16..outer_end]).unwrap();
+        let state_offset = outer_end + base.len();
+        let rewrap = |envelope: &serde_json::Value, nested: &[u8]| {
+            let json = serde_json::to_vec(envelope).unwrap();
+            [
+                MAGIC.as_slice(),
+                &(json.len() as u64).to_le_bytes(),
+                &json,
+                nested,
+                &bytes[state_offset..],
+            ]
+            .concat()
+        };
+        let bounded_header = |header: &mut DiscreteLutHeader, payload: &[u8]| {
+            let mut end = 0u64;
+            for table in &mut header.tables {
+                table.span.offset = end.next_multiple_of(ALIGN as u64);
+                end = table.span.offset + table.span.bytes;
+            }
+            let mut nested = encode_discrete_fixture(header, payload);
+            let header_end = 16 + u64::from_le_bytes(nested[8..16].try_into().unwrap()) as usize;
+            let declared_len = header_end.next_multiple_of(ALIGN) as u64 + end;
+            if payload.is_empty() {
+                nested.truncate(header_end);
+            }
+            (nested, declared_len, header_end as u64)
+        };
+        for (index, words, expected) in [
+            (4, 65, "kind or length mismatch"),
+            (5, 5, "kind or length mismatch"),
+            (6, 4098, "kind or length mismatch"),
+            (
+                18,
+                3 * (native_opening::MAX_BASE_TABLE_TRIPLES + 1),
+                "exceeds fit layout",
+            ),
+        ] {
+            let mut malformed = header.clone();
+            malformed.tables[index].len = words;
+            malformed.tables[index].span.bytes = 4 * words as u64;
+            let (nested, declared_len, nested_header_end) = bounded_header(&mut malformed, &[]);
+            let mut invalid_envelope = envelope.clone();
+            invalid_envelope["base_bytes"] = declared_len.into();
+            let input = rewrap(&invalid_envelope, &nested);
+            let outer_header_end = 16 + u64::from_le_bytes(input[8..16].try_into().unwrap());
+            let declared_outer_len =
+                outer_header_end + declared_len + (bytes.len() - state_offset) as u64;
+            for outer_size in [None, Some(declared_outer_len)] {
+                let mut cursor = Cursor::new(&input);
+                let error = IntegerDiscreteModel::from_reader_with_len(&mut cursor, outer_size)
+                    .unwrap_err();
+                assert!(error.to_string().contains(expected), "{error}");
+                assert_eq!(cursor.position(), outer_header_end + nested_header_end);
+            }
+            let mut cursor = Cursor::new(&input);
+            let error =
+                IntegerDiscreteModel::from_reader_with_len(&mut cursor, Some(input.len() as u64))
+                    .unwrap_err();
+            assert!(error.to_string().contains("artifact length"));
+            assert_eq!(cursor.position(), outer_header_end);
+        }
+        let mut truncated = header.clone();
+        truncated.tables[18].len = 3 * native_opening::MAX_BASE_TABLE_TRIPLES;
+        truncated.tables[18].span.bytes = 4 * truncated.tables[18].len as u64;
+        let (nested, declared_len, _) = bounded_header(&mut truncated, &blob);
+        let mut cursor = Cursor::new(&nested);
+        let error =
+            IntegerDiscreteModel::read_reader(&mut cursor, Some(declared_len), true).unwrap_err();
+        assert!(error
+            .to_string()
+            .contains("sparse trunk count table span out of bounds"));
+        assert_eq!(cursor.position(), nested.len() as u64);
+
+        let mut oversized_base = envelope.clone();
+        oversized_base["base_bytes"] = (native_opening::MAX_BASE_BYTES + 1).into();
+        let wrapped = rewrap(&oversized_base, &base);
+        let oversized_header_end = 16 + u64::from_le_bytes(wrapped[8..16].try_into().unwrap());
+        let mut cursor = Cursor::new(&wrapped);
+        assert!(IntegerDiscreteModel::from_reader(&mut cursor).is_err());
+        assert_eq!(cursor.position(), oversized_header_end);
+
+        for tokenizer in [None, Some("55".repeat(32))] {
+            header.tokenizer_sha256 = tokenizer;
+            let wrong_base = encode_discrete_fixture(&header, &blob);
+            let error = native_opening::write_artifact(
+                Cursor::new(&wrong_base),
+                tsv.as_bytes(),
+                Mode::Marker,
+                [7; 32],
+                Vec::new(),
+            )
+            .unwrap_err();
+            assert!(error.to_string().contains("canonical tokenizer"));
+
+            let mut wrong_envelope = envelope.clone();
+            wrong_envelope["base_bytes"] = wrong_base.len().into();
+            wrong_envelope["base_sha256"] = hex::encode(Sha256::digest(&wrong_base)).into();
+            let incompatible = rewrap(&wrong_envelope, &wrong_base);
+            let error = IntegerDiscreteModel::from_reader(Cursor::new(&incompatible)).unwrap_err();
+            assert!(error.to_string().contains("canonical tokenizer"));
+            assert!(IntegerDiscreteModel::from_bytes(&incompatible).is_err());
+        }
+        let mut nested = Cursor::new(&bare);
+        let error = IntegerDiscreteModel::read_reader(&mut nested, Some(bare.len() as u64), true)
+            .unwrap_err();
+        assert!(error.to_string().contains("plain nested D11"));
+        assert_eq!(nested.position(), header_end as u64);
+
+        let mut oversized = envelope.clone();
+        oversized["state_bytes"] = u32::MAX.into();
+        let wrapped = rewrap(&oversized, &base);
+        let outer_oversized_end = 16 + u64::from_le_bytes(wrapped[8..16].try_into().unwrap());
+        let mut cursor = Cursor::new(&wrapped);
+        assert!(IntegerDiscreteModel::from_reader(&mut cursor).is_err());
+        assert_eq!(cursor.position(), outer_oversized_end);
+
+        let mut bad_dimensions = bytes.clone();
+        bad_dimensions[state_offset + 8..state_offset + 12]
+            .copy_from_slice(&u32::MAX.to_le_bytes());
+        let mut cursor = Cursor::new(&bad_dimensions);
+        let error = IntegerDiscreteModel::from_reader(&mut cursor).unwrap_err();
+        assert!(error.to_string().contains("state dimensions disagree"));
+        assert_eq!(cursor.position(), (state_offset + 16) as u64);
+
+        let mut tampered = bytes.clone();
+        *tampered.last_mut().unwrap() ^= 1;
+        assert!(IntegerDiscreteModel::from_reader(Cursor::new(tampered)).is_err());
+        let mut trailing = bytes;
+        trailing.push(0);
+        assert!(IntegerDiscreteModel::from_reader(Cursor::new(trailing)).is_err());
     }
 
     #[test]

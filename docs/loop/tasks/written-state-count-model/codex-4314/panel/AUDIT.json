@@ -1,0 +1,77 @@
+{
+  "checked_pair_ids": 805,
+  "panel_manifest_sha256": "e2375bc0c445295a4804f83608c7fe4e0963598c8dabea09cac50d08ac01d8fe",
+  "splits": {
+    "held": {
+      "controlled_families": {
+        "exhibit": 50,
+        "ferry": 50,
+        "studio": 50,
+        "trail": 50
+      },
+      "controlled_group_label_membership": [
+        0,
+        100,
+        100
+      ],
+      "controlled_groups": 200,
+      "controlled_pairs": 400,
+      "controlled_target_seen": [
+        200,
+        600
+      ],
+      "equal_natural_lengths": 0,
+      "first_fact_by_side": [
+        200,
+        200
+      ],
+      "maximum_prefix": 187,
+      "minimum_controlled_prefix": 46,
+      "natural_at_colon_and_delayed": [
+        8,
+        2
+      ],
+      "natural_pairs": 5,
+      "natural_target_seen": [
+        10,
+        0
+      ]
+    },
+    "train": {
+      "controlled_families": {
+        "audition": 50,
+        "locker": 50,
+        "notebook": 50,
+        "orchard": 50
+      },
+      "controlled_group_label_membership": [
+        0,
+        0,
+        200
+      ],
+      "controlled_groups": 200,
+      "controlled_pairs": 400,
+      "controlled_target_seen": [
+        0,
+        800
+      ],
+      "equal_natural_lengths": 0,
+      "first_fact_by_side": [
+        200,
+        200
+      ],
+      "maximum_prefix": 62,
+      "minimum_controlled_prefix": 48,
+      "natural_at_colon_and_delayed": [
+        0,
+        0
+      ],
+      "natural_pairs": 0,
+      "natural_target_seen": [
+        0,
+        0
+      ]
+    }
+  },
+  "status": "PASS"
+}

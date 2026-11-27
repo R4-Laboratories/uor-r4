@@ -1,0 +1,2 @@
+{"arm":"colon","contrast":800,"donor":118915,"elapsed_ms":64,"learned_addresses":5,"learned_token_words":9020,"level_visits":598575,"negative_updates":8000,"positive_updates":598575}
+{"arm":"marker","contrast":800,"donor":118915,"elapsed_ms":51,"learned_addresses":5512,"learned_token_words":23258,"level_visits":598575,"negative_updates":8000,"positive_updates":598575}

@@ -1,0 +1,22 @@
+{
+  "provider": "Vast.ai",
+  "gpu": "RTX 4090",
+  "gpu_uuid": "GPU-d64a75b2-c0a3-f4b2-2975-6ee69e337e78",
+  "hourly_usd": 1.309,
+  "provider_uptime_seconds": 444,
+  "estimated_compute_usd": 0.16144333333333333,
+  "started_utc": "2026-11-27T14:07:42Z",
+  "deleted_utc": "2026-11-27T14:15:09Z",
+  "fitting_started_utc": "2026-11-27T14:13:18.543773759Z",
+  "fitting_pack_readback_completed_utc": "2026-11-27T14:13:19.674548282Z",
+  "all_held_replays_completed_utc": "2026-11-27T14:13:27.495171894Z",
+  "fit_updates_per_arm": {
+    "positive": 598575,
+    "negative": 8000,
+    "exposures": 598575
+  },
+  "trained_arms": 2,
+  "distinct_held_arm_openings": 1620,
+  "delayed_lexical_positions_in_shared_original_trunk": 2,
+  "monitor": "exclusive codex/opening-4314 lease; independent device loop and verified ZFS return"
+}

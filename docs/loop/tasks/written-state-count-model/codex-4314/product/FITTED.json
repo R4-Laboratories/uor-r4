@@ -1,0 +1,116 @@
+{
+  "schema": "uor-r4.native-opening-product-replay/1",
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-marker-question/product-validation-v3",
+  "host": "Wick Linux x86_64",
+  "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+  "build": "cargo build --release --locked -p uor-r4-integer --features p1-count-serving --bin pack-native-opening --bin verify-native-opening --bin uor-chat",
+  "source_manifest_sha256": "4b7169642a7a3f2bcbc044419a34967b72d71543971891ba014ae42e200ad2a9",
+  "build_log_sha256": "f748e17791cd61ec9f1e70873023a9d2d3ec5daf721d6cecc1289938e849212e",
+  "binaries_sha256": {
+    "pack-native-opening": "4a17930097201c8bfe2659948039804fd25a0e891474cbf278c7ec9fa3617e6d",
+    "verify-native-opening": "a6180dc843b9083329f3f3dc53f3455a028ffb0b8feea6d50105e33efd61591d",
+    "uor-chat": "9d36d1d85e779044c3b0725fae5c1ecce408bdd476e4ef2102d9be22d3346a35"
+  },
+  "common_inputs": {
+    "base_bytes": 1201932060,
+    "base_sha256": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+    "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+    "fit_manifest_sha256": "1e93e4c64cb4bdd49ef6c35c1ec08f9f17fa105b979bb9b9a7fabf5a9398f728",
+    "fitted_custody_manifest_sha256": "eadff0d6d332b3d0d55ac8b5e023a38036424d91bba9d2589f85241f5d3d7b68",
+    "cuda_held_manifest_sha256": "b92d9c6007388a67eb094f5e930dd47551cef475e89865e7466903b9f0f7cf0c",
+    "cuda_weights_manifest_sha256": "09ef660b8e4616d71bff2fcc9fc835d469cd43ff7babc2304d53a1022c542435",
+    "combined_held_and_lexical_panel_sha256": "bbfb8f3101ac69c4561ac0165d02f263c41d0cae9d15de29984728383ad557e7"
+  },
+  "fitted": {
+    "colon": {
+      "artifact": "colon/artifact.d11",
+      "artifact_sha256": "180e291b71e5de6badc3e1564f27193bb69a21cf95f940fb9b05978e39ad7531",
+      "artifact_bytes": 1201986623,
+      "bytes_added": 54563,
+      "state_sha256": "41c798888b1ab275282813c74abc062cfbc8409fb75c51d902af659e1b439ddd",
+      "state_bytes": 54196,
+      "pack_receipt_sha256": "cc421e7da1b2520561d2a56de55d3ce38e576485207a38e596647d66c29b0475",
+      "full_replay_sha256": "487f4e80cdda3968ce979d3f6b0bcf7a6c46f1fa389d0a16136c8d19a5a7784e",
+      "matched_held_projection_sha256": "2a0664b0f10bd785dd55ecd73c26da873cc1d3c76fb256bb62b46e7bed59a612",
+      "ordinary_text_raw_and_bulk_emissions": {"controlled": 223, "coqa": 223}
+    },
+    "marker": {
+      "artifact": "marker/artifact.d11",
+      "artifact_sha256": "d782af466c2ebdfba1304158a3f995b50937c434de6ee5a505f8c49cc944f143",
+      "artifact_bytes": 1202138137,
+      "bytes_added": 206077,
+      "state_sha256": "97762e2a1e0554072061ca8492d63864fa628d8bcd92a145f092e1b873ccfa43",
+      "state_bytes": 205708,
+      "pack_receipt_sha256": "66c66dfeecd64a9a9a541731a44766fa8d007c6714977c76d58c38f799e38d5e",
+      "full_replay_sha256": "5c9469409574f7aafb13eeee110b36abf26f35e14ec6c1492ac3dcafd5f693df",
+      "matched_held_projection_sha256": "bc4432e1ca77719c06599bf01ec3da18d35cf3bbc9136d17dd454fe9f730a518",
+      "ordinary_text_raw_and_bulk_emissions": {"controlled": 1, "coqa": 223}
+    }
+  },
+  "parity": {
+    "independent_repack_equal_sha256": true,
+    "compared_with_prior_custody": "product-validation-v2",
+    "prior_fitted_custody_manifest_sha256": "9231a93e84c3bed01e7ea2c1451e70a965d180bf59c770c9fee31ba32f11de09",
+    "exact_cuda_product_openings_per_arm": 810,
+    "fields": ["question_state", "keys", "key", "support", "sparse_scores_sha256", "scores", "ranks", "selected", "emitted"],
+    "lexical_rows_per_arm": 4,
+    "lexical_colon_replays_equal_to_held_rows_per_arm": 2,
+    "lexical_after_space_writer_matches_per_arm": 2,
+    "lexical_after_space_selected_and_emitted": [223, 223],
+    "lexical_target_ranks_after_space_on_cuda": [4, 4],
+    "lexical_parity_receipt_sha256_in_both_arms": "956007e0d2c5e7507ff31d3028033e333fd82d1aba6973cd85ddd097bd9443a3",
+    "ordinary_text_and_raw_prompt_ids_equal_frozen_ids": true,
+    "ordinary_known_size_fitted_raw_cli_runs": 4,
+    "ordinary_known_size_fitted_text_cli_runs": 4,
+    "ordinary_cli_prompt_lengths": {"controlled": 69, "coqa": 171}
+  },
+  "registered_finite_replay": {
+    "custody_subdirectory": "finite",
+    "device_manifest_sha256": "20c8910e295efb0cd88cd680e2f3e82983adb4a731ec9e12dfefa1de29c7b742",
+    "product_manifest_sha256": "4858e954dbc13ef26a3881acfff689fc5d9f8310a0a8277e1c3f6818508b536e",
+    "exact_cuda_product_rows": 8,
+    "independent_repack_equal_sha256": true,
+    "ordinary_raw_cli_emissions_equal": 8,
+    "ordinary_known_size_raw_cli_runs": 8,
+    "colon": {
+      "artifact_sha256": "76cf2e5b2b913f6825662a6affd0be9cbc68e83047da31524287cc9dfa362502",
+      "matched_projection_sha256": "caeec0d0141f1c2f0716678698dae7d5757ca3b1084444bcc845ea3af60938ab",
+      "selected": [223, 223, 223, 223],
+      "emitted": [223, 223, 223, 223]
+    },
+    "marker": {
+      "artifact_sha256": "43138e75f78713a0a380812121f8f7a420ab063f6543e5109b395df0dcd37200",
+      "matched_projection_sha256": "8e79f31bd3c87a2fdcbf5c24d44206d7492475c574a50fa3d18295ab69515196",
+      "selected": [462, 1400, 223, 462],
+      "emitted": [31, 11, 223, 31]
+    }
+  },
+  "transport_validation": {
+    "command": "cargo test -p uor-r4-integer --features p1-count-serving --lib discrete_d11::",
+    "passed": 32,
+    "failed": 0,
+    "wasm32_library_cross_check": "PASS",
+    "fixed_nested_table_word_lengths": {"step_candidates": 64, "norm_candidates": 4, "unigram": 4097},
+    "sparse_read": "Nested allocations grow from consumed record chunks after directory validation.",
+    "max_tsv_line_bytes": 64,
+    "regressions": ["wrong fixed table lengths", "oversized declared nested file", "oversized declared sparse table", "known remaining-length disagreement", "truncated maximum-size sparse section without large allocation", "first invalid TSV row and line limit"]
+  },
+  "bounds_and_observed_work": {
+    "supported_nested_trunk": {
+      "max_header_bytes": 32768,
+      "frozen_header_bytes": 4010,
+      "max_total_bytes": 2014265604,
+      "max_sparse_triples_per_table": 13983847,
+      "sparse_triple_cap_basis": "Each original target in the registered #4312 D87 fit contributes at most one triple per table.",
+      "context": 192,
+      "blocks": 4,
+      "vocabulary": 4096
+    },
+    "state_format_maximum": {"colon_rows": 5, "marker_rows": 69910, "entries_per_row": 4096, "colon_bytes": 122956, "marker_bytes": 1718947096},
+    "held_full_vocabulary_fallbacks": {"colon": 0, "marker": 0},
+    "held_max_selected_sparse_row_entries": {"colon": 1804, "marker": 101},
+    "held_marker_preceding_tokens": {"min": 40, "max": 181},
+    "held_marker_additional_block_step_compositions": {"min": 160, "max": 724},
+    "note": "The colon arm checks only the last original ID. A full marker adds one four-block recurrence over its causal prefix, up to 186 IDs. The allocation-free score fallback scans all 4,096 IDs when no positive mass wins. Exact ranks are computed by the diagnostic replay."
+  }
+}

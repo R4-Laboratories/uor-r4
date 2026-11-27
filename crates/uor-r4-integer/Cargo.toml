@@ -113,3 +113,11 @@ path = "src/bin/pack-all-starts.rs"
 [[bin]]
 name = "pack-contextual-source"
 path = "src/bin/pack-contextual-source.rs"
+
+[[bin]]
+name = "pack-native-opening"
+path = "src/bin/pack-native-opening.rs"
+
+[[bin]]
+name = "verify-native-opening"
+path = "src/bin/verify-native-opening.rs"

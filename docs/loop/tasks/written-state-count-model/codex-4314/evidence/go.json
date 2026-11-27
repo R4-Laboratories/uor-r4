@@ -1,0 +1,13 @@
+{
+  "authorized": true,
+  "fit": "TEST FITNESS: FIT",
+  "issue": 4063,
+  "source": "85d2f4e9fee20f97ab555e8bde231821ee76e6e5",
+  "approved_sha256": "1e93e4c64cb4bdd49ef6c35c1ec08f9f17fa105b979bb9b9a7fabf5a9398f728",
+  "pod": "vast-62866271",
+  "device_uuid": "GPU-d64a75b2-c0a3-f4b2-2975-6ee69e337e78",
+  "lease": "codex/opening-4314/gpu0",
+  "training_rows_per_arm": 119715,
+  "controlled_held_groups": 200,
+  "utc": "2026-11-27 14:13:05 UTC"
+}

@@ -1,0 +1,10 @@
+{
+  "above": {
+    "n": 120,
+    "positive": 6,
+    "zero": 107,
+    "negative": 7
+  },
+  "both_above": 12,
+  "space_lowest": 89
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "800 controlled marker-arm openings, direct join of (selected key, requested original ID) to the frozen marker.tsv",
+  "all_selected_rows_present": 800,
+  "gold": {
+    "positive": 29,
+    "negative": 23,
+    "missing": 748,
+    "explicit_zero": 0
+  },
+  "gold_above_space": {
+    "total": 120,
+    "positive": 6,
+    "negative": 7,
+    "missing": 107,
+    "explicit_zero": 0
+  },
+  "contrast_seen": {
+    "rows": 600,
+    "gold": {
+      "positive": 29,
+      "negative": 23,
+      "missing": 548,
+      "explicit_zero": 0
+    },
+    "gold_above_space": {
+      "positive": 6,
+      "negative": 7,
+      "missing": 77
+    }
+  },
+  "contrast_held_only": {
+    "rows": 200,
+    "gold": {
+      "positive": 0,
+      "negative": 0,
+      "missing": 200,
+      "explicit_zero": 0
+    },
+    "gold_above_space": {
+      "positive": 0,
+      "negative": 0,
+      "missing": 30
+    }
+  },
+  "rank_change_vs_colon": {
+    "improved": 51,
+    "worsened": 749,
+    "equal": 0,
+    "best_marker_rank": 2
+  },
+  "selected_table_sha256": "359e7b659d7c6934d5d51070f3cb1d43bcba6bca9e6d349bfbe71c9edd6911b0",
+  "held_trace_sha256": "882d9f76798b6f0a3c992bcbd7af290e8df251fec8c69e93f9d82a3fc5fb8f73"
+}

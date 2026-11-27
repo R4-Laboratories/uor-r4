@@ -1,0 +1,47 @@
+{
+  "candidate_exposure": {
+    "held": {
+      "controlled": {
+        "rival_seen_any_fit_event": 800,
+        "rival_seen_donor_colon": 758,
+        "rival_seen_donor_opening": 0,
+        "rival_seen_train_contrast": 600,
+        "rows": 800,
+        "target_seen_any_fit_event": 800,
+        "target_seen_donor_colon": 758,
+        "target_seen_donor_opening": 0,
+        "target_seen_train_contrast": 600
+      },
+      "coqa": {
+        "rival_seen_any_fit_event": 10,
+        "rival_seen_donor_colon": 10,
+        "rival_seen_donor_opening": 4,
+        "rival_seen_train_contrast": 0,
+        "rows": 10,
+        "target_seen_any_fit_event": 10,
+        "target_seen_donor_colon": 10,
+        "target_seen_donor_opening": 4,
+        "target_seen_train_contrast": 0
+      }
+    },
+    "train": {
+      "controlled": {
+        "rival_seen_any_fit_event": 800,
+        "rival_seen_donor_colon": 746,
+        "rival_seen_donor_opening": 0,
+        "rival_seen_train_contrast": 800,
+        "rows": 800,
+        "target_seen_any_fit_event": 800,
+        "target_seen_donor_colon": 746,
+        "target_seen_donor_opening": 0,
+        "target_seen_train_contrast": 800
+      }
+    }
+  },
+  "donor_colon_rows": 118915,
+  "donor_colon_targets_sha256": "f490a70c2296e8cc05910f152f36725f2ee132d79a6178e96c826d08de4cdf78",
+  "donor_opening_rows": 4345,
+  "panel_manifest_sha256": "e2375bc0c445295a4804f83608c7fe4e0963598c8dabea09cac50d08ac01d8fe",
+  "shared_prefixes": 0,
+  "status": "PASS"
+}

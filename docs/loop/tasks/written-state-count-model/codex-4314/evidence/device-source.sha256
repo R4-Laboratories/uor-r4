@@ -1,0 +1,12 @@
+1f414bb02629bf34f7a2078b74f87bae68738c1bd44c6a2e291a01c8f7bf021a  docs/loop/tasks/written-state-count-model/codex-4314/compute/Cargo.toml
+559ad0b44958bab8eac8ead0ae83a9b3b84bd7fc68b25e369f5ccab559f33dee  docs/loop/tasks/written-state-count-model/codex-4314/compute/Cargo.lock
+d19df3c4fc152c3c2865b76ec26626a5bd961f052761d9e4d1bdd41de392be76  docs/loop/tasks/written-state-count-model/codex-4314/compute/build-image.sh
+0d96124eebe9033eeee25bfdb79c3c65ed7f6087f5b639ce795e8ec15010fe45  docs/loop/tasks/written-state-count-model/codex-4314/compute/src/main.rs
+96b563307bfed5245290bb41da921b5ddfdf1d9efad20488c37f9df7db8776b6  docs/loop/tasks/written-state-count-model/codex-4314/compute/src/gpu.rs
+c9ba1cd3698585c945ed193241e8618d2043bb1babb66ac58ad9afdea991cfb4  docs/loop/tasks/written-state-count-model/codex-4314/compute/src/gpu/planted.rs
+63e26d2ee9e8090d5b22e8e76f6033406e54ea74ec66e55a18732d5035420ac3  docs/loop/tasks/written-state-count-model/codex-4314/compute/src/bin/unchanged-lexical.rs
+eb22800aba5f40b2002665e7c0e8688dd38adde69bb73a58c86d992fa7ff979c  docs/loop/tasks/written-state-count-model/codex-4314/compute/src/opening.cu
+f42c487aeedde3eb41b7378a45ec1a8e7e7cf6b3902c2aa3ade6df580cd6da16  docs/labs/m1-d11-artifact-scorer/instrument/src/kernel_core.h
+a5000ae6859910a27a53136d82e43ff6c8d67fedc2c52fc78f0235da03d37f31  docs/labs/m1-d11-artifact-scorer/instrument/src/scorer.cu
+e010cdbe1ee4c0316108fc2e9ae676d0abf1d57e9180460e48fbac1fc79a8cf8  crates/uor-r4-integer/src/discrete_d11.rs
+682343ca031b273472a1a9e3ccf37e362ce42893eddc09f2d52a70aba32b152a  crates/uor-r4-integer/src/discrete_d11/native_opening.rs

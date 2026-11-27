@@ -1,0 +1,48 @@
+{
+  "schema": "uor-r4.native-opening-product-fixture/1",
+  "scope": "Finite planted host check on Wick using the frozen answer-first D11 and a three-entry colon score row.",
+  "checkout_base": "d7e9bd1edcba60c075a0b0aaa86ea72c56fc3e7b",
+  "host": "Wick Linux x86_64",
+  "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-marker-question/product-planted-v1",
+  "build": "cargo build --release --locked -p uor-r4-integer --features serving-wasm --bin pack-native-opening --bin verify-native-opening --bin uor-chat",
+  "source_manifest_sha256": "9cad4bf0dcee3998da0595ee84fd80bd21e59c40431563f840271e62e58c0dc4",
+  "build_log_sha256": "cda0ded6f6c2fd98c088bbdbf15fa31b4aacec69d12dfb8553e1edaa59d0c6ad",
+  "binaries_sha256": {
+    "pack-native-opening": "5a7126ea173dfcfe45c0df963c109a75c8e72da2fa0277b4dac61a7c8f784752",
+    "verify-native-opening": "5c6dbe89f90d311ff54a1b76f44e1781c47c415fc7922dcc7f75c686c995c902",
+    "uor-chat": "edce91ad9497b67e40627830f73e5a5e1a90d2168d5c00bd4fde6854a1493b9e"
+  },
+  "carrier": {
+    "base_sha256": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+    "artifact_sha256": "acbfde7403b770e1ba74cf6ec6894d78b51cb3fef79c0f79ede35a558e356d0f",
+    "state_sha256": "a1a4ce7bcfd7066b7263f5161b6844d7ba10c3ef121547c6d379a938257d9652",
+    "base_bytes": 1201932060,
+    "artifact_bytes": 1201932470,
+    "state_bytes": 46
+  },
+  "two_planted_rows": {
+    "original_ids": [0, 1, 223],
+    "scores": [-1, 0, 8],
+    "ranks": [4096, 494, 1],
+    "question_state": null,
+    "selected_key": 0,
+    "support": 4,
+    "selected": 223,
+    "emitted": 223
+  },
+  "ordinary_cli": {
+    "matching_text_and_raw_prompt_ids": true,
+    "matching_text_and_raw_generated_ids": [223],
+    "controlled_text_encoded_to_frozen_ids": true,
+    "coqa_text_encoded_to_frozen_ids": true
+  },
+  "output_sha256": {
+    "planted/pack.json": "e6f47714cfcd036fd53fe2495aaa324bebf4ea93f5522ca002be8bf4d12420f9",
+    "planted/replay.jsonl": "115407fd179bcad660b5191e8805d5813a698370a4c39faa7139e6d4d9c7d35e",
+    "planted/text.json": "3e681ce8350f8c7ef60dfc1829b84f2133a7a7567ec213cddea1f9bdc1594a84",
+    "planted/ids.json": "31d73c412eefc448f209a4e21a2a5c1f13a0e3998d7d97e66bd1b922648db3d7",
+    "planted/controlled-text.json": "320335ea908d4d9db151a2a21c076880a145632b0e78c0d20c14edf7401911ee",
+    "planted/coqa-text.json": "f8607ef4c91853b2a042126f42fcc5c6a1aab9f4a944f98725263488427dfdcd"
+  }
+}

@@ -679,26 +679,10 @@ D11_HD static void d11_trunk_consider_candidate(const uint32_t* trunk, int32_t v
     }
 }
 
-// DiscreteTrunkTables::apply_joint_pointer_gate (discrete_d11.rs:627-662).
-D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
-    const D11Model* m, const uint32_t* prefix, int32_t length, int32_t* q,
-    int32_t mode, int32_t source, uint32_t target, D11PointerTrace* trace,
-    D11RowProbe* probe = 0) {
-    if (m->blocks != 4) {
-        return D11_ERR_SHAPE;
-    }
-    int32_t read_roots[4];
-    for (int32_t b = 0; b < 4; ++b) {
-        read_roots[b] = d11_root_id(q + b * 8);
-        if (read_roots[b] < 0) {
-            return D11_ERR_ORBIT;
-        }
-    }
-    uint32_t r_key = ((uint32_t)read_roots[0] & 0xFu)
-        | (((uint32_t)read_roots[1] & 0xFu) << 4)
-        | (((uint32_t)read_roots[2] & 0xFu) << 8)
-        | (((uint32_t)read_roots[3] & 0xFu) << 12);
-
+// Shared native key for the unmodified trunk and the assistant-opening readout.
+D11_HD static int32_t d11_trunk_recurrence(const D11Model* m, const uint32_t* prefix,
+                                           int32_t length, uint32_t* code, D11RowProbe* probe = 0) {
+    if (length <= 0) return D11_ERR_PREFIX_LENGTH;
     const uint32_t* step_candidates = m->trunk + 1;
     const uint32_t* norm_candidates = m->trunk + 65;
     const uint32_t* packed_roots = m->trunk + 70 + m->vocabulary;
@@ -769,11 +753,63 @@ D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
         if (probe != 0) {
             probe->recurrent_frames[b] = f_last;
             for (int32_t d = 0; d < 8; ++d) {
-                probe->read[8 * b + d] = q[8 * b + d];
                 probe->recurrence[8 * b + d] = normalized_block[d];
                 probe->recurrence_sum[8 * b + d] = sum_block[d];
             }
         }
+    }
+
+    *code = c_key;
+    return D11_OK;
+}
+
+// The trained gate supplies an original ID; both heads use this same writer rotation.
+D11_HD static int32_t d11_rotate_to_token(const D11Model* m, int32_t* q, uint32_t best_tok) {
+    if (best_tok >= (uint32_t)m->vocabulary || m->blocks != 4) return D11_ERR_SHAPE;
+    const uint32_t* packed_roots = m->trunk + 70 + m->vocabulary;
+    uint32_t target_packed = packed_roots[best_tok];
+    for (int32_t b = 0; b < 4; ++b) {
+        int32_t src = d11_root_id(q + b * 8);
+        if (src < 0) return D11_ERR_ORBIT;
+        int32_t dst = (int32_t)((target_packed >> (4 * b)) & 0xFu);
+        int32_t frame = (int32_t)D11_BFS[(src << 4) + dst];
+        int32_t rotated[8];
+        d11_action(frame, q + b * 8, rotated);
+        int32_t snapped_root = d11_snap(rotated, 1);
+        for (int32_t d = 0; d < 8; ++d) {
+            q[b * 8 + d] = (int32_t)D11_ROOTS[snapped_root][d];
+        }
+    }
+    return D11_OK;
+}
+
+// DiscreteTrunkTables::apply_joint_pointer_gate (discrete_d11.rs:627-662).
+D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
+    const D11Model* m, const uint32_t* prefix, int32_t length, int32_t* q,
+    int32_t mode, int32_t source, uint32_t target, D11PointerTrace* trace,
+    D11RowProbe* probe = 0) {
+    if (m->blocks != 4) {
+        return D11_ERR_SHAPE;
+    }
+    int32_t read_roots[4];
+    for (int32_t b = 0; b < 4; ++b) {
+        read_roots[b] = d11_root_id(q + b * 8);
+        if (read_roots[b] < 0) {
+            return D11_ERR_ORBIT;
+        }
+    }
+    uint32_t r_key = ((uint32_t)read_roots[0] & 0xFu)
+        | (((uint32_t)read_roots[1] & 0xFu) << 4)
+        | (((uint32_t)read_roots[2] & 0xFu) << 8)
+        | (((uint32_t)read_roots[3] & 0xFu) << 12);
+
+    const uint32_t* packed_roots = m->trunk + 70 + m->vocabulary;
+    int32_t last_pos = length - 1;
+    uint32_t c_key = 0;
+    int32_t recurrence_status = d11_trunk_recurrence(m, prefix, length, &c_key, probe);
+    if (recurrence_status != D11_OK) return recurrence_status;
+    if (probe != 0) {
+        for (int d = 0; d < 32; ++d) probe->read[d] = q[d];
     }
 
     int32_t natural_source = -1;
@@ -870,26 +906,14 @@ D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
         if (mode == 3) best_tok = prefix[source];
         trace->writer_token = best_tok;
     }
-    uint32_t target_packed = packed_roots[best_tok];
-    for (int32_t b = 0; b < 4; ++b) {
-        int32_t src = read_roots[b];
-        int32_t dst = (int32_t)((target_packed >> (4 * b)) & 0xFu);
-        int32_t frame = (int32_t)D11_BFS[(src << 4) + dst];
-        int32_t rotated[8];
-        d11_action(frame, q + b * 8, rotated);
-        int32_t snapped_root = d11_snap(rotated, 1);
-        for (int32_t d = 0; d < 8; ++d) {
-            q[b * 8 + d] = (int32_t)D11_ROOTS[snapped_root][d];
-        }
-    }
-    return D11_OK;
+    return d11_rotate_to_token(m, q, best_tok);
 }
 
 // evaluate_prefix (:1165-1256) and observe_target (:1278-1378).
 D11_HD static void d11_evaluate_row(
     const D11Model* m, const uint32_t* prefix, int32_t length, uint32_t target, D11Scratch* s,
     D11RowOut* out, int32_t mode = 0, int32_t source = -1, D11PointerTrace* trace = 0,
-    D11RowProbe* probe = 0) {
+    D11RowProbe* probe = 0, int32_t trained_opening_id = -1) {
     out->status = D11_OK;
     out->admitted_count = 0;
     out->top8_count = 0;
@@ -940,8 +964,10 @@ D11_HD static void d11_evaluate_row(
         }
     }
     if (m->trunk != 0 && m->trunk[0] != 0u) {
-        status = d11_trunk_apply_joint_pointer_gate(m, prefix, length, out->read_vector,
-                                                   mode, source, target, trace, probe);
+        status = trained_opening_id >= 0
+            ? d11_rotate_to_token(m, out->read_vector, (uint32_t)trained_opening_id)
+            : d11_trunk_apply_joint_pointer_gate(m, prefix, length, out->read_vector,
+                                                 mode, source, target, trace, probe);
         if (status != D11_OK) {
             out->status = status;
             return;

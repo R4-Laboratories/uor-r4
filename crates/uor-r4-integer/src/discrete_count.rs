@@ -508,7 +508,11 @@ pub fn load_client_artifact(
     use std::io::Read;
 
     let mut file = std::fs::File::open(path)?;
-    let file_len = file.metadata().ok().map(|m| m.len());
+    let file_len = file
+        .metadata()
+        .ok()
+        .filter(|m| m.is_file())
+        .map(|m| m.len());
     let mut preamble = [0u8; 16];
     let mut read_len = 0usize;
     while read_len < 16 {
@@ -611,8 +615,10 @@ pub fn load_client_artifact(
     prefix.extend_from_slice(&preamble[..read_len]);
     prefix.extend_from_slice(&header_buf);
     let chained = std::io::Read::chain(std::io::Cursor::new(prefix), file);
-    let model =
-        IntegerDiscreteModel::from_reader(std::io::BufReader::with_capacity(64 * 1024, chained))?;
+    let model = IntegerDiscreteModel::from_reader_with_len(
+        std::io::BufReader::with_capacity(64 * 1024, chained),
+        file_len,
+    )?;
     Ok(ClientArtifactFile::Legacy(model))
 }
 
