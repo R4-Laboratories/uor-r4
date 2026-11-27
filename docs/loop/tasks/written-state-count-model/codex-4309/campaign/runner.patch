@@ -1,0 +1,1016 @@
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/campaign_clock.rs b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/campaign_clock.rs
+new file mode 100644
+--- /dev/null
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/campaign_clock.rs
+@@ -0,0 +1,527 @@
++#![forbid(unsafe_code)]
++
++use crate::cuda::{split_uorp4a01_sections, P5GpuEngine, SlotStepCmdHost, P5_MAX_SLOTS};
++use crate::train_eval::{
++    bvgk_decide_and_apply, load_train_r, split_records_on_bos, splitmix64_step, SlotBatchScheduler,
++    PIN_P4_D11_SHA256, PIN_R_UORT_SHA256, PIN_SEED1_D11_SHA256, SEED_RANDOM_COORD_RNG,
++    SEED_RESEED_CANONICAL, SEED_RESEED_RANDOM,
++};
++use crate::{fail, load_uort_tokens, verify_file_sha256, Result};
++use serde_json::{json, Value};
++use sha2::{Digest, Sha256};
++use std::{
++    collections::BTreeMap,
++    fs::{self, File},
++    io::{BufWriter, Write},
++    path::Path,
++    time::{Duration, Instant},
++};
++use uor_r4_count_runtime::p4_serving::P4_MAX_CONTEXT;
++use uor_r4_discrete::p5_brier_core::{
++    p5_random_block_coords, p5_schedule_block, P5S1State, P5_MAX_BATCH_ROWS, P5_MAX_K, P5_S1_COORDS,
++};
++
++const SOURCE_HEAD: &str = "5d6d75b140a8d042256bac14122618cb3a80037e";
++const STEPS_PER_SLOT: usize = 16;
++const BIN_COUNT: usize = 4;
++const SAMPLES_PER_BIN: usize = 4;
++const SAMPLE_COUNT: usize = BIN_COUNT * SAMPLES_PER_BIN;
++const SAMPLE_SEED: u64 = 4394;
++const SPOT_ROWS: [usize; 8] = [0, 15, 256, 1023, 2048, 3072, 4080, 4095];
++
++fn step_arm(
++    engine: &mut P5GpuEngine,
++    rows: u32,
++    state: &mut P5S1State,
++    coords: &[u32],
++) -> Result<Value> {
++    let start = Instant::now();
++    let mut baseline = Duration::ZERO;
++    let scores =
++        engine.score_rowsk_on_batch_with_clock(rows, &state.roots, coords, Some(&mut baseline))?;
++    let score = start.elapsed();
++
++    let choice_start = Instant::now();
++    let mut joint = Duration::ZERO;
++    let record = bvgk_decide_and_apply(state, coords, &scores, |roots| {
++        let joint_start = Instant::now();
++        let result = engine.eval_roots_on_batch(rows, roots)?;
++        joint = joint_start.elapsed();
++        Ok(result)
++    })?;
++    let choose_apply = choice_start.elapsed();
++    let wall = start.elapsed();
++    if record.k as usize != P5_MAX_K
++        || scores
++            .iter()
++            .any(|s| s.status != 0 || s.losses[0] != record.l_before)
++    {
++        return Err(fail(
++            "campaign clock incomplete or inconsistent K64 scoring",
++        ));
++    }
++    Ok(json!({
++        "wall_ns": wall.as_nanos(),
++        "score_ns": score.as_nanos(),
++        "base_eval_ns": baseline.as_nanos(),
++        "rowsk_score_reduce_readback_ns": score.saturating_sub(baseline).as_nanos(),
++        "choose_apply_ns": choose_apply.saturating_sub(joint).as_nanos(),
++        "joint_eval_ns": record.l_joint.map(|_| joint.as_nanos()),
++        "coordinates": coords,
++        "candidate_move_trials": u64::from(record.k) * 15,
++        "candidate_loss_lanes_including_baseline": u64::from(record.k) * 16,
++        "improving_coordinates": record.s_len,
++        "joint_accepted": record.joint,
++        "committed_coords": record.commit_coords,
++        "committed_lanes": record.commit_lanes,
++        "epoch_after": record.epoch_after,
++        "batch_brier_before_q32": record.l_before,
++        "batch_brier_joint_q32": record.l_joint,
++        "batch_brier_best_single_q32": record.l_best,
++        "batch_brier_after_q32": record.committed_loss,
++    }))
++}
++
++fn advance_depths(
++    slot_depths: &mut [usize; P5_MAX_SLOTS],
++    slot_offsets: &[u32],
++    slot_counts: &[u32],
++    cmds: &[SlotStepCmdHost],
++) -> Vec<usize> {
++    let mut depths = vec![0; cmds.len()];
++    for (slot, (&offset, &count)) in slot_offsets.iter().zip(slot_counts).enumerate() {
++        for command in &cmds[offset as usize..(offset + count) as usize] {
++            if command.reset_record != 0 {
++                slot_depths[slot] = 0;
++            }
++            slot_depths[slot] += 1;
++            depths[command.out_row as usize] = slot_depths[slot];
++        }
++    }
++    depths
++}
++
++pub(crate) fn restore_predecessor_suffixes(
++    engine: &mut P5GpuEngine,
++    suffixes: &[&[u16]],
++) -> Result<usize> {
++    let mut offsets = Vec::with_capacity(suffixes.len());
++    let mut counts = Vec::with_capacity(suffixes.len());
++    let mut commands = Vec::new();
++    for &suffix in suffixes {
++        offsets.push(commands.len() as u32);
++        counts.push(suffix.len() as u32);
++        for (index, &tok) in suffix.iter().enumerate() {
++            commands.push(SlotStepCmdHost {
++                tok,
++                reset_record: u32::from(index == 0),
++                ..SlotStepCmdHost::default()
++            });
++        }
++    }
++    if !commands.is_empty() {
++        engine.clock_replay_prefix(&offsets, &counts, &commands)?;
++    }
++    Ok(commands.len())
++}
++
++#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd)]
++struct BatchRank {
++    sliding_targets: usize,
++    sum_clipped_depth: usize,
++    ordinal: usize,
++}
++
++fn plan_sample(
++    tokens: &[u16],
++    records: &[(usize, usize)],
++) -> Result<(BTreeMap<usize, usize>, Value)> {
++    let mut scheduler = SlotBatchScheduler::new(tokens, records, P5_MAX_SLOTS, STEPS_PER_SLOT)?;
++    let mut slot_depths = [0; P5_MAX_SLOTS];
++    let mut window_histogram = vec![0u64; P4_MAX_CONTEXT + 1];
++    let mut record_resets = 0;
++    let mut clipped_depth_sum = 0;
++    let mut sliding_total = 0;
++    let mut targets = 0usize;
++    let mut ordinal = 0;
++    let mut full_batch_ranks = Vec::new();
++    let mut partial_batches = Vec::new();
++
++    while let Some((num_rows, offsets, counts, commands)) = scheduler.next_batch() {
++        ordinal += 1;
++        targets += num_rows as usize;
++        let depths = advance_depths(&mut slot_depths, &offsets, &counts, &commands);
++        let mut sliding_targets = 0;
++        let mut sum_clipped_depth = 0;
++        for depth in depths {
++            let clipped = depth.min(P4_MAX_CONTEXT);
++            sliding_targets += usize::from(depth > P4_MAX_CONTEXT);
++            sum_clipped_depth += clipped;
++            window_histogram[clipped] += 1;
++        }
++        clipped_depth_sum += sum_clipped_depth;
++        sliding_total += sliding_targets;
++        record_resets += commands.iter().filter(|c| c.reset_record != 0).count();
++        if num_rows as usize == P5_MAX_BATCH_ROWS {
++            full_batch_ranks.push(BatchRank {
++                ordinal,
++                sliding_targets,
++                sum_clipped_depth,
++            });
++        } else {
++            partial_batches.push(json!({
++                "ordinal": ordinal,
++                "targets": num_rows,
++                "strict_slide_targets": sliding_targets,
++                "sum_clipped_depth": sum_clipped_depth,
++            }));
++        }
++    }
++
++    if targets != tokens.len() - records.len()
++        || full_batch_ranks.len() < SAMPLE_COUNT
++        || full_batch_ranks
++            .iter()
++            .all(|rank| rank.sliding_targets == 0)
++    {
++        return Err(fail("R scheduler census or sliding coverage invalid"));
++    }
++
++    full_batch_ranks.sort_unstable();
++    let full_batches = full_batch_ranks.len();
++    let mut rng = SAMPLE_SEED;
++    let mut selected = BTreeMap::new();
++    let mut bins = Vec::new();
++    for bin in 0..BIN_COUNT {
++        let start = full_batches * bin / BIN_COUNT;
++        let end = full_batches * (bin + 1) / BIN_COUNT;
++        let full_bin = &full_batch_ranks[start..end];
++        let mut draws: Vec<_> = full_bin
++            .iter()
++            .map(|rank| (rank.ordinal != 1, splitmix64_step(&mut rng), rank.ordinal))
++            .collect();
++        draws.sort_unstable();
++        let chosen: Vec<_> = draws.iter().take(SAMPLES_PER_BIN).map(|d| d.2).collect();
++        for &ordinal in &chosen {
++            selected.insert(ordinal, bin + 1);
++        }
++        bins.push(json!({
++            "bin_one_based": bin + 1,
++            "rank_range_zero_based_exclusive_end": [start, end],
++            "strict_slide_targets_min": full_bin[0].sliding_targets,
++            "strict_slide_targets_max": full_bin[full_bin.len()-1].sliding_targets,
++            "selected_campaign_ordinals_one_based": chosen,
++        }));
++    }
++    if !selected.contains_key(&1) || selected.len() != SAMPLE_COUNT {
++        return Err(fail(
++            "campaign clock sampling did not select 16 batches including launch 1",
++        ));
++    }
++    Ok((
++        selected,
++        json!({
++            "seed": SAMPLE_SEED,
++            "epoch_batches": ordinal,
++            "full_batches": full_batches,
++            "partial_batches": partial_batches,
++            "bin_rank": ["strict_sliding_targets", "sum_clipped_depth", "ordinal"],
++            "bins": bins,
++            "r_targets": targets,
++            "full_window_targets": window_histogram[P4_MAX_CONTEXT],
++            "strict_slide_targets": sliding_total,
++            "window_depth_sum": clipped_depth_sum,
++            "record_resets": record_resets,
++            "window_depth_histogram_depths_1_through_2048": &window_histogram[1..],
++        }),
++    ))
++}
++
++fn check_real_consecutive(
++    engine: &mut P5GpuEngine,
++    tokens: &[u16],
++    records: &[(usize, usize)],
++    ordinal: usize,
++    roots: &[u8],
++) -> Result<Value> {
++    let start = Instant::now();
++    let mut scheduler = SlotBatchScheduler::new(tokens, records, P5_MAX_SLOTS, STEPS_PER_SLOT)?;
++    let seek = ordinal
++        .checked_sub(2)
++        .ok_or_else(|| fail("real spot needs a predecessor"))?;
++    for _ in 0..seek {
++        scheduler
++            .next_batch()
++            .ok_or_else(|| fail("real spot seek exhausted R"))?;
++    }
++
++    let prefix = restore_predecessor_suffixes(engine, &scheduler.clock_predecessor_suffixes())?;
++    let (_, offsets, counts, commands) = scheduler
++        .next_batch()
++        .ok_or_else(|| fail("real spot missing predecessor launch"))?;
++    engine.materialize_batch(P5_MAX_SLOTS as u32, &offsets, &counts, &commands)?;
++    let direct = scheduler.clock_predecessor_suffixes();
++    let (rows, offsets, counts, commands) = scheduler
++        .next_batch()
++        .ok_or_else(|| fail("real spot missing selected launch"))?;
++    engine.materialize_batch(P5_MAX_SLOTS as u32, &offsets, &counts, &commands)?;
++    let continuous_hash = engine.clock_materialized_rows_sha(rows as usize, &SPOT_ROWS)?;
++    let continuous_brier = engine.eval_roots_on_batch(rows, roots)?;
++
++    let direct_count = restore_predecessor_suffixes(engine, &direct)?;
++    engine.materialize_batch(P5_MAX_SLOTS as u32, &offsets, &counts, &commands)?;
++    let direct_hash = engine.clock_materialized_rows_sha(rows as usize, &SPOT_ROWS)?;
++    let direct_brier = engine.eval_roots_on_batch(rows, roots)?;
++    if continuous_hash != direct_hash || continuous_brier != direct_brier {
++        return Err(fail("real consecutive/snapshot differential failed"));
++    }
++    Ok(json!({
++        "campaign_launch_ordinal_one_based": ordinal,
++        "preceding_campaign_launch_ordinal_one_based": ordinal - 1,
++        "consecutive_start_rehydrated_predecessors": prefix,
++        "direct_rehydrated_predecessors": direct_count,
++        "targets_used_in_batch_brier": rows,
++        "row_indices_zero_based_used_in_digest": SPOT_ROWS,
++        "consecutive_active_row_words_sha256": continuous_hash,
++        "direct_active_row_words_sha256": direct_hash,
++        "consecutive_seed1_q32_batch_brier": continuous_brier,
++        "direct_seed1_q32_batch_brier": direct_brier,
++        "diagnostic_wall_ns": start.elapsed().as_nanos(),
++    }))
++}
++
++fn state_sha(state: &P5S1State) -> Result<String> {
++    let bytes = state.encode_bytes()?;
++    if P5S1State::from_bytes(&bytes)? != *state {
++        return Err(fail("campaign clock UORP5S10 round-trip failed"));
++    }
++    Ok(hex::encode(Sha256::digest(&bytes)))
++}
++
++/// Census only. This command reads tokens and visits the scheduler without a CUDA context.
++pub fn print_plan(r: &Path) -> Result<()> {
++    let bytes = verify_file_sha256(r, PIN_R_UORT_SHA256, "r.tokens.u16")?;
++    let tokens = load_uort_tokens(&bytes)?;
++    let records = split_records_on_bos(&tokens)?;
++    let (_, plan) = plan_sample(&tokens, &records)?;
++    println!("{}", serde_json::to_string_pretty(&plan)?);
++    Ok(())
++}
++
++pub fn run(p4: &Path, seed1: &Path, r: &Path, out: &Path) -> Result<()> {
++    fs::create_dir(out)?;
++    let mut progress = BufWriter::new(File::create(out.join("progress.jsonl"))?);
++    let cold_start = Instant::now();
++    let load_start = Instant::now();
++    let inputs = load_train_r(p4, seed1, r)?;
++    let input_ns = load_start.elapsed().as_nanos();
++    let device_start = Instant::now();
++    let sections = split_uorp4a01_sections(&inputs.state_bytes)?;
++    let mut engine = P5GpuEngine::new(0, &sections, P5_MAX_BATCH_ROWS, P5_MAX_SLOTS)?;
++    let device_ns = device_start.elapsed().as_nanos();
++
++    let arm_start = Instant::now();
++    let mut seed_arm = inputs.seed1.clone();
++    let mut canon_arm = P5S1State::reseeded(
++        seed_arm.vocab,
++        seed_arm.blocks,
++        SEED_RESEED_CANONICAL,
++        seed_arm.parent_trunk_sha256,
++    )?;
++    let mut rand_arm = P5S1State::reseeded(
++        seed_arm.vocab,
++        seed_arm.blocks,
++        SEED_RESEED_RANDOM,
++        seed_arm.parent_trunk_sha256,
++    )?;
++    let mut rng = SEED_RANDOM_COORD_RNG;
++    let arm_init_ns = arm_start.elapsed().as_nanos();
++    let cold_ns = cold_start.elapsed().as_nanos();
++    let starting_states = [
++        state_sha(&seed_arm)?,
++        state_sha(&canon_arm)?,
++        state_sha(&rand_arm)?,
++    ];
++    let mut scheduler = SlotBatchScheduler::new(
++        &inputs.tokens,
++        &inputs.records,
++        P5_MAX_SLOTS,
++        STEPS_PER_SLOT,
++    )?;
++    let cold = json!({
++        "wall_ns": cold_ns,
++        "artifact_load_sha_census_ns": input_ns,
++        "cuda_context_cubin_tables_alloc_sync_ns": device_ns,
++        "arm_initialization_ns": arm_init_ns,
++        "cubin_sha256": engine.cubin_sha256(),
++    });
++    eprintln!("[campaign-clock] initialized {cold}");
++    writeln!(progress, "{cold}")?;
++    progress.flush()?;
++
++    let census_start = Instant::now();
++    let (selected, epoch_census) = plan_sample(&inputs.tokens, &inputs.records)?;
++    let census_ns = census_start.elapsed().as_nanos();
++    eprintln!(
++        "[campaign-clock] selected {:?}",
++        selected.keys().collect::<Vec<_>>()
++    );
++    let mut sample = Vec::with_capacity(SAMPLE_COUNT);
++    let &last_sample = selected
++        .keys()
++        .next_back()
++        .ok_or_else(|| fail("empty clock sample"))?;
++    let mut strict_slide_samples = 0;
++    for ordinal in 1..=last_sample {
++        let Some(&bin) = selected.get(&ordinal) else {
++            scheduler
++                .next_batch()
++                .ok_or_else(|| fail("R scheduler exhausted before sample ended"))?;
++            p5_random_block_coords(P5_S1_COORDS, P5_MAX_K, &mut rng)?;
++            continue;
++        };
++
++        let restore_start = Instant::now();
++        let mut depths_in_slots = scheduler.clock_predecessor_depths();
++        let rehydrated =
++            restore_predecessor_suffixes(&mut engine, &scheduler.clock_predecessor_suffixes())?;
++        let restore_ns = restore_start.elapsed().as_nanos();
++        let batch_started = Instant::now();
++        let (num_rows, offsets, counts, cmds) = scheduler
++            .next_batch()
++            .ok_or_else(|| fail("R scheduler exhausted before sample ended"))?;
++        let schedule_ns = batch_started.elapsed().as_nanos();
++        if num_rows as usize != P5_MAX_BATCH_ROWS
++            || cmds.len() != P5_MAX_BATCH_ROWS
++            || counts.len() != P5_MAX_SLOTS
++            || counts.iter().any(|&count| count as usize != STEPS_PER_SLOT)
++        {
++            return Err(fail(format!(
++                "campaign clock expected 256 slots x 16 targets at ordinal {ordinal}, saw {num_rows} rows"
++            )));
++        }
++
++        let materialize_start = Instant::now();
++        engine.materialize_batch(P5_MAX_SLOTS as u32, &offsets, &counts, &cmds)?;
++        let materialize_ns = materialize_start.elapsed().as_nanos();
++        let coords_start = Instant::now();
++        let canonical = p5_schedule_block(P5_S1_COORDS, P5_MAX_K, (ordinal - 1) as u64)?;
++        let random = p5_random_block_coords(P5_S1_COORDS, canonical.len(), &mut rng)?;
++        let coords_ns = coords_start.elapsed().as_nanos();
++
++        let seed = step_arm(&mut engine, num_rows, &mut seed_arm, &canonical)?;
++        let canon = step_arm(&mut engine, num_rows, &mut canon_arm, &canonical)?;
++        let rand = step_arm(&mut engine, num_rows, &mut rand_arm, &random)?;
++        let wall_ns = batch_started.elapsed().as_nanos();
++
++        let diagnostics_start = Instant::now();
++        let record_depths = advance_depths(&mut depths_in_slots, &offsets, &counts, &cmds);
++        let (live_depths, live_targets) = engine.clock_readback_depths_and_targets(cmds.len())?;
++        let mut window_histogram = BTreeMap::new();
++        let mut record_histogram = BTreeMap::new();
++        let mut distinct_targets = std::collections::BTreeSet::new();
++        for command in &cmds {
++            let row = command.out_row as usize;
++            let depth = record_depths[row];
++            if live_depths[row] as usize != depth.min(P4_MAX_CONTEXT)
++                || live_targets[row] != command.target
++                || live_targets[row] == 0
++            {
++                return Err(fail(format!(
++                    "campaign clock target or window mismatch at launch {ordinal} row {row}"
++                )));
++            }
++            *window_histogram.entry(live_depths[row]).or_insert(0usize) += 1;
++            *record_histogram.entry(depth).or_insert(0usize) += 1;
++            distinct_targets.insert(command.target);
++        }
++        let full_rows = window_histogram
++            .get(&(P4_MAX_CONTEXT as u32))
++            .copied()
++            .unwrap_or(0);
++        let slide_rows = record_depths
++            .iter()
++            .filter(|&&depth| depth > P4_MAX_CONTEXT)
++            .count();
++        if ordinal == 1 && (full_rows != 0 || slide_rows != 0) {
++            return Err(fail("first R launch unexpectedly has deep rows"));
++        }
++        if slide_rows != 0 {
++            strict_slide_samples += 1;
++        }
++        let diagnostics_ns = diagnostics_start.elapsed().as_nanos();
++        let receipt = json!({
++            "campaign_launch_ordinal_one_based": ordinal,
++            "sample_index_one_based": sample.len() + 1,
++            "rank_bin_one_based": bin,
++            "rehydrated_predecessors": rehydrated,
++            "rehydration_ns": restore_ns,
++            "targets": num_rows,
++            "distinct_target_ids": distinct_targets.len(),
++            "record_resets": cmds.iter().filter(|cmd| cmd.reset_record != 0).count(),
++            "window_depth_histogram": window_histogram,
++            "unclipped_record_depth_histogram": record_histogram,
++            "full_depth_targets": full_rows,
++            "sliding_targets": slide_rows,
++            "wall_ns": wall_ns,
++            "schedule_ns": schedule_ns,
++            "coordinate_schedule_ns": coords_ns,
++            "materialize_ns": materialize_ns,
++            "diagnostic_readback_and_count_ns": diagnostics_ns,
++            "arms": {
++                "s1_p5_from_seed1": seed,
++                "ctrl_reseed_canonical": canon,
++                "ctrl_reseed_random": rand,
++            },
++        });
++        writeln!(progress, "{receipt}")?;
++        progress.flush()?;
++        eprintln!(
++            "[campaign-clock] launch {ordinal}: targets={num_rows} full={full_rows} sliding={slide_rows} wall_ns={wall_ns}"
++        );
++        sample.push(receipt);
++    }
++
++    if sample.len() != SAMPLE_COUNT || strict_slide_samples == 0 {
++        return Err(fail(
++            "campaign clock unexpected sample census or missing sliding rows",
++        ));
++    }
++    let real_spot = check_real_consecutive(
++        &mut engine,
++        &inputs.tokens,
++        &inputs.records,
++        last_sample,
++        &inputs.seed1.roots,
++    )?;
++    let final_states = [
++        state_sha(&seed_arm)?,
++        state_sha(&canon_arm)?,
++        state_sha(&rand_arm)?,
++    ];
++    let report = json!({
++        "schema": "uor-r4.p5-campaign-clock/1",
++        "campaign_source_head": SOURCE_HEAD,
++        "p4_d11_sha256": PIN_P4_D11_SHA256,
++        "seed1_d11_sha256": PIN_SEED1_D11_SHA256,
++        "r_uort_sha256": PIN_R_UORT_SHA256,
++        "r_records": inputs.records.len(),
++        "r_tokens": inputs.tokens.len(),
++        "r_targets": inputs.tokens.len() - inputs.records.len(),
++        "slots": P5_MAX_SLOTS,
++        "steps_per_slot": STEPS_PER_SLOT,
++        "k": P5_MAX_K,
++        "sampled_targets": 65_536,
++        "candidate_move_trials_each_arm": 15_360,
++        "cold_initialization": cold,
++        "epoch_scheduler_census_wall_ns": census_ns,
++        "epoch_scheduler_census": epoch_census,
++        "real_consecutive_snapshot_differential": real_spot,
++        "s1_arm_order": ["s1_p5_from_seed1", "ctrl_reseed_canonical", "ctrl_reseed_random"],
++        "s1_uorp5s10_start_sha256": starting_states,
++        "s1_uorp5s10_end_sha256": final_states,
++        "batches": sample,
++    });
++    fs::write(out.join("report.json"), serde_json::to_vec_pretty(&report)?)?;
++    Ok(())
++}
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/cuda.rs b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/cuda.rs
+--- a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/cuda.rs
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/cuda.rs
+@@ -345,6 +345,7 @@
+     pub struct P5GpuEngine {
+         stream: Arc<CudaStream>,
+         fn_slot_step: CudaFunction,
++        fn_clock_replay_prefix: CudaFunction,
+         fn_batch_eval: CudaFunction,
+         fn_rowsk_score: CudaFunction,
+         fn_rowsk_reduce: CudaFunction,
+@@ -423,6 +424,7 @@
+             }
+             let module = ctx.load_module(Ptx::from_binary(CUBIN_BYTES.to_vec()))?;
+             let fn_slot_step = module.load_function("p5_slot_step_brier_kernel")?;
++            let fn_clock_replay_prefix = module.load_function("p5_clock_replay_prefix_kernel")?;
+             let fn_batch_eval = module.load_function("p5_batch_eval_roots_kernel")?;
+             let fn_rowsk_score = module.load_function("p5_rowsk_score_kernel")?;
+             let fn_rowsk_reduce = module.load_function("p5_rowsk_reduce_kernel")?;
+@@ -485,6 +487,7 @@
+             Ok(Self {
+                 stream,
+                 fn_slot_step,
++                fn_clock_replay_prefix,
+                 fn_batch_eval,
+                 fn_rowsk_score,
+                 fn_rowsk_reduce,
+@@ -593,6 +596,95 @@
+             Ok(())
+         }
+ 
++        /// Advance the causal part of the slot-step kernel on original scheduler commands.
++        pub fn clock_replay_prefix(
++            &mut self,
++            slot_cmd_offsets: &[u32],
++            slot_cmd_counts: &[u32],
++            cmds: &[SlotStepCmdHost],
++        ) -> Result<()> {
++            let slots = slot_cmd_offsets.len();
++            if slots == 0 || slots > self.d_slots.len() / P5_SLOT_SCRATCH_BYTES || slot_cmd_counts.len() != slots {
++                return Err(fail("invalid campaign clock prefix slot counts"));
++            }
++            for (&offset, &count) in slot_cmd_offsets.iter().zip(slot_cmd_counts) {
++                if u64::from(offset) + u64::from(count) > cmds.len() as u64 {
++                    return Err(fail("campaign clock prefix commands out of bounds"));
++                }
++            }
++            let num_slots = slots as u32;
++            let d_offs = self.stream.clone_htod(slot_cmd_offsets)?;
++            let d_cnts = self.stream.clone_htod(slot_cmd_counts)?;
++            let d_cmds = self.stream.clone_htod(cmds)?;
++            let cfg = cudarc::driver::LaunchConfig {
++                grid_dim: (num_slots, 1, 1),
++                block_dim: (256, 1, 1),
++                shared_mem_bytes: 0,
++            };
++            let mut b = self.stream.launch_builder(&self.fn_clock_replay_prefix);
++            b.arg(&num_slots);
++            b.arg(&d_offs);
++            b.arg(&d_cnts);
++            b.arg(&d_cmds);
++            b.arg(&mut self.d_slots);
++            // SAFETY: The engine slot capacity and command
++            // ranges are validated above. The CUDA types match the original materializer.
++            unsafe { b.launch(cfg) }?;
++            self.stream.synchronize()?;
++            Ok(())
++        }
++
++        /// Small diagnostic readback outside the timed sample.
++        pub fn clock_readback_depths_and_targets(
++            &self,
++            num_rows: usize,
++        ) -> Result<(Vec<u32>, Vec<u16>)> {
++            let depths = self.stream.clone_dtoh(&self.d_row_lens)?;
++            let targets = self.stream.clone_dtoh(&self.d_row_targets)?;
++            if num_rows > depths.len() || num_rows > targets.len() {
++                return Err(fail("campaign clock row count out of bounds"));
++            }
++            Ok((depths[..num_rows].to_vec(), targets[..num_rows].to_vec()))
++        }
++
++        /// Hash only active words from prespecified rows, excluding table padding.
++        pub fn clock_materialized_rows_sha(
++            &self,
++            num_rows: usize,
++            rows: &[usize],
++        ) -> Result<String> {
++            let (depths, targets) = self.clock_readback_depths_and_targets(num_rows)?;
++            let no_pick = self.stream.clone_dtoh(&self.d_row_no_pick)?;
++            let mut sha = Sha256::new();
++            for &row in rows {
++                if row >= num_rows {
++                    return Err(fail("campaign clock spot row out of bounds"));
++                }
++                let depth = depths[row] as usize;
++                if depth == 0 || depth > P4_MAX_CONTEXT {
++                    return Err(fail("campaign clock spot window depth out of bounds"));
++                }
++                sha.update((row as u32).to_le_bytes());
++                sha.update(depths[row].to_le_bytes());
++                sha.update(targets[row].to_le_bytes());
++                sha.update(no_pick[row].to_le_bytes());
++                let start = row * P4_MAX_CONTEXT;
++                for token in self.stream.clone_dtoh(&self.d_row_windows.slice(start..start + depth))? {
++                    sha.update(token.to_le_bytes());
++                }
++                for class_zero_based in 0..4 {
++                    let active = depth.saturating_sub(2);
++                    if active != 0 {
++                        let start = (row * 4 + class_zero_based) * P5_MAX_PICK_POS;
++                        for loss in self.stream.clone_dtoh(&self.d_row_pick.slice(start..start + active))? {
++                            sha.update(loss.to_le_bytes());
++                        }
++                    }
++                }
++            }
++            Ok(hex::encode(sha.finalize()))
++        }
++
+         /// Read back materialized `P5RowBrier` tables for Gate 2 CPU differential verification.
+         pub fn readback_batch_brier(&self, num_rows: usize) -> Result<BatchReadbackHost> {
+             let wins = self.stream.clone_dtoh(&self.d_row_windows)?;
+@@ -651,12 +743,26 @@
+             roots: &[u8],
+             coords: &[u32],
+         ) -> Result<Vec<P5CoordScore>> {
++            self.score_rowsk_on_batch_with_clock(num_rows, roots, coords, None)
++        }
++
++        pub fn score_rowsk_on_batch_with_clock(
++            &mut self,
++            num_rows: u32,
++            roots: &[u8],
++            coords: &[u32],
++            base_elapsed: Option<&mut std::time::Duration>,
++        ) -> Result<Vec<P5CoordScore>> {
+             if coords.is_empty() || coords.len() > P5_MAX_K {
+                 return Err(fail("coords len out of 1..=64"));
+             }
+             let k_u32 = coords.len() as u32;
+             // Populate d_row_base_brier & d_roots_tmp for current `roots`.
++            let base_start = base_elapsed.as_ref().map(|_| std::time::Instant::now());
+             let _base_sum = self.eval_roots_on_batch(num_rows, roots)?;
++            if let (Some(start), Some(elapsed)) = (base_start, base_elapsed) {
++                *elapsed = start.elapsed();
++            }
+ 
+             let mut padded_coords = vec![0u32; P5_MAX_K];
+             padded_coords[..coords.len()].copy_from_slice(coords);
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/finite.rs b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/finite.rs
+--- a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/finite.rs
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/finite.rs
+@@ -17,7 +17,7 @@
+ #[cfg(feature = "cuda")]
+ use uor_r4_discrete::p5_brier_core::{
+     batch_brier_q32, p5_bvgk_step_cpu, p5_orbit_tables, p5_score_block_cpu, p5_step_control_cpu,
+-    P5BatchBrier, P5ControlMode, P5RowBrier,
++    P5BatchBrier, P5ControlMode, P5RowBrier, P5_CANDIDATES,
+ };
+ use uor_r4_discrete::p5_brier_core::{full_vocab_brier_q32, P5S1State, P5_BLOCKS, P5_VOCAB};
+ 
+@@ -868,6 +868,8 @@
+         }
+         let mut slide_row_diffs = 0usize;
+         let mut slide_rowsk_diffs = 0usize;
++        let mut rehydrated_rows_checked = 0usize;
++        let mut rehydrated_score_words_checked = 0usize;
+         let slide_tail_rows = r12_len - 1 - P4_MAX_CONTEXT;
+         {
+             let mut pos = 1usize;
+@@ -943,6 +945,32 @@
+                 if g != c {
+                     slide_rowsk_diffs += 1;
+                 }
++            }
++
++            // Compare the full-window snapshot and an already-slid snapshot
++            // against the original continuous materializer's active row words.
++            for skip in [0, 3] {
++                let earlier = P4_MAX_CONTEXT + skip;
++                let suffix = &planted_stream[r12_off + skip..r12_off + earlier];
++                crate::campaign_clock::restore_predecessor_suffixes(&mut eng, &[suffix])?;
++                let mut resumed = tail_cmds[skip..].to_vec();
++                for (row, command) in resumed.iter_mut().enumerate() {
++                    command.out_row = row as u32;
++                }
++                let count = resumed.len();
++                eng.materialize_batch(1, &[0], &[count as u32], &resumed)?;
++                let (sw, sl, st, sn, sp) = eng.readback_batch_brier(count)?;
++                let observed = reconstruct_batch_brier_from_gpu(count, &sw, &sl, &st, &sn, &sp)?;
++                if observed.rows != slide_batch.rows[skip..] {
++                    return Err(fail("snapshot finite active materialized row words differ"));
++                }
++                let expected = p5_score_block_cpu(&s1_base, &observed, &slide_coords)?;
++                let result = eng.score_rowsk_on_batch(count as u32, &s1_base.roots, &slide_coords)?;
++                if result != expected {
++                    return Err(fail("snapshot finite row-K score words differ"));
++                }
++                rehydrated_rows_checked += count;
++                rehydrated_score_words_checked += slide_coords.len() * P5_CANDIDATES;
+             }
+         }
+         if slide_row_diffs != 0 || slide_rowsk_diffs != 0 {
+@@ -1165,6 +1193,11 @@
+                 "rowsk_k": 16,
+                 "rowsk_diffs": slide_rowsk_diffs,
+             },
++            "campaign_clock_snapshot_check": {
++                "exact_active_rows_checked": rehydrated_rows_checked,
++                "exact_rows_k_loss_words_checked": rehydrated_score_words_checked,
++                "cases": ["exact_2048_predecessor", "already_slid_2051_predecessor"],
++            },
+             "multi_arm_eval": {
+                 "arms": arms_s1.len(),
+                 "records_exhaustively_checked": eval_rec_indices.len(),
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/main.rs b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/main.rs
+--- a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/main.rs
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/main.rs
+@@ -1,6 +1,8 @@
+ #![cfg_attr(not(feature = "cuda"), forbid(unsafe_code))]
+ #![cfg_attr(not(feature = "cuda"), allow(dead_code))]
+ 
++#[cfg(feature = "cuda")]
++mod campaign_clock;
+ mod cuda;
+ mod driver_check;
+ mod finite;
+@@ -92,7 +94,7 @@
+     let args: Vec<String> = env::args().collect();
+     let Some(cmd) = args.get(1).map(String::as_str) else {
+         return Err(fail(
+-            "usage: p5-train <finite|train|eval-devtest|pack-if-pass> [flags]",
++            "usage: p5-train <finite|train|campaign-plan|campaign-clock|eval-devtest|pack-if-pass> [flags]",
+         ));
+     };
+     let rest = &args[2..];
+@@ -100,6 +102,19 @@
+         "finite" => {
+             let out = PathBuf::from(flag_val(rest, "--out")?);
+             finite::run_finite(&out)
++        }
++        #[cfg(feature = "cuda")]
++        "campaign-plan" => {
++            let r = PathBuf::from(flag_val(rest, "--r-uort")?);
++            campaign_clock::print_plan(&r)
++        }
++        #[cfg(feature = "cuda")]
++        "campaign-clock" => {
++            let p4 = PathBuf::from(flag_val(rest, "--p4")?);
++            let seed1 = PathBuf::from(flag_val(rest, "--seed1")?);
++            let r = PathBuf::from(flag_val(rest, "--r-uort")?);
++            let out = PathBuf::from(flag_val(rest, "--out")?);
++            campaign_clock::run(&p4, &seed1, &r, &out)
+         }
+         "train" => {
+             let p4_path = PathBuf::from(flag_val(rest, "--p4")?);
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/p5_kernels.cu b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/p5_kernels.cu
+--- a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/p5_kernels.cu
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/p5_kernels.cu
+@@ -1934,3 +1934,27 @@
+         out_rec_arms[r * num_arms + tid] = acc[tid];
+     }
+ }
++
++// Timing replay only. A scheduler command observes its predecessor token here
++// exactly as in p5_slot_step_brier_kernel. Target evaluation writes no causal
++// state and is only needed for the batches that receive optimizer updates.
++extern "C" __global__ void p5_clock_replay_prefix_kernel(
++    U32 num_slots,
++    const U32* slot_cmd_offsets,
++    const U32* slot_cmd_counts,
++    const SlotStepCmd* cmds,
++    P5SlotScratch* slots
++) {
++    const U32 sid = blockIdx.x;
++    if (sid >= num_slots) return;
++    P5SlotScratch* st = slots + sid;
++    for (U32 ci = 0; ci < slot_cmd_counts[sid]; ++ci) {
++        const SlotStepCmd cmd = cmds[slot_cmd_offsets[sid] + ci];
++        if (cmd.reset_record != 0u) {
++            cache_init_full_parallel(st);
++            __syncthreads();
++        }
++        if (threadIdx.x == 0u) history_observe_t0(st, cmd.tok);
++        __syncthreads();
++    }
++}
+diff --git a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/train_eval.rs b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/train_eval.rs
+--- a/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/train_eval.rs
++++ b/docs/loop/tasks/written-state-count-model/antigravity-19/p5-train/src/train_eval.rs
+@@ -132,6 +132,28 @@
+             next_rec: 0,
+             slot_rec: vec![None; num_slots],
+         })
++    }
++
++    #[cfg(feature = "cuda")]
++    pub(crate) fn clock_predecessor_suffixes(&self) -> Vec<&'a [u16]> {
++        self.slot_rec.iter().map(|slot| match *slot {
++            Some((off, _, next_pos)) => {
++                let n = next_pos - 1;
++                &self.tokens[off + n.saturating_sub(P4_MAX_CONTEXT)..off + n]
++            }
++            None => &[],
++        }).collect()
++    }
++
++    #[cfg(feature = "cuda")]
++    pub(crate) fn clock_predecessor_depths(&self) -> [usize; P5_MAX_SLOTS] {
++        let mut depths = [0; P5_MAX_SLOTS];
++        for (depth, slot) in depths.iter_mut().zip(&self.slot_rec) {
++            if let Some((_, _, next_pos)) = slot {
++                *depth = next_pos - 1;
++            }
++        }
++        depths
+     }
+ 
+     pub fn next_batch(&mut self) -> Option<ScheduledSlotBatch> {
+@@ -330,7 +352,7 @@
+     })
+ }
+ 
+-fn splitmix64_step(state: &mut u64) -> u64 {
++pub(crate) fn splitmix64_step(state: &mut u64) -> u64 {
+     *state = state.wrapping_add(0x9E37_79B9_7F4A_7C15);
+     let mut z = *state;
+     z = (z ^ (z >> 30)).wrapping_mul(0xBF58_476D_1CE4_E5B9);
+@@ -593,6 +615,82 @@
+     (b, q, t)
+ }
+ 
++#[cfg(feature = "cuda")]
++pub(crate) struct TrainRInputs {
++    pub state_bytes: Vec<u8>,
++    pub seed1: P5S1State,
++    pub tokens: Vec<u16>,
++    pub records: Vec<(usize, usize)>,
++}
++
++#[cfg(feature = "cuda")]
++pub(crate) fn load_train_r(
++    p4_path: &Path,
++    seed1_path: &Path,
++    r_path: &Path,
++) -> Result<TrainRInputs> {
++    let p4_file_bytes = verify_file_sha256(p4_path, PIN_P4_D11_SHA256, "p4.d11")?;
++    drop(p4_file_bytes);
++    let seed1_bytes = verify_file_sha256(seed1_path, PIN_SEED1_D11_SHA256, "seed1.d11")?;
++    let r_raw = verify_file_sha256(r_path, PIN_R_UORT_SHA256, "r.tokens.u16")?;
++    let s1_seed1 = extract_s1_from_uorlut01(&seed1_bytes)?;
++    if s1_seed1.vocab != P5_VOCAB || s1_seed1.blocks != P5_BLOCKS {
++        return Err(fail("seed1.d11 S1 shape != (4096, 4)"));
++    }
++    drop(seed1_bytes);
++
++    // Load frozen P4 embedded sections directly from p4.d11 and verify its S1 codes match seed1.
++    let reloaded = load_client_artifact(p4_path, false)
++        .map_err(|e| fail(format!("load p4.d11: {e}")))?;
++    let (state_bytes, model_pick_codes) = match reloaded {
++        ClientArtifactFile::Embedded {
++            model,
++            state_bytes,
++            expected_state_sha256,
++            ..
++        } => {
++            if hex::encode(Sha256::digest(&state_bytes)) != expected_state_sha256 {
++                return Err(fail("p4.d11 embedded state SHA-256 mismatch"));
++            }
++            let codes = model
++                .identity_pick_codes()
++                .map_err(|e| fail(format!("identity_pick_codes: {e}")))?;
++            (state_bytes, codes)
++        }
++        ClientArtifactFile::Legacy(_) => {
++            return Err(fail("p4.d11 parsed as Legacy instead of Embedded"));
++        }
++    };
++    if model_pick_codes != s1_seed1.derive_pick_codes_4()? {
++        return Err(fail(
++            "p4.d11 embedded identity_pick_codes disagree with seed1.d11 S1 state",
++        ));
++    }
++
++    let r_tokens = load_uort_tokens(&r_raw)?;
++    drop(r_raw);
++    let r_recs = split_records_on_bos(&r_tokens)?;
++    let r_targets: usize = r_recs.iter().map(|&(_, l)| l.saturating_sub(1)).sum();
++    if r_recs.len() != R_EXPECTED_RECORDS
++        || r_tokens.len() != R_EXPECTED_TOKENS
++        || r_targets != R_EXPECTED_TARGETS
++    {
++        return Err(fail(format!(
++            "R census mismatch: recs={} toks={} tgts={}",
++            r_recs.len(),
++            r_tokens.len(),
++            r_targets
++        )));
++    }
++
++    Ok(TrainRInputs {
++        state_bytes,
++        seed1: s1_seed1,
++        tokens: r_tokens,
++        records: r_recs,
++    })
++}
++
+ pub struct TrainArgs<'a> {
+     pub p4_path: &'a Path,
+     pub seed1_path: &'a Path,
+@@ -621,65 +719,17 @@
+             return Err(fail("invalid min_epochs/max_epochs/k_block"));
+         }
+         fs::create_dir_all(args.out_dir)?;
+-        let p4_file_bytes = verify_file_sha256(args.p4_path, PIN_P4_D11_SHA256, "p4.d11")?;
+-        drop(p4_file_bytes);
+-        let seed1_bytes = verify_file_sha256(args.seed1_path, PIN_SEED1_D11_SHA256, "seed1.d11")?;
+-        let r_raw = verify_file_sha256(args.r_path, PIN_R_UORT_SHA256, "r.tokens.u16")?;
++        let TrainRInputs {
++            state_bytes,
++            seed1: s1_seed1,
++            tokens: r_tokens,
++            records: r_recs,
++        } = load_train_r(args.p4_path, args.seed1_path, args.r_path)?;
+         let dt_raw = verify_file_sha256(
+             args.devtune_path,
+             PIN_DEV_TUNE_UORT_SHA256,
+             "dev-tune.tokens.u16",
+         )?;
+-
+-        let s1_seed1 = extract_s1_from_uorlut01(&seed1_bytes)?;
+-        if s1_seed1.vocab != P5_VOCAB || s1_seed1.blocks != P5_BLOCKS {
+-            return Err(fail("seed1.d11 S1 shape != (4096, 4)"));
+-        }
+-        drop(seed1_bytes);
+-
+-        // Load frozen P4 embedded sections directly from p4.d11 and verify its S1 codes match seed1.
+-        let reloaded = load_client_artifact(args.p4_path, false)
+-            .map_err(|e| fail(format!("load p4.d11: {e}")))?;
+-        let (state_bytes, model_pick_codes) = match reloaded {
+-            ClientArtifactFile::Embedded {
+-                model,
+-                state_bytes,
+-                expected_state_sha256,
+-                ..
+-            } => {
+-                if hex::encode(Sha256::digest(&state_bytes)) != expected_state_sha256 {
+-                    return Err(fail("p4.d11 embedded state SHA-256 mismatch"));
+-                }
+-                let codes = model
+-                    .identity_pick_codes()
+-                    .map_err(|e| fail(format!("identity_pick_codes: {e}")))?;
+-                (state_bytes, codes)
+-            }
+-            ClientArtifactFile::Legacy(_) => {
+-                return Err(fail("p4.d11 parsed as Legacy instead of Embedded"));
+-            }
+-        };
+-        if model_pick_codes != s1_seed1.derive_pick_codes_4()? {
+-            return Err(fail(
+-                "p4.d11 embedded identity_pick_codes disagree with seed1.d11 S1 state",
+-            ));
+-        }
+-
+-        let r_tokens = load_uort_tokens(&r_raw)?;
+-        drop(r_raw);
+-        let r_recs = split_records_on_bos(&r_tokens)?;
+-        let r_targets: usize = r_recs.iter().map(|&(_, l)| l.saturating_sub(1)).sum();
+-        if r_recs.len() != R_EXPECTED_RECORDS
+-            || r_tokens.len() != R_EXPECTED_TOKENS
+-            || r_targets != R_EXPECTED_TARGETS
+-        {
+-            return Err(fail(format!(
+-                "R census mismatch: recs={} toks={} tgts={}",
+-                r_recs.len(),
+-                r_tokens.len(),
+-                r_targets
+-            )));
+-        }
+ 
+         let dt_tokens = load_uort_tokens(&dt_raw)?;
+         drop(dt_raw);

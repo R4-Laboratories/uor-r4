@@ -9,8 +9,18 @@ fn main() {
         return;
     }
     let out_dir = PathBuf::from(env::var_os("OUT_DIR").expect("Cargo OUT_DIR"));
-    for (name, key) in [("rows", "P5_ROWS_CUBIN"), ("engine", "P5_PILOT_CUBIN")] {
-        let src = format!("src/{name}.cu");
+    let mut kernels = vec![
+        ("rows", "P5_ROWS_CUBIN", "src/rows.cu"),
+        ("engine", "P5_PILOT_CUBIN", "src/engine.cu"),
+    ];
+    if env::var_os("CARGO_FEATURE_ALIAS_TRAINING").is_some() {
+        kernels.push((
+            "alias_adjust",
+            "P5_ALIAS_ADJUST_CUBIN",
+            "../../codex-4309/alias_adjust.cu",
+        ));
+    }
+    for (name, key, src) in kernels {
         let cubin = out_dir.join(format!("p5_{name}.sm_89.cubin"));
         println!("cargo:rerun-if-changed={src}");
         let status = Command::new(env::var_os("NVCC").unwrap_or_else(|| "nvcc".into()))
@@ -23,7 +33,7 @@ fn main() {
                 "-x",
                 "cu",
             ])
-            .arg(&src)
+            .arg(src)
             .arg("-o")
             .arg(&cubin)
             .status()

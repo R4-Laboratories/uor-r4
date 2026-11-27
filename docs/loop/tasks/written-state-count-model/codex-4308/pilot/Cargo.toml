@@ -3,12 +3,19 @@ name = "p5-wick-pilot"
 version = "0.1.0"
 edition = "2021"
 publish = false
+default-run = "p5-wick-pilot"
 
 [workspace]
 
 [features]
 default = []
 cuda = ["dep:cudarc"]
+alias-training = ["cuda"]
+
+[[bin]]
+name = "p5-alias-followup"
+path = "../../codex-4309/main.rs"
+required-features = ["alias-training"]
 
 [dependencies]
 cudarc = { path = "../../../../../../third_party/cudarc-0.19.10", default-features = false, features = ["std", "driver", "cuda-12080", "dynamic-linking"], optional = true }
