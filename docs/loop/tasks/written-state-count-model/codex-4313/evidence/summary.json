@@ -1,0 +1,3411 @@
+{
+  "answer_first": {
+    "artifact_sha256": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+    "examples": {
+      "controlled_both_codes_changed_same_wrong_token": {
+        "pair": "0118f605e3c28a472a643cbc",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              11,
+              63,
+              13
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 699,
+                "gate_rank": 699,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 9,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1439,
+                "gate_rank": 1439,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 15,
+                  "c_qr": 3,
+                  "c_r": 23,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17726,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5122,
+            "recurrence_code": 42277,
+            "rival": 1400,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 462
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              11,
+              18,
+              17
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1516,
+                "gate_rank": 1516,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 745,
+                "gate_rank": 745,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 9,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 13,
+                  "c_qr": 21,
+                  "c_r": 114,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 18996,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5170,
+            "recurrence_code": 13605,
+            "rival": 462,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 1400
+          }
+        ]
+      },
+      "controlled_first": {
+        "pair": "0118f605e3c28a472a643cbc",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              11,
+              63,
+              13
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 699,
+                "gate_rank": 699,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 9,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1439,
+                "gate_rank": 1439,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 15,
+                  "c_qr": 3,
+                  "c_r": 23,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17726,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5122,
+            "recurrence_code": 42277,
+            "rival": 1400,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 462
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              11,
+              18,
+              17
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1516,
+                "gate_rank": 1516,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 745,
+                "gate_rank": 745,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 9,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 13,
+                  "c_qr": 21,
+                  "c_r": 114,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 18996,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5170,
+            "recurrence_code": 13605,
+            "rival": 462,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 1400
+          }
+        ]
+      },
+      "controlled_strict_mass_flip": {
+        "pair": "4b15cc960d61bcdbc63d116e",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              11,
+              18,
+              53,
+              6
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1125,
+                "gate_rank": 1125,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 1,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2703,
+                "mass": 4,
+                "pool_member": true,
+                "prior_count": 398,
+                "prior_rank": 1636,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1236,
+                "gate_rank": 1236,
+                "gate_score_terms": {
+                  "c_q": 3,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1306,
+                "mass": 3,
+                "pool_member": true,
+                "prior_count": 376,
+                "prior_rank": 1677,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 0,
+                  "c_qr": 21,
+                  "c_r": 114,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 18580,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5170,
+            "recurrence_code": 3055,
+            "rival": 1306,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 2703
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              27,
+              62,
+              41,
+              38
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1156,
+                "gate_rank": 1156,
+                "gate_score_terms": {
+                  "c_q": 3,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1306,
+                "mass": 3,
+                "pool_member": true,
+                "prior_count": 376,
+                "prior_rank": 1677,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1340,
+                "gate_rank": 1340,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2703,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 398,
+                "prior_rank": 1636,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 1,
+                  "c_qr": 4,
+                  "c_r": 12,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17320,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 5218,
+            "recurrence_code": 2741,
+            "rival": 2703,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 1306
+          }
+        ]
+      },
+      "coqa_both_codes_changed_same_wrong_token": {
+        "pair": "72eb0a0aafde4470db00ccc7",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              24,
+              21,
+              61,
+              35
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 106,
+                "gate_rank": 106,
+                "gate_score_terms": {
+                  "c_q": 43,
+                  "c_qc": 0,
+                  "c_qr": 4,
+                  "c_r": 7,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1605,
+                "mass": 313,
+                "pool_member": true,
+                "prior_count": 1541,
+                "prior_rank": 897,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 57,
+                "gate_rank": 57,
+                "gate_score_terms": {
+                  "c_q": 218,
+                  "c_qc": 0,
+                  "c_qr": 3,
+                  "c_r": 4,
+                  "c_rr": 0,
+                  "pointer_bonus": 256
+                },
+                "id": 534,
+                "mass": 674,
+                "pool_member": true,
+                "prior_count": 9963,
+                "prior_rank": 278,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 12,
+                  "c_qr": 320,
+                  "c_r": 518,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 38908,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 2423,
+            "recurrence_code": 1317,
+            "rival": 534,
+            "successor": [
+              130,
+              534
+            ],
+            "target": 1605
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              11,
+              15,
+              37,
+              16
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 40,
+                "gate_rank": 40,
+                "gate_score_terms": {
+                  "c_q": 218,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 256
+                },
+                "id": 534,
+                "mass": 474,
+                "pool_member": true,
+                "prior_count": 9963,
+                "prior_rank": 278,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 257,
+                "gate_rank": 257,
+                "gate_score_terms": {
+                  "c_q": 43,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1605,
+                "mass": 43,
+                "pool_member": true,
+                "prior_count": 1541,
+                "prior_rank": 897,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 0,
+                  "c_qr": 7,
+                  "c_r": 19,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17494,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 2347,
+            "recurrence_code": 53951,
+            "rival": 1605,
+            "successor": [
+              130,
+              534
+            ],
+            "target": 534
+          }
+        ]
+      },
+      "coqa_first": {
+        "pair": "038ca75c6c64120b5469389e",
+        "rows": [
+          {
+            "emitted": 73,
+            "frames": [
+              2,
+              41,
+              41,
+              21
+            ],
+            "gate": 201,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 21,
+                "gate_rank": 21,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 14,
+                  "c_r": 18,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 1497,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 17,
+                "gate_rank": 17,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 20,
+                  "c_r": 27,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 1908,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 2,
+                "gate_rank": 2,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 0,
+                  "c_qr": 282,
+                  "c_r": 426,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 35908,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": false,
+                "writer_rank": null
+              }
+            ],
+            "query_token": 28,
+            "read_code": 39287,
+            "recurrence_code": 1567,
+            "rival": 379,
+            "successor": [
+              134,
+              14
+            ],
+            "target": 2237
+          },
+          {
+            "emitted": 73,
+            "frames": [
+              4,
+              25,
+              3,
+              55
+            ],
+            "gate": 201,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 17,
+                "gate_rank": 17,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 20,
+                  "c_r": 27,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 1908,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 21,
+                "gate_rank": 21,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 14,
+                  "c_r": 18,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 1497,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 2,
+                "gate_rank": 2,
+                "gate_score_terms": {
+                  "c_q": 17008,
+                  "c_qc": 0,
+                  "c_qr": 282,
+                  "c_r": 426,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 35908,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": false,
+                "writer_rank": null
+              }
+            ],
+            "query_token": 28,
+            "read_code": 39287,
+            "recurrence_code": 21231,
+            "rival": 2237,
+            "successor": [
+              134,
+              14
+            ],
+            "target": 379
+          }
+        ]
+      }
+    },
+    "independent_groups": {
+      "controlled": {
+        "all_first_emissions_correct": 0,
+        "all_pairs_full_rank": 0,
+        "all_pairs_strict_mass": 0,
+        "groups": 200
+      },
+      "coqa": {
+        "all_first_emissions_correct": 0,
+        "all_pairs_full_rank": 0,
+        "all_pairs_strict_mass": 0,
+        "groups": 5
+      }
+    },
+    "strata": {
+      "controlled": {
+        "counts": {
+          "active_route_records_change": 379,
+          "admitted_cells_change": 50,
+          "any_gate_input_changes": 393,
+          "both_codes_change": 197,
+          "both_crossed_rivals_strictly_win": 4,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 2,
+          "both_gold_strict_mass_wins": 2,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 781,
+          "fixed_query_alone_strictly_favors_space_over_gold": 800,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 616,
+          "gate_selects_space": 616,
+          "gate_winner_changes": 50,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 800,
+          "gold_effective_mass_better_own_question": 45,
+          "gold_effective_mass_equal_own_question": 716,
+          "gold_effective_mass_worse_own_question": 39,
+          "gold_equal_to_prior_rank": 1,
+          "gold_improved_vs_other_question": 296,
+          "gold_improved_vs_prior": 669,
+          "gold_in_pool": 749,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 50,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 749,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 207,
+          "gold_worse_than_prior": 130,
+          "gold_worse_vs_other_question": 297,
+          "gold_zero_eligible": 51,
+          "mass_tie_at_least_one_leg": 10,
+          "mass_tie_both_legs": 10,
+          "neither_code_changes": 7,
+          "normalized_recurrent_vector_changes": 389,
+          "pairs": 400,
+          "post_gate_vector_changes": 50,
+          "rank_moves_without_gold_mass_change": 509,
+          "raw_read_changes": 201,
+          "raw_recurrence_sum_changes": 394,
+          "read_changes": 201,
+          "read_only_changes": 4,
+          "recurrence_changes": 389,
+          "recurrence_only_changes": 192,
+          "rows": 800,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 394,
+          "writer_admits_gold": 10,
+          "writer_admits_space": 616,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 50,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 616,
+          "writer_emits_space": 616,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 616
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 2610,
+            "median": 680,
+            "min": 107,
+            "n": 800,
+            "q25": 414,
+            "q75": 1136
+          },
+          "gold_gate_native": {
+            "max": 1953,
+            "median": 619,
+            "min": 107,
+            "n": 749,
+            "q25": 398,
+            "q75": 1049
+          },
+          "gold_prior": {
+            "max": 3022,
+            "median": 1136,
+            "min": 312,
+            "n": 800,
+            "q25": 791,
+            "q75": 1510
+          },
+          "gold_writer_native": {
+            "max": 24,
+            "median": 24,
+            "min": 20,
+            "n": 10,
+            "q25": 24,
+            "q75": 24
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 616,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 184,
+            "223": 616
+          },
+          "prior": {
+            "223": 800
+          },
+          "query_token": {
+            "28": 800
+          },
+          "target": {
+            "1004": 6,
+            "1019": 2,
+            "1037": 10,
+            "1074": 12,
+            "1146": 10,
+            "1153": 10,
+            "1194": 12,
+            "1214": 2,
+            "1269": 4,
+            "1287": 6,
+            "1288": 10,
+            "1306": 12,
+            "1319": 8,
+            "1323": 12,
+            "1334": 4,
+            "1348": 6,
+            "1381": 6,
+            "1400": 10,
+            "1412": 16,
+            "1467": 6,
+            "1475": 16,
+            "1503": 2,
+            "1531": 8,
+            "1558": 10,
+            "1569": 12,
+            "1582": 6,
+            "1588": 16,
+            "1590": 16,
+            "1605": 2,
+            "1623": 10,
+            "1708": 2,
+            "1724": 10,
+            "1730": 14,
+            "1768": 10,
+            "1774": 10,
+            "1861": 2,
+            "1873": 4,
+            "1881": 14,
+            "1977": 4,
+            "2002": 4,
+            "2041": 2,
+            "2098": 6,
+            "2143": 10,
+            "2155": 6,
+            "2176": 12,
+            "2255": 8,
+            "2291": 4,
+            "2390": 8,
+            "2422": 10,
+            "2423": 4,
+            "2471": 14,
+            "2551": 6,
+            "2658": 6,
+            "2703": 12,
+            "2708": 2,
+            "2723": 6,
+            "2914": 4,
+            "3221": 8,
+            "329": 6,
+            "3393": 6,
+            "360": 8,
+            "3680": 10,
+            "3915": 10,
+            "422": 4,
+            "462": 16,
+            "466": 12,
+            "497": 6,
+            "503": 2,
+            "509": 16,
+            "515": 10,
+            "545": 16,
+            "601": 10,
+            "603": 12,
+            "616": 8,
+            "629": 8,
+            "677": 6,
+            "692": 12,
+            "710": 6,
+            "738": 4,
+            "757": 8,
+            "790": 2,
+            "804": 8,
+            "818": 12,
+            "820": 16,
+            "864": 4,
+            "866": 14,
+            "882": 10,
+            "888": 10,
+            "889": 2,
+            "901": 6,
+            "909": 10,
+            "924": 12,
+            "931": 8,
+            "936": 8,
+            "964": 18
+          },
+          "writer": {
+            "223": 616,
+            "73": 184
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            12420,
+            2368,
+            334,
+            32,
+            0,
+            0
+          ],
+          "rival": [
+            12420,
+            2304,
+            316,
+            32,
+            0,
+            0
+          ],
+          "space": [
+            13606400,
+            1691264,
+            159660,
+            64288,
+            40,
+            0
+          ]
+        }
+      },
+      "coqa": {
+        "counts": {
+          "active_route_records_change": 5,
+          "admitted_cells_change": 1,
+          "any_gate_input_changes": 5,
+          "both_codes_change": 2,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 10,
+          "fixed_query_alone_strictly_favors_space_over_gold": 10,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 7,
+          "gate_selects_space": 7,
+          "gate_winner_changes": 1,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 10,
+          "gold_effective_mass_better_own_question": 4,
+          "gold_effective_mass_equal_own_question": 4,
+          "gold_effective_mass_worse_own_question": 2,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 4,
+          "gold_improved_vs_prior": 10,
+          "gold_in_pool": 10,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 10,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 3,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 3,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 5,
+          "pairs": 5,
+          "post_gate_vector_changes": 1,
+          "rank_moves_without_gold_mass_change": 2,
+          "raw_read_changes": 2,
+          "raw_recurrence_sum_changes": 5,
+          "read_changes": 2,
+          "read_only_changes": 0,
+          "recurrence_changes": 5,
+          "recurrence_only_changes": 3,
+          "rows": 10,
+          "successor_address_changes": 1,
+          "successor_id_changes": 1,
+          "terminal_frames_change": 5,
+          "writer_admits_gold": 0,
+          "writer_admits_space": 7,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 1,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 7,
+          "writer_emits_space": 7,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 7
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 615,
+            "median": 40,
+            "min": 11,
+            "n": 10,
+            "q25": 17,
+            "q75": 100
+          },
+          "gold_gate_native": {
+            "max": 615,
+            "median": 40,
+            "min": 11,
+            "n": 10,
+            "q25": 17,
+            "q75": 100
+          },
+          "gold_prior": {
+            "max": 1462,
+            "median": 278,
+            "min": 35,
+            "n": 10,
+            "q25": 155,
+            "q75": 380
+          },
+          "gold_writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 2
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 2
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 7,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 3,
+            "223": 7
+          },
+          "prior": {
+            "223": 10
+          },
+          "query_token": {
+            "28": 10
+          },
+          "target": {
+            "1605": 1,
+            "2237": 1,
+            "2774": 1,
+            "3704": 1,
+            "379": 1,
+            "534": 1,
+            "595": 1,
+            "772": 1,
+            "935": 2
+          },
+          "writer": {
+            "223": 7,
+            "73": 3
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            3641,
+            5440,
+            266,
+            64,
+            0,
+            256
+          ],
+          "rival": [
+            3641,
+            4928,
+            238,
+            0,
+            0,
+            512
+          ],
+          "space": [
+            170080,
+            141376,
+            7538,
+            1056,
+            0,
+            0
+          ]
+        }
+      },
+      "coqa_equal_length": {
+        "counts": {
+          "active_route_records_change": 1,
+          "admitted_cells_change": 0,
+          "any_gate_input_changes": 1,
+          "both_codes_change": 0,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 2,
+          "fixed_query_alone_strictly_favors_space_over_gold": 2,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 2,
+          "gate_selects_space": 2,
+          "gate_winner_changes": 0,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 2,
+          "gold_effective_mass_better_own_question": 0,
+          "gold_effective_mass_equal_own_question": 1,
+          "gold_effective_mass_worse_own_question": 1,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 0,
+          "gold_improved_vs_prior": 2,
+          "gold_in_pool": 2,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 2,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 0,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 2,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 1,
+          "pairs": 1,
+          "post_gate_vector_changes": 0,
+          "rank_moves_without_gold_mass_change": 1,
+          "raw_read_changes": 0,
+          "raw_recurrence_sum_changes": 1,
+          "read_changes": 0,
+          "read_only_changes": 0,
+          "recurrence_changes": 1,
+          "recurrence_only_changes": 1,
+          "rows": 2,
+          "successor_address_changes": 1,
+          "successor_id_changes": 1,
+          "terminal_frames_change": 1,
+          "writer_admits_gold": 0,
+          "writer_admits_space": 2,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 0,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 2,
+          "writer_emits_space": 2,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 2
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 615,
+            "median": 100,
+            "min": 100,
+            "n": 2,
+            "q25": 100,
+            "q75": 615
+          },
+          "gold_gate_native": {
+            "max": 615,
+            "median": 100,
+            "min": 100,
+            "n": 2,
+            "q25": 100,
+            "q75": 615
+          },
+          "gold_prior": {
+            "max": 1462,
+            "median": 380,
+            "min": 380,
+            "n": 2,
+            "q25": 380,
+            "q75": 1462
+          },
+          "gold_writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          },
+          "space_gate_full": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "223": 2
+          },
+          "prior": {
+            "223": 2
+          },
+          "query_token": {
+            "28": 2
+          },
+          "target": {
+            "3704": 1,
+            "935": 1
+          },
+          "writer": {
+            "223": 2
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            174,
+            128,
+            10,
+            0,
+            0,
+            0
+          ],
+          "rival": [
+            174,
+            128,
+            10,
+            0,
+            0,
+            256
+          ],
+          "space": [
+            34016,
+            22912,
+            1436,
+            288,
+            0,
+            0
+          ]
+        }
+      },
+      "coqa_unequal_length": {
+        "counts": {
+          "active_route_records_change": 4,
+          "admitted_cells_change": 1,
+          "any_gate_input_changes": 4,
+          "both_codes_change": 2,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 8,
+          "fixed_query_alone_strictly_favors_space_over_gold": 8,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 5,
+          "gate_selects_space": 5,
+          "gate_winner_changes": 1,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 8,
+          "gold_effective_mass_better_own_question": 4,
+          "gold_effective_mass_equal_own_question": 3,
+          "gold_effective_mass_worse_own_question": 1,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 4,
+          "gold_improved_vs_prior": 8,
+          "gold_in_pool": 8,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 8,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 3,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 1,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 4,
+          "pairs": 4,
+          "post_gate_vector_changes": 1,
+          "rank_moves_without_gold_mass_change": 1,
+          "raw_read_changes": 2,
+          "raw_recurrence_sum_changes": 4,
+          "read_changes": 2,
+          "read_only_changes": 0,
+          "recurrence_changes": 4,
+          "recurrence_only_changes": 2,
+          "rows": 8,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 4,
+          "writer_admits_gold": 0,
+          "writer_admits_space": 5,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 1,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 5,
+          "writer_emits_space": 5,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 5
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 106,
+            "median": 21,
+            "min": 11,
+            "n": 8,
+            "q25": 15,
+            "q75": 63
+          },
+          "gold_gate_native": {
+            "max": 106,
+            "median": 21,
+            "min": 11,
+            "n": 8,
+            "q25": 15,
+            "q75": 63
+          },
+          "gold_prior": {
+            "max": 897,
+            "median": 226,
+            "min": 35,
+            "n": 8,
+            "q25": 74,
+            "q75": 373
+          },
+          "gold_writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 2
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 2
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 5,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 3,
+            "223": 5
+          },
+          "prior": {
+            "223": 8
+          },
+          "query_token": {
+            "28": 8
+          },
+          "target": {
+            "1605": 1,
+            "2237": 1,
+            "2774": 1,
+            "379": 1,
+            "534": 1,
+            "595": 1,
+            "772": 1,
+            "935": 1
+          },
+          "writer": {
+            "223": 5,
+            "73": 3
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            3467,
+            5312,
+            256,
+            64,
+            0,
+            256
+          ],
+          "rival": [
+            3467,
+            4800,
+            228,
+            0,
+            0,
+            256
+          ],
+          "space": [
+            136064,
+            118464,
+            6102,
+            768,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  },
+  "between_checkpoints": {
+    "controlled": {
+      "answer_has_better_gold_gate_rank": 254,
+      "answer_has_worse_gold_gate_rank": 546,
+      "rows": 800,
+      "same_emitted": 602,
+      "same_gate": 607
+    },
+    "coqa": {
+      "answer_has_better_gold_gate_rank": 9,
+      "answer_has_worse_gold_gate_rank": 0,
+      "rows": 10,
+      "same_emitted": 6,
+      "same_gate": 6
+    }
+  },
+  "rank_summary": "1-based, nearest-rank quartiles, lower median; optional native ranks summarize admitted rows only",
+  "reasoning_first": {
+    "artifact_sha256": "1b8e1240149b8058b5e79c88c9d42d7c4990339f1b98452a1b34d33b4e132398",
+    "examples": {
+      "controlled_both_codes_changed_same_wrong_token": {
+        "pair": "054e313e961da65e70fcad68",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              24,
+              55,
+              0
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 504,
+                "gate_rank": 504,
+                "gate_score_terms": {
+                  "c_q": 14,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1146,
+                "mass": 14,
+                "pool_member": true,
+                "prior_count": 2932,
+                "prior_rank": 607,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 562,
+                "gate_rank": 562,
+                "gate_score_terms": {
+                  "c_q": 12,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1475,
+                "mass": 12,
+                "pool_member": true,
+                "prior_count": 821,
+                "prior_rank": 1200,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 6,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17225,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 52080,
+            "recurrence_code": 44145,
+            "rival": 1475,
+            "successor": [
+              4,
+              287
+            ],
+            "target": 1146
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              29,
+              47,
+              59,
+              18
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 562,
+                "gate_rank": 562,
+                "gate_score_terms": {
+                  "c_q": 12,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1475,
+                "mass": 12,
+                "pool_member": true,
+                "prior_count": 821,
+                "prior_rank": 1200,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 504,
+                "gate_rank": 504,
+                "gate_score_terms": {
+                  "c_q": 14,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1146,
+                "mass": 14,
+                "pool_member": true,
+                "prior_count": 2932,
+                "prior_rank": 607,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 0,
+                  "c_qr": 4,
+                  "c_r": 4,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17297,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 52000,
+            "recurrence_code": 55547,
+            "rival": 1146,
+            "successor": [
+              4,
+              287
+            ],
+            "target": 1475
+          }
+        ]
+      },
+      "controlled_first": {
+        "pair": "0118f605e3c28a472a643cbc",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              34,
+              6,
+              59,
+              29
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1019,
+                "gate_rank": 1019,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 3,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 15,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": true,
+                "writer_rank": 15
+              },
+              {
+                "gate_full_rank": 1566,
+                "gate_rank": 1566,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 2,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 6,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 6,
+                  "c_qr": 229,
+                  "c_r": 3152,
+                  "c_rr": 1,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 38193,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 32,
+            "recurrence_code": 53649,
+            "rival": 1400,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 462
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              34,
+              6,
+              38,
+              7
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1566,
+                "gate_rank": 1566,
+                "gate_score_terms": {
+                  "c_q": 2,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 2,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1400,
+                "mass": 6,
+                "pool_member": true,
+                "prior_count": 188,
+                "prior_rank": 2143,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1022,
+                "gate_rank": 1022,
+                "gate_score_terms": {
+                  "c_q": 9,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 3,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 462,
+                "mass": 15,
+                "pool_member": true,
+                "prior_count": 1064,
+                "prior_rank": 1072,
+                "writer_admitted": true,
+                "writer_rank": 15
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 4,
+                  "c_qr": 229,
+                  "c_r": 3152,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 38121,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 32,
+            "recurrence_code": 57745,
+            "rival": 462,
+            "successor": [
+              4,
+              2888
+            ],
+            "target": 1400
+          }
+        ]
+      },
+      "controlled_strict_mass_flip": {
+        "pair": "199e72d7bf2ad16507bd8bea",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              31,
+              9,
+              36,
+              18
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 2050,
+                "gate_rank": 2050,
+                "gate_score_terms": {
+                  "c_q": 1,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1467,
+                "mass": 1,
+                "pool_member": true,
+                "prior_count": 46,
+                "prior_rank": 3022,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 2463,
+                "gate_rank": null,
+                "gate_score_terms": {
+                  "c_q": 0,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1590,
+                "mass": 0,
+                "pool_member": false,
+                "prior_count": 419,
+                "prior_rank": 1606,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 3,
+                  "c_qr": 28,
+                  "c_r": 1132,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 21185,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 178,
+            "recurrence_code": 20801,
+            "rival": 1590,
+            "successor": [
+              4,
+              439
+            ],
+            "target": 1467
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              52,
+              24,
+              14,
+              7
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 1679,
+                "gate_rank": 1679,
+                "gate_score_terms": {
+                  "c_q": 0,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 1,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1590,
+                "mass": 2,
+                "pool_member": true,
+                "prior_count": 419,
+                "prior_rank": 1606,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 2158,
+                "gate_rank": 2158,
+                "gate_score_terms": {
+                  "c_q": 1,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 1467,
+                "mass": 1,
+                "pool_member": true,
+                "prior_count": 46,
+                "prior_rank": 3022,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 3,
+                  "c_qr": 44,
+                  "c_r": 727,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 21399,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 226,
+            "recurrence_code": 41281,
+            "rival": 1467,
+            "successor": [
+              4,
+              439
+            ],
+            "target": 1590
+          }
+        ]
+      },
+      "coqa_both_codes_changed_same_wrong_token": {
+        "pair": "038ca75c6c64120b5469389e",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              7,
+              8,
+              4,
+              2
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 27,
+                "gate_rank": 27,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 565,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 25,
+                "gate_rank": 25,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 574,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17033,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 36722,
+            "recurrence_code": 38657,
+            "rival": 379,
+            "successor": [
+              4,
+              1049
+            ],
+            "target": 2237
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              13,
+              42,
+              15,
+              38
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 26,
+                "gate_rank": 26,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 574,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 30,
+                "gate_rank": 30,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 565,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 4,
+                  "c_qr": 1,
+                  "c_r": 2,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17229,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 35186,
+            "recurrence_code": 41217,
+            "rival": 2237,
+            "successor": [
+              4,
+              1049
+            ],
+            "target": 379
+          }
+        ]
+      },
+      "coqa_first": {
+        "pair": "038ca75c6c64120b5469389e",
+        "rows": [
+          {
+            "emitted": 223,
+            "frames": [
+              7,
+              8,
+              4,
+              2
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 27,
+                "gate_rank": 27,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 565,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 25,
+                "gate_rank": 25,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 574,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17033,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 36722,
+            "recurrence_code": 38657,
+            "rival": 379,
+            "successor": [
+              4,
+              1049
+            ],
+            "target": 2237
+          },
+          {
+            "emitted": 223,
+            "frames": [
+              13,
+              42,
+              15,
+              38
+            ],
+            "gate": 223,
+            "prior": 223,
+            "probes": [
+              {
+                "gate_full_rank": 26,
+                "gate_rank": 26,
+                "gate_score_terms": {
+                  "c_q": 574,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 379,
+                "mass": 574,
+                "pool_member": true,
+                "prior_count": 19304,
+                "prior_rank": 155,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 30,
+                "gate_rank": 30,
+                "gate_score_terms": {
+                  "c_q": 565,
+                  "c_qc": 0,
+                  "c_qr": 0,
+                  "c_r": 0,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 2237,
+                "mass": 565,
+                "pool_member": true,
+                "prior_count": 60650,
+                "prior_rank": 35,
+                "writer_admitted": false,
+                "writer_rank": null
+              },
+              {
+                "gate_full_rank": 1,
+                "gate_rank": 1,
+                "gate_score_terms": {
+                  "c_q": 17033,
+                  "c_qc": 4,
+                  "c_qr": 1,
+                  "c_r": 2,
+                  "c_rr": 0,
+                  "pointer_bonus": 0
+                },
+                "id": 223,
+                "mass": 17229,
+                "pool_member": true,
+                "prior_count": 738978,
+                "prior_rank": 1,
+                "writer_admitted": true,
+                "writer_rank": 1
+              }
+            ],
+            "query_token": 28,
+            "read_code": 35186,
+            "recurrence_code": 41217,
+            "rival": 2237,
+            "successor": [
+              4,
+              1049
+            ],
+            "target": 379
+          }
+        ]
+      }
+    },
+    "independent_groups": {
+      "controlled": {
+        "all_first_emissions_correct": 0,
+        "all_pairs_full_rank": 0,
+        "all_pairs_strict_mass": 0,
+        "groups": 200
+      },
+      "coqa": {
+        "all_first_emissions_correct": 0,
+        "all_pairs_full_rank": 0,
+        "all_pairs_strict_mass": 0,
+        "groups": 5
+      }
+    },
+    "strata": {
+      "controlled": {
+        "counts": {
+          "active_route_records_change": 369,
+          "admitted_cells_change": 7,
+          "any_gate_input_changes": 388,
+          "both_codes_change": 194,
+          "both_crossed_rivals_strictly_win": 3,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 7,
+          "both_gold_strict_mass_wins": 7,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 775,
+          "fixed_query_alone_strictly_favors_space_over_gold": 800,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 781,
+          "gate_selects_space": 781,
+          "gate_winner_changes": 7,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 800,
+          "gold_effective_mass_better_own_question": 62,
+          "gold_effective_mass_equal_own_question": 678,
+          "gold_effective_mass_worse_own_question": 60,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 264,
+          "gold_improved_vs_prior": 663,
+          "gold_in_pool": 752,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 46,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 752,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 266,
+          "gold_worse_than_prior": 137,
+          "gold_worse_vs_other_question": 270,
+          "gold_zero_eligible": 48,
+          "mass_tie_at_least_one_leg": 12,
+          "mass_tie_both_legs": 12,
+          "neither_code_changes": 12,
+          "normalized_recurrent_vector_changes": 385,
+          "pairs": 400,
+          "post_gate_vector_changes": 7,
+          "rank_moves_without_gold_mass_change": 412,
+          "raw_read_changes": 197,
+          "raw_recurrence_sum_changes": 392,
+          "read_changes": 197,
+          "read_only_changes": 3,
+          "recurrence_changes": 385,
+          "recurrence_only_changes": 191,
+          "rows": 800,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 394,
+          "writer_admits_gold": 44,
+          "writer_admits_space": 781,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 7,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 781,
+          "writer_emits_space": 781,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 800
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 2721,
+            "median": 663,
+            "min": 77,
+            "n": 800,
+            "q25": 399,
+            "q75": 1146
+          },
+          "gold_gate_native": {
+            "max": 2234,
+            "median": 630,
+            "min": 77,
+            "n": 752,
+            "q25": 381,
+            "q75": 1036
+          },
+          "gold_prior": {
+            "max": 3022,
+            "median": 1136,
+            "min": 312,
+            "n": 800,
+            "q25": 791,
+            "q75": 1510
+          },
+          "gold_writer_native": {
+            "max": 234,
+            "median": 97,
+            "min": 15,
+            "n": 44,
+            "q25": 15,
+            "q75": 219
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 800,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 781,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 19,
+            "223": 781
+          },
+          "prior": {
+            "223": 800
+          },
+          "query_token": {
+            "28": 800
+          },
+          "target": {
+            "1004": 6,
+            "1019": 2,
+            "1037": 10,
+            "1074": 12,
+            "1146": 10,
+            "1153": 10,
+            "1194": 12,
+            "1214": 2,
+            "1269": 4,
+            "1287": 6,
+            "1288": 10,
+            "1306": 12,
+            "1319": 8,
+            "1323": 12,
+            "1334": 4,
+            "1348": 6,
+            "1381": 6,
+            "1400": 10,
+            "1412": 16,
+            "1467": 6,
+            "1475": 16,
+            "1503": 2,
+            "1531": 8,
+            "1558": 10,
+            "1569": 12,
+            "1582": 6,
+            "1588": 16,
+            "1590": 16,
+            "1605": 2,
+            "1623": 10,
+            "1708": 2,
+            "1724": 10,
+            "1730": 14,
+            "1768": 10,
+            "1774": 10,
+            "1861": 2,
+            "1873": 4,
+            "1881": 14,
+            "1977": 4,
+            "2002": 4,
+            "2041": 2,
+            "2098": 6,
+            "2143": 10,
+            "2155": 6,
+            "2176": 12,
+            "2255": 8,
+            "2291": 4,
+            "2390": 8,
+            "2422": 10,
+            "2423": 4,
+            "2471": 14,
+            "2551": 6,
+            "2658": 6,
+            "2703": 12,
+            "2708": 2,
+            "2723": 6,
+            "2914": 4,
+            "3221": 8,
+            "329": 6,
+            "3393": 6,
+            "360": 8,
+            "3680": 10,
+            "3915": 10,
+            "422": 4,
+            "462": 16,
+            "466": 12,
+            "497": 6,
+            "503": 2,
+            "509": 16,
+            "515": 10,
+            "545": 16,
+            "601": 10,
+            "603": 12,
+            "616": 8,
+            "629": 8,
+            "677": 6,
+            "692": 12,
+            "710": 6,
+            "738": 4,
+            "757": 8,
+            "790": 2,
+            "804": 8,
+            "818": 12,
+            "820": 16,
+            "864": 4,
+            "866": 14,
+            "882": 10,
+            "888": 10,
+            "889": 2,
+            "901": 6,
+            "909": 10,
+            "924": 12,
+            "931": 8,
+            "936": 8,
+            "964": 18
+          },
+          "writer": {
+            "201": 19,
+            "223": 781
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            12420,
+            3072,
+            1098,
+            32,
+            0,
+            0
+          ],
+          "rival": [
+            12420,
+            2816,
+            996,
+            96,
+            0,
+            0
+          ],
+          "space": [
+            13626400,
+            3283776,
+            838090,
+            86432,
+            136,
+            0
+          ]
+        }
+      },
+      "coqa": {
+        "counts": {
+          "active_route_records_change": 5,
+          "admitted_cells_change": 1,
+          "any_gate_input_changes": 5,
+          "both_codes_change": 2,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 9,
+          "fixed_query_alone_strictly_favors_space_over_gold": 10,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 9,
+          "gate_selects_space": 9,
+          "gate_winner_changes": 1,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 10,
+          "gold_effective_mass_better_own_question": 1,
+          "gold_effective_mass_equal_own_question": 8,
+          "gold_effective_mass_worse_own_question": 1,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 3,
+          "gold_improved_vs_prior": 10,
+          "gold_in_pool": 10,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 10,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 4,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 3,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 5,
+          "pairs": 5,
+          "post_gate_vector_changes": 1,
+          "rank_moves_without_gold_mass_change": 4,
+          "raw_read_changes": 2,
+          "raw_recurrence_sum_changes": 5,
+          "read_changes": 2,
+          "read_only_changes": 0,
+          "recurrence_changes": 5,
+          "recurrence_only_changes": 3,
+          "rows": 10,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 5,
+          "writer_admits_gold": 1,
+          "writer_admits_space": 9,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 1,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 9,
+          "writer_emits_space": 9,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 10
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 785,
+            "median": 65,
+            "min": 11,
+            "n": 10,
+            "q25": 27,
+            "q75": 114
+          },
+          "gold_gate_native": {
+            "max": 785,
+            "median": 65,
+            "min": 11,
+            "n": 10,
+            "q25": 27,
+            "q75": 114
+          },
+          "gold_prior": {
+            "max": 1462,
+            "median": 278,
+            "min": 35,
+            "n": 10,
+            "q25": 155,
+            "q75": 380
+          },
+          "gold_writer_native": {
+            "max": 240,
+            "median": 240,
+            "min": 240,
+            "n": 1,
+            "q25": 240,
+            "q75": 240
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 10,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 9,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 1,
+            "223": 9
+          },
+          "prior": {
+            "223": 10
+          },
+          "query_token": {
+            "28": 10
+          },
+          "target": {
+            "1605": 1,
+            "2237": 1,
+            "2774": 1,
+            "3704": 1,
+            "379": 1,
+            "534": 1,
+            "595": 1,
+            "772": 1,
+            "935": 2
+          },
+          "writer": {
+            "201": 1,
+            "223": 9
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            3641,
+            1408,
+            292,
+            0,
+            0,
+            0
+          ],
+          "rival": [
+            3641,
+            1664,
+            314,
+            0,
+            0,
+            0
+          ],
+          "space": [
+            170330,
+            101568,
+            33856,
+            1216,
+            0,
+            512
+          ]
+        }
+      },
+      "coqa_equal_length": {
+        "counts": {
+          "active_route_records_change": 1,
+          "admitted_cells_change": 0,
+          "any_gate_input_changes": 1,
+          "both_codes_change": 0,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 2,
+          "fixed_query_alone_strictly_favors_space_over_gold": 2,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 2,
+          "gate_selects_space": 2,
+          "gate_winner_changes": 0,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 2,
+          "gold_effective_mass_better_own_question": 0,
+          "gold_effective_mass_equal_own_question": 2,
+          "gold_effective_mass_worse_own_question": 0,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 0,
+          "gold_improved_vs_prior": 2,
+          "gold_in_pool": 2,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 2,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 1,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 1,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 1,
+          "pairs": 1,
+          "post_gate_vector_changes": 0,
+          "rank_moves_without_gold_mass_change": 1,
+          "raw_read_changes": 0,
+          "raw_recurrence_sum_changes": 1,
+          "read_changes": 0,
+          "read_only_changes": 0,
+          "recurrence_changes": 1,
+          "recurrence_only_changes": 1,
+          "rows": 2,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 1,
+          "writer_admits_gold": 0,
+          "writer_admits_space": 2,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 0,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 2,
+          "writer_emits_space": 2,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 2
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 785,
+            "median": 109,
+            "min": 109,
+            "n": 2,
+            "q25": 109,
+            "q75": 785
+          },
+          "gold_gate_native": {
+            "max": 785,
+            "median": 109,
+            "min": 109,
+            "n": 2,
+            "q25": 109,
+            "q75": 785
+          },
+          "gold_prior": {
+            "max": 1462,
+            "median": 380,
+            "min": 380,
+            "n": 2,
+            "q25": 380,
+            "q75": 1462
+          },
+          "gold_writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          },
+          "space_gate_full": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 2,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "223": 2
+          },
+          "prior": {
+            "223": 2
+          },
+          "query_token": {
+            "28": 2
+          },
+          "target": {
+            "3704": 1,
+            "935": 1
+          },
+          "writer": {
+            "223": 2
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            174,
+            192,
+            24,
+            0,
+            0,
+            0
+          ],
+          "rival": [
+            174,
+            192,
+            24,
+            0,
+            0,
+            0
+          ],
+          "space": [
+            34066,
+            31616,
+            6228,
+            352,
+            0,
+            0
+          ]
+        }
+      },
+      "coqa_unequal_length": {
+        "counts": {
+          "active_route_records_change": 4,
+          "admitted_cells_change": 1,
+          "any_gate_input_changes": 4,
+          "both_codes_change": 2,
+          "both_crossed_rivals_strictly_win": 0,
+          "both_gate_winners_correct": 0,
+          "both_gold_full_rank_wins": 0,
+          "both_gold_strict_mass_wins": 0,
+          "both_priors_prefer_requested": 0,
+          "both_writer_emissions_correct": 0,
+          "context_adds_more_mass_to_space_than_gold": 7,
+          "fixed_query_alone_strictly_favors_space_over_gold": 8,
+          "gate_includes_gold_in_top8": 0,
+          "gate_selects_gold": 0,
+          "gate_selects_prior": 7,
+          "gate_selects_space": 7,
+          "gate_winner_changes": 1,
+          "gold_above_space_full_gate_rank": 0,
+          "gold_above_space_prior": 0,
+          "gold_below_space_mass": 8,
+          "gold_effective_mass_better_own_question": 1,
+          "gold_effective_mass_equal_own_question": 6,
+          "gold_effective_mass_worse_own_question": 1,
+          "gold_equal_to_prior_rank": 0,
+          "gold_improved_vs_other_question": 3,
+          "gold_improved_vs_prior": 8,
+          "gold_in_pool": 8,
+          "gold_native_writer_rank_above_admitted_space": 0,
+          "gold_no_support_under_either_question": 0,
+          "gold_positive_above_space_mass": 0,
+          "gold_positive_eligible": 8,
+          "gold_raw_positive_excluded": 0,
+          "gold_space_both_unsupported": 0,
+          "gold_space_positive_mass_tie": 0,
+          "gold_tied_space_mass": 0,
+          "gold_unchanged_vs_other_question": 3,
+          "gold_worse_than_prior": 0,
+          "gold_worse_vs_other_question": 2,
+          "gold_zero_eligible": 0,
+          "mass_tie_at_least_one_leg": 0,
+          "mass_tie_both_legs": 0,
+          "neither_code_changes": 0,
+          "normalized_recurrent_vector_changes": 4,
+          "pairs": 4,
+          "post_gate_vector_changes": 1,
+          "rank_moves_without_gold_mass_change": 3,
+          "raw_read_changes": 2,
+          "raw_recurrence_sum_changes": 4,
+          "read_changes": 2,
+          "read_only_changes": 0,
+          "recurrence_changes": 4,
+          "recurrence_only_changes": 2,
+          "rows": 8,
+          "successor_address_changes": 0,
+          "successor_id_changes": 0,
+          "terminal_frames_change": 4,
+          "writer_admits_gold": 1,
+          "writer_admits_space": 7,
+          "writer_changes_correct_gate": 0,
+          "writer_emission_changes": 1,
+          "writer_emits_gold": 0,
+          "writer_emits_prior": 7,
+          "writer_emits_space": 7,
+          "writer_includes_gold_in_top8": 0,
+          "writer_keeps_gate": 8
+        },
+        "ranks": {
+          "gold_gate_full": {
+            "max": 269,
+            "median": 62,
+            "min": 11,
+            "n": 8,
+            "q25": 26,
+            "q75": 81
+          },
+          "gold_gate_native": {
+            "max": 269,
+            "median": 62,
+            "min": 11,
+            "n": 8,
+            "q25": 26,
+            "q75": 81
+          },
+          "gold_prior": {
+            "max": 897,
+            "median": 226,
+            "min": 35,
+            "n": 8,
+            "q25": 74,
+            "q75": 373
+          },
+          "gold_writer_native": {
+            "max": 240,
+            "median": 240,
+            "min": 240,
+            "n": 1,
+            "q25": 240,
+            "q75": 240
+          },
+          "space_gate_full": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_gate_native": {
+            "max": 2,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_prior": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 8,
+            "q25": 1,
+            "q75": 1
+          },
+          "space_writer_native": {
+            "max": 1,
+            "median": 1,
+            "min": 1,
+            "n": 7,
+            "q25": 1,
+            "q75": 1
+          }
+        },
+        "term_order": [
+          "last_token",
+          "last_token_and_read",
+          "read",
+          "last_token_and_recurrence",
+          "read_and_recurrence",
+          "successor"
+        ],
+        "token_histograms": {
+          "gate": {
+            "201": 1,
+            "223": 7
+          },
+          "prior": {
+            "223": 8
+          },
+          "query_token": {
+            "28": 8
+          },
+          "target": {
+            "1605": 1,
+            "2237": 1,
+            "2774": 1,
+            "379": 1,
+            "534": 1,
+            "595": 1,
+            "772": 1,
+            "935": 1
+          },
+          "writer": {
+            "201": 1,
+            "223": 7
+          }
+        },
+        "weighted_terms_for_eligible_candidates": {
+          "gold": [
+            3467,
+            1216,
+            268,
+            0,
+            0,
+            0
+          ],
+          "rival": [
+            3467,
+            1472,
+            290,
+            0,
+            0,
+            0
+          ],
+          "space": [
+            136264,
+            69952,
+            27628,
+            864,
+            0,
+            512
+          ]
+        }
+      }
+    }
+  }
+}

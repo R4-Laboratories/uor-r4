@@ -28,6 +28,8 @@ pub const RESOURCES: &str = include_str!(concat!(env!("OUT_DIR"), "/d11_scorer-r
 const CHUNK: usize = 4096;
 const THREADS: u32 = 64;
 const POINTER_TRACE_WORDS: usize = 13;
+/// Exact ABI of D11RowProbe in kernel_core.h, including three token probes.
+pub const ROW_PROBE_WORDS: usize = 1082;
 
 fn cuda(error: impl std::fmt::Display) -> String {
     format!("CUDA: {error}")
@@ -187,7 +189,7 @@ impl DeviceScorer {
 
     /// Scores every packed row on the device.
     pub fn score(&self, rows: &PackedRows) -> Result<Vec<RowScore>, String> {
-        self.score_inner(rows, None, None)
+        self.score_inner(rows, None, None, None)
             .map(|(scores, _, _)| scores)
     }
 
@@ -212,8 +214,23 @@ impl DeviceScorer {
         {
             return Err("invalid pointer interventions".into());
         }
-        self.score_inner(rows, Some(interventions), None)
+        self.score_inner(rows, Some(interventions), None, None)
             .map(|(scores, traces, _)| (scores, traces))
+    }
+
+    /// Observe the unmodified native decision and three original token IDs.
+    /// All masses and ranks are computed on the device.
+    pub fn score_token_probes(
+        &self,
+        rows: &PackedRows,
+        ids: &[[u32; 3]],
+    ) -> Result<(Vec<RowScore>, Vec<[u32; ROW_PROBE_WORDS]>), String> {
+        if !self.has_pointer_trunk || ids.len() != rows.lengths.len() {
+            return Err("token probes require three IDs per row and a four-block D11 trunk".into());
+        }
+        let mut probes = Vec::with_capacity(ids.len());
+        let (scores, _, _) = self.score_inner(rows, None, None, Some((ids, &mut probes)))?;
+        Ok((scores, probes))
     }
 
     /// Commit the optional exact copy action on device, after the normal native
@@ -259,7 +276,8 @@ impl DeviceScorer {
         {
             return Err("invalid exact-copy state or original prompt fence".into());
         }
-        let (scores, _, steps) = self.score_inner(rows, None, Some((states, stops, policy)))?;
+        let (scores, _, steps) =
+            self.score_inner(rows, None, Some((states, stops, policy)), None)?;
         if scores.iter().any(|row| row.status != 0) {
             return Err("native scorer refused an exact-copy row".into());
         }
@@ -271,6 +289,7 @@ impl DeviceScorer {
         rows: &PackedRows,
         interventions: Option<&[[i32; 2]]>,
         copy: Option<(&[ExactCopyState], [u32; 4], Option<(&[u32], u32)>)>,
+        mut probes: Option<(&[[u32; 3]], &mut Vec<[u32; ROW_PROBE_WORDS]>)>,
     ) -> Result<
         (
             Vec<RowScore>,
@@ -333,6 +352,18 @@ impl DeviceScorer {
                     self.stream.clone_htod(&words).map_err(cuda)
                 })
                 .transpose()?;
+            let probe_ids = probes
+                .as_ref()
+                .map(|(ids, _)| {
+                    self.stream
+                        .clone_htod(ids[start..start + n].as_flattened())
+                        .map_err(cuda)
+                })
+                .transpose()?;
+            let mut probe_buf = probes
+                .as_ref()
+                .map(|_| self.stream.alloc_zeros::<u32>(n * ROW_PROBE_WORDS).map_err(cuda))
+                .transpose()?;
             {
                 let (table, _g0) = self.table.device_ptr(&self.stream);
                 let (cells, _g1) = self.cells.device_ptr(&self.stream);
@@ -354,11 +385,15 @@ impl DeviceScorer {
                 let trace_ptr = trace_arg.as_ref().map_or(0, |(p, _)| *p);
                 let copy_arg = copy_buf.as_mut().map(|b| b.device_ptr_mut(&self.stream));
                 let copy_ptr = copy_arg.as_ref().map_or(0, |(p, _)| *p);
+                let probe_ids_arg = probe_ids.as_ref().map(|b| b.device_ptr(&self.stream));
+                let probe_ids_ptr = probe_ids_arg.as_ref().map_or(0, |(p, _)| *p);
+                let probe_arg = probe_buf.as_mut().map(|b| b.device_ptr_mut(&self.stream));
+                let probe_ptr = probe_arg.as_ref().map_or(0, |(p, _)| *p);
                 let mut n_rows = n as i32;
                 let mut row_stride = rows.stride;
                 let arg =
                     |value: &sys::CUdeviceptr| value as *const sys::CUdeviceptr as *mut c_void;
-                let mut params: [*mut c_void; 17] = [
+                let mut params: [*mut c_void; 19] = [
                     arg(&table),
                     arg(&cells),
                     arg(&routes),
@@ -376,6 +411,8 @@ impl DeviceScorer {
                     arg(&intervention_ptr),
                     arg(&trace_ptr),
                     arg(&copy_ptr),
+                    arg(&probe_ids_ptr),
+                    arg(&probe_ptr),
                 ];
                 let threads = THREADS.min(n as u32).max(1);
                 let grid = ((n as u32).div_ceil(threads), 1, 1);
@@ -389,6 +426,8 @@ impl DeviceScorer {
                 // D11RowOut records; each thread with row < n touches only its
                 // own. When present, interventions/traces have two/thirteen
                 // 32-bit words per row; copy_io has eight u32s per row.
+                // Probes, when requested, have three original IDs and one
+                // zero-initialized D11RowProbe per row.
                 // All buffers live through synchronization.
                 unsafe {
                     result::launch_kernel(
@@ -425,6 +464,16 @@ impl DeviceScorer {
                     steps.push(ExactCopyStep::from_words(
                         row.try_into().map_err(|_| "bad exact-copy record")?,
                     ));
+                }
+            }
+            if let (Some(buf), Some((_, results))) = (probe_buf, probes.as_mut()) {
+                for row in self
+                    .stream
+                    .clone_dtoh(&buf)
+                    .map_err(cuda)?
+                    .chunks_exact(ROW_PROBE_WORDS)
+                {
+                    results.push(row.try_into().map_err(|_| "bad token probe record")?);
                 }
             }
             start += n;

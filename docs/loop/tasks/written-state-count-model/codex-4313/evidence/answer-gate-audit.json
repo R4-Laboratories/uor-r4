@@ -1,0 +1,902 @@
+{
+  "artifact_sha256": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+  "candidate_scores_reconstructed": 3317760,
+  "codebook_entries": [
+    {
+      "cell": 172,
+      "exact_vector_cells": [
+        172,
+        172
+      ],
+      "exact_vector_ids": [
+        73,
+        201
+      ],
+      "id": 73,
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "cell": 172,
+      "exact_vector_cells": [
+        172,
+        172
+      ],
+      "exact_vector_ids": [
+        73,
+        201
+      ],
+      "id": 201,
+      "vector": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        -2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        2
+      ]
+    }
+  ],
+  "counterfactual": "Context-only excludes query marginal c_q and holds the observed candidate pool and context inputs fixed. It is a score decomposition.",
+  "group_counts": {
+    "controlled": [
+      200,
+      0,
+      0,
+      0
+    ],
+    "coqa": [
+      5,
+      0,
+      0,
+      0
+    ]
+  },
+  "method": "Scan raw table triples and stable-sort original IDs by eligible mass over the unigram/ID order. Recompute writer distances with saved post-gate coordinates and admitted cells.",
+  "ordered_group_counts": [
+    "groups",
+    "all_pairs_strict_mass_flip",
+    "all_pairs_rank_flip",
+    "all_first_emissions_correct"
+  ],
+  "ordered_terms": [
+    "c_q",
+    "64*c_qr",
+    "2*c_r",
+    "32*c_qc",
+    "8*c_rr",
+    "pointer_bonus"
+  ],
+  "original_vocabulary": 4096,
+  "probes_checked": 2430,
+  "rows": 810,
+  "sparse_entries_read": {
+    "query_read_table": 5808242,
+    "query_rec_table": 9689308,
+    "query_table": 475684,
+    "read_rec_table": 12844296,
+    "read_table": 3494795,
+    "rec_table": 6715970
+  },
+  "strata": {
+    "controlled": {
+      "context_only_winner_ids": {
+        "12": 6,
+        "17": 4,
+        "201": 319,
+        "223": 308,
+        "229": 1,
+        "2888": 15,
+        "319": 30,
+        "33": 31,
+        "331": 79,
+        "4": 1,
+        "62": 6
+      },
+      "counts": {
+        "admitted_cells_change": 50,
+        "at_least_one_tied": 10,
+        "both_codes_change": 197,
+        "both_emissions_correct": 0,
+        "both_gate_correct": 0,
+        "both_tied": 10,
+        "context_only_gold": 0,
+        "context_only_gold_mass_above_space": 0,
+        "context_only_gold_mass_ties_space": 19,
+        "context_only_space": 308,
+        "emitted_gold": 0,
+        "emitted_id_changes": 50,
+        "emitted_space": 616,
+        "excluded_raw_positive": 0,
+        "gate_gold": 0,
+        "gate_input_changes": 393,
+        "gate_newline": 184,
+        "gate_newline_emits_lowercase_g": 184,
+        "gate_newline_emits_newline": 0,
+        "gate_newline_has_both_admitted_at_zero_distance": 184,
+        "gate_space": 616,
+        "gate_winner_changes": 50,
+        "gold_above_space_mass": 0,
+        "gold_above_space_rank": 0,
+        "gold_declines_from_prior": 130,
+        "gold_gate_top8": 0,
+        "gold_improves_on_prior": 669,
+        "gold_in_writer": 10,
+        "gold_no_support_either_question": 50,
+        "gold_own_mass_equal": 716,
+        "gold_own_mass_higher": 45,
+        "gold_own_mass_lower": 39,
+        "gold_own_rank_equal": 207,
+        "gold_own_rank_higher": 296,
+        "gold_own_rank_lower": 297,
+        "gold_pool_zero": 0,
+        "gold_rank_changes_at_equal_mass": 509,
+        "gold_ties_prior": 1,
+        "gold_ties_space_mass": 0,
+        "gold_writer_top8": 0,
+        "neither_code_changes": 7,
+        "pairs": 400,
+        "pool_gold": 749,
+        "positive_gold": 749,
+        "positive_rival": 749,
+        "positive_space": 800,
+        "query_alone_unique_space": 800,
+        "query_margin_larger_than_all_context_mass": 320,
+        "rank_flip": 2,
+        "raw_zero_gold": 51,
+        "raw_zero_rival": 51,
+        "read_code_changes": 201,
+        "read_code_only": 4,
+        "read_vector_changes": 201,
+        "recurrent_code_changes": 389,
+        "recurrent_code_only": 192,
+        "recurrent_frames_change": 394,
+        "recurrent_sum_changes": 394,
+        "recurrent_vector_changes": 389,
+        "routes_change": 379,
+        "rows": 800,
+        "source_position_changes": 0,
+        "source_token_changes": 0,
+        "strict_mass_flip": 2,
+        "strict_reverse_mass_flip": 4,
+        "writer_keeps_gate": 616,
+        "writer_vector_changes": 50,
+        "zero_positive_pool": 0
+      },
+      "ranges": {
+        "context_only_max_mass": [
+          256,
+          36670
+        ],
+        "gate_winning_margin": [
+          47,
+          16817
+        ],
+        "gold_mass": [
+          0,
+          234
+        ],
+        "space_context_mass": [
+          0,
+          21708
+        ],
+        "space_minus_gold_mass": [
+          16933,
+          38694
+        ],
+        "space_query_only_margin": [
+          761,
+          761
+        ]
+      },
+      "rank_quantiles_lower_order": {
+        "gold_gate_full": {
+          "max": 2610,
+          "median": 680,
+          "min": 107,
+          "n": 800,
+          "q1": 414,
+          "q3": 1136
+        },
+        "gold_gate_native": {
+          "max": 1953,
+          "median": 619,
+          "min": 107,
+          "n": 749,
+          "q1": 398,
+          "q3": 1049
+        },
+        "gold_prior": {
+          "max": 3022,
+          "median": 1136,
+          "min": 312,
+          "n": 800,
+          "q1": 791,
+          "q3": 1510
+        },
+        "gold_writer_native": {
+          "max": 24,
+          "median": 24,
+          "min": 20,
+          "n": 10,
+          "q1": 24,
+          "q3": 24
+        },
+        "space_gate_full": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 800,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_gate_native": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 800,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_prior": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 800,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_writer_native": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 616,
+          "q1": 1,
+          "q3": 1
+        }
+      },
+      "weighted_terms": {
+        "gold": [
+          12420,
+          2368,
+          334,
+          32,
+          0,
+          0
+        ],
+        "rival": [
+          12420,
+          2304,
+          316,
+          32,
+          0,
+          0
+        ],
+        "space": [
+          13606400,
+          1691264,
+          159660,
+          64288,
+          40,
+          0
+        ]
+      }
+    },
+    "coqa": {
+      "context_only_winner_ids": {
+        "201": 4,
+        "223": 6
+      },
+      "counts": {
+        "admitted_cells_change": 1,
+        "at_least_one_tied": 0,
+        "both_codes_change": 2,
+        "both_emissions_correct": 0,
+        "both_gate_correct": 0,
+        "both_tied": 0,
+        "context_only_gold": 0,
+        "context_only_gold_mass_above_space": 0,
+        "context_only_gold_mass_ties_space": 0,
+        "context_only_space": 6,
+        "emitted_gold": 0,
+        "emitted_id_changes": 1,
+        "emitted_space": 7,
+        "excluded_raw_positive": 0,
+        "gate_gold": 0,
+        "gate_input_changes": 5,
+        "gate_newline": 3,
+        "gate_newline_emits_lowercase_g": 3,
+        "gate_newline_emits_newline": 0,
+        "gate_newline_has_both_admitted_at_zero_distance": 3,
+        "gate_space": 7,
+        "gate_winner_changes": 1,
+        "gold_above_space_mass": 0,
+        "gold_above_space_rank": 0,
+        "gold_declines_from_prior": 0,
+        "gold_gate_top8": 0,
+        "gold_improves_on_prior": 10,
+        "gold_in_writer": 0,
+        "gold_no_support_either_question": 0,
+        "gold_own_mass_equal": 4,
+        "gold_own_mass_higher": 4,
+        "gold_own_mass_lower": 2,
+        "gold_own_rank_equal": 3,
+        "gold_own_rank_higher": 4,
+        "gold_own_rank_lower": 3,
+        "gold_pool_zero": 0,
+        "gold_rank_changes_at_equal_mass": 2,
+        "gold_ties_prior": 0,
+        "gold_ties_space_mass": 0,
+        "gold_writer_top8": 0,
+        "neither_code_changes": 0,
+        "pairs": 5,
+        "pool_gold": 10,
+        "positive_gold": 10,
+        "positive_rival": 10,
+        "positive_space": 10,
+        "query_alone_unique_space": 10,
+        "query_margin_larger_than_all_context_mass": 0,
+        "rank_flip": 0,
+        "raw_zero_gold": 0,
+        "raw_zero_rival": 0,
+        "read_code_changes": 2,
+        "read_code_only": 0,
+        "read_vector_changes": 2,
+        "recurrent_code_changes": 5,
+        "recurrent_code_only": 3,
+        "recurrent_frames_change": 5,
+        "recurrent_sum_changes": 5,
+        "recurrent_vector_changes": 5,
+        "routes_change": 5,
+        "rows": 10,
+        "source_position_changes": 1,
+        "source_token_changes": 1,
+        "strict_mass_flip": 0,
+        "strict_reverse_mass_flip": 0,
+        "writer_keeps_gate": 7,
+        "writer_vector_changes": 1,
+        "zero_positive_pool": 0
+      },
+      "ranges": {
+        "context_only_max_mass": [
+          994,
+          36606
+        ],
+        "gate_winning_margin": [
+          253,
+          16785
+        ],
+        "gold_mass": [
+          20,
+          2811
+        ],
+        "space_context_mass": [
+          486,
+          21900
+        ],
+        "space_minus_gold_mass": [
+          17020,
+          38595
+        ],
+        "space_query_only_margin": [
+          761,
+          761
+        ]
+      },
+      "rank_quantiles_lower_order": {
+        "gold_gate_full": {
+          "max": 615,
+          "median": 40,
+          "min": 11,
+          "n": 10,
+          "q1": 17,
+          "q3": 99
+        },
+        "gold_gate_native": {
+          "max": 615,
+          "median": 40,
+          "min": 11,
+          "n": 10,
+          "q1": 17,
+          "q3": 99
+        },
+        "gold_prior": {
+          "max": 1462,
+          "median": 278,
+          "min": 35,
+          "n": 10,
+          "q1": 155,
+          "q3": 380
+        },
+        "space_gate_full": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 10,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_gate_native": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 10,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_prior": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 10,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_writer_native": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 7,
+          "q1": 1,
+          "q3": 1
+        }
+      },
+      "weighted_terms": {
+        "gold": [
+          3641,
+          5440,
+          266,
+          64,
+          0,
+          256
+        ],
+        "rival": [
+          3641,
+          4928,
+          238,
+          0,
+          0,
+          512
+        ],
+        "space": [
+          170080,
+          141376,
+          7538,
+          1056,
+          0,
+          0
+        ]
+      }
+    },
+    "coqa_equal_length": {
+      "context_only_winner_ids": {
+        "223": 2
+      },
+      "counts": {
+        "admitted_cells_change": 0,
+        "at_least_one_tied": 0,
+        "both_codes_change": 0,
+        "both_emissions_correct": 0,
+        "both_gate_correct": 0,
+        "both_tied": 0,
+        "context_only_gold": 0,
+        "context_only_gold_mass_above_space": 0,
+        "context_only_gold_mass_ties_space": 0,
+        "context_only_space": 2,
+        "emitted_gold": 0,
+        "emitted_id_changes": 0,
+        "emitted_space": 2,
+        "excluded_raw_positive": 0,
+        "gate_gold": 0,
+        "gate_input_changes": 1,
+        "gate_newline": 0,
+        "gate_newline_emits_lowercase_g": 0,
+        "gate_newline_emits_newline": 0,
+        "gate_newline_has_both_admitted_at_zero_distance": 0,
+        "gate_space": 2,
+        "gate_winner_changes": 0,
+        "gold_above_space_mass": 0,
+        "gold_above_space_rank": 0,
+        "gold_declines_from_prior": 0,
+        "gold_gate_top8": 0,
+        "gold_improves_on_prior": 2,
+        "gold_in_writer": 0,
+        "gold_no_support_either_question": 0,
+        "gold_own_mass_equal": 1,
+        "gold_own_mass_higher": 0,
+        "gold_own_mass_lower": 1,
+        "gold_own_rank_equal": 0,
+        "gold_own_rank_higher": 0,
+        "gold_own_rank_lower": 2,
+        "gold_pool_zero": 0,
+        "gold_rank_changes_at_equal_mass": 1,
+        "gold_ties_prior": 0,
+        "gold_ties_space_mass": 0,
+        "gold_writer_top8": 0,
+        "neither_code_changes": 0,
+        "pairs": 1,
+        "pool_gold": 2,
+        "positive_gold": 2,
+        "positive_rival": 2,
+        "positive_space": 2,
+        "query_alone_unique_space": 2,
+        "query_margin_larger_than_all_context_mass": 0,
+        "rank_flip": 0,
+        "raw_zero_gold": 0,
+        "raw_zero_rival": 0,
+        "read_code_changes": 0,
+        "read_code_only": 0,
+        "read_vector_changes": 0,
+        "recurrent_code_changes": 1,
+        "recurrent_code_only": 1,
+        "recurrent_frames_change": 1,
+        "recurrent_sum_changes": 1,
+        "recurrent_vector_changes": 1,
+        "routes_change": 1,
+        "rows": 2,
+        "source_position_changes": 1,
+        "source_token_changes": 1,
+        "strict_mass_flip": 0,
+        "strict_reverse_mass_flip": 0,
+        "writer_keeps_gate": 2,
+        "writer_vector_changes": 0,
+        "zero_positive_pool": 0
+      },
+      "ranges": {
+        "context_only_max_mass": [
+          12206,
+          12430
+        ],
+        "gate_winning_margin": [
+          4269,
+          4365
+        ],
+        "gold_mass": [
+          20,
+          292
+        ],
+        "space_context_mass": [
+          12206,
+          12430
+        ],
+        "space_minus_gold_mass": [
+          28922,
+          29418
+        ],
+        "space_query_only_margin": [
+          761,
+          761
+        ]
+      },
+      "rank_quantiles_lower_order": {
+        "gold_gate_full": {
+          "max": 615,
+          "median": 100,
+          "min": 100,
+          "n": 2,
+          "q1": 100,
+          "q3": 100
+        },
+        "gold_gate_native": {
+          "max": 615,
+          "median": 100,
+          "min": 100,
+          "n": 2,
+          "q1": 100,
+          "q3": 100
+        },
+        "gold_prior": {
+          "max": 1462,
+          "median": 380,
+          "min": 380,
+          "n": 2,
+          "q1": 380,
+          "q3": 380
+        },
+        "space_gate_full": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 2,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_gate_native": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 2,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_prior": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 2,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_writer_native": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 2,
+          "q1": 1,
+          "q3": 1
+        }
+      },
+      "weighted_terms": {
+        "gold": [
+          174,
+          128,
+          10,
+          0,
+          0,
+          0
+        ],
+        "rival": [
+          174,
+          128,
+          10,
+          0,
+          0,
+          256
+        ],
+        "space": [
+          34016,
+          22912,
+          1436,
+          288,
+          0,
+          0
+        ]
+      }
+    },
+    "coqa_unequal_length": {
+      "context_only_winner_ids": {
+        "201": 4,
+        "223": 4
+      },
+      "counts": {
+        "admitted_cells_change": 1,
+        "at_least_one_tied": 0,
+        "both_codes_change": 2,
+        "both_emissions_correct": 0,
+        "both_gate_correct": 0,
+        "both_tied": 0,
+        "context_only_gold": 0,
+        "context_only_gold_mass_above_space": 0,
+        "context_only_gold_mass_ties_space": 0,
+        "context_only_space": 4,
+        "emitted_gold": 0,
+        "emitted_id_changes": 1,
+        "emitted_space": 5,
+        "excluded_raw_positive": 0,
+        "gate_gold": 0,
+        "gate_input_changes": 4,
+        "gate_newline": 3,
+        "gate_newline_emits_lowercase_g": 3,
+        "gate_newline_emits_newline": 0,
+        "gate_newline_has_both_admitted_at_zero_distance": 3,
+        "gate_space": 5,
+        "gate_winner_changes": 1,
+        "gold_above_space_mass": 0,
+        "gold_above_space_rank": 0,
+        "gold_declines_from_prior": 0,
+        "gold_gate_top8": 0,
+        "gold_improves_on_prior": 8,
+        "gold_in_writer": 0,
+        "gold_no_support_either_question": 0,
+        "gold_own_mass_equal": 3,
+        "gold_own_mass_higher": 4,
+        "gold_own_mass_lower": 1,
+        "gold_own_rank_equal": 3,
+        "gold_own_rank_higher": 4,
+        "gold_own_rank_lower": 1,
+        "gold_pool_zero": 0,
+        "gold_rank_changes_at_equal_mass": 1,
+        "gold_ties_prior": 0,
+        "gold_ties_space_mass": 0,
+        "gold_writer_top8": 0,
+        "neither_code_changes": 0,
+        "pairs": 4,
+        "pool_gold": 8,
+        "positive_gold": 8,
+        "positive_rival": 8,
+        "positive_space": 8,
+        "query_alone_unique_space": 8,
+        "query_margin_larger_than_all_context_mass": 0,
+        "rank_flip": 0,
+        "raw_zero_gold": 0,
+        "raw_zero_rival": 0,
+        "read_code_changes": 2,
+        "read_code_only": 0,
+        "read_vector_changes": 2,
+        "recurrent_code_changes": 4,
+        "recurrent_code_only": 2,
+        "recurrent_frames_change": 4,
+        "recurrent_sum_changes": 4,
+        "recurrent_vector_changes": 4,
+        "routes_change": 4,
+        "rows": 8,
+        "source_position_changes": 0,
+        "source_token_changes": 0,
+        "strict_mass_flip": 0,
+        "strict_reverse_mass_flip": 0,
+        "writer_keeps_gate": 5,
+        "writer_vector_changes": 1,
+        "zero_positive_pool": 0
+      },
+      "ranges": {
+        "context_only_max_mass": [
+          994,
+          36606
+        ],
+        "gate_winning_margin": [
+          253,
+          16785
+        ],
+        "gold_mass": [
+          292,
+          2811
+        ],
+        "space_context_mass": [
+          486,
+          21900
+        ],
+        "space_minus_gold_mass": [
+          17020,
+          38595
+        ],
+        "space_query_only_margin": [
+          761,
+          761
+        ]
+      },
+      "rank_quantiles_lower_order": {
+        "gold_gate_full": {
+          "max": 106,
+          "median": 21,
+          "min": 11,
+          "n": 8,
+          "q1": 15,
+          "q3": 63
+        },
+        "gold_gate_native": {
+          "max": 106,
+          "median": 21,
+          "min": 11,
+          "n": 8,
+          "q1": 15,
+          "q3": 63
+        },
+        "gold_prior": {
+          "max": 897,
+          "median": 226,
+          "min": 35,
+          "n": 8,
+          "q1": 74,
+          "q3": 373
+        },
+        "space_gate_full": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 8,
+          "q1": 1,
+          "q3": 2
+        },
+        "space_gate_native": {
+          "max": 2,
+          "median": 1,
+          "min": 1,
+          "n": 8,
+          "q1": 1,
+          "q3": 2
+        },
+        "space_prior": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 8,
+          "q1": 1,
+          "q3": 1
+        },
+        "space_writer_native": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5,
+          "q1": 1,
+          "q3": 1
+        }
+      },
+      "weighted_terms": {
+        "gold": [
+          3467,
+          5312,
+          256,
+          64,
+          0,
+          256
+        ],
+        "rival": [
+          3467,
+          4800,
+          228,
+          0,
+          0,
+          256
+        ],
+        "space": [
+          136064,
+          118464,
+          6102,
+          768,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "verdict": "PASS"
+}

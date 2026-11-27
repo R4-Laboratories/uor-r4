@@ -1,0 +1,1481 @@
+{
+  "arms": [
+    {
+      "count_fit": {
+        "all_previous_id_28": {
+          "distinct_ids": 1795,
+          "events": 118915,
+          "id_201_newline": 16245,
+          "id_223_space": 17033,
+          "id_799_space_We": 4034,
+          "top": [
+            {
+              "events": 17033,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 16245,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 10318,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 4999,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 4034,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 3643,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 3415,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 3323,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 1589,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 1232,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 1047,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 1025,
+              "id": 772,
+              "surface": " C"
+            }
+          ]
+        },
+        "exact_suffix_at_genuine_assistant_opening": {
+          "distinct_ids": 10,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 27,
+          "id_799_space_We": 3897,
+          "top": [
+            {
+              "events": 3897,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 271,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 97,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 27,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 25,
+              "id": 310,
+              "surface": " H"
+            },
+            {
+              "events": 23,
+              "id": 3184,
+              "surface": " U"
+            },
+            {
+              "events": 2,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 1,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 1,
+              "id": 340,
+              "surface": " I"
+            },
+            {
+              "events": 1,
+              "id": 1049,
+              "surface": " R"
+            }
+          ]
+        },
+        "exact_suffix_elsewhere": {
+          "distinct_ids": 0,
+          "events": 0,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": []
+        },
+        "other_previous_id_28": {
+          "distinct_ids": 1795,
+          "events": 114570,
+          "id_201_newline": 16245,
+          "id_223_space": 17006,
+          "id_799_space_We": 137,
+          "top": [
+            {
+              "events": 17006,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 16245,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 10318,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 4999,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 3643,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 3415,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 3323,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 1589,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 1232,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 1025,
+              "id": 772,
+              "surface": " C"
+            },
+            {
+              "events": 953,
+              "id": 598,
+              "surface": " F"
+            },
+            {
+              "events": 809,
+              "id": 301,
+              "surface": " S"
+            }
+          ]
+        }
+      },
+      "eligible_count_fit_events": 13983847,
+      "eligible_geometry_events": 259604,
+      "genuine_assistant_openings": 4345,
+      "geometry_subset": {
+        "all_previous_id_28": {
+          "distinct_ids": 373,
+          "events": 2430,
+          "id_201_newline": 275,
+          "id_223_space": 293,
+          "id_799_space_We": 396,
+          "top": [
+            {
+              "events": 396,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 293,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 275,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 260,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 88,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 66,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 47,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 40,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 26,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 26,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 15,
+              "id": 262,
+              "surface": " s"
+            },
+            {
+              "events": 15,
+              "id": 279,
+              "surface": " d"
+            }
+          ]
+        },
+        "exact_suffix_at_genuine_assistant_opening": {
+          "distinct_ids": 5,
+          "events": 403,
+          "id_201_newline": 0,
+          "id_223_space": 1,
+          "id_799_space_We": 393,
+          "top": [
+            {
+              "events": 393,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 5,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 3,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 1,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 1,
+              "id": 3184,
+              "surface": " U"
+            }
+          ]
+        },
+        "exact_suffix_elsewhere": {
+          "distinct_ids": 0,
+          "events": 0,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": []
+        },
+        "other_previous_id_28": {
+          "distinct_ids": 373,
+          "events": 2027,
+          "id_201_newline": 275,
+          "id_223_space": 292,
+          "id_799_space_We": 3,
+          "top": [
+            {
+              "events": 292,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 275,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 260,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 88,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 66,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 47,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 40,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 26,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 26,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 15,
+              "id": 262,
+              "surface": " s"
+            },
+            {
+              "events": 15,
+              "id": 279,
+              "surface": " d"
+            },
+            {
+              "events": 15,
+              "id": 301,
+              "surface": " S"
+            }
+          ]
+        }
+      },
+      "name": "reasoning-first",
+      "payload_tokens": 15955989,
+      "raw_donor_opening": {
+        "first_nonwhitespace": {
+          "distinct_ids": 13,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 3897,
+          "top": [
+            {
+              "events": 3897,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 271,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 97,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 25,
+              "id": 310,
+              "surface": " H"
+            },
+            {
+              "events": 23,
+              "id": 3184,
+              "surface": " U"
+            },
+            {
+              "events": 9,
+              "id": 165,
+              "surface": "�"
+            },
+            {
+              "events": 9,
+              "id": 166,
+              "surface": "�"
+            },
+            {
+              "events": 8,
+              "id": 143,
+              "surface": "�"
+            },
+            {
+              "events": 2,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 1,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 1,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 1,
+              "id": 340,
+              "surface": " I"
+            }
+          ]
+        },
+        "first_nonwhitespace_starts_alphanumeric": 4319,
+        "immediate": {
+          "distinct_ids": 10,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 27,
+          "id_799_space_We": 3897,
+          "top": [
+            {
+              "events": 3897,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 271,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 97,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 27,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 25,
+              "id": 310,
+              "surface": " H"
+            },
+            {
+              "events": 23,
+              "id": 3184,
+              "surface": " U"
+            },
+            {
+              "events": 2,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 1,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 1,
+              "id": 340,
+              "surface": " I"
+            },
+            {
+              "events": 1,
+              "id": 1049,
+              "surface": " R"
+            }
+          ]
+        },
+        "immediate_begins_ascii_space": 4345,
+        "leading_standalone_whitespace_tokens": {
+          "0": 4318,
+          "1": 27
+        }
+      },
+      "raw_immediate_id_equals_protocol_2_immediate_id": 4345,
+      "same_text_protocol_2_format_opening": {
+        "first_nonwhitespace": {
+          "distinct_ids": 13,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 3897,
+          "top": [
+            {
+              "events": 3897,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 271,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 97,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 25,
+              "id": 310,
+              "surface": " H"
+            },
+            {
+              "events": 23,
+              "id": 3184,
+              "surface": " U"
+            },
+            {
+              "events": 9,
+              "id": 165,
+              "surface": "�"
+            },
+            {
+              "events": 9,
+              "id": 166,
+              "surface": "�"
+            },
+            {
+              "events": 8,
+              "id": 143,
+              "surface": "�"
+            },
+            {
+              "events": 2,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 1,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 1,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 1,
+              "id": 340,
+              "surface": " I"
+            }
+          ]
+        },
+        "first_nonwhitespace_starts_alphanumeric": 4319,
+        "immediate": {
+          "distinct_ids": 10,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 27,
+          "id_799_space_We": 3897,
+          "top": [
+            {
+              "events": 3897,
+              "id": 799,
+              "surface": " We"
+            },
+            {
+              "events": 271,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 97,
+              "id": 1399,
+              "surface": " O"
+            },
+            {
+              "events": 27,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 25,
+              "id": 310,
+              "surface": " H"
+            },
+            {
+              "events": 23,
+              "id": 3184,
+              "surface": " U"
+            },
+            {
+              "events": 2,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 1,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 1,
+              "id": 340,
+              "surface": " I"
+            },
+            {
+              "events": 1,
+              "id": 1049,
+              "surface": " R"
+            }
+          ]
+        },
+        "immediate_begins_ascii_space": 4345,
+        "leading_standalone_whitespace_tokens": {
+          "0": 4318,
+          "1": 27
+        }
+      },
+      "visible_documents": 4060
+    },
+    {
+      "count_fit": {
+        "all_previous_id_28": {
+          "distinct_ids": 1876,
+          "events": 118915,
+          "id_201_newline": 16247,
+          "id_223_space": 17008,
+          "id_799_space_We": 137,
+          "top": [
+            {
+              "events": 17008,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 16247,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 10318,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 5255,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 3644,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 3446,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 3324,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 1589,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 1232,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 1025,
+              "id": 772,
+              "surface": " C"
+            },
+            {
+              "events": 953,
+              "id": 598,
+              "surface": " F"
+            },
+            {
+              "events": 809,
+              "id": 301,
+              "surface": " S"
+            }
+          ]
+        },
+        "exact_suffix_at_genuine_assistant_opening": {
+          "distinct_ids": 155,
+          "events": 4345,
+          "id_201_newline": 2,
+          "id_223_space": 2,
+          "id_799_space_We": 0,
+          "top": [
+            {
+              "events": 562,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 320,
+              "id": 17,
+              "surface": "/"
+            },
+            {
+              "events": 309,
+              "id": 5,
+              "surface": "#"
+            },
+            {
+              "events": 256,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 246,
+              "id": 413,
+              "surface": "The"
+            },
+            {
+              "events": 216,
+              "id": 897,
+              "surface": "Let"
+            },
+            {
+              "events": 180,
+              "id": 3025,
+              "surface": "Here"
+            },
+            {
+              "events": 139,
+              "id": 93,
+              "surface": "{"
+            },
+            {
+              "events": 138,
+              "id": 35,
+              "surface": "A"
+            },
+            {
+              "events": 133,
+              "id": 53,
+              "surface": "S"
+            },
+            {
+              "events": 125,
+              "id": 43,
+              "surface": "I"
+            },
+            {
+              "events": 114,
+              "id": 66,
+              "surface": "`"
+            }
+          ]
+        },
+        "exact_suffix_elsewhere": {
+          "distinct_ids": 0,
+          "events": 0,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": []
+        },
+        "other_previous_id_28": {
+          "distinct_ids": 1795,
+          "events": 114570,
+          "id_201_newline": 16245,
+          "id_223_space": 17006,
+          "id_799_space_We": 137,
+          "top": [
+            {
+              "events": 17006,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 16245,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 10318,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 4999,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 3643,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 3415,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 3323,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 1589,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 1232,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 1025,
+              "id": 772,
+              "surface": " C"
+            },
+            {
+              "events": 953,
+              "id": 598,
+              "surface": " F"
+            },
+            {
+              "events": 809,
+              "id": 301,
+              "surface": " S"
+            }
+          ]
+        }
+      },
+      "eligible_count_fit_events": 13983847,
+      "eligible_geometry_events": 259604,
+      "genuine_assistant_openings": 4345,
+      "geometry_subset": {
+        "all_previous_id_28": {
+          "distinct_ids": 436,
+          "events": 2442,
+          "id_201_newline": 275,
+          "id_223_space": 292,
+          "id_799_space_We": 3,
+          "top": [
+            {
+              "events": 292,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 275,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 260,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 100,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 69,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 66,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 48,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 43,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 35,
+              "id": 18,
+              "surface": "0"
+            },
+            {
+              "events": 31,
+              "id": 413,
+              "surface": "The"
+            },
+            {
+              "events": 26,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 26,
+              "id": 439,
+              "surface": " A"
+            }
+          ]
+        },
+        "exact_suffix_at_genuine_assistant_opening": {
+          "distinct_ids": 86,
+          "events": 415,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": [
+            {
+              "events": 65,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 31,
+              "id": 413,
+              "surface": "The"
+            },
+            {
+              "events": 26,
+              "id": 18,
+              "surface": "0"
+            },
+            {
+              "events": 22,
+              "id": 93,
+              "surface": "{"
+            },
+            {
+              "events": 15,
+              "id": 53,
+              "surface": "S"
+            },
+            {
+              "events": 14,
+              "id": 35,
+              "surface": "A"
+            },
+            {
+              "events": 12,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 12,
+              "id": 897,
+              "surface": "Let"
+            },
+            {
+              "events": 11,
+              "id": 37,
+              "surface": "C"
+            },
+            {
+              "events": 11,
+              "id": 40,
+              "surface": "F"
+            },
+            {
+              "events": 10,
+              "id": 43,
+              "surface": "I"
+            },
+            {
+              "events": 9,
+              "id": 5,
+              "surface": "#"
+            }
+          ]
+        },
+        "exact_suffix_elsewhere": {
+          "distinct_ids": 0,
+          "events": 0,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": []
+        },
+        "other_previous_id_28": {
+          "distinct_ids": 373,
+          "events": 2027,
+          "id_201_newline": 275,
+          "id_223_space": 292,
+          "id_799_space_We": 3,
+          "top": [
+            {
+              "events": 292,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 275,
+              "id": 201,
+              "surface": "\n"
+            },
+            {
+              "events": 260,
+              "id": 319,
+              "surface": " \""
+            },
+            {
+              "events": 88,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 66,
+              "id": 4,
+              "surface": "\""
+            },
+            {
+              "events": 47,
+              "id": 27,
+              "surface": "9"
+            },
+            {
+              "events": 40,
+              "id": 19,
+              "surface": "1"
+            },
+            {
+              "events": 26,
+              "id": 261,
+              "surface": " a"
+            },
+            {
+              "events": 26,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 15,
+              "id": 262,
+              "surface": " s"
+            },
+            {
+              "events": 15,
+              "id": 279,
+              "surface": " d"
+            },
+            {
+              "events": 15,
+              "id": 301,
+              "surface": " S"
+            }
+          ]
+        }
+      },
+      "name": "answer-first",
+      "payload_tokens": 15955989,
+      "raw_donor_opening": {
+        "first_nonwhitespace": {
+          "distinct_ids": 155,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 0,
+          "top": [
+            {
+              "events": 562,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 320,
+              "id": 17,
+              "surface": "/"
+            },
+            {
+              "events": 309,
+              "id": 5,
+              "surface": "#"
+            },
+            {
+              "events": 256,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 246,
+              "id": 413,
+              "surface": "The"
+            },
+            {
+              "events": 216,
+              "id": 897,
+              "surface": "Let"
+            },
+            {
+              "events": 180,
+              "id": 3025,
+              "surface": "Here"
+            },
+            {
+              "events": 139,
+              "id": 93,
+              "surface": "{"
+            },
+            {
+              "events": 138,
+              "id": 35,
+              "surface": "A"
+            },
+            {
+              "events": 133,
+              "id": 53,
+              "surface": "S"
+            },
+            {
+              "events": 125,
+              "id": 43,
+              "surface": "I"
+            },
+            {
+              "events": 116,
+              "id": 66,
+              "surface": "`"
+            }
+          ]
+        },
+        "first_nonwhitespace_starts_alphanumeric": 2376,
+        "immediate": {
+          "distinct_ids": 155,
+          "events": 4345,
+          "id_201_newline": 2,
+          "id_223_space": 2,
+          "id_799_space_We": 0,
+          "top": [
+            {
+              "events": 562,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 320,
+              "id": 17,
+              "surface": "/"
+            },
+            {
+              "events": 309,
+              "id": 5,
+              "surface": "#"
+            },
+            {
+              "events": 256,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 246,
+              "id": 413,
+              "surface": "The"
+            },
+            {
+              "events": 216,
+              "id": 897,
+              "surface": "Let"
+            },
+            {
+              "events": 180,
+              "id": 3025,
+              "surface": "Here"
+            },
+            {
+              "events": 139,
+              "id": 93,
+              "surface": "{"
+            },
+            {
+              "events": 138,
+              "id": 35,
+              "surface": "A"
+            },
+            {
+              "events": 133,
+              "id": 53,
+              "surface": "S"
+            },
+            {
+              "events": 125,
+              "id": 43,
+              "surface": "I"
+            },
+            {
+              "events": 114,
+              "id": 66,
+              "surface": "`"
+            }
+          ]
+        },
+        "immediate_begins_ascii_space": 2,
+        "leading_standalone_whitespace_tokens": {
+          "0": 4341,
+          "2": 2,
+          "3": 2
+        }
+      },
+      "raw_immediate_id_equals_protocol_2_immediate_id": 0,
+      "same_text_protocol_2_format_opening": {
+        "first_nonwhitespace": {
+          "distinct_ids": 166,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 0,
+          "id_799_space_We": 8,
+          "top": [
+            {
+              "events": 562,
+              "id": 62,
+              "surface": "\\"
+            },
+            {
+              "events": 320,
+              "id": 17,
+              "surface": "/"
+            },
+            {
+              "events": 309,
+              "id": 5,
+              "surface": "#"
+            },
+            {
+              "events": 256,
+              "id": 12,
+              "surface": "*"
+            },
+            {
+              "events": 246,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 216,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 200,
+              "id": 318,
+              "surface": " He"
+            },
+            {
+              "events": 139,
+              "id": 93,
+              "surface": "{"
+            },
+            {
+              "events": 138,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 126,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 125,
+              "id": 340,
+              "surface": " I"
+            },
+            {
+              "events": 116,
+              "id": 66,
+              "surface": "`"
+            }
+          ]
+        },
+        "first_nonwhitespace_starts_alphanumeric": 2376,
+        "immediate": {
+          "distinct_ids": 122,
+          "events": 4345,
+          "id_201_newline": 0,
+          "id_223_space": 2196,
+          "id_799_space_We": 8,
+          "top": [
+            {
+              "events": 2196,
+              "id": 223,
+              "surface": " "
+            },
+            {
+              "events": 246,
+              "id": 287,
+              "surface": " The"
+            },
+            {
+              "events": 216,
+              "id": 1042,
+              "surface": " Let"
+            },
+            {
+              "events": 200,
+              "id": 318,
+              "surface": " He"
+            },
+            {
+              "events": 138,
+              "id": 439,
+              "surface": " A"
+            },
+            {
+              "events": 126,
+              "id": 301,
+              "surface": " S"
+            },
+            {
+              "events": 125,
+              "id": 340,
+              "surface": " I"
+            },
+            {
+              "events": 68,
+              "id": 598,
+              "surface": " F"
+            },
+            {
+              "events": 63,
+              "id": 772,
+              "surface": " C"
+            },
+            {
+              "events": 51,
+              "id": 376,
+              "surface": " B"
+            },
+            {
+              "events": 50,
+              "id": 2237,
+              "surface": " N"
+            },
+            {
+              "events": 48,
+              "id": 955,
+              "surface": " In"
+            }
+          ]
+        },
+        "immediate_begins_ascii_space": 4345,
+        "leading_standalone_whitespace_tokens": {
+          "0": 2149,
+          "1": 2196
+        }
+      },
+      "visible_documents": 4060
+    }
+  ],
+  "assistant_suffix": [
+    201,
+    35,
+    560,
+    652,
+    714,
+    28
+  ],
+  "donor_input_pins_verified": {
+    "answer-first.geometry-mask.u8": {
+      "bytes": 15955989,
+      "sha256": "bb0c078f76d6d5f6971858afacab33f09460ece59577caa6ce84e83e8fa29f4a"
+    },
+    "answer-first.geometry-targets.u32": {
+      "bytes": 1038416,
+      "sha256": "3996f5181ed71959b47d1f6acf6f8de51b3f95ff26c9b3968dd6fac891701420"
+    },
+    "answer-first.mask.u8": {
+      "bytes": 15955989,
+      "sha256": "7d11bd2db90fd02055525ed9b0cbcaf560f6ddfdeeaa1f60a97915ad55c51b86"
+    },
+    "answer-first.segment.u8": {
+      "bytes": 15955989,
+      "sha256": "4ef74e7f2aeccd3c9e1354837a2182235b91ff7c5b30dab4a6202f491aa7b7f0"
+    },
+    "answer-first.targets.u32": {
+      "bytes": 55935388,
+      "sha256": "8b94ac254a2f5156e3d10502ed22776e714a35c76a06dec469f198b112634730"
+    },
+    "answer-first.tokens.u16": {
+      "bytes": 31912042,
+      "sha256": "738fa5beeed4a18e13012bc131ddbb19a18c7a713f2c013267563fc2b4d3cf07"
+    },
+    "groups.jsonl": {
+      "bytes": 1801798,
+      "sha256": "b7483391dd85ff35c736b31f960e1fcb198967ae93b64cb533e85503658fdb29"
+    },
+    "reasoning-first.geometry-mask.u8": {
+      "bytes": 15955989,
+      "sha256": "b1b3d1fc1e18e90c8a0be25ec889743c571f5e2a6decaf62ebb28529fd6ce981"
+    },
+    "reasoning-first.geometry-targets.u32": {
+      "bytes": 1038416,
+      "sha256": "d33fb05a42d354e53ce3c940ae16a4db55674551d718aa160ebd9a27158c5d46"
+    },
+    "reasoning-first.mask.u8": {
+      "bytes": 15955989,
+      "sha256": "672895a33919754f3d63e6e69902221a68dff8e827d7dc4f78dfd2037bf3bf2d"
+    },
+    "reasoning-first.segment.u8": {
+      "bytes": 15955989,
+      "sha256": "49f5dd0fda2a986b103c7b367f2b6cadd7cc97739be8fee6f4f7d25730897c0c"
+    },
+    "reasoning-first.targets.u32": {
+      "bytes": 55935388,
+      "sha256": "61f3e9815b83907922083f06f76a3332de864d451faf05245dc9dc7c44ca070f"
+    },
+    "reasoning-first.tokens.u16": {
+      "bytes": 31912042,
+      "sha256": "4668353d175ec9fe6246876a29024b730471f44c8d96c9d166904ee9adcb1193"
+    },
+    "records.jsonl": {
+      "bytes": 33748629,
+      "sha256": "b27d4b14538639095e9ca4828ddb9219aeb521c6fd216eccabe04d1fdff022e6"
+    }
+  },
+  "donor_receipt_sha256": "4ff029e7962b6c58c88014f1baf6adeb4bd5fd1e3d0464cdbbf66d929d10bbd8",
+  "fitted_plan_sha256": "3d5be4978d75afa25e781a50641702e6219f08fdc70424e65ca80b9ea4baa651",
+  "schema": "uor-r4.question-swap-training-boundary/1",
+  "scope": "Supplementary post-run static audit of fitted #4312 donor inputs only. No held rows, artifact execution, evaluation, or training.",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+}

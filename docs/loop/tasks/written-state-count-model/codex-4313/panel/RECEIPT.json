@@ -1,0 +1,62 @@
+{
+  "assistant_suffix": [
+    201,
+    35,
+    560,
+    652,
+    714,
+    28
+  ],
+  "context_limit": 192,
+  "controlled": {
+    "assignments_per_group": 2,
+    "duplicate_or_absent_support": 4,
+    "eligible_labels": 97,
+    "first_fact_by_question_side": [
+      200,
+      200
+    ],
+    "groups": 200,
+    "groups_per_template": 50,
+    "min_prefix": 47
+  },
+  "coqa": {
+    "bounded_pairs_scanned": 19,
+    "candidate_passages": 12,
+    "duplicate_passage": 0,
+    "eligible_turns": 112,
+    "equal_length_pairs": 1,
+    "from": {
+      "cnn": 3,
+      "gutenberg": 1,
+      "wikipedia": 1
+    },
+    "licensed": 300,
+    "pins": {
+      "d87_prompt_digests": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+      "dataset": "dfa367a9733ce53222918d0231d9b3bedc2b8ee831a2845f62dfc70701f2540a",
+      "prior_judgments": "bea3926ba99a205a2035ae81c8aaa78cc864f6cccf408a071bcccca4553f86aa",
+      "review": "39b60f9c8c186cd58d3eebe674bab72cb75e770cc02e3b6dacf5a3cca9981d30"
+    },
+    "positive_target_collision": 0,
+    "prior_conversations": 200,
+    "prior_passage_excluded": 201,
+    "raw_candidates": 14,
+    "reviewed_pairs": 5,
+    "standalone_space_pair_excluded": 5
+  },
+  "max_prefix": 182,
+  "outputs": {
+    "keys.jsonl": "866a01878f6c2890a4dbe715a45808df171afe47f7bbc466bf74f6cf578815bd",
+    "rows.jsonl": "cdd8af93baac3d5cd3a953b0d1d407b96b3f6c2538cae8f23489d331ccf4f571"
+  },
+  "pairs": {
+    "controlled": 400,
+    "coqa": 5
+  },
+  "protocol": "blake3:4c9778ead027688600d2211e50cbfae98ac15f932a0827c01ec2389c521fef27",
+  "schema": "uor-r4.question-swap-panel/1",
+  "seed": "codex-4313-question-swap-v1",
+  "space_token": 223,
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+}

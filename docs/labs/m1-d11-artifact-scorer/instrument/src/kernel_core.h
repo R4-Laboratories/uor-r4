@@ -116,6 +116,31 @@ typedef struct {
     uint32_t target_in_pool;
 } D11PointerTrace;
 
+// Optional read-only taps. Native compare/selection never reads these words.
+typedef struct {
+    uint32_t mass_lo, mass_hi;
+    uint32_t terms[6];
+    uint32_t pool_member;
+    uint32_t gate_rank, gate_full_rank, mass_ties, eligible_mass_ties;
+    uint32_t prior_count, prior_rank, prior_ties;
+    uint32_t writer_cell, writer_distance, writer_admitted;
+    uint32_t writer_rank, writer_full_rank, writer_distance_ties, writer_admitted_ties;
+} D11TokenProbe;
+
+typedef struct {
+    D11PointerTrace pointer;
+    int32_t read[32];
+    int32_t recurrence[32];
+    int32_t recurrent_frames[4];
+    int32_t recurrence_sum[32];
+    // Flock/Relation uses portable active-trace ordering for enabled levels,
+    // omitting word 3 (eligible count). Route records its chosen node and frame.
+    uint32_t routes[4][D11_MAX_STAGES][28];
+    uint32_t prior_selected, pool_size, positive_candidates;
+    uint32_t writer_candidates;
+    D11TokenProbe probes[3];
+} D11RowProbe;
+
 // Final occurrence-addressed writer. The host validates the four state words
 // and the original prompt fence before launch; the ordinary scorer validates
 // token IDs/length. io starts with state + four stop IDs and ends with the
@@ -230,7 +255,7 @@ D11_HD static int32_t d11_snap(const int32_t* x, int32_t n) {
 // route_read (:856-918), one block.
 D11_HD static int32_t d11_route_block(
     const D11Model* m, const uint32_t* prefix, int32_t length, const D11Plan* p,
-    int32_t block, int32_t* out) {
+    int32_t block, int32_t* out, D11RowProbe* probe = 0) {
     const int32_t* query = d11_token_block(m, prefix[length - 1], block);
     int32_t node = 0;
     int32_t root = 0;
@@ -271,6 +296,13 @@ D11_HD static int32_t d11_route_block(
             }
             next_node = best == 0 ? parent->c0 : (best == 1 ? parent->c1 : parent->c2);
         }
+        if (probe != 0) {
+            uint32_t* route = probe->routes[block][stage];
+            route[1] = 1;
+            route[2] = goal;
+            route[4] = next_node;
+            route[12] = total;
+        }
         if (p->nodes[next_node].atom >= 0) {
             const int32_t* carrier = d11_token_block(m, prefix[p->nodes[next_node].atom], block);
             d11_action(total, carrier, out);
@@ -284,7 +316,8 @@ D11_HD static int32_t d11_route_block(
 // flock_or_relation_read (:919-1146), one block.
 D11_HD static int32_t d11_flock_relation_block(
     const D11Model* m, const uint32_t* prefix, int32_t length, const D11Plan* p,
-    D11Scratch* s, int32_t block, int32_t relation_active, int32_t* out) {
+    D11Scratch* s, int32_t block, int32_t relation_active, int32_t* out,
+    D11RowProbe* probe = 0) {
     int32_t blocks = m->blocks;
     int32_t stages = m->stages;
     int32_t n_nodes = p->node_count;
@@ -490,17 +523,28 @@ D11_HD static int32_t d11_flock_relation_block(
         if (found == 0) {
             continue;
         }
+        uint32_t* route = probe != 0 ? probe->routes[block][l] : 0;
         int32_t sum[8] = {0, 0, 0, 0, 0, 0, 0, 0};
         for (int32_t k = 0; k < found; ++k) {
             int32_t node = top[k];
             int32_t act = (int32_t)D11_BFS[(s->frame[node] << 4) + fq];
             int32_t carried[8];
             d11_action(act, s->payload[node], carried);
+            if (route != 0) {
+                route[4 + k] = node;
+                route[12 + k] = act;
+                route[20 + k] = d11_root_id(carried);
+            }
             for (int32_t d = 0; d < 8; ++d) {
                 sum[d] += carried[d];
             }
         }
         int32_t mroot = d11_snap(sum, found);
+        if (route != 0) {
+            route[0] = (uint32_t)(gate + 1);
+            route[1] = found;
+            route[2] = mroot;
+        }
         for (int32_t d = 0; d < 8; ++d) {
             int32_t v = (int32_t)D11_ROOTS[mroot][d];
             u[d] += gate > 0 ? v : -v;
@@ -596,7 +640,8 @@ D11_HD static void d11_trunk_sparse_key_range(const uint32_t* trunk, int32_t voc
 
 D11_HD static uint64_t d11_trunk_candidate_score(const uint32_t* trunk, int32_t vocab,
                                                 uint32_t q_key, uint32_t r_key, uint32_t c_key,
-                                                int32_t has_ptr, uint32_t ptr_tok, uint32_t tok) {
+                                                int32_t has_ptr, uint32_t ptr_tok, uint32_t tok,
+                                                uint32_t* terms = 0) {
     uint32_t qr_key = (q_key << 16) | r_key;
     uint32_t qc_key = (q_key << 16) | c_key;
     uint32_t rc_key = (r_key << 16) | c_key;
@@ -606,6 +651,14 @@ D11_HD static uint64_t d11_trunk_candidate_score(const uint32_t* trunk, int32_t 
     uint64_t c_qc = (uint64_t)d11_trunk_sparse_get(trunk, vocab, 9, qc_key, tok);
     uint64_t c_rr = (uint64_t)d11_trunk_sparse_get(trunk, vocab, 2, rc_key, tok);
     uint64_t ptr_boost = (has_ptr && ptr_tok == tok) ? (1ULL << 8) : 0ULL;
+    if (terms != 0) {
+        terms[0] = (uint32_t)c_q;
+        terms[1] = (uint32_t)c_qr;
+        terms[2] = (uint32_t)c_r;
+        terms[3] = (uint32_t)c_qc;
+        terms[4] = (uint32_t)c_rr;
+        terms[5] = (uint32_t)ptr_boost;
+    }
     return (c_qr << 6) + (c_qc << 5) + (c_rr << 3) + (c_r << 1) + c_q + ptr_boost;
 }
 
@@ -629,7 +682,8 @@ D11_HD static void d11_trunk_consider_candidate(const uint32_t* trunk, int32_t v
 // DiscreteTrunkTables::apply_joint_pointer_gate (discrete_d11.rs:627-662).
 D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
     const D11Model* m, const uint32_t* prefix, int32_t length, int32_t* q,
-    int32_t mode, int32_t source, uint32_t target, D11PointerTrace* trace) {
+    int32_t mode, int32_t source, uint32_t target, D11PointerTrace* trace,
+    D11RowProbe* probe = 0) {
     if (m->blocks != 4) {
         return D11_ERR_SHAPE;
     }
@@ -712,6 +766,14 @@ D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
             return D11_ERR_ORBIT;
         }
         c_key |= ((uint32_t)norm_root & 0xFu) << (4 * b);
+        if (probe != 0) {
+            probe->recurrent_frames[b] = f_last;
+            for (int32_t d = 0; d < 8; ++d) {
+                probe->read[8 * b + d] = q[8 * b + d];
+                probe->recurrence[8 * b + d] = normalized_block[d];
+                probe->recurrence_sum[8 * b + d] = sum_block[d];
+            }
+        }
     }
 
     int32_t natural_source = -1;
@@ -826,7 +888,8 @@ D11_HD static int32_t d11_trunk_apply_joint_pointer_gate(
 // evaluate_prefix (:1165-1256) and observe_target (:1278-1378).
 D11_HD static void d11_evaluate_row(
     const D11Model* m, const uint32_t* prefix, int32_t length, uint32_t target, D11Scratch* s,
-    D11RowOut* out, int32_t mode = 0, int32_t source = -1, D11PointerTrace* trace = 0) {
+    D11RowOut* out, int32_t mode = 0, int32_t source = -1, D11PointerTrace* trace = 0,
+    D11RowProbe* probe = 0) {
     out->status = D11_OK;
     out->admitted_count = 0;
     out->top8_count = 0;
@@ -837,7 +900,8 @@ D11_HD static void d11_evaluate_row(
     out->loss_ta = 0;
     out->loss_tr = 0;
     if (m->blocks < 1 || m->blocks > D11_MAX_BLOCKS || m->stages < 1 || m->stages > D11_MAX_STAGES
-        || m->kept_cells < 1 || m->kept_cells > D11_MAX_KEPT_CELLS || m->read_kept > D11_MAX_KEPT) {
+        || m->kept_cells < 1 || m->kept_cells > D11_MAX_KEPT_CELLS || m->read_kept > D11_MAX_KEPT
+        || (probe != 0 && m->blocks != 4)) {
         out->status = D11_ERR_SHAPE;
         return;
     }
@@ -865,10 +929,10 @@ D11_HD static void d11_evaluate_row(
     for (int32_t b = 0; b < m->blocks; ++b) {
         int32_t* q = out->read_vector + b * 8;
         if (m->read_mode == D11_READ_ROUTE) {
-            status = d11_route_block(m, prefix, length, p, b, q);
+            status = d11_route_block(m, prefix, length, p, b, q, probe);
         } else {
             status = d11_flock_relation_block(m, prefix, length, p, s, b,
-                                              m->read_mode == D11_READ_RELATION, q);
+                                              m->read_mode == D11_READ_RELATION, q, probe);
         }
         if (status != D11_OK) {
             out->status = status;
@@ -877,7 +941,7 @@ D11_HD static void d11_evaluate_row(
     }
     if (m->trunk != 0 && m->trunk[0] != 0u) {
         status = d11_trunk_apply_joint_pointer_gate(m, prefix, length, out->read_vector,
-                                                   mode, source, target, trace);
+                                                   mode, source, target, trace, probe);
         if (status != D11_OK) {
             out->status = status;
             return;

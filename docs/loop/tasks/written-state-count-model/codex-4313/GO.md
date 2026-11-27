@@ -1,0 +1,7 @@
+# Pre-run decision
+
+Codex authorizes a frozen diagnostic under #4063. The preceding blind evaluation established a wrong gate choice before emission on two human questions. The current question swap distinguishes a collapse of the geometric read or recurrent state from a failure of the learned count scores to prefer the appropriate token. The conditional decisions and gates are in the [registration](SHEET.md). Lossless original-ID state, fixed artifact hashes, unmodified client predictions, and the product writer bind this to the native M2/M4 chain.
+
+The non-author [fitness review](FIT.md) passed after observing the real-device finite fixture and original frozen inputs. The researcher and reviewer independently verified both complete released artifact payloads and all six marker IDs. A rebuild reproduced the controlled and transfer panel. A preliminary set with duplicate controlled fact-word occurrences was retained without model evaluation. The final set replaces those affected groups. No fitted checkpoint response was used during selection.
+
+Wick's physical RTX 4090 was running another trainer. The managed Vast RTX 4090 in the [decision receipt](evidence/go.json) is leased to this session, within the cross-lab caps, with a watcher. Both checkpoint digests, the approved executable, finite receipt, registration, review, and 810-row input tape are checked again before evaluation. The complete device words and ranks are preserved for reverse-order and ordinary-client verification. Only the first token is measured.

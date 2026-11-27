@@ -1,0 +1,1012 @@
+{
+  "reasoning_first": {
+    "label": "Static post-hoc alternate first-ID rank lookup on saved device observations",
+    "pair_stats": {
+      "controlled": {
+        "alternate_pair_target_collision": 8,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 400,
+        "distinct_alternate_pair_targets": 392,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 6,
+        "one_agrees_with_canonical": 0,
+        "pairs": 400
+      },
+      "coqa": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 5,
+        "distinct_alternate_pair_targets": 5,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 1,
+        "one_agrees_with_canonical": 0,
+        "pairs": 5
+      },
+      "coqa_equal_length": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 1,
+        "distinct_alternate_pair_targets": 1,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 0,
+        "one_agrees_with_canonical": 0,
+        "pairs": 1
+      },
+      "coqa_unequal_length": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 4,
+        "distinct_alternate_pair_targets": 4,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 1,
+        "one_agrees_with_canonical": 0,
+        "pairs": 4
+      }
+    },
+    "ranks": "One-based. Gate full sorts positive eligible mass before the other IDs, using decreasing prior count then increasing original ID for ties and the tail. Native ranks are omitted outside the deployed candidate ordering.",
+    "scope": "Lookup only. Same frozen prompts, checkpoints, candidate sets, saved states, and emitted IDs. An initial subtoken or exact geometry alias does not demonstrate an answer.",
+    "strata": {
+      "controlled": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 31,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 701,
+          "positive_eligible_mass": 695,
+          "raw_positive_but_excluded": 0,
+          "rows": 800,
+          "writer_admits": 12,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 46,
+        "ranks": {
+          "gate_full": {
+            "max": 2562,
+            "median": 196,
+            "min": 25,
+            "n": 800,
+            "q25": 104,
+            "q75": 805
+          },
+          "gate_native": {
+            "max": 2380,
+            "median": 167,
+            "min": 25,
+            "n": 695,
+            "q25": 100,
+            "q75": 439
+          },
+          "prior": {
+            "max": 1667,
+            "median": 60,
+            "min": 5,
+            "n": 800,
+            "q25": 38,
+            "q75": 344
+          },
+          "writer_native": {
+            "max": 216,
+            "median": 65,
+            "min": 65,
+            "n": 12,
+            "q25": 65,
+            "q75": 216
+          }
+        }
+      },
+      "controlled_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 31,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 701,
+          "positive_eligible_mass": 695,
+          "raw_positive_but_excluded": 0,
+          "rows": 800,
+          "writer_admits": 12,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 46,
+        "ranks": {
+          "gate_full": {
+            "max": 2562,
+            "median": 196,
+            "min": 25,
+            "n": 800,
+            "q25": 104,
+            "q75": 805
+          },
+          "gate_native": {
+            "max": 2380,
+            "median": 167,
+            "min": 25,
+            "n": 695,
+            "q25": 100,
+            "q75": 439
+          },
+          "prior": {
+            "max": 1667,
+            "median": 60,
+            "min": 5,
+            "n": 800,
+            "q25": 38,
+            "q75": 344
+          },
+          "writer_native": {
+            "max": 216,
+            "median": 65,
+            "min": 65,
+            "n": 12,
+            "q25": 65,
+            "q75": 216
+          }
+        }
+      },
+      "coqa": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 10,
+          "positive_eligible_mass": 10,
+          "raw_positive_but_excluded": 0,
+          "rows": 10,
+          "writer_admits": 1,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 1
+        },
+        "distinct_ids": 9,
+        "ranks": {
+          "gate_full": {
+            "max": 1077,
+            "median": 385,
+            "min": 26,
+            "n": 10,
+            "q25": 236,
+            "q75": 606
+          },
+          "gate_native": {
+            "max": 1077,
+            "median": 385,
+            "min": 26,
+            "n": 10,
+            "q25": 236,
+            "q75": 606
+          },
+          "prior": {
+            "max": 783,
+            "median": 198,
+            "min": 39,
+            "n": 10,
+            "q25": 91,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": 2,
+            "median": 2,
+            "min": 2,
+            "n": 1,
+            "q25": 2,
+            "q75": 2
+          }
+        }
+      },
+      "coqa_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 10,
+          "positive_eligible_mass": 10,
+          "raw_positive_but_excluded": 0,
+          "rows": 10,
+          "writer_admits": 1,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 1
+        },
+        "distinct_ids": 9,
+        "ranks": {
+          "gate_full": {
+            "max": 1077,
+            "median": 385,
+            "min": 26,
+            "n": 10,
+            "q25": 236,
+            "q75": 606
+          },
+          "gate_native": {
+            "max": 1077,
+            "median": 385,
+            "min": 26,
+            "n": 10,
+            "q25": 236,
+            "q75": 606
+          },
+          "prior": {
+            "max": 783,
+            "median": 198,
+            "min": 39,
+            "n": 10,
+            "q25": 91,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": 2,
+            "median": 2,
+            "min": 2,
+            "n": 1,
+            "q25": 2,
+            "q75": 2
+          }
+        }
+      },
+      "coqa_equal_length": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 0,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 2,
+          "positive_eligible_mass": 2,
+          "raw_positive_but_excluded": 0,
+          "rows": 2,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 2,
+        "ranks": {
+          "gate_full": {
+            "max": 704,
+            "median": 606,
+            "min": 606,
+            "n": 2,
+            "q25": 606,
+            "q75": 704
+          },
+          "gate_native": {
+            "max": 704,
+            "median": 606,
+            "min": 606,
+            "n": 2,
+            "q25": 606,
+            "q75": 704
+          },
+          "prior": {
+            "max": 457,
+            "median": 247,
+            "min": 247,
+            "n": 2,
+            "q25": 247,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_equal_length_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 0,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 2,
+          "positive_eligible_mass": 2,
+          "raw_positive_but_excluded": 0,
+          "rows": 2,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 2,
+        "ranks": {
+          "gate_full": {
+            "max": 704,
+            "median": 606,
+            "min": 606,
+            "n": 2,
+            "q25": 606,
+            "q75": 704
+          },
+          "gate_native": {
+            "max": 704,
+            "median": 606,
+            "min": 606,
+            "n": 2,
+            "q25": 606,
+            "q75": 704
+          },
+          "prior": {
+            "max": 457,
+            "median": 247,
+            "min": 247,
+            "n": 2,
+            "q25": 247,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_unequal_length": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 8,
+          "positive_eligible_mass": 8,
+          "raw_positive_but_excluded": 0,
+          "rows": 8,
+          "writer_admits": 1,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 1
+        },
+        "distinct_ids": 8,
+        "ranks": {
+          "gate_full": {
+            "max": 1077,
+            "median": 354,
+            "min": 26,
+            "n": 8,
+            "q25": 150,
+            "q75": 501
+          },
+          "gate_native": {
+            "max": 1077,
+            "median": 354,
+            "min": 26,
+            "n": 8,
+            "q25": 150,
+            "q75": 501
+          },
+          "prior": {
+            "max": 783,
+            "median": 144,
+            "min": 39,
+            "n": 8,
+            "q25": 85,
+            "q75": 440
+          },
+          "writer_native": {
+            "max": 2,
+            "median": 2,
+            "min": 2,
+            "n": 1,
+            "q25": 2,
+            "q75": 2
+          }
+        }
+      },
+      "coqa_unequal_length_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 8,
+          "positive_eligible_mass": 8,
+          "raw_positive_but_excluded": 0,
+          "rows": 8,
+          "writer_admits": 1,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 1
+        },
+        "distinct_ids": 8,
+        "ranks": {
+          "gate_full": {
+            "max": 1077,
+            "median": 354,
+            "min": 26,
+            "n": 8,
+            "q25": 150,
+            "q75": 501
+          },
+          "gate_native": {
+            "max": 1077,
+            "median": 354,
+            "min": 26,
+            "n": 8,
+            "q25": 150,
+            "q75": 501
+          },
+          "prior": {
+            "max": 783,
+            "median": 144,
+            "min": 39,
+            "n": 8,
+            "q25": 85,
+            "q75": 440
+          },
+          "writer_native": {
+            "max": 2,
+            "median": 2,
+            "min": 2,
+            "n": 1,
+            "q25": 2,
+            "q75": 2
+          }
+        }
+      }
+    }
+  },
+  "answer_first": {
+    "label": "Static post-hoc alternate first-ID rank lookup on saved device observations",
+    "pair_stats": {
+      "controlled": {
+        "alternate_pair_target_collision": 8,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 400,
+        "distinct_alternate_pair_targets": 392,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 3,
+        "one_agrees_with_canonical": 0,
+        "pairs": 400
+      },
+      "coqa": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 5,
+        "distinct_alternate_pair_targets": 5,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 1,
+        "one_agrees_with_canonical": 0,
+        "pairs": 5
+      },
+      "coqa_equal_length": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 1,
+        "distinct_alternate_pair_targets": 1,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 0,
+        "one_agrees_with_canonical": 0,
+        "pairs": 1
+      },
+      "coqa_unequal_length": {
+        "alternate_pair_target_collision": 0,
+        "both_agree_with_canonical": 0,
+        "both_disagree_with_canonical": 4,
+        "distinct_alternate_pair_targets": 4,
+        "distinct_both_alternate_first_ids_emitted": 0,
+        "distinct_strict_two_way_alternate_mass": 1,
+        "one_agrees_with_canonical": 0,
+        "pairs": 4
+      }
+    },
+    "ranks": "One-based. Gate full sorts positive eligible mass before the other IDs, using decreasing prior count then increasing original ID for ties and the tail. Native ranks are omitted outside the deployed candidate ordering.",
+    "scope": "Lookup only. Same frozen prompts, checkpoints, candidate sets, saved states, and emitted IDs. An initial subtoken or exact geometry alias does not demonstrate an answer.",
+    "strata": {
+      "controlled": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 28,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 681,
+          "positive_eligible_mass": 678,
+          "raw_positive_but_excluded": 0,
+          "rows": 800,
+          "writer_admits": 7,
+          "writer_admits_at_distance_zero": 6,
+          "writer_distance_zero": 6,
+          "writer_emits": 6,
+          "writer_emits_at_distance_zero": 6,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 7
+        },
+        "distinct_ids": 46,
+        "ranks": {
+          "gate_full": {
+            "max": 2500,
+            "median": 230,
+            "min": 26,
+            "n": 800,
+            "q25": 111,
+            "q75": 784
+          },
+          "gate_native": {
+            "max": 1679,
+            "median": 182,
+            "min": 26,
+            "n": 678,
+            "q25": 106,
+            "q75": 471
+          },
+          "prior": {
+            "max": 1667,
+            "median": 60,
+            "min": 5,
+            "n": 800,
+            "q25": 38,
+            "q75": 344
+          },
+          "writer_native": {
+            "max": 5,
+            "median": 1,
+            "min": 1,
+            "n": 7,
+            "q25": 1,
+            "q75": 1
+          }
+        }
+      },
+      "controlled_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 28,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 681,
+          "positive_eligible_mass": 678,
+          "raw_positive_but_excluded": 0,
+          "rows": 800,
+          "writer_admits": 7,
+          "writer_admits_at_distance_zero": 6,
+          "writer_distance_zero": 6,
+          "writer_emits": 6,
+          "writer_emits_at_distance_zero": 6,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 7
+        },
+        "distinct_ids": 46,
+        "ranks": {
+          "gate_full": {
+            "max": 2500,
+            "median": 230,
+            "min": 26,
+            "n": 800,
+            "q25": 111,
+            "q75": 784
+          },
+          "gate_native": {
+            "max": 1679,
+            "median": 182,
+            "min": 26,
+            "n": 678,
+            "q25": 106,
+            "q75": 471
+          },
+          "prior": {
+            "max": 1667,
+            "median": 60,
+            "min": 5,
+            "n": 800,
+            "q25": 38,
+            "q75": 344
+          },
+          "writer_native": {
+            "max": 5,
+            "median": 1,
+            "min": 1,
+            "n": 7,
+            "q25": 1,
+            "q75": 1
+          }
+        }
+      },
+      "coqa": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 3,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 10,
+          "positive_eligible_mass": 10,
+          "raw_positive_but_excluded": 0,
+          "rows": 10,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 9,
+        "ranks": {
+          "gate_full": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 10,
+            "q25": 194,
+            "q75": 485
+          },
+          "gate_native": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 10,
+            "q25": 194,
+            "q75": 485
+          },
+          "prior": {
+            "max": 783,
+            "median": 198,
+            "min": 39,
+            "n": 10,
+            "q25": 91,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 3,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 10,
+          "positive_eligible_mass": 10,
+          "raw_positive_but_excluded": 0,
+          "rows": 10,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 9,
+        "ranks": {
+          "gate_full": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 10,
+            "q25": 194,
+            "q75": 485
+          },
+          "gate_native": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 10,
+            "q25": 194,
+            "q75": 485
+          },
+          "prior": {
+            "max": 783,
+            "median": 198,
+            "min": 39,
+            "n": 10,
+            "q25": 91,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_equal_length": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 1,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 2,
+          "positive_eligible_mass": 2,
+          "raw_positive_but_excluded": 0,
+          "rows": 2,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 2,
+        "ranks": {
+          "gate_full": {
+            "max": 485,
+            "median": 194,
+            "min": 194,
+            "n": 2,
+            "q25": 194,
+            "q75": 485
+          },
+          "gate_native": {
+            "max": 485,
+            "median": 194,
+            "min": 194,
+            "n": 2,
+            "q25": 194,
+            "q75": 485
+          },
+          "prior": {
+            "max": 457,
+            "median": 247,
+            "min": 247,
+            "n": 2,
+            "q25": 247,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_equal_length_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 1,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 2,
+          "positive_eligible_mass": 2,
+          "raw_positive_but_excluded": 0,
+          "rows": 2,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 2,
+        "ranks": {
+          "gate_full": {
+            "max": 485,
+            "median": 194,
+            "min": 194,
+            "n": 2,
+            "q25": 194,
+            "q75": 485
+          },
+          "gate_native": {
+            "max": 485,
+            "median": 194,
+            "min": 194,
+            "n": 2,
+            "q25": 194,
+            "q75": 485
+          },
+          "prior": {
+            "max": 457,
+            "median": 247,
+            "min": 247,
+            "n": 2,
+            "q25": 247,
+            "q75": 457
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_unequal_length": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 8,
+          "positive_eligible_mass": 8,
+          "raw_positive_but_excluded": 0,
+          "rows": 8,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 8,
+        "ranks": {
+          "gate_full": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 8,
+            "q25": 116,
+            "q75": 347
+          },
+          "gate_native": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 8,
+            "q25": 116,
+            "q75": 347
+          },
+          "prior": {
+            "max": 783,
+            "median": 144,
+            "min": 39,
+            "n": 8,
+            "q25": 85,
+            "q75": 440
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      },
+      "coqa_unequal_length_changed_id": {
+        "counts": {
+          "agrees_with_canonical": 0,
+          "alternate_is_space": 0,
+          "gate_rank_above_space": 0,
+          "gate_rank_improves_vs_prior": 2,
+          "gate_selects": 0,
+          "mass_above_space": 0,
+          "mass_ties_space": 0,
+          "pool_member": 8,
+          "positive_eligible_mass": 8,
+          "raw_positive_but_excluded": 0,
+          "rows": 8,
+          "writer_admits": 0,
+          "writer_admits_at_distance_zero": 0,
+          "writer_distance_zero": 0,
+          "writer_emits": 0,
+          "writer_emits_at_distance_zero": 0,
+          "writer_emits_distinct_exact_alias_at_distance_zero": 0,
+          "writer_top8": 0
+        },
+        "distinct_ids": 8,
+        "ranks": {
+          "gate_full": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 8,
+            "q25": 116,
+            "q75": 347
+          },
+          "gate_native": {
+            "max": 917,
+            "median": 277,
+            "min": 34,
+            "n": 8,
+            "q25": 116,
+            "q75": 347
+          },
+          "prior": {
+            "max": 783,
+            "median": 144,
+            "min": 39,
+            "n": 8,
+            "q25": 85,
+            "q75": 440
+          },
+          "writer_native": {
+            "max": null,
+            "median": null,
+            "min": null,
+            "n": 0,
+            "q25": null,
+            "q75": null
+          }
+        }
+      }
+    }
+  }
+}

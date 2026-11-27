@@ -1,0 +1,16 @@
+{
+  "authorized": true,
+  "fit": "TEST FITNESS: FIT",
+  "lab": "codex",
+  "time": "2026-11-27 13:24:38 UTC",
+  "base": "8ade2e19a967fc3b54846cf228e625abbdeb4457",
+  "issue": 4063,
+  "device_uuid": "GPU-67337732-4b39-4160-1384-9dd0c4730815",
+  "pod": "vast-62860456",
+  "lease": "codex/swap-4313/gpu0",
+  "approved_sha256": "abb189f9f6c6fdff35897a68b335dcc2adb6de258c915a2e4f1e066baef61421",
+  "panel_manifest_sha256": "51cd6366ad937d81328f7a06c6c14eb26b4a85465ac0af5d69cd09ecb5a5da2d",
+  "cubin_sha256": "f0a7d380623c4d9189cf6099268d28ee0391fbff8a779b52ffb00ba32755df85",
+  "registered_rows": 810,
+  "condition": "Interpret only after GPU reverse-order replay and complete cold client equality."
+}

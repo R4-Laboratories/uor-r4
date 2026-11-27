@@ -1,0 +1,13 @@
+{
+  "scope": "Post-run source compatibility and AOT identity check on Wick, no model execution",
+  "previous_trainer": "codex-4312/train",
+  "old_caller": "d11_flock_relation_block (8 arguments)",
+  "result": "nvcc_compatibility_passed",
+  "full_previous_trainer_locked_release_build": "passed",
+  "previous_trainer_binary_sha256": "c08598ff8760c613d29444bb20b414985ccf074d878e2fb30c24a5a262915d7c",
+  "visible_fit_ptx_sha256": "2c85ac1ac17f1732307373ac35c3f2b3dc23b26da3c799182e438347af40f314",
+  "visible_fit_cubin_sha256": "65e0b078f7249b5326dc62c62cdc38fef83758fd594ca95a7220feb8e25e25dd",
+  "question_swap_ptx_sha256": "29ebc759b5b9d3e5019e8760c1234b641615c6e8b1a261a8e8a6feb8e85a7d63",
+  "question_swap_cubin_sha256": "f0a7d380623c4d9189cf6099268d28ee0391fbff8a779b52ffb00ba32755df85",
+  "qualification_ptx_and_cubin_byte_identical": true
+}

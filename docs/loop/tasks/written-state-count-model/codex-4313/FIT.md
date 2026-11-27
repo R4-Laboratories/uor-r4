@@ -1,0 +1,7 @@
+# Independent pre-run fitness review
+
+Lab codex. Reviewer `swap_fitness`. **TEST FITNESS: FIT** on 27 November 2026 for the bounded [sheet](SHEET.md) on `vast-62860456`, GPU 0, RTX 4090 UUID `GPU-67337732-4b39-4160-1384-9dd0c4730815`, leased to `codex/swap-4313`.
+
+The reviewer compared the learned selector and geometric writer with the read-only rank taps, verified the v2 manifest and its independent rebuild on Wick, counted all 810 distinct input prefixes, and individually checked the ten questions from the five transfer passages against their common excerpts. The matched controlled panel has 200 complete counterbalanced groups. All inputs share the six-ID marker ending in ID 28. Both checkpoint files match the published hashes.
+
+The on-device six-row finite fixture passed eleven controls including crossed mass preferences, a positive raw mass outside the candidate pool, a zero-mass admitted candidate, both tie breakers, empty-pool fallback, a writer alias, the native successor bonus, identical ordinary CUDA output and cold native state/rank replay. Receipt SHA-256 `c56047ee044be7afedcc61f8815f9ab4809b337f987b0f59fd8c7c2ab45d50f1`. Executable SHA-256 `d68d1d1e46fd3bc89175c5ce062a3229a346615ba9cb45c916fe61c943924b7b`. The final interpretation requires reverse-order observation equality and exact ordinary-client replay across all held inputs. The five natural passage pairs are descriptive. No milestone or full-reply result is in scope.

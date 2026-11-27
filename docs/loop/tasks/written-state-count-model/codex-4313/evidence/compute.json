@@ -1,0 +1,15 @@
+{
+  "provider": "Vast.ai",
+  "device": "RTX 4090",
+  "gpu_uuid": "GPU-67337732-4b39-4160-1384-9dd0c4730815",
+  "driver": "580.95.05",
+  "start_utc": "2026-11-27T13:20:06Z",
+  "deleted_utc": "2026-11-27T13:26:08Z",
+  "provider_uptime_s": 358,
+  "hourly_usd": 0.869,
+  "estimated_compute_usd": 0.08641722222222221,
+  "paired_held_forward_and_reverse_wall_s": 13.644051519,
+  "held_row_evaluations": 3240,
+  "distinct_checkpoint_inputs": 1620,
+  "training_updates": 0
+}
