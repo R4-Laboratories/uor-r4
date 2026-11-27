@@ -1,0 +1,19 @@
+{
+  "cubin_sha256": "7b12da42688cdd704ca042d1a0d928683ca21178eca124e011b2f58afeffaa74",
+  "pass": true,
+  "prll_bos_targets_tested": 2,
+  "prll_diffs": 0,
+  "prll_positions_tested": 256,
+  "prompts_tested": 10,
+  "s3_modes_seen": {
+    "backoff": 1,
+    "primary": 2,
+    "starling": 2,
+    "uniform_miss": 26
+  },
+  "schema": "uor-r4.p4-finite-parity/1",
+  "score_diffs": 0,
+  "step_diffs": 0,
+  "total_score_words": 126945,
+  "total_steps": 31
+}

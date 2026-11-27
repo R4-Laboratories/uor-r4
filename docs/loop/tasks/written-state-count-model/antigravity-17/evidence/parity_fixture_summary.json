@@ -1,0 +1,40 @@
+{
+  "coverage": {
+    "cache_hit_states": {
+      "0": 90,
+      "1": 47,
+      "2": 83
+    },
+    "pick_classes": {
+      "0": 34,
+      "1": 76,
+      "4": 110
+    },
+    "s2_skip_hit_masks": {
+      "0": 21,
+      "1": 100,
+      "2": 1,
+      "3": 37,
+      "5": 25,
+      "6": 3,
+      "7": 33
+    },
+    "s3_modes": {
+      "backoff": 5,
+      "primary": 215
+    },
+    "s4_abstain_steps": 40,
+    "s4_active_steps": 180
+  },
+  "cubin_sha256": "7b12da42688cdd704ca042d1a0d928683ca21178eca124e011b2f58afeffaa74",
+  "fixture_sha256": "735cc0aff05b8beb4d73e1f42d2497da8af39e0c6ec4a1bba984c3866456b2ba",
+  "p4_artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "p4_state_sha256": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778",
+  "pass": true,
+  "prompt_count": 96,
+  "schema": "uor-r4.p4-parity-fixture-summary/1",
+  "total_raw_score_words_checked": 900900,
+  "total_steps": 220,
+  "wick_cuda_vs_cpu_score_word_diffs": 0,
+  "wick_cuda_vs_cpu_step_diffs": 0
+}

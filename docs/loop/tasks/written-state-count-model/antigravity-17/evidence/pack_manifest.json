@@ -1,0 +1,33 @@
+{
+  "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "c_sha256": "cd3adfe949ee34a62bc8d5e48592e091fcece796618d7910d1667d014a4bae2a",
+  "cap_bytes": 4000000000,
+  "cold_reload_component_digests": {
+    "a1s_weights_sha256": "e2fbf41d38d9dbe3449cdbb85c8bd335c5ee1f803e35bc7993070d65c0d33293",
+    "count_sha256": "75ccb234e669cb6b707ffe4091822a91a225e0875a0e99edf9f21f8f2ec3f233",
+    "fit_manifest_sha256": "26f8f2225a8a0735400a647e37f2f97d86cde9f2de8d847ef791469a6d6b02ec",
+    "s2_skip_sha256": "325271efa12e936719811b6dbec71f4897e9528180b0fb863e6c9fc0b6e1c0c5",
+    "s3_sha256": "8a71c5abfbb337b6eacf0f27072a62061095f27eeb36e2d7b1abfa5528d1b659",
+    "s4_sha256": "cd0e43859bcd72acfa08342d7ff08a0827c582c4cd8e1592218e6ca4c43f8771",
+    "s6_sha256": "5783ba3b8b03cb4e9c35ed335b89c8ff36797175e9e1b8d9db40ddfd64f46a2d"
+  },
+  "p4_bytes": 3987940843,
+  "p4_path": "/mnt/plexpool/uor-r4-corpus/runs/20261126-antigravity-p4-qual-r2/artifacts/p4.d11",
+  "s2_skip_compact_sha256": "325271efa12e936719811b6dbec71f4897e9528180b0fb863e6c9fc0b6e1c0c5",
+  "s3_compact_sha256": "8a71c5abfbb337b6eacf0f27072a62061095f27eeb36e2d7b1abfa5528d1b659",
+  "schema": "uor-r4.p4-pack-manifest/1",
+  "section_bytes": {
+    "a1s_weights": 98604,
+    "counts_v3": 3804378885,
+    "fit_manifest": 2523,
+    "s2_skip_compact": 39088029,
+    "s3_compact": 55418715,
+    "s4_table": 1952698,
+    "s6_weights": 464704,
+    "trunk": 86536132
+  },
+  "state_sha256": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778",
+  "tokenizer_bytes": 265393,
+  "total_deployed_bytes": 3988206236,
+  "within_4gb_cap": true
+}

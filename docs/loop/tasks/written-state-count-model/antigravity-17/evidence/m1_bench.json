@@ -1,0 +1,153 @@
+{
+  "schema": "uor-r4.p4-m1-bench/1",
+  "host_hw": "Apple M1",
+  "host_mem_bytes": 17179869184,
+  "prompt_id": "ctx2048_00",
+  "prompt_tokens": 2048,
+  "runs": [
+    {
+      "label": "ctx2048_128tok_r1",
+      "context_tokens": 2048,
+      "max_tokens": 128,
+      "read_enabled": true,
+      "tokens_generated": 128,
+      "open_and_prefill_ns": 61979396750,
+      "decode_ns": 101957917,
+      "warm_tok_per_s": 1255.42,
+      "max_rss_bytes": 3978461184,
+      "peak_memory_footprint_bytes": 3985837224,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_128tok_r2",
+      "context_tokens": 2048,
+      "max_tokens": 128,
+      "read_enabled": true,
+      "tokens_generated": 128,
+      "open_and_prefill_ns": 60081639791,
+      "decode_ns": 103358834,
+      "warm_tok_per_s": 1238.4,
+      "max_rss_bytes": 3978461184,
+      "peak_memory_footprint_bytes": 3985837224,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_128tok_r3",
+      "context_tokens": 2048,
+      "max_tokens": 128,
+      "read_enabled": true,
+      "tokens_generated": 128,
+      "open_and_prefill_ns": 61072604834,
+      "decode_ns": 103295500,
+      "warm_tok_per_s": 1239.16,
+      "max_rss_bytes": 3978444800,
+      "peak_memory_footprint_bytes": 3985820840,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_256tok_r1",
+      "context_tokens": 2048,
+      "max_tokens": 256,
+      "read_enabled": true,
+      "tokens_generated": 256,
+      "open_and_prefill_ns": 63633531000,
+      "decode_ns": 238026125,
+      "warm_tok_per_s": 1075.51,
+      "max_rss_bytes": 3978477568,
+      "peak_memory_footprint_bytes": 3985886376,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_256tok_r2",
+      "context_tokens": 2048,
+      "max_tokens": 256,
+      "read_enabled": true,
+      "tokens_generated": 256,
+      "open_and_prefill_ns": 61800547875,
+      "decode_ns": 197919708,
+      "warm_tok_per_s": 1293.45,
+      "max_rss_bytes": 3912925184,
+      "peak_memory_footprint_bytes": 3985493160,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_256tok_r3",
+      "context_tokens": 2048,
+      "max_tokens": 256,
+      "read_enabled": true,
+      "tokens_generated": 256,
+      "open_and_prefill_ns": 61536008792,
+      "decode_ns": 206776500,
+      "warm_tok_per_s": 1238.05,
+      "max_rss_bytes": 3978461184,
+      "peak_memory_footprint_bytes": 3985837224,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        1205,
+        80,
+        1252
+      ]
+    },
+    {
+      "label": "ctx2048_128tok_noread",
+      "context_tokens": 2048,
+      "max_tokens": 128,
+      "read_enabled": false,
+      "tokens_generated": 128,
+      "open_and_prefill_ns": 65762327500,
+      "decode_ns": 166267125,
+      "warm_tok_per_s": 769.85,
+      "max_rss_bytes": 3978493952,
+      "peak_memory_footprint_bytes": 3986082984,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "generated_prefix_4": [
+        269,
+        271,
+        714,
+        639
+      ]
+    }
+  ],
+  "max_rss_bytes_worst": 3978493952,
+  "peak_memory_footprint_bytes_worst": 3986082984,
+  "rss_cap_bytes": 4000000000,
+  "rss_pass": true,
+  "footprint_pass": true,
+  "median_warm_tok_per_s_128": 1239.16,
+  "median_warm_tok_per_s_256": 1238.05,
+  "speed_bar_tok_per_s": 1000,
+  "speed_pass_128": true,
+  "speed_pass_256": true,
+  "median_cold_open_and_prefill_ms": 61668.28
+}

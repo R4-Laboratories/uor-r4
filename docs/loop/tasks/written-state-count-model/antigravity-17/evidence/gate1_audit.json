@@ -1,0 +1,14 @@
+{
+  "cubin_sha256": "7b12da42688cdd704ca042d1a0d928683ca21178eca124e011b2f58afeffaa74",
+  "required_kernels": [
+    "p4_parity_batch_kernel",
+    "p4_bar_a_windows_kernel"
+  ],
+  "missing_ptx_kernels": [],
+  "missing_sass_kernels": [],
+  "ptx_float_hits": 0,
+  "ptx_mma_hits": 0,
+  "sass_float_hits": 0,
+  "sass_mma_hits": 0,
+  "pass": true
+}
