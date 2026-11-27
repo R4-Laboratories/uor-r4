@@ -1,0 +1,603 @@
+{
+  "axis_order_for_array_fields": [
+    "selector_period",
+    "direct_post_b"
+  ],
+  "component_order_for_array_fields": [
+    "period",
+    "post_b",
+    "full"
+  ],
+  "fit_slots_with_verified_ordered_addresses": 6144,
+  "hardware": "Wick bookkeeping only",
+  "held": {
+    "archive_selector_pairs_at_period": null,
+    "archived_gpu_row_stage_deltas_verified": 832,
+    "per_axis_common_support_sum": [
+      149720,
+      48640
+    ],
+    "per_axis_support_stop_copy_sum": [
+      [
+        163896,
+        163752
+      ],
+      [
+        50432,
+        50400
+      ]
+    ],
+    "post_b_two_three_by_provenance": {
+      "direct-count-control": {
+        "counterfactual_component_only_flips_positive_copy": [
+          0,
+          0
+        ],
+        "difference_l1_sum": 3552,
+        "difference_support_sum": 3552,
+        "frozen_flip_for_positive_copy": 0,
+        "frozen_margin_sign_negative_zero_positive": [
+          32,
+          0,
+          32
+        ],
+        "full_flip_for_positive_copy": 0,
+        "full_margin_sign_negative_zero_positive": [
+          0,
+          0,
+          64
+        ],
+        "impossible_for_any_residual": 0,
+        "matched_difference_support_min_max": [
+          55,
+          56
+        ],
+        "no_stage_write_on_any_difference": [
+          0,
+          0
+        ],
+        "no_write_from_either_stage_on_any_difference": 0,
+        "period_delta_sign_negative_zero_positive": [
+          0,
+          0,
+          64
+        ],
+        "post_b_delta_sign_negative_zero_positive": [
+          64,
+          0,
+          0
+        ],
+        "records": 64,
+        "untouched_by_either_stage_sum": 1536,
+        "untouched_by_stage_sum": [
+          1888,
+          2752
+        ],
+        "zero_difference": 0,
+        "zero_net_by_component_sum": [
+          1920,
+          2752,
+          1568
+        ]
+      }
+    },
+    "post_b_two_three_pairs": {
+      "counterfactual_component_only_flips_positive_copy": [
+        0,
+        0
+      ],
+      "difference_l1_sum": 3552,
+      "difference_support_sum": 3552,
+      "frozen_flip_for_positive_copy": 0,
+      "frozen_margin_sign_negative_zero_positive": [
+        32,
+        0,
+        32
+      ],
+      "full_flip_for_positive_copy": 0,
+      "full_margin_sign_negative_zero_positive": [
+        0,
+        0,
+        64
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        55,
+        56
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        0,
+        0,
+        64
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        64,
+        0,
+        0
+      ],
+      "records": 64,
+      "untouched_by_either_stage_sum": 1536,
+      "untouched_by_stage_sum": [
+        1888,
+        2752
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        1920,
+        2752,
+        1568
+      ]
+    },
+    "selector_by_clause_order_interaction": {
+      "counterfactual_component_only_flips_positive_copy": [
+        0,
+        0
+      ],
+      "difference_l1_sum": 9936,
+      "difference_support_sum": 9072,
+      "frozen_flip_for_positive_copy": 0,
+      "frozen_margin_sign_negative_zero_positive": [
+        40,
+        0,
+        24
+      ],
+      "full_flip_for_positive_copy": 0,
+      "full_margin_sign_negative_zero_positive": [
+        40,
+        0,
+        24
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        8,
+        516
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        32,
+        0,
+        32
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        32,
+        0,
+        32
+      ],
+      "records": 64,
+      "untouched_by_either_stage_sum": 4016,
+      "untouched_by_stage_sum": [
+        5000,
+        6944
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        5088,
+        6944,
+        4168
+      ]
+    },
+    "selector_pairs_at_period": {
+      "counterfactual_component_only_flips_positive_copy": [
+        8,
+        0
+      ],
+      "difference_l1_sum": 28208,
+      "difference_support_sum": 28208,
+      "frozen_flip_for_positive_copy": 0,
+      "frozen_margin_sign_negative_zero_positive": [
+        48,
+        24,
+        56
+      ],
+      "full_flip_for_positive_copy": 0,
+      "full_margin_sign_negative_zero_positive": [
+        64,
+        0,
+        64
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        24,
+        579
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        64,
+        0,
+        64
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        56,
+        0,
+        72
+      ],
+      "records": 128,
+      "untouched_by_either_stage_sum": 12544,
+      "untouched_by_stage_sum": [
+        16176,
+        21496
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        16496,
+        21544,
+        13080
+      ]
+    }
+  },
+  "source": "independent reconstruction of original indexed feature supports and decomposition of archived CUDA score differences",
+  "train": {
+    "archive_selector_pairs_at_period": {
+      "counterfactual_component_only_flips_positive_copy": [
+        2,
+        2
+      ],
+      "difference_l1_sum": 5206,
+      "difference_support_sum": 5206,
+      "frozen_flip_for_positive_copy": 14,
+      "frozen_margin_sign_negative_zero_positive": [
+        0,
+        0,
+        14
+      ],
+      "full_flip_for_positive_copy": 9,
+      "full_margin_sign_negative_zero_positive": [
+        0,
+        0,
+        14
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        59,
+        678
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        6,
+        0,
+        8
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        5,
+        0,
+        9
+      ],
+      "records": 14,
+      "untouched_by_either_stage_sum": 2219,
+      "untouched_by_stage_sum": [
+        2899,
+        3816
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        2942,
+        3832,
+        2302
+      ]
+    },
+    "archived_gpu_row_stage_deltas_verified": 1264,
+    "per_axis_common_support_sum": [
+      148680,
+      85758
+    ],
+    "per_axis_support_stop_copy_sum": [
+      [
+        163904,
+        164032
+      ],
+      [
+        94026,
+        93124
+      ]
+    ],
+    "post_b_two_three_by_provenance": {
+      "archive": {
+        "counterfactual_component_only_flips_positive_copy": [
+          42,
+          36
+        ],
+        "difference_l1_sum": 11538,
+        "difference_support_sum": 11538,
+        "frozen_flip_for_positive_copy": 48,
+        "frozen_margin_sign_negative_zero_positive": [
+          0,
+          0,
+          48
+        ],
+        "full_flip_for_positive_copy": 36,
+        "full_margin_sign_negative_zero_positive": [
+          0,
+          0,
+          48
+        ],
+        "impossible_for_any_residual": 0,
+        "matched_difference_support_min_max": [
+          76,
+          570
+        ],
+        "no_stage_write_on_any_difference": [
+          0,
+          0
+        ],
+        "no_write_from_either_stage_on_any_difference": 0,
+        "period_delta_sign_negative_zero_positive": [
+          18,
+          0,
+          30
+        ],
+        "post_b_delta_sign_negative_zero_positive": [
+          0,
+          0,
+          48
+        ],
+        "records": 48,
+        "untouched_by_either_stage_sum": 4764,
+        "untouched_by_stage_sum": [
+          6060,
+          8550
+        ],
+        "zero_difference": 0,
+        "zero_net_by_component_sum": [
+          6276,
+          8556,
+          4932
+        ]
+      },
+      "direct-count-control": {
+        "counterfactual_component_only_flips_positive_copy": [
+          0,
+          0
+        ],
+        "difference_l1_sum": 4096,
+        "difference_support_sum": 4096,
+        "frozen_flip_for_positive_copy": 0,
+        "frozen_margin_sign_negative_zero_positive": [
+          0,
+          32,
+          32
+        ],
+        "full_flip_for_positive_copy": 32,
+        "full_margin_sign_negative_zero_positive": [
+          0,
+          0,
+          64
+        ],
+        "impossible_for_any_residual": 0,
+        "matched_difference_support_min_max": [
+          47,
+          81
+        ],
+        "no_stage_write_on_any_difference": [
+          0,
+          0
+        ],
+        "no_write_from_either_stage_on_any_difference": 0,
+        "period_delta_sign_negative_zero_positive": [
+          32,
+          0,
+          32
+        ],
+        "post_b_delta_sign_negative_zero_positive": [
+          0,
+          0,
+          64
+        ],
+        "records": 64,
+        "untouched_by_either_stage_sum": 1600,
+        "untouched_by_stage_sum": [
+          2176,
+          3136
+        ],
+        "zero_difference": 0,
+        "zero_net_by_component_sum": [
+          2240,
+          3136,
+          1632
+        ]
+      }
+    },
+    "post_b_two_three_pairs": {
+      "counterfactual_component_only_flips_positive_copy": [
+        42,
+        36
+      ],
+      "difference_l1_sum": 15634,
+      "difference_support_sum": 15634,
+      "frozen_flip_for_positive_copy": 48,
+      "frozen_margin_sign_negative_zero_positive": [
+        0,
+        32,
+        80
+      ],
+      "full_flip_for_positive_copy": 68,
+      "full_margin_sign_negative_zero_positive": [
+        0,
+        0,
+        112
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        47,
+        570
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        50,
+        0,
+        62
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        0,
+        0,
+        112
+      ],
+      "records": 112,
+      "untouched_by_either_stage_sum": 6364,
+      "untouched_by_stage_sum": [
+        8236,
+        11686
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        8516,
+        11692,
+        6564
+      ]
+    },
+    "selector_by_clause_order_interaction": {
+      "counterfactual_component_only_flips_positive_copy": [
+        0,
+        0
+      ],
+      "difference_l1_sum": 11312,
+      "difference_support_sum": 10328,
+      "frozen_flip_for_positive_copy": 0,
+      "frozen_margin_sign_negative_zero_positive": [
+        16,
+        8,
+        40
+      ],
+      "full_flip_for_positive_copy": 0,
+      "full_margin_sign_negative_zero_positive": [
+        16,
+        0,
+        48
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        11,
+        491
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        16,
+        0,
+        48
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        40,
+        0,
+        24
+      ],
+      "records": 64,
+      "untouched_by_either_stage_sum": 4648,
+      "untouched_by_stage_sum": [
+        6048,
+        7720
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        6192,
+        7736,
+        4824
+      ]
+    },
+    "selector_pairs_at_period": {
+      "counterfactual_component_only_flips_positive_copy": [
+        0,
+        0
+      ],
+      "difference_l1_sum": 30576,
+      "difference_support_sum": 30576,
+      "frozen_flip_for_positive_copy": 0,
+      "frozen_margin_sign_negative_zero_positive": [
+        32,
+        16,
+        80
+      ],
+      "full_flip_for_positive_copy": 48,
+      "full_margin_sign_negative_zero_positive": [
+        32,
+        0,
+        96
+      ],
+      "impossible_for_any_residual": 0,
+      "matched_difference_support_min_max": [
+        57,
+        541
+      ],
+      "no_stage_write_on_any_difference": [
+        0,
+        0
+      ],
+      "no_write_from_either_stage_on_any_difference": 0,
+      "period_delta_sign_negative_zero_positive": [
+        48,
+        0,
+        80
+      ],
+      "post_b_delta_sign_negative_zero_positive": [
+        64,
+        0,
+        64
+      ],
+      "records": 128,
+      "untouched_by_either_stage_sum": 13664,
+      "untouched_by_stage_sum": [
+        17888,
+        23208
+      ],
+      "zero_difference": 0,
+      "zero_net_by_component_sum": [
+        18256,
+        23256,
+        14192
+      ]
+    }
+  },
+  "train_matched_slot_writes": {
+    "period_archive_selector": {
+      "matched_slots": 112,
+      "slots_that_wrote": 18,
+      "writes_to_distinguishing_addresses": 63,
+      "writes_to_shared_addresses": 225,
+      "writing_slots_without_a_distinguishing_write": 2
+    },
+    "period_selector": {
+      "matched_slots": 1024,
+      "slots_that_wrote": 527,
+      "writes_to_distinguishing_addresses": 663,
+      "writes_to_shared_addresses": 7769,
+      "writing_slots_without_a_distinguishing_write": 172
+    },
+    "post_b_archive": {
+      "matched_slots": 832,
+      "slots_that_wrote": 90,
+      "writes_to_distinguishing_addresses": 255,
+      "writes_to_shared_addresses": 1185,
+      "writing_slots_without_a_distinguishing_write": 2
+    },
+    "post_b_direct": {
+      "matched_slots": 1152,
+      "slots_that_wrote": 69,
+      "writes_to_distinguishing_addresses": 27,
+      "writes_to_shared_addresses": 1077,
+      "writing_slots_without_a_distinguishing_write": 42
+    }
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "component_contributions": [
+    {
+      "split": "train",
+      "compared_pairs": 254,
+      "compared_quartets": 64,
+      "all_components_exact": true
+    },
+    {
+      "split": "held",
+      "compared_pairs": 192,
+      "compared_quartets": 64,
+      "all_components_exact": true
+    }
+  ],
+  "held_strict_threshold_bounds": {
+    "selector_at_period": {
+      "zero": {
+        "pairs": 128,
+        "at_zero": 0,
+        "individually_separable": 56,
+        "best_common_threshold": 16
+      },
+      "period_only": {
+        "pairs": 128,
+        "at_zero": 8,
+        "individually_separable": 56,
+        "best_common_threshold": 24
+      },
+      "post_b_only": {
+        "pairs": 128,
+        "at_zero": 0,
+        "individually_separable": 56,
+        "best_common_threshold": 24
+      },
+      "full": {
+        "pairs": 128,
+        "at_zero": 0,
+        "individually_separable": 64,
+        "best_common_threshold": 24
+      }
+    },
+    "clause_at_period": {
+      "zero": {
+        "pairs": 128,
+        "at_zero": 16,
+        "individually_separable": 72,
+        "best_common_threshold": 24
+      },
+      "period_only": {
+        "pairs": 128,
+        "at_zero": 8,
+        "individually_separable": 48,
+        "best_common_threshold": 24
+      },
+      "post_b_only": {
+        "pairs": 128,
+        "at_zero": 0,
+        "individually_separable": 72,
+        "best_common_threshold": 32
+      },
+      "full": {
+        "pairs": 128,
+        "at_zero": 8,
+        "individually_separable": 72,
+        "best_common_threshold": 24
+      }
+    },
+    "direct_after_b": {
+      "zero": {
+        "pairs": 64,
+        "at_zero": 0,
+        "individually_separable": 32,
+        "best_common_threshold": 32
+      },
+      "period_only": {
+        "pairs": 64,
+        "at_zero": 0,
+        "individually_separable": 64,
+        "best_common_threshold": 32
+      },
+      "post_b_only": {
+        "pairs": 64,
+        "at_zero": 0,
+        "individually_separable": 0,
+        "best_common_threshold": 0
+      },
+      "full": {
+        "pairs": 64,
+        "at_zero": 0,
+        "individually_separable": 64,
+        "best_common_threshold": 32
+      }
+    }
+  },
+  "quartet_interactions": {
+    "held": [
+      {
+        "component": "zero",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 40,
+        "interaction_positive": 24,
+        "signed_interactions": [
+          -9,
+          -3,
+          -2,
+          -1,
+          2,
+          10,
+          12
+        ]
+      },
+      {
+        "component": "period",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 32,
+        "interaction_positive": 32,
+        "signed_interactions": [
+          -96,
+          -47,
+          -8,
+          -3,
+          3,
+          27,
+          46,
+          62
+        ]
+      },
+      {
+        "component": "post-b",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 32,
+        "interaction_positive": 32,
+        "signed_interactions": [
+          -86,
+          -22,
+          -18,
+          -17,
+          12,
+          19,
+          35
+        ]
+      },
+      {
+        "component": "full",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 40,
+        "interaction_positive": 24,
+        "signed_interactions": [
+          -101,
+          -62,
+          -59,
+          -27,
+          -13,
+          36,
+          67,
+          95
+        ]
+      }
+    ],
+    "train": [
+      {
+        "component": "zero",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 8,
+        "interaction_negative": 16,
+        "interaction_positive": 40,
+        "signed_interactions": [
+          -65,
+          -8,
+          0,
+          1,
+          3,
+          11,
+          13,
+          25
+        ]
+      },
+      {
+        "component": "period",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 8,
+        "interaction_positive": 56,
+        "signed_interactions": [
+          -5,
+          7,
+          14,
+          15,
+          82,
+          92,
+          110,
+          310
+        ]
+      },
+      {
+        "component": "post-b",
+        "contexts": 64,
+        "strict_all": 0,
+        "interaction_zero": 0,
+        "interaction_negative": 32,
+        "interaction_positive": 32,
+        "signed_interactions": [
+          -89,
+          -27,
+          -15,
+          4,
+          5,
+          41,
+          144
+        ]
+      },
+      {
+        "component": "full",
+        "contexts": 64,
+        "strict_all": 16,
+        "interaction_zero": 0,
+        "interaction_negative": 16,
+        "interaction_positive": 48,
+        "signed_interactions": [
+          -23,
+          -13,
+          1,
+          18,
+          98,
+          103,
+          223,
+          286
+        ]
+      }
+    ]
+  }
+}

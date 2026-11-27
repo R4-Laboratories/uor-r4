@@ -1,0 +1,9 @@
+{
+  "authorized": true,
+  "verdict": "FIT",
+  "uuid": "GPU-7f5ea8ee-82fc-db80-cec8-9bd4e8cc4c08",
+  "source_commit": "2fd7a63ad3f12f0f6c3b845d165ceef7589134be",
+  "static_sha256": "3cb17a105a9973e741d644811a046e9eb095ee656ce2da2997392a170af98af6",
+  "fit_sha256": "3ebd2258a8aa4b710549d9fc1f4f44663a315b43eabf90b874a8ee7ba9b2b432",
+  "signed_at": "2026-11-27T23:05:24Z"
+}

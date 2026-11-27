@@ -1,0 +1,48 @@
+{
+  "states_sha256": [
+    "52f84dc839628abfe20f18f43a579393f4c29da79052247a68ee815e3622cd38",
+    "521e35bffabc060a5b0be12078c371a639e55870e07cfef678ee4708539c4bcd",
+    "92daec94c940a6120cec86e8155bc5bd592e4c2a8379978f6eded43deb75c03b",
+    "2216c08d143fa15de31a7c31e009c791b5e56ad845f35bd89327afdbdcc29525"
+  ],
+  "state_bytes": 49158,
+  "checked_residual_words": 4096,
+  "checked_slots": 6144,
+  "full_matches_archived_bytes": true,
+  "max_abs_running_joint_weight": 33,
+  "stages_period_then_post_b": [
+    {
+      "slots": 3072,
+      "copy_targets": 1984,
+      "stop_targets": 1088,
+      "link_visits": 3836880,
+      "unique_coordinate_visits": 3026864,
+      "capped_coordinate_opportunities": 49152,
+      "violated_margins": 745,
+      "actual_coordinate_writes": 11920,
+      "repeated_coordinate_writes": 10436,
+      "max_abs_running_weight": 21
+    },
+    {
+      "slots": 3072,
+      "copy_targets": 1536,
+      "stop_targets": 1536,
+      "link_visits": 3475380,
+      "unique_coordinate_visits": 2803802,
+      "capped_coordinate_opportunities": 49152,
+      "violated_margins": 303,
+      "actual_coordinate_writes": 4848,
+      "repeated_coordinate_writes": 4198,
+      "max_abs_running_weight": 32
+    }
+  ],
+  "nonzero_residual_by_component": [
+    0,
+    1594,
+    891,
+    2081
+  ],
+  "touched_by_both": 402,
+  "opposing_net": 205,
+  "exactly_cancelled": 20
+}
