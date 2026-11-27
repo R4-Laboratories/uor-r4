@@ -1,0 +1,13 @@
+[package]
+name = "uor-visible-answer-donor"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+d87-split-audit = { path = "../../../../../labs/d87-split-audit/instrument" }
+m2-student-corpus-ingest = { path = "../../../../../labs/m2-student-corpus-ingest/instrument" }
+serde_json = "1"
+sha2 = "0.10.8"

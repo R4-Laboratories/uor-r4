@@ -47,11 +47,12 @@ const ROWSK: &str = r#"
 //   cost[c*rows*16 + row*16 + lane], flag[...] as in the row-parallel eval.
 // losses[c*16 + lane]; status[c] is coordinate c's own status word.
 extern "C" __global__ void discrete_counterfactual_rowsk_eval(const int* table,const U* routes,const int* gates,const U* ids,const int* input,const U* targets,const U* plan,const U* g,const U* s,const U* position_steps,U kind,const U* indices,U k,const U* base,W* cost,U* flag) {
-    U per=s[4]*16;U pair=blockIdx.x*blockDim.x+threadIdx.x;
-    if(per==0)return;
-    U c=pair/per,rest=pair%per,row=rest/16,candidate=rest%16;
-    if(c>=k || row>=s[4])return;
-    U index=indices[c];U slot=c*per+row*16+candidate;cost[slot]=~(W)0;flag[slot]=0;
+    // Grid Y selects the coordinate. Indexing a combined grid with a
+    // variable device division can lower to FP reciprocal SASS.
+    U per=s[4]*16;U pair=blockIdx.x*blockDim.x+threadIdx.x;U c=blockIdx.y;
+    if(c>=k || pair>=per)return;
+    U row=pair>>4,candidate=pair&15u;
+    U index=indices[c];U slot=c*per+pair;cost[slot]=~(W)0;flag[slot]=0;
     if(rows_refused(s,kind,index) || (kind==GATE_KIND && candidate>=3))return;
     if(base[row*2]!=0 || base[row*2+1]==0)return;
     int q[MAX_WIDTH];U prediction,tr,ar,arithmetic_status=0;

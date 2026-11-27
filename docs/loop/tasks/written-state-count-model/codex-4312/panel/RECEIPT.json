@@ -1,0 +1,72 @@
+{
+  "census": {
+    "alternate_reference_pass": 545,
+    "alternate_reference_total": 600,
+    "ambiguous_turn": 473,
+    "chosen_cells": {
+      "cnn:fact": 54,
+      "cnn:no": 5,
+      "cnn:yes": 6,
+      "gutenberg:fact": 48,
+      "gutenberg:no": 13,
+      "gutenberg:yes": 11,
+      "wikipedia:fact": 50,
+      "wikipedia:no": 6,
+      "wikipedia:yes": 7
+    },
+    "chosen_windows": {
+      "preset_window_with_evidence_admission": 200
+    },
+    "context_excluded": 381,
+    "donor_turn_excluded": 0,
+    "duplicate_passage": 1,
+    "eligible_candidates": 297,
+    "eligible_source_groups": 209,
+    "full_eligible_source_groups": 0,
+    "licensed_conversations": 300,
+    "prose_existing_article": 0,
+    "prose_insufficient_or_non_prose": 3252,
+    "prose_scanned": 4096,
+    "retained_reference_pass": 200,
+    "retained_reference_total": 200,
+    "shape_excluded": 45
+  },
+  "chat_cap": 32,
+  "context_limit": 192,
+  "max_prompt": 192,
+  "open_cap": 128,
+  "open_census": {
+    "distinct_eligible_trees": 36,
+    "duplicate_opening": 24,
+    "historical_holdout": 700,
+    "known_prior_tree": 192,
+    "no_admitted_open_turn": 12902,
+    "trees": 13854
+  },
+  "outputs": {
+    "calibration.json": "7aa960163aa6f84f0429035866aa9637b43aea0eae8c6a3bcde8ccfb53b92814",
+    "judgments.jsonl": "bea3926ba99a205a2035ae81c8aaa78cc864f6cccf408a071bcccca4553f86aa",
+    "open_sources.jsonl": "8fc9be4086f86b35187b019fb1e22581574168ea9fb6326627fb45658d99f035",
+    "prompts.jsonl": "021f4c1fe8e10884ecaa3cb3b67ed290356fb520595cc87a5c5f7b601e70d9f9",
+    "prose_sources.jsonl": "169e04155d5c8926d35b5c9a4b419ba9b3f132cf68385a0b33a700a05cd8c04c",
+    "teacher.jsonl": "b76e436671c65bef00771c4d344aa22700fbac0fe2b596e67685340bc4cc13f7"
+  },
+  "prose_cap": 64,
+  "rows": {
+    "conversation": 200,
+    "open": 32,
+    "prose": 128,
+    "recall": 64
+  },
+  "schema": "uor-r4.visible-answer-panel/1",
+  "seed": "codex-4312-visible-answer-panel-v1",
+  "source_pins": {
+    "coqa": "dfa367a9733ce53222918d0231d9b3bedc2b8ee831a2845f62dfc70701f2540a",
+    "d87_prompt_digests": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+    "oasst2": "7a886a16ccfc1173c4f00a6897523e3c95b2785a86ee44a18a98f4f2807ee29b",
+    "prior_fit": "e5b1c14eb96686b7fdee3f78bd70634f79b114e2912d5c53aca635c791edcc52",
+    "prior_held": "d8630bf60f06cc65ff4b32732cf5b1b5aba2a2837008408a207e32b950d24ef0",
+    "tokenizer": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+    "wiki": "e9f695672d916793439d8f48893ecde94c61b0eb038a0034c4e1f1f194205979"
+  }
+}

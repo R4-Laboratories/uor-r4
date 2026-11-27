@@ -256,6 +256,18 @@ impl PreparedCorpus {
         self.eligible.iter().map(|&p| self.tokens[p]).collect()
     }
     pub fn batch(&self, first_target: u64, context: u32, rows: u32) -> Result<CorpusBatch> {
+        self.batch_in_order(first_target, context, rows, &self.eligible)
+    }
+
+    /// A verified permutation keeps the paired source-event order while each
+    /// target still reads its own physical, within-document causal prefix.
+    pub(crate) fn batch_in_order(
+        &self,
+        first_target: u64,
+        context: u32,
+        rows: u32,
+        positions: &[usize],
+    ) -> Result<CorpusBatch> {
         if !(1..=243).contains(&context) || !(1..=MAX_BATCH_ROWS).contains(&rows) {
             return Err(invalid(
                 "corpus batches require context1..243 and rows1..4096",
@@ -263,17 +275,17 @@ impl PreparedCorpus {
         }
         let first = usize::try_from(first_target)
             .map_err(|_| invalid("target cursor exceeds address space"))?;
-        if first >= self.eligible.len() {
+        if first >= positions.len() || positions.len() != self.eligible.len() {
             return Err(invalid("target cursor outside eligible inventory"));
         }
-        let end = first.saturating_add(rows as usize).min(self.eligible.len());
+        let end = first.saturating_add(rows as usize).min(positions.len());
         let mut batch = CorpusBatch {
             windows: Vec::with_capacity(end - first),
             targets: Vec::with_capacity(end - first),
             target_positions: Vec::with_capacity(end - first),
             next_target: end as u64,
         };
-        for &position in &self.eligible[first..end] {
+        for &position in &positions[first..end] {
             let doc = self
                 .documents
                 .partition_point(|&start| start <= position)

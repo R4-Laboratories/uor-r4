@@ -2974,6 +2974,201 @@ pub(crate) fn issue_carrier_arm_admission(
     CorpusUpdateAdmission::guarded(driver, max_completed_batches)
 }
 
+/// Exact per-arm admission for the paired visibility experiment in codex-4312.
+/// The separate CLI verifies its approved GO SHA and matches both input arms
+/// before using the existing, normally held corpus-update transition.
+#[cfg(feature = "cuda")]
+pub struct VisibleAnswerAdmission {
+    inner: CorpusUpdateAdmission,
+    source_event_order: Vec<usize>,
+}
+
+/// A bounded, corpus-free qualification witness for the production BVG-K
+/// chooser, commit kernel and post-update objective replay.
+#[cfg(feature = "cuda")]
+pub fn visible_answer_finite_optimizer() -> Result<(crate::device::Device, Value)> {
+    use crate::{device::Device, Identity, Parameter};
+
+    let mut model = Device::new_with_initialization(
+        Spec {
+            vocabulary: 4096,
+            blocks: 4,
+            context: 192,
+            kept_cells: 8,
+        },
+        ReadSpec::Flock { kept: 8 },
+        ObjectivePolicy::NearestAddressMarginV1,
+        ReadInitialization::ActiveLeafV1,
+        4312,
+        0,
+    )?;
+    let initial = model.snapshot()?;
+    let initial_identity = crate::snapshot::snapshot_hash_domains(&initial)?;
+    let rowsk = model.rowsk_scoring()?;
+    let bvgk = model.bvgk_kernels()?;
+    let coordinates = (0..16).map(Parameter::VectorBlock).collect::<Vec<_>>();
+    let target = [2u32];
+    for query in 4u32..36 {
+        let windows = vec![vec![
+            Identity {
+                token: 0,
+                occurrence: 0,
+                record: u64::from(query),
+                version: 0,
+            },
+            Identity {
+                token: query,
+                occurrence: 1,
+                record: u64::from(query),
+                version: 0,
+            },
+        ]];
+        let carried = model.carry_windows(&windows)?;
+        let positive =
+            model.propose_block(&carried, &target, &coordinates, &[true; 16], &rowsk, &bvgk)?;
+        let selected = positive.record().clone();
+        if selected.commit_ordinals.is_empty() {
+            continue;
+        }
+        let negative =
+            model.propose_block(&carried, &target, &coordinates, &[false; 16], &rowsk, &bvgk)?;
+        let declined = model.apply_block(&negative)?;
+        if declined.moves != 0
+            || crate::snapshot::snapshot_hash_domains(&model.snapshot()?)? != initial_identity
+            || negative.record().committed_loss != selected.l_before
+        {
+            return Err(invalid(
+                "all-ineligible finite optimizer control changed native state",
+            ));
+        }
+        let committed = model.apply_block(&positive)?;
+        let trained = model.snapshot()?;
+        let postupdate = model.carry_windows(&windows)?;
+        let observed_loss = model
+            .evaluate(&postupdate, &target)?
+            .aggregate
+            .objective_loss_numerator_sum;
+        if selected.committed_loss >= selected.l_before
+            || observed_loss != selected.committed_loss
+            || committed.moves as usize != selected.commit_ordinals.len()
+            || trained.epoch != 1
+            || trained.table == initial.table
+            || trained.routes != initial.routes
+            || trained.gates != initial.gates
+        {
+            return Err(invalid(
+                "finite integer commit did not reproduce its strict objective improvement",
+            ));
+        }
+        return Ok((
+            model,
+            json!({
+                "query": query, "target": target[0], "coordinates": 16,
+                "loss_before": selected.l_before, "loss_after": observed_loss,
+                "committed_moves": committed.moves, "epoch_after": trained.epoch,
+                "all_ineligible_identity_exact": true,
+                "before_snapshot_sha256": initial_identity.model_snapshot_sha256,
+                "after_snapshot_sha256": crate::snapshot::snapshot_hash_domains(&trained)?.model_snapshot_sha256,
+            }),
+        ));
+    }
+    Err(invalid(
+        "finite GPU fixture did not contain a strict improving proposal",
+    ))
+}
+
+#[cfg(feature = "cuda")]
+pub fn visible_answer_admission(
+    driver: &PreparedDriver,
+    checked_go: &[u8],
+    approved_go_sha256: &str,
+    source_event_order: &[u8],
+) -> Result<VisibleAnswerAdmission> {
+    corpus::validate_sha256(approved_go_sha256)?;
+    if corpus::sha256(checked_go) != approved_go_sha256 {
+        return Err(invalid("visible-answer GO digest differs from approval"));
+    }
+    let go: Value = serde_json::from_slice(checked_go).map_err(|e| invalid(e.to_string()))?;
+    let valid_digest = |key: &str| {
+        go[key]
+            .as_str()
+            .is_some_and(|value| corpus::validate_sha256(value).is_ok())
+    };
+    let lineage_sha256 = driver.lineage_sha256()?;
+    let reasoning = go["reasoning_first_lineage_sha256"].as_str();
+    let answer = go["answer_first_lineage_sha256"].as_str();
+    let order_key = if reasoning == Some(lineage_sha256.as_str()) {
+        "reasoning_first_geometry_order_sha256"
+    } else {
+        "answer_first_geometry_order_sha256"
+    };
+    let config = driver.config();
+    let eligible = driver.train().eligible_len() as u64;
+    let batches = eligible.div_ceil(u64::from(config.batch_rows));
+    if go["schema"] != "uor-r4.codex-4312.go/1"
+        || go["authorized"] != true
+        || go["fit_verdict"] != "TEST FITNESS: FIT"
+        || !valid_digest("order_sha256")
+        || !valid_digest("sheet_sha256")
+        || !valid_digest("fit_sha256")
+        || !valid_digest("donor_manifest_sha256")
+        || !valid_digest("reasoning_first_lineage_sha256")
+        || !valid_digest("answer_first_lineage_sha256")
+        || go[order_key].as_str() != Some(corpus::sha256(source_event_order).as_str())
+        || reasoning == answer
+        || ![reasoning, answer].contains(&Some(lineage_sha256.as_str()))
+        || !go["lease_id"]
+            .as_str()
+            .is_some_and(|lease| !lease.is_empty())
+        || go["geometry_targets"].as_u64() != Some(eligible)
+        || go["geometry_batches"].as_u64() != Some(batches)
+        || !(1..=4_060 * 64).contains(&eligible)
+        || config.spec
+            != (Spec {
+                vocabulary: 4096,
+                blocks: 4,
+                context: 192,
+                kept_cells: 8,
+            })
+        || config.read_spec != (ReadSpec::Flock { kept: 8 })
+        || config.read_initialization != ReadInitialization::ActiveLeafV1
+        || config.objective_policy != ObjectivePolicy::NearestAddressMarginV1
+        || !config.normalization_mode.is_scale_matched_snap()
+        || config.position.is_some()
+        || !config.relation_learning_policy.is_learn()
+        || config.codebook_initialization != CodebookInitialization::SeededDeviceV1
+        || config.schedule != SchedulePolicy::InterleavedReadEvery8V1
+        || config.counterfactual_path != CounterfactualPath::RowsV1
+        || config.coordinate_block.get() != 16
+        || config.batch_rows != 256
+        || config.seed != 4312
+    {
+        return Err(invalid(
+            "visible-answer driver differs from paired GO or fixed protocol",
+        ));
+    }
+    let positions = source_event_order
+        .chunks_exact(4)
+        .map(|bytes| {
+            <[u8; 4]>::try_from(bytes)
+                .map(|word| u32::from_le_bytes(word) as usize)
+                .map_err(|error| invalid(error.to_string()))
+        })
+        .collect::<Result<Vec<_>>>()?;
+    let mut unique_positions = positions.clone();
+    unique_positions.sort_unstable();
+    if source_event_order.len() % 4 != 0 || unique_positions != driver.train().eligible_positions()
+    {
+        return Err(invalid(
+            "visible-answer event order is not a permutation of selected targets",
+        ));
+    }
+    Ok(VisibleAnswerAdmission {
+        inner: CorpusUpdateAdmission::guarded(driver, batches)?,
+        source_event_order: positions,
+    })
+}
+
 /// Finite qualification has a separate opaque release; it cannot inherit a
 /// full-dose capability or enlarge the approved source protocol's bound.
 #[cfg(feature = "cuda")]
@@ -3272,6 +3467,18 @@ impl PreparedDriver {
         rowsk: &crate::device::RowsKScoring,
         bvgk: &crate::device::BvgkKernels,
     ) -> Result<BlockReceipt> {
+        self.transition_block_inner(model, cursor, admission, rowsk, bvgk, None)
+    }
+
+    fn transition_block_inner(
+        &self,
+        model: &mut crate::device::Device,
+        cursor: &Cursor,
+        admission: &CorpusUpdateAdmission,
+        rowsk: &crate::device::RowsKScoring,
+        bvgk: &crate::device::BvgkKernels,
+        source_event_order: Option<&[usize]>,
+    ) -> Result<BlockReceipt> {
         if admission.lineage_sha256 != self.lineage_sha256()? {
             return Err(invalid("owner admission belongs to another driver lineage"));
         }
@@ -3303,7 +3510,15 @@ impl PreparedDriver {
                 .map(|refused| !refused)
             })
             .collect::<Result<Vec<_>>>()?;
-        let batch = self.batch(cursor)?;
+        let batch = match source_event_order {
+            Some(order) => self.train.batch_in_order(
+                cursor.next_target,
+                self.config.spec.context,
+                self.config.batch_rows,
+                order,
+            )?,
+            None => self.batch(cursor)?,
+        };
         let carried = model.carry_windows(&batch.windows)?;
         let proposal = model.propose_block(
             &carried,
@@ -3364,6 +3579,31 @@ impl PreparedDriver {
         let mut receipts = Vec::new();
         for _ in 0..batches.get() {
             let receipt = self.transition_block(model, &cursor, admission, &rowsk, &bvgk)?;
+            cursor = receipt.cursor_after;
+            receipts.push(receipt);
+        }
+        Ok((cursor, receipts))
+    }
+
+    pub fn run_visible_answer_transitions(
+        &self,
+        model: &mut crate::device::Device,
+        mut cursor: Cursor,
+        admission: &VisibleAnswerAdmission,
+        batches: std::num::NonZeroU64,
+    ) -> Result<(Cursor, Vec<BlockReceipt>)> {
+        let rowsk = model.rowsk_scoring()?;
+        let bvgk = model.bvgk_kernels()?;
+        let mut receipts = Vec::new();
+        for _ in 0..batches.get() {
+            let receipt = self.transition_block_inner(
+                model,
+                &cursor,
+                &admission.inner,
+                &rowsk,
+                &bvgk,
+                Some(&admission.source_event_order),
+            )?;
             cursor = receipt.cursor_after;
             receipts.push(receipt);
         }

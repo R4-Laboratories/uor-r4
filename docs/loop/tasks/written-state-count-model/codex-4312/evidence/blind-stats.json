@@ -1,0 +1,628 @@
+{
+  "bootstrap": {
+    "endpoints": "2.5 and 97.5 percentiles using linear interpolation between order statistics",
+    "generator": "SplitMix64 with unbiased rejection-to-range",
+    "paired_draws": 10000,
+    "seed": 4312,
+    "units": "conversation for chat, counterfactual pair for completed recall switching, whole article for prose; percentages use pooled positions in each document-resampled draw"
+  },
+  "free_generation": {
+    "conversation": {
+      "first_between_arm_divergence_token_histogram": {
+        "1": 50,
+        "10": 1,
+        "11": 1,
+        "13": 1,
+        "14": 3,
+        "19": 1,
+        "20": 1,
+        "23": 1,
+        "4": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      },
+      "identical_token_stream_pairs": 136,
+      "left": {
+        "blank_content_rows": 0,
+        "caps": 200,
+        "distinct_first_16_token_runs": 16,
+        "distinct_first_8_token_runs": 14,
+        "distinct_lexical_words_corpus": 7,
+        "distinct_lexical_words_sum_per_reply": 61,
+        "distinct_raw_content_streams": 16,
+        "eos": 0,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "12": 6,
+          "223": 161,
+          "29": 14,
+          "73": 19
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 182,
+          "2": 18
+        },
+        "longest_contiguous_prompt_copy_tokens": 2,
+        "malformed_reply_rows": 0,
+        "max_content_tokens": 32,
+        "min_content_tokens": 32,
+        "most_frequent_first_16_token_run_count": 161,
+        "most_frequent_first_8_token_run_count": 161,
+        "novel_vs_starting_prompt_token_emissions": 1803,
+        "observed_content_tokens": 6400,
+        "repeated_four_word_windows": 2,
+        "rows": 200,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 156
+      },
+      "paired_outcomes": {
+        "content_correct": {
+          "any_discordance_one_sided_95_upper_if_zero": 0.014867039231272083,
+          "both": 0,
+          "difference_right_minus_left": 0.0,
+          "exact_two_sided_discordance_p": 1.0,
+          "left_only": 0,
+          "left_success": 0,
+          "left_success_one_sided_95_upper_if_zero": 0.014867039231272083,
+          "n": 200,
+          "neither": 200,
+          "paired_percentile_95": [
+            0.0,
+            0.0
+          ],
+          "right_only": 0,
+          "right_success": 0,
+          "right_success_one_sided_95_upper_if_zero": 0.014867039231272083
+        },
+        "useful_through_eos": {
+          "any_discordance_one_sided_95_upper_if_zero": 0.014867039231272083,
+          "both": 0,
+          "difference_right_minus_left": 0.0,
+          "exact_two_sided_discordance_p": 1.0,
+          "left_only": 0,
+          "left_success": 0,
+          "left_success_one_sided_95_upper_if_zero": 0.014867039231272083,
+          "n": 200,
+          "neither": 200,
+          "paired_percentile_95": [
+            0.0,
+            0.0
+          ],
+          "right_only": 0,
+          "right_success": 0,
+          "right_success_one_sided_95_upper_if_zero": 0.014867039231272083
+        }
+      },
+      "recall_descriptive_per_prompt_counts": null,
+      "right": {
+        "blank_content_rows": 0,
+        "caps": 200,
+        "distinct_first_16_token_runs": 17,
+        "distinct_first_8_token_runs": 10,
+        "distinct_lexical_words_corpus": 13,
+        "distinct_lexical_words_sum_per_reply": 14,
+        "distinct_raw_content_streams": 23,
+        "eos": 0,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "201": 15,
+          "223": 185
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 183,
+          "2": 17
+        },
+        "longest_contiguous_prompt_copy_tokens": 3,
+        "malformed_reply_rows": 1,
+        "max_content_tokens": 32,
+        "min_content_tokens": 32,
+        "most_frequent_first_16_token_run_count": 168,
+        "most_frequent_first_8_token_run_count": 176,
+        "novel_vs_starting_prompt_token_emissions": 1592,
+        "observed_content_tokens": 6400,
+        "repeated_four_word_windows": 0,
+        "rows": 200,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 176
+      }
+    },
+    "open": {
+      "first_between_arm_divergence_token_histogram": {
+        "1": 10,
+        "32": 1
+      },
+      "identical_token_stream_pairs": 21,
+      "left": {
+        "blank_content_rows": 0,
+        "caps": 32,
+        "distinct_first_16_token_runs": 8,
+        "distinct_first_8_token_runs": 8,
+        "distinct_lexical_words_corpus": 5,
+        "distinct_lexical_words_sum_per_reply": 16,
+        "distinct_raw_content_streams": 8,
+        "eos": 0,
+        "exact_reference_rows": null,
+        "first_generated_content_token_histogram": {
+          "12": 1,
+          "223": 22,
+          "73": 9
+        },
+        "first_wrong_reference_position_histogram": {},
+        "longest_contiguous_prompt_copy_tokens": 1,
+        "malformed_reply_rows": 0,
+        "max_content_tokens": 128,
+        "min_content_tokens": 128,
+        "most_frequent_first_16_token_run_count": 22,
+        "most_frequent_first_8_token_run_count": 22,
+        "novel_vs_starting_prompt_token_emissions": 2060,
+        "observed_content_tokens": 4096,
+        "repeated_four_word_windows": 0,
+        "rows": 32,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 20
+      },
+      "paired_outcomes": null,
+      "recall_descriptive_per_prompt_counts": null,
+      "right": {
+        "blank_content_rows": 0,
+        "caps": 32,
+        "distinct_first_16_token_runs": 1,
+        "distinct_first_8_token_runs": 1,
+        "distinct_lexical_words_corpus": 0,
+        "distinct_lexical_words_sum_per_reply": 0,
+        "distinct_raw_content_streams": 2,
+        "eos": 0,
+        "exact_reference_rows": null,
+        "first_generated_content_token_histogram": {
+          "223": 32
+        },
+        "first_wrong_reference_position_histogram": {},
+        "longest_contiguous_prompt_copy_tokens": 1,
+        "malformed_reply_rows": 0,
+        "max_content_tokens": 128,
+        "min_content_tokens": 128,
+        "most_frequent_first_16_token_run_count": 32,
+        "most_frequent_first_8_token_run_count": 32,
+        "novel_vs_starting_prompt_token_emissions": 2017,
+        "observed_content_tokens": 4096,
+        "repeated_four_word_windows": 0,
+        "rows": 32,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 17
+      }
+    },
+    "prose": {
+      "first_between_arm_divergence_token_histogram": {
+        "1": 74,
+        "2": 21,
+        "3": 10
+      },
+      "identical_token_stream_pairs": 23,
+      "left": {
+        "blank_content_rows": 5,
+        "caps": 121,
+        "distinct_first_16_token_runs": 70,
+        "distinct_first_8_token_runs": 66,
+        "distinct_lexical_words_corpus": 35,
+        "distinct_lexical_words_sum_per_reply": 157,
+        "distinct_raw_content_streams": 76,
+        "eos": 7,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "1010": 1,
+          "103": 1,
+          "11": 1,
+          "14": 2,
+          "16": 13,
+          "17": 1,
+          "1811": 1,
+          "2": 2,
+          "205": 1,
+          "21": 1,
+          "223": 28,
+          "261": 1,
+          "265": 2,
+          "27": 2,
+          "276": 1,
+          "29": 1,
+          "295": 4,
+          "299": 1,
+          "3": 10,
+          "30": 1,
+          "300": 1,
+          "306": 1,
+          "31": 1,
+          "339": 2,
+          "353": 1,
+          "357": 1,
+          "36": 1,
+          "382": 1,
+          "410": 2,
+          "465": 2,
+          "471": 1,
+          "498": 1,
+          "5": 1,
+          "592": 1,
+          "6": 3,
+          "651": 1,
+          "66": 2,
+          "7": 5,
+          "73": 2,
+          "74": 6,
+          "8": 1,
+          "82": 1,
+          "85": 6,
+          "860": 1,
+          "88": 1,
+          "9": 2
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 122,
+          "2": 6
+        },
+        "longest_contiguous_prompt_copy_tokens": 2,
+        "malformed_reply_rows": 11,
+        "max_content_tokens": 64,
+        "min_content_tokens": 0,
+        "most_frequent_first_16_token_run_count": 28,
+        "most_frequent_first_8_token_run_count": 28,
+        "novel_vs_starting_prompt_token_emissions": 1626,
+        "observed_content_tokens": 7760,
+        "repeated_four_word_windows": 21,
+        "rows": 128,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 123
+      },
+      "paired_outcomes": null,
+      "recall_descriptive_per_prompt_counts": null,
+      "right": {
+        "blank_content_rows": 0,
+        "caps": 128,
+        "distinct_first_16_token_runs": 71,
+        "distinct_first_8_token_runs": 68,
+        "distinct_lexical_words_corpus": 41,
+        "distinct_lexical_words_sum_per_reply": 84,
+        "distinct_raw_content_streams": 73,
+        "eos": 0,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "0": 4,
+          "105": 1,
+          "11": 1,
+          "13": 1,
+          "14": 2,
+          "144": 2,
+          "16": 14,
+          "1647": 1,
+          "2": 1,
+          "201": 1,
+          "21": 1,
+          "223": 26,
+          "237": 1,
+          "240": 1,
+          "258": 2,
+          "264": 1,
+          "265": 3,
+          "266": 5,
+          "27": 2,
+          "275": 1,
+          "299": 2,
+          "3": 7,
+          "305": 1,
+          "306": 2,
+          "309": 2,
+          "319": 1,
+          "353": 1,
+          "40": 1,
+          "44": 1,
+          "463": 1,
+          "5": 5,
+          "50": 4,
+          "515": 1,
+          "56": 1,
+          "592": 1,
+          "6": 1,
+          "602": 1,
+          "67": 2,
+          "69": 1,
+          "7": 4,
+          "730": 1,
+          "8": 1,
+          "80": 1,
+          "85": 9,
+          "86": 1,
+          "860": 1,
+          "88": 1,
+          "9": 1,
+          "969": 1
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 124,
+          "2": 4
+        },
+        "longest_contiguous_prompt_copy_tokens": 2,
+        "malformed_reply_rows": 10,
+        "max_content_tokens": 64,
+        "min_content_tokens": 64,
+        "most_frequent_first_16_token_run_count": 25,
+        "most_frequent_first_8_token_run_count": 25,
+        "novel_vs_starting_prompt_token_emissions": 1823,
+        "observed_content_tokens": 8192,
+        "repeated_four_word_windows": 0,
+        "rows": 128,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 161
+      }
+    },
+    "recall": {
+      "first_between_arm_divergence_token_histogram": {
+        "1": 8
+      },
+      "identical_token_stream_pairs": 56,
+      "left": {
+        "blank_content_rows": 0,
+        "caps": 64,
+        "distinct_first_16_token_runs": 2,
+        "distinct_first_8_token_runs": 2,
+        "distinct_lexical_words_corpus": 0,
+        "distinct_lexical_words_sum_per_reply": 0,
+        "distinct_raw_content_streams": 2,
+        "eos": 0,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "12": 6,
+          "223": 58
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 18,
+          "2": 46
+        },
+        "longest_contiguous_prompt_copy_tokens": 1,
+        "malformed_reply_rows": 0,
+        "max_content_tokens": 32,
+        "min_content_tokens": 32,
+        "most_frequent_first_16_token_run_count": 58,
+        "most_frequent_first_8_token_run_count": 58,
+        "novel_vs_starting_prompt_token_emissions": 192,
+        "observed_content_tokens": 2048,
+        "repeated_four_word_windows": 0,
+        "rows": 64,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 58
+      },
+      "paired_outcomes": null,
+      "recall_descriptive_per_prompt_counts": {
+        "both_useful": 0,
+        "left_content_correct": 0,
+        "left_useful": 0,
+        "n": 64,
+        "right_content_correct": 0,
+        "right_useful": 0
+      },
+      "right": {
+        "blank_content_rows": 0,
+        "caps": 64,
+        "distinct_first_16_token_runs": 2,
+        "distinct_first_8_token_runs": 2,
+        "distinct_lexical_words_corpus": 0,
+        "distinct_lexical_words_sum_per_reply": 0,
+        "distinct_raw_content_streams": 2,
+        "eos": 0,
+        "exact_reference_rows": 0,
+        "first_generated_content_token_histogram": {
+          "201": 2,
+          "223": 62
+        },
+        "first_wrong_reference_position_histogram": {
+          "1": 12,
+          "2": 52
+        },
+        "longest_contiguous_prompt_copy_tokens": 1,
+        "malformed_reply_rows": 0,
+        "max_content_tokens": 32,
+        "min_content_tokens": 32,
+        "most_frequent_first_16_token_run_count": 62,
+        "most_frequent_first_8_token_run_count": 62,
+        "novel_vs_starting_prompt_token_emissions": 0,
+        "observed_content_tokens": 2048,
+        "repeated_four_word_windows": 0,
+        "rows": 64,
+        "rows_with_8_or_more_contiguous_prompt_copy_tokens": 0,
+        "sum_of_longest_contiguous_prompt_copy_tokens_by_row": 64
+      }
+    }
+  },
+  "left_opaque_arm": "7d4bdbaf56fe2fcba26fa806",
+  "pins": {
+    "blind_grades_sha256": "f202dee58a01c9917d02b3c4bc5f8b1cced279b859e64e4fb640a119ef116b65",
+    "blind_summary_sha256": "61b035cbc2345ccfaec8b6ab29ac1d935255540e4ced1fb34706bf6c67a8ea4c",
+    "frozen_panel_receipt_sha256": "c37eaa13da6d2074ebf71ffe851aab03999f7a7c23aef24057396d64337fbf55",
+    "gpu_teacher_observations_sha256": "8c8aace673345241aafeca17a1475f82fde94ea4bb18bcd4514ddbba25111757"
+  },
+  "recall_details": {
+    "false_claim_scope": "Recognized whole direct claims only. Counts include capped valid claim content and give EOS counts separately.",
+    "left_claims": {
+      "correct_slot_claim": 0,
+      "explicitly_answered_other_entry": 0,
+      "opposite_assignment_claim_through_eos": 0,
+      "opposite_assignment_or_other_entry_claim": 0,
+      "other_false_claim_through_eos": 0,
+      "other_five_digit_false_claim": 0,
+      "unrecognized_or_absent": 64
+    },
+    "other_entry_claim_interpretation": "The competing code is the other entry in the current prompt and the selected entry in the opposite counterfactual. The fixture has no earlier chronological assignment.",
+    "paired_switches_both_variants_useful_through_eos": {
+      "any_discordance_one_sided_95_upper_if_zero": 0.0893681989862648,
+      "both": 0,
+      "difference_right_minus_left": 0.0,
+      "exact_two_sided_discordance_p": 1.0,
+      "left_only": 0,
+      "left_success": 0,
+      "left_success_one_sided_95_upper_if_zero": 0.0893681989862648,
+      "n": 32,
+      "neither": 32,
+      "paired_percentile_95": [
+        0.0,
+        0.0
+      ],
+      "right_only": 0,
+      "right_success": 0,
+      "right_success_one_sided_95_upper_if_zero": 0.0893681989862648
+    },
+    "right_claims": {
+      "correct_slot_claim": 0,
+      "explicitly_answered_other_entry": 0,
+      "opposite_assignment_claim_through_eos": 0,
+      "opposite_assignment_or_other_entry_claim": 0,
+      "other_false_claim_through_eos": 0,
+      "other_five_digit_false_claim": 0,
+      "unrecognized_or_absent": 64
+    }
+  },
+  "right_opaque_arm": "8be7561dc41d4b1c366dfefe",
+  "schema": "uor-r4.visible-answer-blind-inference/1",
+  "teacher_forcing": {
+    "conversation": {
+      "novel_to_causal_prefix_top1": {
+        "difference_right_minus_left": 0.0,
+        "independent_units_with_scoreable_positions": 59,
+        "left_hits": 0,
+        "left_rate": 0.0,
+        "paired_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "reference_positions": 65,
+        "right_hits": 0,
+        "right_rate": 0.0
+      },
+      "novel_to_causal_prefix_top8": {
+        "difference_right_minus_left": 0.0,
+        "independent_units_with_scoreable_positions": 59,
+        "left_hits": 0,
+        "left_rate": 0.0,
+        "paired_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "reference_positions": 65,
+        "right_hits": 0,
+        "right_rate": 0.0
+      },
+      "overall_top1": {
+        "difference_right_minus_left": 0.0030557677616501145,
+        "independent_units_with_scoreable_positions": 200,
+        "left_hits": 55,
+        "left_rate": 0.04201680672268908,
+        "paired_percentile_95": [
+          -0.006173317280128425,
+          0.011921484753032358
+        ],
+        "reference_positions": 1309,
+        "right_hits": 59,
+        "right_rate": 0.04507257448433919
+      },
+      "overall_top8": {
+        "difference_right_minus_left": -0.004583651642475172,
+        "independent_units_with_scoreable_positions": 200,
+        "left_hits": 89,
+        "left_rate": 0.06799083269671505,
+        "paired_percentile_95": [
+          -0.015861326907399415,
+          0.006579067685673582
+        ],
+        "reference_positions": 1309,
+        "right_hits": 83,
+        "right_rate": 0.06340718105423988
+      },
+      "source_documents": 200
+    },
+    "prose": {
+      "novel_to_causal_prefix_top1": {
+        "difference_right_minus_left": 0.0002676659528907923,
+        "independent_units_with_scoreable_positions": 128,
+        "left_hits": 82,
+        "left_rate": 0.021948608137044967,
+        "paired_percentile_95": [
+          -0.004862663250364814,
+          0.0053475935828877
+        ],
+        "reference_positions": 3736,
+        "right_hits": 83,
+        "right_rate": 0.02221627408993576
+      },
+      "novel_to_causal_prefix_top8": {
+        "difference_right_minus_left": -0.0053533190578158455,
+        "independent_units_with_scoreable_positions": 128,
+        "left_hits": 155,
+        "left_rate": 0.041488222698072806,
+        "paired_percentile_95": [
+          -0.01034873544723783,
+          -0.0005257382125625062
+        ],
+        "reference_positions": 3736,
+        "right_hits": 135,
+        "right_rate": 0.03613490364025696
+      },
+      "overall_top1": {
+        "difference_right_minus_left": 0.0,
+        "independent_units_with_scoreable_positions": 128,
+        "left_hits": 346,
+        "left_rate": 0.042236328125,
+        "paired_percentile_95": [
+          -0.004150390625,
+          0.004031372070312456
+        ],
+        "reference_positions": 8192,
+        "right_hits": 346,
+        "right_rate": 0.042236328125
+      },
+      "overall_top8": {
+        "difference_right_minus_left": -0.0084228515625,
+        "independent_units_with_scoreable_positions": 128,
+        "left_hits": 569,
+        "left_rate": 0.0694580078125,
+        "paired_percentile_95": [
+          -0.0126953125,
+          -0.004150390625
+        ],
+        "reference_positions": 8192,
+        "right_hits": 500,
+        "right_rate": 0.06103515625
+      },
+      "source_documents": 128
+    },
+    "recall": {
+      "novel_to_causal_prefix_top1": null,
+      "novel_to_causal_prefix_top8": null,
+      "overall_top1": {
+        "difference_right_minus_left": 0.013761467889908258,
+        "independent_units_with_scoreable_positions": 64,
+        "left_hits": 46,
+        "left_rate": 0.10550458715596331,
+        "paired_percentile_95": [
+          0.004576659038901602,
+          0.02511415525114155
+        ],
+        "reference_positions": 436,
+        "right_hits": 52,
+        "right_rate": 0.11926605504587157
+      },
+      "overall_top8": {
+        "difference_right_minus_left": 0.01834862385321101,
+        "independent_units_with_scoreable_positions": 64,
+        "left_hits": 52,
+        "left_rate": 0.11926605504587157,
+        "paired_percentile_95": [
+          0.0069124423963133645,
+          0.03002309468822171
+        ],
+        "reference_positions": 436,
+        "right_hits": 60,
+        "right_rate": 0.13761467889908258
+      },
+      "source_documents": 64
+    }
+  }
+}

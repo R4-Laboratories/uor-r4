@@ -836,6 +836,8 @@ impl ExactCopyStep {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct DiscreteTracedPrefixEvaluation {
     pub evaluation: DiscretePrefixEvaluation,
+    /// Inputs and choice of the native 19-section trunk gate, when active.
+    pub trunk_pointer: Option<TrunkPointerObservation>,
     /// Raw base trace words in `(block, stage)` order. For a count mixer, the trace
     /// is the previous original ID, conditional weight, winning ID and Q32 mass (low, high).
     pub trace_words: Vec<u32>,
@@ -1005,7 +1007,20 @@ pub(crate) fn pack_4block_roots(roots: [u8; 4]) -> u16 {
         | (u16::from(roots[3] & 0xF) << 12)
 }
 
-fn orbit_root_causal_successor(prefix: &[u32], codebook_roots: &[[u8; 4]]) -> Result<Option<u16>> {
+/// State selected before the geometric vocabulary writer resolves its ties.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct TrunkPointerObservation {
+    pub read_code: u16,
+    pub recurrence_code: u16,
+    /// Successor address in the current causal window and the original token at that address.
+    pub successor: Option<(usize, u16)>,
+    pub selected_token: u16,
+}
+
+fn orbit_root_causal_successor(
+    prefix: &[u32],
+    codebook_roots: &[[u8; 4]],
+) -> Result<Option<(usize, u16)>> {
     if prefix.len() < 2 {
         return Ok(None);
     }
@@ -1027,7 +1042,7 @@ fn orbit_root_causal_successor(prefix: &[u32], codebook_roots: &[[u8; 4]]) -> Re
             if usize::from(succ_tok) >= codebook_roots.len() {
                 return Err(invalid("successor token out of codebook_roots bounds"));
             }
-            matched_succ = Some(succ_tok);
+            matched_succ = Some((p + 1, succ_tok));
         }
     }
     Ok(matched_succ)
@@ -1277,7 +1292,7 @@ impl DiscreteTrunkTables {
         prefix: &[u32],
         q_blocks: &mut [[i32; 8]],
         codebook_roots: &[[u8; 4]],
-    ) -> Result<()> {
+    ) -> Result<TrunkPointerObservation> {
         if q_blocks.len() != 4 {
             return Err(invalid("joint-pointer trunk gate requires 4 blocks"));
         }
@@ -1292,8 +1307,12 @@ impl DiscreteTrunkTables {
         let pointer_succ = orbit_root_causal_successor(prefix, codebook_roots)?;
         let query_token = u16::try_from(prefix[prefix.len() - 1])
             .map_err(|_| invalid("query token overflows u16"))?;
-        let chosen_tok =
-            self.select_level3_joint_pointer_global(query_token, read_code, rec_code, pointer_succ);
+        let chosen_tok = self.select_level3_joint_pointer_global(
+            query_token,
+            read_code,
+            rec_code,
+            pointer_succ.map(|(_, token)| token),
+        );
         let target_roots = codebook_roots
             .get(usize::from(chosen_tok))
             .copied()
@@ -1306,7 +1325,12 @@ impl DiscreteTrunkTables {
             let snapped_root = snap(&rotated, 1);
             q_blocks[b] = orbit_root_coords(snapped_root);
         }
-        Ok(())
+        Ok(TrunkPointerObservation {
+            read_code,
+            recurrence_code: rec_code,
+            successor: pointer_succ,
+            selected_token: chosen_tok,
+        })
     }
 }
 
@@ -4467,7 +4491,7 @@ impl IntegerDiscreteModel {
         &self,
         prefix: &[u32],
         trace: Option<&mut Vec<u32>>,
-    ) -> Result<FlockReadParts> {
+    ) -> Result<(FlockReadParts, Option<TrunkPointerObservation>)> {
         let plan = build_row_plan(prefix.len())?;
         let (mut blocks, relation_scores, relation_trace) = match self.read_mode {
             DiscreteReadMode::Route => (self.route_read(prefix, &plan, trace)?, None, None),
@@ -4479,12 +4503,13 @@ impl IntegerDiscreteModel {
             }
             DiscreteReadMode::Pick => (self.pick_row(prefix)?.blocks, None, None),
         };
-        if !self.state_transport_knockout {
-            if let Some(ref trunk) = self.trunk {
-                trunk.apply_joint_pointer_gate(prefix, &mut blocks, &self.codebook_roots)?;
+        let pointer = match (&self.trunk, self.state_transport_knockout) {
+            (Some(trunk), false) => {
+                Some(trunk.apply_joint_pointer_gate(prefix, &mut blocks, &self.codebook_roots)?)
             }
-        }
-        Ok((blocks, relation_scores, relation_trace))
+            _ => None,
+        };
+        Ok(((blocks, relation_scores, relation_trace), pointer))
     }
 
     fn evaluate_prefix_internal(
@@ -4531,6 +4556,7 @@ impl IntegerDiscreteModel {
                     relation_scores: None,
                 },
                 trace_words,
+                trunk_pointer: None,
                 relation_trace_words: None,
             });
         }
@@ -4566,11 +4592,12 @@ impl IntegerDiscreteModel {
                     relation_scores: None,
                 },
                 trace_words,
+                trunk_pointer: None,
                 relation_trace_words: None,
             });
         }
         let mut trace_words = Vec::new();
-        let (q_blocks, relation_scores, relation_trace_words) =
+        let ((q_blocks, relation_scores, relation_trace_words), trunk_pointer) =
             self.causal_geometric_read(prefix, retain_trace.then_some(&mut trace_words))?;
 
         let mut occupied = [false; 256];
@@ -4644,6 +4671,7 @@ impl IntegerDiscreteModel {
             },
             trace_words,
             relation_trace_words,
+            trunk_pointer,
         })
     }
 

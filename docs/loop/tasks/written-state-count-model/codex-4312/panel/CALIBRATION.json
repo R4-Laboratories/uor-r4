@@ -1,0 +1,16 @@
+{
+  "controls": {
+    "bos_at_cap": 264,
+    "bos_with_eos": 264,
+    "embedded_gold_boilerplate": 264,
+    "empty_eos": 264,
+    "gold_with_alternative": 264,
+    "negated_or_contradictory": 264,
+    "original_good_through_eos": 264,
+    "otherwise_useful_at_cap_without_eos": 264,
+    "question_echo": 264,
+    "slot_resolving_paraphrase": 264,
+    "wrong_slot_or_polarity": 264
+  },
+  "question_echo_longer_than_generation_cap": 0
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UOR-R4 · Blind conversation ratings</title>
+<style>
+:root{color-scheme:light dark;font:16px/1.5 system-ui,sans-serif}body{max-width:76rem;margin:auto;padding:1.5rem}h1{font-size:1.65rem}h2,h3{font-size:1.1rem}nav,.buttons{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}button,select,input{font:inherit;padding:.35rem}button{cursor:pointer}.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}section,article{padding:.8rem;border:1px solid #8888;border-radius:.4rem}.content{white-space:pre-wrap;overflow-wrap:anywhere}.turn{margin:.6rem 0}small{display:block}label{display:block;margin:.5rem 0}textarea{width:min(100%,45rem);font:inherit}button:focus-visible,select:focus-visible{outline:2px solid Highlight}@media(max-width:700px){.pair{grid-template-columns:1fr}}
+</style>
+<body><header><h1>Blind conversation ratings</h1>
+<p>Read the conversation and judge each reply to the final user message independently. Answer as a person who might have asked that question. Use the same standard for both replies, even when they are identical.</p>
+<details><summary>Rating guide and source</summary>
+<p><b>0 · Unusable.</b> The reply is empty, unintelligible, materially wrong, or fails to address the request. <b>1 · Partial.</b> It offers relevant help but leaves a material gap, error or unfinished thought. <b>2 · Useful.</b> It answers the request correctly enough to use, respects the conversation and is complete. Give appropriate clarification questions credit when a direct answer would require missing information.</p>
+<p>Consider correctness, relevance and clarity. A polished opening alone earns no credit. Model answers appear in full. “EOS” means the model chose to stop; “token limit” means generation ended at the fixed cap. Use “Cannot judge” where specialist knowledge is required. Rate each answer before choosing a preference. Fill out the packet independently. Download your ratings to save or return them. The page sends nothing over the network.</p>
+<p>Conversation histories come from the English OpenAssistant Conversations Dataset (OASST2) by LAION/OpenAssistant contributors, Apache License 2.0. The two replies were generated for this study. <a href="https://huggingface.co/datasets/OpenAssistant/oasst2">Dataset and attribution</a>.</p></details></header>
+<nav><button id="prev">Previous</button><output id="position"></output><button id="next">Next</button><button id="download">Download ratings</button><output id="progress"></output></nav>
+<h2>Conversation</h2><section id="history"></section>
+<h2>Replies</h2><div class="pair" id="pair"></div>
+<label>Which reply would you prefer? <select id="pref"><option value="">Choose</option><option>Left</option><option>Right</option><option>Tie</option><option>Cannot judge</option></select></label>
+<label>What decided your ratings? (optional)<br><textarea rows="2" id="note"></textarea></label>
+<output aria-live="polite" id="status"></output>
+<script type="application/json" id="rows">{{ROWS}}</script>
+<script>
+'use strict';
+const rows=JSON.parse(document.getElementById('rows').textContent);
+const get=id=>document.getElementById(id);
+const key='uor-human-rating-'+rows[0].trial;
+let answers={}, i=0;
+try {answers=JSON.parse(localStorage.getItem(key)||'{}')}catch{}
+function persist(){
+  try{localStorage.setItem(key,JSON.stringify(answers))}catch{}
+  get('progress').textContent=rows.filter(r=>{const a=answers[r.trial];return a&&a.left&&a.right&&a.preference}).length+' of '+rows.length+' rated';
+}
+function element(tag,txt){const e=document.createElement(tag);e.textContent=txt;return e}
+function render(){
+  const r=rows[i], a=answers[r.trial]||(answers[r.trial]={});
+  get('position').textContent='Conversation '+(i+1)+' of '+rows.length;
+  get('prev').disabled=i===0;get('next').disabled=i+1===rows.length;
+  get('history').replaceChildren();
+  for(const m of r.history){const t=element('div','');t.className='turn';t.append(element('strong',m.role==='user'?'User':'Previous assistant'));const c=element('div',m.content);c.className='content';t.append(c);get('history').append(t)}
+  get('pair').replaceChildren();
+  r.replies.forEach((resp,j)=>{
+    const side=j?'right':'left', b=element('article',''), h=element('h3',j?'Right reply':'Left reply'), c=element('div',resp.text||'(empty reply)');c.className='content';
+    if(resp.text && !resp.text.trim()){
+      const marks=[...resp.text].reduce((out,ch)=>{const name=ch===' '?'space':ch==='\n'?'line break':ch==='\t'?'tab':'other whitespace';out[name]=(out[name]||0)+1;return out},{});
+      c.textContent='Whitespace only ('+Object.entries(marks).map(([name,n])=>n+' '+name+(n===1?'':'s')).join(', ')+').';
+    }
+    const label=element('label','Rating '),s=element('select','');
+    for(const [v,t] of [['','Choose'],['0','0 · Unusable'],['1','1 · Partial'],['2','2 · Useful'],['X','Cannot judge']]){const opt=element('option',t);opt.value=v;s.append(opt)}
+    s.value=a[side]||'';s.onchange=()=>{a[side]=s.value;persist()};label.append(s);
+    b.append(h,c,element('small',resp.end+' · '+resp.token_count+' tokens, including any EOS'));
+    if(resp.bos_offsets.length)b.append(element('small','The model also emitted a start-of-sequence marker at token offsets '+resp.bos_offsets.join(', ')+'.'));
+    b.append(label);get('pair').append(b)
+  });
+  get('pref').value=a.preference||'';get('note').value=a.note||'';persist()
+}
+get('prev').onclick=()=>{if(i>0){i--;render()}};
+get('next').onclick=()=>{if(i<rows.length-1){i++;render()}};
+get('pref').onchange=()=>{answers[rows[i].trial].preference=get('pref').value;persist()};
+get('note').oninput=()=>{answers[rows[i].trial].note=get('note').value;persist()};
+get('download').onclick=()=>{const payload={instrument:'uor-open-chat-blind/1',ratings:rows.map(r=>({trial:r.trial,...(answers[r.trial]||{})}))};const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}));const a=element('a','');a.href=url;a.download='blind-chat-ratings.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);get('status').textContent='Ratings download requested.'};
+render();
+</script></body></html>

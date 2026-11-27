@@ -184,7 +184,9 @@ impl Device {
             .arg(&mut flag);
         // SAFETY: block*rows*16 cost and flag words; one thread per
         // (coordinate, row, lane), ordered after the baseline on this stream.
-        unsafe { launch.launch(launch_config(triples)) }.map_err(cuda)?;
+        let mut grid = launch_config(per);
+        grid.grid_dim.1 = block;
+        unsafe { launch.launch(grid) }.map_err(cuda)?;
 
         let reducers = block * 16;
         let mut launch = self.stream.launch_builder(&scoring.reduce);

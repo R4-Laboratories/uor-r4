@@ -1,0 +1,168 @@
+{
+  "schema": "uor-r4.visible-answer-readback/1",
+  "seal_manifest_sha256": "ecd7c4e98ebfb8736028eab84e3e5a39f8277f4f5327bc0562be4e8ff6695d5d",
+  "anonymous_arm_assignment": {
+    "left": "answer-first",
+    "right": "reasoning-first"
+  },
+  "reasoning_first": {
+    "ordinary": {
+      "admitted_cells": true,
+      "artifact": "1b8e1240149b8058b5e79c88c9d42d7c4990339f1b98452a1b34d33b4e132398",
+      "checks": 512,
+      "emission": true,
+      "gate_token": true,
+      "ordered_top8": true,
+      "read_code": true,
+      "read_vector": true,
+      "recurrence_code": true,
+      "successor_address": true
+    },
+    "pre_writer": {
+      "steps": 512,
+      "gate_equals_writer": 509,
+      "first_chat": [
+        {
+          "id": "0171c3b7e0d2d71dd8d6a001",
+          "domain": "conversation",
+          "target": 376,
+          "gate": 223,
+          "written": 223,
+          "source": 161
+        },
+        {
+          "id": "fc39405c8e99cdc17d3436e1",
+          "domain": "conversation",
+          "target": 1771,
+          "gate": 223,
+          "written": 223,
+          "source": 165
+        }
+      ],
+      "first_by_domain": [
+        {
+          "domain": "conversation",
+          "rows": 2,
+          "writer_overrides": 0
+        },
+        {
+          "domain": "open",
+          "rows": 2,
+          "writer_overrides": 0
+        },
+        {
+          "domain": "prose",
+          "rows": 2,
+          "writer_overrides": 2
+        },
+        {
+          "domain": "recall",
+          "rows": 2,
+          "writer_overrides": 0
+        }
+      ]
+    },
+    "chat": {
+      "whitespace_only_strings": 179,
+      "thirty_two_spaces": 165,
+      "first_right_token_ids": [
+        {
+          "token": 223,
+          "n": 17
+        }
+      ],
+      "reasoning_lead_799": 0
+    }
+  },
+  "answer_first": {
+    "ordinary": {
+      "admitted_cells": true,
+      "artifact": "47214eda18119b1e555cec858f9356c93246a23c9f34686962bc19ba05716049",
+      "checks": 512,
+      "emission": true,
+      "gate_token": true,
+      "ordered_top8": true,
+      "read_code": true,
+      "read_vector": true,
+      "recurrence_code": true,
+      "successor_address": true
+    },
+    "pre_writer": {
+      "steps": 512,
+      "gate_equals_writer": 508,
+      "first_chat": [
+        {
+          "id": "0171c3b7e0d2d71dd8d6a001",
+          "domain": "conversation",
+          "target": 376,
+          "gate": 223,
+          "written": 223,
+          "source": 161
+        },
+        {
+          "id": "fc39405c8e99cdc17d3436e1",
+          "domain": "conversation",
+          "target": 1771,
+          "gate": 223,
+          "written": 223,
+          "source": 165
+        }
+      ],
+      "first_by_domain": [
+        {
+          "domain": "conversation",
+          "rows": 2,
+          "writer_overrides": 0
+        },
+        {
+          "domain": "open",
+          "rows": 2,
+          "writer_overrides": 0
+        },
+        {
+          "domain": "prose",
+          "rows": 2,
+          "writer_overrides": 1
+        },
+        {
+          "domain": "recall",
+          "rows": 2,
+          "writer_overrides": 0
+        }
+      ]
+    },
+    "chat": {
+      "whitespace_only_strings": 161,
+      "thirty_two_spaces": 161,
+      "first_right_token_ids": [
+        {
+          "token": 223,
+          "n": 18
+        }
+      ],
+      "reasoning_lead_799": 0
+    }
+  },
+  "pair_first_reference_divergence": [
+    {
+      "reasoning": 1,
+      "answer": 1,
+      "n": 180
+    },
+    {
+      "reasoning": 1,
+      "answer": 2,
+      "n": 3
+    },
+    {
+      "reasoning": 2,
+      "answer": 1,
+      "n": 2
+    },
+    {
+      "reasoning": 2,
+      "answer": 2,
+      "n": 15
+    }
+  ]
+}
