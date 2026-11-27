@@ -1,0 +1,283 @@
+{
+  "scoped": {
+    "pairs": 224,
+    "base_directed": 0,
+    "fit_directed": 56,
+    "gained_pair": 40,
+    "lost_pair": 0,
+    "rescued_rows": 80,
+    "lost_rows": 16,
+    "wrong": [
+      {
+        "pos": 3,
+        "kind": "selected_eos",
+        "n": 80
+      },
+      {
+        "pos": 3,
+        "kind": "verified_copy",
+        "n": 112
+      },
+      {
+        "pos": 4,
+        "kind": "verified_copy",
+        "n": 32
+      }
+    ],
+    "examples": [
+      {
+        "id": "00f128e67d6bcab7e9acf4aa",
+        "family": "left-column",
+        "axis": "clause-order-swap",
+        "wording": [
+          "Use the entry on the right of the bar: 'return exactly the two opening words' | 'return the opening word by itself'",
+          "Use the entry on the right of the bar: 'return the opening word by itself' | 'return exactly the two opening words'"
+        ],
+        "wanted": [
+          [
+            1027,
+            16,
+            1
+          ],
+          [
+            1027,
+            16,
+            2153,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1027,
+            16,
+            1
+          ],
+          [
+            1027,
+            16,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          -28,
+          -28
+        ],
+        "fit_scores": [
+          -50,
+          -67
+        ],
+        "base_directed": false,
+        "fit_directed": false,
+        "fit_exact": false,
+        "base_exact": false,
+        "repaired_rows": 0,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": 3,
+            "control": "selected_eos"
+          }
+        ]
+      },
+      {
+        "id": "25af11b2ef606c8ea8c36342",
+        "family": "countermanded-memo",
+        "axis": "selector-swap",
+        "wording": [
+          "The final memo says 'say nothing beyond the first word', superseding 'end with the second word'",
+          "The initial memo says 'say nothing beyond the first word', superseded by 'end with the second word'"
+        ],
+        "wanted": [
+          [
+            1184,
+            16,
+            1
+          ],
+          [
+            1184,
+            16,
+            1504,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1184,
+            16,
+            1
+          ],
+          [
+            1184,
+            16,
+            1504,
+            2701,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          59,
+          69
+        ],
+        "fit_scores": [
+          -30,
+          94
+        ],
+        "base_directed": false,
+        "fit_directed": true,
+        "fit_exact": false,
+        "base_exact": false,
+        "repaired_rows": 1,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": 4,
+            "control": "verified_copy"
+          }
+        ]
+      },
+      {
+        "id": "07d55f483923f7d837c1686f",
+        "family": "held-repeat",
+        "axis": "selector-swap",
+        "wording": [
+          "Save 'start with two words and finish with those two words' for tomorrow and use 'start with one word and finish with that one word' for this request",
+          "Use 'start with two words and finish with those two words' for this request and save 'start with one word and finish with that one word' for tomorrow"
+        ],
+        "wanted": [
+          [
+            1504,
+            16,
+            1
+          ],
+          [
+            1504,
+            16,
+            2701,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1504,
+            16,
+            1
+          ],
+          [
+            1504,
+            16,
+            2701,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          4,
+          11
+        ],
+        "fit_scores": [
+          -23,
+          2
+        ],
+        "base_directed": false,
+        "fit_directed": true,
+        "fit_exact": true,
+        "base_exact": false,
+        "repaired_rows": 1,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": null,
+            "control": null
+          }
+        ]
+      }
+    ]
+  },
+  "direct": {
+    "pairs": 32,
+    "base_directed": 0,
+    "fit_directed": 0,
+    "gained_pair": 0,
+    "lost_pair": 0,
+    "rescued_rows": 32,
+    "lost_rows": 32,
+    "wrong": [
+      {
+        "pos": 3,
+        "kind": "selected_eos",
+        "n": 32
+      }
+    ],
+    "examples": [
+      {
+        "id": "035014464d2abe9c12dbcb6a",
+        "family": "direct-held",
+        "axis": "direct-count-control",
+        "wording": [
+          "Conclude at the end of item one",
+          "Conclude at the end of item two"
+        ],
+        "wanted": [
+          [
+            1184,
+            16,
+            1
+          ],
+          [
+            1184,
+            16,
+            1504,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1184,
+            16,
+            1
+          ],
+          [
+            1184,
+            16,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          9,
+          24
+        ],
+        "fit_scores": [
+          -46,
+          -21
+        ],
+        "base_directed": false,
+        "fit_directed": false,
+        "fit_exact": false,
+        "base_exact": false,
+        "repaired_rows": 1,
+        "lost_rows": 1,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": 3,
+            "control": "selected_eos"
+          }
+        ]
+      }
+    ]
+  }
+}

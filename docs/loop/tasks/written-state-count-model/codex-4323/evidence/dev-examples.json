@@ -1,0 +1,286 @@
+{
+  "scoped": {
+    "pairs": 224,
+    "base_directed": 0,
+    "fit_directed": 24,
+    "gained_pair": 8,
+    "lost_pair": 0,
+    "rescued_rows": 48,
+    "lost_rows": 32,
+    "wrong": [
+      {
+        "pos": 3,
+        "kind": "selected_eos",
+        "n": 112
+      },
+      {
+        "pos": 3,
+        "kind": "verified_copy",
+        "n": 112
+      },
+      {
+        "pos": 4,
+        "kind": "verified_copy",
+        "n": 48
+      }
+    ],
+    "examples": [
+      {
+        "id": "003eeb97a1de4ebb02b9eaa1",
+        "family": "test-then-live",
+        "axis": "clause-order-swap",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "wanted": [
+          [
+            1258,
+            16,
+            1
+          ],
+          [
+            1258,
+            16,
+            1667,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1258,
+            16,
+            1
+          ],
+          [
+            1258,
+            16,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          -7,
+          -7
+        ],
+        "fit_scores": [
+          -95,
+          -86
+        ],
+        "base_directed": false,
+        "fit_directed": false,
+        "fit_exact": false,
+        "base_exact": false,
+        "repaired_rows": 0,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": 3,
+            "control": "selected_eos"
+          }
+        ]
+      },
+      {
+        "id": "157035aea314e3893bef833f",
+        "family": "unquoted-replace",
+        "axis": "selector-swap",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "wanted": [
+          [
+            1627,
+            16,
+            1
+          ],
+          [
+            1627,
+            16,
+            629,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1627,
+            16,
+            1
+          ],
+          [
+            1627,
+            16,
+            629,
+            1373,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          19,
+          32
+        ],
+        "fit_scores": [
+          -53,
+          62
+        ],
+        "base_directed": false,
+        "fit_directed": true,
+        "fit_exact": false,
+        "base_exact": false,
+        "repaired_rows": 1,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": 4,
+            "control": "verified_copy"
+          }
+        ]
+      },
+      {
+        "id": "0acf3164486a1dfd3993504b",
+        "family": "reject-veto",
+        "axis": "selector-swap",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "wanted": [
+          [
+            1667,
+            16,
+            1
+          ],
+          [
+            1667,
+            16,
+            1627,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1667,
+            16,
+            1
+          ],
+          [
+            1667,
+            16,
+            1627,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          17,
+          19
+        ],
+        "fit_scores": [
+          -64,
+          41
+        ],
+        "base_directed": false,
+        "fit_directed": true,
+        "fit_exact": true,
+        "base_exact": false,
+        "repaired_rows": 1,
+        "lost_rows": 0,
+        "wrong": [
+          {
+            "position": null,
+            "control": null
+          },
+          {
+            "position": null,
+            "control": null
+          }
+        ]
+      }
+    ]
+  },
+  "direct": {
+    "pairs": 32,
+    "base_directed": 32,
+    "fit_directed": 0,
+    "gained_pair": 0,
+    "lost_pair": 32,
+    "rescued_rows": 0,
+    "lost_rows": 32,
+    "wrong": [
+      {
+        "pos": 3,
+        "kind": "verified_copy",
+        "n": 32
+      }
+    ],
+    "examples": [
+      {
+        "id": "034cabd2c9dcdd57212258f0",
+        "family": "direct-dev",
+        "axis": "direct-count-control",
+        "wording": [
+          "Fit your entire answer into one word",
+          "Fit your entire answer into two words"
+        ],
+        "wanted": [
+          [
+            1258,
+            16,
+            1
+          ],
+          [
+            1258,
+            16,
+            1667,
+            1
+          ]
+        ],
+        "tokens": [
+          [
+            1258,
+            16,
+            1667,
+            1627,
+            1
+          ],
+          [
+            1258,
+            16,
+            1667,
+            1
+          ]
+        ],
+        "baseline_scores": [
+          -9,
+          23
+        ],
+        "fit_scores": [
+          30,
+          14
+        ],
+        "base_directed": true,
+        "fit_directed": false,
+        "fit_exact": false,
+        "base_exact": true,
+        "repaired_rows": 0,
+        "lost_rows": 1,
+        "wrong": [
+          {
+            "position": 3,
+            "control": "verified_copy"
+          },
+          {
+            "position": null,
+            "control": null
+          }
+        ]
+      }
+    ]
+  }
+}

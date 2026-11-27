@@ -1,0 +1,379 @@
+{
+  "counts": {
+    "all_zero": 32,
+    "correct_flip": 32,
+    "identical_support": 96,
+    "ordered_without_flip": 16,
+    "reverse_order": 80
+  },
+  "bare_wordings": 29,
+  "axes": [
+    {
+      "axis": "clause-order-swap",
+      "n": 112,
+      "classes": [
+        {
+          "class": "all_zero",
+          "n": 16
+        },
+        {
+          "class": "identical_support",
+          "n": 64
+        },
+        {
+          "class": "reverse_order",
+          "n": 32
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    },
+    {
+      "axis": "direct-count-control",
+      "n": 32,
+      "classes": [
+        {
+          "class": "correct_flip",
+          "n": 32
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    },
+    {
+      "axis": "selector-swap",
+      "n": 112,
+      "classes": [
+        {
+          "class": "all_zero",
+          "n": 16
+        },
+        {
+          "class": "identical_support",
+          "n": 32
+        },
+        {
+          "class": "ordered_without_flip",
+          "n": 16
+        },
+        {
+          "class": "reverse_order",
+          "n": 48
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    }
+  ],
+  "examples": [
+    {
+      "pair_id": "0512d0f94970667af2434b1f",
+      "family": "square-bracket",
+      "axis": "selector-swap",
+      "wording": [
+        "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+        "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+      ],
+      "class": "all_zero",
+      "scores": [
+        20,
+        20
+      ],
+      "exclusive_counts": [
+        1,
+        1
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 0,
+      "left_only": [
+        {
+          "bucket": 3421,
+          "weight": 0
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 3985,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "pair_id": "034cabd2c9dcdd57212258f0",
+      "family": "direct-dev",
+      "axis": "direct-count-control",
+      "wording": [
+        "Fit your entire answer into one word",
+        "Fit your entire answer into two words"
+      ],
+      "class": "correct_flip",
+      "scores": [
+        -9,
+        23
+      ],
+      "exclusive_counts": [
+        1,
+        3
+      ],
+      "exclusive_sums": [
+        -8,
+        24
+      ],
+      "nonzero_difference_terms": 3,
+      "left_only": [
+        {
+          "bucket": 3115,
+          "weight": -8
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 393,
+          "weight": 15
+        },
+        {
+          "bucket": 3405,
+          "weight": 9
+        },
+        {
+          "bucket": 3489,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "pair_id": "003eeb97a1de4ebb02b9eaa1",
+      "family": "test-then-live",
+      "axis": "clause-order-swap",
+      "wording": [
+        "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+        "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+      ],
+      "class": "identical_support",
+      "scores": [
+        -7,
+        -7
+      ],
+      "exclusive_counts": [
+        0,
+        0
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 0,
+      "left_only": [],
+      "right_only": []
+    },
+    {
+      "pair_id": "0acf3164486a1dfd3993504b",
+      "family": "reject-veto",
+      "axis": "selector-swap",
+      "wording": [
+        "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+        "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+      ],
+      "class": "ordered_without_flip",
+      "scores": [
+        17,
+        19
+      ],
+      "exclusive_counts": [
+        26,
+        6
+      ],
+      "exclusive_sums": [
+        8,
+        10
+      ],
+      "nonzero_difference_terms": 12,
+      "left_only": [
+        {
+          "bucket": 206,
+          "weight": -1
+        },
+        {
+          "bucket": 472,
+          "weight": 0
+        },
+        {
+          "bucket": 733,
+          "weight": 0
+        },
+        {
+          "bucket": 895,
+          "weight": 0
+        },
+        {
+          "bucket": 1159,
+          "weight": 8
+        },
+        {
+          "bucket": 1243,
+          "weight": 0
+        },
+        {
+          "bucket": 1517,
+          "weight": 0
+        },
+        {
+          "bucket": 1537,
+          "weight": -3
+        },
+        {
+          "bucket": 1561,
+          "weight": 0
+        },
+        {
+          "bucket": 1860,
+          "weight": 0
+        },
+        {
+          "bucket": 1926,
+          "weight": 0
+        },
+        {
+          "bucket": 2288,
+          "weight": 0
+        },
+        {
+          "bucket": 2299,
+          "weight": 0
+        },
+        {
+          "bucket": 2425,
+          "weight": 0
+        },
+        {
+          "bucket": 2595,
+          "weight": 0
+        },
+        {
+          "bucket": 2618,
+          "weight": 3
+        },
+        {
+          "bucket": 3129,
+          "weight": 0
+        },
+        {
+          "bucket": 3355,
+          "weight": 2
+        },
+        {
+          "bucket": 3377,
+          "weight": 0
+        },
+        {
+          "bucket": 3436,
+          "weight": 0
+        },
+        {
+          "bucket": 3499,
+          "weight": 0
+        },
+        {
+          "bucket": 3596,
+          "weight": 0
+        },
+        {
+          "bucket": 3837,
+          "weight": -1
+        },
+        {
+          "bucket": 4014,
+          "weight": 0
+        },
+        {
+          "bucket": 4019,
+          "weight": 0
+        },
+        {
+          "bucket": 4095,
+          "weight": 0
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 1246,
+          "weight": 11
+        },
+        {
+          "bucket": 1720,
+          "weight": -2
+        },
+        {
+          "bucket": 2294,
+          "weight": 6
+        },
+        {
+          "bucket": 2415,
+          "weight": -7
+        },
+        {
+          "bucket": 3242,
+          "weight": -2
+        },
+        {
+          "bucket": 3676,
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "pair_id": "0c56c666b64b6dac0971cdc2",
+      "family": "scribe-underlined",
+      "axis": "clause-order-swap",
+      "wording": [
+        "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+        "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+      ],
+      "class": "reverse_order",
+      "scores": [
+        24,
+        11
+      ],
+      "exclusive_counts": [
+        3,
+        3
+      ],
+      "exclusive_sums": [
+        7,
+        -6
+      ],
+      "nonzero_difference_terms": 2,
+      "left_only": [
+        {
+          "bucket": 3232,
+          "weight": 0
+        },
+        {
+          "bucket": 3496,
+          "weight": 0
+        },
+        {
+          "bucket": 3951,
+          "weight": 7
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 2715,
+          "weight": 0
+        },
+        {
+          "bucket": 3216,
+          "weight": -6
+        },
+        {
+          "bucket": 3782,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}

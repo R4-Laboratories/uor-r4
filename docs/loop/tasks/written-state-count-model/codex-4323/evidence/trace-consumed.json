@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "identical_support": 50
+  },
+  "bare_wordings": 2,
+  "axes": [
+    {
+      "axis": "consumed",
+      "n": 50,
+      "classes": [
+        {
+          "class": "identical_support",
+          "n": 50
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    }
+  ],
+  "examples": [
+    {
+      "pair_id": "06850085c53a98d6261f89ba",
+      "family": "selected-scope",
+      "axis": "consumed",
+      "wording": [
+        "Follow the quoted instruction that comes first: 'stop before word two' or 'stop after word two'",
+        "Follow the quoted instruction that comes first: 'stop after word two' or 'stop before word two'"
+      ],
+      "class": "identical_support",
+      "scores": [
+        28,
+        28
+      ],
+      "exclusive_counts": [
+        0,
+        0
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 0,
+      "left_only": [],
+      "right_only": []
+    }
+  ]
+}

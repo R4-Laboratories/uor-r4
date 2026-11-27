@@ -1,0 +1,23 @@
+{
+  "baseline": {
+    "pairs": 224,
+    "directed": 0,
+    "exact": 0,
+    "wordings": 0,
+    "protect": 50
+  },
+  "candidate": {
+    "pairs": 224,
+    "directed": 24,
+    "exact": 8,
+    "wordings": 1,
+    "protect": 50
+  },
+  "checks": {
+    "directed": true,
+    "exact": true,
+    "wordings": true,
+    "protected": true
+  },
+  "eligible": true
+}

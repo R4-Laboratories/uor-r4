@@ -1,0 +1,948 @@
+[
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 75,
+        "inverted": 0,
+        "actual_both_directed": 75,
+        "exact": 75,
+        "short_exact": 75,
+        "long_exact": 125,
+        "margin_pass_both": 25,
+        "open_cap": 50,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 75
+          },
+          {
+            "token": 3,
+            "n": 125
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 125
+          },
+          {
+            "token": 3,
+            "n": 25
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 50,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 100,
+        "margin_pass_both": 25,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 100
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "selection-scope",
+        "wording": [
+          "Between 'end after the third word' and 'end before the third word', choose the second instruction",
+          "Between 'end before the third word' and 'end after the third word', choose the second instruction"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Break off the dictation before saying the second word",
+          "Break off the dictation after saying the second word"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Cross out the second word and every word after it",
+          "Cross out the third word and every word after it"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Disregard 'stop after the second word'. Follow 'stop before the second word'",
+          "Disregard 'stop before the second word'. Follow 'stop after the second word'"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "End your excerpt just before the third word",
+          "End your excerpt just after the third word"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Finish as soon as the first word is spoken",
+          "Finish as soon as the second word is spoken"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Keep the second word and omit everything that follows it",
+          "Keep the third word too and omit everything that follows it"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 12
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Limit the reply to the opening word alone",
+          "Limit the reply to the opening two words"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Of 'stop after the second word' and 'stop before the second word', apply the latter",
+          "Of 'stop before the second word' and 'stop after the second word', apply the latter"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Print the first two words and leave the rest out",
+          "Print the first three words and leave the rest out"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Remove everything from the second word onward",
+          "Remove everything from the third word onward"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "The answer must contain two words in total",
+          "The answer must contain three words in total"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "Use up a budget of two words for this reply",
+          "Use up a budget of three words for this reply"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 12
+      },
+      {
+        "family": "selection-scope",
+        "wording": [
+          "When deciding where to end, use 'before the third word' and ignore 'after the third word'",
+          "When deciding where to end, use 'after the third word' and ignore 'before the third word'"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "Your excerpt ends before you get to the third word",
+          "Your excerpt ends after you give the third word"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Your whole reply should have just one word",
+          "Your whole reply should have just two words"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 550,
+      "transitions": 2575
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 400,
+          "exact_pairs": 200,
+          "exact": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 400,
+          "exact_pairs": 75,
+          "exact": 200,
+          "open_cap": 50
+        },
+        "native": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 400
+        },
+        "opposite": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 100,
+          "open_cap": 50
+        }
+      },
+      "1": {
+        "correct": {
+          "rows": 200,
+          "exact_pairs": 100,
+          "exact": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 200,
+          "exact_pairs": 50,
+          "exact": 150,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 200
+        },
+        "opposite": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 50,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "baseline"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 0,
+        "inverted": 13,
+        "actual_both_directed": 0,
+        "exact": 0,
+        "short_exact": 37,
+        "long_exact": 100,
+        "margin_pass_both": 0,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 37
+          },
+          {
+            "token": 3,
+            "n": 163
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 100
+          },
+          {
+            "token": 3,
+            "n": 50
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 50,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 100,
+        "margin_pass_both": 25,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 100
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "selection-scope",
+        "wording": [
+          "Between 'end after the third word' and 'end before the third word', choose the second instruction",
+          "Between 'end before the third word' and 'end after the third word', choose the second instruction"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Break off the dictation before saying the second word",
+          "Break off the dictation after saying the second word"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Cross out the second word and every word after it",
+          "Cross out the third word and every word after it"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Disregard 'stop after the second word'. Follow 'stop before the second word'",
+          "Disregard 'stop before the second word'. Follow 'stop after the second word'"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "End your excerpt just before the third word",
+          "End your excerpt just after the third word"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Finish as soon as the first word is spoken",
+          "Finish as soon as the second word is spoken"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Keep the second word and omit everything that follows it",
+          "Keep the third word too and omit everything that follows it"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 12
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Limit the reply to the opening word alone",
+          "Limit the reply to the opening two words"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Of 'stop after the second word' and 'stop before the second word', apply the latter",
+          "Of 'stop before the second word' and 'stop after the second word', apply the latter"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Print the first two words and leave the rest out",
+          "Print the first three words and leave the rest out"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Remove everything from the second word onward",
+          "Remove everything from the third word onward"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "The answer must contain two words in total",
+          "The answer must contain three words in total"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "Use up a budget of two words for this reply",
+          "Use up a budget of three words for this reply"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 12
+      },
+      {
+        "family": "selection-scope",
+        "wording": [
+          "When deciding where to end, use 'before the third word' and ignore 'after the third word'",
+          "When deciding where to end, use 'after the third word' and ignore 'before the third word'"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "Your excerpt ends before you get to the third word",
+          "Your excerpt ends after you give the third word"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Your whole reply should have just one word",
+          "Your whole reply should have just two words"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "35c7761650990cec81ec96b96e7c3683c936633dad1b073a40c168b71e85dd28",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "2503d55f4c2350e4c44b88bcdb6a65a7328101f0e6d0c69dd21232c873a95886",
+        "state_bytes": 40966,
+        "state_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91"
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 600,
+      "transitions": 2538
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 400,
+          "exact_pairs": 200,
+          "exact": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 137,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 400
+        },
+        "opposite": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 400,
+          "exact_pairs": 13,
+          "exact": 188,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "rows": 200,
+          "exact_pairs": 100,
+          "exact": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 200,
+          "exact_pairs": 50,
+          "exact": 150,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 200
+        },
+        "opposite": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 50,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "candidate"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 38,
+        "inverted": 0,
+        "actual_both_directed": 38,
+        "exact": 38,
+        "short_exact": 51,
+        "long_exact": 137,
+        "margin_pass_both": 38,
+        "open_cap": 12,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 51
+          },
+          {
+            "token": 3,
+            "n": 149
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 137
+          },
+          {
+            "token": 3,
+            "n": 13
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 44,
+        "exact": 44,
+        "short_exact": 50,
+        "long_exact": 94,
+        "margin_pass_both": 25,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          },
+          {
+            "token": 4,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 94
+          },
+          {
+            "token": 3,
+            "n": 6
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "selection-scope",
+        "wording": [
+          "Between 'end after the third word' and 'end before the third word', choose the second instruction",
+          "Between 'end before the third word' and 'end after the third word', choose the second instruction"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Break off the dictation before saying the second word",
+          "Break off the dictation after saying the second word"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Cross out the second word and every word after it",
+          "Cross out the third word and every word after it"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Disregard 'stop after the second word'. Follow 'stop before the second word'",
+          "Disregard 'stop before the second word'. Follow 'stop after the second word'"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "End your excerpt just before the third word",
+          "End your excerpt just after the third word"
+        ],
+        "pairs": 13,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dictation",
+        "wording": [
+          "Finish as soon as the first word is spoken",
+          "Finish as soon as the second word is spoken"
+        ],
+        "pairs": 25,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Keep the second word and omit everything that follows it",
+          "Keep the third word too and omit everything that follows it"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 12
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Limit the reply to the opening word alone",
+          "Limit the reply to the opening two words"
+        ],
+        "pairs": 25,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "stop-scope",
+        "wording": [
+          "Of 'stop after the second word' and 'stop before the second word', apply the latter",
+          "Of 'stop before the second word' and 'stop after the second word', apply the latter"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "copyediting",
+        "wording": [
+          "Print the first two words and leave the rest out",
+          "Print the first three words and leave the rest out"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "proofreading",
+        "wording": [
+          "Remove everything from the second word onward",
+          "Remove everything from the third word onward"
+        ],
+        "pairs": 25,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "The answer must contain two words in total",
+          "The answer must contain three words in total"
+        ],
+        "pairs": 13,
+        "directed": 13,
+        "exact": 13
+      },
+      {
+        "family": "length-budget",
+        "wording": [
+          "Use up a budget of two words for this reply",
+          "Use up a budget of three words for this reply"
+        ],
+        "pairs": 12,
+        "directed": 12,
+        "exact": 6
+      },
+      {
+        "family": "selection-scope",
+        "wording": [
+          "When deciding where to end, use 'before the third word' and ignore 'after the third word'",
+          "When deciding where to end, use 'after the third word' and ignore 'before the third word'"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "excerpt-end",
+        "wording": [
+          "Your excerpt ends before you get to the third word",
+          "Your excerpt ends after you give the third word"
+        ],
+        "pairs": 12,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "output-length",
+        "wording": [
+          "Your whole reply should have just one word",
+          "Your whole reply should have just two words"
+        ],
+        "pairs": 25,
+        "directed": 12,
+        "exact": 12
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "86fcfbca13aab601da8af7bca283cb1ab798d791b80fe576b29272c8a0d15731",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "c12d3a70ae4a8b7ff80cd0782b24bc8e73d67873f2fc21e7eaf61a6ab0b9984d",
+        "state_bytes": 32774,
+        "state_sha256": "0b8c1a89d9fa0dd03f2efffeeb08c5994308b51d12f704cde8b5d245588d1d7c"
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 588,
+      "transitions": 2536
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 400,
+          "exact_pairs": 200,
+          "exact": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 400,
+          "exact_pairs": 38,
+          "exact": 188,
+          "open_cap": 12
+        },
+        "native": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 400
+        },
+        "opposite": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 400,
+          "exact_pairs": 0,
+          "exact": 150,
+          "open_cap": 12
+        }
+      },
+      "1": {
+        "correct": {
+          "rows": 200,
+          "exact_pairs": 100,
+          "exact": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 200,
+          "exact_pairs": 44,
+          "exact": 144,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 200
+        },
+        "opposite": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 200,
+          "exact_pairs": 0,
+          "exact": 50,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "position"
+  }
+]

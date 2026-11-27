@@ -1,0 +1,1585 @@
+[
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 0,
+        "inverted": 0,
+        "actual_both_directed": 0,
+        "exact": 0,
+        "short_exact": 112,
+        "long_exact": 96,
+        "margin_pass_both": 0,
+        "open_cap": 32,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 144
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 128
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "direct-train",
+        "wording": [
+          "Output just the opening word",
+          "Output the opening word and its successor"
+        ],
+        "pairs": 32,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 80,
+        "exact_long": 96,
+        "bare_types": 28,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 80
+          },
+          {
+            "token": 3,
+            "n": 144
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 96
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 40,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 40
+            },
+            {
+              "token": 3,
+              "n": 72
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 48
+            },
+            {
+              "token": 4,
+              "n": 16
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 0,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": 3,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 40,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 40
+            },
+            {
+              "token": 3,
+              "n": 72
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 48
+            },
+            {
+              "token": 4,
+              "n": 16
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 112,
+        "exact_long": 96,
+        "bare_types": 29,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 144
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 128
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 480,
+      "transitions": 1920
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 208,
+          "open_cap": 32
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 208,
+          "open_cap": 32
+        }
+      }
+    },
+    "arm": "baseline"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 256,
+        "inverted": 0,
+        "actual_both_directed": 256,
+        "exact": 160,
+        "short_exact": 256,
+        "long_exact": 160,
+        "margin_pass_both": 256,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 256
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 160
+          },
+          {
+            "token": 4,
+            "n": 96
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "direct-train",
+        "wording": [
+          "Output just the opening word",
+          "Output the opening word and its successor"
+        ],
+        "pairs": 32,
+        "directed": 32,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 224,
+        "exact": 160,
+        "exact_short": 224,
+        "exact_long": 160,
+        "bare_types": 28,
+        "exact_types": 20,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 224
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 160
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 112,
+          "exact": 80,
+          "exact_short": 112,
+          "exact_long": 80,
+          "bare_types": 14,
+          "exact_types": 10,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 112
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 80
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 32,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 0,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 112,
+          "exact": 80,
+          "exact_short": 112,
+          "exact_long": 80,
+          "bare_types": 14,
+          "exact_types": 10,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 112
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 80
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 256,
+        "exact": 160,
+        "exact_short": 256,
+        "exact_long": 160,
+        "bare_types": 29,
+        "exact_types": 20,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 256
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 160
+          },
+          {
+            "token": 4,
+            "n": 96
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "35c7761650990cec81ec96b96e7c3683c936633dad1b073a40c168b71e85dd28",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "2503d55f4c2350e4c44b88bcdb6a65a7328101f0e6d0c69dd21232c873a95886",
+        "state_bytes": 40966,
+        "state_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 512,
+      "transitions": 1888
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 160,
+          "exact": 416,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "candidate"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 176,
+        "inverted": 16,
+        "actual_both_directed": 176,
+        "exact": 80,
+        "short_exact": 224,
+        "long_exact": 96,
+        "margin_pass_both": 176,
+        "open_cap": 16,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 224
+          },
+          {
+            "token": 3,
+            "n": 32
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 96
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Adopt 'give one word'; archive 'give two words'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Adopt 'give two words'; archive 'give one word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "archive-adopt",
+        "wording": [
+          "Archive 'give two words'; adopt 'give one word'",
+          "Archive 'give one word'; adopt 'give two words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the former",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'leave the next word out' and 'let the next word through', enforce the latter"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "second-slip",
+        "wording": [
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the latter",
+          "Between the notes 'let the next word through' and 'leave the next word out', enforce the former"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Apply 'two words, two words only' and dismiss 'one word, one word only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "training-repeat",
+        "wording": [
+          "Dismiss 'two words, two words only' and apply 'one word, one word only'",
+          "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "direct-train",
+        "wording": [
+          "Output just the opening word",
+          "Output the opening word and its successor"
+        ],
+        "pairs": 32,
+        "directed": 32,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "Please copy the lead word only instead of following the suggestion to copy the leading two words",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the following word' current and 'close the reply after the opening word' expired"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "clerk-clock",
+        "wording": [
+          "The clerk marked 'close the reply after the opening word' current and 'close the reply after the following word' expired",
+          "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The approved draft says 'stop after word two' and the old draft says 'stop before word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "approved-draft",
+        "wording": [
+          "The old draft says 'stop after word two' and the approved draft says 'stop before word two'",
+          "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-vs",
+        "wording": [
+          "The suggestion to copy the leading two words can wait; please copy the lead word only",
+          "The suggestion to copy the lead word only can wait; please copy the leading two words"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the left of the divider: 'output a single word' / 'output a pair of words'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the left of the divider: 'output a pair of words' / 'output a single word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "training-slash",
+        "wording": [
+          "Use the rule to the right of the divider: 'output a pair of words' / 'output a single word'",
+          "Use the rule to the right of the divider: 'output a single word' / 'output a pair of words'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 144,
+        "exact": 80,
+        "exact_short": 192,
+        "exact_long": 96,
+        "bare_types": 28,
+        "exact_types": 10,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 192
+          },
+          {
+            "token": 3,
+            "n": 32
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 80,
+          "exact": 48,
+          "exact_short": 96,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 6,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 96
+            },
+            {
+              "token": 3,
+              "n": 16
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 32,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 0,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 64,
+          "exact": 32,
+          "exact_short": 96,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 4,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 96
+            },
+            {
+              "token": 3,
+              "n": 16
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 176,
+        "exact": 80,
+        "exact_short": 224,
+        "exact_long": 96,
+        "bare_types": 29,
+        "exact_types": 10,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 224
+          },
+          {
+            "token": 3,
+            "n": 32
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 96
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "86fcfbca13aab601da8af7bca283cb1ab798d791b80fe576b29272c8a0d15731",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "c12d3a70ae4a8b7ff80cd0782b24bc8e73d67873f2fc21e7eaf61a6ab0b9984d",
+        "state_bytes": 32774,
+        "state_sha256": "0b8c1a89d9fa0dd03f2efffeeb08c5994308b51d12f704cde8b5d245588d1d7c"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 496,
+      "transitions": 1888
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 80,
+          "exact": 320,
+          "open_cap": 16
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 16,
+          "exact": 80,
+          "open_cap": 16
+        }
+      }
+    },
+    "arm": "position"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "scoped_train_pairs": 224,
+  "identical_slice": 0,
+  "shared": 96,
+  "mode": "link"
+}

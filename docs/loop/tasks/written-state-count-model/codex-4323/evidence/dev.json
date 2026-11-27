@@ -1,0 +1,1625 @@
+[
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 32,
+        "inverted": 0,
+        "actual_both_directed": 32,
+        "exact": 32,
+        "short_exact": 96,
+        "long_exact": 128,
+        "margin_pass_both": 32,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 160
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 128
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "direct-dev",
+        "wording": [
+          "Fit your entire answer into one word",
+          "Fit your entire answer into two words"
+        ],
+        "pairs": 32,
+        "directed": 32,
+        "exact": 32
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 64,
+        "exact_long": 96,
+        "bare_types": 28,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 64
+          },
+          {
+            "token": 3,
+            "n": 160
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            },
+            {
+              "token": 3,
+              "n": 80
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 32,
+          "exact": 32,
+          "exact_short": 32,
+          "exact_long": 32,
+          "bare_types": 1,
+          "exact_types": 1,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            },
+            {
+              "token": 3,
+              "n": 80
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 32,
+        "exact": 32,
+        "exact_short": 96,
+        "exact_long": 128,
+        "bare_types": 29,
+        "exact_types": 1,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 160
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 128
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 512,
+      "transitions": 2016
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 32,
+          "exact": 224,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 160,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "baseline"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 24,
+        "inverted": 24,
+        "actual_both_directed": 24,
+        "exact": 8,
+        "short_exact": 112,
+        "long_exact": 96,
+        "margin_pass_both": 24,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 144
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 112
+          },
+          {
+            "token": 4,
+            "n": 48
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "direct-dev",
+        "wording": [
+          "Fit your entire answer into one word",
+          "Fit your entire answer into two words"
+        ],
+        "pairs": 32,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 24,
+        "exact": 8,
+        "exact_short": 112,
+        "exact_long": 64,
+        "bare_types": 28,
+        "exact_types": 1,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 112
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 64
+          },
+          {
+            "token": 3,
+            "n": 112
+          },
+          {
+            "token": 4,
+            "n": 48
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 8,
+          "exact": 0,
+          "exact_short": 56,
+          "exact_long": 32,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 56
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            },
+            {
+              "token": 3,
+              "n": 56
+            },
+            {
+              "token": 4,
+              "n": 24
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 32,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": 3,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 16,
+          "exact": 8,
+          "exact_short": 56,
+          "exact_long": 32,
+          "bare_types": 14,
+          "exact_types": 1,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 56
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            },
+            {
+              "token": 3,
+              "n": 56
+            },
+            {
+              "token": 4,
+              "n": 24
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 24,
+        "exact": 8,
+        "exact_short": 112,
+        "exact_long": 96,
+        "bare_types": 29,
+        "exact_types": 1,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 144
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 112
+          },
+          {
+            "token": 4,
+            "n": 48
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "35c7761650990cec81ec96b96e7c3683c936633dad1b073a40c168b71e85dd28",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "2503d55f4c2350e4c44b88bcdb6a65a7328101f0e6d0c69dd21232c873a95886",
+        "state_bytes": 40966,
+        "state_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 512,
+      "transitions": 1936
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 8,
+          "exact": 208,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 24,
+          "exact": 192,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "candidate"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 32,
+        "inverted": 16,
+        "actual_both_directed": 32,
+        "exact": 32,
+        "short_exact": 64,
+        "long_exact": 128,
+        "margin_pass_both": 32,
+        "open_cap": 16,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 64
+          },
+          {
+            "token": 3,
+            "n": 192
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 128
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: 'include the second entry and then finish' versus _skip the second entry_",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: 'skip the second entry' versus _include the second entry and then finish_"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "scribe-underlined",
+        "wording": [
+          "Copy according to the underlined rule: _skip the second entry_ versus 'include the second entry and then finish'",
+          "Copy according to the underlined rule: _include the second entry and then finish_ versus 'skip the second entry'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "Drop the earlier request to reproduce two words from the start; you must reproduce the initial word alone",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Example only: 'read two words, and two words are enough'. Required: 'read one word, and one word is enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "direct-dev",
+        "wording": [
+          "Fit your entire answer into one word",
+          "Fit your entire answer into two words"
+        ],
+        "pairs": 32,
+        "directed": 32,
+        "exact": 32
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Live cue: 'read only the initial word'. Rehearsal cue: 'read both opening words'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "Please follow 'take a one word excerpt'; 'take a two word excerpt' was vetoed",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Live cue: 'read both opening words'. Rehearsal cue: 'read only the initial word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "test-then-live",
+        "wording": [
+          "Rehearsal cue: 'read both opening words'. Live cue: 'read only the initial word'",
+          "Rehearsal cue: 'read only the initial word'. Live cue: 'read both opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Example only: 'read one word, and one word is enough'. Required: 'read two words, and two words are enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "dev-repeat",
+        "wording": [
+          "Required: 'read one word, and one word is enough'. Example only: 'read two words, and two words are enough'",
+          "Required: 'read two words, and two words are enough'. Example only: 'read one word, and one word is enough'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "Please follow 'take a two word excerpt'; 'take a one word excerpt' was vetoed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "reject-veto",
+        "wording": [
+          "The note proposes 'take a two word excerpt', but 'take a one word excerpt' remains in effect",
+          "The note proposes 'take a one word excerpt', but 'take a two word excerpt' remains in effect"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: 'end once item two is said' or **end before saying item two**",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: 'end before saying item two' or **end once item two is said**"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "highlighted",
+        "wording": [
+          "The order in bold is yours: **end before saying item two** or 'end once item two is said'",
+          "The order in bold is yours: **end once item two is said** or 'end before saying item two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: (give the lead and the next word) [give the lead word alone]",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: (give the lead word alone) [give the lead and the next word]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "square-bracket",
+        "wording": [
+          "The setting inside brackets is active: [give the lead word alone] (give the lead and the next word)",
+          "The setting inside brackets is active: [give the lead and the next word] (give the lead word alone)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "Drop the earlier request to reproduce the initial word alone; you must reproduce two words from the start"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-replace",
+        "wording": [
+          "You must reproduce the initial word alone; drop the earlier request to reproduce two words from the start",
+          "You must reproduce two words from the start; drop the earlier request to reproduce the initial word alone"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 32,
+        "exact_long": 96,
+        "bare_types": 28,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 32
+          },
+          {
+            "token": 3,
+            "n": 192
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 96
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 16,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 16
+            },
+            {
+              "token": 3,
+              "n": 96
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 32,
+          "exact": 32,
+          "exact_short": 32,
+          "exact_long": 32,
+          "bare_types": 1,
+          "exact_types": 1,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 16,
+          "exact_long": 48,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 16
+            },
+            {
+              "token": 3,
+              "n": 96
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 48
+            },
+            {
+              "token": 3,
+              "n": 32
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 32,
+        "exact": 32,
+        "exact_short": 64,
+        "exact_long": 128,
+        "bare_types": 29,
+        "exact_types": 1,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 64
+          },
+          {
+            "token": 3,
+            "n": 192
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 128
+          },
+          {
+            "token": 3,
+            "n": 64
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "86fcfbca13aab601da8af7bca283cb1ab798d791b80fe576b29272c8a0d15731",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "c12d3a70ae4a8b7ff80cd0782b24bc8e73d67873f2fc21e7eaf61a6ab0b9984d",
+        "state_bytes": 32774,
+        "state_sha256": "0b8c1a89d9fa0dd03f2efffeeb08c5994308b51d12f704cde8b5d245588d1d7c"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 496,
+      "transitions": 2112
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 32,
+          "exact": 192,
+          "open_cap": 16
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 144,
+          "open_cap": 16
+        }
+      }
+    },
+    "arm": "position"
+  }
+]

@@ -18,10 +18,15 @@ const BASE_BYTES: u64 = 1_202_152_204;
 const MAX_HEADER_BYTES: usize = 1024;
 
 const PERIOD: u32 = 16;
-const STAGE_WORDS: usize = 4097;
+const FEATURE_WORDS: usize = 4096;
+const STAGE_WORDS: usize = FEATURE_WORDS + 1;
 const STAGES: usize = 3;
 const WEIGHTS: usize = STAGE_WORDS * STAGES;
 pub const WEIGHT_BYTES: usize = WEIGHTS * 2;
+const POSITION_STATE_WORDS: usize = WEIGHTS + FEATURE_WORDS;
+const POSITION_STATE_BYTES: usize = POSITION_STATE_WORDS * 2;
+const LINK_STATE_WORDS: usize = POSITION_STATE_WORDS + FEATURE_WORDS;
+const LINK_STATE_BYTES: usize = LINK_STATE_WORDS * 2;
 const CAP: usize = 5;
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -37,7 +42,7 @@ struct Envelope {
 
 #[derive(Clone, Debug)]
 pub(super) struct State {
-    weights: Box<[i16; WEIGHTS]>,
+    weights: Box<[i16]>,
     state_sha256: String,
     fit_sha256: String,
 }
@@ -55,21 +60,21 @@ pub fn identity(model: &IntegerDiscreteModel) -> Option<Identity<'_>> {
         base_sha256: BASE_SHA256,
         state_sha256: &state.state_sha256,
         fit_sha256: &state.fit_sha256,
-        state_bytes: WEIGHT_BYTES,
+        state_bytes: state.weights.len() * 2,
     })
 }
 
 impl State {
     fn read(reader: &mut dyn Read, envelope: &Envelope) -> Result<Self> {
-        let mut bytes = [0; WEIGHT_BYTES];
+        let mut bytes = vec![0; envelope.state_bytes];
         reader.read_exact(&mut bytes)?;
-        if hex::encode(Sha256::digest(bytes)) != envelope.state_sha256 {
+        if hex::encode(Sha256::digest(&bytes)) != envelope.state_sha256 {
             return Err(invalid("native source choice state digest mismatch"));
         }
-        let mut weights = Box::new([0; WEIGHTS]);
-        for (weight, bytes) in weights.iter_mut().zip(bytes.chunks_exact(2)) {
-            *weight = i16::from_le_bytes([bytes[0], bytes[1]]);
-        }
+        let weights = bytes
+            .chunks_exact(2)
+            .map(|word| i16::from_le_bytes([word[0], word[1]]))
+            .collect();
         Ok(Self {
             weights,
             state_sha256: envelope.state_sha256.clone(),
@@ -90,8 +95,8 @@ pub(super) fn read_from(
     if envelope.schema != SCHEMA
         || envelope.base_bytes != BASE_BYTES
         || envelope.base_sha256 != BASE_SHA256
-        || envelope.state_bytes != WEIGHT_BYTES
-        || expected_body.is_some_and(|len| len != BASE_BYTES + WEIGHT_BYTES as u64)
+        || !valid_state_bytes(envelope.state_bytes)
+        || expected_body.is_some_and(|len| len != BASE_BYTES + envelope.state_bytes as u64)
         || !native_word_ending::canonical_digest(&envelope.state_sha256)
         || !native_word_ending::canonical_digest(&envelope.fit_sha256)
     {
@@ -118,7 +123,12 @@ pub(super) fn read_from(
     Ok(model)
 }
 
-/// Write the three signed little-endian action rows and byte-identical #4319 artifact.
+fn valid_state_bytes(len: usize) -> bool {
+    matches!(len, WEIGHT_BYTES | POSITION_STATE_BYTES | LINK_STATE_BYTES)
+}
+
+/// Write the three signed little-endian action rows, optional first-release
+/// position and link rows (in that order), and byte-identical #4319 artifact.
 /// Publish the destination only after writing and verification succeed.
 pub fn write_artifact(
     base: impl Read,
@@ -126,19 +136,22 @@ pub fn write_artifact(
     fit_sha256: [u8; 32],
     mut output: impl Write,
 ) -> Result<()> {
-    let mut bytes = [0; WEIGHT_BYTES];
-    weights.read_exact(&mut bytes)?;
-    if weights.read(&mut [0])? != 0 {
+    let mut bytes = Vec::with_capacity(LINK_STATE_BYTES);
+    weights
+        .by_ref()
+        .take((LINK_STATE_BYTES + 1) as u64)
+        .read_to_end(&mut bytes)?;
+    if !valid_state_bytes(bytes.len()) {
         return Err(invalid(
-            "native source choice weight input has trailing bytes",
+            "native source choice weights need the original action rows and zero, one or two complete first-release rows",
         ));
     }
     let envelope = Envelope {
         schema: SCHEMA.to_owned(),
         base_bytes: BASE_BYTES,
         base_sha256: BASE_SHA256.to_owned(),
-        state_bytes: WEIGHT_BYTES,
-        state_sha256: hex::encode(Sha256::digest(bytes)),
+        state_bytes: bytes.len(),
+        state_sha256: hex::encode(Sha256::digest(&bytes)),
         fit_sha256: hex::encode(fit_sha256),
     };
     let header = serde_json::to_vec(&envelope)?;
@@ -228,12 +241,21 @@ enum Control<'a> {
 
 fn score(state: &State, model: &IntegerDiscreteModel, prefix: &[u32], stage: usize) -> i32 {
     let words = &state.weights[stage * STAGE_WORDS..][..STAGE_WORDS];
-    native_word_ending::feature_sum(
+    let mut score = native_word_ending::feature_sum(
         prefix,
         &model.codebook_roots,
-        &words[..STAGE_WORDS - 1],
-        i32::from(words[STAGE_WORDS - 1]),
-    )
+        &words[..FEATURE_WORDS],
+        i32::from(words[FEATURE_WORDS]),
+    );
+    if stage == 0 {
+        if let Some(position) = state.weights.get(WEIGHTS..POSITION_STATE_WORDS) {
+            score += native_word_ending::scope_sum(prefix, &model.codebook_roots, position);
+        }
+        if let Some(link) = state.weights.get(POSITION_STATE_WORDS..LINK_STATE_WORDS) {
+            score += native_word_ending::link_sum(prefix, &model.codebook_roots, link);
+        }
+    }
+    score
 }
 
 fn verified_source(model: &IntegerDiscreteModel, prefix: &[u32], position: u32) -> Option<u32> {

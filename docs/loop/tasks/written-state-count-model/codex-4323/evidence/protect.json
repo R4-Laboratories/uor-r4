@@ -1,0 +1,311 @@
+[
+  {
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 50,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 50,
+        "margin_pass_both": 0,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "ceiling",
+        "wording": [
+          "The allowance is two words total. Use it all",
+          "The allowance is three words total. Use it all"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      },
+      {
+        "family": "ceiling",
+        "wording": [
+          "The reply has exactly two words and no more",
+          "The reply has exactly three words and no more"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 450
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 100
+        },
+        "opposite": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "baseline"
+  },
+  {
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 50,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 50,
+        "margin_pass_both": 0,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "ceiling",
+        "wording": [
+          "The allowance is two words total. Use it all",
+          "The allowance is three words total. Use it all"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      },
+      {
+        "family": "ceiling",
+        "wording": [
+          "The reply has exactly two words and no more",
+          "The reply has exactly three words and no more"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "35c7761650990cec81ec96b96e7c3683c936633dad1b073a40c168b71e85dd28",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "2503d55f4c2350e4c44b88bcdb6a65a7328101f0e6d0c69dd21232c873a95886",
+        "state_bytes": 40966,
+        "state_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91"
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 450
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 100
+        },
+        "opposite": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "candidate"
+  },
+  {
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "actual_both_directed": 50,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 50,
+        "margin_pass_both": 0,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "ceiling",
+        "wording": [
+          "The allowance is two words total. Use it all",
+          "The allowance is three words total. Use it all"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      },
+      {
+        "family": "ceiling",
+        "wording": [
+          "The reply has exactly two words and no more",
+          "The reply has exactly three words and no more"
+        ],
+        "pairs": 25,
+        "directed": 25,
+        "exact": 25
+      }
+    ],
+    "scope": null,
+    "cold": {
+      "artifact_sha256": "86fcfbca13aab601da8af7bca283cb1ab798d791b80fe576b29272c8a0d15731",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "c12d3a70ae4a8b7ff80cd0782b24bc8e73d67873f2fc21e7eaf61a6ab0b9984d",
+        "state_bytes": 32774,
+        "state_sha256": "0b8c1a89d9fa0dd03f2efffeeb08c5994308b51d12f704cde8b5d245588d1d7c"
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 450
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 100,
+          "exact_pairs": 50,
+          "exact": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 100
+        },
+        "opposite": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 100,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "position"
+  }
+]

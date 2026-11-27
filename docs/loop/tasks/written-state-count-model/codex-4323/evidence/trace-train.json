@@ -1,0 +1,363 @@
+{
+  "counts": {
+    "all_zero": 64,
+    "cancellation": 32,
+    "identical_support": 96,
+    "ordered_without_flip": 32,
+    "reverse_order": 32
+  },
+  "bare_wordings": 29,
+  "axes": [
+    {
+      "axis": "clause-order-swap",
+      "n": 112,
+      "classes": [
+        {
+          "class": "all_zero",
+          "n": 16
+        },
+        {
+          "class": "identical_support",
+          "n": 96
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    },
+    {
+      "axis": "direct-count-control",
+      "n": 32,
+      "classes": [
+        {
+          "class": "cancellation",
+          "n": 32
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    },
+    {
+      "axis": "selector-swap",
+      "n": 112,
+      "classes": [
+        {
+          "class": "all_zero",
+          "n": 48
+        },
+        {
+          "class": "ordered_without_flip",
+          "n": 32
+        },
+        {
+          "class": "reverse_order",
+          "n": 32
+        }
+      ],
+      "positional_collisions": 0,
+      "link_collisions": 0
+    }
+  ],
+  "examples": [
+    {
+      "pair_id": "01c6882331e9778233ab8e2a",
+      "family": "approved-draft",
+      "axis": "selector-swap",
+      "wording": [
+        "The approved draft says 'stop before word two' and the old draft says 'stop after word two'",
+        "The old draft says 'stop before word two' and the approved draft says 'stop after word two'"
+      ],
+      "class": "all_zero",
+      "scores": [
+        11,
+        11
+      ],
+      "exclusive_counts": [
+        1,
+        2
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 0,
+      "left_only": [
+        {
+          "bucket": 2587,
+          "weight": 0
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 2134,
+          "weight": 0
+        },
+        {
+          "bucket": 3703,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "pair_id": "0523f5a44c0b7353f39543ba",
+      "family": "direct-train",
+      "axis": "direct-count-control",
+      "wording": [
+        "Output just the opening word",
+        "Output the opening word and its successor"
+      ],
+      "class": "cancellation",
+      "scores": [
+        -24,
+        -24
+      ],
+      "exclusive_counts": [
+        3,
+        6
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 2,
+      "left_only": [
+        {
+          "bucket": 628,
+          "weight": 3
+        },
+        {
+          "bucket": 2274,
+          "weight": 0
+        },
+        {
+          "bucket": 2829,
+          "weight": -3
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 303,
+          "weight": 0
+        },
+        {
+          "bucket": 1000,
+          "weight": 0
+        },
+        {
+          "bucket": 2841,
+          "weight": 0
+        },
+        {
+          "bucket": 3132,
+          "weight": 0
+        },
+        {
+          "bucket": 3274,
+          "weight": 0
+        },
+        {
+          "bucket": 4032,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "pair_id": "0108314faa4273855626a01c",
+      "family": "clerk-clock",
+      "axis": "clause-order-swap",
+      "wording": [
+        "The clerk marked 'close the reply after the following word' expired and 'close the reply after the opening word' current",
+        "The clerk marked 'close the reply after the opening word' expired and 'close the reply after the following word' current"
+      ],
+      "class": "identical_support",
+      "scores": [
+        -27,
+        -27
+      ],
+      "exclusive_counts": [
+        0,
+        0
+      ],
+      "exclusive_sums": [
+        0,
+        0
+      ],
+      "nonzero_difference_terms": 0,
+      "left_only": [],
+      "right_only": []
+    },
+    {
+      "pair_id": "02c6312b3e4d1e5c790f60c7",
+      "family": "unquoted-vs",
+      "axis": "selector-swap",
+      "wording": [
+        "The suggestion to copy the leading two words can wait; please copy the lead word only",
+        "Please copy the leading two words instead of following the suggestion to copy the lead word only"
+      ],
+      "class": "ordered_without_flip",
+      "scores": [
+        62,
+        64
+      ],
+      "exclusive_counts": [
+        7,
+        10
+      ],
+      "exclusive_sums": [
+        -3,
+        -1
+      ],
+      "nonzero_difference_terms": 8,
+      "left_only": [
+        {
+          "bucket": 749,
+          "weight": 0
+        },
+        {
+          "bucket": 1005,
+          "weight": 3
+        },
+        {
+          "bucket": 1517,
+          "weight": 0
+        },
+        {
+          "bucket": 2286,
+          "weight": 0
+        },
+        {
+          "bucket": 2637,
+          "weight": 0
+        },
+        {
+          "bucket": 4037,
+          "weight": -6
+        },
+        {
+          "bucket": 4095,
+          "weight": 0
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 967,
+          "weight": 0
+        },
+        {
+          "bucket": 1720,
+          "weight": -2
+        },
+        {
+          "bucket": 2268,
+          "weight": 0
+        },
+        {
+          "bucket": 2618,
+          "weight": 3
+        },
+        {
+          "bucket": 2712,
+          "weight": -6
+        },
+        {
+          "bucket": 3231,
+          "weight": 3
+        },
+        {
+          "bucket": 3242,
+          "weight": -2
+        },
+        {
+          "bucket": 3259,
+          "weight": 0
+        },
+        {
+          "bucket": 3464,
+          "weight": 0
+        },
+        {
+          "bucket": 3946,
+          "weight": 3
+        }
+      ]
+    },
+    {
+      "pair_id": "1448a7b3b2e5625446062f2e",
+      "family": "training-repeat",
+      "axis": "selector-swap",
+      "wording": [
+        "Apply 'one word, one word only' and dismiss 'two words, two words only'",
+        "Dismiss 'one word, one word only' and apply 'two words, two words only'"
+      ],
+      "class": "reverse_order",
+      "scores": [
+        32,
+        22
+      ],
+      "exclusive_counts": [
+        7,
+        6
+      ],
+      "exclusive_sums": [
+        16,
+        6
+      ],
+      "nonzero_difference_terms": 6,
+      "left_only": [
+        {
+          "bucket": 24,
+          "weight": 0
+        },
+        {
+          "bucket": 1246,
+          "weight": 11
+        },
+        {
+          "bucket": 3072,
+          "weight": 8
+        },
+        {
+          "bucket": 3216,
+          "weight": -6
+        },
+        {
+          "bucket": 3339,
+          "weight": 3
+        },
+        {
+          "bucket": 3629,
+          "weight": 0
+        },
+        {
+          "bucket": 4086,
+          "weight": 0
+        }
+      ],
+      "right_only": [
+        {
+          "bucket": 628,
+          "weight": 3
+        },
+        {
+          "bucket": 1513,
+          "weight": 0
+        },
+        {
+          "bucket": 2979,
+          "weight": 3
+        },
+        {
+          "bucket": 3224,
+          "weight": 0
+        },
+        {
+          "bucket": 3932,
+          "weight": 0
+        },
+        {
+          "bucket": 4091,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}

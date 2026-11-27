@@ -1,0 +1,1084 @@
+[
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 0,
+        "inverted": 0,
+        "actual_both_directed": 0,
+        "exact": 0,
+        "short_exact": 32,
+        "long_exact": 160,
+        "margin_pass_both": 0,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 32
+          },
+          {
+            "token": 3,
+            "n": 224
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 160
+          },
+          {
+            "token": 3,
+            "n": 32
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "direct-held",
+        "wording": [
+          "Conclude at the end of item one",
+          "Conclude at the end of item two"
+        ],
+        "pairs": 32,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "Please display just one word. We had planned to display just two words, but that changed",
+          "Please display just two words. We had planned to display just one word, but that changed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "Please display just one word. We had planned to display just two words, but that changed",
+          "We had planned to display just one word, but that changed. Please display just two words"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "Please go with the printed line: 'cut off the reply at word one'. The penciled line reads 'cut off the reply at word two'",
+          "Please go with the printed line: 'cut off the reply at word two'. The penciled line reads 'cut off the reply at word one'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "Please go with the printed line: 'cut off the reply at word one'. The penciled line reads 'cut off the reply at word two'",
+          "The penciled line reads 'cut off the reply at word one'. Please go with the printed line: 'cut off the reply at word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Save 'start with two words and finish with those two words' for tomorrow and use 'start with one word and finish with that one word' for this request",
+          "Save 'start with one word and finish with that one word' for tomorrow and use 'start with two words and finish with those two words' for this request"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Save 'start with two words and finish with those two words' for tomorrow and use 'start with one word and finish with that one word' for this request",
+          "Use 'start with two words and finish with those two words' for this request and save 'start with one word and finish with that one word' for tomorrow"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The background chatter is 'sign off after the second item'; 'sign off after the first item' is the cue to obey",
+          "The background chatter is 'sign off after the first item'; 'sign off after the second item' is the cue to obey"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The background chatter is 'sign off after the second item'; 'sign off after the first item' is the cue to obey",
+          "The cue to obey is 'sign off after the second item'; 'sign off after the first item' is background chatter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The cue to obey is 'sign off after the first item'; 'sign off after the second item' is background chatter",
+          "The background chatter is 'sign off after the first item'; 'sign off after the second item' is the cue to obey"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The cue to obey is 'sign off after the first item'; 'sign off after the second item' is background chatter",
+          "The cue to obey is 'sign off after the second item'; 'sign off after the first item' is background chatter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The final memo says 'say nothing beyond the first word', superseding 'end with the second word'",
+          "The final memo says 'end with the second word', superseding 'say nothing beyond the first word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The final memo says 'say nothing beyond the first word', superseding 'end with the second word'",
+          "The initial memo says 'say nothing beyond the first word', superseded by 'end with the second word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The initial memo says 'end with the second word', superseded by 'say nothing beyond the first word'",
+          "The final memo says 'end with the second word', superseding 'say nothing beyond the first word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The initial memo says 'end with the second word', superseded by 'say nothing beyond the first word'",
+          "The initial memo says 'say nothing beyond the first word', superseded by 'end with the second word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "The penciled line reads 'cut off the reply at word two'. Please go with the printed line: 'cut off the reply at word one'",
+          "Please go with the printed line: 'cut off the reply at word two'. The penciled line reads 'cut off the reply at word one'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "The penciled line reads 'cut off the reply at word two'. Please go with the printed line: 'cut off the reply at word one'",
+          "The penciled line reads 'cut off the reply at word one'. Please go with the printed line: 'cut off the reply at word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: (end at the period) [note: offer the next word and then finish]",
+          "The rule in parentheses governs: (offer the next word and then finish) [note: end at the period]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: (end at the period) [note: offer the next word and then finish]",
+          "The rule in parentheses governs: [note: end at the period] (offer the next word and then finish)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: [note: offer the next word and then finish] (end at the period)",
+          "The rule in parentheses governs: (offer the next word and then finish) [note: end at the period]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: [note: offer the next word and then finish] (end at the period)",
+          "The rule in parentheses governs: [note: end at the period] (offer the next word and then finish)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Use 'start with one word and finish with that one word' for this request and save 'start with two words and finish with those two words' for tomorrow",
+          "Save 'start with one word and finish with that one word' for tomorrow and use 'start with two words and finish with those two words' for this request"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Use 'start with one word and finish with that one word' for this request and save 'start with two words and finish with those two words' for tomorrow",
+          "Use 'start with two words and finish with those two words' for this request and save 'start with one word and finish with that one word' for tomorrow"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the left of the bar: 'return the opening word by itself' | 'return exactly the two opening words'",
+          "Use the entry on the left of the bar: 'return exactly the two opening words' | 'return the opening word by itself'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the left of the bar: 'return the opening word by itself' | 'return exactly the two opening words'",
+          "Use the entry on the right of the bar: 'return the opening word by itself' | 'return exactly the two opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the right of the bar: 'return exactly the two opening words' | 'return the opening word by itself'",
+          "Use the entry on the left of the bar: 'return exactly the two opening words' | 'return the opening word by itself'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the right of the bar: 'return exactly the two opening words' | 'return the opening word by itself'",
+          "Use the entry on the right of the bar: 'return the opening word by itself' | 'return exactly the two opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "We had planned to display just two words, but that changed. Please display just one word",
+          "Please display just two words. We had planned to display just one word, but that changed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "We had planned to display just two words, but that changed. Please display just one word",
+          "We had planned to display just one word, but that changed. Please display just two words"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 32,
+        "exact_long": 128,
+        "bare_types": 28,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 32
+          },
+          {
+            "token": 3,
+            "n": 192
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 128
+          },
+          {
+            "token": 3,
+            "n": 32
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 16,
+          "exact_long": 64,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 16
+            },
+            {
+              "token": 3,
+              "n": 96
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 64
+            },
+            {
+              "token": 3,
+              "n": 16
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 0,
+          "exact_long": 32,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": 3,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 16,
+          "exact_long": 64,
+          "bare_types": 14,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 16
+            },
+            {
+              "token": 3,
+              "n": 96
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 64
+            },
+            {
+              "token": 3,
+              "n": 16
+            },
+            {
+              "token": 4,
+              "n": 32
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 0,
+        "exact": 0,
+        "exact_short": 32,
+        "exact_long": 160,
+        "bare_types": 29,
+        "exact_types": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 32
+          },
+          {
+            "token": 3,
+            "n": 224
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 160
+          },
+          {
+            "token": 3,
+            "n": 32
+          },
+          {
+            "token": 4,
+            "n": 64
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 512,
+      "transitions": 2144
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 192,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 160,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "baseline"
+  },
+  {
+    "contrasts": {
+      "0": {
+        "pairs": 256,
+        "directed": 56,
+        "inverted": 24,
+        "actual_both_directed": 56,
+        "exact": 40,
+        "short_exact": 144,
+        "long_exact": 112,
+        "margin_pass_both": 8,
+        "open_cap": 0,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 144
+          },
+          {
+            "token": 3,
+            "n": 112
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 112
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      }
+    },
+    "wording": [
+      {
+        "family": "direct-held",
+        "wording": [
+          "Conclude at the end of item one",
+          "Conclude at the end of item two"
+        ],
+        "pairs": 32,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "Please display just one word. We had planned to display just two words, but that changed",
+          "Please display just two words. We had planned to display just one word, but that changed"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "Please display just one word. We had planned to display just two words, but that changed",
+          "We had planned to display just one word, but that changed. Please display just two words"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "Please go with the printed line: 'cut off the reply at word one'. The penciled line reads 'cut off the reply at word two'",
+          "Please go with the printed line: 'cut off the reply at word two'. The penciled line reads 'cut off the reply at word one'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "Please go with the printed line: 'cut off the reply at word one'. The penciled line reads 'cut off the reply at word two'",
+          "The penciled line reads 'cut off the reply at word one'. Please go with the printed line: 'cut off the reply at word two'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Save 'start with two words and finish with those two words' for tomorrow and use 'start with one word and finish with that one word' for this request",
+          "Save 'start with one word and finish with that one word' for tomorrow and use 'start with two words and finish with those two words' for this request"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Save 'start with two words and finish with those two words' for tomorrow and use 'start with one word and finish with that one word' for this request",
+          "Use 'start with two words and finish with those two words' for this request and save 'start with one word and finish with that one word' for tomorrow"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The background chatter is 'sign off after the second item'; 'sign off after the first item' is the cue to obey",
+          "The background chatter is 'sign off after the first item'; 'sign off after the second item' is the cue to obey"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The background chatter is 'sign off after the second item'; 'sign off after the first item' is the cue to obey",
+          "The cue to obey is 'sign off after the second item'; 'sign off after the first item' is background chatter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The cue to obey is 'sign off after the first item'; 'sign off after the second item' is background chatter",
+          "The background chatter is 'sign off after the first item'; 'sign off after the second item' is the cue to obey"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "voice-cue",
+        "wording": [
+          "The cue to obey is 'sign off after the first item'; 'sign off after the second item' is background chatter",
+          "The cue to obey is 'sign off after the second item'; 'sign off after the first item' is background chatter"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The final memo says 'say nothing beyond the first word', superseding 'end with the second word'",
+          "The final memo says 'end with the second word', superseding 'say nothing beyond the first word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The final memo says 'say nothing beyond the first word', superseding 'end with the second word'",
+          "The initial memo says 'say nothing beyond the first word', superseded by 'end with the second word'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The initial memo says 'end with the second word', superseded by 'say nothing beyond the first word'",
+          "The final memo says 'end with the second word', superseding 'say nothing beyond the first word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "countermanded-memo",
+        "wording": [
+          "The initial memo says 'end with the second word', superseded by 'say nothing beyond the first word'",
+          "The initial memo says 'say nothing beyond the first word', superseded by 'end with the second word'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "The penciled line reads 'cut off the reply at word two'. Please go with the printed line: 'cut off the reply at word one'",
+          "Please go with the printed line: 'cut off the reply at word two'. The penciled line reads 'cut off the reply at word one'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "ticket-print",
+        "wording": [
+          "The penciled line reads 'cut off the reply at word two'. Please go with the printed line: 'cut off the reply at word one'",
+          "The penciled line reads 'cut off the reply at word one'. Please go with the printed line: 'cut off the reply at word two'"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: (end at the period) [note: offer the next word and then finish]",
+          "The rule in parentheses governs: (offer the next word and then finish) [note: end at the period]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: (end at the period) [note: offer the next word and then finish]",
+          "The rule in parentheses governs: [note: end at the period] (offer the next word and then finish)"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: [note: offer the next word and then finish] (end at the period)",
+          "The rule in parentheses governs: (offer the next word and then finish) [note: end at the period]"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "margin-correction",
+        "wording": [
+          "The rule in parentheses governs: [note: offer the next word and then finish] (end at the period)",
+          "The rule in parentheses governs: [note: end at the period] (offer the next word and then finish)"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Use 'start with one word and finish with that one word' for this request and save 'start with two words and finish with those two words' for tomorrow",
+          "Save 'start with one word and finish with that one word' for tomorrow and use 'start with two words and finish with those two words' for this request"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "held-repeat",
+        "wording": [
+          "Use 'start with one word and finish with that one word' for this request and save 'start with two words and finish with those two words' for tomorrow",
+          "Use 'start with two words and finish with those two words' for this request and save 'start with one word and finish with that one word' for tomorrow"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the left of the bar: 'return the opening word by itself' | 'return exactly the two opening words'",
+          "Use the entry on the left of the bar: 'return exactly the two opening words' | 'return the opening word by itself'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the left of the bar: 'return the opening word by itself' | 'return exactly the two opening words'",
+          "Use the entry on the right of the bar: 'return the opening word by itself' | 'return exactly the two opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the right of the bar: 'return exactly the two opening words' | 'return the opening word by itself'",
+          "Use the entry on the left of the bar: 'return exactly the two opening words' | 'return the opening word by itself'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "left-column",
+        "wording": [
+          "Use the entry on the right of the bar: 'return exactly the two opening words' | 'return the opening word by itself'",
+          "Use the entry on the right of the bar: 'return the opening word by itself' | 'return exactly the two opening words'"
+        ],
+        "pairs": 8,
+        "directed": 0,
+        "exact": 0
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "We had planned to display just two words, but that changed. Please display just one word",
+          "Please display just two words. We had planned to display just one word, but that changed"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      },
+      {
+        "family": "unquoted-change",
+        "wording": [
+          "We had planned to display just two words, but that changed. Please display just one word",
+          "We had planned to display just one word, but that changed. Please display just two words"
+        ],
+        "pairs": 8,
+        "directed": 8,
+        "exact": 8
+      }
+    ],
+    "scope": {
+      "scoped": {
+        "pairs": 224,
+        "directed": 56,
+        "exact": 40,
+        "exact_short": 112,
+        "exact_long": 112,
+        "bare_types": 28,
+        "exact_types": 5,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 112
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 80
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      },
+      "axes": {
+        "clause-order-swap": {
+          "pairs": 112,
+          "directed": 24,
+          "exact": 16,
+          "exact_short": 56,
+          "exact_long": 56,
+          "bare_types": 14,
+          "exact_types": 2,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 56
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 40
+            },
+            {
+              "token": 4,
+              "n": 16
+            }
+          ]
+        },
+        "direct-count-control": {
+          "pairs": 32,
+          "directed": 0,
+          "exact": 0,
+          "exact_short": 32,
+          "exact_long": 0,
+          "bare_types": 1,
+          "exact_types": 0,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 32
+            }
+          ],
+          "errors_long": [
+            {
+              "token": 3,
+              "n": 32
+            }
+          ]
+        },
+        "selector-swap": {
+          "pairs": 112,
+          "directed": 32,
+          "exact": 24,
+          "exact_short": 56,
+          "exact_long": 56,
+          "bare_types": 14,
+          "exact_types": 3,
+          "errors_short": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 56
+            }
+          ],
+          "errors_long": [
+            {
+              "token": null,
+              "n": 56
+            },
+            {
+              "token": 3,
+              "n": 40
+            },
+            {
+              "token": 4,
+              "n": 16
+            }
+          ]
+        }
+      },
+      "all": {
+        "pairs": 256,
+        "directed": 56,
+        "exact": 40,
+        "exact_short": 144,
+        "exact_long": 112,
+        "bare_types": 29,
+        "exact_types": 5,
+        "errors_short": [
+          {
+            "token": null,
+            "n": 144
+          },
+          {
+            "token": 3,
+            "n": 112
+          }
+        ],
+        "errors_long": [
+          {
+            "token": null,
+            "n": 112
+          },
+          {
+            "token": 3,
+            "n": 112
+          },
+          {
+            "token": 4,
+            "n": 32
+          }
+        ]
+      }
+    },
+    "cold": {
+      "artifact_sha256": "35c7761650990cec81ec96b96e7c3683c936633dad1b073a40c168b71e85dd28",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 512,
+      "pairs": 256,
+      "rows": 512,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "2503d55f4c2350e4c44b88bcdb6a65a7328101f0e6d0c69dd21232c873a95886",
+        "state_bytes": 40966,
+        "state_sha256": "bf13f776dc40af2be2ef1323fd9aacbaec4486ff0d74dedf0762a610b9cbbd91"
+      }
+    },
+    "client": {
+      "matching_rows": 512,
+      "terminal_rows": 512,
+      "transitions": 1856
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "rows": 512,
+          "exact_pairs": 256,
+          "exact": 512,
+          "open_cap": 0
+        },
+        "learned": {
+          "rows": 512,
+          "exact_pairs": 40,
+          "exact": 256,
+          "open_cap": 0
+        },
+        "native": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 512
+        },
+        "opposite": {
+          "rows": 512,
+          "exact_pairs": 0,
+          "exact": 0,
+          "open_cap": 0
+        },
+        "swapped": {
+          "rows": 512,
+          "exact_pairs": 8,
+          "exact": 192,
+          "open_cap": 0
+        }
+      }
+    },
+    "arm": "candidate"
+  }
+]

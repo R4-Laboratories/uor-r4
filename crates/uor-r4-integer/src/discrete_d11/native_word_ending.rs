@@ -25,6 +25,7 @@ const QUESTION: u32 = 33;
 const LF: u32 = 201;
 const HALF: usize = 2048;
 const WEIGHTS: usize = 2 * HALF;
+const LINK_WINDOW: usize = 16;
 pub const WEIGHT_BYTES: usize = WEIGHTS * 2;
 pub const REPLAY_STEPS: usize = 3;
 
@@ -93,34 +94,98 @@ impl State {
     }
 }
 
-pub(super) fn feature_sum(
+pub(super) fn feature_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16], score: i32) -> i32 {
+    weighted_instruction(prefix, weights, score, |instruction, tally| {
+        adjacent_features(instruction, roots, false, tally);
+    })
+}
+
+pub(super) fn scope_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16]) -> i32 {
+    weighted_instruction(prefix, weights, 0, |instruction, tally| {
+        adjacent_features(instruction, roots, true, tally);
+    })
+}
+
+pub(super) fn link_sum(prefix: &[u32], roots: &[[u8; 4]], weights: &[i16]) -> i32 {
+    weighted_instruction(prefix, weights, 0, |instruction, tally| {
+        let mut previous = [0; LINK_WINDOW];
+        for (index, &id) in instruction.iter().enumerate() {
+            let later = pack_4block_roots(roots[id as usize]);
+            for distance in 2..=index.min(LINK_WINDOW) {
+                let earlier = previous[(index - distance) % LINK_WINDOW];
+                let phase = position_phase(distance);
+                tally.include(bucket(ordered_roots(earlier, later) ^ phase));
+                tally.include(HALF + bucket(ordered_roots(later, earlier) ^ phase));
+            }
+            previous[index % LINK_WINDOW] = later;
+        }
+    })
+}
+
+struct InstructionScore<'a> {
+    weights: &'a [i16],
+    seen: [u64; WEIGHTS / u64::BITS as usize],
+    score: i32,
+}
+
+impl InstructionScore<'_> {
+    fn include(&mut self, bucket: usize) {
+        let cell = &mut self.seen[bucket >> 6];
+        let bit = 1u64 << (bucket & 63);
+        if (*cell & bit) == 0 {
+            *cell |= bit;
+            self.score += i32::from(self.weights[bucket]);
+        }
+    }
+}
+
+fn weighted_instruction(
     prefix: &[u32],
-    roots: &[[u8; 4]],
     weights: &[i16],
-    mut score: i32,
+    score: i32,
+    visit: impl FnOnce(&[u32], &mut InstructionScore<'_>),
 ) -> i32 {
     let Some(instruction) = instruction_tokens(prefix) else {
         return 0;
     };
-    let mut seen = [0u64; WEIGHTS / u64::BITS as usize];
-    let mut include = |bucket: usize| {
-        let cell = &mut seen[bucket >> 6];
-        let bit = 1u64 << (bucket & 63);
-        if (*cell & bit) == 0 {
-            *cell |= bit;
-            score += i32::from(weights[bucket]);
-        }
+    let mut tally = InstructionScore {
+        weights,
+        seen: [0; WEIGHTS / u64::BITS as usize],
+        score,
     };
+    visit(instruction, &mut tally);
+    tally.score
+}
+
+fn adjacent_features(
+    instruction: &[u32],
+    roots: &[[u8; 4]],
+    bind_position: bool,
+    tally: &mut InstructionScore<'_>,
+) {
     let mut previous: Option<u16> = None;
-    for id in instruction {
-        let root = pack_4block_roots(roots[*id as usize]);
-        include(bucket(root));
+    for (index, &id) in instruction.iter().enumerate() {
+        let root = pack_4block_roots(roots[id as usize]);
+        let position = if bind_position {
+            // Bind each root to its one-based distance from the right boundary.
+            position_phase(instruction.len() - index)
+        } else {
+            0
+        };
+        tally.include(bucket(root ^ position));
         if let Some(previous) = previous {
-            include(HALF + bucket(previous.rotate_left(5) ^ root));
+            tally.include(HALF + bucket(ordered_roots(previous, root) ^ position));
         }
         previous = Some(root);
     }
-    score
+}
+
+fn position_phase(distance: usize) -> u16 {
+    (distance as u16).wrapping_mul(0x9e37)
+}
+
+fn ordered_roots(earlier: u16, later: u16) -> u16 {
+    earlier.rotate_left(5) ^ later
 }
 
 fn instruction_tokens(prefix: &[u32]) -> Option<&[u32]> {
@@ -484,5 +549,57 @@ mod tests {
         assert_eq!(state.score(&prefix(&[LF, LF, QUESTION]), &roots), 0);
         envelope.state_sha256 = "00".repeat(32);
         assert!(State::read(&mut bytes.as_slice(), &envelope).is_err());
+    }
+
+    #[test]
+    fn scope_position_separates_a_root_and_adjacency_set_collision() {
+        let roots = [[0; 4], [1, 0, 0, 0], [2, 0, 0, 0]];
+        let left = prefix(&[LF, LF, QUESTION, 1, 1, 2, 1]);
+        let right = prefix(&[LF, LF, QUESTION, 1, 2, 1, 1]);
+        let base = [1; WEIGHTS];
+        assert_eq!(feature_sum(&left, &roots, &base, 0), 5);
+        assert_eq!(feature_sum(&right, &roots, &base, 0), 5);
+
+        let mut residual = [0; WEIGHTS];
+        residual[785] = -17;
+        residual[786] = 23;
+        residual[3124] = -11;
+        residual[3159] = 41;
+        assert_eq!(scope_sum(&left, &roots, &residual), -28);
+        assert_eq!(scope_sum(&right, &roots, &residual), 64);
+        assert_eq!(scope_sum(&[1, 1, 2, 1], &roots, &residual), 0);
+    }
+
+    #[test]
+    fn scope_links_read_a_signed_nonlocal_selector_argument_interaction() {
+        let roots = std::array::from_fn::<_, 7, _>(|id| [id as u8, 0, 0, 0]);
+        let mut residual = [0; WEIGHTS];
+        // Each planted pair spans three positions. Both oriented buckets contribute.
+        for (index, weight) in [
+            (819, -7),
+            (2929, -4),
+            (820, 13),
+            (2960, 4),
+            (851, 17),
+            (2930, 5),
+            (852, -19),
+            (2963, -4),
+        ] {
+            residual[index] = weight;
+        }
+        for (selector, argument, expected) in [(1, 3, -11), (1, 4, 17), (2, 3, 22), (2, 4, -23)] {
+            let prompt = prefix(&[LF, LF, QUESTION, selector, 5, 6, argument]);
+            assert_eq!(link_sum(&prompt, &roots, &residual), expected);
+        }
+        assert_eq!(link_sum(&[1, 5, 6, 3], &roots, &residual), 0);
+    }
+
+    #[test]
+    fn scope_links_count_each_oriented_bucket_once_within_the_distance_bounds() {
+        let roots = [[1, 0, 0, 0]];
+        let mut body = vec![LF, LF, QUESTION];
+        body.extend([0; 20]);
+        // Distances 2 through 16 give 15 unique keys in each half for this root.
+        assert_eq!(link_sum(&prefix(&body), &roots, &[1; WEIGHTS]), 30);
     }
 }
