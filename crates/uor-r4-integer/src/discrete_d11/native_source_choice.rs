@@ -11,6 +11,9 @@ use super::{
 };
 use crate::{invalid, Result};
 
+#[cfg(feature = "release-factorial-diagnostic")]
+pub mod release_factorial;
+
 pub const SCHEMA: &str = "uor-r4.lut-discrete-native-source-choice/1";
 pub const DECODING: &str = "uor-r4.native-source-choice/1";
 pub const BASE_SHA256: &str = "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a";
@@ -171,7 +174,7 @@ pub fn write_artifact(
     Ok(())
 }
 
-#[derive(Clone, Copy, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "snake_case")]
 enum Choice {
     Copy,
@@ -270,13 +273,11 @@ fn verified_source(model: &IntegerDiscreteModel, prefix: &[u32], position: u32) 
         .then_some(id)
 }
 
-fn run(
-    state: &State,
+fn start_answer(
     model: &IntegerDiscreteModel,
     prefix: &[u32],
     positions: [u32; 4],
-    control: Control<'_>,
-) -> Result<Trajectory> {
+) -> Result<(Vec<u32>, Vec<Event>)> {
     model.validate_prefix(prefix)?;
     if prefix.len() + CAP - 1 > model.shape().context as usize {
         return Err(invalid(
@@ -302,6 +303,48 @@ fn run(
     let mut steps = Vec::with_capacity(CAP);
     steps.push(Event::new(first, Source::Copy));
     steps.push(Event::new(second, Source::SuppliedPeriod));
+    Ok((causal, steps))
+}
+
+fn commit_release(
+    event: &mut Event,
+    model: &IntegerDiscreteModel,
+    prefix: &[u32],
+    positions: [u32; 4],
+    current: usize,
+    choice: Choice,
+) -> Option<usize> {
+    match choice {
+        Choice::Copy => {
+            let requested = positions[current + 1];
+            event.requested_pos = Some(requested);
+            event.requested_id = prefix.get(requested as usize).copied();
+            let verified = verified_source(model, prefix, requested)
+                .filter(|_| !positions[..=current].contains(&requested));
+            if let Some(id) = verified {
+                event.writer.committed_id = id;
+                event.selected_source = Source::VerifiedCopy;
+                return (current + 1 < STAGES).then_some(current + 1);
+            }
+            event.refusal = 3;
+        }
+        Choice::Eos => {
+            event.writer.committed_id = EOS;
+            event.selected_source = Source::SelectedEos;
+        }
+        Choice::Native => {}
+    }
+    None
+}
+
+fn run(
+    state: &State,
+    model: &IntegerDiscreteModel,
+    prefix: &[u32],
+    positions: [u32; 4],
+    control: Control<'_>,
+) -> Result<Trajectory> {
+    let (mut causal, mut steps) = start_answer(model, prefix, positions)?;
     let mut stage = (!matches!(control, Control::Native)).then_some(0);
     let mut terminal = false;
     while steps.len() < CAP && !terminal {
@@ -319,28 +362,7 @@ fn run(
                 Control::Oracle(_) => Choice::Eos,
                 Control::Native => unreachable!(),
             };
-            stage = None;
-            match choice {
-                Choice::Copy => {
-                    let requested = positions[current + 1];
-                    event.requested_pos = Some(requested);
-                    event.requested_id = prefix.get(requested as usize).copied();
-                    let verified = verified_source(model, prefix, requested)
-                        .filter(|_| !positions[..=current].contains(&requested));
-                    if let Some(id) = verified {
-                        event.writer.committed_id = id;
-                        event.selected_source = Source::VerifiedCopy;
-                        stage = (current + 1 < STAGES).then_some(current + 1);
-                    } else {
-                        event.refusal = 3;
-                    }
-                }
-                Choice::Eos => {
-                    event.writer.committed_id = EOS;
-                    event.selected_source = Source::SelectedEos;
-                }
-                Choice::Native => {}
-            }
+            stage = commit_release(&mut event, model, prefix, positions, current, choice);
         }
         terminal = event.writer.committed_id == EOS;
         causal.push(event.writer.committed_id);

@@ -1,0 +1,605 @@
+{
+  "all": {
+    "axes": {
+      "learned": {
+        "pairs": 256,
+        "exact": 8,
+        "preserved": 8,
+        "gained": 0,
+        "lost": 0
+      },
+      "first": {
+        "pairs": 256,
+        "exact": 160,
+        "preserved": 8,
+        "gained": 152,
+        "lost": 0
+      },
+      "post_b": {
+        "pairs": 256,
+        "exact": 24,
+        "preserved": 8,
+        "gained": 16,
+        "lost": 0
+      },
+      "both": {
+        "pairs": 256,
+        "exact": 256,
+        "preserved": 8,
+        "gained": 248,
+        "lost": 0
+      }
+    },
+    "rows": {
+      "learned": {
+        "rows": 512,
+        "exact": 208,
+        "first_wrong": {
+          "null": 208,
+          "3": 256,
+          "4": 48
+        },
+        "shifts": {
+          "3->3": 256,
+          "4->4": 48,
+          "null->null": 208
+        },
+        "b_required": 256,
+        "correct_b_reached": 144,
+        "open_cap": 0
+      },
+      "first": {
+        "rows": 512,
+        "exact": 416,
+        "first_wrong": {
+          "null": 416,
+          "4": 96
+        },
+        "shifts": {
+          "3->4": 48,
+          "3->null": 208,
+          "4->4": 48,
+          "null->null": 208
+        },
+        "b_required": 256,
+        "correct_b_reached": 256,
+        "open_cap": 0
+      },
+      "post_b": {
+        "rows": 512,
+        "exact": 256,
+        "first_wrong": {
+          "null": 256,
+          "3": 256
+        },
+        "shifts": {
+          "3->3": 256,
+          "4->null": 48,
+          "null->null": 208
+        },
+        "b_required": 256,
+        "correct_b_reached": 144,
+        "open_cap": 0
+      },
+      "both": {
+        "rows": 512,
+        "exact": 512,
+        "first_wrong": {
+          "null": 512
+        },
+        "shifts": {
+          "3->null": 256,
+          "4->null": 48,
+          "null->null": 208
+        },
+        "b_required": 256,
+        "correct_b_reached": 256,
+        "open_cap": 0
+      }
+    },
+    "both_required": 80,
+    "either_suffices": 0
+  },
+  "by_axis": {
+    "clause-order-swap": {
+      "axes": {
+        "learned": {
+          "pairs": 112,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 112,
+          "exact": 64,
+          "preserved": 0,
+          "gained": 64,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 112,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 112,
+          "exact": 112,
+          "preserved": 0,
+          "gained": 112,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 224,
+          "exact": 88,
+          "first_wrong": {
+            "null": 88,
+            "3": 112,
+            "4": 24
+          },
+          "shifts": {
+            "3->3": 112,
+            "4->4": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 56,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 224,
+          "exact": 176,
+          "first_wrong": {
+            "null": 176,
+            "4": 48
+          },
+          "shifts": {
+            "3->4": 24,
+            "3->null": 88,
+            "4->4": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 112,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 224,
+          "exact": 112,
+          "first_wrong": {
+            "null": 112,
+            "3": 112
+          },
+          "shifts": {
+            "3->3": 112,
+            "4->null": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 56,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 224,
+          "exact": 224,
+          "first_wrong": {
+            "null": 224
+          },
+          "shifts": {
+            "3->null": 112,
+            "4->null": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 112,
+          "open_cap": 0
+        }
+      },
+      "both_required": 40,
+      "either_suffices": 0
+    },
+    "direct-count-control": {
+      "axes": {
+        "learned": {
+          "pairs": 32,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 32,
+          "exact": 32,
+          "preserved": 0,
+          "gained": 32,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 32,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 32,
+          "exact": 32,
+          "preserved": 0,
+          "gained": 32,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 64,
+          "exact": 32,
+          "first_wrong": {
+            "null": 32,
+            "3": 32
+          },
+          "shifts": {
+            "3->3": 32,
+            "null->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 64,
+          "exact": 64,
+          "first_wrong": {
+            "null": 64
+          },
+          "shifts": {
+            "3->null": 32,
+            "null->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 64,
+          "exact": 32,
+          "first_wrong": {
+            "null": 32,
+            "3": 32
+          },
+          "shifts": {
+            "3->3": 32,
+            "null->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 64,
+          "exact": 64,
+          "first_wrong": {
+            "null": 64
+          },
+          "shifts": {
+            "3->null": 32,
+            "null->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        }
+      },
+      "both_required": 0,
+      "either_suffices": 0
+    },
+    "selector-swap": {
+      "axes": {
+        "learned": {
+          "pairs": 112,
+          "exact": 8,
+          "preserved": 8,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 112,
+          "exact": 64,
+          "preserved": 8,
+          "gained": 56,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 112,
+          "exact": 16,
+          "preserved": 8,
+          "gained": 8,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 112,
+          "exact": 112,
+          "preserved": 8,
+          "gained": 104,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 224,
+          "exact": 88,
+          "first_wrong": {
+            "null": 88,
+            "3": 112,
+            "4": 24
+          },
+          "shifts": {
+            "3->3": 112,
+            "4->4": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 56,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 224,
+          "exact": 176,
+          "first_wrong": {
+            "null": 176,
+            "4": 48
+          },
+          "shifts": {
+            "3->4": 24,
+            "3->null": 88,
+            "4->4": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 112,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 224,
+          "exact": 112,
+          "first_wrong": {
+            "null": 112,
+            "3": 112
+          },
+          "shifts": {
+            "3->3": 112,
+            "4->null": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 56,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 224,
+          "exact": 224,
+          "first_wrong": {
+            "null": 224
+          },
+          "shifts": {
+            "3->null": 112,
+            "4->null": 24,
+            "null->null": 88
+          },
+          "b_required": 112,
+          "correct_b_reached": 112,
+          "open_cap": 0
+        }
+      },
+      "both_required": 40,
+      "either_suffices": 0
+    }
+  },
+  "by_contrast": {
+    "0": {
+      "axes": {
+        "learned": {
+          "pairs": 256,
+          "exact": 8,
+          "preserved": 8,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 256,
+          "exact": 160,
+          "preserved": 8,
+          "gained": 152,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 256,
+          "exact": 24,
+          "preserved": 8,
+          "gained": 16,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 256,
+          "exact": 256,
+          "preserved": 8,
+          "gained": 248,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 512,
+          "exact": 208,
+          "first_wrong": {
+            "null": 208,
+            "3": 256,
+            "4": 48
+          },
+          "shifts": {
+            "3->3": 256,
+            "4->4": 48,
+            "null->null": 208
+          },
+          "b_required": 256,
+          "correct_b_reached": 144,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 512,
+          "exact": 416,
+          "first_wrong": {
+            "null": 416,
+            "4": 96
+          },
+          "shifts": {
+            "3->4": 48,
+            "3->null": 208,
+            "4->4": 48,
+            "null->null": 208
+          },
+          "b_required": 256,
+          "correct_b_reached": 256,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 512,
+          "exact": 256,
+          "first_wrong": {
+            "null": 256,
+            "3": 256
+          },
+          "shifts": {
+            "3->3": 256,
+            "4->null": 48,
+            "null->null": 208
+          },
+          "b_required": 256,
+          "correct_b_reached": 144,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 512,
+          "exact": 512,
+          "first_wrong": {
+            "null": 512
+          },
+          "shifts": {
+            "3->null": 256,
+            "4->null": 48,
+            "null->null": 208
+          },
+          "b_required": 256,
+          "correct_b_reached": 256,
+          "open_cap": 0
+        }
+      },
+      "both_required": 80,
+      "either_suffices": 0
+    }
+  },
+  "scoped": {
+    "axes": {
+      "learned": {
+        "pairs": 224,
+        "exact": 8,
+        "preserved": 8,
+        "gained": 0,
+        "lost": 0
+      },
+      "first": {
+        "pairs": 224,
+        "exact": 128,
+        "preserved": 8,
+        "gained": 120,
+        "lost": 0
+      },
+      "post_b": {
+        "pairs": 224,
+        "exact": 24,
+        "preserved": 8,
+        "gained": 16,
+        "lost": 0
+      },
+      "both": {
+        "pairs": 224,
+        "exact": 224,
+        "preserved": 8,
+        "gained": 216,
+        "lost": 0
+      }
+    },
+    "rows": {
+      "learned": {
+        "rows": 448,
+        "exact": 176,
+        "first_wrong": {
+          "null": 176,
+          "3": 224,
+          "4": 48
+        },
+        "shifts": {
+          "3->3": 224,
+          "4->4": 48,
+          "null->null": 176
+        },
+        "b_required": 224,
+        "correct_b_reached": 112,
+        "open_cap": 0
+      },
+      "first": {
+        "rows": 448,
+        "exact": 352,
+        "first_wrong": {
+          "null": 352,
+          "4": 96
+        },
+        "shifts": {
+          "3->4": 48,
+          "3->null": 176,
+          "4->4": 48,
+          "null->null": 176
+        },
+        "b_required": 224,
+        "correct_b_reached": 224,
+        "open_cap": 0
+      },
+      "post_b": {
+        "rows": 448,
+        "exact": 224,
+        "first_wrong": {
+          "null": 224,
+          "3": 224
+        },
+        "shifts": {
+          "3->3": 224,
+          "4->null": 48,
+          "null->null": 176
+        },
+        "b_required": 224,
+        "correct_b_reached": 112,
+        "open_cap": 0
+      },
+      "both": {
+        "rows": 448,
+        "exact": 448,
+        "first_wrong": {
+          "null": 448
+        },
+        "shifts": {
+          "3->null": 224,
+          "4->null": 48,
+          "null->null": 176
+        },
+        "b_required": 224,
+        "correct_b_reached": 224,
+        "open_cap": 0
+      }
+    },
+    "both_required": 80,
+    "either_suffices": 0
+  }
+}

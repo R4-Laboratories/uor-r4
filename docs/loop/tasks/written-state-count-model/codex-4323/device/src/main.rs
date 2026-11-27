@@ -223,6 +223,10 @@ fn write_rows(path: &Path, rows: &[ChoiceObservation<'_>]) -> Result<()> {
 }
 
 fn main() -> Result<()> {
+    #[cfg(feature = "release-factorial")]
+    if let Some(result) = gpu::factorial::command() {
+        return result;
+    }
     let args: Vec<_> = std::env::args().collect();
     match args[1..].iter().map(String::as_str).collect::<Vec<_>>().as_slice() {
         ["check-rows", input] => {

@@ -18,6 +18,8 @@ historical-runtime = []
 p1-count-serving = ["serving-wasm", "dep:uor-r4-count-runtime"]
 # Read-only replay for the frozen post-period experiment.
 postperiod-diagnostic = []
+# Cold replay of the two frozen source-choice releases.
+release-factorial-diagnostic = []
 # Serve the preserved D11 integer/stack runtime to WebAssembly (#1172). The
 # native qualification graph never selects this feature; with it, the facade's
 # compile_error! stands down and the preserved serving root compiles (see the
@@ -161,3 +163,8 @@ path = "src/bin/verify-native-source-choice.rs"
 [[bin]]
 name = "serve-native-source-choice"
 path = "src/bin/serve-native-source-choice.rs"
+
+[[bin]]
+name = "verify-native-release-factorial"
+path = "src/bin/verify-native-release-factorial.rs"
+required-features = ["release-factorial-diagnostic"]

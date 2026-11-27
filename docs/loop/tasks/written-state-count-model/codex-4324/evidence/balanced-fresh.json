@@ -1,0 +1,1408 @@
+{
+  "all": {
+    "axes": {
+      "learned": {
+        "pairs": 160,
+        "exact": 0,
+        "preserved": 0,
+        "gained": 0,
+        "lost": 0
+      },
+      "first": {
+        "pairs": 160,
+        "exact": 88,
+        "preserved": 0,
+        "gained": 88,
+        "lost": 0
+      },
+      "post_b": {
+        "pairs": 160,
+        "exact": 0,
+        "preserved": 0,
+        "gained": 0,
+        "lost": 0
+      },
+      "both": {
+        "pairs": 160,
+        "exact": 160,
+        "preserved": 0,
+        "gained": 160,
+        "lost": 0
+      }
+    },
+    "rows": {
+      "learned": {
+        "rows": 320,
+        "exact": 144,
+        "first_wrong": {
+          "null": 144,
+          "3": 176
+        },
+        "shifts": {
+          "3->3": 176,
+          "null->null": 144
+        },
+        "b_required": 176,
+        "correct_b_reached": 8,
+        "open_cap": 0
+      },
+      "first": {
+        "rows": 320,
+        "exact": 248,
+        "first_wrong": {
+          "null": 248,
+          "4": 72
+        },
+        "shifts": {
+          "3->4": 72,
+          "3->null": 104,
+          "null->null": 144
+        },
+        "b_required": 176,
+        "correct_b_reached": 176,
+        "open_cap": 0
+      },
+      "post_b": {
+        "rows": 320,
+        "exact": 144,
+        "first_wrong": {
+          "null": 144,
+          "3": 176
+        },
+        "shifts": {
+          "3->3": 176,
+          "null->null": 144
+        },
+        "b_required": 176,
+        "correct_b_reached": 8,
+        "open_cap": 0
+      },
+      "both": {
+        "rows": 320,
+        "exact": 320,
+        "first_wrong": {
+          "null": 320
+        },
+        "shifts": {
+          "3->null": 176,
+          "null->null": 144
+        },
+        "b_required": 176,
+        "correct_b_reached": 176,
+        "open_cap": 0
+      }
+    },
+    "both_required": 72,
+    "either_suffices": 0
+  },
+  "by_axis": {
+    "clause-order-swap": {
+      "axes": {
+        "learned": {
+          "pairs": 128,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 128,
+          "exact": 56,
+          "preserved": 0,
+          "gained": 56,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 128,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 128,
+          "exact": 128,
+          "preserved": 0,
+          "gained": 128,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 256,
+          "exact": 128,
+          "first_wrong": {
+            "null": 128,
+            "3": 128
+          },
+          "shifts": {
+            "3->3": 128,
+            "null->null": 128
+          },
+          "b_required": 128,
+          "correct_b_reached": 8,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 256,
+          "exact": 184,
+          "first_wrong": {
+            "null": 184,
+            "4": 72
+          },
+          "shifts": {
+            "3->4": 72,
+            "3->null": 56,
+            "null->null": 128
+          },
+          "b_required": 128,
+          "correct_b_reached": 128,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 256,
+          "exact": 128,
+          "first_wrong": {
+            "null": 128,
+            "3": 128
+          },
+          "shifts": {
+            "3->3": 128,
+            "null->null": 128
+          },
+          "b_required": 128,
+          "correct_b_reached": 8,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 256,
+          "exact": 256,
+          "first_wrong": {
+            "null": 256
+          },
+          "shifts": {
+            "3->null": 128,
+            "null->null": 128
+          },
+          "b_required": 128,
+          "correct_b_reached": 128,
+          "open_cap": 0
+        }
+      },
+      "both_required": 72,
+      "either_suffices": 0
+    },
+    "direct-count-control": {
+      "axes": {
+        "learned": {
+          "pairs": 32,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 32,
+          "exact": 32,
+          "preserved": 0,
+          "gained": 32,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 32,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 32,
+          "exact": 32,
+          "preserved": 0,
+          "gained": 32,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 64,
+          "exact": 16,
+          "first_wrong": {
+            "null": 16,
+            "3": 48
+          },
+          "shifts": {
+            "3->3": 48,
+            "null->null": 16
+          },
+          "b_required": 48,
+          "correct_b_reached": 0,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 64,
+          "exact": 64,
+          "first_wrong": {
+            "null": 64
+          },
+          "shifts": {
+            "3->null": 48,
+            "null->null": 16
+          },
+          "b_required": 48,
+          "correct_b_reached": 48,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 64,
+          "exact": 16,
+          "first_wrong": {
+            "null": 16,
+            "3": 48
+          },
+          "shifts": {
+            "3->3": 48,
+            "null->null": 16
+          },
+          "b_required": 48,
+          "correct_b_reached": 0,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 64,
+          "exact": 64,
+          "first_wrong": {
+            "null": 64
+          },
+          "shifts": {
+            "3->null": 48,
+            "null->null": 16
+          },
+          "b_required": 48,
+          "correct_b_reached": 48,
+          "open_cap": 0
+        }
+      },
+      "both_required": 0,
+      "either_suffices": 0
+    }
+  },
+  "by_contrast": {
+    "0": {
+      "axes": {
+        "learned": {
+          "pairs": 144,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 144,
+          "exact": 72,
+          "preserved": 0,
+          "gained": 72,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 144,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 144,
+          "exact": 144,
+          "preserved": 0,
+          "gained": 144,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 288,
+          "exact": 144,
+          "first_wrong": {
+            "null": 144,
+            "3": 144
+          },
+          "shifts": {
+            "3->3": 144,
+            "null->null": 144
+          },
+          "b_required": 144,
+          "correct_b_reached": 8,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 288,
+          "exact": 216,
+          "first_wrong": {
+            "null": 216,
+            "4": 72
+          },
+          "shifts": {
+            "3->4": 72,
+            "3->null": 72,
+            "null->null": 144
+          },
+          "b_required": 144,
+          "correct_b_reached": 144,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 288,
+          "exact": 144,
+          "first_wrong": {
+            "null": 144,
+            "3": 144
+          },
+          "shifts": {
+            "3->3": 144,
+            "null->null": 144
+          },
+          "b_required": 144,
+          "correct_b_reached": 8,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 288,
+          "exact": 288,
+          "first_wrong": {
+            "null": 288
+          },
+          "shifts": {
+            "3->null": 144,
+            "null->null": 144
+          },
+          "b_required": 144,
+          "correct_b_reached": 144,
+          "open_cap": 0
+        }
+      },
+      "both_required": 72,
+      "either_suffices": 0
+    },
+    "1": {
+      "axes": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 32,
+          "exact": 0,
+          "first_wrong": {
+            "3": 32
+          },
+          "shifts": {
+            "3->3": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 0,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 32,
+          "exact": 32,
+          "first_wrong": {
+            "null": 32
+          },
+          "shifts": {
+            "3->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 32,
+          "exact": 0,
+          "first_wrong": {
+            "3": 32
+          },
+          "shifts": {
+            "3->3": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 0,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 32,
+          "exact": 32,
+          "first_wrong": {
+            "null": 32
+          },
+          "shifts": {
+            "3->null": 32
+          },
+          "b_required": 32,
+          "correct_b_reached": 32,
+          "open_cap": 0
+        }
+      },
+      "both_required": 0,
+      "either_suffices": 0
+    }
+  },
+  "scoped": {
+    "axes": {
+      "learned": {
+        "pairs": 128,
+        "exact": 0,
+        "preserved": 0,
+        "gained": 0,
+        "lost": 0
+      },
+      "first": {
+        "pairs": 128,
+        "exact": 56,
+        "preserved": 0,
+        "gained": 56,
+        "lost": 0
+      },
+      "post_b": {
+        "pairs": 128,
+        "exact": 0,
+        "preserved": 0,
+        "gained": 0,
+        "lost": 0
+      },
+      "both": {
+        "pairs": 128,
+        "exact": 128,
+        "preserved": 0,
+        "gained": 128,
+        "lost": 0
+      }
+    },
+    "rows": {
+      "learned": {
+        "rows": 256,
+        "exact": 128,
+        "first_wrong": {
+          "null": 128,
+          "3": 128
+        },
+        "shifts": {
+          "3->3": 128,
+          "null->null": 128
+        },
+        "b_required": 128,
+        "correct_b_reached": 8,
+        "open_cap": 0
+      },
+      "first": {
+        "rows": 256,
+        "exact": 184,
+        "first_wrong": {
+          "null": 184,
+          "4": 72
+        },
+        "shifts": {
+          "3->4": 72,
+          "3->null": 56,
+          "null->null": 128
+        },
+        "b_required": 128,
+        "correct_b_reached": 128,
+        "open_cap": 0
+      },
+      "post_b": {
+        "rows": 256,
+        "exact": 128,
+        "first_wrong": {
+          "null": 128,
+          "3": 128
+        },
+        "shifts": {
+          "3->3": 128,
+          "null->null": 128
+        },
+        "b_required": 128,
+        "correct_b_reached": 8,
+        "open_cap": 0
+      },
+      "both": {
+        "rows": 256,
+        "exact": 256,
+        "first_wrong": {
+          "null": 256
+        },
+        "shifts": {
+          "3->null": 128,
+          "null->null": 128
+        },
+        "b_required": 128,
+        "correct_b_reached": 128,
+        "open_cap": 0
+      }
+    },
+    "both_required": 72,
+    "either_suffices": 0
+  },
+  "quartets": {
+    "learned": {
+      "pairs": 64,
+      "exact": 0,
+      "preserved": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "first": {
+      "pairs": 64,
+      "exact": 24,
+      "preserved": 0,
+      "gained": 24,
+      "lost": 0
+    },
+    "post_b": {
+      "pairs": 64,
+      "exact": 0,
+      "preserved": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "both": {
+      "pairs": 64,
+      "exact": 64,
+      "preserved": 0,
+      "gained": 64,
+      "lost": 0
+    }
+  },
+  "selector_edges": {
+    "learned": {
+      "pairs": 128,
+      "exact": 8,
+      "preserved": 8,
+      "gained": 0,
+      "lost": 0
+    },
+    "first": {
+      "pairs": 128,
+      "exact": 56,
+      "preserved": 8,
+      "gained": 48,
+      "lost": 0
+    },
+    "post_b": {
+      "pairs": 128,
+      "exact": 8,
+      "preserved": 8,
+      "gained": 0,
+      "lost": 0
+    },
+    "both": {
+      "pairs": 128,
+      "exact": 128,
+      "preserved": 8,
+      "gained": 120,
+      "lost": 0
+    }
+  },
+  "clause_edges": {
+    "learned": {
+      "pairs": 128,
+      "exact": 0,
+      "preserved": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "first": {
+      "pairs": 128,
+      "exact": 56,
+      "preserved": 0,
+      "gained": 56,
+      "lost": 0
+    },
+    "post_b": {
+      "pairs": 128,
+      "exact": 0,
+      "preserved": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "both": {
+      "pairs": 128,
+      "exact": 128,
+      "preserved": 0,
+      "gained": 128,
+      "lost": 0
+    }
+  },
+  "families": [
+    {
+      "family": "agreed-speaker",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "check-mark",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "dial-setting",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "instruction-aside",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "recording-time",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "rule-elimination",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 8,
+          "preserved": 8,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 8,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 8,
+          "preserved": 8,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 8,
+          "gained": 8,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "spoken-label",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    },
+    {
+      "family": "trailing-star",
+      "clause_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "selector_edges": {
+        "learned": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 16,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 16,
+          "exact": 16,
+          "preserved": 0,
+          "gained": 16,
+          "lost": 0
+        }
+      },
+      "quartets": {
+        "learned": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 8,
+          "exact": 0,
+          "preserved": 0,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 8,
+          "exact": 8,
+          "preserved": 0,
+          "gained": 8,
+          "lost": 0
+        }
+      }
+    }
+  ]
+}

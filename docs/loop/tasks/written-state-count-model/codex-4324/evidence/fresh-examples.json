@@ -1,0 +1,566 @@
+[
+  {
+    "class": "first_recovers",
+    "cases": 96,
+    "example": {
+      "pair_id": "rf-944a0accb866b4497e9b61a8-s1",
+      "side": 0,
+      "family": "dial-setting",
+      "context": "Folio RF0000 marks line one with thunder. Folio RF0000 marks line two with shark. Folio RF0000 marks line three with goat. Folio RF0000 marks line four with care.",
+      "question": "Which words belong in the reply for folio RF0000?",
+      "directive": "I set the dial to low. Low means 'send only the opening entry'; high means 'send the opening entry and its immediate successor'.",
+      "reply": "thunder.",
+      "expected": [
+        3912,
+        16,
+        1
+      ],
+      "positions": [
+        18,
+        34,
+        50,
+        66
+      ],
+      "arms": {
+        "both": {
+          "ids": [
+            3912,
+            16,
+            1
+          ],
+          "wrong": null,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 30,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "first"
+            }
+          ]
+        },
+        "first": {
+          "ids": [
+            3912,
+            16,
+            1
+          ],
+          "wrong": null,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 30,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "first"
+            }
+          ]
+        },
+        "learned": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            2942,
+            1
+          ],
+          "wrong": 3,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 30,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": 50,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 2,
+              "score": -26,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "post_b": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            2942,
+            1
+          ],
+          "wrong": 3,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 30,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": 50,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 2,
+              "score": -26,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "class": "learned_exact",
+    "cases": 152,
+    "example": {
+      "pair_id": "rf-33e5ff1b31c58850497f8a02-s1",
+      "side": 1,
+      "family": "rule-elimination",
+      "context": "Folio RF0100 marks line one with thunder; Folio RF0100 marks line two with shark; Folio RF0100 marks line three with care; Folio RF0100 marks line four with goat;",
+      "question": "Which words belong in the reply for folio RF0100?",
+      "directive": "Rules in order: 'keep the first and second entries' / 'keep the first entry alone'. Strike rule two and follow the remaining rule.",
+      "reply": "thunder. shark",
+      "expected": [
+        3912,
+        16,
+        2526,
+        1
+      ],
+      "positions": [
+        18,
+        34,
+        50,
+        66
+      ],
+      "arms": {
+        "both": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 32,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": -18,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "post_b"
+            }
+          ]
+        },
+        "first": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 32,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": -18,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "learned": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 32,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": -18,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "post_b": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 32,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": -18,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "post_b"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "class": "needs_both",
+    "cases": 32,
+    "example": {
+      "pair_id": "rf-8ec1aec47d4c3340edd502d0-s2",
+      "side": 1,
+      "family": "agreed-speaker",
+      "context": "Folio RF0200 marks line one with thunder. Folio RF0200 marks line two with goat. Folio RF0200 marks line three with shark. Folio RF0200 marks line four with care.",
+      "question": "Which words belong in the reply for folio RF0200?",
+      "directive": "Dana asked you to leave out every word after the opener; Eli asked you to add exactly one word after the opener. I agreed with Eli.",
+      "reply": "thunder. goat",
+      "expected": [
+        3912,
+        16,
+        2942,
+        1
+      ],
+      "positions": [
+        18,
+        34,
+        50,
+        66
+      ],
+      "arms": {
+        "both": {
+          "ids": [
+            3912,
+            16,
+            2942,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": -9,
+              "address": 34,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": 4,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "post_b"
+            }
+          ]
+        },
+        "first": {
+          "ids": [
+            3912,
+            16,
+            2942,
+            2526,
+            1
+          ],
+          "wrong": 4,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": -9,
+              "address": 34,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": 4,
+              "address": 50,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 2,
+              "score": -27,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "learned": {
+          "ids": [
+            3912,
+            16,
+            1
+          ],
+          "wrong": 3,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": -9,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "post_b": {
+          "ids": [
+            3912,
+            16,
+            1
+          ],
+          "wrong": 3,
+          "reached_b": false,
+          "choices": [
+            {
+              "stage": 0,
+              "score": -9,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "class": "post_b_recovers",
+    "cases": 40,
+    "example": {
+      "pair_id": "rf-944a0accb866b4497e9b61a8-s1",
+      "side": 1,
+      "family": "dial-setting",
+      "context": "Folio RF0000 marks line one with thunder. Folio RF0000 marks line two with shark. Folio RF0000 marks line three with goat. Folio RF0000 marks line four with care.",
+      "question": "Which words belong in the reply for folio RF0000?",
+      "directive": "I set the dial to low. Low means 'send the opening entry and its immediate successor'; high means 'send only the opening entry'.",
+      "reply": "thunder. shark",
+      "expected": [
+        3912,
+        16,
+        2526,
+        1
+      ],
+      "positions": [
+        18,
+        34,
+        50,
+        66
+      ],
+      "arms": {
+        "both": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 79,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "post_b"
+            }
+          ]
+        },
+        "first": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            2942,
+            1
+          ],
+          "wrong": 4,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 79,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": "first"
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": 50,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 2,
+              "score": -26,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "learned": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            2942,
+            1
+          ],
+          "wrong": 4,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 79,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": 50,
+              "id": 2942,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 2,
+              "score": -26,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": null
+            }
+          ]
+        },
+        "post_b": {
+          "ids": [
+            3912,
+            16,
+            2526,
+            1
+          ],
+          "wrong": null,
+          "reached_b": true,
+          "choices": [
+            {
+              "stage": 0,
+              "score": 79,
+              "address": 34,
+              "id": 2526,
+              "via": "verified_copy",
+              "intervention": null
+            },
+            {
+              "stage": 1,
+              "score": 11,
+              "address": null,
+              "id": 1,
+              "via": "selected_eos",
+              "intervention": "post_b"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

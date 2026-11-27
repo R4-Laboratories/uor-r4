@@ -2,6 +2,10 @@
 #![allow(dead_code)]
 include!("../../../codex-copy-id/device/src/gpu.rs");
 
+#[cfg(feature = "release-factorial")]
+#[path = "../../../codex-4324/device/src/factorial.rs"]
+pub(super) mod factorial;
+
 const ARMS: usize = 8;
 const ARM_NAMES: [&str; ARMS] = [
     "generate",

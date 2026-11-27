@@ -6,6 +6,9 @@ publish = false
 
 [workspace]
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(feature, values("release-factorial"))'] }
+
 [dependencies]
 cudarc = { path = "../../../../../../third_party/cudarc-0.19.10", default-features = false, features = ["std", "driver", "cuda-12080", "dynamic-linking"] }
 serde = { version = "1", features = ["derive"] }

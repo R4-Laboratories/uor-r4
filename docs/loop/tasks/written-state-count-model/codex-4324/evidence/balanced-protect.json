@@ -1,0 +1,271 @@
+{
+  "all": {
+    "axes": {
+      "learned": {
+        "pairs": 50,
+        "exact": 50,
+        "preserved": 50,
+        "gained": 0,
+        "lost": 0
+      },
+      "first": {
+        "pairs": 50,
+        "exact": 50,
+        "preserved": 50,
+        "gained": 0,
+        "lost": 0
+      },
+      "post_b": {
+        "pairs": 50,
+        "exact": 50,
+        "preserved": 50,
+        "gained": 0,
+        "lost": 0
+      },
+      "both": {
+        "pairs": 50,
+        "exact": 50,
+        "preserved": 50,
+        "gained": 0,
+        "lost": 0
+      }
+    },
+    "rows": {
+      "learned": {
+        "rows": 100,
+        "exact": 100,
+        "first_wrong": {
+          "null": 100
+        },
+        "shifts": {
+          "null->null": 100
+        },
+        "b_required": 100,
+        "correct_b_reached": 100,
+        "open_cap": 0
+      },
+      "first": {
+        "rows": 100,
+        "exact": 100,
+        "first_wrong": {
+          "null": 100
+        },
+        "shifts": {
+          "null->null": 100
+        },
+        "b_required": 100,
+        "correct_b_reached": 100,
+        "open_cap": 0
+      },
+      "post_b": {
+        "rows": 100,
+        "exact": 100,
+        "first_wrong": {
+          "null": 100
+        },
+        "shifts": {
+          "null->null": 100
+        },
+        "b_required": 100,
+        "correct_b_reached": 100,
+        "open_cap": 0
+      },
+      "both": {
+        "rows": 100,
+        "exact": 100,
+        "first_wrong": {
+          "null": 100
+        },
+        "shifts": {
+          "null->null": 100
+        },
+        "b_required": 100,
+        "correct_b_reached": 100,
+        "open_cap": 0
+      }
+    },
+    "both_required": 0,
+    "either_suffices": 0
+  },
+  "by_axis": {
+    "contrast-1": {
+      "axes": {
+        "learned": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        }
+      },
+      "both_required": 0,
+      "either_suffices": 0
+    }
+  },
+  "by_contrast": {
+    "1": {
+      "axes": {
+        "learned": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "first": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "post_b": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        },
+        "both": {
+          "pairs": 50,
+          "exact": 50,
+          "preserved": 50,
+          "gained": 0,
+          "lost": 0
+        }
+      },
+      "rows": {
+        "learned": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "first": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "post_b": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        },
+        "both": {
+          "rows": 100,
+          "exact": 100,
+          "first_wrong": {
+            "null": 100
+          },
+          "shifts": {
+            "null->null": 100
+          },
+          "b_required": 100,
+          "correct_b_reached": 100,
+          "open_cap": 0
+        }
+      },
+      "both_required": 0,
+      "either_suffices": 0
+    }
+  },
+  "scoped": null
+}

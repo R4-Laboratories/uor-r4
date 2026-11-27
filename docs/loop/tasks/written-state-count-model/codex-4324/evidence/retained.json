@@ -1,0 +1,866 @@
+[
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 32,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 32,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 32,
+    "retained": 32
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 8,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 8,
+    "retained": 0
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "dev",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 8,
+    "retained": 8
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "direct",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 40,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 40,
+    "retained": 0
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "held",
+    "cohort": "scoped",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 40,
+    "retained": 40
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 75,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 75,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 75,
+    "retained": 75
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "prior-dev",
+    "cohort": "first-period",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 0,
+    "retained": 0
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "balanced",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "learned",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "first",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "post_b",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "balanced",
+    "arm": "both",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "learned",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "first",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "post_b",
+    "previous": 50,
+    "retained": 50
+  },
+  {
+    "split": "protect",
+    "cohort": "protected",
+    "from": "candidate",
+    "to": "candidate",
+    "arm": "both",
+    "previous": 50,
+    "retained": 50
+  }
+]
