@@ -1,0 +1,117 @@
+{
+  "rows": 400,
+  "query_only": [
+    {
+      "value": 201,
+      "n": 400
+    }
+  ],
+  "minimum_ties": [
+    {
+      "value": [
+        73,
+        201
+      ],
+      "n": 400
+    }
+  ],
+  "margin": {
+    "min": 43539,
+    "max": 133849
+  },
+  "g_gate_rank": {
+    "min": 41,
+    "max": 58
+  },
+  "eos_gate_rank": {
+    "min": 28,
+    "max": 65
+  },
+  "score_gate": {
+    "min": 84983,
+    "max": 221161
+  },
+  "g_score": {
+    "min": 1760,
+    "max": 4290
+  },
+  "eos_score": {
+    "min": 1762,
+    "max": 8230
+  },
+  "g_distance": [
+    {
+      "value": 0,
+      "n": 400
+    }
+  ],
+  "eos_distance": [
+    {
+      "value": 20,
+      "n": 400
+    }
+  ],
+  "query_count_LF": [
+    {
+      "value": 84915,
+      "n": 400
+    }
+  ],
+  "next_gate_available": [
+    {
+      "value": false,
+      "n": 398
+    },
+    {
+      "value": true,
+      "n": 2
+    }
+  ],
+  "next_gate_rank": {
+    "min": 1758,
+    "max": 1758
+  },
+  "next_admitted": [
+    {
+      "value": false,
+      "n": 400
+    }
+  ],
+  "next_distance": {
+    "min": 8,
+    "max": 32
+  },
+  "eos_admitted": [
+    {
+      "value": false,
+      "n": 400
+    }
+  ],
+  "recurrence_sums": 400,
+  "paired_same_frame": 0,
+  "paired_same_raw_recurrence": 0,
+  "pooled": [
+    {
+      "value": [
+        201,
+        201,
+        201
+      ],
+      "n": 400
+    }
+  ],
+  "pointer_locations": [
+    {
+      "value": "directive_to_assistant_marker",
+      "n": 200
+    },
+    {
+      "value": "directive",
+      "n": 188
+    },
+    {
+      "value": "facts_to_question_separator",
+      "n": 12
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "uor-r4.postperiod-go/1",
+  "authorized": true,
+  "test_fitness": "FIT",
+  "approved_sha256": "6653f2d7021264da857d36bb160fd326c7dc3a8b5f85ce7c86a962c25e05d95f",
+  "source_commit": "635334b0ce3c318df3d68fa75bd3f54f30944602",
+  "device_uuid": "GPU-3265b863-16b6-9f25-3bf5-4386fa6a53c3",
+  "completion_cubin_sha256": "204664c744fa52ec1246e6ebd060f310735c18dfa4c483296a5f2324c1b4fc7b",
+  "signed_at": "2026-11-27T19:09:10Z",
+  "lab": "codex"
+}

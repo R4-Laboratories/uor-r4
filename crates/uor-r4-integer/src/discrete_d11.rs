@@ -33,6 +33,8 @@ pub mod contextual_source;
 pub mod native_copy;
 pub mod native_occurrence;
 pub mod native_opening;
+#[cfg(feature = "postperiod-diagnostic")]
+pub mod native_postperiod;
 pub mod native_word_ending;
 pub mod pair_rank;
 mod rival_admission;

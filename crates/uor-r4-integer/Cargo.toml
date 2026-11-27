@@ -16,6 +16,8 @@ crate-type = ["rlib", "cdylib"]
 # Compatibility name only: selecting historical executors fails at compile time.
 historical-runtime = []
 p1-count-serving = ["serving-wasm", "dep:uor-r4-count-runtime"]
+# Read-only replay for the frozen post-period experiment.
+postperiod-diagnostic = []
 # Serve the preserved D11 integer/stack runtime to WebAssembly (#1172). The
 # native qualification graph never selects this feature; with it, the facade's
 # compile_error! stands down and the preserved serving root compiles (see the
@@ -142,3 +144,8 @@ path = "src/bin/pack-native-word-ending.rs"
 [[bin]]
 name = "verify-native-word-ending"
 path = "src/bin/verify-native-word-ending.rs"
+
+[[bin]]
+name = "verify-native-postperiod"
+path = "src/bin/verify-native-postperiod.rs"
+required-features = ["postperiod-diagnostic"]

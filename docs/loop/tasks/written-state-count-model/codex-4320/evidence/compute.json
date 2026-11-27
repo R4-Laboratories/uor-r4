@@ -1,0 +1,11 @@
+{
+  "provider": "Vast.ai",
+  "pod": "vast-62901425",
+  "lease": "codex/post-4320",
+  "gpu": "GeForce RTX 4090",
+  "uuid": "GPU-3265b863-16b6-9f25-3bf5-4386fa6a53c3",
+  "driver": "610.57.04",
+  "rate_usd_hour": 1.245,
+  "archived_before_destroyed": true,
+  "deleted_verified_utc": "2026-11-27T19:10:26Z"
+}

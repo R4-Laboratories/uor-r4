@@ -1,0 +1,14 @@
+{
+  "arms": [
+    "native",
+    "correct",
+    "swapped",
+    "supplied_next"
+  ],
+  "elapsed_ms": 22292,
+  "image_sha256": "204664c744fa52ec1246e6ebd060f310735c18dfa4c483296a5f2324c1b4fc7b",
+  "input_sha256": "42398b7070e762c2bf0ceba13eabe2e3c76069f0854a993a3f7bfcffe3334906",
+  "pairs": 200,
+  "pass": true,
+  "rows": 400
+}

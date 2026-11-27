@@ -1,0 +1,612 @@
+{
+  "all": {
+    "rows": 400,
+    "read_codes": 194,
+    "recurrence_codes": 361,
+    "unique_joint": 400,
+    "paired_same_read": 33,
+    "paired_same_rec": 0,
+    "paired_same_gate": 200,
+    "paired_same_emission": 200,
+    "pointer_predecessor_id": [
+      {
+        "value": 16,
+        "n": 400
+      }
+    ],
+    "pointer_successor_id": [
+      {
+        "value": 201,
+        "n": 212
+      },
+      {
+        "value": 287,
+        "n": 74
+      },
+      {
+        "value": 772,
+        "n": 38
+      },
+      {
+        "value": 427,
+        "n": 26
+      },
+      {
+        "value": 301,
+        "n": 13
+      },
+      {
+        "value": 955,
+        "n": 13
+      },
+      {
+        "value": 2130,
+        "n": 12
+      },
+      {
+        "value": 2216,
+        "n": 12
+      }
+    ],
+    "pointer_region": [
+      {
+        "value": "instruction_final_token",
+        "n": 200
+      },
+      {
+        "value": "question_or_instruction",
+        "n": 188
+      },
+      {
+        "value": "fact_final_period_before_blank_line",
+        "n": 12
+      }
+    ],
+    "gate_ids": [
+      {
+        "value": 201,
+        "n": 400
+      }
+    ],
+    "writer_ids": [
+      {
+        "value": 73,
+        "n": 400
+      }
+    ],
+    "gate_and_output": [
+      {
+        "value": [
+          201,
+          73
+        ],
+        "n": 400
+      }
+    ],
+    "pointer_wins": 212,
+    "writer_preserves_gate": 0,
+    "sensitivity_winners": [
+      {
+        "value": [
+          201,
+          201,
+          201
+        ],
+        "n": 400
+      }
+    ],
+    "gate_terms": [
+      {
+        "value": [
+          84915,
+          0,
+          0,
+          9,
+          0,
+          256
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          66,
+          66,
+          6,
+          0,
+          0
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          114,
+          114,
+          5,
+          0,
+          256
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          204,
+          205,
+          1,
+          0,
+          256
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          320,
+          329,
+          2,
+          0,
+          256
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          544,
+          544,
+          1,
+          0,
+          0
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          677,
+          684,
+          0,
+          0,
+          256
+        ],
+        "n": 2
+      },
+      {
+        "value": [
+          84915,
+          761,
+          761,
+          1,
+          0,
+          256
+        ],
+        "n": 2
+      }
+    ],
+    "gate_distance_zero": 400,
+    "g_distance_zero": 400,
+    "gate_writer_rank": [
+      {
+        "value": 2,
+        "n": 400
+      }
+    ],
+    "g_writer_rank": [
+      {
+        "value": 1,
+        "n": 400
+      }
+    ],
+    "top_eight": [
+      {
+        "value": [
+          73,
+          201,
+          1048,
+          803,
+          2205,
+          958,
+          1757,
+          332
+        ],
+        "n": 400
+      }
+    ]
+  },
+  "by_input_period": {
+    "false": {
+      "rows": 200,
+      "read_codes": 118,
+      "recurrence_codes": 186,
+      "unique_joint": 200,
+      "paired_same_read": 13,
+      "paired_same_rec": 0,
+      "paired_same_gate": 100,
+      "paired_same_emission": 100,
+      "pointer_predecessor_id": [
+        {
+          "value": 16,
+          "n": 200
+        }
+      ],
+      "pointer_successor_id": [
+        {
+          "value": 287,
+          "n": 74
+        },
+        {
+          "value": 772,
+          "n": 38
+        },
+        {
+          "value": 427,
+          "n": 26
+        },
+        {
+          "value": 301,
+          "n": 13
+        },
+        {
+          "value": 955,
+          "n": 13
+        },
+        {
+          "value": 201,
+          "n": 12
+        },
+        {
+          "value": 2130,
+          "n": 12
+        },
+        {
+          "value": 2216,
+          "n": 12
+        }
+      ],
+      "pointer_region": [
+        {
+          "value": "question_or_instruction",
+          "n": 188
+        },
+        {
+          "value": "fact_final_period_before_blank_line",
+          "n": 12
+        }
+      ],
+      "gate_ids": [
+        {
+          "value": 201,
+          "n": 200
+        }
+      ],
+      "writer_ids": [
+        {
+          "value": 73,
+          "n": 200
+        }
+      ],
+      "gate_and_output": [
+        {
+          "value": [
+            201,
+            73
+          ],
+          "n": 200
+        }
+      ],
+      "pointer_wins": 12,
+      "writer_preserves_gate": 0,
+      "sensitivity_winners": [
+        {
+          "value": [
+            201,
+            201,
+            201
+          ],
+          "n": 200
+        }
+      ],
+      "gate_terms": [
+        {
+          "value": [
+            84915,
+            66,
+            66,
+            6,
+            0,
+            0
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            544,
+            544,
+            1,
+            0,
+            0
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            0,
+            0,
+            26,
+            0,
+            0
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            1,
+            1,
+            2,
+            0,
+            0
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            1,
+            1,
+            43,
+            0,
+            0
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            1,
+            1,
+            300,
+            0,
+            0
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            1,
+            2,
+            0,
+            0,
+            0
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            1,
+            5,
+            160,
+            0,
+            0
+          ],
+          "n": 1
+        }
+      ],
+      "gate_distance_zero": 200,
+      "g_distance_zero": 200,
+      "gate_writer_rank": [
+        {
+          "value": 2,
+          "n": 200
+        }
+      ],
+      "g_writer_rank": [
+        {
+          "value": 1,
+          "n": 200
+        }
+      ],
+      "top_eight": [
+        {
+          "value": [
+            73,
+            201,
+            1048,
+            803,
+            2205,
+            958,
+            1757,
+            332
+          ],
+          "n": 200
+        }
+      ]
+    },
+    "true": {
+      "rows": 200,
+      "read_codes": 121,
+      "recurrence_codes": 189,
+      "unique_joint": 200,
+      "paired_same_read": 20,
+      "paired_same_rec": 0,
+      "paired_same_gate": 100,
+      "paired_same_emission": 100,
+      "pointer_predecessor_id": [
+        {
+          "value": 16,
+          "n": 200
+        }
+      ],
+      "pointer_successor_id": [
+        {
+          "value": 201,
+          "n": 200
+        }
+      ],
+      "pointer_region": [
+        {
+          "value": "instruction_final_token",
+          "n": 200
+        }
+      ],
+      "gate_ids": [
+        {
+          "value": 201,
+          "n": 200
+        }
+      ],
+      "writer_ids": [
+        {
+          "value": 73,
+          "n": 200
+        }
+      ],
+      "gate_and_output": [
+        {
+          "value": [
+            201,
+            73
+          ],
+          "n": 200
+        }
+      ],
+      "pointer_wins": 200,
+      "writer_preserves_gate": 0,
+      "sensitivity_winners": [
+        {
+          "value": [
+            201,
+            201,
+            201
+          ],
+          "n": 200
+        }
+      ],
+      "gate_terms": [
+        {
+          "value": [
+            84915,
+            0,
+            0,
+            9,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            114,
+            114,
+            5,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            204,
+            205,
+            1,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            320,
+            329,
+            2,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            677,
+            684,
+            0,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            761,
+            761,
+            1,
+            0,
+            256
+          ],
+          "n": 2
+        },
+        {
+          "value": [
+            84915,
+            0,
+            0,
+            16,
+            0,
+            256
+          ],
+          "n": 1
+        },
+        {
+          "value": [
+            84915,
+            0,
+            0,
+            20,
+            0,
+            256
+          ],
+          "n": 1
+        }
+      ],
+      "gate_distance_zero": 200,
+      "g_distance_zero": 200,
+      "gate_writer_rank": [
+        {
+          "value": 2,
+          "n": 200
+        }
+      ],
+      "g_writer_rank": [
+        {
+          "value": 1,
+          "n": 200
+        }
+      ],
+      "top_eight": [
+        {
+          "value": [
+            73,
+            201,
+            1048,
+            803,
+            2205,
+            958,
+            1757,
+            332
+          ],
+          "n": 200
+        }
+      ]
+    }
+  }
+}

@@ -31,6 +31,7 @@ pub(super) const LEARNED: Action = Action {
 };
 
 /// Exact native words from one writer transition.
+#[cfg_attr(feature = "postperiod-diagnostic", derive(Clone))]
 #[derive(Debug, Serialize)]
 pub struct WriterEvent {
     pub read_pos: Option<u16>,
