@@ -1,0 +1,17 @@
+{
+  "cubin_sha256": "96ce1a34257d2f7519d13af0fc2b4c2829cde77cbfe71cedb24ce541f65996bc",
+  "required_kernels": [
+    "p5_slot_step_brier_kernel",
+    "p5_batch_eval_roots_kernel",
+    "p5_rowsk_score_kernel",
+    "p5_rowsk_reduce_kernel",
+    "p5_eval_records_multi_arm_kernel"
+  ],
+  "missing_ptx_kernels": [],
+  "missing_sass_kernels": [],
+  "ptx_float_hits": 0,
+  "ptx_mma_hits": 0,
+  "sass_float_hits": 0,
+  "sass_mma_hits": 0,
+  "pass": true
+}

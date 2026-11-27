@@ -1,0 +1,328 @@
+{
+  "arms": {
+    "ctrl_reseed_canonical": {
+      "batch_brier_after_sum": "101975003455561306",
+      "batch_brier_before_sum": "101976263979518465",
+      "batch_brier_delta_ppm": -12,
+      "batches": 11682,
+      "commits": 8194,
+      "coords_moved_total": 50977,
+      "distinct_coords_changed_vs_seed1": 15329,
+      "epoch": 8194,
+      "joint_accepts": 3172,
+      "joint_attempts": 8012,
+      "trials": 11214720
+    },
+    "ctrl_reseed_random": {
+      "batch_brier_after_sum": "101967642125705524",
+      "batch_brier_before_sum": "101970363714331785",
+      "batch_brier_delta_ppm": -26,
+      "batches": 11682,
+      "commits": 11637,
+      "coords_moved_total": 84977,
+      "distinct_coords_changed_vs_seed1": 15323,
+      "epoch": 11637,
+      "joint_accepts": 11375,
+      "joint_attempts": 11490,
+      "trials": 11214720
+    },
+    "s1_p5_from_seed1": {
+      "batch_brier_after_sum": "101977963294721133",
+      "batch_brier_before_sum": "101979417401865591",
+      "batch_brier_delta_ppm": -14,
+      "batches": 11682,
+      "commits": 8172,
+      "coords_moved_total": 51950,
+      "distinct_coords_changed_vs_seed1": 7865,
+      "epoch": 8592,
+      "joint_accepts": 3279,
+      "joint_attempts": 7943,
+      "trials": 11214720
+    }
+  },
+  "batch_rows_cap": 4096,
+  "checkpoints_sha256": {
+    "baseline_seed1": "7e45d658f83ccc4094c7a16c573d64ff868cacc0e267a712fc4c7ab0f6af7150",
+    "ctrl_reseed_canonical": "f9cb9966a308847459bea4fe498a95efc5c4bc81698ffac31f9f12dfebe8e9fa",
+    "ctrl_reseed_random": "83930ba3ae4279791beb00f5e4f99f447e100594f4bde14f5d1e2791df11cc79",
+    "ctrl_reseed_static": "c5c7fbe1d8171f9a550f96dac0500171dc190211f972cfd4ccc7785cf9c6d64b",
+    "s1_p5_from_seed1": "9cb3f9c005b1a04e7c507fe4a11ff0a3aba4a96251f2e7bd330c6875313c2b06"
+  },
+  "cubin_sha256": "96ce1a34257d2f7519d13af0fc2b4c2829cde77cbfe71cedb24ce541f65996bc",
+  "dev_tune_uort_sha256": "75c6d1ac479bf120bac3aa60ac160536e8146f8052aa49c002209500799b7d0a",
+  "epoch_logs": [
+    {
+      "dev_tune_bits_q12": {
+        "baseline_seed1": "112193223106",
+        "ctrl_reseed_canonical": "112172407778",
+        "ctrl_reseed_random": "112172401455"
+      },
+      "dev_tune_brier": {
+        "baseline_seed1": "23096791800287334",
+        "ctrl_reseed_canonical": "23093572235895859",
+        "ctrl_reseed_random": "23093459144459734",
+        "ctrl_reseed_static": "23093572235895859",
+        "s1_p5_from_seed1": "23096791800287334"
+      },
+      "dev_tune_mean_brier_micro": {
+        "baseline_seed1": "497587",
+        "ctrl_reseed_canonical": "497518",
+        "ctrl_reseed_random": "497516"
+      },
+      "dev_tune_targets": 10807417,
+      "epoch_pass": 0
+    },
+    {
+      "arms": {
+        "ctrl_reseed_canonical": {
+          "batch_brier_after_sum": "33990557087762828",
+          "batch_brier_before_sum": "33990971903305309",
+          "batch_brier_delta_ppm": -12,
+          "batches": 3894,
+          "commits": 2725,
+          "coords_moved_total": 16772,
+          "distinct_coords_changed_vs_seed1": 15311,
+          "epoch": 2725,
+          "joint_accepts": 1072,
+          "joint_attempts": 2677,
+          "trials": 3738240
+        },
+        "ctrl_reseed_random": {
+          "batch_brier_after_sum": "33989170771133353",
+          "batch_brier_before_sum": "33990079287988045",
+          "batch_brier_delta_ppm": -26,
+          "batches": 3894,
+          "commits": 3879,
+          "coords_moved_total": 28311,
+          "distinct_coords_changed_vs_seed1": 15336,
+          "epoch": 3879,
+          "joint_accepts": 3789,
+          "joint_attempts": 3830,
+          "trials": 3738240
+        },
+        "s1_p5_from_seed1": {
+          "batch_brier_after_sum": "33994363121254346",
+          "batch_brier_before_sum": "33994865524621261",
+          "batch_brier_delta_ppm": -14,
+          "batches": 3894,
+          "commits": 2715,
+          "coords_moved_total": 16797,
+          "distinct_coords_changed_vs_seed1": 5329,
+          "epoch": 3135,
+          "joint_accepts": 1094,
+          "joint_attempts": 2644,
+          "trials": 3738240
+        }
+      },
+      "dev_tune_bits_q12": {
+        "baseline_seed1": "112193223106",
+        "ctrl_reseed_canonical": "112166854091",
+        "ctrl_reseed_random": "112173071783",
+        "ctrl_reseed_static": "112172407778",
+        "s1_p5_from_seed1": "112185979272"
+      },
+      "dev_tune_brier": {
+        "baseline_seed1": "23096791800287334",
+        "ctrl_reseed_canonical": "23093839783734952",
+        "ctrl_reseed_random": "23094351785665453",
+        "ctrl_reseed_static": "23093572235895859",
+        "s1_p5_from_seed1": "23096172668247139"
+      },
+      "dev_tune_brier_ppm_vs_base": {
+        "ctrl_reseed_canonical": -127,
+        "ctrl_reseed_random": -105,
+        "ctrl_reseed_static": -139,
+        "s1_p5_from_seed1": -26
+      },
+      "dev_tune_mean_brier_micro": {
+        "baseline_seed1": "497587",
+        "ctrl_reseed_canonical": "497524",
+        "ctrl_reseed_random": "497535",
+        "ctrl_reseed_static": "497518",
+        "s1_p5_from_seed1": "497574"
+      },
+      "dev_tune_targets": 10807417,
+      "epoch_pass": 1,
+      "epoch_wall_secs": 249,
+      "r_batches": 3894,
+      "r_targets": 15947584,
+      "s1_step_drop_ppm": 26,
+      "s1_total_drop_ppm": 26
+    },
+    {
+      "arms": {
+        "ctrl_reseed_canonical": {
+          "batch_brier_after_sum": "67981679587920466",
+          "batch_brier_before_sum": "67982521378215483",
+          "batch_brier_delta_ppm": -12,
+          "batches": 7788,
+          "commits": 5474,
+          "coords_moved_total": 33694,
+          "distinct_coords_changed_vs_seed1": 15337,
+          "epoch": 5474,
+          "joint_accepts": 2112,
+          "joint_attempts": 5356,
+          "trials": 7476480
+        },
+        "ctrl_reseed_random": {
+          "batch_brier_after_sum": "67978315414770919",
+          "batch_brier_before_sum": "67980128250123259",
+          "batch_brier_delta_ppm": -26,
+          "batches": 7788,
+          "commits": 7759,
+          "coords_moved_total": 56607,
+          "distinct_coords_changed_vs_seed1": 15330,
+          "epoch": 7759,
+          "joint_accepts": 7574,
+          "joint_attempts": 7652,
+          "trials": 7476480
+        },
+        "s1_p5_from_seed1": {
+          "batch_brier_after_sum": "67986131564617995",
+          "batch_brier_before_sum": "67987071504740868",
+          "batch_brier_delta_ppm": -13,
+          "batches": 7788,
+          "commits": 5453,
+          "coords_moved_total": 34242,
+          "distinct_coords_changed_vs_seed1": 6969,
+          "epoch": 5873,
+          "joint_accepts": 2185,
+          "joint_attempts": 5306,
+          "trials": 7476480
+        }
+      },
+      "dev_tune_bits_q12": {
+        "baseline_seed1": "112193223106",
+        "ctrl_reseed_canonical": "112216049543",
+        "ctrl_reseed_random": "112172153682",
+        "ctrl_reseed_static": "112172407778",
+        "s1_p5_from_seed1": "112177814925"
+      },
+      "dev_tune_brier": {
+        "baseline_seed1": "23096791800287334",
+        "ctrl_reseed_canonical": "23104426692414773",
+        "ctrl_reseed_random": "23093578593450123",
+        "ctrl_reseed_static": "23093572235895859",
+        "s1_p5_from_seed1": "23094675592167167"
+      },
+      "dev_tune_brier_ppm_vs_base": {
+        "ctrl_reseed_canonical": 330,
+        "ctrl_reseed_random": -139,
+        "ctrl_reseed_static": -139,
+        "s1_p5_from_seed1": -91
+      },
+      "dev_tune_mean_brier_micro": {
+        "baseline_seed1": "497587",
+        "ctrl_reseed_canonical": "497752",
+        "ctrl_reseed_random": "497518",
+        "ctrl_reseed_static": "497518",
+        "s1_p5_from_seed1": "497542"
+      },
+      "dev_tune_targets": 10807417,
+      "epoch_pass": 2,
+      "epoch_wall_secs": 295,
+      "r_batches": 3894,
+      "r_targets": 15947584,
+      "s1_step_drop_ppm": 64,
+      "s1_total_drop_ppm": 91
+    },
+    {
+      "arms": {
+        "ctrl_reseed_canonical": {
+          "batch_brier_after_sum": "101975003455561306",
+          "batch_brier_before_sum": "101976263979518465",
+          "batch_brier_delta_ppm": -12,
+          "batches": 11682,
+          "commits": 8194,
+          "coords_moved_total": 50977,
+          "distinct_coords_changed_vs_seed1": 15329,
+          "epoch": 8194,
+          "joint_accepts": 3172,
+          "joint_attempts": 8012,
+          "trials": 11214720
+        },
+        "ctrl_reseed_random": {
+          "batch_brier_after_sum": "101967642125705524",
+          "batch_brier_before_sum": "101970363714331785",
+          "batch_brier_delta_ppm": -26,
+          "batches": 11682,
+          "commits": 11637,
+          "coords_moved_total": 84977,
+          "distinct_coords_changed_vs_seed1": 15323,
+          "epoch": 11637,
+          "joint_accepts": 11375,
+          "joint_attempts": 11490,
+          "trials": 11214720
+        },
+        "s1_p5_from_seed1": {
+          "batch_brier_after_sum": "101977963294721133",
+          "batch_brier_before_sum": "101979417401865591",
+          "batch_brier_delta_ppm": -14,
+          "batches": 11682,
+          "commits": 8172,
+          "coords_moved_total": 51950,
+          "distinct_coords_changed_vs_seed1": 7865,
+          "epoch": 8592,
+          "joint_accepts": 3279,
+          "joint_attempts": 7943,
+          "trials": 11214720
+        }
+      },
+      "dev_tune_bits_q12": {
+        "baseline_seed1": "112193223106",
+        "ctrl_reseed_canonical": "112182601459",
+        "ctrl_reseed_random": "112178125426",
+        "ctrl_reseed_static": "112172407778",
+        "s1_p5_from_seed1": "112194692048"
+      },
+      "dev_tune_brier": {
+        "baseline_seed1": "23096791800287334",
+        "ctrl_reseed_canonical": "23096167877328648",
+        "ctrl_reseed_random": "23094724267028841",
+        "ctrl_reseed_static": "23093572235895859",
+        "s1_p5_from_seed1": "23097996114808322"
+      },
+      "dev_tune_brier_ppm_vs_base": {
+        "ctrl_reseed_canonical": -27,
+        "ctrl_reseed_random": -89,
+        "ctrl_reseed_static": -139,
+        "s1_p5_from_seed1": 52
+      },
+      "dev_tune_mean_brier_micro": {
+        "baseline_seed1": "497587",
+        "ctrl_reseed_canonical": "497574",
+        "ctrl_reseed_random": "497543",
+        "ctrl_reseed_static": "497518",
+        "s1_p5_from_seed1": "497613"
+      },
+      "dev_tune_targets": 10807417,
+      "epoch_pass": 3,
+      "epoch_wall_secs": 562,
+      "r_batches": 3894,
+      "r_targets": 15947584,
+      "s1_step_drop_ppm": -143,
+      "s1_total_drop_ppm": -52
+    }
+  ],
+  "epochs_completed": 3,
+  "equal_trials_per_arm": 11214720,
+  "k_block": 64,
+  "max_epochs": 6,
+  "min_epochs": 3,
+  "p4_d11_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "pass": true,
+  "r_uort_sha256": "5875b173ad19aefbdd38929af8d88c15344333e941f44128d5e0a67b50102a0a",
+  "s1_coords": 16384,
+  "schema": "uor-r4.p5-train-report/1",
+  "seed1_d11_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+  "single_arm_equiv_train_secs": 670,
+  "stop_reason": "dev_tune_saturated_after_epoch_3_step_drop_-143ppm_total_drop_-52ppm",
+  "timing_ms": {
+    "ctrl_reseed_canonical": 38331,
+    "ctrl_reseed_random": 39682,
+    "materialize_shared": 632292,
+    "s1_p5_from_seed1": 38463
+  },
+  "total_batches_per_arm": 11682,
+  "train_wall_secs_3_arms_plus_devtune": 1107
+}

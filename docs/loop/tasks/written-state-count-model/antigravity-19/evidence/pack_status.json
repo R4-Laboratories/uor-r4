@@ -1,0 +1,8 @@
+{
+  "packed": false,
+  "reason": "Phase P5 DEV-test gate did not qualify; S1 remains frozen at geometric default per DECISION.md:342",
+  "s1_frozen_at": "seed1.d11",
+  "schema": "uor-r4.p5-pack-status/1",
+  "seed1_d11_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+  "verdict": "P5_S1_FROZEN_AT_DEFAULT"
+}
