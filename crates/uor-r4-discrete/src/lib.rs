@@ -64,6 +64,7 @@ pub mod normalization_mechanism;
 pub mod objective;
 pub mod order_slice;
 pub mod p3_state_rows;
+pub mod p5_brier_core;
 #[cfg(all(test, feature = "cuda"))]
 mod pick_read_cuda;
 pub mod position_mechanism;

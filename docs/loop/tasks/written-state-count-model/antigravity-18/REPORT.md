@@ -1,0 +1,70 @@
+# REPORT: written-state-count-model, antigravity-18
+
+Lab: antigravity. Item: [written-state-count-model](../../../../roadmap/items/written-state-count-model.md) (`#4063`, `M2+/P5`). Base: `e90a1429c`. Order: [`ORDER.md`](ORDER.md).
+
+**Outcome (`Phase P5` PR 1 of 2 — `4,096`-row `Driver` cap lift & pure-integer `P5` mixed-mass Brier `S1` core): PASSED on host unit/differential/audit verification (`$0.00` GPU spend, `0` pods active).** Widened `DriverConfig::validate` (`training.rs:307,312`) from `1..=64` to `1..=corpus::MAX_BATCH_ROWS` (`4,096`) with updated `driver_source_pin::DRIVER_SOURCE_SHA256` (`b45f51391bc899d352342f8225860efe201f4e8bea2292f9b5e8457933250727`), and added `crates/uor-r4-discrete/src/p5_brier_core.rs` (`#![forbid(unsafe_code)]`, zero floats, zero dense matmul, zero normalized exponential, zero `Cargo.toml`/`Cargo.lock` edits) implementing the persistent native `S1` state (`<= 100,000` `VectorBlock` coordinates), lossless exact 4,095-token mixed-mass Q32 Brier decomposition (`R1-M6`), exact `rows-K` + `BVG-K` host reference oracle, equal-trial re-seeded random-coordinate controls (`DECISION.md:342`), and lossless `UORP5S10` / `UORLUT01` (`discrete.table`/`discrete.cells`) serialization verified directly against `IntegerDiscreteModel::from_bytes`. Wick RTX 4090 AOT `sm_89` CUDA execution, live `4,096`-row `Driver::run_block_transitions` GPU check, and single-shot sealed `DEV-test` `P5` Brier/BPB qualification run next in **Phase `P5` PR 2 (`antigravity-19`)** after non-author `FIT.md`.
+
+## What did not work, first
+
+1. **Host/synthetic scope only — no Wick GPU training, no `DEV-test` read, and no `P5` gate claim yet:** PR 1 (`antigravity-18`) delivers and verifies the `4,096`-row `Driver` cap lift and the pure-integer `p5_brier_core` host engine/oracle on synthetic `V <= 64` fixtures (`$0.00` GPU spend, `0` pods active). Real `V = 4,096` Wick RTX 4090 AOT `sm_89` CUDA training on `R` (`r.tokens.u16`), live GPU `4,096`-row `Driver::run_block_transitions` / `Device::score_rows_k` parity, equal-trial re-seeded controls, and single-shot sealed `DEV-test` Brier/BPB gating (`>= 1%`/GPU-day Brier fall without BPB rise) belong to **Phase `P5` PR 2 (`antigravity-19`)**.
+2. **Pre-existing untouched `uor-r4-discrete` warnings & unrelated test baseline:** `uor-r4-discrete` has pre-existing dead-code/clippy warnings in untouched files (`controller.rs`, `completion.rs`, `completion_baseline.rs`, `training.rs` outside our edit lines) and a pre-existing failure in `crate::tests::apply_calls_are_confined_to_bounded_fixture_and_admitted_transition` (`lib.rs:340`, failing in untouched `native_vector_device.rs:455`, unchanged from `main`); none of those paths were modified, and all `4` modified/added files have `0` clippy warnings in touched code.
+3. **Self-caught & Round 1 review defects fixed before merge:**
+   - The `15` `Cl(0,6)` bivector generators have stabilizers on a single anchor root rather than forming a 1-step bijection onto all `16` roots (they form a connected Cayley graph reaching all `16` roots via BFS, which is why `bvgk_source.rs` breaks equal-loss ties by `resulting_port`); updated the orbit test to assert exact `apply_group_action` + `orbit_root_id` agreement on all `256` pairs, full `16`-root BFS reachability, `L1 = 2 * popcount`, and multi-port `resulting_port` tie-breaking.
+   - An initial `rustfmt` pass on `lib.rs` reformatted `6` untouched module files; all `6` untouched files were reverted via `git checkout` and only the `3` directly edited/added `.rs` files (`p5_brier_core.rs`, `training.rs`, `driver_source_pin.rs`) were formatted.
+   - Hardened `P5S1State::validate` and `P5BatchBrier::validate_for_vocab` across all public entry points (guarding against post-construction mutation of public fields), replaced truncated `(u128 >> 32) as u64` clamps with saturating `u128` clamping + `checked_add`, and upgraded the random-coordinate control (`p5_random_coord_step_cpu` / `p5_step_control_cpu`) to execute exact `15 * block_len` candidate evaluations per block (`p5_random_block_coords` + `p5_bvgk_step_cpu`).
+   - Exact-head adversarial review Round 1 (`81db3c8e9`) & Round 2 (`bbb3b3363`) found and resolved `UORLUT01` hardening defects: (a) added full all-section span/kind/len/alignment/disjointness + empty-`matrices` validation (`validate_uorlut01_tables`) and `usize::try_from` shape checks; (b) updated `shape.epoch` and recomputed `source.snapshot_sha256` (`recompute_d11_snapshot_sha256`) directly on the `serde_json::Value` header so optional top-level fields (`tokenizer_sha256`) and all non-`S1` payload sections stay intact; (c) enforced `typed.shape.read_position == 0` on non-Pick rewrites; and (d) added regression tests for overlapping/duplicate/non-empty-`matrices`/bad-`read_position` containers plus both 4-table (`d11_export::import_d11`) and 19-table (`trunk::export_trunk_d11` -> `rewrite_uorlut01_s1` -> `trunk::import_trunk_d11` + `IntegerDiscreteModel::from_bytes` + `tokenizer_sha256` + `identity_pick_inventory`) round-trips.
+
+## What changed
+
+- [`crates/uor-r4-discrete/src/training.rs`](../../../../../crates/uor-r4-discrete/src/training.rs):
+  - Widened `DriverConfig::validate` (`lines 307–314`) from `!(1..=64).contains(&self.batch_rows)` to `!(1..=corpus::MAX_BATCH_ROWS).contains(&self.batch_rows)` (`1..=4,096`), matching `corpus.rs:15` and `device.rs:1456`.
+  - Added `training::tests::driver_config_admits_4096_rows_and_refuses_out_of_range` verifying acceptance across `{1, 64, 256, 1024, 4096}`, refusal of `0` and `4097`, and `Driver::block_at` / `advance_block` / `validate_cursor` at `4,096` rows and `K = 64` in `ReadSpec::Pick`.
+- [`crates/uor-r4-discrete/src/driver_source_pin.rs`](../../../../../crates/uor-r4-discrete/src/driver_source_pin.rs):
+  - Updated `DRIVER_SOURCE_SHA256` to `"b45f51391bc899d352342f8225860efe201f4e8bea2292f9b5e8457933250727"`.
+- [`crates/uor-r4-discrete/src/lib.rs`](../../../../../crates/uor-r4-discrete/src/lib.rs):
+  - Exported `pub mod p5_brier_core;`.
+- [`crates/uor-r4-discrete/src/p5_brier_core.rs`](../../../../../crates/uor-r4-discrete/src/p5_brier_core.rs) (`#![forbid(unsafe_code)]`, pure integer):
+  - **Orbit tables (`p5_orbit_tables`, `root_code_8d`, `apply_group_action`, `orbit_root_vec`):** Derived directly from compiled `OUT_DIR/geometry.rs` (`ROOTS`, `AXES`, `GENERATORS`, `IDENTITY`), matching `discrete.cu` and `IntegerDiscreteModel`.
+  - **Persistent native state (`P5S1State`):** Enforces `V * B <= 100,000` (`4,096 * 4 = 16,384` default), fail-closed `validate()`, `reseeded`, `to_discrete_table`, `derive_cells`, `derive_pick_codes_4`, `UORP5S10` binary codec (trailing SHA-256), and lossless `UORLUT01` `extract_s1_from_uorlut01` / `rewrite_uorlut01_s1` (validating all declared table spans, alignment, kind widths, pairwise disjointness, and empty `matrices`; updating `discrete.table`, `discrete.cells`, `shape.epoch`, and `source.snapshot_sha256` while preserving all non-`S1` payload sections byte-for-byte with round-trip verification).
+  - **Exact mixed-mass Brier objective (`full_vocab_brier_q32`, `P5RowBrier`, `P5BatchBrier`):** Decomposes exact full-vocabulary (`1..vocab`) Q32 Brier of the 22-expert Q48 `P4` mixture losslessly across `(pick_class in 0..5, pick_pos in 1..L-1)` with zero approximation.
+  - **Exact `rows-K` + `BVG-K` host oracle & equal-trial controls (`pick_with_virtual_move`, `batch_brier_q32`, `p5_score_block_cpu`, `p5_bvgk_step_cpu`, `p5_schedule_block`, `p5_random_block_coords`, `p5_random_coord_step_cpu`, `p5_step_control_cpu`, `P5ControlMode`):** Exact `rows-K` scoring across `1..=4,096` rows and `K in 1..=64` with O(1) exact skip on rows missing `tok = coord / 4`, `resulting_port` tie-breaking, `|S_t| >= 2` scratch joint verification (`L(S_t) < L({best})`), and exact `15 * block_len` equal-trial random-coordinate control.
+- Updated [`docs/research/notebook/m4-serving.md`](../../../../research/notebook/m4-serving.md) and [`docs/roadmap/items/written-state-count-model.md`](../../../../roadmap/items/written-state-count-model.md).
+
+## Measurements
+
+- **Synthetic bit-exact parity (`p5_brier_core`, `9/9 PASS`):**
+  - `0` diffs across all `256` `(root, generator)` transitions vs `apply_group_action` + `orbit_root_id`, full `16`-root BFS reachability, and `L1 = 2 * popcount` on all `256` root pairs.
+  - `0` raw-word diffs between `P5RowBrier::brier_for_pick` and full-vocabulary `brier_mix_q48` + `full_vocab_brier_q32` across `no_pick` and all `(pick_class in 1..5, pick_pos in 1..L-1)`.
+  - `0` diffs between `p5_score_block_cpu` / `p5_bvgk_step_cpu` (`K = 8`) and brute-force state cloning, non-vacuous target-shift response, joint-accept (`|S_t| = 2`, `joint = true`), joint-reject fallback (`|S_t| = 2`, `joint = false`), multi-port `resulting_port` tie-breaking, and exact post-commit Brier identity across `p5_random_coord_step_cpu` and all three `P5ControlMode` variants in `p5_step_control_cpu`.
+  - Lossless 4-table (`export_d11` -> `rewrite_uorlut01_s1` -> `import_d11`) and full `V = 4,096` 19-table trunk (`export_trunk_d11` + `tokenizer_sha256` -> `rewrite_uorlut01_s1` -> `import_trunk_d11` + `IntegerDiscreteModel::from_bytes`) round-trips at `epoch = 42` verified bit-for-bit on `tokenizer_sha256`, `served.cells()`, all `4,096` words of `served.packed_codebook_roots()`, `identity_pick_inventory()` token blocks, and all `15` preserved non-`S1` trunk sections, plus tamper/over-cap/overlapping-span/duplicate-section/non-empty-`matrices`/bad-`read_position`/mutated-field/OOB-token refusals.
+- **Compute & spend:** `$0.00` GPU spend (host macOS Apple Silicon CPU unit/differential tests only); `0` GPU pods launched, `0` pods owned by `antigravity`; `0` `Cargo.toml`/`Cargo.lock` edits.
+
+## Checks run at the head
+
+| Check | Command | Result |
+|---|---|---|
+| Formatting | `rustfmt --check --edition 2021` on `p5_brier_core.rs`, `training.rs`, `driver_source_pin.rs` | **PASS** (`0` diffs) |
+| `p5_brier_core` unit & parity suite | `cargo test --offline --locked -p uor-r4-discrete --lib p5_brier_core` | **PASS** (`9 passed; 0 failed`) |
+| Driver source pin | `cargo test --offline --locked -p uor-r4-discrete --lib driver_source_pin` | **PASS** (`1 passed; 0 failed`) |
+| Driver `4,096`-row & cursor tests | `cargo test --offline --locked -p uor-r4-discrete --lib training::tests` | **PASS** (`35 passed; 0 failed`) |
+| `BVG-K` / `rows-K` / `rows_source` | `cargo test --offline --locked -p uor-r4-discrete --lib bvgk_` / `rowsk_` / `rows_source` | **PASS** (`16` / `5` / `4` passed; `0` failed) |
+| `d11_export` / `kn_ceiling` / `p3_state_rows` | `cargo test --offline --locked -p uor-r4-discrete --lib d11_export` / `kn_ceiling` / `p3_state_rows` | **PASS** (`7` / `29` / `6` passed; `0` failed) |
+| `prime-zeta-qualify` & bin compile | `cargo test --offline --locked -p uor-r4-discrete --bin prime-zeta-qualify` & `cargo check --bins` | **PASS** (`6 passed; 0 failed`; bins compile) |
+| Serving runtime & `P4` integration | `cargo test --offline --locked -p uor-r4-count-runtime` & `-p uor-r4-integer --features p1-count-serving --test discrete_p4_serving` | **PASS** (`2` / `5` passed; `0` failed) |
+| Scoped clippy | `cargo clippy --offline --locked -p uor-r4-discrete --lib --tests --no-deps` | **PASS** (`0` warnings in all `4` touched files) |
+| Charter & style scans | `check_no_softmax.py`, `check_no_matmul.py`, forbidden-token & tuple-index scans | **PASS** (`3,828 <= 4,451`, `93 <= 93`, `0` float/`unsafe`/tuple-index hits) |
+| Harness gates | `uor-harness loop report --check`, `claim-wording`, `shard-check`, `check-formats`, `ratchet d23\|d25\|d32`, `check --only harness.native_space_contract`, `loop pr-check --local` | **PASS** (`verdict: PASS`) |
+
+## Skills used
+
+- `native-space-cycle` (`.agents/skills/native-space-cycle/SKILL.md`): specified one declared pure-integer `S1` state schema (`P5S1State` / `UORP5S10`), shared `OUT_DIR/geometry.rs` operators matching `discrete.cu` and `IntegerDiscreteModel`, bit-exact 4,095-token Brier replay oracle, and lossless `UORLUT01` round-trip serialization.
+- `uor-research-architect` (`.agents/skills/uor-research-architect/SKILL.md`): enforced two-PR `P5` separation (host engine + cap lift in PR 1; FIT-gated Wick RTX 4090 AOT CUDA execution + equal-trial controls + sealed `DEV-test` gate in PR 2) and scoped edits.
+- `verification-before-completion` (`verification-before-completion/SKILL.md`): verified formatting, all `125` targeted unit/integration tests, scoped clippy, charter ratchets, and `uor-harness` gates after the final edit.
+
+## Still open
+
+1. **Phase `P5` PR 2 of 2 (`antigravity-19`):** Pre-register (`SHEET.md` + non-author `pro` `FIT.md`) and execute on Wick RTX 4090 (`$0.00` pod spend): Gate 1 AOT `sm_89` PTX/SASS zero-float/zero-MMA audit, Gate 2 finite GPU-vs-CPU parity against `p5_brier_core` + live `4,096`-row `Driver::run_block_transitions` GPU check, Gate 3 `R`-split `rows-K`/`BVG-K` mixed-mass Brier `S1` optimization vs equal-trial re-seeded controls (`ReseededCanonical`, `ReseededRandomCoords`, static re-seed), and Gate 4 single-shot sealed `DEV-test` Brier/BPB gate (`DECISION.md:342`).
+
+## Plain summary
+
+This first Phase `P5` PR lifts the `Driver`'s `1..=64` batch-row cap to `1..=4,096` (matching `corpus::MAX_BATCH_ROWS`) and introduces the pure-integer `p5_brier_core` engine that represents `S1`'s `16,384` `Cl(0,6)` orbit coordinates (`<= 1e5`), computes the exact full-vocabulary mixed-mass Q32 Brier score (`R1-M6`) with zero approximation, runs `rows-K` + `BVG-K` and equal-trial re-seeded random-coordinate controls, and losslessly rewrites `seed1.d11` (`UORLUT01`) so `import_trunk_d11` and `IntegerDiscreteModel` load the exact updated coordinates, epoch, and `tokenizer_sha256` with zero export gap. All `125` targeted unit and integration tests, scoped clippy, and zero-float/zero-matmul checks passed on the host (`$0.00` GPU spend). Pre-registered Wick RTX 4090 CUDA training and the sealed `DEV-test` Brier/BPB gate run next in PR 2 (`antigravity-19`).

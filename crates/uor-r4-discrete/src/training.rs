@@ -304,13 +304,14 @@ impl DriverConfig {
             ));
         }
         if self.schema != DRIVER_SCHEMA
-            || !(1..=64).contains(&self.batch_rows)
+            || !(1..=corpus::MAX_BATCH_ROWS).contains(&self.batch_rows)
             || self.train.split != Split::Train
             || self.dev.split != Split::Dev
         {
-            return Err(invalid(
-                "driver needs current schema, rows1..64 and separate declared TRAIN/DEV roles",
-            ));
+            return Err(invalid(format!(
+                "driver needs current schema, rows1..{} and separate declared TRAIN/DEV roles",
+                corpus::MAX_BATCH_ROWS
+            )));
         }
         for pin in [
             &self.train.tokens,
@@ -2216,6 +2217,44 @@ mod tests {
             })),
             "coordinate_block 1 cursor carries no block fields"
         );
+        Ok(())
+    }
+    #[test]
+    fn driver_config_admits_4096_rows_and_refuses_out_of_range() -> Result<()> {
+        let base = metadata_fixture(1, ReadSpec::Route)?.config.clone();
+        for rows in [1u32, 64, 256, 1024, corpus::MAX_BATCH_ROWS] {
+            let mut cfg = base.clone();
+            cfg.batch_rows = rows;
+            cfg.coordinate_block = CoordinateBlock(64);
+            cfg.counterfactual_path = CounterfactualPath::RowsV1;
+            cfg.validate()?;
+        }
+        let expected = format!(
+            "driver needs current schema, rows1..{} and separate declared TRAIN/DEV roles",
+            corpus::MAX_BATCH_ROWS
+        );
+        for bad_rows in [0u32, corpus::MAX_BATCH_ROWS + 1] {
+            let mut cfg = base.clone();
+            cfg.batch_rows = bad_rows;
+            assert_eq!(refusal(cfg.validate()), expected);
+        }
+        // Verify cursor & block schedule advance cleanly at 4,096 rows and K = 64.
+        let mut driver = block_fixture(
+            64,
+            ReadSpec::Pick,
+            SPEC24,
+            SchedulePolicy::CanonicalVectorThenReadV1,
+        )?;
+        driver.config.batch_rows = corpus::MAX_BATCH_ROWS;
+        driver.config.validate()?;
+        let cursor = driver.initial_cursor();
+        let block = driver.block_at(&cursor)?;
+        assert_eq!(block.kind, CoordinateKind::VectorBlock);
+        assert!(!block.coordinates.is_empty());
+        let next = driver.advance_block(&cursor, true, 1)?;
+        driver.validate_cursor(&next)?;
+        assert_eq!(next.completed_batches, 1);
+        assert_eq!(next.accepted_updates, 1);
         Ok(())
     }
     #[test]
