@@ -19,7 +19,7 @@ use uor_r4_integer::config::ReadMode;
 use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
-use uor_r4_integer::discrete_d11::pair_rank;
+use uor_r4_integer::discrete_d11::{native_copy, pair_rank};
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
     TurnClosure,
@@ -67,6 +67,7 @@ struct CliArgs {
     stack_path: Option<PathBuf>,
     /// A `UORLUT01` discrete SpiralCore/FBS artifact (`--discrete`).
     discrete_path: Option<PathBuf>,
+    authenticated_copy: bool,
     #[cfg(feature = "p1-count-serving")]
     p1_path: Option<PathBuf>,
     #[cfg(feature = "p1-count-serving")]
@@ -325,6 +326,7 @@ impl Default for CliArgs {
             bundle_path: None,
             stack_path: None,
             discrete_path: None,
+            authenticated_copy: false,
             #[cfg(feature = "p1-count-serving")]
             p1_path: None,
             #[cfg(feature = "p1-count-serving")]
@@ -418,6 +420,9 @@ fn print_usage() {
     );
     eprintln!(
         "                              greedy raw-ID or text serving through IntegerDiscreteModel"
+    );
+    eprintln!(
+        "      --authenticated-copy   resolve one native occurrence-backed opening tie by exact ID"
     );
     eprintln!(
         "      --tokenizer <PATH>      tokenizer.json for --stack or a token-bound discrete text turn"
@@ -688,6 +693,7 @@ fn parse_cli_args() -> CliArgs {
                 };
             }
             "--contextual-source-trace" => args.contextual_source_trace = true,
+            "--authenticated-copy" => args.authenticated_copy = true,
             "--discrete" => {
                 idx += 1;
                 if idx < raw.len() {
@@ -1201,6 +1207,10 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.contextual_source_trace && args.discrete_path.is_none() {
         eprintln!("--contextual-source-trace requires --discrete");
+        process::exit(1);
+    }
+    if args.authenticated_copy && args.discrete_path.is_none() {
+        eprintln!("--authenticated-copy requires a native occurrence --discrete artifact");
         process::exit(1);
     }
     if args.discrete_path.is_some() && args.threads != 1 {
@@ -2321,6 +2331,12 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     #[cfg(feature = "p1-count-serving")]
     let (model, p1, p4) = (deployment.model, deployment.state, deployment.p4);
     #[cfg(feature = "p1-count-serving")]
+    if cli.authenticated_copy && (p1.is_some() || p4.is_some()) {
+        return Err(IntegerError::Invalid(
+            "--authenticated-copy requires the native occurrence writer".into(),
+        ));
+    }
+    #[cfg(feature = "p1-count-serving")]
     let p4_source = if let Some(path) = &cli.p4_source_gate {
         let p4_state_sha256 = p4
             .as_ref()
@@ -2404,6 +2420,11 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
 
     use uor_r4_integer::discrete_d11::{ExactCopyState, ROLE_COPY_STOPS};
     let role_carrier = model.is_role_copy_carrier();
+    let mut authenticated_copy = cli
+        .authenticated_copy
+        .then(|| native_copy::Session::new(&model))
+        .transpose()?;
+    let mut authenticated_steps = Vec::new();
     if role_carrier && text_mode.is_some() && cli.protocol != 2 {
         return Err(IntegerError::Invalid(
             "role-copy text uses literal dialogue protocol 2".into(),
@@ -2548,7 +2569,12 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         };
         #[cfg(not(feature = "p1-count-serving"))]
         let p1_winner: Option<u32> = p4_winner;
-        let ordinary = if let Some(id) = p1_winner {
+        let ordinary = if let Some(session) = &mut authenticated_copy {
+            let event = session.step(&context)?;
+            let committed_id = event.committed_id;
+            authenticated_steps.push(event);
+            committed_id
+        } else if let Some(id) = p1_winner {
             id
         } else if let Some(table) = model.active_s2() {
             let read = table.predict_expert(&context)?;
@@ -2580,6 +2606,9 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             ordinary
         };
         generated_ids.push(prediction);
+        if authenticated_copy.is_some() && prediction == native_copy::EOS {
+            break;
+        }
         #[cfg(feature = "p1-count-serving")]
         if (p1.is_some() || p4.is_some()) && prediction == 1 {
             break;
@@ -2626,6 +2655,10 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         "prompt_ids": prompt,
         "generated_ids": generated_ids,
     });
+    if authenticated_copy.is_some() {
+        record["decoding"] = native_copy::SCHEMA.into();
+        record["authenticated_copy_steps"] = serde_json::to_value(authenticated_steps)?;
+    }
     #[cfg(feature = "p1-count-serving")]
     if let Some(engine) = &p4 {
         record["decoding"] =

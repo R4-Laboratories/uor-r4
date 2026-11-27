@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "rows": 9,
+  "lexical_positive": 261,
+  "non_eos_alias": [
+    262,
+    6
+  ],
+  "eos_collision": [
+    1808,
+    3984
+  ],
+  "same_id_wrong_address_rejected": true,
+  "empty_and_malformed_refused": true
+}

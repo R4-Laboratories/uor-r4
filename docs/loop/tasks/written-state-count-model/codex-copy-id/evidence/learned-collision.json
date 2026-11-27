@@ -1,0 +1,57 @@
+{
+  "count": 13,
+  "example": [
+    {
+      "g": "39ff3b04b2ac01c78e7ca825",
+      "a": 0,
+      "s": 0,
+      "q": "What marking identifies the drawer cataloged by Diego? Write the single word followed by a period.",
+      "target": 1808,
+      "expected_second": 16,
+      "position": 23,
+      "winner": 23,
+      "native": 1,
+      "copied": 1808,
+      "next": 848
+    },
+    {
+      "g": "39ff3b04b2ac01c78e7ca825",
+      "a": 0,
+      "s": 1,
+      "q": "What marking identifies the drawer cataloged by Floyd? Write the single word followed by a period.",
+      "target": 3984,
+      "expected_second": 16,
+      "position": 42,
+      "winner": 42,
+      "native": 1,
+      "copied": 3984,
+      "next": 848
+    },
+    {
+      "g": "39ff3b04b2ac01c78e7ca825",
+      "a": 1,
+      "s": 0,
+      "q": "What marking identifies the drawer cataloged by Diego? Write the single word followed by a period.",
+      "target": 3984,
+      "expected_second": 16,
+      "position": 23,
+      "winner": 23,
+      "native": 1,
+      "copied": 3984,
+      "next": 848
+    },
+    {
+      "g": "39ff3b04b2ac01c78e7ca825",
+      "a": 1,
+      "s": 1,
+      "q": "What marking identifies the drawer cataloged by Floyd? Write the single word followed by a period.",
+      "target": 1808,
+      "expected_second": 16,
+      "position": 42,
+      "winner": 42,
+      "native": 1,
+      "copied": 1808,
+      "next": 848
+    }
+  ]
+}

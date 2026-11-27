@@ -1,0 +1,26 @@
+{
+  "index": 24,
+  "pair_id": "8669f7550b10e33a2ae45649",
+  "expected": [
+    1808,
+    1
+  ],
+  "learned_ids": [
+    1808,
+    1
+  ],
+  "learned_text": " lake",
+  "learned_stop": "eos",
+  "stock_ids": [
+    1
+  ],
+  "stock_text": "",
+  "stock_stop": "eos",
+  "authentic_rival_ids": [
+    3984,
+    1
+  ],
+  "matching_raw_prefixes": true,
+  "matching_live_and_cold_transition": true,
+  "matched_expected": true
+}

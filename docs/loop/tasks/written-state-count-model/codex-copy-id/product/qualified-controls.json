@@ -1,0 +1,145 @@
+{
+  "valid_single_occurrence": {
+    "index": 18,
+    "pair_id": "d12255325c3769dd2a083a40",
+    "gold_pos": 41,
+    "expected": [
+      3144,
+      1
+    ],
+    "actual": [
+      3144,
+      1
+    ],
+    "native_proposal": 8,
+    "minimum_distance": 0
+  },
+  "duplicate": [
+    {
+      "index": 1400,
+      "pair_id": "3b006d0fdec253b39667ca01",
+      "source_position": 48,
+      "claim_position": 33,
+      "source_id": 1808,
+      "copied_at_gold": true,
+      "alternate_id": 1808,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1401,
+      "pair_id": "77d8e8499db1be539e5e6ee2",
+      "source_position": 58,
+      "claim_position": 69,
+      "source_id": 3984,
+      "copied_at_gold": true,
+      "alternate_id": 3984,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1404,
+      "pair_id": "7ed27327b80a1e2a0ec78b96",
+      "source_position": 65,
+      "claim_position": 33,
+      "source_id": 3984,
+      "copied_at_gold": true,
+      "alternate_id": 3984,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1405,
+      "pair_id": "92dd74a66bc6f0e45c8d0d8a",
+      "source_position": 38,
+      "claim_position": 67,
+      "source_id": 1808,
+      "copied_at_gold": true,
+      "alternate_id": 1808,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1408,
+      "pair_id": "b9a0b667d24e0e1de536310e",
+      "source_position": 45,
+      "claim_position": 30,
+      "source_id": 4007,
+      "copied_at_gold": true,
+      "alternate_id": 4007,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1409,
+      "pair_id": "26315d589974e2cb8615d44c",
+      "source_position": 51,
+      "claim_position": 62,
+      "source_id": 3358,
+      "copied_at_gold": true,
+      "alternate_id": 3358,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1412,
+      "pair_id": "3fdb602fc76801a43a40a3b4",
+      "source_position": 60,
+      "claim_position": 29,
+      "source_id": 2612,
+      "copied_at_gold": true,
+      "alternate_id": 2612,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    },
+    {
+      "index": 1413,
+      "pair_id": "2ea6aac569e7894577648cc9",
+      "source_position": 34,
+      "claim_position": 60,
+      "source_id": 2330,
+      "copied_at_gold": true,
+      "alternate_id": 2330,
+      "alternate_admitted": true,
+      "alternate_distance": 0,
+      "minimum_distance": 0,
+      "copied_at_alternate": false,
+      "refusal_keeps_proposal": true
+    }
+  ],
+  "abstention": [
+    {
+      "cohort": "subject_unbound",
+      "rows": 200,
+      "learned_copied": 124,
+      "learned_reads": 124
+    },
+    {
+      "cohort": "value_omitted",
+      "rows": 400,
+      "learned_copied": 400,
+      "learned_reads": 400
+    }
+  ]
+}

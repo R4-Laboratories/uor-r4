@@ -130,3 +130,7 @@ required-features = ["serving-wasm"]
 [[bin]]
 name = "verify-native-occurrence"
 path = "src/bin/verify-native-occurrence.rs"
+
+[[bin]]
+name = "verify-native-copy"
+path = "src/bin/verify-native-copy.rs"

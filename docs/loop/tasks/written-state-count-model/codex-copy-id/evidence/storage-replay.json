@@ -1,0 +1,17 @@
+{
+  "archive_bytes": 2698447,
+  "archive_sha256": "491fcfd9cbe726ab68f88ded14abdb05009ca149bd565898e9e721d582cfead1",
+  "dataset": "caseyallard/uor-r4-store",
+  "path": "results/codex/copy-two-step-20261127/copy-two-step.tar.zst",
+  "revision": "3ca768cb6cf3094399f4c059ab016a6dbbe12459",
+  "download_equals_zfs": true,
+  "manifests_checked": [
+    "measurement-v1/OUTPUTS.sha256",
+    "qualified-v1/SHA256SUMS",
+    "analysis-v1/SHA256SUMS",
+    "fitted-v1/evidence.sha256"
+  ],
+  "cold_replayed_rows": 1416,
+  "replayed_native_jsonl_sha256": "3df41b1d175f1339fcc94a68368834dd857ab10f70f3a8ddc75d2e92c93d32ae",
+  "byte_equal_to_original_cold": true
+}

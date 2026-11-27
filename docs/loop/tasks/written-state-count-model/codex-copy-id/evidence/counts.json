@@ -1,0 +1,132 @@
+{
+  "all_prompts": 1416,
+  "cohorts": {
+    "controlled": 800,
+    "malformed": 8,
+    "same_id_wrong_address": 8,
+    "subject_unbound": 200,
+    "value_omitted": 400
+  },
+  "controlled": {
+    "correct": {
+      "first": {
+        "rows": 800,
+        "pairs": 400,
+        "groups": 200
+      },
+      "two": {
+        "rows": 124,
+        "pairs": 33,
+        "groups": 14
+      },
+      "terminal_at_first": 0,
+      "with_successor": 800,
+      "copied": 800
+    },
+    "generate": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 124,
+      "with_successor": 676,
+      "copied": 0
+    },
+    "invalid": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 160,
+      "with_successor": 640,
+      "copied": 0
+    },
+    "learned": {
+      "first": {
+        "rows": 389,
+        "pairs": 133,
+        "groups": 66
+      },
+      "two": {
+        "rows": 51,
+        "pairs": 8,
+        "groups": 4
+      },
+      "terminal_at_first": 0,
+      "with_successor": 800,
+      "copied": 800
+    },
+    "marker": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 9,
+      "with_successor": 791,
+      "copied": 0
+    },
+    "missing": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 160,
+      "with_successor": 640,
+      "copied": 0
+    },
+    "same_id_wrong_occurrence": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 160,
+      "with_successor": 640,
+      "copied": 0
+    },
+    "swapped": {
+      "first": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "two": {
+        "rows": 0,
+        "pairs": 0,
+        "groups": 0
+      },
+      "terminal_at_first": 0,
+      "with_successor": 800,
+      "copied": 800
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "authorized": true,
+  "test_fitness": "FIT",
+  "source": "faf67f7ba430109eda06915dc29a3db2ffc4cfa9",
+  "approved_sha256": "56457a8e24dbd66b8ca8432123dcc7a4cd152d4fabd6b9477095e576f6ae95de",
+  "device_uuid": "GPU-b8e9ad94-9915-97c9-3230-e788d263df32",
+  "pod": "vast-62891246",
+  "approved_utc": "2026-11-27T17:41:59Z",
+  "reviewer": "copy_fit"
+}

@@ -1,0 +1,366 @@
+{
+  "by_ref": [
+    {
+      "arm": "correct",
+      "ref": 1,
+      "rows": 400,
+      "first_correct": 400,
+      "both": 13,
+      "next_when_first_correct": [
+        [
+          16,
+          117
+        ],
+        [
+          223,
+          77
+        ],
+        [
+          161,
+          30
+        ],
+        [
+          73,
+          18
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          74,
+          16
+        ],
+        [
+          14,
+          15
+        ],
+        [
+          1,
+          13
+        ]
+      ]
+    },
+    {
+      "arm": "correct",
+      "ref": 16,
+      "rows": 400,
+      "first_correct": 400,
+      "both": 111,
+      "next_when_first_correct": [
+        [
+          16,
+          111
+        ],
+        [
+          223,
+          98
+        ],
+        [
+          161,
+          39
+        ],
+        [
+          74,
+          16
+        ],
+        [
+          860,
+          15
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          31,
+          10
+        ]
+      ]
+    },
+    {
+      "arm": "learned",
+      "ref": 1,
+      "rows": 400,
+      "first_correct": 195,
+      "both": 3,
+      "next_when_first_correct": [
+        [
+          16,
+          47
+        ],
+        [
+          223,
+          40
+        ],
+        [
+          73,
+          13
+        ],
+        [
+          161,
+          12
+        ],
+        [
+          74,
+          10
+        ],
+        [
+          14,
+          9
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          9,
+          7
+        ]
+      ]
+    },
+    {
+      "arm": "learned",
+      "ref": 16,
+      "rows": 400,
+      "first_correct": 194,
+      "both": 48,
+      "next_when_first_correct": [
+        [
+          16,
+          48
+        ],
+        [
+          223,
+          48
+        ],
+        [
+          161,
+          24
+        ],
+        [
+          74,
+          12
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          73,
+          7
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    }
+  ],
+  "absent": [
+    {
+      "cohort": "subject_unbound",
+      "rows": 200,
+      "reads": 124,
+      "commits": 124
+    },
+    {
+      "cohort": "value_omitted",
+      "rows": 400,
+      "reads": 400,
+      "commits": 400
+    }
+  ],
+  "collision": [
+    {
+      "arm": "correct",
+      "target": 1808,
+      "first_correct": 80,
+      "both": 20,
+      "next_when_correct": [
+        [
+          161,
+          33
+        ],
+        [
+          16,
+          29
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          848,
+          3
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          223,
+          2
+        ],
+        [
+          30,
+          1
+        ],
+        [
+          73,
+          1
+        ],
+        [
+          74,
+          1
+        ]
+      ]
+    },
+    {
+      "arm": "correct",
+      "target": 3984,
+      "first_correct": 80,
+      "both": 20,
+      "next_when_correct": [
+        [
+          161,
+          33
+        ],
+        [
+          16,
+          29
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          848,
+          3
+        ],
+        [
+          20,
+          2
+        ],
+        [
+          223,
+          2
+        ],
+        [
+          30,
+          1
+        ],
+        [
+          73,
+          1
+        ],
+        [
+          74,
+          1
+        ]
+      ]
+    },
+    {
+      "arm": "generate",
+      "target": 1808,
+      "first_correct": 0,
+      "both": 0,
+      "next_when_correct": []
+    },
+    {
+      "arm": "generate",
+      "target": 3984,
+      "first_correct": 0,
+      "both": 0,
+      "next_when_correct": []
+    },
+    {
+      "arm": "learned",
+      "target": 1808,
+      "first_correct": 37,
+      "both": 6,
+      "next_when_correct": [
+        [
+          161,
+          17
+        ],
+        [
+          16,
+          12
+        ],
+        [
+          848,
+          3
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          20,
+          1
+        ],
+        [
+          30,
+          1
+        ],
+        [
+          73,
+          1
+        ],
+        [
+          74,
+          1
+        ]
+      ]
+    },
+    {
+      "arm": "learned",
+      "target": 3984,
+      "first_correct": 37,
+      "both": 6,
+      "next_when_correct": [
+        [
+          161,
+          17
+        ],
+        [
+          16,
+          12
+        ],
+        [
+          848,
+          3
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          20,
+          1
+        ],
+        [
+          30,
+          1
+        ],
+        [
+          73,
+          1
+        ],
+        [
+          74,
+          1
+        ]
+      ]
+    }
+  ]
+}

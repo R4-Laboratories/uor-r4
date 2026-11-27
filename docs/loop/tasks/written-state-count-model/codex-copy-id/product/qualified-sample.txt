@@ -1,0 +1,3 @@
+The observatory keeps a code beside every telescope booking. For the booking filed by Sacha, the code is lake. For the booking filed by Levi, the code is anchor.
+
+Which booking code should I look up for Sacha? Write only the word without punctuation.

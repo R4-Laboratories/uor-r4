@@ -1,0 +1,3 @@
+In the annual greenhouse inventory, each bed is indexed by a tag. Listed under lake is the bed tended by Astrid. Listed under anchor is the bed tended by Edwin.
+
+Which tag would locate the bed attributed to Astrid in the greenhouse inventory?

@@ -1,0 +1,31 @@
+{
+  "finite_rows": 9,
+  "raw_text_equal": true,
+  "raw_cold_equal": true,
+  "legacy_ids": [
+    1
+  ],
+  "copy_ids": [
+    1808,
+    16
+  ],
+  "text": " lake.",
+  "stop": "max_tokens",
+  "same_token_other_occurrence_refused": true,
+  "invalid_refused": true,
+  "missing_refused": true,
+  "authentic_rival_ids": [
+    3984,
+    16
+  ],
+  "raw_space_ids": [
+    223,
+    261
+  ],
+  "raw_space_consumed_copy": true,
+  "raw_space_then_eos": [
+    223,
+    1
+  ],
+  "raw_space_then_eos_terminal": true
+}

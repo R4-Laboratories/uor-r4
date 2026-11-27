@@ -30,6 +30,7 @@ pub use s2_expert::{s2_route_key, S2ExpertPrediction, S2ExpertRead, S2RankedToke
 mod assertion_retrieval;
 #[path = "contextual_source.rs"]
 pub mod contextual_source;
+pub mod native_copy;
 pub mod native_occurrence;
 pub mod native_opening;
 pub mod pair_rank;
@@ -697,6 +698,15 @@ pub struct DiscretePrefixEvaluation {
     pub prediction: u32,
     /// Per-node relation scores (`blocks * nodes_count`) when `read_mode` is `Relation`.
     pub relation_scores: Option<Vec<i32>>,
+}
+
+struct GeometricWriter {
+    admitted_cells: Vec<u32>,
+    ranked: [u32; 8],
+    found: usize,
+    minimum_distance: u32,
+    committed_id: u32,
+    copied: bool,
 }
 
 /// Persistent u32 words of the opt-in occurrence-addressed writer. The source
@@ -4632,6 +4642,22 @@ impl IntegerDiscreteModel {
         trace: Option<&mut Vec<u32>>,
         source: native_occurrence::OpeningChoice,
     ) -> Result<(FlockReadParts, Option<TrunkPointerObservation>)> {
+        let occurrence = if self.trunk.is_some() && !self.state_transport_knockout {
+            self.occurrence
+                .as_ref()
+                .and_then(|reader| reader.choose(prefix, &self.codebook_roots, source))
+        } else {
+            None
+        };
+        self.causal_geometric_read_with_occurrence(prefix, trace, occurrence)
+    }
+
+    fn causal_geometric_read_with_occurrence(
+        &self,
+        prefix: &[u32],
+        trace: Option<&mut Vec<u32>>,
+        occurrence: Option<native_occurrence::Candidate>,
+    ) -> Result<(FlockReadParts, Option<TrunkPointerObservation>)> {
         let plan = build_row_plan(prefix.len())?;
         let (mut blocks, relation_scores, relation_trace) = match self.read_mode {
             DiscreteReadMode::Route => (self.route_read(prefix, &plan, trace)?, None, None),
@@ -4645,11 +4671,7 @@ impl IntegerDiscreteModel {
         };
         let pointer = match (&self.trunk, self.state_transport_knockout) {
             (Some(trunk), false) => {
-                let fitted_source = self
-                    .occurrence
-                    .as_ref()
-                    .and_then(|reader| reader.choose(prefix, &self.codebook_roots, source));
-                let choice = match (fitted_source, &self.opening) {
+                let choice = match (occurrence, &self.opening) {
                     (Some(candidate), _) => Some(candidate.token),
                     (None, Some(head)) => {
                         head.decide(self, prefix)?.map(|decision| decision.selected)
@@ -4686,7 +4708,6 @@ impl IntegerDiscreteModel {
         source: native_occurrence::OpeningChoice,
     ) -> Result<DiscreteTracedPrefixEvaluation> {
         self.validate_prefix(prefix)?;
-        let vocab = self.shape.vocabulary;
         if let Some(table) = self.active_s2() {
             let read = table.predict_expert(prefix)?;
             let best = read.top8[0];
@@ -4761,7 +4782,30 @@ impl IntegerDiscreteModel {
         let mut trace_words = Vec::new();
         let ((q_blocks, relation_scores, relation_trace_words), trunk_pointer) =
             self.causal_geometric_read(prefix, retain_trace.then_some(&mut trace_words), source)?;
+        let writer = self.rank_geometric_writer(&q_blocks, None)?;
+        let top8 = writer.ranked[..writer.found].to_vec();
+        let read_vector = q_blocks.iter().flatten().copied().collect();
+        Ok(DiscreteTracedPrefixEvaluation {
+            evaluation: DiscretePrefixEvaluation {
+                read_vector,
+                admitted_cells: writer.admitted_cells,
+                top8,
+                prediction: writer.committed_id,
+                relation_scores,
+            },
+            trace_words,
+            relation_trace_words,
+            trunk_pointer,
+        })
+    }
 
+    /// An authenticated ID competes at its exact distance even when the ordinary
+    /// ranking would discard it. The native order is retained for observation.
+    fn rank_geometric_writer(
+        &self,
+        q_blocks: &[[i32; 8]],
+        authenticated_id: Option<u32>,
+    ) -> Result<GeometricWriter> {
         let mut occupied = [false; 256];
         for &cell in &self.cells {
             occupied[cell as usize] = true;
@@ -4773,7 +4817,7 @@ impl IntegerDiscreteModel {
             let mut best_cost = u32::MAX;
             for c in 0..256u32 {
                 if occupied[c as usize] && !used[c as usize] {
-                    let d = self.address_distance(&q_blocks, c);
+                    let d = self.address_distance(q_blocks, c);
                     if d < best_cost || (d == best_cost && best_cell.is_none_or(|bc| c < bc)) {
                         best_cell = Some(c);
                         best_cost = d;
@@ -4787,15 +4831,22 @@ impl IntegerDiscreteModel {
             admitted_cells.push(cell);
         }
 
+        let authenticated_distance = authenticated_id.and_then(|token| {
+            let index = token as usize;
+            self.cells
+                .get(index)
+                .filter(|cell| admitted_cells.contains(cell))
+                .map(|_| self.token_distance(q_blocks, index))
+        });
         let mut ranked = [u32::MAX; 8];
         let mut distance = [u32::MAX; 8];
         let mut found = 0usize;
-        for token in 0..vocab as usize {
+        for token in 0..self.shape.vocabulary as usize {
             let cell = self.cells[token];
             if !admitted_cells.contains(&cell) {
                 continue;
             }
-            let d = self.token_distance(&q_blocks, token);
+            let d = self.token_distance(q_blocks, token);
             let tok = token as u32;
             let mut at = found;
             while at > 0 {
@@ -4820,20 +4871,15 @@ impl IntegerDiscreteModel {
         if found == 0 {
             return Err(invalid("writer admitted zero tokens"));
         }
-        let top8 = ranked[..found].to_vec();
-        let prediction = top8[0];
-        let read_vector = q_blocks.iter().flatten().copied().collect();
-        Ok(DiscreteTracedPrefixEvaluation {
-            evaluation: DiscretePrefixEvaluation {
-                read_vector,
-                admitted_cells,
-                top8,
-                prediction,
-                relation_scores,
-            },
-            trace_words,
-            relation_trace_words,
-            trunk_pointer,
+        let minimum_distance = distance[0];
+        let copied = authenticated_distance == Some(minimum_distance);
+        Ok(GeometricWriter {
+            admitted_cells,
+            ranked,
+            found,
+            minimum_distance,
+            committed_id: authenticated_id.filter(|_| copied).unwrap_or(ranked[0]),
+            copied,
         })
     }
 
@@ -5113,6 +5159,43 @@ mod tests {
         out.resize(out.len() + pad, 0);
         out.extend_from_slice(blob);
         out
+    }
+
+    #[test]
+    fn authenticated_writer_keeps_an_exact_id_outside_top_eight() {
+        let shape = DiscreteLutShape {
+            vocabulary: 12,
+            blocks: 4,
+            context: 1,
+            kept_cells: 1,
+            stages: 1,
+            read_mode: "route".into(),
+            read_kept: 0,
+            read_sweeps: 0,
+            read_position: 0,
+            objective_policy: "nearest_address_margin_v1".into(),
+            read_initialization: "zero_gates_v1".into(),
+            seed: 7,
+            epoch: 1,
+        };
+        let mut tokens = [[A; 4]; 12];
+        tokens[10] = [A, B, A, A];
+        tokens[11] = [B; 4];
+        let bytes = build_discrete_uorlut01(shape, &tokens, &[0; 4], &[0; 4]);
+        let model = IntegerDiscreteModel::from_bytes(&bytes).unwrap();
+
+        let tied = model.rank_geometric_writer(&[A; 4], Some(9)).unwrap();
+        assert_eq!(tied.ranked, [0, 1, 2, 3, 4, 5, 6, 7]);
+        assert_eq!(tied.minimum_distance, 0);
+        assert_eq!(tied.committed_id, 9);
+        assert!(tied.copied);
+
+        for source in [None, Some(10), Some(11)] {
+            let fallback = model.rank_geometric_writer(&[A; 4], source).unwrap();
+            assert_eq!(fallback.ranked, tied.ranked);
+            assert_eq!(fallback.committed_id, 0);
+            assert!(!fallback.copied);
+        }
     }
 
     #[test]

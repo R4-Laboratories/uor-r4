@@ -1,0 +1,201 @@
+{
+  "group_id": "10016b1f9f187e36a8cda81f",
+  "rows": [
+    {
+      "assignment": 0,
+      "side": 0,
+      "target": 1808,
+      "gold_pos": 26,
+      "rival": 3984,
+      "rival_pos": 45,
+      "registered_ids": [
+        1808,
+        16,
+        1
+      ],
+      "generate": {
+        "read_pos": 30,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "learned": {
+        "read_pos": 30,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "supplied_correct": {
+        "read_pos": 26,
+        "native_proposal_id": 1,
+        "committed_id": 1808,
+        "committed_piece": " lake",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      },
+      "supplied_swapped": {
+        "read_pos": 45,
+        "native_proposal_id": 1,
+        "committed_id": 3984,
+        "committed_piece": " anchor",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      }
+    },
+    {
+      "assignment": 0,
+      "side": 1,
+      "target": 3984,
+      "gold_pos": 45,
+      "rival": 1808,
+      "rival_pos": 26,
+      "registered_ids": [
+        3984,
+        16,
+        1
+      ],
+      "generate": {
+        "read_pos": 49,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "learned": {
+        "read_pos": 49,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "supplied_correct": {
+        "read_pos": 45,
+        "native_proposal_id": 1,
+        "committed_id": 3984,
+        "committed_piece": " anchor",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      },
+      "supplied_swapped": {
+        "read_pos": 26,
+        "native_proposal_id": 1,
+        "committed_id": 1808,
+        "committed_piece": " lake",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      }
+    },
+    {
+      "assignment": 1,
+      "side": 0,
+      "target": 3984,
+      "gold_pos": 26,
+      "rival": 1808,
+      "rival_pos": 45,
+      "registered_ids": [
+        3984,
+        16,
+        1
+      ],
+      "generate": {
+        "read_pos": 30,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "learned": {
+        "read_pos": 30,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "supplied_correct": {
+        "read_pos": 26,
+        "native_proposal_id": 1,
+        "committed_id": 3984,
+        "committed_piece": " anchor",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      },
+      "supplied_swapped": {
+        "read_pos": 45,
+        "native_proposal_id": 1,
+        "committed_id": 1808,
+        "committed_piece": " lake",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      }
+    },
+    {
+      "assignment": 1,
+      "side": 1,
+      "target": 1808,
+      "gold_pos": 45,
+      "rival": 3984,
+      "rival_pos": 26,
+      "registered_ids": [
+        1808,
+        16,
+        1
+      ],
+      "generate": {
+        "read_pos": 49,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "learned": {
+        "read_pos": 49,
+        "committed_id": 265,
+        "committed_piece": " the",
+        "second_id": 223,
+        "second_piece": " ",
+        "terminal": false
+      },
+      "supplied_correct": {
+        "read_pos": 45,
+        "native_proposal_id": 1,
+        "committed_id": 1808,
+        "committed_piece": " lake",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      },
+      "supplied_swapped": {
+        "read_pos": 26,
+        "native_proposal_id": 1,
+        "committed_id": 3984,
+        "committed_piece": " anchor",
+        "second_id": 16,
+        "second_piece": ".",
+        "copied": true,
+        "terminal": false
+      }
+    }
+  ]
+}

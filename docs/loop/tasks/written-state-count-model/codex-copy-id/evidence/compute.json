@@ -1,0 +1,36 @@
+[
+  {
+    "event": "up",
+    "ts": "2026-11-27T17:38:02Z",
+    "pod": "vast-62891246",
+    "gpus": null,
+    "usd_per_h": 1.004,
+    "uptime_s": null
+  },
+  {
+    "event": "lease",
+    "ts": "2026-11-27T17:39:09Z",
+    "pod": "vast-62891246",
+    "gpus": [
+      0
+    ],
+    "usd_per_h": null,
+    "uptime_s": null
+  },
+  {
+    "event": "release",
+    "ts": "2026-11-27T17:44:20Z",
+    "pod": "vast-62891246",
+    "gpus": null,
+    "usd_per_h": null,
+    "uptime_s": null
+  },
+  {
+    "event": "down",
+    "ts": "2026-11-27T17:44:24Z",
+    "pod": "vast-62891246",
+    "gpus": null,
+    "usd_per_h": 1.004,
+    "uptime_s": 381
+  }
+]

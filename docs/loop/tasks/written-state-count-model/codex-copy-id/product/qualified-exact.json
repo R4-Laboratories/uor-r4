@@ -1,0 +1,13 @@
+{
+  "source": "faf67f7ba430109eda06915dc29a3db2ffc4cfa9",
+  "artifact_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+  "action_schema": "uor-r4.native-authenticated-copy/1",
+  "panel_sha256": "4748b4a08b1191fab27f11da603a10fc77f8a4a6de48621cd220a64c6bd6e529",
+  "device_sha256": "4bdf8c322b128af9e3ebf94e723f74fc520bb09fa695b8430bd0f1091bed1ce3",
+  "canonical_device_sha256": "3df41b1d175f1339fcc94a68368834dd857ab10f70f3a8ddc75d2e92c93d32ae",
+  "cold_sha256": "3df41b1d175f1339fcc94a68368834dd857ab10f70f3a8ddc75d2e92c93d32ae",
+  "canonical_byte_equal": true,
+  "device_exact_rows": 1416,
+  "exact_arm_trajectories": 11328,
+  "exact_writer_transitions": 21976
+}
