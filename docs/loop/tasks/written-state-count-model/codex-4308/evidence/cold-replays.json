@@ -1,0 +1,202 @@
+{
+  "selection": "Post-hoc inspection of all two teacher-forced development rows whose top-1 changed. Four separate ordinary uor-chat invocations. Each prefix hash, Pick trace, top-1 word and mass matched the Wick GPU output.",
+  "raw_manifest_sha256": "1ef2915fa0a83c50b1d4153d09cf4115b2ceae4b59ace36e05849181e5fc288e",
+  "rows": [
+    {
+      "row": 36,
+      "arm": "frozen",
+      "target": 388,
+      "schema": "uor-r4.uor-chat-discrete-parity/1",
+      "model_schema": "uor-r4.lut-discrete-p4/1",
+      "read_enabled": true,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "p4_trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+      "p4_state_sha256": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778",
+      "generated_ids": [
+        388
+      ],
+      "steps": [
+        {
+          "bucket": 2055,
+          "cache_hit_state": 2,
+          "context_tokens": 2048,
+          "highest_order": 7,
+          "mass_q48": 92928000828140,
+          "mass_sha256": "4610caf04a3ff94fa6c70d3c69748fb33c94b9f4c9b22b620bb8b614b613cc12",
+          "pick_class": 1,
+          "pick_distance": 0,
+          "pick_pos": 283,
+          "pick_successor": 388,
+          "pick_ties": 1,
+          "prefix_sha256": "dd9e00d37f3a8de12695942e5665547818787a340ff5d25d31efe262b86966d4",
+          "s2_skip_hit_mask": 7,
+          "s2_skip_keys": [
+            75,
+            281474976960575,
+            562949953769535
+          ],
+          "s3_backoff_key": 3604,
+          "s3_mode": "primary",
+          "s3_pkey": 236191807,
+          "s4_role_choice": 1,
+          "s4_role_scores": [
+            793713,
+            458752,
+            189326
+          ],
+          "token": 388,
+          "top_ties": 1
+        }
+      ],
+      "prompt_length": 2048,
+      "replayed_successor": 388
+    },
+    {
+      "row": 36,
+      "arm": "geometric",
+      "target": 388,
+      "schema": "uor-r4.uor-chat-discrete-parity/1",
+      "model_schema": "uor-r4.lut-discrete-p4/1",
+      "read_enabled": true,
+      "artifact_sha256": "d39aea9ef58ffb7f3525b2d8ca5773c28ba1a8e444fbbf486e792c6d942dc852",
+      "p4_trunk_sha256": "92bf83fd8a22b71dd96411c33b5f6a266a40ccee9a4ac5a629e1a696fbecc029",
+      "p4_state_sha256": "7154f400b9980f70ea3c74af8d39e871c4869d932fcd1135b22f5294a148e33a",
+      "generated_ids": [
+        11
+      ],
+      "steps": [
+        {
+          "bucket": 2055,
+          "cache_hit_state": 2,
+          "context_tokens": 2048,
+          "highest_order": 7,
+          "mass_q48": 94377678382468,
+          "mass_sha256": "27c4dd4772d5f3e7ebc2c52faf5f6872d26fe98a23e66fbd1f7924955c69d580",
+          "pick_class": 1,
+          "pick_distance": 0,
+          "pick_pos": 2016,
+          "pick_successor": 11,
+          "pick_ties": 3,
+          "prefix_sha256": "dd9e00d37f3a8de12695942e5665547818787a340ff5d25d31efe262b86966d4",
+          "s2_skip_hit_mask": 7,
+          "s2_skip_keys": [
+            75,
+            281474976960575,
+            562949953769535
+          ],
+          "s3_backoff_key": 3604,
+          "s3_mode": "primary",
+          "s3_pkey": 236191807,
+          "s4_role_choice": 1,
+          "s4_role_scores": [
+            793713,
+            458752,
+            189326
+          ],
+          "token": 11,
+          "top_ties": 1
+        }
+      ],
+      "prompt_length": 2048,
+      "replayed_successor": 11
+    },
+    {
+      "row": 413,
+      "arm": "frozen",
+      "target": 17,
+      "schema": "uor-r4.uor-chat-discrete-parity/1",
+      "model_schema": "uor-r4.lut-discrete-p4/1",
+      "read_enabled": true,
+      "artifact_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+      "p4_trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+      "p4_state_sha256": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778",
+      "generated_ids": [
+        17
+      ],
+      "steps": [
+        {
+          "bucket": 2050,
+          "cache_hit_state": 2,
+          "context_tokens": 1989,
+          "highest_order": 7,
+          "mass_q48": 92828212412633,
+          "mass_sha256": "df10880aae02794f99c2941c2dac94c084b05e72befeec8f613c7c6b5cf083e6",
+          "pick_class": 1,
+          "pick_distance": 0,
+          "pick_pos": 1782,
+          "pick_successor": 17,
+          "pick_ties": 3,
+          "prefix_sha256": "be220993d7d20224609d00017c93daeb6f47c48c170f625226f577d57f4155e0",
+          "s2_skip_hit_mask": 7,
+          "s2_skip_keys": [
+            31,
+            281474977079317,
+            562949954334741
+          ],
+          "s3_backoff_key": 202,
+          "s3_mode": "primary",
+          "s3_pkey": 13238293,
+          "s4_role_choice": 2,
+          "s4_role_scores": [
+            720896,
+            1048576,
+            0
+          ],
+          "token": 17,
+          "top_ties": 1
+        }
+      ],
+      "prompt_length": 1989,
+      "replayed_successor": 17
+    },
+    {
+      "row": 413,
+      "arm": "geometric",
+      "target": 17,
+      "schema": "uor-r4.uor-chat-discrete-parity/1",
+      "model_schema": "uor-r4.lut-discrete-p4/1",
+      "read_enabled": true,
+      "artifact_sha256": "d39aea9ef58ffb7f3525b2d8ca5773c28ba1a8e444fbbf486e792c6d942dc852",
+      "p4_trunk_sha256": "92bf83fd8a22b71dd96411c33b5f6a266a40ccee9a4ac5a629e1a696fbecc029",
+      "p4_state_sha256": "7154f400b9980f70ea3c74af8d39e871c4869d932fcd1135b22f5294a148e33a",
+      "generated_ids": [
+        16
+      ],
+      "steps": [
+        {
+          "bucket": 2050,
+          "cache_hit_state": 2,
+          "context_tokens": 1989,
+          "highest_order": 7,
+          "mass_q48": 113932548059258,
+          "mass_sha256": "bd0c00f01551cc85336cbb2a7c2bb3150c681dd9d261ab4e85b70204e7482ca1",
+          "pick_class": 1,
+          "pick_distance": 0,
+          "pick_pos": 1837,
+          "pick_successor": 16,
+          "pick_ties": 12,
+          "prefix_sha256": "be220993d7d20224609d00017c93daeb6f47c48c170f625226f577d57f4155e0",
+          "s2_skip_hit_mask": 7,
+          "s2_skip_keys": [
+            31,
+            281474977079317,
+            562949954334741
+          ],
+          "s3_backoff_key": 202,
+          "s3_mode": "primary",
+          "s3_pkey": 13238293,
+          "s4_role_choice": 2,
+          "s4_role_scores": [
+            720896,
+            1048576,
+            0
+          ],
+          "token": 16,
+          "top_ties": 1
+        }
+      ],
+      "prompt_length": 1989,
+      "replayed_successor": 16
+    }
+  ]
+}
