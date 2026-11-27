@@ -1,0 +1,229 @@
+{
+  "signed": [
+    {
+      "from": "baseline",
+      "to": "G",
+      "gained": [],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "N",
+      "gained": [
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26"
+      ],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "GN",
+      "gained": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "G",
+      "to": "GN",
+      "gained": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "N",
+      "to": "GN",
+      "gained": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "lost": [],
+      "shared": [
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26"
+      ]
+    },
+    {
+      "from": "GN",
+      "to": "GN-wrong-G",
+      "gained": [],
+      "lost": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "shared": []
+    },
+    {
+      "from": "GN",
+      "to": "GN-wrong-N",
+      "gained": [],
+      "lost": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "shared": []
+    },
+    {
+      "from": "GN",
+      "to": "GN-wrong-both",
+      "gained": [],
+      "lost": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "shared": []
+    }
+  ],
+  "full": [
+    {
+      "from": "baseline",
+      "to": "G",
+      "gained": [],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "N",
+      "gained": [],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "GN",
+      "gained": [],
+      "lost": [],
+      "shared": []
+    }
+  ],
+  "strict": [
+    {
+      "from": "baseline",
+      "to": "G",
+      "gained": [],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "N",
+      "gained": [
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26"
+      ],
+      "lost": [],
+      "shared": []
+    },
+    {
+      "from": "baseline",
+      "to": "GN",
+      "gained": [
+        "gallery-vessel-checkout/black-clay-and-ridge/18",
+        "gallery-vessel-checkout/green-cart-and-basin/18",
+        "gallery-vessel-checkout/high-rail-and-well/18",
+        "gallery-vessel-checkout/lake-pipe-and-shore/18",
+        "gallery-vessel-checkout/rain-yard-and-lane/18",
+        "gallery-vessel-checkout/red-desk-and-farm/18",
+        "gallery-vessel-checkout/snow-gate-and-glen/18",
+        "optics-packing-desk/black-clay-and-ridge/26",
+        "optics-packing-desk/cold-bread-and-field/26",
+        "optics-packing-desk/green-cart-and-basin/26",
+        "optics-packing-desk/high-rail-and-well/26",
+        "optics-packing-desk/lake-pipe-and-shore/26",
+        "optics-packing-desk/rain-yard-and-lane/26",
+        "optics-packing-desk/red-desk-and-farm/26",
+        "optics-packing-desk/snow-gate-and-glen/26"
+      ],
+      "lost": [],
+      "shared": []
+    }
+  ]
+}

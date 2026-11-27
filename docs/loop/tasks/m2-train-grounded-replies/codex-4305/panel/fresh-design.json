@@ -1,0 +1,78 @@
+{
+  "facts": [
+    ["cold-bread-and-field", "cold bread clerk", "cold pine field"],
+    ["high-rail-and-well", "high rail guard", "high birch well"],
+    ["red-desk-and-farm", "red desk cook", "red rose farm"],
+    ["rain-yard-and-lane", "rain yard hand", "rain ash lane"],
+    ["lake-pipe-and-shore", "lake pipe fitter", "lake spruce shore"],
+    ["black-clay-and-ridge", "black clay maker", "black elm ridge"],
+    ["green-cart-and-basin", "green cart driver", "green fern basin"],
+    ["snow-gate-and-glen", "snow gate porter", "snow moss glen"]
+  ],
+  "wordings": [
+    {
+      "family": "gallery-vessel-checkout",
+      "reference": "vase", "rival": "pot", "neutral": "", "near_before": "", "near_after": "",
+      "far_before": "at dusk {governor} only from beside the blue screen the {noun}",
+      "far_after": "the {noun} from behind the blue screen is for us to {governor}",
+      "authorize": "retain", "alternate_authorize": "accept", "decline": "ignore",
+      "heading": "Identify that gallery {noun} or urn.",
+      "order": "Open on my {first} and then cycle to my {second} and back",
+      "ending": "Use exactly {count} complete sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "at intake {governor} from beside the bench the {selector}, in the order shown on the clay tag, of the {first_occurrence} and the {second_occurrence}, or the urn if both break",
+        "after": "the {first_occurrence} and the {second_occurrence} are listed in that order on the clay tag, and the {selector} is for us to {governor}, or the urn if both break",
+        "marks": ["tall", "red"]
+      }
+    },
+    {
+      "family": "optics-packing-desk",
+      "reference": "lens", "rival": "mirror", "neutral": "", "near_before": "", "near_after": "",
+      "far_before": "at noon {governor} from where the light falls on the rail the {noun}",
+      "far_after": "the {noun} by the rail is what we have agreed to {governor}",
+      "authorize": "retain", "alternate_authorize": "accept", "decline": "bypass",
+      "heading": "State the lab {noun} or prism.",
+      "order": "Lead with my {first}, move to my {second}, and repeat that cycle",
+      "ending": "Give a total of {count} full sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} from under the shade either the {selector}, using the order printed on this card, of the {first_occurrence} and the {second_occurrence}, or the prism if both crack",
+        "after": "the {first_occurrence} and the {second_occurrence} are printed on the card in that order, and the {selector} is what we will {governor}, or the prism if both crack",
+        "marks": ["round", "flat"]
+      }
+    },
+    {
+      "family": "pit-instrument-loan",
+      "reference": "flute", "rival": "cello", "neutral": "", "near_before": "", "near_after": "",
+      "far_before": "before we play {governor} the one we left by the main door, the {noun}",
+      "far_after": "the {noun} left by the main door is what you alone may {governor}",
+      "authorize": "retain", "alternate_authorize": "accept", "decline": "reject",
+      "heading": "Name aloud that pit {noun} or oboe.",
+      "order": "Place my {first} ahead of my {second} and go back and forth",
+      "ending": "End after {count} distinct sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} after we play today the {selector}, as numbered in the note from the pit, of the {first_occurrence} and the {second_occurrence}, with the oboe allowed if both fail",
+        "after": "from the {first_occurrence} and the {second_occurrence} written down in the order we received them, the {selector}, with the oboe allowed if both fail, is what you may {governor}",
+        "marks": ["silver", "gold"]
+      }
+    },
+    {
+      "family": "thread-lot-receiving",
+      "reference": "spool", "rival": "reel", "neutral": "", "near_before": "", "near_after": "",
+      "far_before": "at lunch {governor} from just below the line by the wall only the {noun}",
+      "far_after": "the {noun} below the line by the wall is what you may {governor}",
+      "authorize": "retain", "alternate_authorize": "accept", "decline": "refuse",
+      "heading": "List for me the thread {noun} or skein.",
+      "order": "Bring up my {first}, then my {second}, then keep switching",
+      "ending": "Make a set of {count} short sentences",
+      "request_first_mentioned": true,
+      "contrast": {
+        "before": "{governor} from up by the wall the {selector}, taking the order we put in the log, of the {first_occurrence} and the {second_occurrence}, or the skein if both split",
+        "after": "from the {first_occurrence} and the {second_occurrence} in the order shown in our log, the {selector}, with the skein as a fallback if both split, is for you to {governor}",
+        "marks": ["wide", "thin"]
+      }
+    }
+  ]
+}

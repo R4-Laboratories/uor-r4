@@ -1,0 +1,30 @@
+{
+  "dataset": "caseyallard/uor-r4-store",
+  "private": true,
+  "prefix": "results/codex/governor-argument-sites-20261126-48d1e8e1e44b",
+  "revision": "fc95120bbf52483d02066a8bfa87959e83edfce1",
+  "verified_forced_readback": true,
+  "total_bytes": 98322501,
+  "objects": [
+    {
+      "name": "SHA256SUMS",
+      "bytes": 256,
+      "sha256": "43615aca4cbebd8befa357735b705959b4a32e9b4623072a2e265bca821d89d0"
+    },
+    {
+      "name": "archive.json",
+      "bytes": 388,
+      "sha256": "9511526506479dce9229b781332400e2222d85b7e8380b5bbbde9afa244801eb"
+    },
+    {
+      "name": "cold.json",
+      "bytes": 330,
+      "sha256": "4bc5be7be1afd4ebf56817d7bd28920f5fb98c2f5bd5d67d68de66ac0078ca20"
+    },
+    {
+      "name": "governor-argument-sites-v3.tar.zst",
+      "bytes": 98321527,
+      "sha256": "48d1e8e1e44ba95494108bc0bc368c23a9d53a8ad355fdc0a5de2ac04d557e31"
+    }
+  ]
+}

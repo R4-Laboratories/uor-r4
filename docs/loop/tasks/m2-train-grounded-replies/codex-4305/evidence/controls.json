@@ -1,0 +1,25 @@
+{
+  "gold_exact_original_rows": 256,
+  "gold_exact_original_pairs": 128,
+  "swapped_exact_wrong_original_rows": 256,
+  "swapped_exact_wrong_original_pairs": 128,
+  "first": {
+    "row": 0,
+    "pair_id": "gallery-vessel-checkout/cold-bread-and-field/2",
+    "case_id": "ae831a4d44b608782bfa12d1412a4902fae02a556c18af671d2b15149adfab1f",
+    "target": [
+      35,
+      5,
+      49
+    ],
+    "swapped": [
+      35,
+      9,
+      49
+    ],
+    "governor": [
+      59,
+      40
+    ]
+  }
+}

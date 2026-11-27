@@ -1,0 +1,28 @@
+{
+  "fresh": {
+    "gallery-vessel-checkout": {"alternative": "urn"},
+    "optics-packing-desk": {"alternative": "prism"},
+    "pit-instrument-loan": {"alternative": "oboe", "opposite_alias": {"before": "one"}},
+    "thread-lot-receiving": {"alternative": "skein"}
+  },
+  "archived": {
+    "building-evacuation": {"object_alias": {"before": "space"}},
+    "drill-rotation": {},
+    "enamel-display": {"object_alias": {"before": "piece", "after": "one"}},
+    "market-redemption": {"heading_alias": ["Check the date on our coupon.", "date"]},
+    "planning-review": {"heading_alias": ["Read the draft of our proposal.", "draft"]},
+    "practice-class": {},
+    "storm-drainage": {},
+    "supplier-contract": {}
+  },
+  "displaced_function_words": {
+    "a": "indefinite article", "an": "indefinite article", "the": "definite article",
+    "each": "distributive determiner", "our": "possessive determiner", "your": "possessive determiner",
+    "and": "coordinator", "or": "coordinator", "while": "subordinating conjunction",
+    "if": "conditional marker", "once": "temporal subordinator",
+    "for": "preposition", "at": "preposition", "from": "preposition", "of": "preposition",
+    "by": "preposition", "in": "preposition", "on": "preposition", "under": "preposition",
+    "is": "copula", "can": "modal auxiliary", "could": "modal auxiliary", "may": "modal auxiliary",
+    "might": "modal auxiliary", "should": "modal auxiliary", "will": "modal auxiliary"
+  }
+}

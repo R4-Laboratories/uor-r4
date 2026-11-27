@@ -1,0 +1,47 @@
+{
+  "provider": "Vast.ai",
+  "region": "Hungary",
+  "model": "NVIDIA GeForce RTX 4090",
+  "pod": "vast-62776019",
+  "device_uuid": "GPU-590a07f2-3f07-74dc-ff11-6e61871cb20c",
+  "compute_capability": "8.9",
+  "driver": "610.57.04",
+  "nvcc": "12.8.93",
+  "events": [
+    {
+      "ts": "2026-11-27T00:38:25Z",
+      "event": "up",
+      "pod": "vast-62776019",
+      "usd_per_h": 1.309,
+      "lab": "codex",
+      "session": "governor-argument-sites"
+    },
+    {
+      "ts": "2026-11-27T00:49:31Z",
+      "event": "down",
+      "pod": "vast-62776019",
+      "usd_per_h": 1.309,
+      "uptime_s": 664,
+      "lab": "codex",
+      "session": "governor-argument-sites"
+    }
+  ],
+  "rate_usd_h": 1.309,
+  "uptime_s": 664,
+  "estimated_usd": 0.2414,
+  "cost_basis": "provider-reported uptime multiplied by hourly rate",
+  "finite_job": [
+    "2026-11-27T00:40:59Z",
+    "2026-11-27T00:41:08Z"
+  ],
+  "qualification_job": [
+    "2026-11-27T00:47:34Z",
+    "2026-11-27T00:47:39Z"
+  ],
+  "inventory_after_down": "absent",
+  "all_job_files_verified_before_down": true,
+  "raw_job_files": 153,
+  "raw_job_bytes": 79192748,
+  "raw_job_sha256": "e895c469a05b996e128e12723be5b00de3d6fc6aa0e1c64da80f381f3fa14b82",
+  "raw_members_sha256": "ca28ee77fcbafc96b1f2b9fbb85ab681aa7c9c1f0f2e90263e5a73841ea53965"
+}
