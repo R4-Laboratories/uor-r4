@@ -1,0 +1,50 @@
+[
+  {
+    "pod": "vast-62894158",
+    "event": "up",
+    "ts": "2026-11-27T18:05:04Z",
+    "uptime_s": null,
+    "usd_per_h": 1.245,
+    "create_to_ssh_s": null
+  },
+  {
+    "pod": "vast-62894158",
+    "event": "down",
+    "ts": "2026-11-27T18:11:52Z",
+    "uptime_s": 407,
+    "usd_per_h": 1.245,
+    "create_to_ssh_s": null
+  },
+  {
+    "pod": "vast-62894958",
+    "event": "up",
+    "ts": "2026-11-27T18:12:12Z",
+    "uptime_s": null,
+    "usd_per_h": 1.245,
+    "create_to_ssh_s": null
+  },
+  {
+    "pod": "vast-62894958",
+    "event": "ssh-ready",
+    "ts": "2026-11-27T18:12:57Z",
+    "uptime_s": null,
+    "usd_per_h": null,
+    "create_to_ssh_s": 45
+  },
+  {
+    "pod": "vast-62894958",
+    "event": "release",
+    "ts": "2026-11-27T18:16:51Z",
+    "uptime_s": null,
+    "usd_per_h": null,
+    "create_to_ssh_s": null
+  },
+  {
+    "pod": "vast-62894958",
+    "event": "down",
+    "ts": "2026-11-27T18:16:57Z",
+    "uptime_s": 282,
+    "usd_per_h": 1.245,
+    "create_to_ssh_s": null
+  }
+]

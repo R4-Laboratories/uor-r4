@@ -1,0 +1,13 @@
+{
+  "arms_per_row": 5,
+  "copy_cubin_sha256": "51f6ffd519f6f75a2126d438366827f0184358c697f2550bf6bcb17ff6175576",
+  "elapsed_ms": 18731,
+  "ending_cubin_sha256": "b9fa28057de0aa60759b08187bb64c9d85c62927150871159e85eb3fd6583a6c",
+  "input_sha256": "3c1f22fb3cb0ed776fdcdcdb1333c5cb85a31cabf1088b6c596986e27a95c478",
+  "raw_cap": 3,
+  "reverse_reloaded": true,
+  "reverse_replay": "identical",
+  "rows": 400,
+  "schema": "uor-r4.ending-device-score/1",
+  "weights_sha256": "bc16711e85b4524ce5459d3e7c9c013e9f3c42b65331ac0ff88b91f0802cddd1"
+}

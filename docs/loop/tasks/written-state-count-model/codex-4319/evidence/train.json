@@ -1,0 +1,13 @@
+{
+  "elapsed_ms": 199,
+  "ending_cubin_sha256": "b9fa28057de0aa60759b08187bb64c9d85c62927150871159e85eb3fd6583a6c",
+  "i16_words": 4096,
+  "input_sha256": "afb1a037365d4a47fe68b3e86aebba46dc5f1f68c1979bc50350cdc9a812b58c",
+  "nonzero_words": 122,
+  "passes": 1,
+  "period": 192,
+  "rows": 384,
+  "schema": "uor-r4.ending-device-train/1",
+  "stop": 192,
+  "weights_sha256": "bc16711e85b4524ce5459d3e7c9c013e9f3c42b65331ac0ff88b91f0802cddd1"
+}

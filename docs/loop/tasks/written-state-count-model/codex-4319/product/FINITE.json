@@ -1,0 +1,180 @@
+{
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-word-ending/product-finite-v2",
+  "manifest_sha256": "8308979cad60c41147f145e3a28070d6075b1a805281d6253cd5f64bc9c89eac",
+  "panel_rows_sha256": "92e2fb535de5300f81a45721175dbe1d07cba149fabd0463fc0b40dd3ceae572",
+  "cold_sha256": "f70bc854277e38e5d384d5ed268ffd1a4ce58d886b6f44d7b25cd9226332d008",
+  "source_manifest_sha256": "caf084f958fffc9f023cfebf09e9a13a22d56bc03b6a38ff63d5ffb3f46cf69b",
+  "artifact": {
+    "artifact_bytes": 1202152204,
+    "artifact_sha256": "b926e87387671c3b9a7b557473ca9134218d80ad02c48269ecb2d6f6aab5a540",
+    "schema": "uor-r4.lut-discrete-native-word-ending/1",
+    "word_ending": {
+      "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+      "fit_sha256": "dce9480c1b7f3007fca05888beba71962dcb045ab341d940be7dffc847bb9130",
+      "state_bytes": 8192,
+      "state_sha256": "e265ba647b7747d85d44e4ae19d9a27e6dd3c5cab77b545d1efa0502bd2265c1"
+    }
+  },
+  "cold": {
+    "artifact_sha256": "b926e87387671c3b9a7b557473ca9134218d80ad02c48269ecb2d6f6aab5a540",
+    "decoding": "uor-r4.native-word-ending/1",
+    "device_exact_rows": null,
+    "pairs": 16,
+    "rows": 32,
+    "terminal_trajectories": 48,
+    "trajectories": 160,
+    "word_ending": {
+      "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+      "fit_sha256": "dce9480c1b7f3007fca05888beba71962dcb045ab341d940be7dffc847bb9130",
+      "state_bytes": 8192,
+      "state_sha256": "e265ba647b7747d85d44e4ae19d9a27e6dd3c5cab77b545d1efa0502bd2265c1"
+    },
+    "writer_transitions": 432
+  },
+  "cli": {
+    "matched_raw_text_cold": 3,
+    "negative": {
+      "generated_ids": [
+        2917,
+        1
+      ],
+      "stop": "eos",
+      "text": " knife",
+      "score": -7,
+      "source": [
+        "copy",
+        "learned"
+      ],
+      "native_proposals": [
+        7,
+        74
+      ]
+    },
+    "positive": {
+      "generated_ids": [
+        2917,
+        16,
+        73
+      ],
+      "stop": "max_tokens",
+      "text": " knife.g",
+      "score": 9,
+      "source": [
+        "copy",
+        "learned",
+        "native"
+      ],
+      "native_proposals": [
+        7,
+        74,
+        73
+      ]
+    },
+    "zero": {
+      "generated_ids": [
+        2692,
+        316,
+        2339
+      ],
+      "stop": "max_tokens",
+      "text": " clockility",
+      "score": 0,
+      "source": [
+        "copy",
+        "native",
+        "native"
+      ],
+      "native_proposals": [
+        21,
+        316,
+        2339
+      ]
+    },
+    "refused_copy": {
+      "generated_ids": [
+        30,
+        17,
+        20
+      ],
+      "stop": "max_tokens",
+      "text": "</2",
+      "score": -7,
+      "source": [
+        "native",
+        "native",
+        "native"
+      ],
+      "native_proposals": [
+        30,
+        17,
+        20
+      ]
+    },
+    "learned_reader": {
+      "generated_ids": [
+        902,
+        1
+      ],
+      "stop": "eos",
+      "text": " after",
+      "score": -7,
+      "source": [
+        "copy",
+        "learned"
+      ],
+      "native_proposals": [
+        6,
+        17
+      ]
+    }
+  },
+  "readback": {
+    "state_offset": 355,
+    "unchanged_base_offset": 8547,
+    "raw_weights_cmp": true,
+    "frozen_base_cmp": true
+  },
+  "planted_differential": {
+    "directory": "product-finite-instrument-differential-v1",
+    "manifest_sha256": "297649bf4dfaba7e06ecb76e26d6daadb8903c0c2895a7a1dcefbad4b0a400ef",
+    "device_sha256": "60348a334416cd0d15e8ea6afdadce0426924d5f12aeba08ec639c2b0641f6c6",
+    "exact": {
+      "artifact_sha256": "b926e87387671c3b9a7b557473ca9134218d80ad02c48269ecb2d6f6aab5a540",
+      "decoding": "uor-r4.native-word-ending/1",
+      "device_exact_rows": 32,
+      "pairs": 16,
+      "rows": 32,
+      "terminal_trajectories": 48,
+      "trajectories": 160,
+      "word_ending": {
+        "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+        "fit_sha256": "dce9480c1b7f3007fca05888beba71962dcb045ab341d940be7dffc847bb9130",
+        "state_bytes": 8192,
+        "state_sha256": "e265ba647b7747d85d44e4ae19d9a27e6dd3c5cab77b545d1efa0502bd2265c1"
+      },
+      "writer_transitions": 432
+    }
+  },
+  "gpu_finite_fit_differential": {
+    "directory": "product-finite-fit-differential-v1",
+    "manifest_sha256": "e3674d34d044e8a897b9e2b1d0c2620e05dfb8ddd8d97769efb128c9465df255",
+    "device_sha256": "cedef1668ee71e8f9e7ec6f18bdc4b61ef4a448e8e000e4c013a38737f744098",
+    "cold_sha256": "4c7f54b7922ef1014516bdbc193cea0088b3cf9fea03d0b1595c2dc7124bd156",
+    "exact": {
+      "artifact_sha256": "47226696e52bfdc7d07eb92ccc6c54a383b44d0278b2548943732b6f6533c168",
+      "decoding": "uor-r4.native-word-ending/1",
+      "device_exact_rows": 32,
+      "pairs": 16,
+      "rows": 32,
+      "terminal_trajectories": 64,
+      "trajectories": 160,
+      "word_ending": {
+        "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+        "fit_sha256": "8d4d1f10319fce7daa525481abcc2e678042155350882f6c99345cb640dd8fb6",
+        "state_bytes": 8192,
+        "state_sha256": "9aaca1f643f22a1d319771e5e51f4a3a5dcfe9210fd406e644a848db42f273bd"
+      },
+      "writer_transitions": 416
+    }
+  }
+}

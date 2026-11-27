@@ -19,7 +19,7 @@ use uor_r4_integer::config::ReadMode;
 use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
-use uor_r4_integer::discrete_d11::{native_copy, pair_rank};
+use uor_r4_integer::discrete_d11::{native_copy, native_word_ending, pair_rank};
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
     TurnClosure,
@@ -68,6 +68,8 @@ struct CliArgs {
     /// A `UORLUT01` discrete SpiralCore/FBS artifact (`--discrete`).
     discrete_path: Option<PathBuf>,
     authenticated_copy: bool,
+    word_ending: bool,
+    word_ending_source: Option<u16>,
     #[cfg(feature = "p1-count-serving")]
     p1_path: Option<PathBuf>,
     #[cfg(feature = "p1-count-serving")]
@@ -327,6 +329,8 @@ impl Default for CliArgs {
             stack_path: None,
             discrete_path: None,
             authenticated_copy: false,
+            word_ending: false,
+            word_ending_source: None,
             #[cfg(feature = "p1-count-serving")]
             p1_path: None,
             #[cfg(feature = "p1-count-serving")]
@@ -423,6 +427,10 @@ fn print_usage() {
     );
     eprintln!(
         "      --authenticated-copy   resolve one native occurrence-backed opening tie by exact ID"
+    );
+    eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
+    eprintln!(
+        "      --word-ending-source N supply a zero-based factual source on the opening step"
     );
     eprintln!(
         "      --tokenizer <PATH>      tokenizer.json for --stack or a token-bound discrete text turn"
@@ -694,6 +702,16 @@ fn parse_cli_args() -> CliArgs {
             }
             "--contextual-source-trace" => args.contextual_source_trace = true,
             "--authenticated-copy" => args.authenticated_copy = true,
+            "--word-ending" => args.word_ending = true,
+            "--word-ending-source" => {
+                idx += 1;
+                let source = raw.get(idx).and_then(|value| value.parse::<u16>().ok());
+                if source.is_none() {
+                    eprintln!("--word-ending-source requires an unsigned 16-bit position");
+                    process::exit(1);
+                }
+                args.word_ending_source = source;
+            }
             "--discrete" => {
                 idx += 1;
                 if idx < raw.len() {
@@ -1211,6 +1229,16 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.authenticated_copy && args.discrete_path.is_none() {
         eprintln!("--authenticated-copy requires a native occurrence --discrete artifact");
+        process::exit(1);
+    }
+    if args.word_ending_source.is_some() && !args.word_ending {
+        eprintln!("--word-ending-source requires --word-ending");
+        process::exit(1);
+    }
+    if args.word_ending && (args.discrete_path.is_none() || args.authenticated_copy) {
+        eprintln!(
+            "--word-ending requires a packed --discrete artifact and selects its own copy action"
+        );
         process::exit(1);
     }
     if args.discrete_path.is_some() && args.threads != 1 {
@@ -2425,6 +2453,11 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         .then(|| native_copy::Session::new(&model))
         .transpose()?;
     let mut authenticated_steps = Vec::new();
+    let mut word_ending = cli
+        .word_ending
+        .then(|| native_word_ending::Session::new(&model, prompt, cli.word_ending_source))
+        .transpose()?;
+    let mut ending_steps = Vec::new();
     if role_carrier && text_mode.is_some() && cli.protocol != 2 {
         return Err(IntegerError::Invalid(
             "role-copy text uses literal dialogue protocol 2".into(),
@@ -2569,7 +2602,12 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         };
         #[cfg(not(feature = "p1-count-serving"))]
         let p1_winner: Option<u32> = p4_winner;
-        let ordinary = if let Some(session) = &mut authenticated_copy {
+        let ordinary = if let Some(session) = &mut word_ending {
+            let event = session.step(&context)?;
+            let committed_id = event.writer.committed_id;
+            ending_steps.push(event);
+            committed_id
+        } else if let Some(session) = &mut authenticated_copy {
             let event = session.step(&context)?;
             let committed_id = event.committed_id;
             authenticated_steps.push(event);
@@ -2606,7 +2644,8 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             ordinary
         };
         generated_ids.push(prediction);
-        if authenticated_copy.is_some() && prediction == native_copy::EOS {
+        if (authenticated_copy.is_some() || word_ending.is_some()) && prediction == native_copy::EOS
+        {
             break;
         }
         #[cfg(feature = "p1-count-serving")]
@@ -2658,6 +2697,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     if authenticated_copy.is_some() {
         record["decoding"] = native_copy::SCHEMA.into();
         record["authenticated_copy_steps"] = serde_json::to_value(authenticated_steps)?;
+    }
+    if let Some(session) = word_ending {
+        record["decoding"] = native_word_ending::DECODING.into();
+        record["word_ending"] = serde_json::json!({
+            "identity": native_word_ending::identity(&model),
+            "score": session.score(),
+            "terminal": session.terminal(),
+            "steps": ending_steps,
+        });
     }
     #[cfg(feature = "p1-count-serving")]
     if let Some(engine) = &p4 {

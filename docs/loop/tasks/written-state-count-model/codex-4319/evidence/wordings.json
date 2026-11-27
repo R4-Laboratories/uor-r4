@@ -1,0 +1,98 @@
+[
+  {
+    "family": "held_contrastive_correction",
+    "pairs": 25,
+    "stop_score": 608,
+    "period_score": 640,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_contrastive_correction",
+    "pairs": 25,
+    "stop_score": 592,
+    "period_score": 592,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_final_character",
+    "pairs": 25,
+    "stop_score": 48,
+    "period_score": 688,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_final_character",
+    "pairs": 25,
+    "stop_score": 240,
+    "period_score": 704,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_referenced_rule",
+    "pairs": 25,
+    "stop_score": 784,
+    "period_score": 736,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_referenced_rule",
+    "pairs": 25,
+    "stop_score": 544,
+    "period_score": 832,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_scope_exception",
+    "pairs": 25,
+    "stop_score": 528,
+    "period_score": 496,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  },
+  {
+    "family": "held_scope_exception",
+    "pairs": 25,
+    "stop_score": 656,
+    "period_score": 480,
+    "native_pairs": 0,
+    "learned_pairs": 0,
+    "swapped_pairs": 0,
+    "oracle_pairs": 0,
+    "learned_exact_stop": 0,
+    "learned_exact_period": 0
+  }
+]

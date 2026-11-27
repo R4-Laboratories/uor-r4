@@ -1,0 +1,10 @@
+# Learn the stop or period choice immediately after one verified word
+
+Lab: codex
+Item: [Written-state count model](../../../../roadmap/items/written-state-count-model.md)
+
+The owner requested a frozen copy and correct supplied source, an instruction learned from wording, held-out wording families, true self-feedback, first mismatch, and whole replies through EOS. The [previous experiment](../codex-copy-id/REPORT.md) recovered all 800 supplied words but only 13 of 400 bare replies stopped on the next emission. This unit varies only the post-word instruction state. The primary contrast compares identical questions, facts and source positions with the ending instruction reversed. Keep the first commit and all underlying reader/writer weights fixed.
+
+Native state consists of the frozen D11, original token IDs and factual addresses, ordered four-coordinate root codes, sparse signed integer address counts fit on TRAIN, and a one-use stop/period decision consumed only after a verified copy. Register exact feature addressing, update and the serialization in the sheet before training. CPU and CUDA implementations have a bit-identical replay oracle for the scores, decision, actual source and committed IDs at each step. Each emitted ID is appended to the real prefix. The learned choice expires after token two. A period must earn its subsequent EOS from the native writer. Compare native, learned, actual matched opposite wording state, and supplied right/wrong ideal states. Never infer exact EOS at a token cap. No checkpoint selection on held data.
+
+Scope includes Rust panel and ordinary client, GPU trainer and frozen copy replay, lossless packing of integer state, protocol, tests and private evidence. Cancel the measurement for a changed copy, label leakage, overlapping families, nonqualifying hardware or unverified device/client disagreement. Require independently checked finite controls and non-author FIT before GPU fitting or held evaluation. Report per-family first wrong tokens, exact natural EOS, pair wins, retained and lost native successes. Source lookup and general dialogue stay outside this unit.

@@ -1,0 +1,1 @@
+{"ending_cubin_sha256":"b9fa28057de0aa60759b08187bb64c9d85c62927150871159e85eb3fd6583a6c","fit_and_presence":"PASS","matched_swap_and_copy_guard":"PASS","schema":"uor-r4.ending-device-finite/1","scores":[2,-2,0,1],"signed_i16_bounds_and_overflow":"PASS","zero_fallback":"PASS","zero_scores":[0,0,0,0]}

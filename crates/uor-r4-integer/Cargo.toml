@@ -134,3 +134,11 @@ path = "src/bin/verify-native-occurrence.rs"
 [[bin]]
 name = "verify-native-copy"
 path = "src/bin/verify-native-copy.rs"
+
+[[bin]]
+name = "pack-native-word-ending"
+path = "src/bin/pack-native-word-ending.rs"
+
+[[bin]]
+name = "verify-native-word-ending"
+path = "src/bin/verify-native-word-ending.rs"

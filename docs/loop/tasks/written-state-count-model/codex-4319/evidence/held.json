@@ -1,0 +1,992 @@
+{
+  "rows": 400,
+  "arms": {
+    "learned": {
+      "rows": 400,
+      "stop_rows": 200,
+      "period_rows": 200,
+      "copied": 400,
+      "token_two_correct": 200,
+      "exact": 0,
+      "exact_stop": 0,
+      "exact_period": 0,
+      "exact_pairs": 0,
+      "second_pairs": 0,
+      "first_wrong": {
+        "2": 200,
+        "3": 200
+      },
+      "retained_native_exact": 0,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "modal_wrong": [
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 16,
+          "n": 200
+        },
+        {
+          "position": 3,
+          "expected": 1,
+          "actual": 73,
+          "n": 200
+        }
+      ]
+    },
+    "native": {
+      "rows": 400,
+      "stop_rows": 200,
+      "period_rows": 200,
+      "copied": 400,
+      "token_two_correct": 69,
+      "exact": 0,
+      "exact_stop": 0,
+      "exact_period": 0,
+      "exact_pairs": 0,
+      "second_pairs": 0,
+      "first_wrong": {
+        "2": 331,
+        "3": 69
+      },
+      "retained_native_exact": 0,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "modal_wrong": [
+        {
+          "position": 3,
+          "expected": 1,
+          "actual": 73,
+          "n": 69
+        },
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 16,
+          "n": 61
+        },
+        {
+          "position": 2,
+          "expected": 16,
+          "actual": 223,
+          "n": 29
+        },
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 223,
+          "n": 25
+        },
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 161,
+          "n": 17
+        },
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 85,
+          "n": 13
+        },
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 14,
+          "n": 12
+        },
+        {
+          "position": 2,
+          "expected": 16,
+          "actual": 161,
+          "n": 12
+        }
+      ]
+    },
+    "oracle": {
+      "rows": 400,
+      "stop_rows": 200,
+      "period_rows": 200,
+      "copied": 400,
+      "token_two_correct": 400,
+      "exact": 200,
+      "exact_stop": 200,
+      "exact_period": 0,
+      "exact_pairs": 0,
+      "second_pairs": 200,
+      "first_wrong": {
+        "null": 200,
+        "3": 200
+      },
+      "retained_native_exact": 0,
+      "gained_vs_native": 200,
+      "lost_vs_native": 0,
+      "modal_wrong": [
+        {
+          "position": 3,
+          "expected": 1,
+          "actual": 73,
+          "n": 200
+        }
+      ]
+    },
+    "swapped": {
+      "rows": 400,
+      "stop_rows": 200,
+      "period_rows": 200,
+      "copied": 400,
+      "token_two_correct": 200,
+      "exact": 0,
+      "exact_stop": 0,
+      "exact_period": 0,
+      "exact_pairs": 0,
+      "second_pairs": 0,
+      "first_wrong": {
+        "2": 200,
+        "3": 200
+      },
+      "retained_native_exact": 0,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "modal_wrong": [
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 16,
+          "n": 200
+        },
+        {
+          "position": 3,
+          "expected": 1,
+          "actual": 73,
+          "n": 200
+        }
+      ]
+    },
+    "wrong_oracle": {
+      "rows": 400,
+      "stop_rows": 200,
+      "period_rows": 200,
+      "copied": 400,
+      "token_two_correct": 0,
+      "exact": 0,
+      "exact_stop": 0,
+      "exact_period": 0,
+      "exact_pairs": 0,
+      "second_pairs": 0,
+      "first_wrong": {
+        "2": 400
+      },
+      "retained_native_exact": 0,
+      "gained_vs_native": 0,
+      "lost_vs_native": 0,
+      "modal_wrong": [
+        {
+          "position": 2,
+          "expected": 1,
+          "actual": 16,
+          "n": 200
+        },
+        {
+          "position": 2,
+          "expected": 16,
+          "actual": 1,
+          "n": 200
+        }
+      ]
+    }
+  },
+  "families": {
+    "held_contrastive_correction": {
+      "learned": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "native": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 19,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 81,
+          "3": 19
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 19
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 15
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 223,
+            "n": 7
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 223,
+            "n": 7
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 85,
+            "n": 4
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 85,
+            "n": 4
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 5,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 161,
+            "n": 3
+          }
+        ]
+      },
+      "oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 100,
+        "exact": 50,
+        "exact_stop": 50,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 50,
+        "first_wrong": {
+          "null": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 50,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "swapped": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "wrong_oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 0,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 100
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 1,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "held_final_character": {
+      "learned": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "native": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 18,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 82,
+          "3": 18
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 18
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 17
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 223,
+            "n": 8
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 223,
+            "n": 7
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 14,
+            "n": 5
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 14,
+            "n": 4
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 161,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 2,
+            "n": 3
+          }
+        ]
+      },
+      "oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 100,
+        "exact": 50,
+        "exact_stop": 50,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 50,
+        "first_wrong": {
+          "null": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 50,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "swapped": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "wrong_oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 0,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 100
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 1,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "held_referenced_rule": {
+      "learned": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "native": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 21,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 79,
+          "3": 21
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 21
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 18
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 223,
+            "n": 4
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 5,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 85,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 161,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 223,
+            "n": 3
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 5,
+            "n": 3
+          }
+        ]
+      },
+      "oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 100,
+        "exact": 50,
+        "exact_stop": 50,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 50,
+        "first_wrong": {
+          "null": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 50,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "swapped": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "wrong_oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 0,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 100
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 1,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "held_scope_exception": {
+      "learned": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "native": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 11,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 89,
+          "3": 11
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 11
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 11
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 223,
+            "n": 10
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 161,
+            "n": 8
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 223,
+            "n": 8
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 161,
+            "n": 6
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 2,
+            "n": 4
+          },
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 85,
+            "n": 4
+          }
+        ]
+      },
+      "oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 100,
+        "exact": 50,
+        "exact_stop": 50,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 50,
+        "first_wrong": {
+          "null": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 50,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "swapped": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 50,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 50,
+          "3": 50
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 3,
+            "expected": 1,
+            "actual": 73,
+            "n": 50
+          }
+        ]
+      },
+      "wrong_oracle": {
+        "rows": 100,
+        "stop_rows": 50,
+        "period_rows": 50,
+        "copied": 100,
+        "token_two_correct": 0,
+        "exact": 0,
+        "exact_stop": 0,
+        "exact_period": 0,
+        "exact_pairs": 0,
+        "second_pairs": 0,
+        "first_wrong": {
+          "2": 100
+        },
+        "retained_native_exact": 0,
+        "gained_vs_native": 0,
+        "lost_vs_native": 0,
+        "modal_wrong": [
+          {
+            "position": 2,
+            "expected": 1,
+            "actual": 16,
+            "n": 50
+          },
+          {
+            "position": 2,
+            "expected": 16,
+            "actual": 1,
+            "n": 50
+          }
+        ]
+      }
+    }
+  },
+  "states": {
+    "negative": 0,
+    "positive": 400,
+    "zero": 0,
+    "opposite_signed_pairs": 0,
+    "pairs_stop_negative_period_positive": 0
+  }
+}

@@ -33,6 +33,7 @@ pub mod contextual_source;
 pub mod native_copy;
 pub mod native_occurrence;
 pub mod native_opening;
+pub mod native_word_ending;
 pub mod pair_rank;
 mod rival_admission;
 pub use assertion_retrieval::pack_assertion_retrieval;
@@ -1371,6 +1372,7 @@ pub struct IntegerDiscreteModel {
     count_mixer: Option<crate::count_mixer::CountMixer>,
     opening: Option<native_opening::State>,
     occurrence: Option<native_occurrence::State>,
+    word_ending: Option<native_word_ending::State>,
     role_policy: Option<RolePolicy>,
     contextual_source: Option<contextual_source::SourcePolicy>,
     pair_rank: Option<pair_rank::Policy>,
@@ -2559,7 +2561,7 @@ impl IntegerDiscreteModel {
         }
         if matches!(
             schema.as_str(),
-            native_opening::SCHEMA | native_occurrence::SCHEMA
+            native_opening::SCHEMA | native_occurrence::SCHEMA | native_word_ending::SCHEMA
         ) {
             let expected_body = expected_len
                 .map(|len| {
@@ -2567,10 +2569,14 @@ impl IntegerDiscreteModel {
                         .ok_or_else(|| invalid("native opening header exceeds file size"))
                 })
                 .transpose()?;
-            let mut model = if schema == native_occurrence::SCHEMA {
-                native_occurrence::read_from(&mut reader, &encoded_header, expected_body)?
-            } else {
-                native_opening::read_from(&mut reader, &encoded_header, expected_body)?
+            let mut model = match schema.as_str() {
+                native_word_ending::SCHEMA => {
+                    native_word_ending::read_from(&mut reader, &encoded_header, expected_body)?
+                }
+                native_occurrence::SCHEMA => {
+                    native_occurrence::read_from(&mut reader, &encoded_header, expected_body)?
+                }
+                _ => native_opening::read_from(&mut reader, &encoded_header, expected_body)?,
             };
             model.artifact_sha256 = reader.finalize();
             return Ok(model);
@@ -2810,6 +2816,7 @@ impl IntegerDiscreteModel {
             count_mixer: None,
             opening: None,
             occurrence: None,
+            word_ending: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -2856,17 +2863,21 @@ impl IntegerDiscreteModel {
         let schema = serde_json::from_slice::<Schema>(encoded_header)?.schema;
         if matches!(
             schema.as_str(),
-            native_opening::SCHEMA | native_occurrence::SCHEMA
+            native_opening::SCHEMA | native_occurrence::SCHEMA | native_word_ending::SCHEMA
         ) {
             if !allow_role {
                 return Err(invalid("nested native opening artifacts are invalid"));
             }
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
-            let mut model = if schema == native_occurrence::SCHEMA {
-                native_occurrence::read_from(&mut reader, encoded_header, expected_body)?
-            } else {
-                native_opening::read_from(&mut reader, encoded_header, expected_body)?
+            let mut model = match schema.as_str() {
+                native_word_ending::SCHEMA => {
+                    native_word_ending::read_from(&mut reader, encoded_header, expected_body)?
+                }
+                native_occurrence::SCHEMA => {
+                    native_occurrence::read_from(&mut reader, encoded_header, expected_body)?
+                }
+                _ => native_opening::read_from(&mut reader, encoded_header, expected_body)?,
             };
             model.artifact_sha256 = hex::encode(Sha256::digest(bytes));
             return Ok(model);
@@ -3224,6 +3235,7 @@ impl IntegerDiscreteModel {
             count_mixer: None,
             opening: None,
             occurrence: None,
+            word_ending: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -3302,6 +3314,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.word_ending.is_some() {
+            return native_word_ending::SCHEMA;
+        }
         if self.occurrence.is_some() {
             return native_occurrence::SCHEMA;
         }

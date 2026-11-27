@@ -1,0 +1,173 @@
+{
+  "custody": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-word-ending/product-qualified-v1",
+  "manifest_sha256": "0bcaaa95e731562bf33dac6e311bf2feb34e4a1c5f73f134ea7d071779b8650f",
+  "inputs_manifest_sha256": "804e60d46f6ebdd225f4c23efdc839ba21d1594007343c0b92d0d5923e1f7ef3",
+  "source_manifest_sha256": "caf084f958fffc9f023cfebf09e9a13a22d56bc03b6a38ff63d5ffb3f46cf69b",
+  "held_panel_sha256": "3c1f22fb3cb0ed776fdcdcdb1333c5cb85a31cabf1088b6c596986e27a95c478",
+  "device_sha256": "260d22f4ae4e4c84500617bebedf945f669cf832f5e0239b902790be5f260040",
+  "reverse_device_sha256": "93f2d604cf800ab35b54c8301520624927a70a6549da50c592e04e7e3a8277a6",
+  "cold_sha256": "1bdbd0cb1eaa28c1a9202004be62f116493206b813bebeb26482b2d20bdbbde4",
+  "canonicalized_forward_and_reversed_back_device_bytes_match": true,
+  "cold_process_usage": "elapsed_s=4.86 maxrss_kib=982452",
+  "artifact": {
+    "artifact_bytes": 1202152204,
+    "artifact_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+    "schema": "uor-r4.lut-discrete-native-word-ending/1",
+    "word_ending": {
+      "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+      "fit_sha256": "919e9298d891a8e8cd6153c6f73b7717c84752db17fc75d671ac6efa6fbff97a",
+      "state_bytes": 8192,
+      "state_sha256": "bc16711e85b4524ce5459d3e7c9c013e9f3c42b65331ac0ff88b91f0802cddd1"
+    }
+  },
+  "readback": {
+    "state_offset": 355,
+    "unchanged_base_offset": 8547,
+    "raw_weights_cmp": true,
+    "frozen_base_cmp": true
+  },
+  "exact": {
+    "artifact_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+    "decoding": "uor-r4.native-word-ending/1",
+    "device_exact_rows": 400,
+    "pairs": 200,
+    "rows": 400,
+    "terminal_trajectories": 403,
+    "trajectories": 2000,
+    "word_ending": {
+      "base_sha256": "591ea4a21e39942ac86625a8903ff90e2e6055b382966e740787211edcfe73c8",
+      "fit_sha256": "919e9298d891a8e8cd6153c6f73b7717c84752db17fc75d671ac6efa6fbff97a",
+      "state_bytes": 8192,
+      "state_sha256": "bc16711e85b4524ce5459d3e7c9c013e9f3c42b65331ac0ff88b91f0802cddd1"
+    },
+    "writer_transitions": 5598
+  },
+  "cli": {
+    "matched_raw_text_cold": 4,
+    "selection": "lowest bare score on a lake pair, then smallest period-minus-bare score on an anchor pair; separate examples after scoring",
+    "examples": [
+      {
+        "pair_id": "1937f466c49debddcb8495e2",
+        "side": 0,
+        "family": "held_final_character",
+        "reference": "lake",
+        "expected_ids": [
+          1808,
+          1
+        ],
+        "gold_pos": 39,
+        "generated_ids": [
+          1808,
+          16,
+          73
+        ],
+        "stop": "max_tokens",
+        "text": " lake.g",
+        "signed_score": 48,
+        "first_mismatch": 2,
+        "source": [
+          "copy",
+          "learned",
+          "native"
+        ],
+        "native_proposals": [
+          1,
+          234,
+          73
+        ]
+      },
+      {
+        "pair_id": "1937f466c49debddcb8495e2",
+        "side": 1,
+        "family": "held_final_character",
+        "reference": "lake.",
+        "expected_ids": [
+          1808,
+          16,
+          1
+        ],
+        "gold_pos": 39,
+        "generated_ids": [
+          1808,
+          16,
+          73
+        ],
+        "stop": "max_tokens",
+        "text": " lake.g",
+        "signed_score": 688,
+        "first_mismatch": 3,
+        "source": [
+          "copy",
+          "learned",
+          "native"
+        ],
+        "native_proposals": [
+          1,
+          16,
+          73
+        ]
+      },
+      {
+        "pair_id": "025bbd86ff6b8845b6ff74d9",
+        "side": 0,
+        "family": "held_scope_exception",
+        "reference": "anchor",
+        "expected_ids": [
+          3984,
+          1
+        ],
+        "gold_pos": 32,
+        "generated_ids": [
+          3984,
+          16,
+          73
+        ],
+        "stop": "max_tokens",
+        "text": " anchor.g",
+        "signed_score": 656,
+        "first_mismatch": 2,
+        "source": [
+          "copy",
+          "learned",
+          "native"
+        ],
+        "native_proposals": [
+          1,
+          161,
+          73
+        ]
+      },
+      {
+        "pair_id": "025bbd86ff6b8845b6ff74d9",
+        "side": 1,
+        "family": "held_scope_exception",
+        "reference": "anchor.",
+        "expected_ids": [
+          3984,
+          16,
+          1
+        ],
+        "gold_pos": 32,
+        "generated_ids": [
+          3984,
+          16,
+          73
+        ],
+        "stop": "max_tokens",
+        "text": " anchor.g",
+        "signed_score": 480,
+        "first_mismatch": 3,
+        "source": [
+          "copy",
+          "learned",
+          "native"
+        ],
+        "native_proposals": [
+          1,
+          161,
+          73
+        ]
+      }
+    ]
+  }
+}

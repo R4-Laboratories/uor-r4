@@ -15,17 +15,17 @@ enum Address {
 }
 
 #[derive(Clone, Copy)]
-struct Action {
+pub(super) struct Action {
     read: OpeningChoice,
     copy: Option<Address>,
 }
 
-const GENERATE: Action = Action {
+pub(super) const GENERATE: Action = Action {
     read: OpeningChoice::Learned,
     copy: None,
 };
 
-const LEARNED: Action = Action {
+pub(super) const LEARNED: Action = Action {
     read: OpeningChoice::Learned,
     copy: Some(Address::Selected),
 };
@@ -89,7 +89,18 @@ impl<'a> Session<'a> {
     }
 }
 
-fn evaluate(model: &IntegerDiscreteModel, prefix: &[u32], action: Action) -> Result<WriterEvent> {
+pub(super) fn supplied(read: Option<u16>, claim: Option<u16>) -> Action {
+    Action {
+        read: read.map_or(OpeningChoice::Fallback, OpeningChoice::Supplied),
+        copy: Some(Address::Claimed(claim)),
+    }
+}
+
+pub(super) fn evaluate(
+    model: &IntegerDiscreteModel,
+    prefix: &[u32],
+    action: Action,
+) -> Result<WriterEvent> {
     model.validate_prefix(prefix)?;
     let reader = model
         .occurrence
@@ -181,10 +192,6 @@ pub fn observe(
             successor,
             terminal: session.terminal,
         })
-    };
-    let supplied = |read: Option<u16>, claim| Action {
-        read: read.map_or(OpeningChoice::Fallback, OpeningChoice::Supplied),
-        copy: Some(Address::Claimed(claim)),
     };
     Ok(Arms {
         generate: run(GENERATE)?,

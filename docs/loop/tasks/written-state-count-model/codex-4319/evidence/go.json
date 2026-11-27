@@ -1,0 +1,11 @@
+{
+  "schema": "uor-r4.native-word-ending-go/1",
+  "authorized": true,
+  "test_fitness": "FIT",
+  "approved_sha256": "2d5d41638c9486519ac452fe20635aad1494e2745c46790d6d3c7f86f1851c63",
+  "source_commit": "d5602c28b364b6bde61ffb6bfb5f37ca869b2e13",
+  "device_uuid": "GPU-3265b863-16b6-9f25-3bf5-4386fa6a53c3",
+  "signed_at": "2026-11-27T18:16:14Z",
+  "lab": "codex",
+  "fit_passes": 1
+}
