@@ -1,0 +1,828 @@
+[
+  {
+    "family": "allowance",
+    "contrast": 0,
+    "pair_id": "0fef11cee69fbedf47d07775",
+    "examples": [
+      {
+        "side": 0,
+        "directive": "Make the total word count one.",
+        "expected_reply": "horse.",
+        "expected_ids": [
+          2067,
+          16,
+          1
+        ],
+        "baseline_score": 34,
+        "balanced_score": -16,
+        "baseline": {
+          "ids": [
+            2067,
+            16,
+            1687,
+            462,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            2067,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            2067,
+            16,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            2067,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        }
+      },
+      {
+        "side": 1,
+        "directive": "Make the total word count two.",
+        "expected_reply": "horse. king",
+        "expected_ids": [
+          2067,
+          16,
+          1687,
+          1
+        ],
+        "baseline_score": 51,
+        "balanced_score": 4,
+        "baseline": {
+          "ids": [
+            2067,
+            16,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            2067,
+            16,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            2067,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            2067,
+            16,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "family": "display-window",
+    "contrast": 0,
+    "pair_id": "0057c12b88b41cda3c54b46e",
+    "examples": [
+      {
+        "side": 0,
+        "directive": "Leave only the opening word visible.",
+        "expected_reply": "cat.",
+        "expected_ids": [
+          462,
+          16,
+          1
+        ],
+        "baseline_score": 29,
+        "balanced_score": -47,
+        "baseline": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            462,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            462,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        }
+      },
+      {
+        "side": 1,
+        "directive": "Leave only the first two words visible.",
+        "expected_reply": "cat. floor",
+        "expected_ids": [
+          462,
+          16,
+          1287,
+          1
+        ],
+        "baseline_score": 57,
+        "balanced_score": 15,
+        "baseline": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            462,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "family": "exception-scope",
+    "contrast": 1,
+    "pair_id": "297e00f419c15439e80e3e77",
+    "examples": [
+      {
+        "side": 0,
+        "directive": "For the ending, pick the instruction in the second set of brackets: [after the third word] [before the third word].",
+        "expected_reply": "cat. floor",
+        "expected_ids": [
+          462,
+          16,
+          1287,
+          1
+        ],
+        "baseline_score": 15,
+        "balanced_score": 15,
+        "baseline": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            462,
+            16,
+            1287,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      },
+      {
+        "side": 1,
+        "directive": "For the ending, pick the instruction in the second set of brackets: [before the third word] [after the third word].",
+        "expected_reply": "cat. floor crown",
+        "expected_ids": [
+          462,
+          16,
+          1287,
+          2757,
+          1
+        ],
+        "baseline_score": 15,
+        "balanced_score": 15,
+        "baseline": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            462,
+            16,
+            1287,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "family": "selected-scope",
+    "contrast": 0,
+    "pair_id": "06850085c53a98d6261f89ba",
+    "examples": [
+      {
+        "side": 0,
+        "directive": "Follow the quoted instruction that comes first: 'stop before word two' or 'stop after word two'.",
+        "expected_reply": "floor.",
+        "expected_ids": [
+          1287,
+          16,
+          1
+        ],
+        "baseline_score": 80,
+        "balanced_score": 28,
+        "baseline": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 3,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            1287,
+            16,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "selected_eos"
+          ]
+        }
+      },
+      {
+        "side": 1,
+        "directive": "Follow the quoted instruction that comes first: 'stop after word two' or 'stop before word two'.",
+        "expected_reply": "floor. crown",
+        "expected_ids": [
+          1287,
+          16,
+          2757,
+          1
+        ],
+        "baseline_score": 80,
+        "balanced_score": 28,
+        "baseline": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1687,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            1287,
+            16,
+            2757,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "family": "space-allotment",
+    "contrast": 1,
+    "pair_id": "1ab443f912d976f2b2d6c284",
+    "examples": [
+      {
+        "side": 0,
+        "directive": "Fill the reply with a total of two words",
+        "expected_reply": "king. queen",
+        "expected_ids": [
+          1687,
+          16,
+          2326,
+          1
+        ],
+        "baseline_score": -21,
+        "balanced_score": -21,
+        "baseline": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            793,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      },
+      {
+        "side": 1,
+        "directive": "Fill the reply with a total of three words",
+        "expected_reply": "king. queen fish",
+        "expected_ids": [
+          1687,
+          16,
+          2326,
+          793,
+          1
+        ],
+        "baseline_score": 15,
+        "balanced_score": 15,
+        "baseline": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            793,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "balanced": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            793,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "swapped": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": 4,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "selected_eos"
+          ]
+        },
+        "correct": {
+          "ids": [
+            1687,
+            16,
+            2326,
+            793,
+            1
+          ],
+          "terminal": true,
+          "first_mismatch": null,
+          "provenance": [
+            "copy",
+            "supplied_period",
+            "verified_copy",
+            "verified_copy",
+            "selected_eos"
+          ]
+        }
+      }
+    ]
+  }
+]

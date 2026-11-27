@@ -1,0 +1,89 @@
+{
+  "baseline": {
+    "train": {
+      "directed": 60,
+      "exact": 48,
+      "pairs": 192
+    },
+    "dev": {
+      "directed": 0,
+      "exact": 0,
+      "pairs": 200
+    },
+    "protected_exact": 50
+  },
+  "eligible": {
+    "balanced": true,
+    "both": false,
+    "weak": false
+  },
+  "candidates": [
+    {
+      "config": "balanced",
+      "train": {
+        "directed": 192,
+        "exact": 132,
+        "pairs": 192
+      },
+      "dev": {
+        "directed": 75,
+        "exact": 75,
+        "pairs": 200
+      },
+      "protected_pairs": 50,
+      "protected_exact": 50,
+      "checks": {
+        "train_directed": true,
+        "dev_directed": true,
+        "dev_exact": true,
+        "protect": true
+      },
+      "eligible": true
+    },
+    {
+      "config": "both",
+      "train": {
+        "directed": 192,
+        "exact": 132,
+        "pairs": 192
+      },
+      "dev": {
+        "directed": 63,
+        "exact": 63,
+        "pairs": 200
+      },
+      "protected_pairs": 50,
+      "protected_exact": 0,
+      "checks": {
+        "train_directed": true,
+        "dev_directed": true,
+        "dev_exact": true,
+        "protect": false
+      },
+      "eligible": false
+    },
+    {
+      "config": "weak",
+      "train": {
+        "directed": 48,
+        "exact": 0,
+        "pairs": 192
+      },
+      "dev": {
+        "directed": 50,
+        "exact": 0,
+        "pairs": 200
+      },
+      "protected_pairs": 50,
+      "protected_exact": 0,
+      "checks": {
+        "train_directed": false,
+        "dev_directed": true,
+        "dev_exact": false,
+        "protect": false
+      },
+      "eligible": false
+    }
+  ],
+  "winner": "balanced"
+}

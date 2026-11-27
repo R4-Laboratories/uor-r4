@@ -1,0 +1,738 @@
+[
+  {
+    "contrast": 0,
+    "family": "allowance",
+    "wording": [
+      "Make the total word count one",
+      "Make the total word count two"
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      },
+      "balanced": {
+        "directed": 13,
+        "exact": 13,
+        "short_exact": 13,
+        "long_exact": 13
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "allowance",
+    "wording": [
+      "Make the total word count one.",
+      "Make the total word count two."
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      },
+      "balanced": {
+        "directed": 12,
+        "exact": 12,
+        "short_exact": 12,
+        "long_exact": 12
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "allowance",
+    "wording": [
+      "Use an allowance of a single word for the entire answer",
+      "Use an allowance of a pair of words for the entire answer"
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 13,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "allowance",
+    "wording": [
+      "Use an allowance of a single word for the entire answer.",
+      "Use an allowance of a pair of words for the entire answer."
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 12,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "display-window",
+    "wording": [
+      "Leave only the opening word visible",
+      "Leave only the first two words visible"
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      },
+      "balanced": {
+        "directed": 13,
+        "exact": 13,
+        "short_exact": 13,
+        "long_exact": 13
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "display-window",
+    "wording": [
+      "Leave only the opening word visible.",
+      "Leave only the first two words visible."
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      },
+      "balanced": {
+        "directed": 12,
+        "exact": 12,
+        "short_exact": 12,
+        "long_exact": 12
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "display-window",
+    "wording": [
+      "Show the opening word by itself",
+      "Show the opening word with the one immediately following it"
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 13,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "display-window",
+    "wording": [
+      "Show the opening word by itself.",
+      "Show the opening word with the one immediately following it."
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 12,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "next-entry",
+    "wording": [
+      "Do not proceed to the second word",
+      "Proceed as far as the second word and finish there"
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "next-entry",
+    "wording": [
+      "Do not proceed to the second word.",
+      "Proceed as far as the second word and finish there."
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "next-entry",
+    "wording": [
+      "Let the period be the end of the reply",
+      "Let the next word be the end of the reply"
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "next-entry",
+    "wording": [
+      "Let the period be the end of the reply.",
+      "Let the next word be the end of the reply."
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "selected-scope",
+    "wording": [
+      "Follow the quoted instruction that comes first: 'stop before word two' or 'stop after word two'",
+      "Follow the quoted instruction that comes first: 'stop after word two' or 'stop before word two'"
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "selected-scope",
+    "wording": [
+      "Follow the quoted instruction that comes first: 'stop before word two' or 'stop after word two'.",
+      "Follow the quoted instruction that comes first: 'stop after word two' or 'stop before word two'."
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "selected-scope",
+    "wording": [
+      "Use the former of these choices: 'leave out the second word' or 'add the second word and end there'",
+      "Use the former of these choices: 'add the second word and end there' or 'leave out the second word'"
+    ],
+    "n": 12,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 12
+      }
+    }
+  },
+  {
+    "contrast": 0,
+    "family": "selected-scope",
+    "wording": [
+      "Use the former of these choices: 'leave out the second word' or 'add the second word and end there'.",
+      "Use the former of these choices: 'add the second word and end there' or 'leave out the second word'."
+    ],
+    "n": 13,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 13
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 13,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "cutoff",
+    "wording": [
+      "Finish without reaching the third word",
+      "Finish once you have given the third word"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "cutoff",
+    "wording": [
+      "Finish without reaching the third word.",
+      "Finish once you have given the third word."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "cutoff",
+    "wording": [
+      "Place the end of the reply before word number three",
+      "Place the end of the reply after word number three"
+    ],
+    "n": 7,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 7
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 7
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "cutoff",
+    "wording": [
+      "Place the end of the reply before word number three.",
+      "Place the end of the reply after word number three."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "exception-scope",
+    "wording": [
+      "For the ending, pick the instruction in the second set of brackets: [after the third word] [before the third word]",
+      "For the ending, pick the instruction in the second set of brackets: [before the third word] [after the third word]"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "exception-scope",
+    "wording": [
+      "For the ending, pick the instruction in the second set of brackets: [after the third word] [before the third word].",
+      "For the ending, pick the instruction in the second set of brackets: [before the third word] [after the third word]."
+    ],
+    "n": 7,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 7
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 7
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "exception-scope",
+    "wording": [
+      "Obey the instruction before the slash: 'finish before word three' / 'finish after word three'",
+      "Obey the instruction before the slash: 'finish after word three' / 'finish before word three'"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "exception-scope",
+    "wording": [
+      "Obey the instruction before the slash: 'finish before word three' / 'finish after word three'.",
+      "Obey the instruction before the slash: 'finish after word three' / 'finish before word three'."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "proof-cut",
+    "wording": [
+      "Keep the second word but leave the third out",
+      "Keep the second and the third but leave the fourth out"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "proof-cut",
+    "wording": [
+      "Keep the second word but leave the third out.",
+      "Keep the second and the third but leave the fourth out."
+    ],
+    "n": 7,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 7,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 7,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "proof-cut",
+    "wording": [
+      "Retain the first and second words. Omit the rest",
+      "Retain the first, second and third words. Omit the rest"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "proof-cut",
+    "wording": [
+      "Retain the first and second words. Omit the rest.",
+      "Retain the first, second and third words. Omit the rest."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 6,
+        "long_exact": 0
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "space-allotment",
+    "wording": [
+      "Count out two words and finish there",
+      "Count out three words and finish there"
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "space-allotment",
+    "wording": [
+      "Count out two words and finish there.",
+      "Count out three words and finish there."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 6
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "space-allotment",
+    "wording": [
+      "Fill the reply with a total of two words",
+      "Fill the reply with a total of three words"
+    ],
+    "n": 7,
+    "arms": {
+      "baseline": {
+        "directed": 7,
+        "exact": 7,
+        "short_exact": 7,
+        "long_exact": 7
+      },
+      "balanced": {
+        "directed": 7,
+        "exact": 7,
+        "short_exact": 7,
+        "long_exact": 7
+      }
+    }
+  },
+  {
+    "contrast": 1,
+    "family": "space-allotment",
+    "wording": [
+      "Fill the reply with a total of two words.",
+      "Fill the reply with a total of three words."
+    ],
+    "n": 6,
+    "arms": {
+      "baseline": {
+        "directed": 6,
+        "exact": 6,
+        "short_exact": 6,
+        "long_exact": 6
+      },
+      "balanced": {
+        "directed": 6,
+        "exact": 6,
+        "short_exact": 6,
+        "long_exact": 6
+      }
+    }
+  }
+]

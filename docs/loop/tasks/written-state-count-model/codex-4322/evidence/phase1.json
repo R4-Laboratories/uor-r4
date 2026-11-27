@@ -1,0 +1,2288 @@
+[
+  {
+    "arm": "baseline",
+    "split": "train",
+    "contrasts": {
+      "0": {
+        "pairs": 192,
+        "directed": 60,
+        "inverted": 0,
+        "exact": 48,
+        "short_exact": 60,
+        "long_exact": 132,
+        "margin_pass_short": 48,
+        "margin_pass_long": 192,
+        "margin_pass_both": 48,
+        "actual_both_directed": 60,
+        "stop_score": {
+          "n": 192,
+          "min": -15,
+          "median_low": 10,
+          "median_high": 33,
+          "max": 40
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 64,
+          "median_low": 85,
+          "median_high": 102,
+          "max": 116
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 60
+          },
+          {
+            "position": 3,
+            "n": 132
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 132
+          },
+          {
+            "position": 4,
+            "n": 60
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 192,
+        "short_exact": 192,
+        "long_exact": 192,
+        "margin_pass_short": 168,
+        "margin_pass_long": 192,
+        "margin_pass_both": 168,
+        "actual_both_directed": 192,
+        "stop_score": {
+          "n": 192,
+          "min": -71,
+          "median_low": -17,
+          "median_high": -16,
+          "max": -4
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 8,
+          "median_low": 33,
+          "median_high": 38,
+          "max": 59
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 48,
+          "exact": 192,
+          "rows": 384,
+          "open_cap": 12
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 84,
+          "rows": 384,
+          "open_cap": 12
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 192,
+        "correct": 60,
+        "inverted": 0,
+        "any_sign_flip": 60,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 132
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 60
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 768,
+      "terminal_rows": 756,
+      "transitions": 3312
+    },
+    "cold": {
+      "artifact_sha256": "e95a0314c2661c3c04c00dbcc3214d7d7b49abf2202f0b49e0ea4cb367455a36",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 768,
+      "pairs": 384,
+      "rows": 768,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "48fbcedf94b92f1458f605354c12fabf41e608ac0d0342593546fa8166e83e73",
+        "state_bytes": 24582,
+        "state_sha256": "90f25068372afe973bd1f833a997aebe60cf843d6e5f6a71f042068005af8b6c"
+      }
+    }
+  },
+  {
+    "arm": "baseline",
+    "split": "dev",
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 0,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 150,
+        "margin_pass_short": 0,
+        "margin_pass_long": 200,
+        "margin_pass_both": 0,
+        "actual_both_directed": 0,
+        "stop_score": {
+          "n": 200,
+          "min": 20,
+          "median_low": 43,
+          "median_high": 43,
+          "max": 58
+        },
+        "copy_score": {
+          "n": 200,
+          "min": 20,
+          "median_low": 64,
+          "median_high": 70,
+          "max": 134
+        },
+        "wrong_short": [
+          {
+            "position": 3,
+            "n": 200
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 150
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 100,
+        "margin_pass_short": 37,
+        "margin_pass_long": 75,
+        "margin_pass_both": 25,
+        "actual_both_directed": 50,
+        "stop_score": {
+          "n": 100,
+          "min": -30,
+          "median_low": -1,
+          "median_high": 3,
+          "max": 34
+        },
+        "copy_score": {
+          "n": 100,
+          "min": 3,
+          "median_low": 26,
+          "median_high": 29,
+          "max": 47
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 100
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 200,
+          "exact": 400,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 150,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 400
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 175,
+          "rows": 400,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 100,
+          "exact": 200,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 50,
+          "exact": 150,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 200
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 50,
+          "rows": 200,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 200,
+        "correct": 0,
+        "inverted": 0,
+        "any_sign_flip": 0,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 125,
+          "tied": 75
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 200
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 63,
+          "reversed": 12,
+          "tied": 25
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 600,
+      "transitions": 2625
+    },
+    "cold": {
+      "artifact_sha256": "e95a0314c2661c3c04c00dbcc3214d7d7b49abf2202f0b49e0ea4cb367455a36",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "48fbcedf94b92f1458f605354c12fabf41e608ac0d0342593546fa8166e83e73",
+        "state_bytes": 24582,
+        "state_sha256": "90f25068372afe973bd1f833a997aebe60cf843d6e5f6a71f042068005af8b6c"
+      }
+    }
+  },
+  {
+    "arm": "baseline",
+    "split": "protect",
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 50,
+        "margin_pass_short": 25,
+        "margin_pass_long": 25,
+        "margin_pass_both": 0,
+        "actual_both_directed": 50,
+        "stop_score": {
+          "n": 50,
+          "min": -30,
+          "median_low": -30,
+          "median_high": -2,
+          "max": -2
+        },
+        "copy_score": {
+          "n": 50,
+          "min": 6,
+          "median_low": 6,
+          "median_high": 13,
+          "max": 13
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 100
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "1": {
+        "pairs": 50,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 450
+    },
+    "cold": {
+      "artifact_sha256": "e95a0314c2661c3c04c00dbcc3214d7d7b49abf2202f0b49e0ea4cb367455a36",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "48fbcedf94b92f1458f605354c12fabf41e608ac0d0342593546fa8166e83e73",
+        "state_bytes": 24582,
+        "state_sha256": "90f25068372afe973bd1f833a997aebe60cf843d6e5f6a71f042068005af8b6c"
+      }
+    }
+  },
+  {
+    "arm": "balanced",
+    "split": "train",
+    "contrasts": {
+      "0": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 132,
+        "short_exact": 192,
+        "long_exact": 132,
+        "margin_pass_short": 192,
+        "margin_pass_long": 192,
+        "margin_pass_both": 192,
+        "actual_both_directed": 192,
+        "stop_score": {
+          "n": 192,
+          "min": -26,
+          "median_low": -18,
+          "median_high": -18,
+          "max": -9
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 16,
+          "median_low": 37,
+          "median_high": 45,
+          "max": 59
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 132
+          },
+          {
+            "position": 4,
+            "n": 60
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 192,
+        "short_exact": 192,
+        "long_exact": 192,
+        "margin_pass_short": 168,
+        "margin_pass_long": 192,
+        "margin_pass_both": 168,
+        "actual_both_directed": 192,
+        "stop_score": {
+          "n": 192,
+          "min": -71,
+          "median_low": -17,
+          "median_high": -16,
+          "max": -4
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 8,
+          "median_low": 33,
+          "median_high": 38,
+          "max": 59
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 132,
+          "exact": 324,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 768,
+      "terminal_rows": 768,
+      "transitions": 3132
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 768,
+      "pairs": 384,
+      "rows": 768,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    }
+  },
+  {
+    "arm": "balanced",
+    "split": "dev",
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 75,
+        "inverted": 0,
+        "exact": 75,
+        "short_exact": 75,
+        "long_exact": 125,
+        "margin_pass_short": 62,
+        "margin_pass_long": 138,
+        "margin_pass_both": 25,
+        "actual_both_directed": 75,
+        "stop_score": {
+          "n": 200,
+          "min": -41,
+          "median_low": 0,
+          "median_high": 8,
+          "max": 38
+        },
+        "copy_score": {
+          "n": 200,
+          "min": 0,
+          "median_low": 14,
+          "median_high": 28,
+          "max": 102
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 75
+          },
+          {
+            "position": 3,
+            "n": 125
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 125
+          },
+          {
+            "position": 3,
+            "n": 25
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 100,
+        "margin_pass_short": 37,
+        "margin_pass_long": 75,
+        "margin_pass_both": 25,
+        "actual_both_directed": 50,
+        "stop_score": {
+          "n": 100,
+          "min": -30,
+          "median_low": -1,
+          "median_high": 3,
+          "max": 34
+        },
+        "copy_score": {
+          "n": 100,
+          "min": 3,
+          "median_low": 26,
+          "median_high": 29,
+          "max": 47
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 100
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 200,
+          "exact": 400,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 75,
+          "exact": 200,
+          "rows": 400,
+          "open_cap": 50
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 400
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 100,
+          "rows": 400,
+          "open_cap": 50
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 100,
+          "exact": 200,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 50,
+          "exact": 150,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 200
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 50,
+          "rows": 200,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 200,
+        "correct": 75,
+        "inverted": 0,
+        "any_sign_flip": 75,
+        "any_abstention": 25,
+        "score_order": {
+          "ordered": 150,
+          "tied": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 100
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 75
+          },
+          {
+            "choices": [
+              "native",
+              "native"
+            ],
+            "n": 25
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 63,
+          "reversed": 12,
+          "tied": 25
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 550,
+      "transitions": 2575
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    }
+  },
+  {
+    "arm": "balanced",
+    "split": "protect",
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 50,
+        "short_exact": 50,
+        "long_exact": 50,
+        "margin_pass_short": 25,
+        "margin_pass_long": 25,
+        "margin_pass_both": 0,
+        "actual_both_directed": 50,
+        "stop_score": {
+          "n": 50,
+          "min": -30,
+          "median_low": -30,
+          "median_high": -2,
+          "max": -2
+        },
+        "copy_score": {
+          "n": 50,
+          "min": 6,
+          "median_low": 6,
+          "median_high": 13,
+          "max": 13
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 100
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "1": {
+        "pairs": 50,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 450
+    },
+    "cold": {
+      "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "185fc01f1f33dfacb3942fd73fd5f8a509d7174aaea156aa358624ddcbb0a801",
+        "state_bytes": 24582,
+        "state_sha256": "45d517f31074aa8061307a36f5d522e3af4bb464b434e5e6ff1779f4dd82c05e"
+      }
+    }
+  },
+  {
+    "arm": "weak",
+    "split": "train",
+    "contrasts": {
+      "0": {
+        "pairs": 192,
+        "directed": 48,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 192,
+        "long_exact": 0,
+        "margin_pass_short": 192,
+        "margin_pass_long": 48,
+        "margin_pass_both": 48,
+        "actual_both_directed": 48,
+        "stop_score": {
+          "n": 192,
+          "min": -112,
+          "median_low": -91,
+          "median_high": -71,
+          "max": -52
+        },
+        "copy_score": {
+          "n": 192,
+          "min": -35,
+          "median_low": -25,
+          "median_high": -18,
+          "max": 18
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": 3,
+            "n": 144
+          },
+          {
+            "position": 4,
+            "n": 48
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 108,
+        "margin_pass_short": 168,
+        "margin_pass_long": 192,
+        "margin_pass_both": 168,
+        "actual_both_directed": 0,
+        "stop_score": {
+          "n": 192,
+          "min": -71,
+          "median_low": -17,
+          "median_high": -16,
+          "max": -4
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 8,
+          "median_low": 33,
+          "median_high": 38,
+          "max": 59
+        },
+        "wrong_short": [
+          {
+            "position": 3,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 108
+          },
+          {
+            "position": 3,
+            "n": 84
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 192,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 144,
+          "rows": 384,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 108,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 192,
+        "correct": 48,
+        "inverted": 0,
+        "any_sign_flip": 48,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 48
+          },
+          {
+            "choices": [
+              "eos",
+              "eos"
+            ],
+            "n": 144
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 768,
+      "terminal_rows": 768,
+      "transitions": 2616
+    },
+    "cold": {
+      "artifact_sha256": "90db492f54e33df93a0cb41b344945ba5515160a78ae27dd3b301cebc2ca7736",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 768,
+      "pairs": 384,
+      "rows": 768,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "93f1847fa5a9fa397c5cab4eb2f0ac425b70ef11b7abe32967b2bdb2b02daf37",
+        "state_bytes": 24582,
+        "state_sha256": "e7fb9096ba4f13a83676ad092545ae4ee9643dcca03e7774618a307bbf1a1191"
+      }
+    }
+  },
+  {
+    "arm": "weak",
+    "split": "dev",
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 200,
+        "long_exact": 0,
+        "margin_pass_short": 200,
+        "margin_pass_long": 50,
+        "margin_pass_both": 50,
+        "actual_both_directed": 50,
+        "stop_score": {
+          "n": 200,
+          "min": -69,
+          "median_low": -57,
+          "median_high": -55,
+          "max": -36
+        },
+        "copy_score": {
+          "n": 200,
+          "min": -80,
+          "median_low": -35,
+          "median_high": -29,
+          "max": 37
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 200
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": 3,
+            "n": 150
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 62,
+        "margin_pass_short": 37,
+        "margin_pass_long": 75,
+        "margin_pass_both": 25,
+        "actual_both_directed": 0,
+        "stop_score": {
+          "n": 100,
+          "min": -30,
+          "median_low": -1,
+          "median_high": 3,
+          "max": 34
+        },
+        "copy_score": {
+          "n": 100,
+          "min": 3,
+          "median_low": 26,
+          "median_high": 29,
+          "max": 47
+        },
+        "wrong_short": [
+          {
+            "position": 3,
+            "n": 50
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 62
+          },
+          {
+            "position": 3,
+            "n": 38
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 200,
+          "exact": 400,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 200,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 400
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 150,
+          "rows": 400,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 100,
+          "exact": 200,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 62,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 200
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 50,
+          "rows": 200,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 200,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 125,
+          "reversed": 25,
+          "tied": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "eos"
+            ],
+            "n": 150
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 63,
+          "reversed": 12,
+          "tied": 25
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 600,
+      "transitions": 2124
+    },
+    "cold": {
+      "artifact_sha256": "90db492f54e33df93a0cb41b344945ba5515160a78ae27dd3b301cebc2ca7736",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "93f1847fa5a9fa397c5cab4eb2f0ac425b70ef11b7abe32967b2bdb2b02daf37",
+        "state_bytes": 24582,
+        "state_sha256": "e7fb9096ba4f13a83676ad092545ae4ee9643dcca03e7774618a307bbf1a1191"
+      }
+    }
+  },
+  {
+    "arm": "weak",
+    "split": "protect",
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 0,
+        "long_exact": 0,
+        "margin_pass_short": 25,
+        "margin_pass_long": 25,
+        "margin_pass_both": 0,
+        "actual_both_directed": 0,
+        "stop_score": {
+          "n": 50,
+          "min": -30,
+          "median_low": -30,
+          "median_high": -2,
+          "max": -2
+        },
+        "copy_score": {
+          "n": 50,
+          "min": 6,
+          "median_low": 6,
+          "median_high": 13,
+          "max": 13
+        },
+        "wrong_short": [
+          {
+            "position": 3,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": 3,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 100
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "1": {
+        "pairs": 50,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 300
+    },
+    "cold": {
+      "artifact_sha256": "90db492f54e33df93a0cb41b344945ba5515160a78ae27dd3b301cebc2ca7736",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "93f1847fa5a9fa397c5cab4eb2f0ac425b70ef11b7abe32967b2bdb2b02daf37",
+        "state_bytes": 24582,
+        "state_sha256": "e7fb9096ba4f13a83676ad092545ae4ee9643dcca03e7774618a307bbf1a1191"
+      }
+    }
+  },
+  {
+    "arm": "both",
+    "split": "train",
+    "contrasts": {
+      "0": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 132,
+        "short_exact": 192,
+        "long_exact": 132,
+        "margin_pass_short": 192,
+        "margin_pass_long": 192,
+        "margin_pass_both": 192,
+        "actual_both_directed": 192,
+        "stop_score": {
+          "n": 192,
+          "min": -63,
+          "median_low": -23,
+          "median_high": -22,
+          "max": -10
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 29,
+          "median_low": 57,
+          "median_high": 57,
+          "max": 94
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 132
+          },
+          {
+            "position": 4,
+            "n": 60
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "directed": 192,
+        "inverted": 0,
+        "exact": 192,
+        "short_exact": 192,
+        "long_exact": 192,
+        "margin_pass_short": 168,
+        "margin_pass_long": 192,
+        "margin_pass_both": 168,
+        "actual_both_directed": 192,
+        "stop_score": {
+          "n": 192,
+          "min": -71,
+          "median_low": -17,
+          "median_high": -16,
+          "max": -4
+        },
+        "copy_score": {
+          "n": 192,
+          "min": 8,
+          "median_low": 33,
+          "median_high": 38,
+          "max": 59
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 192
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 132,
+          "exact": 324,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 192,
+          "exact": 384,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 384
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 384,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      },
+      "1": {
+        "pairs": 192,
+        "correct": 192,
+        "inverted": 0,
+        "any_sign_flip": 192,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 192
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 192
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 768,
+      "terminal_rows": 768,
+      "transitions": 3132
+    },
+    "cold": {
+      "artifact_sha256": "106f7a554388bb26e737062c5355cea2d004faee061b6c2010f99baf0a6a17a1",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 768,
+      "pairs": 384,
+      "rows": 768,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "e4b25345867acec745cb93f4f4761cf1f3f37baeb898db46117b2566e042393c",
+        "state_bytes": 24582,
+        "state_sha256": "110faef07766f3b8b83bff4d4f8183ab6275578d3a74bf06b3a1037ba1d92ad4"
+      }
+    }
+  },
+  {
+    "arm": "both",
+    "split": "dev",
+    "contrasts": {
+      "0": {
+        "pairs": 200,
+        "directed": 63,
+        "inverted": 0,
+        "exact": 63,
+        "short_exact": 75,
+        "long_exact": 138,
+        "margin_pass_short": 75,
+        "margin_pass_long": 150,
+        "margin_pass_both": 50,
+        "actual_both_directed": 63,
+        "stop_score": {
+          "n": 200,
+          "min": -37,
+          "median_low": 3,
+          "median_high": 10,
+          "max": 48
+        },
+        "copy_score": {
+          "n": 200,
+          "min": -1,
+          "median_low": 13,
+          "median_high": 32,
+          "max": 113
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 75
+          },
+          {
+            "position": 3,
+            "n": 125
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 138
+          },
+          {
+            "position": 3,
+            "n": 12
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 38,
+        "short_exact": 50,
+        "long_exact": 88,
+        "margin_pass_short": 37,
+        "margin_pass_long": 75,
+        "margin_pass_both": 25,
+        "actual_both_directed": 38,
+        "stop_score": {
+          "n": 100,
+          "min": -30,
+          "median_low": -1,
+          "median_high": 3,
+          "max": 34
+        },
+        "copy_score": {
+          "n": 100,
+          "min": 3,
+          "median_low": 26,
+          "median_high": 29,
+          "max": 47
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          },
+          {
+            "position": 4,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": null,
+            "n": 88
+          },
+          {
+            "position": 3,
+            "n": 12
+          }
+        ]
+      }
+    },
+    "controls": {
+      "0": {
+        "correct": {
+          "exact_pairs": 200,
+          "exact": 400,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 63,
+          "exact": 213,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 400
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 400,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 137,
+          "rows": 400,
+          "open_cap": 0
+        }
+      },
+      "1": {
+        "correct": {
+          "exact_pairs": 100,
+          "exact": 200,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 38,
+          "exact": 138,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 200
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 200,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 50,
+          "rows": 200,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "0": {
+        "pairs": 200,
+        "correct": 63,
+        "inverted": 0,
+        "any_sign_flip": 63,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 150,
+          "tied": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 125
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 63
+          },
+          {
+            "choices": [
+              "eos",
+              "eos"
+            ],
+            "n": 12
+          }
+        ]
+      },
+      "1": {
+        "pairs": 100,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 63,
+          "reversed": 12,
+          "tied": 25
+        },
+        "decisions": [
+          {
+            "choices": [
+              "copy",
+              "copy"
+            ],
+            "n": 50
+          },
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 600,
+      "terminal_rows": 600,
+      "transitions": 2489
+    },
+    "cold": {
+      "artifact_sha256": "106f7a554388bb26e737062c5355cea2d004faee061b6c2010f99baf0a6a17a1",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 600,
+      "pairs": 300,
+      "rows": 600,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "e4b25345867acec745cb93f4f4761cf1f3f37baeb898db46117b2566e042393c",
+        "state_bytes": 24582,
+        "state_sha256": "110faef07766f3b8b83bff4d4f8183ab6275578d3a74bf06b3a1037ba1d92ad4"
+      }
+    }
+  },
+  {
+    "arm": "both",
+    "split": "protect",
+    "contrasts": {
+      "1": {
+        "pairs": 50,
+        "directed": 50,
+        "inverted": 0,
+        "exact": 0,
+        "short_exact": 50,
+        "long_exact": 0,
+        "margin_pass_short": 25,
+        "margin_pass_long": 25,
+        "margin_pass_both": 0,
+        "actual_both_directed": 0,
+        "stop_score": {
+          "n": 50,
+          "min": -30,
+          "median_low": -30,
+          "median_high": -2,
+          "max": -2
+        },
+        "copy_score": {
+          "n": 50,
+          "min": 6,
+          "median_low": 6,
+          "median_high": 13,
+          "max": 13
+        },
+        "wrong_short": [
+          {
+            "position": null,
+            "n": 50
+          }
+        ],
+        "wrong_long": [
+          {
+            "position": 3,
+            "n": 50
+          }
+        ]
+      }
+    },
+    "controls": {
+      "1": {
+        "correct": {
+          "exact_pairs": 50,
+          "exact": 100,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "learned": {
+          "exact_pairs": 0,
+          "exact": 50,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "native": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 100
+        },
+        "opposite": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        },
+        "swapped": {
+          "exact_pairs": 0,
+          "exact": 0,
+          "rows": 100,
+          "open_cap": 0
+        }
+      }
+    },
+    "common_actions": {
+      "1": {
+        "pairs": 50,
+        "correct": 50,
+        "inverted": 0,
+        "any_sign_flip": 50,
+        "any_abstention": 0,
+        "score_order": {
+          "ordered": 50
+        },
+        "decisions": [
+          {
+            "choices": [
+              "eos",
+              "copy"
+            ],
+            "n": 50
+          }
+        ]
+      }
+    },
+    "client": {
+      "matching_rows": 100,
+      "terminal_rows": 100,
+      "transitions": 350
+    },
+    "cold": {
+      "artifact_sha256": "106f7a554388bb26e737062c5355cea2d004faee061b6c2010f99baf0a6a17a1",
+      "decoding": "uor-r4.native-source-choice/1",
+      "device_exact_rows": 100,
+      "pairs": 50,
+      "rows": 100,
+      "source_choice": {
+        "base_sha256": "93147372d495b36fda03fa0115a983e75bf1fd1b132d826212b4e1e0e6a1e89a",
+        "fit_sha256": "e4b25345867acec745cb93f4f4761cf1f3f37baeb898db46117b2566e042393c",
+        "state_bytes": 24582,
+        "state_sha256": "110faef07766f3b8b83bff4d4f8183ab6275578d3a74bf06b3a1037ba1d92ad4"
+      }
+    }
+  }
+]
