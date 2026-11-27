@@ -29,6 +29,8 @@ both before any mechanism is promoted.
 
 **November 27, 2026 (`antigravity-1`, Gate 0).** Clean `DialogueProtocol::literal_roles_v2` answer-only D87 splits (`TRAIN` `737.5M` tok, `train-100m` `100.5M` tok, `DEV-tune`, sealed `DEV-test`) and the unwrapped `E1–E4` baseline evaluator (`gate0-kit`, `$0.00` GPU) landed with frozen `p4.d11` failing unwrapped E2 (`955‰` `" We"`), E3 (`0/128`), and E4 (`0/100`), preparing the Gate 1 native-integer Butterfly-Rotor pilot. [Gate 0 Report](../../loop/tasks/end-to-end-integration/antigravity-1/REPORT.md)
 
+**November 27, 2026 (`antigravity-2`, Gate 1 PR 1).** Pure-integer Reversible Lifting-Givens Butterfly + Non-Abelian `S³` Holographic Quaternion Rotor + Sparse PKM + Factored `64×64` Hierarchical Readout + Exact Integer Adjoint & Lion core (`UORBFY01`) landed in `uor-r4-native-vector` (`49/49` tests incl. `16/16` unwrapped opposite-role binding on both loss arms, WASM32-ready, `$0.00` GPU). [Gate 1 PR 1 Report](../../loop/tasks/end-to-end-integration/antigravity-2/REPORT.md)
+
 - One common `Read` result and interface, whose reference implementation is the native Q31
   first-pick read that D86 step 6 trains and serves (ADR-0007 Amendment 1). The Hamming copy and
   ask heads come second. Flock, route and relation adapters wait for a second consumer.
