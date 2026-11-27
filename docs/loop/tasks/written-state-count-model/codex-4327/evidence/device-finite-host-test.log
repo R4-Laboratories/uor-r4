@@ -1,0 +1,41 @@
+   Compiling paired-release-device v0.1.0 (/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-paired-release/device-build-v1/docs/loop/tasks/written-state-count-model/codex-4327/device)
+warning: unexpected `cfg` condition value: `joint-release`
+ --> ../../codex-4323/device/src/../../../codex-4321/device/src/../../../codex-4324/device/src/factorial.rs:6:7
+  |
+6 | #[cfg(feature = "joint-release")]
+  |       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: expected values for `feature` are: `default`, `paired-release`, and `release-factorial`
+  = help: consider adding `joint-release` as a feature in `Cargo.toml`
+  = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+  = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition value: `joint-release`
+   --> ../../codex-4323/device/src/../../../codex-4321/device/src/../../../codex-4324/device/src/factorial.rs:505:15
+    |
+505 |     #[cfg(all(feature = "joint-release", not(feature = "paired-release")))]
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `paired-release`, and `release-factorial`
+    = help: consider adding `joint-release` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition value: `joint-release`
+   --> ../../codex-4323/device/src/../../../codex-4321/device/src/../../../codex-4324/device/src/factorial.rs:508:19
+    |
+508 |     #[cfg(not(any(feature = "joint-release", feature = "paired-release")))]
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: expected values for `feature` are: `default`, `paired-release`, and `release-factorial`
+    = help: consider adding `joint-release` as a feature in `Cargo.toml`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: `paired-release-device` (bin "paired-release-device" test) generated 3 warnings
+    Finished `release` profile [optimized] target(s) in 0.95s
+     Running unittests ../../codex-4323/device/src/main.rs (target/release/deps/paired_release_device-a9302700ecbcb740)
+
+running 2 tests
+test gpu::factorial::finite::tests::conditional_gates ... ok
+test gpu::factorial::finite::tests::panel_preserves_row_identity ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

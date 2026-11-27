@@ -1,0 +1,241 @@
+{
+  "last_train_update_to_final": {
+    "rowwise": [
+      {
+        "kind": "direct_one_two",
+        "pairs": 64,
+        "before_last": 62,
+        "after_last": 63,
+        "final": 32,
+        "last_to_final": {
+          "gained": 1,
+          "kept": 31,
+          "lost": 32
+        },
+        "examples_of_erasure": [
+          {
+            "group": 3968,
+            "members": [
+              {
+                "train_index": 256,
+                "copy": false,
+                "signed_margin_before_group": 79,
+                "signed_margin_after_group": 79,
+                "final_margin": 122
+              },
+              {
+                "train_index": 257,
+                "copy": true,
+                "signed_margin_before_group": 44,
+                "signed_margin_after_group": 44,
+                "final_margin": -29
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "direct_two_three",
+        "pairs": 64,
+        "before_last": 56,
+        "after_last": 58,
+        "final": 32,
+        "last_to_final": {
+          "gained": 2,
+          "kept": 30,
+          "lost": 28,
+          "missed_both": 4
+        },
+        "examples_of_erasure": [
+          {
+            "group": 4585,
+            "members": [
+              {
+                "train_index": 393,
+                "copy": true,
+                "signed_margin_before_group": 54,
+                "signed_margin_after_group": 38,
+                "final_margin": -8
+              },
+              {
+                "train_index": 392,
+                "copy": false,
+                "signed_margin_before_group": -6,
+                "signed_margin_after_group": 10,
+                "final_margin": 58
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "selector",
+        "pairs": 128,
+        "before_last": 63,
+        "after_last": 65,
+        "final": 40,
+        "last_to_final": {
+          "gained": 4,
+          "kept": 36,
+          "lost": 29,
+          "missed_both": 59
+        },
+        "examples_of_erasure": [
+          {
+            "group": 3873,
+            "members": [
+              {
+                "train_index": 65,
+                "copy": true,
+                "signed_margin_before_group": 14,
+                "signed_margin_after_group": 14,
+                "final_margin": 53
+              },
+              {
+                "train_index": 66,
+                "copy": false,
+                "signed_margin_before_group": 45,
+                "signed_margin_after_group": 45,
+                "final_margin": -40
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "paired": [
+      {
+        "kind": "direct_one_two",
+        "pairs": 64,
+        "before_last": 64,
+        "after_last": 64,
+        "final": 32,
+        "last_to_final": {
+          "kept": 32,
+          "lost": 32
+        },
+        "examples_of_erasure": [
+          {
+            "group": 3968,
+            "members": [
+              {
+                "train_index": 256,
+                "copy": false,
+                "signed_margin_before_group": 183,
+                "signed_margin_after_group": 183,
+                "final_margin": 218
+              },
+              {
+                "train_index": 257,
+                "copy": true,
+                "signed_margin_before_group": 36,
+                "signed_margin_after_group": 36,
+                "final_margin": -15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "direct_two_three",
+        "pairs": 64,
+        "before_last": 62,
+        "after_last": 63,
+        "final": 64,
+        "last_to_final": {
+          "gained": 1,
+          "kept": 63
+        },
+        "examples_of_erasure": []
+      },
+      {
+        "kind": "selector",
+        "pairs": 128,
+        "before_last": 83,
+        "after_last": 114,
+        "final": 64,
+        "last_to_final": {
+          "gained": 3,
+          "kept": 61,
+          "lost": 53,
+          "missed_both": 11
+        },
+        "examples_of_erasure": [
+          {
+            "group": 3860,
+            "members": [
+              {
+                "train_index": 40,
+                "copy": false,
+                "signed_margin_before_group": 102,
+                "signed_margin_after_group": 102,
+                "final_margin": 112
+              },
+              {
+                "train_index": 43,
+                "copy": true,
+                "signed_margin_before_group": -8,
+                "signed_margin_after_group": 8,
+                "final_margin": -25
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "fresh_score_bounds": {
+    "rowwise": {
+      "direct_after_B": {
+        "pairs": 64,
+        "strict_switch": 0,
+        "inverted": 0,
+        "both_stop": 32,
+        "both_copy": 32,
+        "tied_member": 0,
+        "gap_negative": 32,
+        "gap_zero": 0,
+        "individually_separable": 32,
+        "common_threshold_upper_bound": 32
+      },
+      "selector": {
+        "pairs": 128,
+        "strict_switch": 0,
+        "inverted": 0,
+        "both_stop": 128,
+        "both_copy": 0,
+        "tied_member": 0,
+        "gap_negative": 72,
+        "gap_zero": 0,
+        "individually_separable": 48,
+        "common_threshold_upper_bound": 32
+      }
+    },
+    "paired": {
+      "direct_after_B": {
+        "pairs": 64,
+        "strict_switch": 0,
+        "inverted": 32,
+        "both_stop": 32,
+        "both_copy": 0,
+        "tied_member": 0,
+        "gap_negative": 32,
+        "gap_zero": 0,
+        "individually_separable": 32,
+        "common_threshold_upper_bound": 32
+      },
+      "selector": {
+        "pairs": 128,
+        "strict_switch": 0,
+        "inverted": 0,
+        "both_stop": 128,
+        "both_copy": 0,
+        "tied_member": 0,
+        "gap_negative": 72,
+        "gap_zero": 0,
+        "individually_separable": 48,
+        "common_threshold_upper_bound": 16
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {"id":"planet","turns":[{"user":"Which planet do people call the Red Planet? Give only the name.","accept":["Mars","Mars."]}]},
+  {"id":"arithmetic","turns":[{"user":"My basket has six pears. I eat two. How many pears are left? Answer with the number only.","accept":["4","four","Four"]}]},
+  {"id":"sorting","turns":[{"user":"Alphabetize lemon, fig, and date. Use three words separated by commas.","accept":["date, fig, lemon"]}]},
+  {"id":"rewrite","turns":[{"user":"Rewrite 'the train is late' in the past tense. Return the whole sentence.","accept":["The train was late.","the train was late","The train was late"]}]},
+  {"id":"opposite","turns":[{"user":"If I turn a lid clockwise to tighten it, which direction do I turn it to loosen it? Give just the direction.","accept":["counterclockwise","Counterclockwise","anticlockwise","Anticlockwise"]}]},
+  {"id":"vocabulary","turns":[{"user":"I am doing a crossword. What is the four-letter animal that kittens grow up to be called in the plural? Give only the four letters.","accept":["cats","Cats"]}]},
+  {"id":"capital","turns":[{"user":"What is the capital city of Japan? Just the city name, please.","accept":["Tokyo","Tokyo."]}]},
+  {"id":"temperature","turns":[{"user":"At sea level, does liquid water freeze at zero or one hundred degrees Celsius? Answer zero or one hundred.","accept":["zero","Zero","zero.","Zero."]}]},
+  {"id":"estimate","turns":[{"user":"Should I expect an ordinary house cat or an elephant to weigh more? Name only the heavier animal.","accept":["elephant","Elephant","an elephant","An elephant","the elephant","The elephant"]}]},
+  {"id":"conversion","turns":[{"user":"How many minutes are in two hours? Reply with digits only.","accept":["120"]}]},
+  {"id":"key","turns":[{"user":"I left the spare key under the blue flowerpot. Please acknowledge with OK.","accept":["OK","OK."]},{"user":"Where did I leave the key? Just name the hiding place.","accept":["under the blue flowerpot","Under the blue flowerpot","under the blue flowerpot.","Under the blue flowerpot."]}]},
+  {"id":"dog","turns":[{"user":"My older dog is named Moss and my younger dog is named Lark. Say hello to Lark in two words.","accept":["Hello Lark","Hello, Lark","Hello Lark!","Hello, Lark!"]},{"user":"What is my older dog's name? Give only the name.","accept":["Moss","Moss."]}]},
+  {"id":"delivery","turns":[{"user":"I booked a delivery for Friday morning. Please reply with just the day.","accept":["Friday","Friday."]},{"user":"The carrier moved it one day earlier. What day should I now expect it? Just give the day.","accept":["Thursday","Thursday."]}]},
+  {"id":"locker","turns":[{"user":"I started with locker 24, then the attendant moved me to locker 31. Please acknowledge with OK.","accept":["OK","OK."]},{"user":"Which locker should I open now? Give the number only.","accept":["31"]}]},
+  {"id":"drink","turns":[{"user":"For this order, I want tea and my friend wants coffee. Please acknowledge with OK.","accept":["OK","OK."]},{"user":"Which drink is for my friend? Use just the drink name.","accept":["coffee","Coffee","coffee.","Coffee."]}]},
+  {"id":"meeting","turns":[{"user":"My morning meeting is in the Cedar room. My evening meeting is in the Birch room. Please acknowledge with OK.","accept":["OK","OK."]},{"user":"I am going to the meeting after sunset. Which room should I find? Use just the room name.","accept":["Birch","Birch."]}]}
+]

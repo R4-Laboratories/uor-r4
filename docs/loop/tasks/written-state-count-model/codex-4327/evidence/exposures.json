@@ -1,0 +1,69 @@
+{
+  "exposures": 6144,
+  "opportunities": 98304,
+  "original_offsets_reproduce_all_identities_and_labels": true,
+  "by_stage": [
+    {
+      "stage": 0,
+      "exposures": 3072,
+      "copy": 1984,
+      "stop": 1088
+    },
+    {
+      "stage": 1,
+      "exposures": 3072,
+      "copy": 1536,
+      "stop": 1536
+    }
+  ],
+  "by_group": [
+    {
+      "stage": 0,
+      "kind": "direct_one_two",
+      "groups": 256,
+      "members": 512
+    },
+    {
+      "stage": 0,
+      "kind": "rehearsal",
+      "groups": 1024,
+      "members": 1024
+    },
+    {
+      "stage": 0,
+      "kind": "same_action",
+      "groups": 512,
+      "members": 512
+    },
+    {
+      "stage": 0,
+      "kind": "selector",
+      "groups": 512,
+      "members": 1024
+    },
+    {
+      "stage": 1,
+      "kind": "direct_two_three",
+      "groups": 256,
+      "members": 512
+    },
+    {
+      "stage": 1,
+      "kind": "no_eligible_sibling",
+      "groups": 768,
+      "members": 768
+    },
+    {
+      "stage": 1,
+      "kind": "rehearsal",
+      "groups": 1152,
+      "members": 1152
+    },
+    {
+      "stage": 1,
+      "kind": "unmatched_exposure",
+      "groups": 640,
+      "members": 640
+    }
+  ]
+}

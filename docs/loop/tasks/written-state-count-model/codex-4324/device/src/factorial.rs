@@ -6,6 +6,10 @@ mod finite;
 #[cfg(feature = "joint-release")]
 #[path = "../../../codex-4325/device/src/joint.rs"]
 mod joint;
+#[allow(unexpected_cfgs)]
+#[cfg(feature = "paired-release")]
+#[path = "../../../codex-4327/device/src/paired.rs"]
+mod paired;
 #[path = "factorial/run.rs"]
 mod run;
 
@@ -495,9 +499,12 @@ impl Replayer {
 
 pub(crate) fn command() -> Option<Result<()>> {
     #[allow(unexpected_cfgs)]
-    #[cfg(feature = "joint-release")]
+    #[cfg(feature = "paired-release")]
+    return paired::command();
+    #[allow(unexpected_cfgs)]
+    #[cfg(all(feature = "joint-release", not(feature = "paired-release")))]
     return joint::command();
     #[allow(unexpected_cfgs)]
-    #[cfg(not(feature = "joint-release"))]
+    #[cfg(not(any(feature = "joint-release", feature = "paired-release")))]
     return run::command();
 }

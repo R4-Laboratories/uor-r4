@@ -1,0 +1,7 @@
+# Train opposite releases from the addresses that distinguish the instructions
+
+Lab: codex
+
+Item: [Written-state count model](../../../../roadmap/items/written-state-count-model.md), #4063.
+
+Execute the [component replay pickup](../codex-4326/PICKUP.md). Fresh main and live issues show no successor. Wick is running another training job. Compare native pointwise and opposed-pair updates on the same TRAIN records, paired row exposures, per-stage class counts, update cap, shared geometry and starting state. State is the same linked 20,483 signed i16 words and 4,096 signed residual words, integer roots, instruction addresses, carried state, requested positions, authenticated original copy and emitted tokens. The GPU scorer and writer stay frozen, native margin updates write the same residual the ordinary D11 scorer reads, and the full signed state is packed losslessly. Train both, even on negative transfer. Pre-register, run a wrong assignment finite test, repeat the fits and compare the cold integer ordinary-client transitions with actual device execution in both prompt orders. Hold back independently worded families, protect historical pair IDs, and grade actual EOS. Probe separate prompt-only dialogues with no supplied opening or source through the ordinary serving path. Stop at attribution, archive and verification. No change to the writer, model representation, integration baseline or milestone bar.

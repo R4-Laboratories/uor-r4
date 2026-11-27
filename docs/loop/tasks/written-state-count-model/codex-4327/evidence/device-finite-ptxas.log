@@ -1,0 +1,21 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function 'choice_commit' for 'sm_89'
+ptxas info    : Function properties for choice_commit
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, used 0 barriers, 384 bytes cmem[0]
+ptxas info    : Compile time = 4.569 ms
+ptxas info    : Compiling entry function 'paired_fit' for 'sm_89'
+ptxas info    : Function properties for paired_fit
+    18440 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 48 registers, used 0 barriers, 18440 bytes cumulative stack size, 408 bytes cmem[0]
+ptxas info    : Compile time = 301.231 ms
+ptxas info    : Compiling entry function 'choice_score' for 'sm_89'
+ptxas info    : Function properties for choice_score
+    512 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 512 bytes cumulative stack size, 392 bytes cmem[0]
+ptxas info    : Compile time = 73.845 ms
+ptxas info    : Compiling entry function 'choice_train' for 'sm_89'
+ptxas info    : Function properties for choice_train
+    1536 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 36 registers, used 0 barriers, 1536 bytes cumulative stack size, 400 bytes cmem[0]
+ptxas info    : Compile time = 70.113 ms

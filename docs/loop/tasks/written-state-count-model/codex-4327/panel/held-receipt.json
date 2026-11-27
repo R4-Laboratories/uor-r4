@@ -1,0 +1,1149 @@
+{
+  "archive_roots": {
+    "20261127-codex-joint-release": "700acd0859ed42e08603457ea784e4065ca7c4944986a314acf72c83a0672d6d",
+    "20261127-codex-period-margin": "2d10cc6d64a4197385ca83482f4e93b45a888d3ed10dcf7e18f892d7091c240c",
+    "20261127-codex-postperiod": "56091ad40d7e5da6f3d6742e02f04e37cdb01171fc3fddb4acba9bcf4f11b876",
+    "20261127-codex-release-factorial": "ed25f9d7daa1087fbd7c42423acb6a3a8ec75d5bd123f6fe49804fe75c8fdbd5",
+    "20261127-codex-scope-trace": "54781b20590b75f9ef29a7dea59ad1cb0b8f973fbc3fe1b0836c4927e0eccf58",
+    "20261127-codex-source-choice": "2b6abf25514e9a744a447659388003994ea5a0d1e92c50dd7934337da0968b7c"
+  },
+  "archive_rows_checked": 6468,
+  "archive_template_signatures_checked": 685,
+  "cap": 5,
+  "exact_archive_overlaps": {
+    "encoded_prefixes": 0,
+    "normalized_contexts": 0,
+    "normalized_prompts": 0,
+    "pair_ids": 0,
+    "source_token_ids": 0,
+    "template_signatures": 0
+  },
+  "family_authors": {
+    "paired-approval-code": "panel",
+    "paired-bell": "independent",
+    "paired-desk-lamp": "panel",
+    "paired-direct-clerk": "independent",
+    "paired-direct-crate": "panel",
+    "paired-direct-rehearsal": "independent",
+    "paired-direct-tray": "panel",
+    "paired-overrule": "panel",
+    "paired-receipt": "independent",
+    "paired-translation-booth": "independent",
+    "paired-type-case": "independent",
+    "paired-verdict": "panel"
+  },
+  "fresh": {
+    "direct_families": {
+      "paired-direct-clerk": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1296": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1502": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1559": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2754": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3350": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3355": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "790": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      },
+      "paired-direct-crate": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1296": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1502": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1559": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2754": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3350": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3355": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "790": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      },
+      "paired-direct-rehearsal": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1296": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1502": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1559": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2754": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3350": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3355": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "790": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          0,
+          32,
+          32
+        ]
+      },
+      "paired-direct-tray": {
+        "a_before_b": 32,
+        "b_before_a": 0,
+        "contexts": 32,
+        "equal_length_clause_order_pairs": 0,
+        "equal_length_contexts": 32,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1296": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1502": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "1559": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "2754": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3350": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "3355": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "790": [
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "role_slot_counts": [
+          [
+            32,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            32,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            32,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            32
+          ]
+        ],
+        "rows": 64,
+        "word_counts": [
+          32,
+          32,
+          0
+        ]
+      }
+    },
+    "direct_one_two_pairs": 64,
+    "direct_two_three_pairs": 64,
+    "equal_length_clause_order_pairs": 128,
+    "equal_length_direct_pairs": 64,
+    "equal_length_quartets": 48,
+    "equal_length_selector_pairs": 96,
+    "labels": {
+      "1033": "mouse",
+      "1296": "lion",
+      "1502": "mouth",
+      "1559": "arm",
+      "2754": "tiger",
+      "3350": "nail",
+      "3355": "chalk",
+      "790": "hand"
+    },
+    "prefix_max": 155,
+    "prefix_min": 95,
+    "rows": 512,
+    "scoped_families": {
+      "paired-approval-code": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-bell": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-desk-lamp": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-overrule": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 0,
+        "equal_length_selector_pairs": 0,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-receipt": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-translation-booth": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-type-case": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      },
+      "paired-verdict": {
+        "a_before_b": 4,
+        "b_before_a": 4,
+        "contexts": 8,
+        "equal_length_clause_order_pairs": 16,
+        "equal_length_contexts": 8,
+        "equal_length_selector_pairs": 16,
+        "label_role_counts": {
+          "1033": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1296": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1502": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "1559": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2754": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3350": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "3355": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "790": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "role_slot_counts": [
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "rows": 32,
+        "word_counts": [
+          16,
+          16,
+          0
+        ]
+      }
+    },
+    "scoped_quartets": 64
+  },
+  "fresh_template_strings_checked": 96,
+  "original_train": {
+    "rows": 768,
+    "sha256": "62daaf325c432bf8f72587fed7e53f8174e27558f18b8c44eef020720c8b673f",
+    "tape": "20261127-codex-joint-release/panel-v1/train"
+  },
+  "schema": "codex-4327.paired-release-held/1",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+}

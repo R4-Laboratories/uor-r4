@@ -1,0 +1,3960 @@
+{
+  "schema": "codex-4327.paired-release-grade-evidence/1",
+  "held": {
+    "rows": {
+      "balanced": {
+        "rows": 512,
+        "exact": 208,
+        "terminal": 512,
+        "exact_short": 144,
+        "exact_long": 64,
+        "first_error": [
+          {
+            "value": null,
+            "rows": 208
+          },
+          {
+            "value": 3,
+            "rows": 192
+          },
+          {
+            "value": 4,
+            "rows": 112
+          }
+        ],
+        "source_auth_b_required": 320,
+        "source_auth_b_learned": 208,
+        "right_after_learned_b": 96,
+        "right_after_supplied_first": 144,
+        "exact_after_supplied_first": 336,
+        "ceiling": 512
+      },
+      "linked": {
+        "rows": 512,
+        "exact": 224,
+        "terminal": 512,
+        "exact_short": 184,
+        "exact_long": 40,
+        "first_error": [
+          {
+            "value": null,
+            "rows": 224
+          },
+          {
+            "value": 3,
+            "rows": 272
+          },
+          {
+            "value": 4,
+            "rows": 16
+          }
+        ],
+        "source_auth_b_required": 320,
+        "source_auth_b_learned": 56,
+        "right_after_learned_b": 40,
+        "right_after_supplied_first": 144,
+        "exact_after_supplied_first": 336,
+        "ceiling": 512
+      },
+      "paired": {
+        "rows": 512,
+        "exact": 192,
+        "terminal": 512,
+        "exact_short": 192,
+        "exact_long": 0,
+        "first_error": [
+          {
+            "value": null,
+            "rows": 192
+          },
+          {
+            "value": 3,
+            "rows": 320
+          }
+        ],
+        "source_auth_b_required": 320,
+        "source_auth_b_learned": 0,
+        "right_after_learned_b": 0,
+        "right_after_supplied_first": 184,
+        "exact_after_supplied_first": 376,
+        "ceiling": 512
+      },
+      "pointwise": {
+        "rows": 512,
+        "exact": 224,
+        "terminal": 512,
+        "exact_short": 160,
+        "exact_long": 64,
+        "first_error": [
+          {
+            "value": null,
+            "rows": 224
+          },
+          {
+            "value": 3,
+            "rows": 256
+          },
+          {
+            "value": 4,
+            "rows": 32
+          }
+        ],
+        "source_auth_b_required": 320,
+        "source_auth_b_learned": 96,
+        "right_after_learned_b": 64,
+        "right_after_supplied_first": 216,
+        "exact_after_supplied_first": 408,
+        "ceiling": 512
+      }
+    },
+    "rows_by_side": [
+      {
+        "side": 0,
+        "models": {
+          "balanced": {
+            "rows": 256,
+            "exact": 144,
+            "terminal": 256,
+            "exact_short": 144,
+            "exact_long": 0,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 144
+              },
+              {
+                "value": 3,
+                "rows": 112
+              }
+            ],
+            "source_auth_b_required": 64,
+            "source_auth_b_learned": 32,
+            "right_after_learned_b": 32,
+            "right_after_supplied_first": 32,
+            "exact_after_supplied_first": 224,
+            "ceiling": 256
+          },
+          "linked": {
+            "rows": 256,
+            "exact": 184,
+            "terminal": 256,
+            "exact_short": 184,
+            "exact_long": 0,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 184
+              },
+              {
+                "value": 3,
+                "rows": 72
+              }
+            ],
+            "source_auth_b_required": 64,
+            "source_auth_b_learned": 0,
+            "right_after_learned_b": 0,
+            "right_after_supplied_first": 32,
+            "exact_after_supplied_first": 224,
+            "ceiling": 256
+          },
+          "paired": {
+            "rows": 256,
+            "exact": 192,
+            "terminal": 256,
+            "exact_short": 192,
+            "exact_long": 0,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 192
+              },
+              {
+                "value": 3,
+                "rows": 64
+              }
+            ],
+            "source_auth_b_required": 64,
+            "source_auth_b_learned": 0,
+            "right_after_learned_b": 0,
+            "right_after_supplied_first": 32,
+            "exact_after_supplied_first": 224,
+            "ceiling": 256
+          },
+          "pointwise": {
+            "rows": 256,
+            "exact": 160,
+            "terminal": 256,
+            "exact_short": 160,
+            "exact_long": 0,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 160
+              },
+              {
+                "value": 3,
+                "rows": 64
+              },
+              {
+                "value": 4,
+                "rows": 32
+              }
+            ],
+            "source_auth_b_required": 64,
+            "source_auth_b_learned": 32,
+            "right_after_learned_b": 0,
+            "right_after_supplied_first": 32,
+            "exact_after_supplied_first": 224,
+            "ceiling": 256
+          }
+        }
+      },
+      {
+        "side": 1,
+        "models": {
+          "balanced": {
+            "rows": 256,
+            "exact": 64,
+            "terminal": 256,
+            "exact_short": 0,
+            "exact_long": 64,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 64
+              },
+              {
+                "value": 3,
+                "rows": 80
+              },
+              {
+                "value": 4,
+                "rows": 112
+              }
+            ],
+            "source_auth_b_required": 256,
+            "source_auth_b_learned": 176,
+            "right_after_learned_b": 64,
+            "right_after_supplied_first": 112,
+            "exact_after_supplied_first": 112,
+            "ceiling": 256
+          },
+          "linked": {
+            "rows": 256,
+            "exact": 40,
+            "terminal": 256,
+            "exact_short": 0,
+            "exact_long": 40,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 40
+              },
+              {
+                "value": 3,
+                "rows": 200
+              },
+              {
+                "value": 4,
+                "rows": 16
+              }
+            ],
+            "source_auth_b_required": 256,
+            "source_auth_b_learned": 56,
+            "right_after_learned_b": 40,
+            "right_after_supplied_first": 112,
+            "exact_after_supplied_first": 112,
+            "ceiling": 256
+          },
+          "paired": {
+            "rows": 256,
+            "exact": 0,
+            "terminal": 256,
+            "exact_short": 0,
+            "exact_long": 0,
+            "first_error": [
+              {
+                "value": 3,
+                "rows": 256
+              }
+            ],
+            "source_auth_b_required": 256,
+            "source_auth_b_learned": 0,
+            "right_after_learned_b": 0,
+            "right_after_supplied_first": 152,
+            "exact_after_supplied_first": 152,
+            "ceiling": 256
+          },
+          "pointwise": {
+            "rows": 256,
+            "exact": 64,
+            "terminal": 256,
+            "exact_short": 0,
+            "exact_long": 64,
+            "first_error": [
+              {
+                "value": null,
+                "rows": 64
+              },
+              {
+                "value": 3,
+                "rows": 192
+              }
+            ],
+            "source_auth_b_required": 256,
+            "source_auth_b_learned": 64,
+            "right_after_learned_b": 64,
+            "right_after_supplied_first": 184,
+            "exact_after_supplied_first": 184,
+            "ceiling": 256
+          }
+        }
+      }
+    ],
+    "full_quartets": {
+      "balanced": {
+        "contexts": 64,
+        "exact": 0,
+        "ceiling": 64,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "linked": {
+        "contexts": 64,
+        "exact": 0,
+        "ceiling": 64,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "paired": {
+        "contexts": 64,
+        "exact": 0,
+        "ceiling": 64,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "pointwise": {
+        "contexts": 64,
+        "exact": 0,
+        "ceiling": 64,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      }
+    },
+    "equal_length_quartets": {
+      "balanced": {
+        "contexts": 48,
+        "exact": 0,
+        "ceiling": 48,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "linked": {
+        "contexts": 48,
+        "exact": 0,
+        "ceiling": 48,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "paired": {
+        "contexts": 48,
+        "exact": 0,
+        "ceiling": 48,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      },
+      "pointwise": {
+        "contexts": 48,
+        "exact": 0,
+        "ceiling": 48,
+        "both_selector_strict": 0,
+        "both_selector_actual": 0,
+        "both_clause_strict": 0,
+        "both_clause_actual": 0
+      }
+    },
+    "pair_axes": [
+      {
+        "view": "original",
+        "axis": "clause-order-swap",
+        "contrast": 0,
+        "models": {
+          "balanced": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 48,
+              "both_copy": 80,
+              "wrong_or_equal_gap": 128,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 128,
+            "exact": 8,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 16,
+              "actual": 16,
+              "authenticated": 16,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 104,
+              "both_copy": 8,
+              "wrong_or_equal_gap": 80,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 64,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 56
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 80,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 48
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "equal_length": {
+          "balanced": {
+            "pairs": 128,
+            "exact": 0,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 48,
+              "both_copy": 80,
+              "wrong_or_equal_gap": 128,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 128,
+            "exact": 8,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 16,
+              "actual": 16,
+              "authenticated": 16,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 104,
+              "both_copy": 8,
+              "wrong_or_equal_gap": 80,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 128,
+            "exact": 0,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 64,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 56
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 128,
+            "exact": 0,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 80,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 48
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "pointwise_to_paired": [
+          {
+            "metric": "exact",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          }
+        ]
+      },
+      {
+        "view": "original",
+        "axis": "direct-count-control",
+        "contrast": 0,
+        "models": {
+          "balanced": {
+            "pairs": 64,
+            "exact": 32,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 64,
+              "actual": 64,
+              "authenticated": 64,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 64,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 64
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 64,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 64
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 32,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 32,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "equal_length": {
+          "balanced": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 32,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 32,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 32,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "pointwise_to_paired": [
+          {
+            "metric": "exact",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          }
+        ]
+      },
+      {
+        "view": "original",
+        "axis": "direct-count-control",
+        "contrast": 1,
+        "models": {
+          "balanced": {
+            "pairs": 64,
+            "exact": 32,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 32,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          },
+          "linked": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 32,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          },
+          "paired": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 32,
+              "both_stop": 32,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 32,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          },
+          "pointwise": {
+            "pairs": 64,
+            "exact": 0,
+            "ceiling": 64,
+            "period": {
+              "eligible": 64,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 64,
+              "opposed": 64,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 32,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 32,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          }
+        },
+        "equal_length": {
+          "balanced": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          },
+          "linked": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            }
+          },
+          "paired": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 32,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 32,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 32,
+            "exact": 0,
+            "period": {
+              "eligible": 32,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 32,
+              "authenticated": 32,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            },
+            "after_supplied_first": {
+              "eligible": 32,
+              "opposed": 32,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 32,
+              "wrong_or_equal_gap": 32,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "pointwise_to_paired": [
+          {
+            "metric": "exact",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_authenticated",
+            "pointwise": 32,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 32,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          }
+        ]
+      },
+      {
+        "view": "selector-derived",
+        "axis": "selector-swap",
+        "contrast": 0,
+        "models": {
+          "balanced": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 48,
+              "both_copy": 80,
+              "wrong_or_equal_gap": 104,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 16
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 128,
+            "exact": 8,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 16,
+              "actual": 16,
+              "authenticated": 16,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 104,
+              "both_copy": 8,
+              "wrong_or_equal_gap": 72,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 40
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 72,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 48
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 128,
+            "exact": 0,
+            "ceiling": 128,
+            "period": {
+              "eligible": 128,
+              "opposed": 128,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 128,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 72,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 48
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "equal_length": {
+          "balanced": {
+            "pairs": 96,
+            "exact": 0,
+            "period": {
+              "eligible": 96,
+              "opposed": 96,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 32,
+              "both_copy": 64,
+              "wrong_or_equal_gap": 80,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 8
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "linked": {
+            "pairs": 96,
+            "exact": 0,
+            "period": {
+              "eligible": 96,
+              "opposed": 96,
+              "strict": 8,
+              "actual": 8,
+              "authenticated": 8,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 80,
+              "both_copy": 8,
+              "wrong_or_equal_gap": 56,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "paired": {
+            "pairs": 96,
+            "exact": 0,
+            "period": {
+              "eligible": 96,
+              "opposed": 96,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 96,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 56,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 32
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          },
+          "pointwise": {
+            "pairs": 96,
+            "exact": 0,
+            "period": {
+              "eligible": 96,
+              "opposed": 96,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 96,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 48,
+              "gap_one": 8,
+              "gap_sufficient_missed_threshold": 40
+            },
+            "after_supplied_first": {
+              "eligible": 0,
+              "opposed": 0,
+              "strict": 0,
+              "actual": 0,
+              "authenticated": 0,
+              "actual_with_zero": 0,
+              "inverted": 0,
+              "both_stop": 0,
+              "both_copy": 0,
+              "wrong_or_equal_gap": 0,
+              "gap_one": 0,
+              "gap_sufficient_missed_threshold": 0
+            }
+          }
+        },
+        "pointwise_to_paired": [
+          {
+            "metric": "exact",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "period_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_strict",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          },
+          {
+            "metric": "post_b_authenticated",
+            "pointwise": 0,
+            "paired": 0,
+            "preserved": 0,
+            "lost": 0,
+            "gained": 0
+          }
+        ]
+      }
+    ],
+    "family": [
+      {
+        "family": "paired-approval-code",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 8
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 8,
+                "period_authenticated": 8,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 8,
+                "period_authenticated": 8,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-bell",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-desk-lamp",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-direct-clerk",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 64,
+            "exact": 64
+          },
+          "linked": {
+            "rows": 64,
+            "exact": 32
+          },
+          "paired": {
+            "rows": 64,
+            "exact": 32
+          },
+          "pointwise": {
+            "rows": 64,
+            "exact": 32
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "direct-count-control",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 32,
+                "exact": 32,
+                "period_strict": 32,
+                "period_authenticated": 32,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-direct-crate",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 64,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 64,
+            "exact": 0
+          },
+          "paired": {
+            "rows": 64,
+            "exact": 0
+          },
+          "pointwise": {
+            "rows": 64,
+            "exact": 32
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "direct-count-control",
+            "contrast": 1,
+            "models": {
+              "balanced": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 32,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-direct-rehearsal",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 64,
+            "exact": 64
+          },
+          "linked": {
+            "rows": 64,
+            "exact": 32
+          },
+          "paired": {
+            "rows": 64,
+            "exact": 0
+          },
+          "pointwise": {
+            "rows": 64,
+            "exact": 0
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "direct-count-control",
+            "contrast": 1,
+            "models": {
+              "balanced": {
+                "pairs": 32,
+                "exact": 32,
+                "period_strict": 0,
+                "period_authenticated": 32,
+                "post_b_strict": 32,
+                "post_b_authenticated": 32
+              },
+              "linked": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 32,
+                "post_b_authenticated": 32
+              },
+              "paired": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-direct-tray",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 64,
+            "exact": 32
+          },
+          "linked": {
+            "rows": 64,
+            "exact": 32
+          },
+          "paired": {
+            "rows": 64,
+            "exact": 32
+          },
+          "pointwise": {
+            "rows": 64,
+            "exact": 32
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 0,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "direct-count-control",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 32,
+                "period_authenticated": 32,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 32,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-overrule",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 16
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 24
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 8,
+                "period_strict": 8,
+                "period_authenticated": 8,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 8,
+                "period_strict": 8,
+                "period_authenticated": 8,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-receipt",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 16
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-translation-booth",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-type-case",
+        "author": "independent",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 0
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "family": "paired-verdict",
+        "author": "panel",
+        "rows": {
+          "balanced": {
+            "rows": 32,
+            "exact": 16
+          },
+          "linked": {
+            "rows": 32,
+            "exact": 16
+          },
+          "paired": {
+            "rows": 32,
+            "exact": 16
+          },
+          "pointwise": {
+            "rows": 32,
+            "exact": 16
+          }
+        },
+        "quartets": {
+          "balanced": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "linked": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "paired": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          },
+          "pointwise": {
+            "contexts": 8,
+            "exact": 0,
+            "both_selector_strict": 0,
+            "both_selector_actual": 0
+          }
+        },
+        "contrasts": [
+          {
+            "axis": "clause-order-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          },
+          {
+            "axis": "selector-swap",
+            "contrast": 0,
+            "models": {
+              "balanced": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "linked": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "paired": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              },
+              "pointwise": {
+                "pairs": 16,
+                "exact": 0,
+                "period_strict": 0,
+                "period_authenticated": 0,
+                "post_b_strict": 0,
+                "post_b_authenticated": 0
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "historical": [
+    {
+      "split": "joint-held",
+      "rows": {
+        "balanced": {
+          "rows": 512,
+          "exact": 80,
+          "ceiling": 512
+        },
+        "linked": {
+          "rows": 512,
+          "exact": 56,
+          "ceiling": 512
+        },
+        "old_joint": {
+          "rows": 512,
+          "exact": 192,
+          "ceiling": 512
+        },
+        "paired": {
+          "rows": 512,
+          "exact": 144,
+          "ceiling": 512
+        },
+        "pointwise": {
+          "rows": 512,
+          "exact": 184,
+          "ceiling": 512
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 256,
+          "exact": 0
+        },
+        "linked": {
+          "pairs": 256,
+          "exact": 0
+        },
+        "old_joint": {
+          "pairs": 256,
+          "exact": 8
+        },
+        "paired": {
+          "pairs": 256,
+          "exact": 24
+        },
+        "pointwise": {
+          "pairs": 256,
+          "exact": 16
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 0,
+          "current": 16,
+          "retained": 0,
+          "lost": 0,
+          "gained": 16
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 0,
+          "current": 24,
+          "retained": 0,
+          "lost": 0,
+          "gained": 24
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 8,
+          "current": 16,
+          "retained": 8,
+          "lost": 0,
+          "gained": 8
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 8,
+          "current": 24,
+          "retained": 0,
+          "lost": 8,
+          "gained": 24
+        }
+      ]
+    },
+    {
+      "split": "prior-dev",
+      "rows": {
+        "balanced": {
+          "rows": 600,
+          "exact": 350,
+          "ceiling": 600
+        },
+        "linked": {
+          "rows": 600,
+          "exact": 287,
+          "ceiling": 600
+        },
+        "old_joint": {
+          "rows": 600,
+          "exact": 312,
+          "ceiling": 600
+        },
+        "paired": {
+          "rows": 600,
+          "exact": 201,
+          "ceiling": 600
+        },
+        "pointwise": {
+          "rows": 600,
+          "exact": 274,
+          "ceiling": 600
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 300,
+          "exact": 125
+        },
+        "linked": {
+          "pairs": 300,
+          "exact": 50
+        },
+        "old_joint": {
+          "pairs": 300,
+          "exact": 75
+        },
+        "paired": {
+          "pairs": 300,
+          "exact": 6
+        },
+        "pointwise": {
+          "pairs": 300,
+          "exact": 50
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 125,
+          "current": 50,
+          "retained": 25,
+          "lost": 100,
+          "gained": 25
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 125,
+          "current": 6,
+          "retained": 0,
+          "lost": 125,
+          "gained": 6
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 75,
+          "current": 50,
+          "retained": 25,
+          "lost": 50,
+          "gained": 25
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 75,
+          "current": 6,
+          "retained": 0,
+          "lost": 75,
+          "gained": 6
+        }
+      ]
+    },
+    {
+      "split": "protect",
+      "rows": {
+        "balanced": {
+          "rows": 100,
+          "exact": 100,
+          "ceiling": 100
+        },
+        "linked": {
+          "rows": 100,
+          "exact": 100,
+          "ceiling": 100
+        },
+        "old_joint": {
+          "rows": 100,
+          "exact": 25,
+          "ceiling": 100
+        },
+        "paired": {
+          "rows": 100,
+          "exact": 0,
+          "ceiling": 100
+        },
+        "pointwise": {
+          "rows": 100,
+          "exact": 25,
+          "ceiling": 100
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 50,
+          "exact": 50
+        },
+        "linked": {
+          "pairs": 50,
+          "exact": 50
+        },
+        "old_joint": {
+          "pairs": 50,
+          "exact": 0
+        },
+        "paired": {
+          "pairs": 50,
+          "exact": 0
+        },
+        "pointwise": {
+          "pairs": 50,
+          "exact": 0
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 50,
+          "current": 0,
+          "retained": 0,
+          "lost": 50,
+          "gained": 0
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 50,
+          "current": 0,
+          "retained": 0,
+          "lost": 50,
+          "gained": 0
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        }
+      ]
+    },
+    {
+      "split": "quartet",
+      "rows": {
+        "balanced": {
+          "rows": 320,
+          "exact": 144,
+          "ceiling": 320
+        },
+        "linked": {
+          "rows": 320,
+          "exact": 152,
+          "ceiling": 320
+        },
+        "old_joint": {
+          "rows": 320,
+          "exact": 144,
+          "ceiling": 320
+        },
+        "paired": {
+          "rows": 320,
+          "exact": 144,
+          "ceiling": 320
+        },
+        "pointwise": {
+          "rows": 320,
+          "exact": 144,
+          "ceiling": 320
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 160,
+          "exact": 0
+        },
+        "linked": {
+          "pairs": 160,
+          "exact": 24
+        },
+        "old_joint": {
+          "pairs": 160,
+          "exact": 0
+        },
+        "paired": {
+          "pairs": 160,
+          "exact": 0
+        },
+        "pointwise": {
+          "pairs": 160,
+          "exact": 0
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 0,
+          "current": 0,
+          "retained": 0,
+          "lost": 0,
+          "gained": 0
+        }
+      ]
+    },
+    {
+      "split": "scope-dev",
+      "rows": {
+        "balanced": {
+          "rows": 512,
+          "exact": 224,
+          "ceiling": 512
+        },
+        "linked": {
+          "rows": 512,
+          "exact": 208,
+          "ceiling": 512
+        },
+        "old_joint": {
+          "rows": 512,
+          "exact": 288,
+          "ceiling": 512
+        },
+        "paired": {
+          "rows": 512,
+          "exact": 272,
+          "ceiling": 512
+        },
+        "pointwise": {
+          "rows": 512,
+          "exact": 240,
+          "ceiling": 512
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 256,
+          "exact": 32
+        },
+        "linked": {
+          "pairs": 256,
+          "exact": 8
+        },
+        "old_joint": {
+          "pairs": 256,
+          "exact": 32
+        },
+        "paired": {
+          "pairs": 256,
+          "exact": 40
+        },
+        "pointwise": {
+          "pairs": 256,
+          "exact": 24
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 32,
+          "current": 24,
+          "retained": 0,
+          "lost": 32,
+          "gained": 24
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 32,
+          "current": 40,
+          "retained": 0,
+          "lost": 32,
+          "gained": 40
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 32,
+          "current": 24,
+          "retained": 24,
+          "lost": 8,
+          "gained": 0
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 32,
+          "current": 40,
+          "retained": 32,
+          "lost": 0,
+          "gained": 8
+        }
+      ]
+    },
+    {
+      "split": "scope-held",
+      "rows": {
+        "balanced": {
+          "rows": 512,
+          "exact": 192,
+          "ceiling": 512
+        },
+        "linked": {
+          "rows": 512,
+          "exact": 256,
+          "ceiling": 512
+        },
+        "old_joint": {
+          "rows": 512,
+          "exact": 256,
+          "ceiling": 512
+        },
+        "paired": {
+          "rows": 512,
+          "exact": 272,
+          "ceiling": 512
+        },
+        "pointwise": {
+          "rows": 512,
+          "exact": 256,
+          "ceiling": 512
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 256,
+          "exact": 0
+        },
+        "linked": {
+          "pairs": 256,
+          "exact": 40
+        },
+        "old_joint": {
+          "pairs": 256,
+          "exact": 48
+        },
+        "paired": {
+          "pairs": 256,
+          "exact": 24
+        },
+        "pointwise": {
+          "pairs": 256,
+          "exact": 48
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "paired": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "pointwise": {
+          "contexts": 0,
+          "exact": 0,
+          "ceiling": 0,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 0,
+          "current": 48,
+          "retained": 0,
+          "lost": 0,
+          "gained": 48
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 0,
+          "current": 24,
+          "retained": 0,
+          "lost": 0,
+          "gained": 24
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 48,
+          "current": 48,
+          "retained": 40,
+          "lost": 8,
+          "gained": 8
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 48,
+          "current": 24,
+          "retained": 8,
+          "lost": 40,
+          "gained": 16
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "rows": {
+        "balanced": {
+          "rows": 768,
+          "exact": 270,
+          "ceiling": 768
+        },
+        "linked": {
+          "rows": 768,
+          "exact": 340,
+          "ceiling": 768
+        },
+        "old_joint": {
+          "rows": 768,
+          "exact": 582,
+          "ceiling": 768
+        },
+        "paired": {
+          "rows": 768,
+          "exact": 474,
+          "ceiling": 768
+        },
+        "pointwise": {
+          "rows": 768,
+          "exact": 540,
+          "ceiling": 768
+        }
+      },
+      "pairs": {
+        "balanced": {
+          "pairs": 384,
+          "exact": 84
+        },
+        "linked": {
+          "pairs": 384,
+          "exact": 80
+        },
+        "old_joint": {
+          "pairs": 384,
+          "exact": 204
+        },
+        "paired": {
+          "pairs": 384,
+          "exact": 152
+        },
+        "pointwise": {
+          "pairs": 384,
+          "exact": 172
+        }
+      },
+      "full_quartets": {
+        "balanced": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "linked": {
+          "contexts": 64,
+          "exact": 0,
+          "ceiling": 64,
+          "both_selector_strict": 0,
+          "both_selector_actual": 0,
+          "both_clause_strict": 0,
+          "both_clause_actual": 0
+        },
+        "old_joint": {
+          "contexts": 64,
+          "exact": 16,
+          "ceiling": 64,
+          "both_selector_strict": 16,
+          "both_selector_actual": 16,
+          "both_clause_strict": 16,
+          "both_clause_actual": 16
+        },
+        "paired": {
+          "contexts": 64,
+          "exact": 8,
+          "ceiling": 64,
+          "both_selector_strict": 8,
+          "both_selector_actual": 8,
+          "both_clause_strict": 8,
+          "both_clause_actual": 8
+        },
+        "pointwise": {
+          "contexts": 64,
+          "exact": 8,
+          "ceiling": 64,
+          "both_selector_strict": 8,
+          "both_selector_actual": 8,
+          "both_clause_strict": 8,
+          "both_clause_actual": 8
+        }
+      },
+      "retention": [
+        {
+          "from": "balanced",
+          "to": "pointwise",
+          "previous": 84,
+          "current": 172,
+          "retained": 42,
+          "lost": 42,
+          "gained": 130
+        },
+        {
+          "from": "balanced",
+          "to": "paired",
+          "previous": 84,
+          "current": 152,
+          "retained": 12,
+          "lost": 72,
+          "gained": 140
+        },
+        {
+          "from": "old_joint",
+          "to": "pointwise",
+          "previous": 204,
+          "current": 172,
+          "retained": 110,
+          "lost": 94,
+          "gained": 62
+        },
+        {
+          "from": "old_joint",
+          "to": "paired",
+          "previous": 204,
+          "current": 152,
+          "retained": 106,
+          "lost": 98,
+          "gained": 46
+        }
+      ]
+    }
+  ]
+}

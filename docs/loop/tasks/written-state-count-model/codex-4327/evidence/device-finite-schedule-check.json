@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "identical_multiset_of_epoch_stage_train_index_pair_id_side_and_action": true,
+  "exposures": 6144,
+  "historical_schedule_sha256": "1cb1cf2e2410adbce7430fd7db86911bc8ee1046b3d4d62ef7d401e99737650a",
+  "grouped_schedule_sha256": "eb1c3b18fa0da26dc05eed05f9295f75c013a292f3b269fc88045eafd395a4dd",
+  "exposure_multiset_sha256": "24c52bd926db505798afe934e043c630420f4b0058e29bb9eba9c43f37d463ae"
+}

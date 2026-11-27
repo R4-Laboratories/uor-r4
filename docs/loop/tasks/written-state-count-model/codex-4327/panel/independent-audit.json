@@ -1,0 +1,31 @@
+{
+  "held_rows": 512,
+  "audited_prior_rows": 6468,
+  "exact_overlap": {
+    "source_ids": 0,
+    "prefixes": 0,
+    "pair_ids": 0,
+    "prompts": 0,
+    "contexts": 0,
+    "directives": 0
+  },
+  "matched": {
+    "selector_pairs": 128,
+    "clause_pairs": 128,
+    "quartets": 64
+  },
+  "direct_one_two_pairs": 64,
+  "direct_two_three_pairs": 64,
+  "authors": [
+    {
+      "author": "independent",
+      "rows": 256,
+      "families": 6
+    },
+    {
+      "author": "panel",
+      "rows": 256,
+      "families": 6
+    }
+  ]
+}

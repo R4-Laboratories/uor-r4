@@ -1,0 +1,10 @@
+e4ec23f36f3e70cabe81599b4dbb0b62b319cc61e2bf0c3b9ac20527b73c4f44  crates/uor-r4-integer/src/bin/uor-chat.rs
+330ec29ee09aa1587793e6b0895a43f638b9ca9446abd26ae1345896c1727994  crates/uor-r4-integer/src/bin/pack-native-source-choice.rs
+fbd39edf2b4603849d1389d8bf871c484b3a0dd8029ea1a2d4bda7e4881b9624  crates/uor-r4-integer/src/bin/serve-native-source-choice.rs
+1bd71dcefc3c04a207afe7816f6228d58938843bc3067d9cfdbe62060ac92aac  crates/uor-r4-integer/src/bin/verify-native-source-choice.rs
+5084dfe966e96868851c89d7a49276edb2691e2b9fe02bf51ebaee688c1b84a9  crates/uor-r4-integer/src/bin/shared/verify_release_factorial.rs
+bd1e76e5bfad213a1749ad151d903e2afdbc714695dfa03cb7784e285101d385  crates/uor-r4-integer/src/discrete_count.rs
+b68e8074df40d0479c349f303f124e569ef691d294c608742b4149df8b2f3372  crates/uor-r4-integer/src/discrete_d11.rs
+55813ffa23d333ef4cfe823d672df998773361fc57c4d77aee2cacbca233d99e  crates/uor-r4-integer/src/discrete_d11/native_source_choice.rs
+d36f6becc8846d8d424f26099159f4a34c5562cebbae39fc32b8c5ad5ff8f49e  crates/uor-r4-integer/src/discrete_d11/native_source_choice/release_factorial.rs
+d3f70a92165ae08a1a359bf77fb83c1f0fa95fe609bbaa51d723758a01254a56  crates/uor-r4-tokenizer/src/dialogue.rs

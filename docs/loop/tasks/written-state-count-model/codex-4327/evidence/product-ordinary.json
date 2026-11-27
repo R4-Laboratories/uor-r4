@@ -1,0 +1,819 @@
+{
+  "base": {
+    "summaries": [
+      {
+        "arm": "base",
+        "complete_conversations": 0,
+        "conversations": 16,
+        "first": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 16
+        },
+        "followup": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 6
+        },
+        "kind": "summary",
+        "max_tokens": 16
+      }
+    ],
+    "refusals": [],
+    "raw_tokens": 352,
+    "scored_tokens": 352
+  },
+  "rowwise": {
+    "summaries": [
+      {
+        "arm": "rowwise",
+        "complete_conversations": 0,
+        "conversations": 16,
+        "first": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 16
+        },
+        "followup": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 6
+        },
+        "kind": "summary",
+        "max_tokens": 16
+      }
+    ],
+    "refusals": [
+      {
+        "grounded_without_positions": {
+          "exit_code": 1,
+          "stderr": "Error: Error(\"missing field `positions`\", line: 1, column: 131)\n"
+        },
+        "kind": "interface",
+        "stack": {
+          "exit_code": 1,
+          "stderr": "\u001b[1;31merror:\u001b[0m stack artifact header: missing field `shape` at line 1 column 342\n"
+        }
+      }
+    ],
+    "raw_tokens": 352,
+    "scored_tokens": 352
+  },
+  "paired": {
+    "summaries": [
+      {
+        "arm": "paired",
+        "complete_conversations": 0,
+        "conversations": 16,
+        "first": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 16
+        },
+        "followup": {
+          "eos": 0,
+          "exact_through_eos": 0,
+          "text_exact": 0,
+          "turns": 6
+        },
+        "kind": "summary",
+        "max_tokens": 16
+      }
+    ],
+    "refusals": [
+      {
+        "grounded_without_positions": {
+          "exit_code": 1,
+          "stderr": "Error: Error(\"missing field `positions`\", line: 1, column: 131)\n"
+        },
+        "kind": "interface",
+        "stack": {
+          "exit_code": 1,
+          "stderr": "\u001b[1;31merror:\u001b[0m stack artifact header: missing field `shape` at line 1 column 342\n"
+        }
+      }
+    ],
+    "raw_tokens": 352,
+    "scored_tokens": 352
+  },
+  "same_turn_records": true,
+  "hardware": "Wick Linux host",
+  "generic_binary": "uor-chat",
+  "first_turn": "--discrete --tokenizer --say",
+  "followups": "--discrete --prompt-ids with the previous turns emitted by uor-chat",
+  "trained_release_selector_invoked": false,
+  "dialogue_panel_sha256": "a0dd3db45cd270e30ef08f974e47c7d7108acf702e10ad9605e9c73f4014646c",
+  "rubric_sha256": "e010ce0e826801a47c2319b4dcbb53cee3dc9a17d2be24ef97bbec0b07f260e3",
+  "times_include_load_and_process_start": {
+    "base": "wall_seconds=70.61 peak_rss_kib=986528",
+    "rowwise": "wall_seconds=82.58 peak_rss_kib=1177340",
+    "paired": "wall_seconds=82.83 peak_rss_kib=1177372"
+  },
+  "qualitative_for_each_identical_arm": {
+    "useful": 0,
+    "plausible_partial": 0,
+    "whitespace_only": 18
+  },
+  "identical_text_for_all_three_artifacts": [
+    {
+      "conversation": "planet",
+      "turn": 1,
+      "user": "Which planet do people call the Red Planet? Give only the name.",
+      "accepted": [
+        "Mars",
+        "Mars."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "arithmetic",
+      "turn": 1,
+      "user": "My basket has six pears. I eat two. How many pears are left? Answer with the number only.",
+      "accepted": [
+        "4",
+        "four",
+        "Four"
+      ],
+      "text": "Let's%haps.gthon.gthon.g",
+      "emitted": [
+        1042,
+        386,
+        7,
+        74,
+        651,
+        85,
+        16,
+        73,
+        1010,
+        292,
+        16,
+        73,
+        1010,
+        292,
+        16,
+        73
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "sorting",
+      "turn": 1,
+      "user": "Alphabetize lemon, fig, and date. Use three words separated by commas.",
+      "accepted": [
+        "date, fig, lemon"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "rewrite",
+      "turn": 1,
+      "user": "Rewrite 'the train is late' in the past tense. Return the whole sentence.",
+      "accepted": [
+        "The train was late.",
+        "the train was late",
+        "The train was late"
+      ],
+      "text": "3.gths.gths.gthon.gth",
+      "emitted": [
+        21,
+        16,
+        73,
+        1010,
+        85,
+        16,
+        73,
+        1010,
+        85,
+        16,
+        73,
+        1010,
+        292,
+        16,
+        73,
+        1010
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "opposite",
+      "turn": 1,
+      "user": "If I turn a lid clockwise to tighten it, which direction do I turn it to loosen it? Give just the direction.",
+      "accepted": [
+        "counterclockwise",
+        "Counterclockwise",
+        "anticlockwise",
+        "Anticlockwise"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "vocabulary",
+      "turn": 1,
+      "user": "I am doing a crossword. What is the four-letter animal that kittens grow up to be called in the plural? Give only the four letters.",
+      "accepted": [
+        "cats",
+        "Cats"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "capital",
+      "turn": 1,
+      "user": "What is the capital city of Japan? Just the city name, please.",
+      "accepted": [
+        "Tokyo",
+        "Tokyo."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "temperature",
+      "turn": 1,
+      "user": "At sea level, does liquid water freeze at zero or one hundred degrees Celsius? Answer zero or one hundred.",
+      "accepted": [
+        "zero",
+        "Zero",
+        "zero.",
+        "Zero."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "estimate",
+      "turn": 1,
+      "user": "Should I expect an ordinary house cat or an elephant to weigh more? Name only the heavier animal.",
+      "accepted": [
+        "elephant",
+        "Elephant",
+        "an elephant",
+        "An elephant",
+        "the elephant",
+        "The elephant"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "conversion",
+      "turn": 1,
+      "user": "How many minutes are in two hours? Reply with digits only.",
+      "accepted": [
+        "120"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "key",
+      "turn": 1,
+      "user": "I left the spare key under the blue flowerpot. Please acknowledge with OK.",
+      "accepted": [
+        "OK",
+        "OK."
+      ],
+      "text": "In###############",
+      "emitted": [
+        955,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "key",
+      "turn": 2,
+      "user": "Where did I leave the key? Just name the hiding place.",
+      "accepted": [
+        "under the blue flowerpot",
+        "Under the blue flowerpot",
+        "under the blue flowerpot.",
+        "Under the blue flowerpot."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "dog",
+      "turn": 1,
+      "user": "My older dog is named Moss and my younger dog is named Lark. Say hello to Lark in two words.",
+      "accepted": [
+        "Hello Lark",
+        "Hello, Lark",
+        "Hello Lark!",
+        "Hello, Lark!"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "dog",
+      "turn": 2,
+      "user": "What is my older dog's name? Give only the name.",
+      "accepted": [
+        "Moss",
+        "Moss."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "delivery",
+      "turn": 1,
+      "user": "I booked a delivery for Friday morning. Please reply with just the day.",
+      "accepted": [
+        "Friday",
+        "Friday."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "delivery",
+      "turn": 2,
+      "user": "The carrier moved it one day earlier. What day should I now expect it? Just give the day.",
+      "accepted": [
+        "Thursday",
+        "Thursday."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "locker",
+      "turn": 1,
+      "user": "I started with locker 24, then the attendant moved me to locker 31. Please acknowledge with OK.",
+      "accepted": [
+        "OK",
+        "OK."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "locker",
+      "turn": 2,
+      "user": "Which locker should I open now? Give the number only.",
+      "accepted": [
+        "31"
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "drink",
+      "turn": 1,
+      "user": "For this order, I want tea and my friend wants coffee. Please acknowledge with OK.",
+      "accepted": [
+        "OK",
+        "OK."
+      ],
+      "text": "<=              ",
+      "emitted": [
+        30,
+        31,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "drink",
+      "turn": 2,
+      "user": "Which drink is for my friend? Use just the drink name.",
+      "accepted": [
+        "coffee",
+        "Coffee",
+        "coffee.",
+        "Coffee."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "meeting",
+      "turn": 1,
+      "user": "My morning meeting is in the Cedar room. My evening meeting is in the Birch room. Please acknowledge with OK.",
+      "accepted": [
+        "OK",
+        "OK."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    },
+    {
+      "conversation": "meeting",
+      "turn": 2,
+      "user": "I am going to the meeting after sunset. Which room should I find? Use just the room name.",
+      "accepted": [
+        "Birch",
+        "Birch."
+      ],
+      "text": "               ",
+      "emitted": [
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223,
+        223
+      ],
+      "eos": false,
+      "text_exact": false,
+      "exact_through_eos": false
+    }
+  ]
+}
