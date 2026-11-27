@@ -153,6 +153,8 @@ earlier path is free.
 
 ## Approved sequences
 
+A [26 November model and Omega integration review](docs/loop/tasks/end-to-end-integration/codex-4307/REPORT.md) connects the measured laptop P4 baseline to the registered P5 weight-training trial, the ordinary M2 reply path and a same-artifact browser test. Its [backend comparison](docs/loop/tasks/end-to-end-integration/codex-4307/OMEGA.md) and [complexity analysis](docs/loop/tasks/end-to-end-integration/codex-4307/COMPLEXITY.md) describe parallel experimental options under the existing gates.
+
 - **The written-state track (decision card claude-409, 16 Nov 2026).** The lab's decision; phases and gates from [DECISION §4](docs/research/reviews/pi-review-2026-11-16/DECISION.md). Each GPU phase needs a one-page sheet and a non-author FIT (§4.5); each close closes a configuration, never the mechanism (§4.1). P6 (more donor data) is an owner-queue proposal only. Sizes and GPU-days are estimates. [claude]
 
 | Phase | Delivers | Gate (each can fail) | Wick | Needs |
