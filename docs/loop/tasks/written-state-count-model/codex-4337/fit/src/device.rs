@@ -22,7 +22,12 @@ struct LockedPeriod {
 
 pub fn eligible_train(panel: Panel, exclusion_path: &Path) -> Result<Panel> {
     let mut exclusions = BTreeMap::new();
-    for row in read_jsonl::<LockedPeriod>(exclusion_path)? {
+    let records = if fs::metadata(exclusion_path)?.len() == 0 {
+        Vec::new()
+    } else {
+        read_jsonl::<LockedPeriod>(exclusion_path)?
+    };
+    for row in records {
         if !row.original_ids.contains(&16)
             || row.span.end.checked_sub(row.span.start).map(usize::from)
                 != Some(row.original_ids.len())

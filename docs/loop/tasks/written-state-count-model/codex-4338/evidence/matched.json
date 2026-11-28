@@ -1,0 +1,21 @@
+{
+  "purpose": "Matched TRAIN comparison; optimizer not run",
+  "original": {
+    "prompts": 264,
+    "source": 204,
+    "no_read": 60,
+    "paired_rows": 168,
+    "candidates_including_no_read": 25141
+  },
+  "natural": {
+    "prompts": 264,
+    "source": 204,
+    "no_read": 60,
+    "paired_rows": 264,
+    "candidates_including_no_read": 42776
+  },
+  "passes_if_registered": 32,
+  "events_per_arm_if_registered": 8448,
+  "model_weight_bytes_per_arm": 8192,
+  "identical_polarity_order": true
+}

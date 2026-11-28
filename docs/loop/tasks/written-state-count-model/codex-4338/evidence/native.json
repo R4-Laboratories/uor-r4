@@ -1,0 +1,98 @@
+{
+  "schema": "uor-r4.natural-train-native-qualification/1",
+  "prospective_rows": 302,
+  "prospective_by_tape": [
+    {
+      "tape": "answerability",
+      "rows": 128,
+      "pairs": 64
+    },
+    {
+      "tape": "positive-positive",
+      "rows": 174,
+      "pairs": 87
+    }
+  ],
+  "retained_rows": 294,
+  "retained_by_tape": [
+    {
+      "tape": "answerability",
+      "rows": 120,
+      "pairs": 60
+    },
+    {
+      "tape": "positive-positive",
+      "rows": 174,
+      "pairs": 87
+    }
+  ],
+  "excluded_rows": 8,
+  "exclusion_reasons": [
+    {
+      "reason": "different_candidate_intervals",
+      "rows": 2
+    },
+    {
+      "reason": "different_fact_token_ids",
+      "rows": 6
+    },
+    {
+      "reason": "own_gold_absent",
+      "rows": 1
+    },
+    {
+      "reason": "source_contains_locked_copy_stop",
+      "rows": 1
+    },
+    {
+      "reason": "swapped_gold_absent",
+      "rows": 1
+    }
+  ],
+  "excluded_pairs": 4,
+  "pair_exclusion_reasons": [
+    {
+      "reason": "different_candidate_intervals",
+      "pairs": 1
+    },
+    {
+      "reason": "different_fact_token_ids",
+      "pairs": 3
+    },
+    {
+      "reason": "own_gold_absent",
+      "pairs": 1
+    },
+    {
+      "reason": "source_contains_locked_copy_stop",
+      "pairs": 1
+    },
+    {
+      "reason": "swapped_gold_absent",
+      "pairs": 1
+    }
+  ],
+  "choices": 48530,
+  "all_own_and_reciprocal_targets_covered": true,
+  "zero_table": {
+    "exact": 60,
+    "positive": 234,
+    "positive_selected": 0,
+    "no_read": 60,
+    "false_reads": 0,
+    "paired": 294,
+    "paired_changes": 0,
+    "strictly_positive": 0,
+    "minimum_margin": 0
+  },
+  "packer": {
+    "epochs": 32,
+    "excluded": [],
+    "exclusion": "original_interval_contains_locked_period_id_16",
+    "full_denominator": 294,
+    "permuted_rows": 294,
+    "trained_rows": 294
+  },
+  "model_fit": "NOT_RUN",
+  "validation_or_locked_input": "NOT_ACCESSED"
+}

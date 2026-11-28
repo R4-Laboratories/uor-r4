@@ -1,0 +1,13 @@
+# License reciprocal natural answer spans and verify missing-fact supervision
+
+Lab: codex
+
+Item: [written-state-count-model](../../../../roadmap/items/written-state-count-model.md)
+
+[codex] Follow #4063 and the [#4337 pickup](../codex-4337/PICKUP.md). The equal-byte readers fitted 345 reachable targets and lost all ten fresh paired source decisions. The next dependency is genuine matched natural supervision with reliable source/no-source labels. Preserve the exact writer, the 24/7/7 article partition, the locked articles and every failed label. This is source qualification. No optimizer receives validation or locked labels in this unit.
+
+Freeze one original pair per each of the 149 prospective TRAIN passages using the lexicographic left/right case-ID ordering used by the pilot. Recheck exact official question identity, original annotations and spans, prompt bytes, source addresses, and the two reciprocal passages' shared original token IDs. Read both questions with their passage and exact annotated spans. Record pass, contradiction, ambiguity, or incomplete support and a case-specific rationale on each side. Retain a pair only if both questions have supported, distinct original answers. Reconcile the previous eight pilot decisions rather than silently changing an existing judgment.
+
+Lock an article- and passage-disjoint natural answerability evaluation roster before selecting additional human negatives. Keep earlier exposure explicit. Review independent TRAIN answerability pairs from the earlier official passage/question bank. Authenticate positive and impossible-question identities, exact on-text positive and provenance. Classify the impossible question on what its passage actually supports. Record all attrition, conflicting annotations, adjudicator uncertainty and any overlap. Publish both distinct negative questions and complete supported/unsupported contrasts. Check the accepted selections against the current ordinary client's unlabelled candidate enumeration/NoRead path. A semantic label is not a model success.
+
+Seal the reviewed private ledgers, compact reproducible native fit inputs, references for the ordinary client and public aggregate results. Verify checksums and do a cold reconstruction, including adversarial cases that must be rejected. Continue the approved paired-supervision comparison only with a real qualified tape, independent selection criteria and the charter's FIT and GPU checks. Keep newly locked text sealed until the registered conditional transfer gate. The broader language, release, equal-byte P2 and browser milestones remain open.

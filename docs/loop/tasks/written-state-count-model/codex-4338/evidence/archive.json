@@ -1,0 +1,51 @@
+{
+  "schema": "uor-r4-natural-reciprocal-archive/1",
+  "repository": "caseyallard/uor-r4-store",
+  "revision": "0bc863b1414a6cbe7aeaf9a7253e9431132a3aa3",
+  "path": "results/codex/natural-reciprocal-20261127/natural-reciprocal.tar.zst",
+  "wick_archive": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-natural-reciprocal/archive-v1/natural-reciprocal.tar.zst",
+  "sha256": "da9ce2e8cc926d51643f3b4b019d3dfa57dcf63949c34d08bb38f8a6d91ae89c",
+  "members_sha256": "3b2d3d587beb6e557bd6bb95992687d34b809e27aa0e3e66c0919e69db19cc51",
+  "bytes": 39604897,
+  "member_count": 281,
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "roster": {
+    "seal_file_sha256": "1899b7c8e52bc56e08d084e1286855e167d4a5665c13a72538e75e9f1c6c984f",
+    "positive_split_sha256": "8502372b2e063cbcd05b7619b24d3b6f9ebe5e33efec9b8f36cfdb029a86439a",
+    "official_join": {
+      "locked": {
+        "pairs": 441,
+        "articles": 20,
+        "verified_questions": 882
+      },
+      "validation": {
+        "pairs": 256,
+        "articles": 11,
+        "verified_questions": 512
+      }
+    },
+    "semantic_adjudication": "NOT_RUN",
+    "regenerated_byte_identical": true,
+    "forged_controls_refused": 6
+  },
+  "train_source_rosters_regenerated_byte_identical": true,
+  "truncated_assessment_seal_refused": true,
+  "qualification_seal_sha256": "9787f91a8350beb3e50ffab6a2783e557759d158ef1407eb29025d38e00b056f",
+  "native_seal_sha256": "ef216fa00e33b52a60a7bccaf4b998eb8d30225b1d89c887709c9319c9d767cf",
+  "matched_seal_sha256": "ffd24cf73b009a3a38d70ea95b8e9f0db2b1dbbb19cdb1ee2062b7d0c24a8c7d",
+  "parent": {
+    "revision": "32ed13a7da5e69f076f06d6f1d7b47ea71ead438",
+    "path": "results/codex/grounded-interval-fit-20261127/interval.tar.zst",
+    "client_sha256": "21461b5af9c82d98f6f0c7f8780ae6f738bd601a52fe8a98edf25a7e07548381",
+    "fit_sha256": "acebcaa5f924cf37f96a07c5a73147bb3ed96b7d79be38306660a9b605ef0fcb",
+    "balanced_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+    "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+  },
+  "semantic_qualification_assembly_regenerated_byte_identical": true,
+  "native_forged_controls_refused": 3,
+  "matched_control_tapes_regenerated_byte_identical": true,
+  "native_captures_and_tapes_regenerated_byte_identical": true
+}
