@@ -1,0 +1,17 @@
+{
+  "agreed_ambiguous": 1,
+  "agreed_rejected": 7,
+  "agreed_supported": 7,
+  "candidates": 15,
+  "disagreements": 0,
+  "reviewer_a": {
+    "a": 1,
+    "r": 7,
+    "s": 7
+  },
+  "reviewer_b": {
+    "a": 1,
+    "r": 7,
+    "s": 7
+  }
+}

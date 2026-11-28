@@ -1,0 +1,10 @@
+{
+  "raw_pairs": 10,
+  "articles": 6,
+  "paragraphs": 9,
+  "exact_same_start_ids": 10,
+  "through_eos_and_copy_caps": 2,
+  "prior_strict_filter": 1,
+  "disjoint_second_source": 0,
+  "grounded_pairs": 0
+}

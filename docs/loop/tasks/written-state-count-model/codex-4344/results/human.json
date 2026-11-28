@@ -1,0 +1,26 @@
+{
+  "drop": {
+    "eligible_multiple_ids": 244,
+    "observable_published_positive_eos": 264,
+    "over_window_with_exact_reply": 12,
+    "partial_word": 2,
+    "prior_single_span_cap_and_budget": 276,
+    "repeated_full_interval": 17,
+    "writer_delimiter": 1
+  },
+  "drop_canonical_continuation": {
+    "canonical_annotation_order_eos": 1,
+    "eligible_multiple_ids": 2,
+    "strict_unique_copyable_continuations": 1
+  },
+  "squad": {
+    "common_one_id": 2,
+    "eligible_multiple_ids": 101,
+    "eligible_one_id": 5,
+    "observable_published_positive_eos": 130,
+    "official_rows_rejoined": 260,
+    "over_eight_source_ids": 21,
+    "published_impossible_only": 130,
+    "writer_delimiter": 1
+  }
+}
