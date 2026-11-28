@@ -1,0 +1,18 @@
+{
+  "parent_sha256": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+  "cubin_sha256": "9b8185fd00e3d7896569476b1160102dc0305ddc24fe29d63cb0bd231113d533",
+  "gpu_uuid": "673377324b39416013849dd0c4730815",
+  "transitions": 3938,
+  "labels_per_arm": 167,
+  "equal_gradient_words": 15130880,
+  "equal_weight_words": 15130880,
+  "equal_adam_m_words": 15130880,
+  "equal_adam_v_words": 15130880,
+  "equal_forward_workspace_words_per_comparison": 39573504,
+  "live_coarse_visits": 4,
+  "live_fine_visits": 4,
+  "different_treatment_weight_words": 51364,
+  "original_and_zero_checkpoint_sha256": "d07e74f95694549824614073f53a8bda34d318bba47791317f3087431de3be83",
+  "active_checkpoint_sha256": "955f523ffe2bd1f33b5ee319be76391e2919c68847ad6dc3585053b17892e45c",
+  "comparison": "retained physical synthetic calibration, before authentic training"
+}
