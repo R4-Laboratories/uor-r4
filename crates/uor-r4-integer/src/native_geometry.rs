@@ -23,7 +23,7 @@ include!("serving_root.rs");
 
 pub mod assertion_value;
 pub mod all_starts;
-#[cfg(any(feature = "serving-wasm", feature = "p4-only-client"))]
+#[cfg(any(feature = "serving-wasm", feature = "p4-only-client", feature = "butterfly-v3-client"))]
 pub mod ordinary_p4;
 
 #[cfg(not(feature = "serving-wasm"))]

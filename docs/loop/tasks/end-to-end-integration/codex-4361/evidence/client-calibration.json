@@ -1,0 +1,101 @@
+{
+  "schema": "grounded-ordinary/1",
+  "articles": [
+    1,
+    2,
+    3
+  ],
+  "verified_cold_responses": 9,
+  "arms": [
+    {
+      "role": "frozen",
+      "checkpoint_sha256": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+      "manifest_sha256": "f297595070959257af48a71161fddea287b6de0d2c35de0ee1e977219e09c551",
+      "capture_sha256": "e382bcc1d56b761b0eeeca4846fefdb64271dccea55d7179a3230ac29dd665c8",
+      "checks": [
+        {
+          "id": 1,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 2,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 3,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        }
+      ],
+      "stdout_verified": 3
+    },
+    {
+      "role": "reset",
+      "checkpoint_sha256": "3656e0575bd9e590e63305000e6f03ca010e1a663d6ac45d9061961f9a356bc2",
+      "manifest_sha256": "4e002c831886cf671970ea9a18ba2941620494a3e3e99a5e7c5b14936feefcaf",
+      "capture_sha256": "6a04998381f3508403c85a2bd6bbe03473536665fe268847739849427e184e8d",
+      "checks": [
+        {
+          "id": 1,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 2,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 3,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        }
+      ],
+      "stdout_verified": 3
+    },
+    {
+      "role": "full",
+      "checkpoint_sha256": "8e0721cc8b989f12af9c80b88dfac53c3a33701e6a3e8e7d2d26d2dec7fd1340",
+      "manifest_sha256": "727210d4ad6e6a8b0ce4ae4f83edf3f0624538859511cf5898ea88a4b2a0918c",
+      "capture_sha256": "0465ba105aef8181c9c94ff45b8d530678e965a02437c5b4d6b71e608a6722fd",
+      "checks": [
+        {
+          "id": 1,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 2,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        },
+        {
+          "id": 3,
+          "prefix_equal": true,
+          "prefix_hash_equal": true,
+          "emitted_equal": true,
+          "stop_equal": true
+        }
+      ],
+      "stdout_verified": 3
+    }
+  ]
+}

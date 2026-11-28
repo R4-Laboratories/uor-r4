@@ -1,0 +1,59 @@
+{
+  "all_checks_equal": 666,
+  "arms": {
+    "frozen": {
+      "gpu_rows_sha256": "4233d0dc6c558b035991b9ded72cc58e90a88d5cd100c127cfaf300df6adb65f",
+      "matched": {
+        "emitted_ids": 222,
+        "prefix_digest": 222,
+        "prefix_ids": 222,
+        "process_status": 222,
+        "stdout_bytes": 222,
+        "stop": 222
+      },
+      "max_wall_ns": 1955711904,
+      "median_wall_ns": 1256708865,
+      "mismatched": 0,
+      "p95_wall_ns": 1637044140,
+      "rows": 222
+    },
+    "full": {
+      "gpu_rows_sha256": "709812d1f85e6aa72ba37bcfc44150b498f82ea330df2a7a58608a21b49c826b",
+      "matched": {
+        "emitted_ids": 222,
+        "prefix_digest": 222,
+        "prefix_ids": 222,
+        "process_status": 222,
+        "stdout_bytes": 222,
+        "stop": 222
+      },
+      "max_wall_ns": 1913982421,
+      "median_wall_ns": 1219522827,
+      "mismatched": 0,
+      "p95_wall_ns": 1609814334,
+      "rows": 222
+    },
+    "reset": {
+      "gpu_rows_sha256": "e060b2aa1e6addfea64804b410bfab57635e95d7eab3800bbf3a47f4d54be858",
+      "matched": {
+        "emitted_ids": 222,
+        "prefix_digest": 222,
+        "prefix_ids": 222,
+        "process_status": 222,
+        "stdout_bytes": 222,
+        "stop": 222
+      },
+      "max_wall_ns": 1924906291,
+      "median_wall_ns": 1221147606,
+      "mismatched": 0,
+      "p95_wall_ns": 1615913812,
+      "rows": 222
+    }
+  },
+  "attempted": 666,
+  "compare_sha256": "2381cadb1472e7a60093887f01e1d5bac49a479ad92158c871fc6d19658eb2d5",
+  "mismatched": 0,
+  "ordinary_gate_sha256": "6a8033efd56840898849cd638f6595f100393cbdfe1e2eb9d18cfdd0d5caf4a2",
+  "replay_manifest_sha256": "d27256c9711da79b626935b7b0c3cbec7f154491ea5809ca8eeacc228215f16f",
+  "schema": "grounded-ordinary-all/1"
+}

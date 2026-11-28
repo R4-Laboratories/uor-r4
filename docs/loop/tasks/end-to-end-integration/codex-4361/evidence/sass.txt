@@ -1,0 +1,11 @@
+audit-all/train.sass
+instructions 69784 rejected 0
+audit-all/probe-final.sass
+instructions 85232 rejected 0
+audit-all/counts.sass
+rejected I2F.U32.RP at /*0080*/
+rejected MUFU.RCP at /*00b0*/
+rejected F2I.FTZ.U32.TRUNC.NTZ at /*00e0*/
+instructions 624 rejected 3
+count-correction/counts-int.sass
+instructions 616 rejected 0

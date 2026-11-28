@@ -1,0 +1,450 @@
+{
+  "format": "UORBFY03 v1",
+  "unit": "serialized signed i16 words",
+  "frozen_step": 3333,
+  "full_step": 3397,
+  "reset_step": 3397,
+  "total": {
+    "weights": 15130880,
+    "frozen_to_full": {
+      "changed": 6943610,
+      "max_abs_delta": 206,
+      "l1_delta": 79448449
+    },
+    "frozen_to_reset": {
+      "changed": 6478899,
+      "max_abs_delta": 210,
+      "l1_delta": 67584324
+    },
+    "reset_to_full": {
+      "changed": 6455332,
+      "max_abs_delta": 171,
+      "l1_delta": 47156469
+    }
+  },
+  "groups": {
+    "coarse_centroids": {
+      "weights": 32768,
+      "frozen_to_full": {
+        "changed": 32211,
+        "max_abs_delta": 205,
+        "l1_delta": 1110751
+      },
+      "frozen_to_reset": {
+        "changed": 32246,
+        "max_abs_delta": 206,
+        "l1_delta": 1116717
+      },
+      "reset_to_full": {
+        "changed": 25536,
+        "max_abs_delta": 109,
+        "l1_delta": 80914
+      }
+    },
+    "ffn": {
+      "weights": 245760,
+      "frozen_to_full": {
+        "changed": 241090,
+        "max_abs_delta": 132,
+        "l1_delta": 6178242
+      },
+      "frozen_to_reset": {
+        "changed": 241023,
+        "max_abs_delta": 131,
+        "l1_delta": 6221190
+      },
+      "reset_to_full": {
+        "changed": 217472,
+        "max_abs_delta": 82,
+        "l1_delta": 1387636
+      }
+    },
+    "head_projection_and_rotors": {
+      "weights": 35840,
+      "frozen_to_full": {
+        "changed": 35055,
+        "max_abs_delta": 127,
+        "l1_delta": 838916
+      },
+      "frozen_to_reset": {
+        "changed": 35076,
+        "max_abs_delta": 123,
+        "l1_delta": 845950
+      },
+      "reset_to_full": {
+        "changed": 32425,
+        "max_abs_delta": 91,
+        "l1_delta": 260326
+      }
+    },
+    "normalization": {
+      "weights": 6656,
+      "frozen_to_full": {
+        "changed": 6043,
+        "max_abs_delta": 20,
+        "l1_delta": 23805
+      },
+      "frozen_to_reset": {
+        "changed": 6052,
+        "max_abs_delta": 20,
+        "l1_delta": 24249
+      },
+      "reset_to_full": {
+        "changed": 4172,
+        "max_abs_delta": 14,
+        "l1_delta": 7542
+      }
+    },
+    "pkm": {
+      "weights": 12607488,
+      "frozen_to_full": {
+        "changed": 4705605,
+        "max_abs_delta": 106,
+        "l1_delta": 47392240
+      },
+      "frozen_to_reset": {
+        "changed": 4318549,
+        "max_abs_delta": 108,
+        "l1_delta": 36720943
+      },
+      "reset_to_full": {
+        "changed": 4538592,
+        "max_abs_delta": 97,
+        "l1_delta": 28529745
+      }
+    },
+    "recurrent": {
+      "weights": 105216,
+      "frozen_to_full": {
+        "changed": 99316,
+        "max_abs_delta": 128,
+        "l1_delta": 2371304
+      },
+      "frozen_to_reset": {
+        "changed": 99298,
+        "max_abs_delta": 126,
+        "l1_delta": 2392364
+      },
+      "reset_to_full": {
+        "changed": 90832,
+        "max_abs_delta": 96,
+        "l1_delta": 670362
+      }
+    },
+    "tied_embeddings": {
+      "weights": 2097152,
+      "frozen_to_full": {
+        "changed": 1824290,
+        "max_abs_delta": 206,
+        "l1_delta": 21533191
+      },
+      "frozen_to_reset": {
+        "changed": 1746655,
+        "max_abs_delta": 210,
+        "l1_delta": 20262911
+      },
+      "reset_to_full": {
+        "changed": 1546303,
+        "max_abs_delta": 171,
+        "l1_delta": 16219944
+      }
+    }
+  },
+  "families": {
+    "coarse_centroids": {
+      "weights": 32768,
+      "frozen_to_full": {
+        "changed": 32211,
+        "max_abs_delta": 205,
+        "l1_delta": 1110751
+      },
+      "frozen_to_reset": {
+        "changed": 32246,
+        "max_abs_delta": 206,
+        "l1_delta": 1116717
+      },
+      "reset_to_full": {
+        "changed": 25536,
+        "max_abs_delta": 109,
+        "l1_delta": 80914
+      }
+    },
+    "ffn_input_projection": {
+      "weights": 122880,
+      "frozen_to_full": {
+        "changed": 120496,
+        "max_abs_delta": 127,
+        "l1_delta": 2928062
+      },
+      "frozen_to_reset": {
+        "changed": 120471,
+        "max_abs_delta": 131,
+        "l1_delta": 2940166
+      },
+      "reset_to_full": {
+        "changed": 109579,
+        "max_abs_delta": 73,
+        "l1_delta": 718972
+      }
+    },
+    "ffn_output_projection": {
+      "weights": 122880,
+      "frozen_to_full": {
+        "changed": 120594,
+        "max_abs_delta": 132,
+        "l1_delta": 3250180
+      },
+      "frozen_to_reset": {
+        "changed": 120552,
+        "max_abs_delta": 131,
+        "l1_delta": 3281024
+      },
+      "reset_to_full": {
+        "changed": 107893,
+        "max_abs_delta": 82,
+        "l1_delta": 668664
+      }
+    },
+    "final_norm": {
+      "weights": 512,
+      "frozen_to_full": {
+        "changed": 475,
+        "max_abs_delta": 19,
+        "l1_delta": 2162
+      },
+      "frozen_to_reset": {
+        "changed": 472,
+        "max_abs_delta": 19,
+        "l1_delta": 2141
+      },
+      "reset_to_full": {
+        "changed": 182,
+        "max_abs_delta": 4,
+        "l1_delta": 215
+      }
+    },
+    "head_projection": {
+      "weights": 5120,
+      "frozen_to_full": {
+        "changed": 5040,
+        "max_abs_delta": 127,
+        "l1_delta": 159377
+      },
+      "frozen_to_reset": {
+        "changed": 5041,
+        "max_abs_delta": 123,
+        "l1_delta": 158597
+      },
+      "reset_to_full": {
+        "changed": 4020,
+        "max_abs_delta": 15,
+        "l1_delta": 10348
+      }
+    },
+    "layer_norms": {
+      "weights": 6144,
+      "frozen_to_full": {
+        "changed": 5568,
+        "max_abs_delta": 20,
+        "l1_delta": 21643
+      },
+      "frozen_to_reset": {
+        "changed": 5580,
+        "max_abs_delta": 20,
+        "l1_delta": 22108
+      },
+      "reset_to_full": {
+        "changed": 3990,
+        "max_abs_delta": 14,
+        "l1_delta": 7327
+      }
+    },
+    "pkm_key_a": {
+      "weights": 12288,
+      "frozen_to_full": {
+        "changed": 8937,
+        "max_abs_delta": 87,
+        "l1_delta": 142741
+      },
+      "frozen_to_reset": {
+        "changed": 8803,
+        "max_abs_delta": 85,
+        "l1_delta": 138471
+      },
+      "reset_to_full": {
+        "changed": 7509,
+        "max_abs_delta": 97,
+        "l1_delta": 124496
+      }
+    },
+    "pkm_key_b": {
+      "weights": 12288,
+      "frozen_to_full": {
+        "changed": 10914,
+        "max_abs_delta": 84,
+        "l1_delta": 190204
+      },
+      "frozen_to_reset": {
+        "changed": 10770,
+        "max_abs_delta": 88,
+        "l1_delta": 185234
+      },
+      "reset_to_full": {
+        "changed": 10258,
+        "max_abs_delta": 93,
+        "l1_delta": 166996
+      }
+    },
+    "pkm_values": {
+      "weights": 12582912,
+      "frozen_to_full": {
+        "changed": 4685754,
+        "max_abs_delta": 106,
+        "l1_delta": 47059295
+      },
+      "frozen_to_reset": {
+        "changed": 4298976,
+        "max_abs_delta": 108,
+        "l1_delta": 36397238
+      },
+      "reset_to_full": {
+        "changed": 4520825,
+        "max_abs_delta": 89,
+        "l1_delta": 28238253
+      }
+    },
+    "recurrent_gate_bias": {
+      "weights": 768,
+      "frozen_to_full": {
+        "changed": 752,
+        "max_abs_delta": 79,
+        "l1_delta": 18135
+      },
+      "frozen_to_reset": {
+        "changed": 757,
+        "max_abs_delta": 94,
+        "l1_delta": 17765
+      },
+      "reset_to_full": {
+        "changed": 713,
+        "max_abs_delta": 57,
+        "l1_delta": 5690
+      }
+    },
+    "recurrent_key_projection": {
+      "weights": 30720,
+      "frozen_to_full": {
+        "changed": 28159,
+        "max_abs_delta": 118,
+        "l1_delta": 646183
+      },
+      "frozen_to_reset": {
+        "changed": 28162,
+        "max_abs_delta": 118,
+        "l1_delta": 654471
+      },
+      "reset_to_full": {
+        "changed": 25339,
+        "max_abs_delta": 74,
+        "l1_delta": 178236
+      }
+    },
+    "recurrent_query_projection": {
+      "weights": 30720,
+      "frozen_to_full": {
+        "changed": 28159,
+        "max_abs_delta": 124,
+        "l1_delta": 651651
+      },
+      "frozen_to_reset": {
+        "changed": 28165,
+        "max_abs_delta": 122,
+        "l1_delta": 653606
+      },
+      "reset_to_full": {
+        "changed": 25379,
+        "max_abs_delta": 75,
+        "l1_delta": 179051
+      }
+    },
+    "recurrent_shift_mix": {
+      "weights": 12288,
+      "frozen_to_full": {
+        "changed": 12097,
+        "max_abs_delta": 103,
+        "l1_delta": 302885
+      },
+      "frozen_to_reset": {
+        "changed": 12094,
+        "max_abs_delta": 111,
+        "l1_delta": 307127
+      },
+      "reset_to_full": {
+        "changed": 11444,
+        "max_abs_delta": 81,
+        "l1_delta": 98210
+      }
+    },
+    "recurrent_value_projection": {
+      "weights": 30720,
+      "frozen_to_full": {
+        "changed": 30149,
+        "max_abs_delta": 128,
+        "l1_delta": 752450
+      },
+      "frozen_to_reset": {
+        "changed": 30120,
+        "max_abs_delta": 126,
+        "l1_delta": 759395
+      },
+      "reset_to_full": {
+        "changed": 27957,
+        "max_abs_delta": 96,
+        "l1_delta": 209175
+      }
+    },
+    "rotor_projection": {
+      "weights": 30720,
+      "frozen_to_full": {
+        "changed": 30015,
+        "max_abs_delta": 112,
+        "l1_delta": 679539
+      },
+      "frozen_to_reset": {
+        "changed": 30035,
+        "max_abs_delta": 110,
+        "l1_delta": 687353
+      },
+      "reset_to_full": {
+        "changed": 28405,
+        "max_abs_delta": 91,
+        "l1_delta": 249978
+      }
+    },
+    "tied_embeddings": {
+      "weights": 2097152,
+      "frozen_to_full": {
+        "changed": 1824290,
+        "max_abs_delta": 206,
+        "l1_delta": 21533191
+      },
+      "frozen_to_reset": {
+        "changed": 1746655,
+        "max_abs_delta": 210,
+        "l1_delta": 20262911
+      },
+      "reset_to_full": {
+        "changed": 1546303,
+        "max_abs_delta": 171,
+        "l1_delta": 16219944
+      }
+    }
+  },
+  "sha256": {
+    "frozen": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+    "full": "8e0721cc8b989f12af9c80b88dfac53c3a33701e6a3e8e7d2d26d2dec7fd1340",
+    "reset": "3656e0575bd9e590e63305000e6f03ca010e1a663d6ac45d9061961f9a356bc2",
+    "source": "3290f42e77ea88d919de8c7cc42a82836269908a85d3adef5aa660b0213a9543",
+    "manifest": "dd8882aee79ce839fc6ae9a1fd3f75b9ed15a0697b0058c866b1a94872fc5e86"
+  }
+}

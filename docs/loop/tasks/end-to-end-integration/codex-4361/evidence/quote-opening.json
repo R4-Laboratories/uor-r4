@@ -1,0 +1,53 @@
+{
+  "token": {
+    "original_id": 1228,
+    "slot": 192,
+    "cell": 3,
+    "within_cell_slot": 0,
+    "utf8_hex": "20e2809c"
+  },
+  "train": {
+    "rows": 256,
+    "target_positions": 2151,
+    "token_as_first_target": 0,
+    "token_as_any_target": 0,
+    "cell_as_first_target": 46,
+    "cell_as_any_target": 465,
+    "token_in_prefix": 4,
+    "rows_with_token_in_prefix": 4
+  },
+  "held": {
+    "rows": 222,
+    "token_as_first_target": 0,
+    "cell_as_first_target": 33
+  },
+  "arms": {
+    "frozen": {
+      "rows": 222,
+      "native_cell": 13,
+      "correct_first_reference_cell_elected": 1,
+      "selected_at_open": 0,
+      "selected_at_any_step": 8,
+      "selected_on_coarse_tie": 0,
+      "selected_id_own_or_other_diagnostic": []
+    },
+    "reset": {
+      "rows": 222,
+      "native_cell": 222,
+      "correct_first_reference_cell_elected": 33,
+      "selected_at_open": 221,
+      "selected_at_any_step": 339,
+      "selected_on_coarse_tie": 0,
+      "selected_id_own_or_other_diagnostic": []
+    },
+    "full": {
+      "rows": 222,
+      "native_cell": 220,
+      "correct_first_reference_cell_elected": 33,
+      "selected_at_open": 219,
+      "selected_at_any_step": 345,
+      "selected_on_coarse_tie": 0,
+      "selected_id_own_or_other_diagnostic": []
+    }
+  }
+}

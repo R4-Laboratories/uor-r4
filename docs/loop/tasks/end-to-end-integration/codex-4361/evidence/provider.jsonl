@@ -1,0 +1,11 @@
+{"ts":"2026-11-28T11:30:24Z","event":"up","session":"grounded-reset-4361","usd_per_h":0.869,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:31:07Z","event":"ssh-ready","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:31:09Z","event":"run","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:32:34Z","event":"run","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:43:22Z","event":"run","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:44:32Z","event":"run","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:48:20Z","event":"renew","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:49:23Z","event":"run","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:57:42Z","event":"release","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:57:47Z","event":"vast-archive","session":"grounded-reset-4361","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:57:51Z","event":"down","session":"grounded-reset-4361","usd_per_h":0.869,"wall_seconds":null,"uptime_s":1640}

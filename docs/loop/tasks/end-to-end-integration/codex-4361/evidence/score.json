@@ -1,0 +1,510 @@
+{
+  "held": 222,
+  "human_grading": "packet prepared; ratings not collected",
+  "preserved_vs_frozen": {
+    "at_least_five_pp": false,
+    "bootstrap95_net_articles": [
+      0,
+      0
+    ],
+    "gained": 0,
+    "lost": 0,
+    "net_articles": 0,
+    "rows": 222
+  },
+  "preserved_vs_reset": {
+    "at_least_five_pp": false,
+    "bootstrap95_net_articles": [
+      0,
+      0
+    ],
+    "gained": 0,
+    "lost": 0,
+    "net_articles": 0,
+    "rows": 222
+  },
+  "primary_pass": false,
+  "schema": "grounded-reset/1",
+  "totals": {
+    "frozen.native": {
+      "admitted": 27,
+      "admitted_top_eight": 9,
+      "admitted_top_one": 0,
+      "cap": 222,
+      "conditional_top_eight": 148,
+      "conditional_top_one": 37,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "223": 208,
+        "287": 13,
+        "301": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "frozen.native.far": {
+      "admitted": 27,
+      "admitted_top_eight": 9,
+      "admitted_top_one": 0,
+      "cap": 209,
+      "conditional_top_eight": 137,
+      "conditional_top_one": 34,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "223": 196,
+        "287": 12,
+        "301": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 209,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 209
+      }
+    },
+    "frozen.native.intermediate": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 10,
+      "conditional_top_eight": 8,
+      "conditional_top_one": 2,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "223": 9,
+        "287": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 10,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 10
+      }
+    },
+    "frozen.native.near": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 3,
+      "conditional_top_eight": 3,
+      "conditional_top_one": 1,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "223": 3
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 3,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 3
+      }
+    },
+    "frozen.wrong": {
+      "admitted": 29,
+      "admitted_top_eight": 10,
+      "admitted_top_one": 0,
+      "cap": 222,
+      "conditional_top_eight": 148,
+      "conditional_top_one": 35,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "223": 208,
+        "287": 13,
+        "301": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "frozen.zero": {
+      "admitted": 29,
+      "admitted_top_eight": 9,
+      "admitted_top_one": 0,
+      "cap": 222,
+      "conditional_top_eight": 149,
+      "conditional_top_one": 37,
+      "eos": 0,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "201": 222
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "preserved.native": {
+      "admitted": 33,
+      "admitted_top_eight": 27,
+      "admitted_top_one": 0,
+      "cap": 24,
+      "conditional_top_eight": 168,
+      "conditional_top_one": 34,
+      "eos": 198,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 219,
+        "201": 1,
+        "340": 1,
+        "598": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "preserved.native.far": {
+      "admitted": 32,
+      "admitted_top_eight": 26,
+      "admitted_top_one": 0,
+      "cap": 22,
+      "conditional_top_eight": 157,
+      "conditional_top_one": 32,
+      "eos": 187,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 206,
+        "201": 1,
+        "340": 1,
+        "598": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 209,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 209
+      }
+    },
+    "preserved.native.intermediate": {
+      "admitted": 1,
+      "admitted_top_eight": 1,
+      "admitted_top_one": 0,
+      "cap": 2,
+      "conditional_top_eight": 8,
+      "conditional_top_one": 1,
+      "eos": 8,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 10
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 10,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 10
+      }
+    },
+    "preserved.native.near": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 3,
+      "conditional_top_one": 1,
+      "eos": 3,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 3
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 3,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 3
+      }
+    },
+    "preserved.wrong": {
+      "admitted": 33,
+      "admitted_top_eight": 27,
+      "admitted_top_one": 0,
+      "cap": 20,
+      "conditional_top_eight": 169,
+      "conditional_top_one": 36,
+      "eos": 202,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 220,
+        "201": 1,
+        "340": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "preserved.zero": {
+      "admitted": 29,
+      "admitted_top_eight": 22,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 163,
+      "conditional_top_one": 33,
+      "eos": 222,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "201": 222
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "reset.native": {
+      "admitted": 33,
+      "admitted_top_eight": 27,
+      "admitted_top_one": 0,
+      "cap": 20,
+      "conditional_top_eight": 167,
+      "conditional_top_one": 35,
+      "eos": 202,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 221,
+        "598": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "reset.native.far": {
+      "admitted": 32,
+      "admitted_top_eight": 26,
+      "admitted_top_one": 0,
+      "cap": 19,
+      "conditional_top_eight": 156,
+      "conditional_top_one": 33,
+      "eos": 190,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 208,
+        "598": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 209,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 209
+      }
+    },
+    "reset.native.intermediate": {
+      "admitted": 1,
+      "admitted_top_eight": 1,
+      "admitted_top_one": 0,
+      "cap": 1,
+      "conditional_top_eight": 8,
+      "conditional_top_one": 1,
+      "eos": 9,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 10
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 10,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 10
+      }
+    },
+    "reset.native.near": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 3,
+      "conditional_top_one": 1,
+      "eos": 3,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 3
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 3,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 3
+      }
+    },
+    "reset.wrong": {
+      "admitted": 33,
+      "admitted_top_eight": 27,
+      "admitted_top_one": 0,
+      "cap": 23,
+      "conditional_top_eight": 168,
+      "conditional_top_one": 36,
+      "eos": 199,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1228": 221,
+        "598": 1
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "reset.zero": {
+      "admitted": 29,
+      "admitted_top_eight": 22,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 163,
+      "conditional_top_one": 31,
+      "eos": 222,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "201": 222
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    },
+    "successor": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 0,
+      "conditional_top_one": 0,
+      "eos": 222,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 13,
+      "first_ids": {
+        "265": 222
+      },
+      "first_word": 12,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 209,
+        "1": 12,
+        "2": 1
+      }
+    },
+    "unigram": {
+      "admitted": 0,
+      "admitted_top_eight": 0,
+      "admitted_top_one": 0,
+      "cap": 0,
+      "conditional_top_eight": 0,
+      "conditional_top_one": 0,
+      "eos": 222,
+      "exact_bytes_eos": 0,
+      "exact_ids_eos": 0,
+      "first_id": 0,
+      "first_ids": {
+        "1": 222
+      },
+      "first_word": 0,
+      "invalid_bos": 0,
+      "rows": 222,
+      "tied_coarse_winner": 0,
+      "tied_target_for_best_fine": 0,
+      "wrong_at": {
+        "0": 222
+      }
+    }
+  }
+}

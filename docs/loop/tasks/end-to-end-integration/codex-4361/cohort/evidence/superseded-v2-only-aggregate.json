@@ -1,0 +1,187 @@
+{
+  "additional_chat_excluded": 1,
+  "additional_tune_excluded": 0,
+  "after_chat": {
+    "cnn": [
+      391,
+      1,
+      391,
+      391
+    ],
+    "gutenberg": [
+      361,
+      14,
+      361,
+      361
+    ],
+    "wikipedia": [
+      366,
+      21,
+      366,
+      366
+    ]
+  },
+  "after_train": {
+    "cnn": [
+      391,
+      1,
+      391,
+      391
+    ],
+    "gutenberg": [
+      361,
+      14,
+      361,
+      361
+    ],
+    "wikipedia": [
+      367,
+      21,
+      367,
+      367
+    ]
+  },
+  "after_tune": {
+    "cnn": [
+      391,
+      1,
+      391,
+      391
+    ],
+    "gutenberg": [
+      361,
+      14,
+      361,
+      361
+    ],
+    "wikipedia": [
+      367,
+      21,
+      367,
+      367
+    ]
+  },
+  "assignment": {
+    "available_components": 1106,
+    "available_domain_counts_train_development_held": {
+      "cnn": [
+        266,
+        38,
+        77
+      ],
+      "gutenberg": [
+        252,
+        36,
+        72
+      ],
+      "wikipedia": [
+        255,
+        36,
+        74
+      ]
+    },
+    "available_train": 773,
+    "descriptive_data_gates_pass": true,
+    "held_messages_sha256": "b9055a55b627c8011832a2a443acc59d573b975aad54d99217a5346521b4a49b",
+    "selected": {
+      "development": {
+        "distinct_exact_questions": 110,
+        "domains": {
+          "cnn": 38,
+          "gutenberg": 36,
+          "wikipedia": 36
+        },
+        "later_value_in_chunk": 2,
+        "maximum_complete_ids": 1022,
+        "rows": 110,
+        "same_question_distinct_first_id_disjoint_pairs": 0,
+        "sha256": "43484a97e94253a164367fdd721304ba54cfbdf62ce60da99cdfefc700a25fc9",
+        "strata": {
+          "far": 97,
+          "intermediate": 8,
+          "near": 5
+        }
+      },
+      "held": {
+        "distinct_exact_questions": 223,
+        "domains": {
+          "cnn": 77,
+          "gutenberg": 72,
+          "wikipedia": 74
+        },
+        "later_value_in_chunk": 4,
+        "maximum_complete_ids": 1046,
+        "rows": 223,
+        "same_question_distinct_first_id_disjoint_pairs": 0,
+        "sha256": "89e57de07d82223d6fc9bc1c57690e8c1d84dddbd51cc319bb56d8f7353a02fe",
+        "strata": {
+          "far": 209,
+          "intermediate": 11,
+          "near": 3
+        }
+      },
+      "train": {
+        "distinct_exact_questions": 255,
+        "domains": {
+          "cnn": 85,
+          "gutenberg": 81,
+          "wikipedia": 90
+        },
+        "later_value_in_chunk": 5,
+        "maximum_complete_ids": 932,
+        "rows": 256,
+        "same_question_distinct_first_id_disjoint_pairs": 0,
+        "sha256": "f96cc65ed0fd76c6cb9f75b5434ef6a0d7edc65d42ec01a4145781e2d2a94f4a",
+        "strata": {
+          "far": 234,
+          "intermediate": 16,
+          "near": 6
+        }
+      }
+    }
+  },
+  "before_overlap": {
+    "cnn": [
+      392,
+      1,
+      392,
+      392
+    ],
+    "gutenberg": [
+      362,
+      14,
+      362,
+      362
+    ],
+    "wikipedia": [
+      368,
+      21,
+      368,
+      368
+    ]
+  },
+  "chat_sha256": "e5f400b0e676791fd0458ce810163c5d2542adda80dccc8282f37d9ca8904cef",
+  "coqa_sha256": "b0fdb2bc1bd38dd3ca2ce5fa2ac3e02c6288ac914f241ac409a655ffb6619fa6",
+  "counts": {
+    "complete_document_at_most_2048": 1122,
+    "complete_document_at_most_512": 36,
+    "first_three_answer_values_literal_within_offsets": 1285,
+    "first_three_original_offsets_rejoin": 3124,
+    "strict_eligible_complete_documents_before_component_representative": 1122,
+    "target_or_eos_straddles_257_boundary": 31,
+    "three_turn_groups_before_grounding_or_local_dedupe": 4413
+  },
+  "domain_count_columns": [
+    "all",
+    "complete_le_512",
+    "complete_le_1088",
+    "complete_le_2048"
+  ],
+  "reserved_4360_index_sha256": "d6dd93ab4cbacf4eb6ea6fdaf42e5264dda4a325b78c14f2fcf038c9485adfb7",
+  "screen": "all contiguous 32-ID windows over complete canonical three-response document, including BOS and every EOS; hashes verify with exact IDs",
+  "selector_sha256": "8f8dd16c21775e87416c072babfaf01c3b73e460c9bbbf605889abc20e261661",
+  "status": "data build only, no model execution",
+  "train_excluded": 3,
+  "train_sha256": "c804c3b084a49d11f2bfcd2a5cf741862df29b42e3442ccb609305e049aba590",
+  "tune_sha256": "99b714a67415d92e42750577110d9ce405625d93adabbd906739bbfca60d9c78"
+}

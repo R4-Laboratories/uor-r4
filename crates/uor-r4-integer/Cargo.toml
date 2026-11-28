@@ -17,6 +17,8 @@ crate-type = ["rlib", "cdylib"]
 historical-runtime = []
 p1-count-serving = ["serving-wasm", "dep:uor-r4-count-runtime"]
 chat-client = []
+# Opt-in cold research replay. The reference step allocates and has no M4 runtime qualification.
+butterfly-v3-client = ["chat-client", "dep:uor-r4-tokenizer", "uor-r4-native-vector/butterfly-research"]
 p4-only-client = ["chat-client", "dep:uor-r4-tokenizer", "dep:uor-r4-count-runtime"]
 # Read-only replay for the frozen post-period experiment.
 postperiod-diagnostic = []

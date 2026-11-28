@@ -1,0 +1,10 @@
+{
+  "checkpoint_bytes": 30270020,
+  "tokenizer_bytes": 265393,
+  "manifest_bytes": 304,
+  "client_bytes": 1018968,
+  "client_sha256": "15d5856ebf19200021700f77166a4caa641896c5f54ef0dbec279e0cc70a77e2",
+  "assets_with_manifest_bytes": 30535717,
+  "linux_cli_and_assets_bytes": 31554685,
+  "excludes": "OS, system libraries, user prompt and runtime process memory"
+}

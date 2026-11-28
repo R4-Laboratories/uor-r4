@@ -1,0 +1,131 @@
+{
+  "class_columns": [
+    "held",
+    "exact_through_eos",
+    "first_id_correct"
+  ],
+  "comparison_columns": [
+    "both_exact",
+    "only_native_exact",
+    "only_control_exact",
+    "neither",
+    "changed_trajectory",
+    "changed_opening"
+  ],
+  "mode_matches_held": 1,
+  "mode_matches_train_ties": 2,
+  "models": {
+    "frozen": {
+      "distinct_decoded_replies_and_stop": 158,
+      "distinct_first_ids": 3,
+      "native_vs_rotated": [
+        0,
+        0,
+        0,
+        222,
+        217,
+        26
+      ],
+      "native_vs_zero": [
+        0,
+        0,
+        0,
+        222,
+        222,
+        222
+      ],
+      "reference_class": {
+        "other": [
+          220,
+          0,
+          0
+        ],
+        "standalone_yes_or_no": [
+          2,
+          0,
+          0
+        ]
+      },
+      "vs_train_mode": {
+        "both_exact": 0,
+        "only_mode_exact": 1,
+        "only_native_exact": 0
+      }
+    },
+    "preserved": {
+      "distinct_decoded_replies_and_stop": 91,
+      "distinct_first_ids": 4,
+      "native_vs_rotated": [
+        0,
+        0,
+        0,
+        222,
+        215,
+        5
+      ],
+      "native_vs_zero": [
+        0,
+        0,
+        0,
+        222,
+        222,
+        221
+      ],
+      "reference_class": {
+        "other": [
+          220,
+          0,
+          0
+        ],
+        "standalone_yes_or_no": [
+          2,
+          0,
+          0
+        ]
+      },
+      "vs_train_mode": {
+        "both_exact": 0,
+        "only_mode_exact": 1,
+        "only_native_exact": 0
+      }
+    },
+    "reset": {
+      "distinct_decoded_replies_and_stop": 89,
+      "distinct_first_ids": 2,
+      "native_vs_rotated": [
+        0,
+        0,
+        0,
+        222,
+        215,
+        2
+      ],
+      "native_vs_zero": [
+        0,
+        0,
+        0,
+        222,
+        222,
+        222
+      ],
+      "reference_class": {
+        "other": [
+          220,
+          0,
+          0
+        ],
+        "standalone_yes_or_no": [
+          2,
+          0,
+          0
+        ]
+      },
+      "vs_train_mode": {
+        "both_exact": 0,
+        "only_mode_exact": 1,
+        "only_native_exact": 0
+      }
+    }
+  },
+  "train_mode_frequency": 2
+}

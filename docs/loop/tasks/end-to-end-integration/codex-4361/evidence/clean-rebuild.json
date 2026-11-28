@@ -1,0 +1,23 @@
+{
+  "archived_linux_elf_sha256": "15d5856ebf19200021700f77166a4caa641896c5f54ef0dbec279e0cc70a77e2",
+  "clean_rebuilt_linux_elf_sha256": "55a801db6cbdbfe1490bf21c5bc87cbb7da2a863e2aa0053be8a96363e88b4d0",
+  "replayed": [
+    "frozen 1 matches IDs, stdout, termination",
+    "frozen 2 matches IDs, stdout, termination",
+    "frozen 3 matches IDs, stdout, termination",
+    "reset 1 matches IDs, stdout, termination",
+    "reset 2 matches IDs, stdout, termination",
+    "reset 3 matches IDs, stdout, termination",
+    "full 1 matches IDs, stdout, termination",
+    "full 2 matches IDs, stdout, termination",
+    "full 3 matches IDs, stdout, termination"
+  ],
+  "compared": [
+    "encoded prompt and hash",
+    "emitted original IDs and termination",
+    "raw stdout bytes",
+    "stderr and successful process exit"
+  ],
+  "restore_input_check": true,
+  "new_physical_reexecution_of_replay_script": false
+}

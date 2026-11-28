@@ -1,0 +1,54 @@
+{
+  "cold_zero_update": true,
+  "cross_boundary_targets": 12,
+  "cubin_sha256": "d7594dab97fd490bee2cad35d595a12054f64b2cdebe1eb628ac96ac8f56328a",
+  "forward_state_transitions_checked": 2276,
+  "full_after_step_sha256": "8de67059c8fd9d1a25832dee2472150942b1c194bd2ddc162bcf2961b75658dd",
+  "full_backward_earlier_exclusive_rows": 4,
+  "full_training_gradient_words_checked": 68712,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "gpu_uuid": "7f5ea8ee82fcdb80cec89bd4e8cc4c08",
+  "long_allocation_transitions": 1087,
+  "padding_gradient_exact": true,
+  "protocol": "codex-4361-finite/v1",
+  "reset_after_step_sha256": "b3259b3c9bb9757e0af1371ab2306b927274e7c9c095ebb46594f3d48839cae0",
+  "reset_backward_earlier_exclusive_rows": 0,
+  "reset_training_gradient_words_checked": 68712,
+  "serving_greedy_mass_transitions_checked": 4552,
+  "short_sham": true,
+  "short_targets": 12,
+  "sm": "89",
+  "synthetic_max_shape": {
+    "64_update_pair_projection_ms": 933120,
+    "base_device_buffer_bytes": 885795840,
+    "device_free_after_updates_bytes": 23928307712,
+    "device_free_before_bytes": 24836374528,
+    "device_total_bytes": 25250627584,
+    "device_used_delta_bytes": 908066816,
+    "full": {
+      "documents": 4,
+      "padding_transitions": 0,
+      "semantic_transitions": 4348,
+      "targets": 236,
+      "unsupervised_sequences": 0
+    },
+    "full_update_wall_ms": 6697,
+    "reset": {
+      "documents": 4,
+      "padding_transitions": 16,
+      "semantic_transitions": 4332,
+      "targets": 236,
+      "unsupervised_sequences": 16
+    },
+    "reset_update_wall_ms": 7883,
+    "shape": {
+      "dim": 512,
+      "ffn_branches": 4,
+      "layers": 6,
+      "pkm_key_dim": 32,
+      "pkm_sub_keys": 64
+    }
+  },
+  "verdict": "PASS",
+  "weak_carry_intervention": true
+}

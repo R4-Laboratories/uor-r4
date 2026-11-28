@@ -1,0 +1,32 @@
+[
+  {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matched_pairs": 0,
+    "model": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+    "parity_articles": 3,
+    "parity_sha256": "0e68dc0e308535fff9c838ac68dc38338ec53eecbcf3101061e61ff9321fadaa",
+    "parity_transitions": 288,
+    "rows": 222,
+    "tape": "6ffd2228957ca42705c17fa995071a8360c5f265b719674f8d0c1990e984e4ee"
+  },
+  {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matched_pairs": 0,
+    "model": "3656e0575bd9e590e63305000e6f03ca010e1a663d6ac45d9061961f9a356bc2",
+    "parity_articles": 3,
+    "parity_sha256": "be3b57ded1f351fc458227ffd96fdc0a943c5f5eb8ef742ed4b4dd8e556e4c9c",
+    "parity_transitions": 114,
+    "rows": 222,
+    "tape": "6ffd2228957ca42705c17fa995071a8360c5f265b719674f8d0c1990e984e4ee"
+  },
+  {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "matched_pairs": 0,
+    "model": "8e0721cc8b989f12af9c80b88dfac53c3a33701e6a3e8e7d2d26d2dec7fd1340",
+    "parity_articles": 3,
+    "parity_sha256": "1d75bb9213343ccd088e25cd5f00ed243ac503382318cfeefc77075047a420c8",
+    "parity_transitions": 80,
+    "rows": 222,
+    "tape": "6ffd2228957ca42705c17fa995071a8360c5f265b719674f8d0c1990e984e4ee"
+  }
+]

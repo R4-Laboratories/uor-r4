@@ -1,0 +1,43 @@
+{
+  "schema": "ordinary-wick-linux-resources/1",
+  "device": "Wick Linux CLI",
+  "sample": "one cold process per arm, same calibration article id 1, nice 15",
+  "arms": [
+    {
+      "arm": "frozen",
+      "article": 1,
+      "max_rss_kib": 63372,
+      "elapsed_time_v": "0:01.15",
+      "stop": "cap",
+      "status": 0,
+      "emitted_count": 32,
+      "stdout_sha256": "091770ae835c581ea91e269a384061813443d0470508b6fbb3fb0d0552a6bb49",
+      "calibrated_stdout_equal": true,
+      "calibrated_native_ids_equal": true
+    },
+    {
+      "arm": "reset",
+      "article": 1,
+      "max_rss_kib": 63144,
+      "elapsed_time_v": "0:01.14",
+      "stop": "eos",
+      "status": 0,
+      "emitted_count": 31,
+      "stdout_sha256": "9af79967a75db9c538fc5a52b02edf574db7c34aec67e1266a5e2fd94d605e93",
+      "calibrated_stdout_equal": true,
+      "calibrated_native_ids_equal": true
+    },
+    {
+      "arm": "full",
+      "article": 1,
+      "max_rss_kib": 63376,
+      "elapsed_time_v": "0:01.14",
+      "stop": "eos",
+      "status": 0,
+      "emitted_count": 24,
+      "stdout_sha256": "ad4c6259857ebbfcc2a14eac0873867bd6d08ccdebf5f0723231f586c90558fb",
+      "calibrated_stdout_equal": true,
+      "calibrated_native_ids_equal": true
+    }
+  ]
+}
