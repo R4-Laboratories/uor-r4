@@ -755,19 +755,33 @@ impl ExactCopyState {
     }
 
     pub fn valid_for(self, prefix_length: usize) -> bool {
+        self.valid_for_limit(prefix_length, 8)
+    }
+
+    fn valid_for_limit(self, prefix_length: usize, limit: u32) -> bool {
         self.prompt_end as usize <= prefix_length
             && self.active <= 1
             && ((self.source == u32::MAX && self.cursor == u32::MAX && self.active == 0)
                 || (self.source < self.prompt_end
                     && self.source <= self.cursor
                     && self.cursor <= self.prompt_end
-                    && self.cursor - self.source <= 8))
+                    && self.cursor - self.source <= limit))
     }
 
     /// Apply the final writer to a scored causal prefix. A terminator releases
     /// the cursor on its own step, which emits the ordinary native prediction.
     pub fn write(self, prefix: &[u32], prediction: u32, stops: [u32; 4]) -> Result<ExactCopyStep> {
-        if !self.valid_for(prefix.len()) {
+        self.write_with_limit(prefix, prediction, stops, 8)
+    }
+
+    fn write_with_limit(
+        self,
+        prefix: &[u32],
+        prediction: u32,
+        stops: [u32; 4],
+        limit: u32,
+    ) -> Result<ExactCopyStep> {
+        if !self.valid_for_limit(prefix.len(), limit) {
             return Err(invalid("invalid exact-copy state or original prompt fence"));
         }
         let mut step = ExactCopyStep {
@@ -780,7 +794,7 @@ impl ExactCopyState {
         if self.active == 0 {
             return Ok(step);
         }
-        step.release = if self.cursor - self.source == 8 {
+        step.release = if self.cursor - self.source == limit {
             3
         } else if self.cursor == self.prompt_end {
             2
@@ -798,6 +812,71 @@ impl ExactCopyState {
             step.state.active = 0;
         }
         Ok(step)
+    }
+}
+
+/// Finite source replay from separately supplied authority over a full protocol-2
+/// opening. Its exclusive endpoint does not change ordinary writer eligibility.
+pub struct VerifiedEndpointCopy<'a> {
+    prompt: &'a [u32],
+    state: ExactCopyState,
+    end: u32,
+}
+
+impl<'a> VerifiedEndpointCopy<'a> {
+    pub fn new(
+        opening: &'a uor_r4_tokenizer::dialogue::EncodedUserOpening,
+        authority_prompt: &[u32],
+        authorized: &native_span_release::Span,
+        claimed: &native_span_release::Span,
+    ) -> Result<Self> {
+        let prompt = opening.tokens();
+        let user = opening.user_range();
+        if opening.tokenizer_cid() != native_whole_turn::TOKENIZER_CID
+            || prompt.len() > native_interval::SOURCE_CENSUS_CONTEXT
+            || prompt != authority_prompt
+            || authorized != claimed
+        {
+            return Err(invalid("unverified original source authority"));
+        }
+        let (Some(start), Some(end), Some(ids)) =
+            (claimed.start, claimed.end, claimed.ids.as_deref())
+        else {
+            return Err(invalid("incomplete authorized source range"));
+        };
+        if (start as usize) < user.start
+            || start >= end
+            || end as usize > user.end
+            || prompt.get(start as usize..end as usize) != Some(ids)
+        {
+            return Err(invalid(
+                "authorized source range differs from the original opening",
+            ));
+        }
+        Ok(Self {
+            prompt,
+            state: ExactCopyState::new(Some(start), prompt.len() as u32),
+            end,
+        })
+    }
+
+    pub fn state(&self) -> ExactCopyState {
+        self.state
+    }
+
+    /// Observe a verified end before any next source read. The returned writer
+    /// step preserves the ordinary token on that step and after release.
+    pub fn write(&mut self, prediction: u32) -> Result<(ExactCopyStep, bool)> {
+        let limit = self.end - self.state.source;
+        let verified_end = self.state.active != 0 && self.state.cursor == self.end;
+        if verified_end {
+            self.state.active = 0;
+        }
+        let step = self
+            .state
+            .write_with_limit(self.prompt, prediction, ROLE_COPY_STOPS, limit)?;
+        self.state = step.state;
+        Ok((step, verified_end))
     }
 }
 

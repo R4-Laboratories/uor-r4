@@ -1,0 +1,105 @@
+{
+  "schema": "uor-r4/verified-endpoint-finite-replay/1",
+  "finite_controls": "pass",
+  "over_width": {
+    "openings": 23,
+    "fixed_release": {
+      "cap": 22,
+      "delimiter": 1
+    },
+    "variable_native_release": {
+      "delimiter": 2,
+      "verified_end": 21
+    },
+    "variable_stop_release": {
+      "delimiter": 2,
+      "verified_end": 21
+    },
+    "variable_emitted_source_tokens": 298,
+    "variable_supplied_stops": 21,
+    "delimiter_refusals": [
+      {
+        "source_width": 11,
+        "emitted_before_delimiter": 2
+      },
+      {
+        "source_width": 12,
+        "emitted_before_delimiter": 11
+      }
+    ]
+  },
+  "reversal": [
+    {
+      "opening_tokens": 349,
+      "role": "own",
+      "original_bytes": [
+        4,
+        35
+      ],
+      "absolute": {
+        "end": 17,
+        "start": 5
+      },
+      "expected_source_tokens": 12,
+      "fixed_release": "cap",
+      "variable_release": "verified_end",
+      "variable_cursor_at_release": 17,
+      "native_handoff": "ordinary",
+      "supplied_stop": "supplied_stop"
+    },
+    {
+      "opening_tokens": 349,
+      "role": "opposing",
+      "original_bytes": [
+        110,
+        120
+      ],
+      "absolute": {
+        "end": 53,
+        "start": 48
+      },
+      "expected_source_tokens": 5,
+      "fixed_release": "verified_end",
+      "variable_release": "verified_end",
+      "variable_cursor_at_release": 53,
+      "native_handoff": "ordinary",
+      "supplied_stop": "supplied_stop"
+    },
+    {
+      "opening_tokens": 345,
+      "role": "own",
+      "original_bytes": [
+        110,
+        120
+      ],
+      "absolute": {
+        "end": 53,
+        "start": 48
+      },
+      "expected_source_tokens": 5,
+      "fixed_release": "verified_end",
+      "variable_release": "verified_end",
+      "variable_cursor_at_release": 53,
+      "native_handoff": "ordinary",
+      "supplied_stop": "supplied_stop"
+    },
+    {
+      "opening_tokens": 345,
+      "role": "opposing",
+      "original_bytes": [
+        4,
+        35
+      ],
+      "absolute": {
+        "end": 17,
+        "start": 5
+      },
+      "expected_source_tokens": 12,
+      "fixed_release": "cap",
+      "variable_release": "verified_end",
+      "variable_cursor_at_release": 17,
+      "native_handoff": "ordinary",
+      "supplied_stop": "supplied_stop"
+    }
+  ]
+}
