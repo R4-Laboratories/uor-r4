@@ -1,0 +1,28 @@
+{
+  "schema": "uor-r4-natural-reciprocal-repair-archive/1",
+  "kind": "result",
+  "sha256": "14e674dfad5d9b939dabef624417dae22b4111289e710c31de731ca514f3953d",
+  "members_sha256": "471e9ca7f836f38ec01ed7e80f550408742f4a65d3486feced3da0b343e34f43",
+  "bytes": 46911015,
+  "member_count": 964,
+  "dependencies": {
+    "repair_prior_revision": "9bd98bef04d00fd88d01d1a14305bbc449f4046b",
+    "natural_supply_revision": "0bc863b1414a6cbe7aeaf9a7253e9431132a3aa3",
+    "protected_source_revision": "32ed13a7da5e69f076f06d6f1d7b47ea71ead438",
+    "balanced_writer_revision": "4b1566d8b293c308e5666ea76efdab4a4947602a",
+    "balanced_artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa"
+  },
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/natural-reciprocal-repair-20261127/matched-transfer-result.tar.zst",
+  "revision": "54f4c3c8fe9546bf1b73f0b188cca7693ebd51d3",
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "outcome": {
+    "trial": "finished",
+    "source_status": "negative",
+    "writer_status": "fail",
+    "locked_evaluation": "NOT_RUN"
+  }
+}

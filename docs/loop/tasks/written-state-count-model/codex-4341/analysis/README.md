@@ -1,0 +1,7 @@
+# Within-passage score contrasts
+
+After independent raw-score verification, read each actual arm's TRAIN and development panels. This descriptive contrast does not alter the registered outcome. Include every qualified development pair and every two-sided TRAIN pair for that model. For each question subtract the score of the other question's target from the score of its own. Include NoRead as one of those two actions on answerability pairs. Require the two margins to be strictly positive to credit a paired win against the mate. Compare this with the stricter registered requirement to defeat every candidate, including all ties. Their difference counts crossings that another interval or a tie prevents from becoming full wins.
+
+Add the two signed margins to measure whether changing the question shifts the relative score toward the two intended targets. For example, a positive sum can coexist with the same winning address on both questions. The sum is descriptive and earns no selection credit. Always report TRAIN and validation separately. The panels contain authenticated scores and address order from the cold evidence step. The scorer manifest, roster and frozen weights remain the authority.
+
+The first-wrong comparison matches every qualified positive by case ID and authenticated opening across ordinary arms. It reports a move to a later or earlier differing committed ID, keeps sequence matches separate, and counts exact source and natural EOS independently. Negative prompts have no single expected answer sequence.

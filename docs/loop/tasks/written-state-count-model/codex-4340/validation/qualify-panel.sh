@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 umask 077
-if [[ $# != 9 ]]; then
-    echo 'usage: qualify-panel.sh EXTRACTION REVIEW_A REVIEW_B PIN_FILE CLIENT BINDER BASE TOKENIZER FRESH_OUT' >&2
+if [[ $# != 9 && $# != 10 ]]; then
+    echo 'usage: qualify-panel.sh EXTRACTION REVIEW_A REVIEW_B PIN_FILE CLIENT BINDER BASE TOKENIZER FRESH_OUT [REGISTERED_113_IDENTITIES]' >&2
     exit 2
 fi
 extraction=$(realpath "$1")
@@ -14,6 +14,10 @@ binder=$(realpath "$6")
 model=$(realpath "$7")
 tokenizer=$(realpath "$8")
 out=$(realpath -m "$9")
+registered=(--argjson registered null)
+if [[ $# == 10 ]]; then
+    registered=(--slurpfile registered "$(realpath "${10}")")
+fi
 here=$(cd "$(dirname "$0")" && pwd)
 prev=$here/../../codex-4338/data
 cd "$extraction"
@@ -42,7 +46,7 @@ if cmp -s "$a" "$b"; then
     exit 1
 fi
 jq -nc --slurpfile source "$src" --slurpfile first "$a" --slurpfile second "$b" \
-    -f "$here/consensus.jq" > consensus.jsonl
+    "${registered[@]}" -f "$here/consensus.jq" > consensus.jsonl
 jq -c --slurpfile grades consensus.jsonl '
     . as $row | ($grades|INDEX(.pair_id))[$row.pair_id] as $decision | select($decision.accepted) |
     ["left","right"][] as $s | (if $s=="left" then "right" else "left" end) as $mate |

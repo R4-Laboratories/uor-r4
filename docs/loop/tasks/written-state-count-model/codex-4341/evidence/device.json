@@ -1,0 +1,18 @@
+{
+  "session": "interval-4341",
+  "pod": "vast-62967357",
+  "device": "NVIDIA GeForce RTX 4090",
+  "compute_capability": "8.9",
+  "cuda_compiler": "12.8.93",
+  "rate_usd_per_hour": 0.869,
+  "up_utc": "2026-11-28T04:49:00Z",
+  "down_utc": "2026-11-28T04:52:41Z",
+  "lifecycle_seconds": 221.0,
+  "estimated_compute_usd": 0.05335,
+  "price_basis": "manager up-to-down interval times offered rate, no provider invoice",
+  "gpu_job_wall_seconds": 11.83,
+  "first_attempt": "pre-compilation filename check failed; retained device-return-v1",
+  "train_output_manifest_sha256": "2544bee3b8a57d1cfc2b4466cbba4648a2fa22a07016ef4f29fa4f681393e967",
+  "frozen_weights_manifest_sha256": "ad22dbf5668f8d847fd1741d1daa9a76c6a9a6b75b1e8e6dc643f5d6f7f8f579",
+  "held_device_manifest_sha256": "77e609758aef4155c04c4de549fc5ab2e8866df4c720c2717763df896f4f0897"
+}

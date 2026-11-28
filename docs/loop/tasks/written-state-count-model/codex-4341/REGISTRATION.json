@@ -1,0 +1,14 @@
+{
+  "schema": "uor-r4/natural-reciprocal-instrument-repair/1",
+  "scope": "Complete complement in the three deficient validation titles. No performance claim from roster assembly.",
+  "prior_selection_sha256": "939a633261c580725a6b60ad8f45194fead4d261d5d8f9528ef8567b2c99b3f6",
+  "prior_source_sha256": "2a3baa08fe9b692e22c6b153b949e8b40f0c3d0a251f2df547743744ef9ee3d3",
+  "prior_qualification_sha256": "7a383420fab69b393211146a23b65b0286816cdf278d369fe9efe1ec47cf7c2a",
+  "additional_identities_sha256": "876b0f7448ac3574ffcdef2020bd9fa5b4dc8a6e0b84d7fa9bb64fcad5bae077",
+  "expanded_identities_sha256": "24d3090b641befd95cac83c65c38ee129e490c7af89093d823d9095436a87f66",
+  "additional_pairs": {"1973_oil_crisis":10,"Harvard_University":13,"Islamism":23},
+  "prior_selected": 67,
+  "expanded_selected": 113,
+  "change_to_training_tapes_or_operator": false,
+  "locked_text_or_outcomes_opened_before_registration": false
+}

@@ -77,7 +77,7 @@ for mix in original natural; do
                  train_candidate_scores_per_fit:(if $fit then 32*$candidates else null end),
                  train_stats_file:(if $fit then $stem+".stats.json" else null end),
                  train_process_wall_files:(if $fit then [$stem+".train.wall_seconds", "repeat/"+$stem+".train.wall_seconds"] else [] end),
-                 replay_candidate_scores:$candidates, replay_process_wall_seconds:($replay|tonumber)}
+                 replay_candidate_scores:$candidates, replay_process_wall_seconds:($replay|rtrimstr("\n")|tonumber)}
                 '
         done
     done

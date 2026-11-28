@@ -1,0 +1,316 @@
+{
+  "historical_geometry": {
+    "positive_prompts": 73,
+    "proposed": {
+      "exact_natural_eos": 0,
+      "canonical_initial_space_missed": 10,
+      "first_wrong_offsets": [
+        {
+          "offset": 0,
+          "count": 59
+        },
+        {
+          "offset": 1,
+          "count": 8
+        },
+        {
+          "offset": 3,
+          "count": 2
+        },
+        {
+          "offset": 5,
+          "count": 1
+        },
+        {
+          "offset": 6,
+          "count": 1
+        },
+        {
+          "offset": 7,
+          "count": 1
+        },
+        {
+          "offset": 8,
+          "count": 1
+        }
+      ],
+      "first_wrong_types": [
+        {
+          "type": "substitution",
+          "count": 73
+        }
+      ],
+      "first_wrong_id_pairs": [
+        {
+          "offset": 1,
+          "expected": 19,
+          "actual": 223,
+          "count": 5
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 31,
+          "count": 2
+        },
+        {
+          "offset": 1,
+          "expected": 20,
+          "actual": 223,
+          "count": 2
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 376,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 404,
+          "count": 1
+        }
+      ]
+    },
+    "control": {
+      "exact_natural_eos": 0,
+      "canonical_initial_space_missed": 11,
+      "first_wrong_offsets": [
+        {
+          "offset": 0,
+          "count": 61
+        },
+        {
+          "offset": 1,
+          "count": 2
+        },
+        {
+          "offset": 3,
+          "count": 3
+        },
+        {
+          "offset": 5,
+          "count": 3
+        },
+        {
+          "offset": 6,
+          "count": 2
+        },
+        {
+          "offset": 7,
+          "count": 2
+        }
+      ],
+      "first_wrong_types": [
+        {
+          "type": "substitution",
+          "count": 73
+        }
+      ],
+      "first_wrong_id_pairs": [
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 283,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 439,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 545,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 1042,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 1155,
+          "count": 1
+        }
+      ]
+    },
+    "changes": [
+      {
+        "change": "earlier",
+        "count": 7
+      },
+      {
+        "change": "later",
+        "count": 6
+      },
+      {
+        "change": "same_offset",
+        "count": 60
+      }
+    ]
+  },
+  "natural_count": {
+    "positive_prompts": 73,
+    "proposed": {
+      "exact_natural_eos": 0,
+      "canonical_initial_space_missed": 10,
+      "first_wrong_offsets": [
+        {
+          "offset": 0,
+          "count": 59
+        },
+        {
+          "offset": 1,
+          "count": 8
+        },
+        {
+          "offset": 3,
+          "count": 2
+        },
+        {
+          "offset": 5,
+          "count": 1
+        },
+        {
+          "offset": 6,
+          "count": 1
+        },
+        {
+          "offset": 7,
+          "count": 1
+        },
+        {
+          "offset": 8,
+          "count": 1
+        }
+      ],
+      "first_wrong_types": [
+        {
+          "type": "substitution",
+          "count": 73
+        }
+      ],
+      "first_wrong_id_pairs": [
+        {
+          "offset": 1,
+          "expected": 19,
+          "actual": 223,
+          "count": 5
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 31,
+          "count": 2
+        },
+        {
+          "offset": 1,
+          "expected": 20,
+          "actual": 223,
+          "count": 2
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 376,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 404,
+          "count": 1
+        }
+      ]
+    },
+    "control": {
+      "exact_natural_eos": 0,
+      "canonical_initial_space_missed": 10,
+      "first_wrong_offsets": [
+        {
+          "offset": 0,
+          "count": 59
+        },
+        {
+          "offset": 1,
+          "count": 8
+        },
+        {
+          "offset": 2,
+          "count": 1
+        },
+        {
+          "offset": 3,
+          "count": 3
+        },
+        {
+          "offset": 4,
+          "count": 1
+        },
+        {
+          "offset": 6,
+          "count": 1
+        }
+      ],
+      "first_wrong_types": [
+        {
+          "type": "substitution",
+          "count": 73
+        }
+      ],
+      "first_wrong_id_pairs": [
+        {
+          "offset": 1,
+          "expected": 19,
+          "actual": 223,
+          "count": 4
+        },
+        {
+          "offset": 0,
+          "expected": 459,
+          "actual": 223,
+          "count": 2
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 265,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 268,
+          "count": 1
+        },
+        {
+          "offset": 0,
+          "expected": 223,
+          "actual": 500,
+          "count": 1
+        }
+      ]
+    },
+    "changes": [
+      {
+        "change": "earlier",
+        "count": 6
+      },
+      {
+        "change": "later",
+        "count": 6
+      },
+      {
+        "change": "same_offset",
+        "count": 61
+      }
+    ]
+  }
+}

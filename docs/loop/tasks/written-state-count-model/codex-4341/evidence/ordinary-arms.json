@@ -1,0 +1,110 @@
+[
+  {
+    "arm": "natural.count.actual",
+    "supported": 73,
+    "first_wrong_at_zero": 59,
+    "exact_source_addresses": 5,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 25
+  },
+  {
+    "arm": "natural.count.permuted",
+    "supported": 73,
+    "first_wrong_at_zero": 69,
+    "exact_source_addresses": 0,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 34
+  },
+  {
+    "arm": "natural.count.zero",
+    "supported": 73,
+    "first_wrong_at_zero": 58,
+    "exact_source_addresses": 0,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 0
+  },
+  {
+    "arm": "natural.geometry.actual",
+    "supported": 73,
+    "first_wrong_at_zero": 59,
+    "exact_source_addresses": 5,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 25
+  },
+  {
+    "arm": "natural.geometry.permuted",
+    "supported": 73,
+    "first_wrong_at_zero": 67,
+    "exact_source_addresses": 2,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 29
+  },
+  {
+    "arm": "natural.geometry.zero",
+    "supported": 73,
+    "first_wrong_at_zero": 58,
+    "exact_source_addresses": 0,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 0
+  },
+  {
+    "arm": "original.count.actual",
+    "supported": 73,
+    "first_wrong_at_zero": 63,
+    "exact_source_addresses": 8,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 41
+  },
+  {
+    "arm": "original.count.permuted",
+    "supported": 73,
+    "first_wrong_at_zero": 60,
+    "exact_source_addresses": 8,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 34
+  },
+  {
+    "arm": "original.count.zero",
+    "supported": 73,
+    "first_wrong_at_zero": 58,
+    "exact_source_addresses": 0,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 0
+  },
+  {
+    "arm": "original.geometry.actual",
+    "supported": 73,
+    "first_wrong_at_zero": 61,
+    "exact_source_addresses": 7,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 39
+  },
+  {
+    "arm": "original.geometry.permuted",
+    "supported": 73,
+    "first_wrong_at_zero": 60,
+    "exact_source_addresses": 4,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 34
+  },
+  {
+    "arm": "original.geometry.zero",
+    "supported": 73,
+    "first_wrong_at_zero": 58,
+    "exact_source_addresses": 0,
+    "exact_natural_eos": 0,
+    "unsupported": 43,
+    "unsupported_source_commits": 0
+  }
+]

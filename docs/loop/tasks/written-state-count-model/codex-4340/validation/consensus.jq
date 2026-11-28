@@ -13,9 +13,18 @@ def decision($case;$ledger):
     ($d.distinct|type)=="boolean";"invalid or incomplete review") | $d;
 
 ($source|map(.pair_id)|sort) as $ids |
-insist(($ids|length)==67 and ($ids|unique|length)==67 and
-  ($source|group_by(.family)|map([.[0].family,length])|sort)==[["answerability",44],["two_answer",23]];
-  "unregistered validation denominator") |
+($source|group_by(.family)|map([.[0].family,length])|sort) as $families |
+insist(($ids|unique|length)==($ids|length); "duplicate validation pair identity") |
+if $ARGS.named.registered == null then
+  insist(($ids|length)==67 and $families==[["answerability",44],["two_answer",23]];
+    "unregistered validation denominator")
+else
+  ($source|map({article,passage_sha256,family,rank,pair_id,left:.left.case_id,right:.right.case_id})) as $rows |
+  $ARGS.named.registered as $roster |
+  insist(($ids|length)==113 and $families==[["answerability",90],["two_answer",23]] and
+    ($rows[:67]|sort_by(.pair_id)) == ($roster[:67]|sort_by(.pair_id)) and $rows[67:] == $roster[67:];
+    "unregistered expanded validation roster")
+end |
 insist(all([$first,$second][]; (map(.pair_id)|sort)==$ids);"incomplete or duplicate review roster") |
 ($first|INDEX(.pair_id)) as $a | ($second|INDEX(.pair_id)) as $b |
 $source[] as $row | decision($row;$a) as $left | decision($row;$b) as $right |

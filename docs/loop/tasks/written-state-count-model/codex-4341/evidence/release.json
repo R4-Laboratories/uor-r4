@@ -1,0 +1,178 @@
+{
+  "ordinary": {
+    "positive_prompts": 73,
+    "exact_addresses": 5,
+    "exact_tokens_addresses_eos": 0,
+    "exact_natural_eos": 0,
+    "stop_reasons": [
+      {
+        "stop": "max_tokens",
+        "count": 73
+      }
+    ]
+  },
+  "gold_source_native_release": {
+    "positive_prompts": 73,
+    "exact_addresses": 70,
+    "exact_tokens_addresses_eos": 0,
+    "exact_natural_eos": 0,
+    "stop_reasons": [
+      {
+        "stop": "max_tokens",
+        "count": 73
+      }
+    ]
+  },
+  "gold_source_supplied_eos": {
+    "positive_prompts": 73,
+    "exact_addresses": 70,
+    "exact_tokens_addresses_eos": 70,
+    "exact_natural_eos": 0,
+    "stop_reasons": [
+      {
+        "stop": "eos",
+        "count": 70
+      },
+      {
+        "stop": "max_tokens",
+        "count": 3
+      }
+    ]
+  },
+  "verified_native_release": {
+    "rows": 70,
+    "stop_reasons": [
+      {
+        "stop": "max_tokens",
+        "count": 70
+      }
+    ],
+    "expected": [
+      1
+    ],
+    "actual": [
+      {
+        "id": 16,
+        "count": 26
+      },
+      {
+        "id": 3,
+        "count": 6
+      },
+      {
+        "id": 85,
+        "count": 5
+      },
+      {
+        "id": 5,
+        "count": 3
+      },
+      {
+        "id": 74,
+        "count": 3
+      },
+      {
+        "id": 14,
+        "count": 2
+      },
+      {
+        "id": 29,
+        "count": 2
+      },
+      {
+        "id": 125,
+        "count": 2
+      },
+      {
+        "id": 223,
+        "count": 2
+      },
+      {
+        "id": 276,
+        "count": 2
+      },
+      {
+        "id": 1811,
+        "count": 2
+      },
+      {
+        "id": 2,
+        "count": 1
+      },
+      {
+        "id": 13,
+        "count": 1
+      },
+      {
+        "id": 17,
+        "count": 1
+      },
+      {
+        "id": 73,
+        "count": 1
+      },
+      {
+        "id": 265,
+        "count": 1
+      },
+      {
+        "id": 292,
+        "count": 1
+      },
+      {
+        "id": 295,
+        "count": 1
+      },
+      {
+        "id": 299,
+        "count": 1
+      },
+      {
+        "id": 372,
+        "count": 1
+      },
+      {
+        "id": 386,
+        "count": 1
+      },
+      {
+        "id": 421,
+        "count": 1
+      },
+      {
+        "id": 471,
+        "count": 1
+      },
+      {
+        "id": 529,
+        "count": 1
+      },
+      {
+        "id": 651,
+        "count": 1
+      },
+      {
+        "id": 1010,
+        "count": 1
+      }
+    ]
+  },
+  "gold_source_supplied_eos_misses": [
+    {
+      "first_wrong": {
+        "offset": 0,
+        "expected": 223,
+        "actual": 31
+      },
+      "count": 2
+    },
+    {
+      "first_wrong": {
+        "offset": 0,
+        "expected": 223,
+        "actual": 1042
+      },
+      "count": 1
+    }
+  ]
+}

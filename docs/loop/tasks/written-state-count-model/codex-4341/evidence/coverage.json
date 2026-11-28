@@ -1,0 +1,647 @@
+{
+  "titles": [
+    {
+      "family": "answerability",
+      "article": "1973_oil_crisis",
+      "selected": 14,
+      "semantic": 4,
+      "qualified": 3,
+      "mechanical_pairs": 14,
+      "original": {
+        "selected": 4,
+        "semantic": 0,
+        "qualified": 0
+      },
+      "additional_selected": 10,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 8,
+          "semantic": 2,
+          "qualified": 2
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 3,
+          "semantic": 2,
+          "qualified": 1
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 3,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Construction",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4,
+      "mechanical_pairs": 12,
+      "original": {
+        "selected": 4,
+        "semantic": 4,
+        "qualified": 4
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 3,
+          "semantic": 3,
+          "qualified": 3
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Force",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 3,
+      "mechanical_pairs": 29,
+      "original": {
+        "selected": 4,
+        "semantic": 3,
+        "qualified": 3
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 2,
+          "semantic": 2,
+          "qualified": 2
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 1,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "French_and_Indian_War",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 3,
+      "mechanical_pairs": 27,
+      "original": {
+        "selected": 4,
+        "semantic": 3,
+        "qualified": 3
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 3,
+          "semantic": 3,
+          "qualified": 3
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 1,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Geology",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 2,
+      "mechanical_pairs": 18,
+      "original": {
+        "selected": 4,
+        "semantic": 4,
+        "qualified": 2
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 4,
+          "semantic": 4,
+          "qualified": 2
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Harvard_University",
+      "selected": 17,
+      "semantic": 9,
+      "qualified": 8,
+      "mechanical_pairs": 17,
+      "original": {
+        "selected": 4,
+        "semantic": 1,
+        "qualified": 1
+      },
+      "additional_selected": 13,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 14,
+          "semantic": 9,
+          "qualified": 8
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 2,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 1,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Huguenot",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4,
+      "mechanical_pairs": 33,
+      "original": {
+        "selected": 4,
+        "semantic": 4,
+        "qualified": 4
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 4,
+          "semantic": 4,
+          "qualified": 4
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Islamism",
+      "selected": 27,
+      "semantic": 11,
+      "qualified": 10,
+      "mechanical_pairs": 27,
+      "original": {
+        "selected": 4,
+        "semantic": 1,
+        "qualified": 1
+      },
+      "additional_selected": 23,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 8,
+          "semantic": 5,
+          "qualified": 4
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 11,
+          "semantic": 6,
+          "qualified": 6
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 8,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Oxygen",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 11,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 2,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Scottish_Parliament",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 2,
+      "mechanical_pairs": 28,
+      "original": {
+        "selected": 4,
+        "semantic": 3,
+        "qualified": 2
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 3,
+          "semantic": 2,
+          "qualified": 1
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "answerability",
+      "article": "Steam_engine",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 40,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0,
+      "negative_groups": [
+        {
+          "group": "unanswerable",
+          "concordant_or_unresolved": 2,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "false_premise",
+          "concordant_or_unresolved": 1,
+          "semantic": 1,
+          "qualified": 1
+        },
+        {
+          "group": "ambiguous",
+          "concordant_or_unresolved": 1,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": "answerable",
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        },
+        {
+          "group": null,
+          "concordant_or_unresolved": 0,
+          "semantic": 0,
+          "qualified": 0
+        }
+      ]
+    },
+    {
+      "family": "two_answer",
+      "article": "2008_Summer_Olympics_torch_relay",
+      "selected": 2,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 3,
+      "original": {
+        "selected": 2,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Adult_contemporary_music",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4,
+      "mechanical_pairs": 15,
+      "original": {
+        "selected": 4,
+        "semantic": 4,
+        "qualified": 4
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Brain",
+      "selected": 1,
+      "semantic": 1,
+      "qualified": 1,
+      "mechanical_pairs": 1,
+      "original": {
+        "selected": 1,
+        "semantic": 1,
+        "qualified": 1
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Catalan_language",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 84,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Daylight_saving_time",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 24,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Plymouth",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 21,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0
+    },
+    {
+      "family": "two_answer",
+      "article": "Pub",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2,
+      "mechanical_pairs": 39,
+      "original": {
+        "selected": 4,
+        "semantic": 2,
+        "qualified": 2
+      },
+      "additional_selected": 0
+    }
+  ],
+  "two_answer_total": 15,
+  "answerability_total": 43,
+  "coverage_pass": true,
+  "model_fit": "NOT_RUN",
+  "original_selected": 67,
+  "additional_selected": 46,
+  "expanded_selected": 113,
+  "answerability_negative_groups": [
+    {
+      "group": "unanswerable",
+      "concordant_or_unresolved": 46,
+      "semantic": 31,
+      "qualified": 27
+    },
+    {
+      "group": "false_premise",
+      "concordant_or_unresolved": 27,
+      "semantic": 18,
+      "qualified": 16
+    },
+    {
+      "group": "ambiguous",
+      "concordant_or_unresolved": 1,
+      "semantic": 0,
+      "qualified": 0
+    },
+    {
+      "group": "answerable",
+      "concordant_or_unresolved": 1,
+      "semantic": 0,
+      "qualified": 0
+    },
+    {
+      "group": null,
+      "concordant_or_unresolved": 15,
+      "semantic": 0,
+      "qualified": 0
+    }
+  ]
+}

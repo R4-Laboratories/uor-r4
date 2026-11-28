@@ -1,0 +1,24 @@
+{
+  "schema": "uor-r4.reciprocal-transfer-validation-writer-report/1",
+  "source_status": "negative",
+  "writer_status": "fail",
+  "roster_sha256": "407293ea282aeb1722263bc321b3edb699f9e262eed8f1a010094f0f0477a811",
+  "scores_sha256": "b6ebdba980ca313bba93cec363b13d1d00752f0cd8e254ee4b8a4278d8e3f057",
+  "writer_evidence_sha256": "a5d6eb6f56163d20f7f3cba2cd2b94878f6b85ee67e71d84bdaab1c222fc37eb",
+  "all_qualified_positives": 73,
+  "all_qualified_negatives": 43,
+  "strict_source_positives": 6,
+  "exact_through_natural_eos_on_strict_positives": 0,
+  "negative_source_admissions": 28,
+  "negative_source_commits": 25,
+  "negative_visible": {
+    "visible_abstention": 0,
+    "supported_premise_correction": 0,
+    "false_factual_claim": 0,
+    "no_decipherable_claim": 0,
+    "empty_reply": 12,
+    "requires_semantic_review": 31
+  },
+  "eligible_for_separate_locked_registration": false,
+  "locked_access_authorized": false
+}

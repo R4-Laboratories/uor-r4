@@ -1,0 +1,346 @@
+[
+  {
+    "mixture": "natural",
+    "arm": "count",
+    "panel": "train",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 60,
+        "strict_against_mate": 54,
+        "strict_against_all": 54,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 56
+          },
+          {
+            "sign": "zero",
+            "pairs": 4
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 72,
+        "strict_against_mate": 71,
+        "strict_against_all": 71,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 71
+          },
+          {
+            "sign": "zero",
+            "pairs": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "natural",
+    "arm": "count",
+    "panel": "validation",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 43,
+        "strict_against_mate": 5,
+        "strict_against_all": 1,
+        "lost_to_other_or_tie": 4,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 16
+          },
+          {
+            "sign": "positive",
+            "pairs": 25
+          },
+          {
+            "sign": "zero",
+            "pairs": 2
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 15,
+        "strict_against_mate": 2,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 2,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 4
+          },
+          {
+            "sign": "positive",
+            "pairs": 9
+          },
+          {
+            "sign": "zero",
+            "pairs": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "natural",
+    "arm": "geometry",
+    "panel": "train",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 60,
+        "strict_against_mate": 50,
+        "strict_against_all": 49,
+        "lost_to_other_or_tie": 1,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 56
+          },
+          {
+            "sign": "zero",
+            "pairs": 4
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 72,
+        "strict_against_mate": 69,
+        "strict_against_all": 66,
+        "lost_to_other_or_tie": 3,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 71
+          },
+          {
+            "sign": "zero",
+            "pairs": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "natural",
+    "arm": "geometry",
+    "panel": "validation",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 43,
+        "strict_against_mate": 5,
+        "strict_against_all": 1,
+        "lost_to_other_or_tie": 4,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 23
+          },
+          {
+            "sign": "positive",
+            "pairs": 18
+          },
+          {
+            "sign": "zero",
+            "pairs": 2
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 15,
+        "strict_against_mate": 2,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 2,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 4
+          },
+          {
+            "sign": "positive",
+            "pairs": 9
+          },
+          {
+            "sign": "zero",
+            "pairs": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "original",
+    "arm": "count",
+    "panel": "train",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 60,
+        "strict_against_mate": 60,
+        "strict_against_all": 60,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 60
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 24,
+        "strict_against_mate": 24,
+        "strict_against_all": 24,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 24
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "original",
+    "arm": "count",
+    "panel": "validation",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 43,
+        "strict_against_mate": 6,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 6,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 16
+          },
+          {
+            "sign": "positive",
+            "pairs": 25
+          },
+          {
+            "sign": "zero",
+            "pairs": 2
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 15,
+        "strict_against_mate": 2,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 2,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 7
+          },
+          {
+            "sign": "positive",
+            "pairs": 7
+          },
+          {
+            "sign": "zero",
+            "pairs": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "original",
+    "arm": "geometry",
+    "panel": "train",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 60,
+        "strict_against_mate": 60,
+        "strict_against_all": 60,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 60
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 24,
+        "strict_against_mate": 24,
+        "strict_against_all": 24,
+        "lost_to_other_or_tie": 0,
+        "question_effect_signs": [
+          {
+            "sign": "positive",
+            "pairs": 24
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "mixture": "original",
+    "arm": "geometry",
+    "panel": "validation",
+    "by_family": [
+      {
+        "family": "answerability",
+        "pairs": 43,
+        "strict_against_mate": 8,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 8,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 15
+          },
+          {
+            "sign": "positive",
+            "pairs": 24
+          },
+          {
+            "sign": "zero",
+            "pairs": 4
+          }
+        ]
+      },
+      {
+        "family": "two_answer",
+        "pairs": 15,
+        "strict_against_mate": 4,
+        "strict_against_all": 0,
+        "lost_to_other_or_tie": 4,
+        "question_effect_signs": [
+          {
+            "sign": "negative",
+            "pairs": 2
+          },
+          {
+            "sign": "positive",
+            "pairs": 10
+          },
+          {
+            "sign": "zero",
+            "pairs": 3
+          }
+        ]
+      }
+    ]
+  }
+]
