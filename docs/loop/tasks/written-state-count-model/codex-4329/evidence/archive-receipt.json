@@ -1,0 +1,23 @@
+{
+  "schema": "whole-turn-supervision-archive/1",
+  "archive_bytes": 285530,
+  "archive_sha256": "8bfe82fcd3839afb78be3e3636c7ae03d1336bd756b3e061a6c7c0b062a0fddf",
+  "members": 65,
+  "member_manifest_sha256": "8975a9b73a0cb8626470623ebd88b2841a94a60657aea883194af2e85eddc0e9",
+  "private_wick_files": 33,
+  "private_wick_manifest_sha256": "96a850736be84920a203ceb38dcd246b1808dce12241359f392e6154c9ecc80c",
+  "repository": "caseyallard/uor-r4-store",
+  "repository_type": "dataset",
+  "repository_verified_private": true,
+  "revision": "8e3997c80db470262b34973065392e5970744d51",
+  "path": "results/codex/whole-turn-source-supervision-20261127/whole-turn-supervision.tar.zst",
+  "wick_path": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-whole-turn-census/archive-v1/whole-turn-supervision.tar.zst",
+  "forced_revision_download_byte_match": true,
+  "rebuild_byte_match": {
+    "natural_rows": 710,
+    "authored_rows": 360,
+    "donor_census_rows": 4345,
+    "readback_files": 13,
+    "readback_sha256": "b50976a2ea818570c3f94fb15c4672cf338c78be8b591957be755b65b4cd174e"
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "asserted_to_other_person_or_denied_pairs": 96,
+    "both_asserted_question_switches": 24,
+    "families": [
+      "fabric",
+      "locker",
+      "thermos",
+      "ticket"
+    ],
+    "no_read": 96,
+    "positives": 144,
+    "rows": 240,
+    "same_id_distinct_source_questions": 8,
+    "split": [
+      "train"
+    ],
+    "states": [
+      {
+        "kind": "asserted",
+        "no_read": 0,
+        "positive": 48
+      },
+      {
+        "kind": "denied",
+        "no_read": 48,
+        "positive": 48
+      },
+      {
+        "kind": "question",
+        "no_read": 48,
+        "positive": 48
+      }
+    ]
+  },
+  {
+    "asserted_to_other_person_or_denied_pairs": 48,
+    "both_asserted_question_switches": 12,
+    "families": [
+      "ink",
+      "parcel"
+    ],
+    "no_read": 48,
+    "positives": 72,
+    "rows": 120,
+    "same_id_distinct_source_questions": 4,
+    "split": [
+      "dev"
+    ],
+    "states": [
+      {
+        "kind": "asserted",
+        "no_read": 0,
+        "positive": 24
+      },
+      {
+        "kind": "denied",
+        "no_read": 24,
+        "positive": 24
+      },
+      {
+        "kind": "question",
+        "no_read": 24,
+        "positive": 24
+      }
+    ]
+  }
+]

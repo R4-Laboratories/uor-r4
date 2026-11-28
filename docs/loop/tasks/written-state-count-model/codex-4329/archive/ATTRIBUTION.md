@@ -1,0 +1,7 @@
+# Dataset attribution
+
+The natural supervision files under `natural/` adapt the public Stanford Question Answering Dataset 2.0 by Pranav Rajpurkar, Robin Jia and Percy Liang. SQuAD 2.0 is distributed under Creative Commons Attribution-ShareAlike 4.0 International. The derived natural files are distributed under the same license. [SQuAD 2.0](https://rajpurkar.github.io/SQuAD-explorer/) · [Authors' paper](https://arxiv.org/abs/1806.03822) · [CC BY-SA 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/)
+
+The instrument filtered original TRAIN and DEV questions and full paragraphs and joined each selected paragraph and question with a single space. TRAIN is further partitioned by article title. The files add published question IDs, pairs, article titles, reference spans and tokenization by the UOR-R4 protocol. Each paragraph comes from the Wikimedia contributors to the named English Wikipedia article. Use the article title from its associated truth row at `https://en.wikipedia.org/wiki/<article>` to identify the article and its revision history. The original dataset remains the reference for the exact source excerpt. [Original TRAIN](https://rajpurkar.github.io/SQuAD-explorer/dataset/train-v2.0.json) · [Original DEV](https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json)
+
+The authored experimental comparisons under `authored/` were generated in this study. Their sources and reproducible recipe are in `checkout/docs/loop/tasks/written-state-count-model/codex-4329/contrasts/`.

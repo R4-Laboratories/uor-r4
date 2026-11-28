@@ -1,0 +1,464 @@
+[
+  {
+    "arm": "native",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 38,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      1
+    ],
+    "first_expected": [
+      270,
+      86,
+      86,
+      82
+    ],
+    "first_wrong": {
+      "actual": 1,
+      "expected": 270,
+      "step": 1
+    },
+    "group": 868,
+    "reference_length": 76,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": null,
+    "stop": "eos"
+  },
+  {
+    "arm": "native",
+    "decision": "framing_rejected",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      427,
+      469,
+      1311,
+      86
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 427,
+      "step": 1
+    },
+    "group": 1841,
+    "reference_length": 153,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "native",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 19,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      2,
+      14,
+      223,
+      223
+    ],
+    "first_expected": [
+      223,
+      19,
+      22,
+      1
+    ],
+    "first_wrong": {
+      "actual": 2,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2230,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "native",
+    "decision": "framing_rejected",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      13,
+      2,
+      16,
+      73
+    ],
+    "first_expected": [
+      223,
+      25,
+      24,
+      4024
+    ],
+    "first_wrong": {
+      "actual": 13,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2497,
+    "reference_length": 71,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "native",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 14,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      5,
+      5,
+      5,
+      5
+    ],
+    "first_expected": [
+      223,
+      22,
+      24,
+      1
+    ],
+    "first_wrong": {
+      "actual": 5,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2990,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "auth",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 38,
+    "first_claim": 38,
+    "first_copied": true,
+    "first_emitted": [
+      562,
+      29,
+      73,
+      1010
+    ],
+    "first_expected": [
+      270,
+      86,
+      86,
+      82
+    ],
+    "first_wrong": {
+      "actual": 562,
+      "expected": 270,
+      "step": 1
+    },
+    "group": 868,
+    "reference_length": 76,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "auth",
+    "decision": "framing_rejected",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      427,
+      469,
+      1311,
+      86
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 427,
+      "step": 1
+    },
+    "group": 1841,
+    "reference_length": 153,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "auth",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 19,
+    "first_claim": 19,
+    "first_copied": true,
+    "first_emitted": [
+      19,
+      3,
+      223,
+      223
+    ],
+    "first_expected": [
+      223,
+      19,
+      22,
+      1
+    ],
+    "first_wrong": {
+      "actual": 19,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2230,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "auth",
+    "decision": "framing_rejected",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      13,
+      2,
+      16,
+      73
+    ],
+    "first_expected": [
+      223,
+      25,
+      24,
+      4024
+    ],
+    "first_wrong": {
+      "actual": 13,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2497,
+    "reference_length": 71,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "auth",
+    "decision": "selected",
+    "exact": false,
+    "first_address": 14,
+    "first_claim": 14,
+    "first_copied": true,
+    "first_emitted": [
+      1255,
+      17,
+      20,
+      3
+    ],
+    "first_expected": [
+      223,
+      22,
+      24,
+      1
+    ],
+    "first_wrong": {
+      "actual": 1255,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2990,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "disabled",
+    "decision": "disabled",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      270,
+      86,
+      86,
+      82
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 270,
+      "step": 1
+    },
+    "group": 868,
+    "reference_length": 76,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "disabled",
+    "decision": "disabled",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      427,
+      469,
+      1311,
+      86
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 427,
+      "step": 1
+    },
+    "group": 1841,
+    "reference_length": 153,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "disabled",
+    "decision": "disabled",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      223,
+      19,
+      22,
+      1
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 19,
+      "step": 2
+    },
+    "group": 2230,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "disabled",
+    "decision": "disabled",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      13,
+      2,
+      16,
+      73
+    ],
+    "first_expected": [
+      223,
+      25,
+      24,
+      4024
+    ],
+    "first_wrong": {
+      "actual": 13,
+      "expected": 223,
+      "step": 1
+    },
+    "group": 2497,
+    "reference_length": 71,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  },
+  {
+    "arm": "disabled",
+    "decision": "disabled",
+    "exact": false,
+    "first_address": null,
+    "first_claim": null,
+    "first_copied": false,
+    "first_emitted": [
+      223,
+      223,
+      223,
+      223
+    ],
+    "first_expected": [
+      223,
+      22,
+      24,
+      1
+    ],
+    "first_wrong": {
+      "actual": 223,
+      "expected": 22,
+      "step": 2
+    },
+    "group": 2990,
+    "reference_length": 4,
+    "second_address": null,
+    "second_claim": null,
+    "second_copied": false,
+    "stop": "max_tokens"
+  }
+]

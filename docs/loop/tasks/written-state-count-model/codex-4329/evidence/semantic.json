@@ -1,0 +1,99 @@
+{
+  "schema": "uor-r4.whole-turn-donor-semantic-review/1",
+  "scope": "Sealed D87 TRAIN subset, corrected protocol-2 tape, genuine assistant openings",
+  "opening_population": 4345,
+  "first_nonwhitespace_whole_turn_mechanical_partition": {
+    "absent": 2365,
+    "duplicate": 1452,
+    "nonlexical": 1,
+    "unique": 527
+  },
+  "screened_distinct_openings": 636,
+  "openings_without_semantic_screen": 3709,
+  "cohorts_in_union_order": [
+    {
+      "cohort": "whole_turn_unique_first_nonwhitespace",
+      "opened": 527,
+      "additional": 527,
+      "context_reachable": 341,
+      "context_excluded": 186,
+      "verified_source": 2
+    },
+    {
+      "cohort": "ascending_first_twelve_per_nonunique_stratum",
+      "opened": 36,
+      "additional": 36,
+      "absent_first_turn": 12,
+      "absent_later_turn": 12,
+      "duplicate_first_turn": 12,
+      "duplicate_later_turn": 0,
+      "verified_source": 1
+    },
+    {
+      "cohort": "independent_enriched",
+      "opened": 24,
+      "additional": 18,
+      "verified_source": 0,
+      "coarse_agreement": 24,
+      "unsupported_claim_with_distractor_and_over_context": 1,
+      "missing_numeric_prerequisite": 2,
+      "hypothesis_assessment": 1,
+      "extraction_after_opening": 1,
+      "prior_role_required": 2,
+      "missing_referent_material_or_external_data": 5,
+      "other": 12
+    },
+    {
+      "cohort": "filename_field_request_family",
+      "opened": 58,
+      "additional": 55,
+      "verified_source": 38,
+      "verified_source_with_unique_lexical_id": 1,
+      "verified_source_with_duplicate_lexical_id": 37,
+      "verified_no_read": 2,
+      "reply_opening_padding_mismatch": 3,
+      "wrong_reference_field": 3,
+      "unsupported_reference_guess": 12
+    }
+  ],
+  "historical_framed_immediate_unique": {
+    "opened": 5,
+    "already_in_whole_turn_unique": 5,
+    "verified_source": 0,
+    "drafting_or_editing": 2,
+    "open_completion": 1,
+    "proof_opening": 2
+  },
+  "verified_replay_ledger": {
+    "rows": 42,
+    "source": 39,
+    "source_current_quantity_in_prose": 1,
+    "source_filename_field": 38,
+    "source_reachable_in_ordinary_context": 39,
+    "source_reachable_in_framed_fact_range": 0,
+    "source_after_immediate_standalone_space": 39,
+    "source_opening_id_is_prefix_of_multi_digit_value": 39,
+    "source_opening_ids": [18, 19, 20, 22, 25],
+    "no_read": 3,
+    "no_read_reachable_in_ordinary_context": 2,
+    "no_read_over_context": 1,
+    "no_read_immediate_nonwhitespace": 3
+  },
+  "other_prompt_copy_witnesses": {
+    "exact_url_transcription": 3,
+    "reachable_exact_url_transcription": 2,
+    "explicit_quoted_response_copy_over_context": 1
+  },
+  "private_wick_files_sha256": {
+    "census-v1/rows.jsonl": "36b2e43985a96cc00fc8817d4534e50047fa1239fae83049f32021bbed29dbc9",
+    "semantic-v1/unique-lexical.jsonl": "566d2ea2e006d7b35d7952d6671a4fd9b59f6672f83fbf6fe39b6dae2b9aefc1",
+    "semantic-v1/other-strata.jsonl": "c17f2ef931f950d620ed281cec93ede1d21c6b60c828ade5acccbd7c766d914d",
+    "semantic-v1/independent-sample-bootstrap-v2.jsonl": "6a0038159544fb8b1c639692b0a2e6319b3d37645273f377b5d6b42087570211",
+    "semantic-v1/independent-sample-with-candidates.jsonl": "1f96236ab8d00f1cdda28640f0ea7f0b882ff2b9c6f90199528c758e3edf7380",
+    "semantic-v1/first-reader.tsv": "94e48d0fe371c72617b44e5e223076b7d108a378ca757e073bcd21576fd47fdb",
+    "semantic-v1/second-reader.tsv": "6f902a8ef30aea71b04b8d2b5cedc01ca387d08d888667419afd9fb6f0cee4bd",
+    "semantic-v1/filename-family-annotations.tsv": "84ee64e0c9dd8283eacc6dbeb257b2a5fb419b0b4ea940a64e13d03f2862a430",
+    "semantic-v1/filename-family-v1.jsonl": "be0307d1244baf5e9dd24713d004d4cf35aadf3846449d06e15ae261526261b4",
+    "semantic-v1/verified-native-openings.jsonl": "6106e664e5eb1f8075e97dd1766f56df62fb81cddccb50f0b044e71428c6a26a"
+  }
+}
