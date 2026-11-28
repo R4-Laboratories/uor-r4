@@ -1,0 +1,42 @@
+[
+  {
+    "seed": 435300,
+    "gold": 93,
+    "before": {
+      "margin_q48": -85132017275062,
+      "rank": 321,
+      "rival": 143
+    },
+    "old_rival_margin": 11414400842,
+    "after": {
+      "margin_q48": -7683538287873,
+      "rank": 5,
+      "rival": 638
+    },
+    "checkpoint": {
+      "margin_q48": -64801805998103,
+      "rank": 20,
+      "rival": 166
+    }
+  },
+  {
+    "seed": 435301,
+    "gold": 93,
+    "before": {
+      "margin_q48": -54607254285428,
+      "rank": 112,
+      "rival": 320
+    },
+    "old_rival_margin": 7549850508,
+    "after": {
+      "margin_q48": -7955291435531,
+      "rank": 12,
+      "rival": 391
+    },
+    "checkpoint": {
+      "margin_q48": -49852684472823,
+      "rank": 166,
+      "rival": 1719
+    }
+  }
+]

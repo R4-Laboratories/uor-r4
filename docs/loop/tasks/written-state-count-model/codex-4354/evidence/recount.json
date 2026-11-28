@@ -1,0 +1,3026 @@
+[
+  {
+    "epoch": 1,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 108,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3804,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 303,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 90,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 46,
+            "later_gains": 44,
+            "immediate_gains": 195,
+            "clipped_rows": 87,
+            "clipped_words": 87,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 87,
+              "old_rival": 0,
+              "replacement": 3498,
+              "epoch_end": 257
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 108,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3799,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 303,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 90,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 46,
+            "later_gains": 44,
+            "immediate_gains": 195,
+            "clipped_rows": 87,
+            "clipped_words": 87,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 87,
+              "old_rival": 0,
+              "replacement": 3496,
+              "epoch_end": 257
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 102,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3657,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 307,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 133,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 74,
+            "later_gains": 59,
+            "immediate_gains": 205,
+            "clipped_rows": 234,
+            "clipped_words": 234,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 234,
+              "old_rival": 0,
+              "replacement": 3348,
+              "epoch_end": 233
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 102,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3652,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 307,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 133,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 74,
+            "later_gains": 59,
+            "immediate_gains": 205,
+            "clipped_rows": 234,
+            "clipped_words": 234,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 234,
+              "old_rival": 0,
+              "replacement": 3345,
+              "epoch_end": 233
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 106,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3790,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 300,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 159,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 74,
+            "later_gains": 85,
+            "immediate_gains": 194,
+            "clipped_rows": 101,
+            "clipped_words": 101,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 101,
+              "old_rival": 0,
+              "replacement": 3487,
+              "epoch_end": 226
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 106,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3785,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 300,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 159,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 74,
+            "later_gains": 85,
+            "immediate_gains": 194,
+            "clipped_rows": 101,
+            "clipped_words": 101,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 101,
+              "old_rival": 0,
+              "replacement": 3485,
+              "epoch_end": 226
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3643,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 335,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 34,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 21,
+            "later_gains": 13,
+            "immediate_gains": 230,
+            "clipped_rows": 248,
+            "clipped_words": 248,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 248,
+              "old_rival": 0,
+              "replacement": 3306,
+              "epoch_end": 314
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3638,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 335,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 34,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 21,
+            "later_gains": 13,
+            "immediate_gains": 230,
+            "clipped_rows": 248,
+            "clipped_words": 248,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 248,
+              "old_rival": 0,
+              "replacement": 3303,
+              "epoch_end": 314
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 2,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 91,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3817,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 291,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 73,
+            "later_gains": 50,
+            "immediate_gains": 200,
+            "clipped_rows": 74,
+            "clipped_words": 74,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 74,
+              "old_rival": 0,
+              "replacement": 3523,
+              "epoch_end": 218
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 91,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3812,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 291,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 73,
+            "later_gains": 50,
+            "immediate_gains": 200,
+            "clipped_rows": 74,
+            "clipped_words": 74,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 74,
+              "old_rival": 0,
+              "replacement": 3521,
+              "epoch_end": 218
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 121,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3817,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 364,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 58,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 43,
+            "later_gains": 15,
+            "immediate_gains": 243,
+            "clipped_rows": 74,
+            "clipped_words": 74,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 74,
+              "old_rival": 0,
+              "replacement": 3451,
+              "epoch_end": 321
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 121,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3812,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 364,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 58,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 43,
+            "later_gains": 15,
+            "immediate_gains": 243,
+            "clipped_rows": 74,
+            "clipped_words": 74,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 74,
+              "old_rival": 0,
+              "replacement": 3448,
+              "epoch_end": 321
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3834,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 318,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 66,
+            "later_gains": 39,
+            "immediate_gains": 213,
+            "clipped_rows": 57,
+            "clipped_words": 57,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 57,
+              "old_rival": 0,
+              "replacement": 3513,
+              "epoch_end": 252
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3829,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 318,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 66,
+            "later_gains": 39,
+            "immediate_gains": 213,
+            "clipped_rows": 57,
+            "clipped_words": 57,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 57,
+              "old_rival": 0,
+              "replacement": 3511,
+              "epoch_end": 252
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 127,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3810,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 361,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 99,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 71,
+            "later_gains": 28,
+            "immediate_gains": 234,
+            "clipped_rows": 81,
+            "clipped_words": 81,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 81,
+              "old_rival": 0,
+              "replacement": 3447,
+              "epoch_end": 290
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 127,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3805,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 361,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 99,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 71,
+            "later_gains": 28,
+            "immediate_gains": 234,
+            "clipped_rows": 81,
+            "clipped_words": 81,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 81,
+              "old_rival": 0,
+              "replacement": 3444,
+              "epoch_end": 290
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 3,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 100,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3844,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 302,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 50,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 35,
+            "later_gains": 15,
+            "immediate_gains": 202,
+            "clipped_rows": 47,
+            "clipped_words": 47,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 47,
+              "old_rival": 0,
+              "replacement": 3539,
+              "epoch_end": 267
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 100,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3839,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 302,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 50,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 35,
+            "later_gains": 15,
+            "immediate_gains": 202,
+            "clipped_rows": 47,
+            "clipped_words": 47,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 47,
+              "old_rival": 0,
+              "replacement": 3537,
+              "epoch_end": 267
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 122,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3811,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 373,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 153,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 88,
+            "later_gains": 65,
+            "immediate_gains": 251,
+            "clipped_rows": 80,
+            "clipped_words": 80,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 80,
+              "old_rival": 0,
+              "replacement": 3436,
+              "epoch_end": 285
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 122,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3806,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 373,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 153,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 88,
+            "later_gains": 65,
+            "immediate_gains": 251,
+            "clipped_rows": 80,
+            "clipped_words": 80,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 80,
+              "old_rival": 0,
+              "replacement": 3433,
+              "epoch_end": 285
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 115,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3833,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 314,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 205,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 104,
+            "later_gains": 101,
+            "immediate_gains": 199,
+            "clipped_rows": 58,
+            "clipped_words": 58,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 58,
+              "old_rival": 0,
+              "replacement": 3516,
+              "epoch_end": 210
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 115,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3828,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 314,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 205,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 104,
+            "later_gains": 101,
+            "immediate_gains": 199,
+            "clipped_rows": 58,
+            "clipped_words": 58,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 58,
+              "old_rival": 0,
+              "replacement": 3514,
+              "epoch_end": 210
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 117,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3808,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 367,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 137,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 83,
+            "later_gains": 54,
+            "immediate_gains": 250,
+            "clipped_rows": 83,
+            "clipped_words": 83,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 83,
+              "old_rival": 0,
+              "replacement": 3439,
+              "epoch_end": 284
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 117,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3803,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 367,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 137,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 83,
+            "later_gains": 54,
+            "immediate_gains": 250,
+            "clipped_rows": 83,
+            "clipped_words": 83,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 83,
+              "old_rival": 0,
+              "replacement": 3436,
+              "epoch_end": 284
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 4,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3837,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 296,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 72,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 56,
+            "later_gains": 16,
+            "immediate_gains": 195,
+            "clipped_rows": 54,
+            "clipped_words": 54,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 54,
+              "old_rival": 0,
+              "replacement": 3538,
+              "epoch_end": 240
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3832,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 296,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 72,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 56,
+            "later_gains": 16,
+            "immediate_gains": 195,
+            "clipped_rows": 54,
+            "clipped_words": 54,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 54,
+              "old_rival": 0,
+              "replacement": 3536,
+              "epoch_end": 240
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 120,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3810,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 342,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 154,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 110,
+            "later_gains": 44,
+            "immediate_gains": 222,
+            "clipped_rows": 81,
+            "clipped_words": 81,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 81,
+              "old_rival": 0,
+              "replacement": 3466,
+              "epoch_end": 232
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 120,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3805,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 342,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 154,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 110,
+            "later_gains": 44,
+            "immediate_gains": 222,
+            "clipped_rows": 81,
+            "clipped_words": 81,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 81,
+              "old_rival": 0,
+              "replacement": 3463,
+              "epoch_end": 232
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 110,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3826,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 130,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 80,
+            "later_gains": 50,
+            "immediate_gains": 200,
+            "clipped_rows": 65,
+            "clipped_words": 65,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3513,
+              "epoch_end": 230
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 110,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3821,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 130,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 80,
+            "later_gains": 50,
+            "immediate_gains": 200,
+            "clipped_rows": 65,
+            "clipped_words": 65,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3511,
+              "epoch_end": 230
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 132,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3807,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 353,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 182,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 111,
+            "later_gains": 71,
+            "immediate_gains": 221,
+            "clipped_rows": 84,
+            "clipped_words": 84,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 84,
+              "old_rival": 0,
+              "replacement": 3452,
+              "epoch_end": 242
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 132,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3802,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 353,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 182,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 111,
+            "later_gains": 71,
+            "immediate_gains": 221,
+            "clipped_rows": 84,
+            "clipped_words": 84,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 84,
+              "old_rival": 0,
+              "replacement": 3449,
+              "epoch_end": 242
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 5,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 107,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3823,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 312,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 119,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 60,
+            "later_gains": 59,
+            "immediate_gains": 205,
+            "clipped_rows": 68,
+            "clipped_words": 68,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 68,
+              "old_rival": 0,
+              "replacement": 3508,
+              "epoch_end": 252
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 107,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3818,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 312,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 119,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 60,
+            "later_gains": 59,
+            "immediate_gains": 205,
+            "clipped_rows": 68,
+            "clipped_words": 68,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 68,
+              "old_rival": 0,
+              "replacement": 3506,
+              "epoch_end": 252
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 129,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3826,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 348,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 184,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 129,
+            "later_gains": 55,
+            "immediate_gains": 219,
+            "clipped_rows": 66,
+            "clipped_words": 66,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3476,
+              "epoch_end": 219
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 129,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3821,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 348,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 184,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 129,
+            "later_gains": 55,
+            "immediate_gains": 219,
+            "clipped_rows": 66,
+            "clipped_words": 66,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3473,
+              "epoch_end": 219
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 100,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3833,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 309,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 160,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 78,
+            "later_gains": 82,
+            "immediate_gains": 209,
+            "clipped_rows": 58,
+            "clipped_words": 58,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 58,
+              "old_rival": 0,
+              "replacement": 3521,
+              "epoch_end": 231
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 100,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3828,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 309,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 160,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 78,
+            "later_gains": 82,
+            "immediate_gains": 209,
+            "clipped_rows": 58,
+            "clipped_words": 58,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 58,
+              "old_rival": 0,
+              "replacement": 3519,
+              "epoch_end": 231
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 125,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3806,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 375,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 181,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 87,
+            "later_gains": 94,
+            "immediate_gains": 250,
+            "clipped_rows": 86,
+            "clipped_words": 87,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 85,
+              "old_rival": 0,
+              "replacement": 3429,
+              "epoch_end": 288
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 125,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3801,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 375,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 181,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 87,
+            "later_gains": 94,
+            "immediate_gains": 250,
+            "clipped_rows": 86,
+            "clipped_words": 87,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 85,
+              "old_rival": 0,
+              "replacement": 3426,
+              "epoch_end": 288
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 6,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3840,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 64,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 31,
+            "later_gains": 33,
+            "immediate_gains": 205,
+            "clipped_rows": 51,
+            "clipped_words": 51,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 51,
+              "old_rival": 0,
+              "replacement": 3527,
+              "epoch_end": 279
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 105,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3835,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 64,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 31,
+            "later_gains": 33,
+            "immediate_gains": 205,
+            "clipped_rows": 51,
+            "clipped_words": 51,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 51,
+              "old_rival": 0,
+              "replacement": 3525,
+              "epoch_end": 279
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 118,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3815,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 341,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 191,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 119,
+            "later_gains": 72,
+            "immediate_gains": 223,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3472,
+              "epoch_end": 222
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 118,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3810,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 341,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 191,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 119,
+            "later_gains": 72,
+            "immediate_gains": 223,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3469,
+              "epoch_end": 222
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 103,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3820,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 299,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 31,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 19,
+            "later_gains": 12,
+            "immediate_gains": 196,
+            "clipped_rows": 71,
+            "clipped_words": 71,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 71,
+              "old_rival": 0,
+              "replacement": 3518,
+              "epoch_end": 280
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 103,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3815,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 299,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 31,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 19,
+            "later_gains": 12,
+            "immediate_gains": 196,
+            "clipped_rows": 71,
+            "clipped_words": 71,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 71,
+              "old_rival": 0,
+              "replacement": 3516,
+              "epoch_end": 280
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 126,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3820,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 369,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 192,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 114,
+            "later_gains": 78,
+            "immediate_gains": 243,
+            "clipped_rows": 71,
+            "clipped_words": 71,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 71,
+              "old_rival": 0,
+              "replacement": 3449,
+              "epoch_end": 255
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 126,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3815,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 369,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 192,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 114,
+            "later_gains": 78,
+            "immediate_gains": 243,
+            "clipped_rows": 71,
+            "clipped_words": 71,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 71,
+              "old_rival": 0,
+              "replacement": 3446,
+              "epoch_end": 255
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 7,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3830,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 320,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 89,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 59,
+            "later_gains": 30,
+            "immediate_gains": 219,
+            "clipped_rows": 61,
+            "clipped_words": 61,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 61,
+              "old_rival": 0,
+              "replacement": 3507,
+              "epoch_end": 261
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3825,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 320,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 89,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 59,
+            "later_gains": 30,
+            "immediate_gains": 219,
+            "clipped_rows": 61,
+            "clipped_words": 61,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 61,
+              "old_rival": 0,
+              "replacement": 3505,
+              "epoch_end": 261
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 122,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3821,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 357,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 52,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 43,
+            "later_gains": 9,
+            "immediate_gains": 235,
+            "clipped_rows": 70,
+            "clipped_words": 70,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 70,
+              "old_rival": 0,
+              "replacement": 3462,
+              "epoch_end": 314
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 122,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3816,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 357,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 52,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 43,
+            "later_gains": 9,
+            "immediate_gains": 235,
+            "clipped_rows": 70,
+            "clipped_words": 70,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 70,
+              "old_rival": 0,
+              "replacement": 3459,
+              "epoch_end": 314
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 102,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3826,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 316,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 106,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 70,
+            "later_gains": 36,
+            "immediate_gains": 214,
+            "clipped_rows": 65,
+            "clipped_words": 65,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3507,
+              "epoch_end": 246
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 102,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3821,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 316,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 106,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 70,
+            "later_gains": 36,
+            "immediate_gains": 214,
+            "clipped_rows": 65,
+            "clipped_words": 65,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 65,
+              "old_rival": 0,
+              "replacement": 3505,
+              "epoch_end": 246
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 129,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3815,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 364,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 159,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 121,
+            "later_gains": 38,
+            "immediate_gains": 235,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3449,
+              "epoch_end": 243
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 129,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3810,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 364,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 159,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 121,
+            "later_gains": 38,
+            "immediate_gains": 235,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3446,
+              "epoch_end": 243
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": null
+  },
+  {
+    "epoch": 8,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3829,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 95,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 59,
+            "later_gains": 36,
+            "immediate_gains": 209,
+            "clipped_rows": 62,
+            "clipped_words": 62,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 62,
+              "old_rival": 0,
+              "replacement": 3516,
+              "epoch_end": 251
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 101,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3824,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 310,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 95,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 59,
+            "later_gains": 36,
+            "immediate_gains": 209,
+            "clipped_rows": 62,
+            "clipped_words": 62,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 62,
+              "old_rival": 0,
+              "replacement": 3514,
+              "epoch_end": 251
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 125,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3824,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 371,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 104,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 89,
+            "later_gains": 15,
+            "immediate_gains": 246,
+            "clipped_rows": 67,
+            "clipped_words": 67,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 67,
+              "old_rival": 0,
+              "replacement": 3451,
+              "epoch_end": 282
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 125,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3819,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 371,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 104,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 89,
+            "later_gains": 15,
+            "immediate_gains": 246,
+            "clipped_rows": 67,
+            "clipped_words": 67,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 67,
+              "old_rival": 0,
+              "replacement": 3448,
+              "epoch_end": 282
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3888,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3838,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 319,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 52,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 38,
+            "later_gains": 14,
+            "immediate_gains": 196,
+            "clipped_rows": 53,
+            "clipped_words": 53,
+            "aliased_rows": 82,
+            "first_losses": {
+              "structural": 3,
+              "clipped_old_rival": 53,
+              "old_rival": 0,
+              "replacement": 3516,
+              "epoch_end": 281
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3833,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 319,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 52,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 38,
+            "later_gains": 14,
+            "immediate_gains": 196,
+            "clipped_rows": 53,
+            "clipped_words": 53,
+            "aliased_rows": 79,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 53,
+              "old_rival": 0,
+              "replacement": 3514,
+              "epoch_end": 281
+            }
+          }
+        },
+        "ordered": {
+          "all": {
+            "rows": 3891,
+            "ceiling": {
+              "strict": 3889,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3815,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 346,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 82,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 68,
+            "later_gains": 14,
+            "immediate_gains": 223,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 33,
+            "first_losses": {
+              "structural": 2,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3467,
+              "epoch_end": 278
+            }
+          },
+          "common_attainable": {
+            "rows": 3886,
+            "ceiling": {
+              "strict": 3886,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "zero": {
+              "strict": 80,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "before": {
+              "strict": 123,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "old_rival_strict": 3810,
+            "old_rival_ties_won": 0,
+            "old_rival_ties_lost": 0,
+            "immediate": {
+              "strict": 346,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "checkpoint": {
+              "strict": 82,
+              "ties_won": 0,
+              "ties_lost": 0
+            },
+            "retained": 68,
+            "later_gains": 14,
+            "immediate_gains": 223,
+            "clipped_rows": 76,
+            "clipped_words": 76,
+            "aliased_rows": 31,
+            "first_losses": {
+              "structural": 0,
+              "clipped_old_rival": 76,
+              "old_rival": 0,
+              "replacement": 3464,
+              "epoch_end": 278
+            }
+          }
+        },
+        "common_groups": 3703,
+        "meets_endpoints": false,
+        "meets_retention": false
+      }
+    ],
+    "advance": false
+  }
+]

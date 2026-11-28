@@ -922,6 +922,52 @@ fn check_lexical_client(
         ordered["p4_steps"][1],
         read(&format!("{ids},{target}"), "1")["p4_steps"][0]
     );
+    // The matched deployment uses the 26 legal relative-transform slots in each
+    // bank. Reuse the same client invocation and frozen causal masses.
+    let matched_prefix =
+        uor_r4_integer::discrete_d11::native_occurrence::lexical::OrderedPrefix::new(prefix)
+            .unwrap();
+    let fingerprints: Vec<_> = (1..4096u16)
+        .map(|id| matched_prefix.matched_addresses(id).unwrap())
+        .collect();
+    let target = (2..4096u16)
+        .find(|&id| {
+            !prefix.contains(&id)
+                && priors[usize::from(id)] < priors[usize::from(prior_winner)]
+                && fingerprints
+                    .iter()
+                    .filter(|&&a| a == fingerprints[id as usize - 1])
+                    .count()
+                    == 1
+        })
+        .unwrap();
+    let mut words = [i16::MIN; WEIGHT_WORDS];
+    let target_slots = fingerprints[target as usize - 1];
+    for slot in target_slots {
+        words[usize::from(slot)] = i16::MAX;
+    }
+    let bound = LexicalHead::encode_matched_bound(state, &words);
+    assert_eq!(bound.len(), 584);
+    assert_eq!(
+        LexicalHead::bind(&bound, &state).unwrap().addressing_name(),
+        "ordered-matched"
+    );
+    fs::write(&path, bound).unwrap();
+    let matched = read(&ids, "2");
+    assert_eq!(matched["p4_lexical_addressing"], "ordered");
+    assert_eq!(matched["generated_ids"][0], target);
+    assert_eq!(
+        matched["p4_steps"][0]["lexical"]["addresses"],
+        json!(target_slots)
+    );
+    assert_eq!(
+        matched["p4_steps"][0]["mass_sha256"],
+        baseline["p4_steps"][0]["mass_sha256"]
+    );
+    assert_eq!(
+        matched["p4_steps"][1],
+        read(&format!("{ids},{target}"), "1")["p4_steps"][0]
+    );
     write(None, [0xa5; 32], false);
     assert!(!cli(&ids, "1").status.success());
     write(None, state, true);

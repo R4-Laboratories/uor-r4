@@ -2,7 +2,8 @@
 
 use super::super::IntegerDiscreteModel;
 use super::lexical::{
-    Carry, OrderedPrefix, Weights, MAGIC, ORDERED_MAGIC, STATE_BYTES, WEIGHT_WORDS,
+    Carry, OrderedPrefix, Weights, MAGIC, MATCHED_ORDERED_MAGIC, ORDERED_MAGIC, STATE_BYTES,
+    WEIGHT_WORDS,
 };
 use crate::{invalid, Result};
 use serde::Serialize;
@@ -11,9 +12,26 @@ use sha2::{Digest, Sha256};
 /// P4 state identity, versioned words, SHA-256 of both.
 pub const BOUND_BYTES: usize = 32 + STATE_BYTES + 32;
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Addressing {
+    Geometry,
+    Ordered,
+    MatchedOrdered,
+}
+
+impl Addressing {
+    fn magic(self) -> &'static [u8; 8] {
+        match self {
+            Self::Geometry => MAGIC,
+            Self::Ordered => ORDERED_MAGIC,
+            Self::MatchedOrdered => MATCHED_ORDERED_MAGIC,
+        }
+    }
+}
+
 pub struct LexicalHead {
     weights: Weights,
-    ordered: bool,
+    addressing: Addressing,
 }
 
 #[derive(Debug, Serialize)]
@@ -33,7 +51,27 @@ impl LexicalHead {
         ordered: bool,
         words: &[i16; WEIGHT_WORDS],
     ) -> [u8; BOUND_BYTES] {
-        let magic = if ordered { ORDERED_MAGIC } else { MAGIC };
+        Self::encode(
+            state,
+            if ordered {
+                Addressing::Ordered
+            } else {
+                Addressing::Geometry
+            },
+            words,
+        )
+    }
+
+    pub fn encode_matched_bound(state: [u8; 32], words: &[i16; WEIGHT_WORDS]) -> [u8; BOUND_BYTES] {
+        Self::encode(state, Addressing::MatchedOrdered, words)
+    }
+
+    fn encode(
+        state: [u8; 32],
+        addressing: Addressing,
+        words: &[i16; WEIGHT_WORDS],
+    ) -> [u8; BOUND_BYTES] {
+        let magic = addressing.magic();
         let mut out = [0; BOUND_BYTES];
         let (payload, checksum) = out.split_at_mut(BOUND_BYTES - 32);
         payload[..32].copy_from_slice(&state);
@@ -50,16 +88,28 @@ impl LexicalHead {
         if Sha256::digest(payload).as_slice() != digest {
             return Err(invalid("lexical head checksum differs"));
         }
-        let ordered = payload[32..].starts_with(ORDERED_MAGIC);
-        let magic = if ordered { ORDERED_MAGIC } else { MAGIC };
+        let addressing = match &payload[32..40] {
+            magic if magic == MAGIC => Addressing::Geometry,
+            magic if magic == ORDERED_MAGIC => Addressing::Ordered,
+            magic if magic == MATCHED_ORDERED_MAGIC => Addressing::MatchedOrdered,
+            _ => return Err(invalid("unknown lexical address operator")),
+        };
         Ok(Self {
-            weights: Weights::decode(&payload[32..], magic)?,
-            ordered,
+            weights: Weights::decode(&payload[32..], addressing.magic())?,
+            addressing,
         })
     }
 
     pub fn is_ordered(&self) -> bool {
-        self.ordered
+        self.addressing != Addressing::Geometry
+    }
+
+    pub fn addressing_name(&self) -> &'static str {
+        match self.addressing {
+            Addressing::Geometry => "geometry",
+            Addressing::Ordered => "ordered",
+            Addressing::MatchedOrdered => "ordered-matched",
+        }
     }
 
     /// The caller supplies the current causal window and the masses just scored for it.
@@ -80,7 +130,7 @@ impl LexicalHead {
                 "lexical election requires an aligned P4 vocabulary and causal prefix",
             ));
         }
-        let (carry_code, ordered_prefix) = if self.ordered {
+        let (carry_code, ordered_prefix) = if self.is_ordered() {
             (None, Some(OrderedPrefix::new(prefix)?))
         } else {
             let pointer = trunk
@@ -94,6 +144,9 @@ impl LexicalHead {
         };
         let carry = carry_code.map(Carry::from_packed);
         let addresses = |id: usize| match &ordered_prefix {
+            Some(ordered) if self.addressing == Addressing::MatchedOrdered => {
+                ordered.matched_addresses(id as u16)
+            }
             Some(ordered) => ordered.addresses(id as u16),
             None => carry
                 .ok_or_else(|| invalid("missing native lexical carry"))?

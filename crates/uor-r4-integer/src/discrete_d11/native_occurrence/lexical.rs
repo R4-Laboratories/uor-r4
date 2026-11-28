@@ -9,6 +9,33 @@ const STATES: usize = 64;
 pub const WEIGHT_WORDS: usize = BLOCKS * STATES;
 pub(super) const MAGIC: &[u8; 8] = b"UORLEX01";
 pub(super) const ORDERED_MAGIC: &[u8; 8] = b"UORLEX02";
+pub(super) const MATCHED_ORDERED_MAGIC: &[u8; 8] = b"UORLEX03";
+
+const fn reachable_mask() -> u64 {
+    let mut mask = 0;
+    let mut index = 0;
+    while index < super::super::BFS.len() {
+        mask |= 1 << super::super::BFS[index];
+        index += 1;
+    }
+    mask
+}
+
+/// Slots addressed by at least one transition between the 16 native orbit roots.
+pub const MATCHED_SLOT_MASK: u64 = reachable_mask();
+const MATCHED_COUNT: usize = MATCHED_SLOT_MASK.count_ones() as usize;
+const MATCHED_SLOTS: [u16; MATCHED_COUNT] = {
+    let mut slots = [0; MATCHED_COUNT];
+    let mut remaining = MATCHED_SLOT_MASK;
+    let mut index = 0;
+    while remaining != 0 {
+        slots[index] = remaining.trailing_zeros() as u16;
+        remaining &= remaining - 1;
+        index += 1;
+    }
+    slots
+};
+
 pub const STATE_BYTES: usize = MAGIC.len() + WEIGHT_WORDS * 2;
 /// One signed word contributes 2^-16 on the prior's unit mass scale.
 pub const SCORE_UNIT_Q48: i64 = 1 << 32;
@@ -39,6 +66,17 @@ impl OrderedPrefix {
     }
 
     pub fn addresses(&self, candidate: u16) -> Result<[u16; BLOCKS]> {
+        self.address_with(candidate, |hash| (hash >> 26) as u16)
+    }
+
+    /// Ordered control using the same reachable words per bank as D11 geometry.
+    pub fn matched_addresses(&self, candidate: u16) -> Result<[u16; BLOCKS]> {
+        self.address_with(candidate, |hash| {
+            MATCHED_SLOTS[(hash % MATCHED_COUNT as u32) as usize]
+        })
+    }
+
+    fn address_with(&self, candidate: u16, slot: impl Fn(u32) -> u16) -> Result<[u16; BLOCKS]> {
         if !(1..4096).contains(&candidate) {
             return Err(invalid("invalid ordered lexical original candidate ID"));
         }
@@ -47,7 +85,7 @@ impl OrderedPrefix {
             hash ^= hash >> 16;
             hash = hash.wrapping_mul(0x85eb_ca6b);
             hash ^= hash >> 13;
-            (bank * STATES + (hash >> 26) as usize) as u16
+            (bank * STATES) as u16 + slot(hash)
         }))
     }
 }

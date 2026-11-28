@@ -1,0 +1,2122 @@
+[
+  {
+    "epoch": 1,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 108,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3804,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 303,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 90,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 46,
+          "later_gains": 44,
+          "immediate_gains": 195,
+          "clipped_rows": 87,
+          "clipped_words": 87,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 87,
+            "old_rival": 0,
+            "replacement": 3498,
+            "epoch_end": 257
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 102,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3657,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 307,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 133,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 74,
+          "later_gains": 59,
+          "immediate_gains": 205,
+          "clipped_rows": 234,
+          "clipped_words": 234,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 234,
+            "old_rival": 0,
+            "replacement": 3348,
+            "epoch_end": 233
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 90,
+          "ordered_strict": 133,
+          "geometry_immediate": 303,
+          "geometry_retained": 46,
+          "ordered_immediate": 307,
+          "ordered_retained": 74,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 2573,
+            "lower_ppm": -2328,
+            "upper_ppm": 7680,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -11065,
+            "lower_ppm": -17162,
+            "upper_ppm": -5161,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 151815,
+            "lower_ppm": 111111,
+            "upper_ppm": 193750,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 241042,
+            "lower_ppm": 194969,
+            "upper_ppm": 290837,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 106,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3790,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 300,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 159,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 74,
+          "later_gains": 85,
+          "immediate_gains": 194,
+          "clipped_rows": 101,
+          "clipped_words": 101,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 101,
+            "old_rival": 0,
+            "replacement": 3487,
+            "epoch_end": 226
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 105,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3643,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 335,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 34,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 21,
+          "later_gains": 13,
+          "immediate_gains": 230,
+          "clipped_rows": 248,
+          "clipped_words": 248,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 248,
+            "old_rival": 0,
+            "replacement": 3306,
+            "epoch_end": 314
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 159,
+          "ordered_strict": 34,
+          "geometry_immediate": 300,
+          "geometry_retained": 74,
+          "ordered_immediate": 335,
+          "ordered_retained": 21,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 20329,
+            "lower_ppm": 14792,
+            "upper_ppm": 26166,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": 32167,
+            "lower_ppm": 26336,
+            "upper_ppm": 38304,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 246667,
+            "lower_ppm": 198630,
+            "upper_ppm": 296000,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 62687,
+            "lower_ppm": 37037,
+            "upper_ppm": 90625,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 2,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 91,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3817,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 291,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 123,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 73,
+          "later_gains": 50,
+          "immediate_gains": 200,
+          "clipped_rows": 74,
+          "clipped_words": 74,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 74,
+            "old_rival": 0,
+            "replacement": 3523,
+            "epoch_end": 218
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 121,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3817,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 364,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 58,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 43,
+          "later_gains": 15,
+          "immediate_gains": 243,
+          "clipped_rows": 74,
+          "clipped_words": 74,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 74,
+            "old_rival": 0,
+            "replacement": 3451,
+            "epoch_end": 321
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 123,
+          "ordered_strict": 58,
+          "geometry_immediate": 291,
+          "geometry_retained": 73,
+          "ordered_immediate": 364,
+          "ordered_retained": 43,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 11065,
+            "lower_ppm": 5411,
+            "upper_ppm": 16705,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": 16727,
+            "lower_ppm": 11512,
+            "upper_ppm": 21992,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 250859,
+            "lower_ppm": 201342,
+            "upper_ppm": 298658,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 118132,
+            "lower_ppm": 85561,
+            "upper_ppm": 152047,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 105,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3834,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 318,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 105,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 66,
+          "later_gains": 39,
+          "immediate_gains": 213,
+          "clipped_rows": 57,
+          "clipped_words": 57,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 57,
+            "old_rival": 0,
+            "replacement": 3513,
+            "epoch_end": 252
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 127,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3810,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 361,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 99,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 71,
+          "later_gains": 28,
+          "immediate_gains": 234,
+          "clipped_rows": 81,
+          "clipped_words": 81,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 81,
+            "old_rival": 0,
+            "replacement": 3447,
+            "epoch_end": 290
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 105,
+          "ordered_strict": 99,
+          "geometry_immediate": 318,
+          "geometry_retained": 66,
+          "ordered_immediate": 361,
+          "ordered_retained": 71,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 6433,
+            "lower_ppm": 1530,
+            "upper_ppm": 11497,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": 1544,
+            "lower_ppm": -3103,
+            "upper_ppm": 6174,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 207547,
+            "lower_ppm": 166124,
+            "upper_ppm": 252366,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 196676,
+            "lower_ppm": 157895,
+            "upper_ppm": 239011,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 3,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 100,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3844,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 302,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 50,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 35,
+          "later_gains": 15,
+          "immediate_gains": 202,
+          "clipped_rows": 47,
+          "clipped_words": 47,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 47,
+            "old_rival": 0,
+            "replacement": 3539,
+            "epoch_end": 267
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 122,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3811,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 373,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 153,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 88,
+          "later_gains": 65,
+          "immediate_gains": 251,
+          "clipped_rows": 80,
+          "clipped_words": 80,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 80,
+            "old_rival": 0,
+            "replacement": 3436,
+            "epoch_end": 285
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 50,
+          "ordered_strict": 153,
+          "geometry_immediate": 302,
+          "geometry_retained": 35,
+          "ordered_immediate": 373,
+          "ordered_retained": 88,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": -7720,
+            "lower_ppm": -12336,
+            "upper_ppm": -3334,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -26505,
+            "lower_ppm": -32749,
+            "upper_ppm": -20635,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 115894,
+            "lower_ppm": 81571,
+            "upper_ppm": 151815,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 235925,
+            "lower_ppm": 193548,
+            "upper_ppm": 279793,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 115,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3833,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 314,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 205,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 104,
+          "later_gains": 101,
+          "immediate_gains": 199,
+          "clipped_rows": 58,
+          "clipped_words": 58,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 58,
+            "old_rival": 0,
+            "replacement": 3516,
+            "epoch_end": 210
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 117,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3808,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 367,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 137,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 83,
+          "later_gains": 54,
+          "immediate_gains": 250,
+          "clipped_rows": 83,
+          "clipped_words": 83,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 83,
+            "old_rival": 0,
+            "replacement": 3439,
+            "epoch_end": 284
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 205,
+          "ordered_strict": 137,
+          "geometry_immediate": 314,
+          "geometry_retained": 104,
+          "ordered_immediate": 367,
+          "ordered_retained": 83,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 32167,
+            "lower_ppm": 25727,
+            "upper_ppm": 38452,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": 17499,
+            "lower_ppm": 11375,
+            "upper_ppm": 23773,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 331210,
+            "lower_ppm": 279743,
+            "upper_ppm": 383838,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 226158,
+            "lower_ppm": 184211,
+            "upper_ppm": 268097,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 4,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 101,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3837,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 296,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 72,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 56,
+          "later_gains": 16,
+          "immediate_gains": 195,
+          "clipped_rows": 54,
+          "clipped_words": 54,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 54,
+            "old_rival": 0,
+            "replacement": 3538,
+            "epoch_end": 240
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 120,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3810,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 342,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 154,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 110,
+          "later_gains": 44,
+          "immediate_gains": 222,
+          "clipped_rows": 81,
+          "clipped_words": 81,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 81,
+            "old_rival": 0,
+            "replacement": 3466,
+            "epoch_end": 232
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 72,
+          "ordered_strict": 154,
+          "geometry_immediate": 296,
+          "geometry_retained": 56,
+          "ordered_immediate": 342,
+          "ordered_retained": 110,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": -2059,
+            "lower_ppm": -6921,
+            "upper_ppm": 2571,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -21101,
+            "lower_ppm": -26804,
+            "upper_ppm": -15428,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 189189,
+            "lower_ppm": 145329,
+            "upper_ppm": 234694,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 321637,
+            "lower_ppm": 274448,
+            "upper_ppm": 372308,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 110,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3826,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 310,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 130,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 80,
+          "later_gains": 50,
+          "immediate_gains": 200,
+          "clipped_rows": 65,
+          "clipped_words": 65,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 65,
+            "old_rival": 0,
+            "replacement": 3513,
+            "epoch_end": 230
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 132,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3807,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 353,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 182,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 111,
+          "later_gains": 71,
+          "immediate_gains": 221,
+          "clipped_rows": 84,
+          "clipped_words": 84,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 84,
+            "old_rival": 0,
+            "replacement": 3452,
+            "epoch_end": 242
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 130,
+          "ordered_strict": 182,
+          "geometry_immediate": 310,
+          "geometry_retained": 80,
+          "ordered_immediate": 353,
+          "ordered_retained": 111,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 12867,
+            "lower_ppm": 6961,
+            "upper_ppm": 18528,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -13381,
+            "lower_ppm": -19532,
+            "upper_ppm": -7209,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 258065,
+            "lower_ppm": 209375,
+            "upper_ppm": 307190,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 314448,
+            "lower_ppm": 267062,
+            "upper_ppm": 364179,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 5,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 107,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3823,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 312,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 119,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 60,
+          "later_gains": 59,
+          "immediate_gains": 205,
+          "clipped_rows": 68,
+          "clipped_words": 68,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 68,
+            "old_rival": 0,
+            "replacement": 3508,
+            "epoch_end": 252
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 129,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3826,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 348,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 184,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 129,
+          "later_gains": 55,
+          "immediate_gains": 219,
+          "clipped_rows": 66,
+          "clipped_words": 66,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 65,
+            "old_rival": 0,
+            "replacement": 3476,
+            "epoch_end": 219
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 119,
+          "ordered_strict": 184,
+          "geometry_immediate": 312,
+          "geometry_retained": 60,
+          "ordered_immediate": 348,
+          "ordered_retained": 129,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 10036,
+            "lower_ppm": 4884,
+            "upper_ppm": 15191,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -16727,
+            "lower_ppm": -23423,
+            "upper_ppm": -10065,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 192308,
+            "lower_ppm": 147335,
+            "upper_ppm": 236593,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 370690,
+            "lower_ppm": 320809,
+            "upper_ppm": 422741,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 100,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3833,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 309,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 160,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 78,
+          "later_gains": 82,
+          "immediate_gains": 209,
+          "clipped_rows": 58,
+          "clipped_words": 58,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 58,
+            "old_rival": 0,
+            "replacement": 3521,
+            "epoch_end": 231
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 125,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3806,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 375,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 181,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 87,
+          "later_gains": 94,
+          "immediate_gains": 250,
+          "clipped_rows": 86,
+          "clipped_words": 87,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 85,
+            "old_rival": 0,
+            "replacement": 3429,
+            "epoch_end": 288
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 160,
+          "ordered_strict": 181,
+          "geometry_immediate": 309,
+          "geometry_retained": 78,
+          "ordered_immediate": 375,
+          "ordered_retained": 87,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 20587,
+            "lower_ppm": 14197,
+            "upper_ppm": 27214,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -5404,
+            "lower_ppm": -12639,
+            "upper_ppm": 2062,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 252427,
+            "lower_ppm": 205128,
+            "upper_ppm": 300654,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 232000,
+            "lower_ppm": 189802,
+            "upper_ppm": 275132,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 6,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 105,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3840,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 310,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 64,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 31,
+          "later_gains": 33,
+          "immediate_gains": 205,
+          "clipped_rows": 51,
+          "clipped_words": 51,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 51,
+            "old_rival": 0,
+            "replacement": 3527,
+            "epoch_end": 279
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 118,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3815,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 341,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 191,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 119,
+          "later_gains": 72,
+          "immediate_gains": 223,
+          "clipped_rows": 76,
+          "clipped_words": 76,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 76,
+            "old_rival": 0,
+            "replacement": 3472,
+            "epoch_end": 222
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 64,
+          "ordered_strict": 191,
+          "geometry_immediate": 310,
+          "geometry_retained": 31,
+          "ordered_immediate": 341,
+          "ordered_retained": 119,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": -4117,
+            "lower_ppm": -9004,
+            "upper_ppm": 773,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -32681,
+            "lower_ppm": -39372,
+            "upper_ppm": -26038,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 100000,
+            "lower_ppm": 67093,
+            "upper_ppm": 134146,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 348974,
+            "lower_ppm": 300000,
+            "upper_ppm": 397790,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 103,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3820,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 299,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 31,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 19,
+          "later_gains": 12,
+          "immediate_gains": 196,
+          "clipped_rows": 71,
+          "clipped_words": 71,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 71,
+            "old_rival": 0,
+            "replacement": 3518,
+            "epoch_end": 280
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 126,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3820,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 369,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 192,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 114,
+          "later_gains": 78,
+          "immediate_gains": 243,
+          "clipped_rows": 71,
+          "clipped_words": 71,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 71,
+            "old_rival": 0,
+            "replacement": 3449,
+            "epoch_end": 255
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 31,
+          "ordered_strict": 192,
+          "geometry_immediate": 299,
+          "geometry_retained": 19,
+          "ordered_immediate": 369,
+          "ordered_retained": 114,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": -12609,
+            "lower_ppm": -17197,
+            "upper_ppm": -8494,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -41431,
+            "lower_ppm": -48437,
+            "upper_ppm": -34872,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 63545,
+            "lower_ppm": 36304,
+            "upper_ppm": 92784,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 308943,
+            "lower_ppm": 264151,
+            "upper_ppm": 356354,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 7,
+    "advance": null,
+    "next_action": null,
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 101,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3830,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 320,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 89,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 59,
+          "later_gains": 30,
+          "immediate_gains": 219,
+          "clipped_rows": 61,
+          "clipped_words": 61,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 61,
+            "old_rival": 0,
+            "replacement": 3507,
+            "epoch_end": 261
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 122,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3821,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 357,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 52,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 43,
+          "later_gains": 9,
+          "immediate_gains": 235,
+          "clipped_rows": 70,
+          "clipped_words": 70,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 70,
+            "old_rival": 0,
+            "replacement": 3462,
+            "epoch_end": 314
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 89,
+          "ordered_strict": 52,
+          "geometry_immediate": 320,
+          "geometry_retained": 59,
+          "ordered_immediate": 357,
+          "ordered_retained": 43,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 2316,
+            "lower_ppm": -2821,
+            "upper_ppm": 7417,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": 9521,
+            "lower_ppm": 4620,
+            "upper_ppm": 14370,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 184375,
+            "lower_ppm": 142857,
+            "upper_ppm": 229032,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 120448,
+            "lower_ppm": 87819,
+            "upper_ppm": 155367,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 102,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3826,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 316,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 106,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 70,
+          "later_gains": 36,
+          "immediate_gains": 214,
+          "clipped_rows": 65,
+          "clipped_words": 65,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 65,
+            "old_rival": 0,
+            "replacement": 3507,
+            "epoch_end": 246
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 129,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3815,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 364,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 159,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 121,
+          "later_gains": 38,
+          "immediate_gains": 235,
+          "clipped_rows": 76,
+          "clipped_words": 76,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 76,
+            "old_rival": 0,
+            "replacement": 3449,
+            "epoch_end": 243
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 106,
+          "ordered_strict": 159,
+          "geometry_immediate": 316,
+          "geometry_retained": 70,
+          "ordered_immediate": 364,
+          "ordered_retained": 121,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 6691,
+            "lower_ppm": 1286,
+            "upper_ppm": 11926,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -13639,
+            "lower_ppm": -19532,
+            "upper_ppm": -8004,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 221519,
+            "lower_ppm": 175159,
+            "upper_ppm": 269231,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 332418,
+            "lower_ppm": 285714,
+            "upper_ppm": 381910,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  },
+  {
+    "epoch": 8,
+    "advance": false,
+    "next_action": "test_full_election_correction",
+    "seeds": [
+      {
+        "seed": 435300,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 101,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3829,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 310,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 95,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 59,
+          "later_gains": 36,
+          "immediate_gains": 209,
+          "clipped_rows": 62,
+          "clipped_words": 62,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 62,
+            "old_rival": 0,
+            "replacement": 3516,
+            "epoch_end": 251
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 125,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3824,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 371,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 104,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 89,
+          "later_gains": 15,
+          "immediate_gains": 246,
+          "clipped_rows": 67,
+          "clipped_words": 67,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 67,
+            "old_rival": 0,
+            "replacement": 3451,
+            "epoch_end": 282
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 95,
+          "ordered_strict": 104,
+          "geometry_immediate": 310,
+          "geometry_retained": 59,
+          "ordered_immediate": 371,
+          "ordered_retained": 89,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": 3860,
+            "lower_ppm": -1537,
+            "upper_ppm": 9016,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -2316,
+            "lower_ppm": -7246,
+            "upper_ppm": 2578,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 190323,
+            "lower_ppm": 147335,
+            "upper_ppm": 232639,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 239892,
+            "lower_ppm": 196809,
+            "upper_ppm": 284058,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      },
+      {
+        "seed": 435301,
+        "geometry": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3888,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 123,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3838,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 319,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 52,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 38,
+          "later_gains": 14,
+          "immediate_gains": 196,
+          "clipped_rows": 53,
+          "clipped_words": 53,
+          "aliased_rows": 82,
+          "first_losses": {
+            "structural": 3,
+            "clipped_old_rival": 53,
+            "old_rival": 0,
+            "replacement": 3516,
+            "epoch_end": 281
+          }
+        },
+        "ordered": {
+          "rows": 3891,
+          "ceiling": {
+            "strict": 3889,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "zero": {
+            "strict": 80,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "before": {
+            "strict": 123,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "old_rival_strict": 3815,
+          "old_rival_ties_won": 0,
+          "old_rival_ties_lost": 0,
+          "immediate": {
+            "strict": 346,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "checkpoint": {
+            "strict": 82,
+            "ties_won": 0,
+            "ties_lost": 0
+          },
+          "retained": 68,
+          "later_gains": 14,
+          "immediate_gains": 223,
+          "clipped_rows": 76,
+          "clipped_words": 76,
+          "aliased_rows": 33,
+          "first_losses": {
+            "structural": 2,
+            "clipped_old_rival": 76,
+            "old_rival": 0,
+            "replacement": 3467,
+            "epoch_end": 278
+          }
+        },
+        "common_attainable": {
+          "rows": 3886,
+          "groups": 3703,
+          "zero_strict": 80,
+          "geometry_strict": 52,
+          "ordered_strict": 82,
+          "geometry_immediate": 319,
+          "geometry_retained": 38,
+          "ordered_immediate": 346,
+          "ordered_retained": 68,
+          "resamples": 4096,
+          "geometry_minus_zero": {
+            "observed_ppm": -7205,
+            "lower_ppm": -12073,
+            "upper_ppm": -2571,
+            "defined_resamples": 4096
+          },
+          "geometry_minus_ordered": {
+            "observed_ppm": -7720,
+            "lower_ppm": -12522,
+            "upper_ppm": -3342,
+            "defined_resamples": 4096
+          },
+          "geometry_retention": {
+            "observed_ppm": 119122,
+            "lower_ppm": 83095,
+            "upper_ppm": 155963,
+            "defined_resamples": 4096
+          },
+          "ordered_retention": {
+            "observed_ppm": 196532,
+            "lower_ppm": 157100,
+            "upper_ppm": 238806,
+            "defined_resamples": 4096
+          },
+          "meets_endpoints": false,
+          "meets_retention": false
+        }
+      }
+    ]
+  }
+]
