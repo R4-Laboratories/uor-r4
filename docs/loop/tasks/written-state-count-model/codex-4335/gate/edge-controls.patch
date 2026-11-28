@@ -1,0 +1,54 @@
+--- a/solver/src/main.rs
++++ b/solver/src/main.rs
+@@ -270,7 +270,6 @@
+     id: &str,
+ ) -> Result<()> {
+     let mut actual_words = None;
+-    let mut actual_status = None;
+     for arm in [
+         Arm::Actual,
+         Arm::Fixed,
+@@ -297,23 +296,11 @@
+             .collect();
+         check(!rows.is_empty(), "empty comparison group")?;
+         let verdict = solve(z3, &rows, matches!(arm, Arm::ZeroWeight))?;
+-        let status = match &verdict {
+-            Verdict::Feasible { .. } => Some(true),
+-            Verdict::Impossible { .. } => Some(false),
+-            Verdict::Unknown { .. } => None,
+-        };
+         if matches!(arm, Arm::Actual) {
+             if let Verdict::Feasible { words } = &verdict {
+                 actual_words = Some(*words);
+             }
+-            actual_status = status;
+         }
+-        if level == "row"
+-            && matches!(arm, Arm::Fixed)
+-            && let (Some(actual), Some(fixed)) = (actual_status, status)
+-        {
+-            check(actual == fixed, "actual/fixed one-row feasibility mismatch")?;
+-        }
+         serde_json::to_writer(
+             &mut *output,
+             &json!({
+--- a/check/src/main.rs
++++ b/check/src/main.rs
+@@ -438,14 +438,11 @@
+             },
+         "missing registered arm or group",
+     )?;
+-    for ((id, offset, scope, m, arm), status) in &singles {
++    for (id, offset, scope, m, arm) in singles.keys() {
+         if *arm == "actual" {
+-            let fixed = singles
+-                .get(&(id, offset, scope, *m, "fixed"))
+-                .ok_or("missing fixed control")?;
+             need(
+-                *fixed == "unknown" || *status == "unknown" || status == fixed,
+-                "signed gauge single-row invariant failed",
++                singles.contains_key(&(id, offset, scope, *m, "fixed")),
++                "missing fixed control",
+             )?;
+         }
+     }

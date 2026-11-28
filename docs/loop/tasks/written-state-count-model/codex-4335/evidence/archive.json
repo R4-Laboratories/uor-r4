@@ -1,0 +1,36 @@
+{
+  "repository": "caseyallard/uor-r4-store",
+  "revision": "ff007bdd09ee55902fcae09735c81b0007a6c9bb",
+  "path": "results/codex/neighboring-root-source-20261127/neighboring-root-source.tar.zst",
+  "bytes": 319032,
+  "sha256": "539e7b573e4f52333dee9f29e19071f8b894c9ba6d8d422abc819d44c3da9178",
+  "member_count": 121,
+  "members_manifest_sha256": "fa9fa63ad670d81a4c1713033205eaa74b0ae21a07b32454bfa631c143187b0c",
+  "wick_archive": "20261127-codex-edge-source/archive-v1",
+  "wick_cold_readback": "20261127-codex-edge-source/archive-v1/cold-readback",
+  "wick_parent_readbacks": "20261127-codex-edge-source/archive-v1/parent-cold",
+  "cold_feature_members_reconstructed_byte_identically": 15,
+  "cold_gate_records_independently_rechecked": 14480,
+  "cold_clamp_substitution_records_rechecked": 7240,
+  "cold_admission_files_reconstructed_byte_identically": 7,
+  "cold_delimiter_files_reconstructed_byte_identically": 5,
+  "cold_normalized_ordinary_records_reconstructed_byte_identically": 54,
+  "cold_readback_sha256": {
+    "features/SCAN.sha256": "b310f26b3185f28e41b89784499251c28fc3eac5f064fa4d839ca0730f7d67f0",
+    "aliases/SHA256SUMS": "5f263675dd8268334ff6ceff1ae00dd6007d62ca4ccc49d3eef2688aa9d8b1e0",
+    "verified/SHA256SUMS": "07591bffdcd39179d4c08250e175d4e868da067de6e1bc9f61d5670b0a1b5271",
+    "verified/wrong-frame.stderr": "85a38113629cebb13cb0f6ef6f166a4c2f41710202dd29150d07e0e9c087cf7e",
+    "admission/ADMISSION.sha256": "758ee9011d3292ac949b6e5885d6421219f68188054f36d7d649df10e2b4263c",
+    "relax/RELAX.sha256": "6f25542bd39e280101c43ec90fd08ca5b671f63f0038ba31684e59bd917f0816",
+    "client/SHA256SUMS": "015663a21e3d2ffea5204e82f302974e67365abb8dc2e1f240c2fcece0529142"
+  },
+  "parent_revisions": {
+    "4332": "a13ee14c1877b197cb0b2a9bfc1e203ed490e388",
+    "4333": "d7429b0c18eb1ad518176021b46b25f7f105cbab",
+    "4334": "0c61787181f4fa666d683a7f50bbb9d5f54afbf3"
+  },
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "cold_wrong_frame_rejected_on_coefficient_or_offset_mismatch": true,
+  "truncated_packet_rejected_before_extraction": true
+}
