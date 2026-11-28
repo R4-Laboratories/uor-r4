@@ -20,9 +20,10 @@
 #![forbid(unsafe_code)]
 
 use crate::butterfly_rotor::{
-    clamp_act, fwht_inplace_q15, isqrt_u128, isqrt_u64, loss_and_grad_64, quat_conj_q15,
-    quat_mul_q15, relu2_backward_q15, relu2_forward_q15, round_shift_q15, scores_64_to_q24_probs,
-    splitmix64, stochastic_round_shift, ButterflyLinear, ButterflyLinearGrad, ButterflyRotorModel,
+    clamp_act, fwht_inplace_q15, fwht_inplace_q15_with_scratch, givens_beta_q15, isqrt_u128,
+    isqrt_u64, loss_and_grad_64, quat_conj_q15, quat_mul_q15, relu2_backward_q15,
+    relu2_forward_q15, round_shift_q12, round_shift_q15, scores_64_to_q24_probs, splitmix64,
+    stochastic_round_shift, ButterflyLinear, ButterflyLinearGrad, ButterflyRotorModel,
     LiftingButterfly, LossKind, ACT_CLAMP, HIER_COARSE, HIER_FINE, HIER_VOCAB, PKM_TOP_K, Q12_ONE,
     Q15_HALF, Q15_MAX_I16, Q15_ONE, Q15_SHIFT,
 };
@@ -186,6 +187,19 @@ pub fn stereographic_gate_q15(z: i32) -> (i32, i32) {
         ((num + (denom2 >> 1)) / denom2) as i32
     };
     (g_q15, dg_q15)
+}
+
+/// Forward-only pure `S¹` rational stereographic selective update gate (skips `dg/dz` division).
+/// Bit-identical to `stereographic_gate_q15(z).0`.
+#[inline]
+pub fn stereographic_gate_forward_q15(z: i32) -> i32 {
+    if z <= 0 {
+        return 0;
+    }
+    let z_cap = i64::from(z.min(TANGENT_CLAMP_V3));
+    let z2 = ((z_cap * z_cap + Q15_HALF) >> Q15_SHIFT) as u64;
+    let denom = (Q15_ONE as u64) + z2;
+    ((z2 * (Q15_ONE as u64) + (denom >> 1)) / denom) as i32
 }
 
 /// Deterministically sort `HIER_VOCAB` (`4,096`) tokens by descending `TRAIN` frequency into
@@ -1044,9 +1058,26 @@ impl ButterflyV3Model {
         if grad.g_embeddings.len() != self.embeddings.len()
             || grad.g_coarse.len() != self.coarse_centroids.len()
             || grad.g_final_norm.len() != self.final_norm_q12.len()
+            || grad.g_head_proj.b_in.len() != self.head_proj.b_in.shears.len()
+            || grad.g_head_proj.diag_q12.len() != self.head_proj.diag_q12.len()
+            || grad.g_head_proj.b_out.len() != self.head_proj.b_out.shears.len()
             || grad.g_layers.len() != self.layers.len()
         {
             return Err(invalid("gradient accumulator shape mismatch"));
+        }
+        for (l, lg) in self.layers.iter().zip(&grad.g_layers) {
+            if lg.g_norm1.len() != l.norm1_q12.len()
+                || lg.g_shift_mix.len() != l.shift_mix_q15.len()
+                || lg.g_gate_bias.len() != l.gate_bias_q15.len()
+                || lg.g_norm2.len() != l.norm2_q12.len()
+                || lg.g_ffn_in.len() != l.ffn_in.len()
+                || lg.g_ffn_out.len() != l.ffn_out.len()
+                || lg.g_pkm_key_a.len() != l.pkm.key_a.len()
+                || lg.g_pkm_key_b.len() != l.pkm.key_b.len()
+                || lg.g_pkm_values.len() != l.pkm.values.len()
+            {
+                return Err(invalid("per-layer gradient accumulator shape mismatch"));
+            }
         }
         let dim = self.cfg.dim;
         let n_quats = dim / 4;
@@ -1956,6 +1987,608 @@ impl ButterflyV3Model {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Zero-Allocation Precomputed-Beta Native Serving Engine (`CHARTER.md` §3.6)
+// ---------------------------------------------------------------------------
+
+struct PreparedButterfly {
+    dim: usize,
+    stages: usize,
+    shears: Vec<i16>,
+    betas: Vec<i16>,
+}
+
+impl PreparedButterfly {
+    fn from_lifting(b: &LiftingButterfly) -> Self {
+        let betas: Vec<i16> = b
+            .shears
+            .iter()
+            .map(|&a| givens_beta_q15(i32::from(a)) as i16)
+            .collect();
+        Self {
+            dim: b.dim,
+            stages: b.stages,
+            shears: b.shears.clone(),
+            betas,
+        }
+    }
+
+    #[inline(always)]
+    fn forward_inplace(&self, x: &mut [i32]) {
+        // Exact orthogonal Givens bound: every 3-shear block preserves ||x||_2 (up to O(2^-15))
+        // with |a1| <= sqrt(2) * ||x||_2 and |b1|, |a2| <= ||x||_2. Thus `sum(x^2) <= (ACT_CLAMP/2)^2`
+        // unconditionally guarantees zero `ACT_CLAMP` saturation across all stages, making the
+        // unclamped inner loop bit-identical to `LiftingButterfly::forward_inplace`.
+        const SAFE_NORM2: u64 = ((ACT_CLAMP as u64) >> 1) * ((ACT_CLAMP as u64) >> 1);
+        let mut norm2 = 0u64;
+        for &v in x.iter() {
+            let a = i64::from(v);
+            norm2 = norm2.saturating_add((a * a) as u64);
+        }
+        if norm2 <= SAFE_NORM2 {
+            self.forward_inplace_noclamp(x);
+        } else {
+            self.forward_inplace_clamped(x);
+        }
+    }
+
+    #[inline(always)]
+    fn forward_inplace_noclamp(&self, x: &mut [i32]) {
+        let half_dim = self.dim >> 1;
+        let shears = &self.shears;
+        let betas = &self.betas;
+        if self.stages > 0 {
+            for (p, chunk) in x.chunks_exact_mut(2).enumerate() {
+                let alpha = i64::from(shears[p]);
+                let beta = i64::from(betas[p]);
+                let a = chunk[0];
+                let b = chunk[1];
+                let a1 = a.wrapping_add(((alpha * i64::from(b) + Q15_HALF) >> Q15_SHIFT) as i32);
+                let b1 = b.wrapping_add(((beta * i64::from(a1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                let a2 = a1.wrapping_add(((alpha * i64::from(b1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                chunk[0] = a2;
+                chunk[1] = b1;
+            }
+        }
+        if self.stages > 1 {
+            let mut p = half_dim;
+            for chunk in x.chunks_exact_mut(4) {
+                for off in 0..2 {
+                    let alpha = i64::from(shears[p + off]);
+                    let beta = i64::from(betas[p + off]);
+                    let a = chunk[off];
+                    let b = chunk[off + 2];
+                    let a1 =
+                        a.wrapping_add(((alpha * i64::from(b) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let b1 =
+                        b.wrapping_add(((beta * i64::from(a1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let a2 =
+                        a1.wrapping_add(((alpha * i64::from(b1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    chunk[off] = a2;
+                    chunk[off + 2] = b1;
+                }
+                p += 2;
+            }
+        }
+        if self.stages > 2 {
+            let mut p = 2 * half_dim;
+            for chunk in x.chunks_exact_mut(8) {
+                for off in 0..4 {
+                    let alpha = i64::from(shears[p + off]);
+                    let beta = i64::from(betas[p + off]);
+                    let a = chunk[off];
+                    let b = chunk[off + 4];
+                    let a1 =
+                        a.wrapping_add(((alpha * i64::from(b) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let b1 =
+                        b.wrapping_add(((beta * i64::from(a1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let a2 =
+                        a1.wrapping_add(((alpha * i64::from(b1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    chunk[off] = a2;
+                    chunk[off + 4] = b1;
+                }
+                p += 4;
+            }
+        }
+        for s in 3..self.stages {
+            let stride = 1usize << s;
+            let block = stride << 1;
+            let stage_base = s * half_dim;
+            let mut pair_idx = 0usize;
+            for chunk in x.chunks_exact_mut(block) {
+                let (lo, hi) = chunk.split_at_mut(stride);
+                let a_slice = &shears[stage_base + pair_idx..stage_base + pair_idx + stride];
+                let b_slice = &betas[stage_base + pair_idx..stage_base + pair_idx + stride];
+                for off in 0..stride {
+                    let alpha = i64::from(a_slice[off]);
+                    let beta = i64::from(b_slice[off]);
+                    let a = lo[off];
+                    let b = hi[off];
+                    let a1 =
+                        a.wrapping_add(((alpha * i64::from(b) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let b1 =
+                        b.wrapping_add(((beta * i64::from(a1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    let a2 =
+                        a1.wrapping_add(((alpha * i64::from(b1) + Q15_HALF) >> Q15_SHIFT) as i32);
+                    lo[off] = a2;
+                    hi[off] = b1;
+                }
+                pair_idx += stride;
+            }
+        }
+    }
+
+    #[inline(never)]
+    fn forward_inplace_clamped(&self, x: &mut [i32]) {
+        let half_dim = self.dim >> 1;
+        let shears = &self.shears;
+        let betas = &self.betas;
+        for s in 0..self.stages {
+            let stride = 1usize << s;
+            let block = stride << 1;
+            let stage_base = s * half_dim;
+            let mut pair_idx = 0usize;
+            for chunk in x.chunks_exact_mut(block) {
+                let (lo, hi) = chunk.split_at_mut(stride);
+                let a_slice = &shears[stage_base + pair_idx..stage_base + pair_idx + stride];
+                let b_slice = &betas[stage_base + pair_idx..stage_base + pair_idx + stride];
+                for off in 0..stride {
+                    let alpha = i64::from(a_slice[off]);
+                    let beta = i64::from(b_slice[off]);
+                    let a = lo[off];
+                    let b = hi[off];
+                    let a1 = a.wrapping_add(round_shift_q15(alpha * i64::from(b)));
+                    let b1 = b.wrapping_add(round_shift_q15(beta * i64::from(a1)));
+                    let a2 = a1.wrapping_add(round_shift_q15(alpha * i64::from(b1)));
+                    lo[off] = a2;
+                    hi[off] = b1;
+                }
+                pair_idx += stride;
+            }
+        }
+    }
+}
+
+struct PreparedLinear {
+    b_in: PreparedButterfly,
+    diag_q12: Vec<i16>,
+    b_out: PreparedButterfly,
+}
+
+impl PreparedLinear {
+    fn from_linear(lin: &ButterflyLinear) -> Self {
+        Self {
+            b_in: PreparedButterfly::from_lifting(&lin.b_in),
+            diag_q12: lin.diag_q12.clone(),
+            b_out: PreparedButterfly::from_lifting(&lin.b_out),
+        }
+    }
+
+    #[inline(always)]
+    fn forward_into(&self, input: &[i32], out: &mut [i32]) {
+        out.copy_from_slice(input);
+        self.b_in.forward_inplace(out);
+        for (val, &g) in out.iter_mut().zip(&self.diag_q12) {
+            *val = round_shift_q12(i64::from(*val) * i64::from(g));
+        }
+        self.b_out.forward_inplace(out);
+    }
+}
+
+struct PreparedLayer {
+    norm1_q12: Vec<i16>,
+    shift_mix_q15: Vec<i16>,
+    gate_bias_q15: Vec<i16>,
+    rotor_proj: PreparedLinear,
+    key_proj: PreparedLinear,
+    value_proj: PreparedLinear,
+    query_proj: PreparedLinear,
+    norm2_q12: Vec<i16>,
+    ffn_in: Vec<PreparedLinear>,
+    ffn_out: Vec<PreparedLinear>,
+    pkm_sub_keys: usize,
+    pkm_key_dim: usize,
+    pkm_key_a: Vec<i16>,
+    pkm_key_b: Vec<i16>,
+    pkm_values: Vec<i16>,
+}
+
+/// Reusable zero-allocation session state + scratch buffers for `ButterflyV3Prepared`.
+/// Performs zero heap allocations during steady-state `step_greedy` (`CHARTER.md` §3.6).
+#[derive(Clone, Debug)]
+pub struct ButterflyV3FastSession {
+    pub carry: Vec<Vec<i32>>,
+    pub shift_hist: Vec<Vec<i32>>,
+    pub tokens_seen: u64,
+    fwht_work: Vec<i64>,
+    x: Vec<i32>,
+    n1: Vec<i32>,
+    n1_mix: Vec<i32>,
+    rot_y: Vec<i32>,
+    key_y: Vec<i32>,
+    val_y: Vec<i32>,
+    qry_y: Vec<i32>,
+    n2: Vec<i32>,
+    ffn_sum: Vec<i32>,
+    ffn_tmp: Vec<i32>,
+    ffn_out_tmp: Vec<i32>,
+    pkm_out: Vec<i32>,
+    h_norm: Vec<i32>,
+    h_head: Vec<i32>,
+}
+
+impl ButterflyV3FastSession {
+    pub fn reset(&mut self) {
+        for c in &mut self.carry {
+            c.fill(0);
+        }
+        for h in &mut self.shift_hist {
+            h.fill(0);
+        }
+        self.tokens_seen = 0;
+    }
+
+    pub fn last_hidden_q15(&self) -> &[i32] {
+        &self.h_head
+    }
+}
+
+/// Prepared immutable `UORBFY03` native integer serving engine with load-time precomputed
+/// Givens `beta_q15` tables and zero steady-state heap allocations (bit-identical to `step()`).
+pub struct ButterflyV3Prepared {
+    pub cfg: ButterflyV3Config,
+    head_shift: u32,
+    vocab_perm: Vec<u16>,
+    vocab_inv: Vec<u16>,
+    coarse_admissible: [bool; HIER_COARSE],
+    token_admissible: Vec<bool>,
+    embeddings: Vec<i16>,
+    coarse_centroids: Vec<i16>,
+    final_norm_q12: Vec<i16>,
+    head_proj: PreparedLinear,
+    layers: Vec<PreparedLayer>,
+}
+
+#[inline(always)]
+fn rmsnorm_fast_into(x: &[i32], gain_q12: &[i16], y: &mut [i32]) {
+    let stages = x.len().max(1).trailing_zeros();
+    let mut sum_sq = 0u128;
+    for &v in x {
+        let a = i64::from(v);
+        sum_sq += (a * a) as u128;
+    }
+    let mean_sq = (sum_sq >> stages).max(1);
+    let rms = (mean_sq.isqrt() as u64).max(1);
+    let inv_rms_q40 = i128::from((1u64 << 40) / rms);
+    let half_37 = 1i128 << 36;
+    for ((&xi, &gi), dst) in x.iter().zip(gain_q12).zip(y.iter_mut()) {
+        let prod = i128::from(xi) * i128::from(gi) * inv_rms_q40;
+        *dst = ((prod + half_37) >> 37)
+            .clamp(i128::from(-ACT_CLAMP), i128::from(ACT_CLAMP)) as i32;
+    }
+}
+
+#[inline(always)]
+fn unit_quat_wide_fast_q15(vx: i32, vy: i32, vz: i32) -> [i32; 4] {
+    let w = i64::from(Q15_ONE);
+    let x = i64::from(vx.clamp(-TANGENT_CLAMP_V3, TANGENT_CLAMP_V3));
+    let y = i64::from(vy.clamp(-TANGENT_CLAMP_V3, TANGENT_CLAMP_V3));
+    let z = i64::from(vz.clamp(-TANGENT_CLAMP_V3, TANGENT_CLAMP_V3));
+    let n2 = (w * w + x * x + y * y + z * z) as u64;
+    let norm = n2.isqrt().max(1);
+    let inv_norm_q40 = ((1u64 << 40) / norm) as i64;
+    let half_25 = 1i64 << 24;
+    [
+        ((w * inv_norm_q40 + half_25) >> 25) as i32,
+        ((x * inv_norm_q40 + half_25) >> 25) as i32,
+        ((y * inv_norm_q40 + half_25) >> 25) as i32,
+        ((z * inv_norm_q40 + half_25) >> 25) as i32,
+    ]
+}
+
+#[inline(always)]
+fn head_dot_q15_unrolled(h: &[i32], row: &[i16], total_shift: u32) -> i32 {
+    let mut a0 = 0i64;
+    let mut a1 = 0i64;
+    for (hc, wc) in h.chunks_exact(2).zip(row.chunks_exact(2)) {
+        a0 += i64::from(hc[0]) * i64::from(wc[0]);
+        a1 += i64::from(hc[1]) * i64::from(wc[1]);
+    }
+    let acc = a0 + a1;
+    let half = 1i64 << (total_shift - 1);
+    clamp_act(((acc + half) >> total_shift) as i32)
+}
+
+impl ButterflyV3Prepared {
+    pub fn from_model(m: &ButterflyV3Model) -> Result<Self> {
+        m.cfg.validate()?;
+        let mut token_admissible = vec![false; HIER_VOCAB];
+        for (tok, slot) in token_admissible.iter_mut().enumerate() {
+            *slot = tok < m.cfg.vocab && (m.cfg.vocab == 1 || tok != 0);
+        }
+        let mut coarse_admissible = [false; HIER_COARSE];
+        for (c, ca) in coarse_admissible.iter_mut().enumerate() {
+            *ca = (0..HIER_FINE).any(|f| {
+                let tok = usize::from(m.vocab_inv[c * HIER_FINE + f]);
+                token_admissible[tok]
+            });
+        }
+        let layers = m
+            .layers
+            .iter()
+            .map(|l| PreparedLayer {
+                norm1_q12: l.norm1_q12.clone(),
+                shift_mix_q15: l.shift_mix_q15.clone(),
+                gate_bias_q15: l.gate_bias_q15.clone(),
+                rotor_proj: PreparedLinear::from_linear(&l.rotor_proj),
+                key_proj: PreparedLinear::from_linear(&l.key_proj),
+                value_proj: PreparedLinear::from_linear(&l.value_proj),
+                query_proj: PreparedLinear::from_linear(&l.query_proj),
+                norm2_q12: l.norm2_q12.clone(),
+                ffn_in: l.ffn_in.iter().map(PreparedLinear::from_linear).collect(),
+                ffn_out: l.ffn_out.iter().map(PreparedLinear::from_linear).collect(),
+                pkm_sub_keys: l.pkm.sub_keys,
+                pkm_key_dim: l.pkm.key_dim,
+                pkm_key_a: l.pkm.key_a.clone(),
+                pkm_key_b: l.pkm.key_b.clone(),
+                pkm_values: l.pkm.values.clone(),
+            })
+            .collect();
+        Ok(Self {
+            cfg: m.cfg,
+            head_shift: ButterflyV3Model::head_dot_shift(m.cfg.dim),
+            vocab_perm: m.vocab_perm.clone(),
+            vocab_inv: m.vocab_inv.clone(),
+            coarse_admissible,
+            token_admissible,
+            embeddings: m.embeddings.clone(),
+            coarse_centroids: m.coarse_centroids.clone(),
+            final_norm_q12: m.final_norm_q12.clone(),
+            head_proj: PreparedLinear::from_linear(&m.head_proj),
+            layers,
+        })
+    }
+
+    pub fn new_session(&self) -> ButterflyV3FastSession {
+        let d = self.cfg.dim;
+        ButterflyV3FastSession {
+            carry: vec![vec![0i32; d]; self.layers.len()],
+            shift_hist: vec![vec![0i32; (SHIFT_MIX_TAPS - 1) * d]; self.layers.len()],
+            tokens_seen: 0,
+            fwht_work: vec![0i64; d],
+            x: vec![0i32; d],
+            n1: vec![0i32; d],
+            n1_mix: vec![0i32; d],
+            rot_y: vec![0i32; d],
+            key_y: vec![0i32; d],
+            val_y: vec![0i32; d],
+            qry_y: vec![0i32; d],
+            n2: vec![0i32; d],
+            ffn_sum: vec![0i32; d],
+            ffn_tmp: vec![0i32; d],
+            ffn_out_tmp: vec![0i32; d],
+            pkm_out: vec![0i32; d],
+            h_norm: vec![0i32; d],
+            h_head: vec![0i32; d],
+        }
+    }
+
+    /// Zero-allocation incremental step returning the greedy output token id.
+    /// Updates `session.carry`, `session.shift_hist`, and `session.last_hidden_q15()` bit-identically
+    /// to `ButterflyV3Model::step()`.
+    pub fn step_greedy(&self, token: u16, s: &mut ButterflyV3FastSession) -> Result<u16> {
+        if usize::from(token) >= self.cfg.vocab {
+            return Err(invalid("token id out of vocab"));
+        }
+        let dim = self.cfg.dim;
+        if s.carry.len() != self.layers.len() || s.x.len() != dim || s.fwht_work.len() != dim {
+            return Err(invalid("ButterflyV3FastSession shape mismatch"));
+        }
+        let n_quats = dim >> 2;
+        let slot = usize::from(self.vocab_perm[usize::from(token)]);
+        let emb = &self.embeddings[slot * dim..(slot + 1) * dim];
+        for (dst, &v) in s.x.iter_mut().zip(emb) {
+            *dst = i32::from(v);
+        }
+        fwht_inplace_q15_with_scratch(&mut s.x, &mut s.fwht_work)?;
+
+        for (l_idx, layer) in self.layers.iter().enumerate() {
+            rmsnorm_fast_into(&s.x, &layer.norm1_q12, &mut s.n1);
+            let hist = &mut s.shift_hist[l_idx];
+            let sm = &layer.shift_mix_q15;
+            let (h0, h_rest) = hist.split_at(dim);
+            let (h1, h2) = h_rest.split_at(dim);
+            for d in 0..dim {
+                let acc = i64::from(sm[d]) * i64::from(s.n1[d])
+                    + i64::from(sm[dim + d]) * i64::from(h0[d])
+                    + i64::from(sm[2 * dim + d]) * i64::from(h1[d])
+                    + i64::from(sm[3 * dim + d]) * i64::from(h2[d]);
+                s.n1_mix[d] = round_shift_q15(acc);
+            }
+            hist.copy_within(dim..2 * dim, 2 * dim);
+            hist.copy_within(0..dim, dim);
+            hist[0..dim].copy_from_slice(&s.n1);
+
+            layer.rotor_proj.forward_into(&s.n1_mix, &mut s.rot_y);
+            layer.key_proj.forward_into(&s.n1_mix, &mut s.key_y);
+            layer.value_proj.forward_into(&s.n1_mix, &mut s.val_y);
+            layer.query_proj.forward_into(&s.n1_mix, &mut s.qry_y);
+
+            let carry = &mut s.carry[l_idx];
+            for q in 0..n_quats {
+                let b = q * 4;
+                let u = unit_quat_wide_fast_q15(s.rot_y[b + 1], s.rot_y[b + 2], s.rot_y[b + 3]);
+                let kq = unit_quat_wide_fast_q15(s.key_y[b + 1], s.key_y[b + 2], s.key_y[b + 3]);
+                let qq = unit_quat_wide_fast_q15(s.qry_y[b + 1], s.qry_y[b + 2], s.qry_y[b + 3]);
+                let z_g =
+                    clamp_act(s.rot_y[b].saturating_add(i32::from(layer.gate_bias_q15[q])));
+                let g = stereographic_gate_forward_q15(z_g);
+                let keep = i64::from(Q15_ONE - g);
+                let g64 = i64::from(g);
+
+                let hp = [carry[b], carry[b + 1], carry[b + 2], carry[b + 3]];
+                let xv = [s.val_y[b], s.val_y[b + 1], s.val_y[b + 2], s.val_y[b + 3]];
+                let rot = quat_mul_q15(u, hp);
+                let bound = quat_mul_q15(kq, xv);
+                let hn = [
+                    round_shift_q15(keep * i64::from(rot[0]) + g64 * i64::from(bound[0])),
+                    round_shift_q15(keep * i64::from(rot[1]) + g64 * i64::from(bound[1])),
+                    round_shift_q15(keep * i64::from(rot[2]) + g64 * i64::from(bound[2])),
+                    round_shift_q15(keep * i64::from(rot[3]) + g64 * i64::from(bound[3])),
+                ];
+                carry[b..b + 4].copy_from_slice(&hn);
+                let unb = quat_mul_q15(quat_conj_q15(qq), hn);
+                s.x[b] = clamp_act(s.x[b] + unb[0]);
+                s.x[b + 1] = clamp_act(s.x[b + 1] + unb[1]);
+                s.x[b + 2] = clamp_act(s.x[b + 2] + unb[2]);
+                s.x[b + 3] = clamp_act(s.x[b + 3] + unb[3]);
+            }
+
+            rmsnorm_fast_into(&s.x, &layer.norm2_q12, &mut s.n2);
+            s.ffn_sum.fill(0);
+            for br in 0..layer.ffn_in.len() {
+                layer.ffn_in[br].forward_into(&s.n2, &mut s.ffn_tmp);
+                for v in &mut s.ffn_tmp {
+                    *v = relu2_forward_q15(*v);
+                }
+                layer.ffn_out[br].forward_into(&s.ffn_tmp, &mut s.ffn_out_tmp);
+                for (dst, &src) in s.ffn_sum.iter_mut().zip(&s.ffn_out_tmp) {
+                    *dst = clamp_act(*dst + src);
+                }
+            }
+
+            let kd = layer.pkm_key_dim;
+            let mut top_a = [(i32::MIN, 0usize); 2];
+            let mut top_b = [(i32::MIN, 0usize); 2];
+            for k in 0..layer.pkm_sub_keys {
+                let base = k * kd;
+                let mut sa = 0i64;
+                let mut sb = 0i64;
+                for j in 0..kd {
+                    sa += i64::from(s.n2[j]) * i64::from(layer.pkm_key_a[base + j]);
+                    sb += i64::from(s.n2[kd + j]) * i64::from(layer.pkm_key_b[base + j]);
+                }
+                let sa_q = round_shift_q15(sa);
+                let sb_q = round_shift_q15(sb);
+                if sa_q > top_a[0].0 {
+                    top_a[1] = top_a[0];
+                    top_a[0] = (sa_q, k);
+                } else if sa_q > top_a[1].0 {
+                    top_a[1] = (sa_q, k);
+                }
+                if sb_q > top_b[0].0 {
+                    top_b[1] = top_b[0];
+                    top_b[0] = (sb_q, k);
+                } else if sb_q > top_b[1].0 {
+                    top_b[1] = (sb_q, k);
+                }
+            }
+            let mut slots = [0usize; PKM_TOP_K];
+            let mut pos_scores = [0i64; PKM_TOP_K];
+            let mut sum_pos = 0i64;
+            for (ia, &(sa, ka)) in top_a.iter().enumerate() {
+                for (ib, &(sb, kb)) in top_b.iter().enumerate() {
+                    let idx = ia * 2 + ib;
+                    slots[idx] = ka * layer.pkm_sub_keys + kb;
+                    let sc = clamp_act(sa.saturating_add(sb));
+                    let p = i64::from(sc.max(0)) + 1;
+                    pos_scores[idx] = p;
+                    sum_pos += p;
+                }
+            }
+            s.pkm_out.fill(0);
+            let denom = sum_pos.max(1);
+            for idx in 0..PKM_TOP_K {
+                let w = i64::from(((pos_scores[idx] * i64::from(Q15_ONE)) / denom) as i32);
+                let row = &layer.pkm_values[slots[idx] * dim..(slots[idx] + 1) * dim];
+                for (dst, &rv) in s.pkm_out.iter_mut().zip(row) {
+                    *dst = clamp_act(*dst + round_shift_q15(w * i64::from(rv)));
+                }
+            }
+            for d in 0..dim {
+                s.x[d] = clamp_act(s.x[d] + s.ffn_sum[d] + s.pkm_out[d]);
+            }
+        }
+
+        rmsnorm_fast_into(&s.x, &self.final_norm_q12, &mut s.h_norm);
+        self.head_proj.forward_into(&s.h_norm, &mut s.h_head);
+        s.tokens_seen += 1;
+
+        let mut best_c: Option<usize> = None;
+        let mut best_c_score = i32::MIN;
+        for (c, &adm) in self.coarse_admissible.iter().enumerate() {
+            if !adm {
+                continue;
+            }
+            let sc = head_dot_q15_unrolled(
+                &s.h_head,
+                &self.coarse_centroids[c * dim..(c + 1) * dim],
+                self.head_shift,
+            );
+            if best_c.is_none() || sc > best_c_score {
+                best_c_score = sc;
+                best_c = Some(c);
+            }
+        }
+        let best_c = best_c.ok_or_else(|| invalid("no admissible coarse cell in vocab"))?;
+        let mut best_f: Option<usize> = None;
+        let mut best_f_score = i32::MIN;
+        for f in 0..HIER_FINE {
+            let slot = best_c * HIER_FINE + f;
+            let tok_id = usize::from(self.vocab_inv[slot]);
+            if !self.token_admissible[tok_id] {
+                continue;
+            }
+            let sc = head_dot_q15_unrolled(
+                &s.h_head,
+                &self.embeddings[slot * dim..(slot + 1) * dim],
+                self.head_shift,
+            );
+            if best_f.is_none() || sc > best_f_score {
+                best_f_score = sc;
+                best_f = Some(f);
+            }
+        }
+        let best_f = best_f.ok_or_else(|| invalid("no admissible fine token in coarse cell"))?;
+        Ok(self.vocab_inv[best_c * HIER_FINE + best_f])
+    }
+
+    pub fn target_q48_mass_from_hidden(&self, h_head: &[i32], target: u16) -> Result<u64> {
+        if h_head.len() != self.cfg.dim {
+            return Err(invalid("h_head length does not match model dim"));
+        }
+        if usize::from(target) >= self.cfg.vocab {
+            return Err(invalid("target token id out of vocab"));
+        }
+        let dim = self.cfg.dim;
+        let t_slot = usize::from(self.vocab_perm[usize::from(target)]);
+        let t_coarse = t_slot >> 6;
+        let t_fine = t_slot & 63;
+
+        let mut c_scores = [0i32; HIER_COARSE];
+        for (c, cs) in c_scores.iter_mut().enumerate() {
+            *cs = head_dot_q15_unrolled(
+                h_head,
+                &self.coarse_centroids[c * dim..(c + 1) * dim],
+                self.head_shift,
+            );
+        }
+        let p_c = scores_64_to_q24_probs(&c_scores, self.cfg.loss_kind);
+
+        let mut f_scores = [0i32; HIER_FINE];
+        for (f, fs) in f_scores.iter_mut().enumerate() {
+            let slot = t_coarse * HIER_FINE + f;
+            *fs = head_dot_q15_unrolled(
+                h_head,
+                &self.embeddings[slot * dim..(slot + 1) * dim],
+                self.head_shift,
+            );
+        }
+        let p_f = scores_64_to_q24_probs(&f_scores, self.cfg.loss_kind);
+        Ok((u64::from(p_c[t_coarse]) * u64::from(p_f[t_fine])).max(1))
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -2302,6 +2935,122 @@ mod tests {
             hits,
             dataset.len(),
             "v3 pure-int AdamW must learn 24/24 opposite-role bindings, got {hits}/{}",
+            dataset.len()
+        );
+    }
+
+    #[test]
+    fn v3_prepared_serving_is_bit_identical_to_step_including_high_norm_fallback() {
+        for &(dim, loss_kind) in &[
+            (32usize, LossKind::HuiBelkinRescaledSquare { pos_weight_k: 64 }),
+            (256usize, LossKind::Entmax15),
+        ] {
+            let cfg = ButterflyV3Config {
+                vocab: 256,
+                dim,
+                layers: 2,
+                ffn_branches: 4,
+                pkm_sub_keys: 4,
+                pkm_key_dim: 8,
+                loss_kind,
+                seed: 0x0606_2026 ^ (dim as u64),
+            };
+            let mut model = ButterflyV3Model::new(cfg).unwrap();
+            // Inflate layer 0 norm1 to exercise the high-norm fallback branch as well as fast path.
+            model.layers[0].norm1_q12.fill(16_000);
+            let prepared = ButterflyV3Prepared::from_model(&model).unwrap();
+            let mut s_ref = model.new_session();
+            let mut s_fast = prepared.new_session();
+            let prompt = [0u16, 7, 19, 42, 13, 99, 128, 3, 200, 1];
+            for &tok in &prompt {
+                let o_ref = model.step(tok, &mut s_ref).unwrap();
+                let g_fast = prepared.step_greedy(tok, &mut s_fast).unwrap();
+                assert_eq!(g_fast, o_ref.greedy_token);
+                assert_eq!(s_fast.last_hidden_q15(), o_ref.hidden_q15.as_slice());
+                let m_ref = model
+                    .target_q48_mass_from_hidden(&o_ref.hidden_q15, o_ref.greedy_token)
+                    .unwrap();
+                let m_fast = prepared
+                    .target_q48_mass_from_hidden(s_fast.last_hidden_q15(), g_fast)
+                    .unwrap();
+                assert_eq!(m_fast, m_ref);
+            }
+            assert_eq!(s_fast.carry, s_ref.carry);
+            assert_eq!(s_fast.shift_hist, s_ref.shift_hist);
+            assert_eq!(s_fast.tokens_seen, s_ref.tokens_seen);
+        }
+    }
+
+    #[test]
+    fn v3_entmax15_learns_24_of_24_opposite_role_bindings_and_roundtrips_uorbfy03() {
+        let cfg = ButterflyV3Config {
+            vocab: 64,
+            dim: 32,
+            layers: 2,
+            ffn_branches: 4,
+            pkm_sub_keys: 4,
+            pkm_key_dim: 8,
+            loss_kind: LossKind::Entmax15,
+            seed: 0xE15_0316,
+        };
+        let mut model = ButterflyV3Model::new(cfg).unwrap();
+        let mut adam = model.new_adamw_state();
+
+        let entities = [2u16, 3, 4, 5];
+        let role_a = 10u16;
+        let role_b = 11u16;
+        let q_a = 12u16;
+        let q_b = 13u16;
+        let filler = [20u16, 21, 22, 23];
+
+        let mut dataset = Vec::new();
+        for &e1 in &entities {
+            for &e2 in &entities {
+                if e1 == e2 {
+                    continue;
+                }
+                let seq1 = vec![
+                    0, role_a, e1, role_b, e2, filler[0], filler[1], filler[2], filler[3], q_a, e1,
+                ];
+                let seq2 = vec![
+                    0, role_a, e1, role_b, e2, filler[0], filler[1], filler[2], filler[3], q_b, e2,
+                ];
+                let mask = vec![0u8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+                dataset.push((seq1, mask.clone()));
+                dataset.push((seq2, mask));
+            }
+        }
+        assert_eq!(dataset.len(), 24);
+
+        for _ in 0..140 {
+            let mut g = model.zero_grad();
+            for (seq, mask) in &dataset {
+                model
+                    .accumulate_sequence_grad(seq, mask, &mut g, true)
+                    .unwrap();
+            }
+            model.apply_adamw_step(&g, &mut adam, 8_192, 20, 16, true, true);
+        }
+
+        let reloaded = ButterflyV3Model::from_bytes(&model.to_bytes()).unwrap();
+        assert_eq!(reloaded, model);
+        let prepared = ButterflyV3Prepared::from_model(&reloaded).unwrap();
+
+        let mut hits = 0usize;
+        for (seq, _) in &dataset {
+            let mut sess = prepared.new_session();
+            let mut pred = 0u16;
+            for &tok in &seq[..seq.len() - 1] {
+                pred = prepared.step_greedy(tok, &mut sess).unwrap();
+            }
+            if pred == *seq.last().unwrap() {
+                hits += 1;
+            }
+        }
+        assert_eq!(
+            hits,
+            dataset.len(),
+            "v3 Entmax15 pure-int AdamW must learn 24/24 opposite-role bindings, got {hits}/{}",
             dataset.len()
         );
     }

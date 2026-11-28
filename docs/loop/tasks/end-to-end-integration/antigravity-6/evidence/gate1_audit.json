@@ -1,0 +1,22 @@
+{
+  "arch": "sm_120",
+  "gate1_pure_int_v3b": {
+    "cubin_path": "/workspace/bfy-v3b-target/release/build/butterfly-v3b-123936619eca381c/out/butterfly_kernels_v3.sm_120.cubin",
+    "cubin_sha256": "fe84870467b820c46f4eca33bdeeda8c2b3bfbc90e004fe2f36767425e7ae0ad",
+    "required_kernels": [
+      "bfy_v3_batch_fwd_bwd_kernel",
+      "bfy_v3_adamw_update_kernel",
+      "bfy_v3_eval_records_kernel"
+    ],
+    "missing_ptx_kernels": [],
+    "missing_sass_kernels": [],
+    "ptx_float_hits": 0,
+    "ptx_div_hits": 0,
+    "ptx_mma_hits": 0,
+    "sass_sm120_mov_aliases": 3269,
+    "sass_float_hits": 0,
+    "sass_mma_hits": 0,
+    "pass": true
+  },
+  "pass": true
+}

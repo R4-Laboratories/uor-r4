@@ -140,19 +140,25 @@ pub fn clamp_q15_i16(x: i32) -> i16 {
 // Operator A: Parameter-free Integer Fast Walsh–Hadamard Transform (FWHT)
 // ---------------------------------------------------------------------------
 
-/// Orthogonal in-place Integer FWHT over any power-of-two slice (`D >= 2`).
+/// Orthogonal in-place Integer FWHT over any power-of-two slice (`D >= 2`),
+/// using a caller-supplied `i64` scratch buffer of length `data.len()` for zero heap allocations.
 ///
 /// Uses radix-2 butterfly additions/subtractions (`0` dense matmul) followed by
 /// exact dyadic shift `>> (m / 2)` (and one `INV_SQRT2_Q15` rescale when `m` is odd).
 /// Symmetric and self-adjoint (`H^T = H`).
-pub fn fwht_inplace_q15(data: &mut [i32]) -> Result<()> {
+pub fn fwht_inplace_q15_with_scratch(data: &mut [i32], work: &mut [i64]) -> Result<()> {
     let n = data.len();
     if n < 2 || (n & (n - 1)) != 0 {
         return Err(invalid("FWHT length must be a power of two >= 2"));
     }
+    if work.len() != n {
+        return Err(invalid("FWHT scratch length must match data length"));
+    }
     let stages = n.trailing_zeros();
     // Accumulate butterfly stages in `i64` so wide slices (`D = 512..=1024`) at `±ACT_CLAMP` never wrap `i32`.
-    let mut work: Vec<i64> = data.iter().map(|&v| i64::from(v)).collect();
+    for (dst, &v) in work.iter_mut().zip(data.iter()) {
+        *dst = i64::from(v);
+    }
     let mut h = 1usize;
     while h < n {
         let mut i = 0usize;
@@ -170,7 +176,7 @@ pub fn fwht_inplace_q15(data: &mut [i32]) -> Result<()> {
     let shift = stages / 2;
     let odd = (stages & 1) == 1;
     let half = if shift > 0 { 1i64 << (shift - 1) } else { 0 };
-    for (dst, &w) in data.iter_mut().zip(&work) {
+    for (dst, &w) in data.iter_mut().zip(work.iter()) {
         let mut v = (w + half) >> shift;
         if odd {
             v = (v * INV_SQRT2_Q15 + Q15_HALF) >> Q15_SHIFT;
@@ -178,6 +184,16 @@ pub fn fwht_inplace_q15(data: &mut [i32]) -> Result<()> {
         *dst = clamp_act(v.clamp(i64::from(-ACT_CLAMP), i64::from(ACT_CLAMP)) as i32);
     }
     Ok(())
+}
+
+/// Orthogonal in-place Integer FWHT over any power-of-two slice (`D >= 2`).
+///
+/// Uses radix-2 butterfly additions/subtractions (`0` dense matmul) followed by
+/// exact dyadic shift `>> (m / 2)` (and one `INV_SQRT2_Q15` rescale when `m` is odd).
+/// Symmetric and self-adjoint (`H^T = H`).
+pub fn fwht_inplace_q15(data: &mut [i32]) -> Result<()> {
+    let mut work = vec![0i64; data.len()];
+    fwht_inplace_q15_with_scratch(data, &mut work)
 }
 
 // ---------------------------------------------------------------------------
@@ -887,7 +903,7 @@ impl SparsePkmMemory {
 // Operator E: Factored 64×64 Hierarchical Readout & Lawful Non-Exponential Losses
 // ---------------------------------------------------------------------------
 
-/// Controlled Gate 1 loss comparison (both zero `exp`, zero `log`, zero normalized exponential).
+/// Controlled Gate 1 loss comparison (all zero `exp`, zero `log`, zero normalized exponential).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LossKind {
     /// Primary (100% undisputed §3.2): Hui–Belkin `(k, M)`-rescaled square loss.
@@ -896,6 +912,10 @@ pub enum LossKind {
     /// Secondary A/B (Martins & Astudillo ICML 2016): exact integer 64-way Sparsemax (`α = 2`).
     /// Euclidean projection onto the 64-simplex: `p_i = max(0, z_i - tau)`, `g_i = p_i - 1[i=t]`.
     Sparsemax64,
+    /// Pure-integer 64-way Tsallis `α = 1.5` Entmax Fenchel-Young loss (Peters et al. ACL 2019).
+    /// Algebraic simplex map `p_i = [(z_i - tau) / 2]_+^2`, exact shift-invariant gradient
+    /// `g_i = p_i - 1[i=t]`, solved by 20-step pure-shift integer bisection (zero `exp`/`log`/div).
+    Entmax15,
 }
 
 impl LossKind {
@@ -903,6 +923,7 @@ impl LossKind {
         match self {
             LossKind::HuiBelkinRescaledSquare { pos_weight_k } => (1, pos_weight_k),
             LossKind::Sparsemax64 => (2, 0),
+            LossKind::Entmax15 => (3, 0),
         }
     }
 
@@ -926,9 +947,63 @@ impl LossKind {
                 }
                 Ok(LossKind::Sparsemax64)
             }
+            3 => {
+                if param != 0 {
+                    return Err(invalid(format!(
+                        "Entmax15 requires loss_param == 0, got {param}"
+                    )));
+                }
+                Ok(LossKind::Entmax15)
+            }
             _ => Err(invalid(format!("unknown LossKind code {code}"))),
         }
     }
+}
+
+/// Exact pure-integer 64-way `1.5-Entmax` threshold `tau` in Q15 via 20-step shift bisection.
+/// Solves `sum_i [(scores[i] - tau) / 2]_+^2 == 1` in Q24 (`0` float, `0` `exp`/`log`, `0` `/`).
+pub fn entmax15_64_tau_q15(scores: &[i32; HIER_COARSE]) -> i32 {
+    const TARGET_Q24: u64 = 1u64 << 24;
+    let mut z_max = i32::MIN;
+    for &s in scores {
+        if s > z_max {
+            z_max = s;
+        }
+    }
+    let mut lo = i64::from(z_max) - 2 * i64::from(Q15_ONE);
+    let mut hi = i64::from(z_max);
+    for _ in 0..20 {
+        let mid = (lo + hi) >> 1;
+        let mut sum_q24 = 0u64;
+        for &s in scores {
+            let diff = i64::from(s) - mid;
+            if diff > 0 {
+                let u = ((diff >> 1) as u64).min(Q15_ONE as u64);
+                sum_q24 = sum_q24.saturating_add((u * u) >> 6);
+            }
+        }
+        if sum_q24 > TARGET_Q24 {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    ((lo + hi) >> 1) as i32
+}
+
+/// Exact pure-integer 64-way `1.5-Entmax` probabilities in Q15 (`p_i = [(z_i - tau)/2]_+^2`).
+pub fn entmax15_64_q15(scores: &[i32; HIER_COARSE]) -> ([i32; HIER_COARSE], i32) {
+    let tau = entmax15_64_tau_q15(scores);
+    let tau64 = i64::from(tau);
+    let mut probs = [0i32; HIER_COARSE];
+    for i in 0..HIER_COARSE {
+        let diff = i64::from(scores[i]) - tau64;
+        if diff > 0 {
+            let u = ((diff >> 1) as u64).min(Q15_ONE as u64);
+            probs[i] = (((u * u) + (Q15_HALF as u64)) >> Q15_SHIFT).min(Q15_ONE as u64) as i32;
+        }
+    }
+    (probs, tau)
 }
 
 /// Exact pure-integer 64-way Sparsemax projection (`Q15` scores -> `Q15` probabilities summing to `Q15_ONE`).
@@ -1010,12 +1085,37 @@ pub fn loss_and_grad_64(
             let raw = pz - (p2 >> 1) - i128::from(scores[target]) + i128::from(Q15_ONE / 2);
             (raw.max(0).min(i128::from(u64::MAX)) as u64, dz)
         }
+        LossKind::Entmax15 => {
+            let (p, tau) = entmax15_64_q15(scores);
+            let tau64 = i64::from(tau);
+            // Exact algebraic Tsallis `α = 1.5` Fenchel-Young loss scaled by `8×` for full Q15
+            // reverse-mode backprop SNR across 8+ layers (`|dz_i| <= 8.0 << ACT_CLAMP = 128.0`):
+            // `L = 8 * ((tau - z_t) + (4 + 2 * sum_i u_i^3) / 3)`, `dz_i = 8 * (p_i - 1[i = t])`.
+            // Exact division by 3 without hardware `/`: `(val * 43691 + 65536) >> 17`.
+            let mut sum_u3_q30 = 0u64;
+            for i in 0..HIER_COARSE {
+                let diff = i64::from(scores[i]) - tau64;
+                if diff > 0 {
+                    let u = ((diff >> 1) as u64).min(Q15_ONE as u64);
+                    // u <= 2^15 => u^3 <= 2^45 < u64::MAX; shift by 15 gives Q30 with zero drift.
+                    sum_u3_q30 = sum_u3_q30.saturating_add((u * u * u) >> Q15_SHIFT);
+                }
+                let g = 8 * (if i == target { p[i] - Q15_ONE } else { p[i] });
+                dz[i] = clamp_act(g);
+            }
+            let sum_u3 = (sum_u3_q30 + (Q15_HALF as u64)) >> Q15_SHIFT;
+            let term_num = 4u64 * (Q15_ONE as u64) + 2u64 * sum_u3;
+            let term_div3 = ((u128::from(term_num) * 43_691u128 + 65_536u128) >> 17) as i128;
+            let raw = 8i128 * (i128::from(tau64 - i64::from(scores[target])) + term_div3);
+            (raw.max(0).min(i128::from(u64::MAX)) as u64, dz)
+        }
     }
 }
 
 /// Convert a 64-way Q15 score array into strictly positive integer Q24 probabilities summing to `2^24`
-/// (zero `exp`, zero normalized exponential, using exact rational Bayes posterior for Hui-Belkin or
-/// Sparsemax64 simplex projection + smooth positive floor `4`).
+/// (zero `exp`, zero normalized exponential, using exact rational Bayes posterior for Hui-Belkin,
+/// Sparsemax64 simplex projection + smooth positive floor `4`, or `1.5-Entmax` Q24 algebraic
+/// simplex map + smooth positive floor `16`).
 pub fn scores_64_to_q24_probs(
     scores: &[i32; HIER_COARSE],
     loss_kind: LossKind,
@@ -1027,6 +1127,19 @@ pub fn scores_64_to_q24_probs(
             let p = sparsemax_64_q15(scores);
             for i in 0..HIER_COARSE {
                 raw[i] = (p[i].max(0) as u64) + 4;
+            }
+        }
+        LossKind::Entmax15 => {
+            let tau = i64::from(entmax15_64_tau_q15(scores));
+            for i in 0..HIER_COARSE {
+                let diff = i64::from(scores[i]) - tau;
+                let p_q24 = if diff > 0 {
+                    let u = ((diff >> 1) as u64).min(Q15_ONE as u64);
+                    (u * u) >> 6
+                } else {
+                    0
+                };
+                raw[i] = p_q24 + 16;
             }
         }
         LossKind::HuiBelkinRescaledSquare { pos_weight_k } => {
@@ -3899,5 +4012,68 @@ mod tests {
         assert_eq!(reloaded.vocab_perm, perm);
         assert_eq!(reloaded.vocab_inv, inv);
         assert!(m.set_vocab_perm(vec![0u16; HIER_VOCAB]).is_err());
+    }
+
+    #[test]
+    fn entmax15_is_shift_invariant_simplex_exact_and_matches_finite_difference_gradient() {
+        assert_eq!(LossKind::Entmax15.code(), (3, 0));
+        assert_eq!(LossKind::from_code(3, 0).unwrap(), LossKind::Entmax15);
+        assert!(LossKind::from_code(3, 1).is_err());
+
+        let mut scores = [0i32; HIER_COARSE];
+        for (i, s) in scores.iter_mut().enumerate() {
+            let r = splitmix64(0xE15_2026 ^ (i as u64));
+            *s = (((r % 65_535) as i64) - 32_767) as i32;
+        }
+        let (p, tau) = entmax15_64_q15(&scores);
+        let sum_p: i64 = p.iter().map(|&v| i64::from(v)).sum();
+        assert!(
+            (sum_p - i64::from(Q15_ONE)).abs() <= 64,
+            "entmax15 simplex sum drift: {sum_p} vs {Q15_ONE}"
+        );
+        // Shift invariance: adding +12345 to all scores shifts tau by +12345 and preserves p bit-identically.
+        let mut shifted = scores;
+        for s in &mut shifted {
+            *s += 12_345;
+        }
+        let (p_s, tau_s) = entmax15_64_q15(&shifted);
+        assert_eq!(p_s, p);
+        assert_eq!(tau_s, tau + 12_345);
+
+        // Exact Q24 sum == 2^24 and strict positivity.
+        let q24 = scores_64_to_q24_probs(&scores, LossKind::Entmax15);
+        assert_eq!(q24.iter().map(|&v| u64::from(v)).sum::<u64>(), 1u64 << 24);
+        assert!(q24.iter().all(|&v| v >= 1));
+
+        // Central finite-difference check of `loss_and_grad_64` for `LossKind::Entmax15`.
+        let target = 7usize;
+        let (base_l, dz) = loss_and_grad_64(&scores, target, LossKind::Entmax15);
+        assert!(base_l > 0);
+        let sum_dz: i64 = dz.iter().map(|&v| i64::from(v)).sum();
+        assert!(
+            sum_dz.abs() <= 512,
+            "entmax15 gradient must be zero-sum, got {sum_dz}"
+        );
+        let h = 512i32;
+        for idx in [0usize, 7, 13, 42, 63] {
+            let mut sp = scores;
+            let mut sm = scores;
+            sp[idx] += h;
+            sm[idx] -= h;
+            let (lp, _) = loss_and_grad_64(&sp, target, LossKind::Entmax15);
+            let (lm, _) = loss_and_grad_64(&sm, target, LossKind::Entmax15);
+            let fd = ((lp as i64 - lm as i64) * i64::from(Q15_ONE)) / (2 * i64::from(h));
+            assert!(
+                (fd - i64::from(dz[idx])).abs() <= 512,
+                "entmax15 FD mismatch at {idx}: fd={fd} analytic={}",
+                dz[idx]
+            );
+        }
+        // Perfect prediction achieves near-zero loss (<= 8 = 1 unscaled LSB from bisection).
+        let mut perf = [-2 * Q15_ONE; HIER_COARSE];
+        perf[target] = 2 * Q15_ONE;
+        let (perf_l, perf_dz) = loss_and_grad_64(&perf, target, LossKind::Entmax15);
+        assert!(perf_l <= 8, "perfect prediction loss should be <= 8, got {perf_l}");
+        assert!(perf_dz[target].abs() <= 8);
     }
 }

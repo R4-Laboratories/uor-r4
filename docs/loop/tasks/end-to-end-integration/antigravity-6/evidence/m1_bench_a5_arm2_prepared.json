@@ -1,0 +1,23 @@
+{
+  "artifact_bytes": 30270020,
+  "artifact_sha256": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+  "cold_open_ms": 246,
+  "context_len": 2048,
+  "cuda_vs_cpu_replay_checked": true,
+  "cuda_vs_cpu_replay_diffs": 0,
+  "determinism_replay_diffs": 0,
+  "dim": 512,
+  "ffn_branches": 4,
+  "gen_len": 128,
+  "layers": 6,
+  "loss_kind": "HuiBelkinRescaledSquare { pos_weight_k: 64 }",
+  "median_decode_tok_per_sec": 1892,
+  "median_decode_us": 67653,
+  "median_prefill_ms": 1128,
+  "pkm_key_dim": 32,
+  "pkm_sub_keys": 64,
+  "prepare_beta_ms": 9,
+  "runs": 7,
+  "schema": "uor-r4.gate1-v3b-cpu-bench/1",
+  "serving_engine": "ButterflyV3Prepared_zero_alloc_precomputed_beta"
+}
