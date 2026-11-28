@@ -1,0 +1,146 @@
+[
+  {
+    "seed": 435300,
+    "policy": "gold-only",
+    "gold": 93,
+    "old_geometry": {
+      "margin_q48": -64801805998103,
+      "rank": 20,
+      "rival": 166,
+      "rival_prior_q48": 99688840048146
+    },
+    "visit": {
+      "after": {
+        "margin_q48": -93595266750487,
+        "rank": 4,
+        "rival": 166,
+        "rival_prior_q48": 99688840048146
+      },
+      "before": {
+        "margin_q48": -93595266750487,
+        "rank": 4,
+        "rival": 166,
+        "rival_prior_q48": 99688840048146
+      },
+      "changed_words": 0,
+      "l1": 0,
+      "outcome": 2,
+      "radius": 0,
+      "saturated_words": 0
+    },
+    "checkpoint": {
+      "margin_q48": -93595266750487,
+      "rank": 4,
+      "rival": 166,
+      "rival_prior_q48": 99688840048146
+    }
+  },
+  {
+    "seed": 435300,
+    "policy": "full",
+    "gold": 93,
+    "old_geometry": {
+      "margin_q48": -64801805998103,
+      "rank": 20,
+      "rival": 166,
+      "rival_prior_q48": 99688840048146
+    },
+    "visit": {
+      "after": {
+        "margin_q48": 2824466250,
+        "rank": 1,
+        "rival": 143,
+        "rival_prior_q48": 70867445589681
+      },
+      "before": {
+        "margin_q48": -113791907425951,
+        "rank": 737,
+        "rival": 1817,
+        "rival_prior_q48": 58590362
+      },
+      "changed_words": 8,
+      "l1": 60328,
+      "outcome": 1,
+      "radius": 7541,
+      "saturated_words": 56
+    },
+    "checkpoint": {
+      "margin_q48": -186186171717655,
+      "rank": 166,
+      "rival": 166,
+      "rival_prior_q48": 99688840048146
+    }
+  },
+  {
+    "seed": 435301,
+    "policy": "gold-only",
+    "gold": 93,
+    "old_geometry": {
+      "margin_q48": -49852684472823,
+      "rank": 166,
+      "rival": 1719,
+      "rival_prior_q48": 13772786
+    },
+    "visit": {
+      "after": {
+        "margin_q48": -115113052903447,
+        "rank": 3137,
+        "rival": 166,
+        "rival_prior_q48": 99688840048146
+      },
+      "before": {
+        "margin_q48": -115113052903447,
+        "rank": 3137,
+        "rival": 166,
+        "rival_prior_q48": 99688840048146
+      },
+      "changed_words": 0,
+      "l1": 0,
+      "outcome": 2,
+      "radius": 0,
+      "saturated_words": 0
+    },
+    "checkpoint": {
+      "margin_q48": -115113052903447,
+      "rank": 3137,
+      "rival": 166,
+      "rival_prior_q48": 99688840048146
+    }
+  },
+  {
+    "seed": 435301,
+    "policy": "full",
+    "gold": 93,
+    "old_geometry": {
+      "margin_q48": -49852684472823,
+      "rank": 166,
+      "rival": 1719,
+      "rival_prior_q48": 13772786
+    },
+    "visit": {
+      "after": {
+        "margin_q48": 2824466250,
+        "rank": 1,
+        "rival": 143,
+        "rival_prior_q48": 70867445589681
+      },
+      "before": {
+        "margin_q48": -119235450818752,
+        "rank": 311,
+        "rival": 136,
+        "rival_prior_q48": 1878419131
+      },
+      "changed_words": 11,
+      "l1": 79808,
+      "outcome": 1,
+      "radius": 7541,
+      "saturated_words": 54
+    },
+    "checkpoint": {
+      "margin_q48": -75038366271963,
+      "rank": 335,
+      "rival": 686,
+      "rival_prior_q48": 7348182
+    }
+  }
+]

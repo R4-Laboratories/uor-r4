@@ -1,0 +1,2722 @@
+[
+  {
+    "epoch": 1,
+    "geometry": {
+      "changed_words": 180,
+      "checkpoint_strict": 122,
+      "directional_saturations": 218,
+      "erased": 106,
+      "immediate": 228,
+      "infeasible": 3663,
+      "l1": 2844484,
+      "later_gains": 0,
+      "max_radius": 32767,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 144,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 84
+    },
+    "ordered": {
+      "changed_words": 193,
+      "checkpoint_strict": 123,
+      "directional_saturations": 193,
+      "erased": 72,
+      "immediate": 195,
+      "infeasible": 3696,
+      "l1": 2934076,
+      "later_gains": 0,
+      "max_radius": 32767,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 115,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 80
+    },
+    "paired": {
+      "geometry_immediate": 228,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2586,
+        "observed_ppm": 8235,
+        "upper_ppm": 14128
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4122,
+        "observed_ppm": -257,
+        "upper_ppm": 3616
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 467811,
+        "observed_ppm": 535088,
+        "upper_ppm": 600840
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 90,
+      "ordered_immediate": 195,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 564103,
+        "observed_ppm": 630769,
+        "upper_ppm": 698492
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 2,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 1,
+      "checkpoint_strict": 123,
+      "directional_saturations": 3,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 211,
+      "later_gains": 0,
+      "max_radius": 211,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 123,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -6458,
+        "observed_ppm": -257,
+        "upper_ppm": 6143
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4100,
+        "observed_ppm": -257,
+        "upper_ppm": 3833
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 123,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973451,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 3,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 4,
+      "checkpoint_strict": 123,
+      "directional_saturations": 4,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 280,
+      "later_gains": 0,
+      "max_radius": 70,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 2
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 13189,
+        "observed_ppm": 18528,
+        "upper_ppm": 24196
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4100,
+        "observed_ppm": -257,
+        "upper_ppm": 3833
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 50,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973451,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 4,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 4,
+      "checkpoint_strict": 123,
+      "directional_saturations": 4,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 96,
+      "later_gains": 0,
+      "max_radius": 24,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 2
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7474,
+        "observed_ppm": 12867,
+        "upper_ppm": 18614
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4100,
+        "observed_ppm": -257,
+        "upper_ppm": 3833
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 72,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973451,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 5,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 4,
+      "checkpoint_strict": 123,
+      "directional_saturations": 4,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 32,
+      "later_gains": 0,
+      "max_radius": 8,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 2
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4412,
+        "observed_ppm": 772,
+        "upper_ppm": 6415
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4100,
+        "observed_ppm": -257,
+        "upper_ppm": 3833
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 119,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973451,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 6,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 3,
+      "checkpoint_strict": 123,
+      "directional_saturations": 1,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 6,
+      "later_gains": 0,
+      "max_radius": 2,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 123,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 9247,
+        "observed_ppm": 14925,
+        "upper_ppm": 21020
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4122,
+        "observed_ppm": -257,
+        "upper_ppm": 3616
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 64,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973684,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 7,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 1,
+      "checkpoint_strict": 123,
+      "directional_saturations": 3,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 2,
+      "later_gains": 0,
+      "max_radius": 2,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 123,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2581,
+        "observed_ppm": 8492,
+        "upper_ppm": 14437
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4100,
+        "observed_ppm": -257,
+        "upper_ppm": 3833
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 89,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973451,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 8,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 122,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 122,
+      "infeasible": 3769,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 122,
+      "rows": 3891,
+      "strict_before": 122,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 3,
+      "checkpoint_strict": 123,
+      "directional_saturations": 1,
+      "erased": 1,
+      "immediate": 124,
+      "infeasible": 3767,
+      "l1": 3,
+      "later_gains": 0,
+      "max_radius": 1,
+      "retained": 123,
+      "rows": 3891,
+      "strict_before": 123,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "paired": {
+      "geometry_immediate": 122,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1029,
+        "observed_ppm": 6948,
+        "upper_ppm": 12883
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4122,
+        "observed_ppm": -257,
+        "upper_ppm": 3616
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7728,
+        "observed_ppm": 10808,
+        "upper_ppm": 14186
+      },
+      "geometry_retained": 122,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 122,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 95,
+      "ordered_immediate": 124,
+      "ordered_retained": 123,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 973684,
+        "observed_ppm": 991935,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 123,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "epoch": 1,
+    "geometry": {
+      "changed_words": 39305,
+      "checkpoint_strict": 19,
+      "directional_saturations": 220001,
+      "erased": 3869,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 367001779,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 19,
+      "rows": 3891,
+      "strict_before": 41,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3847
+    },
+    "ordered": {
+      "changed_words": 40958,
+      "checkpoint_strict": 28,
+      "directional_saturations": 373124,
+      "erased": 3861,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 300965586,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 28,
+      "rows": 3891,
+      "strict_before": 41,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3848
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -23339,
+        "observed_ppm": -18271,
+        "upper_ppm": -13337
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -5386,
+        "observed_ppm": -2316,
+        "upper_ppm": 770
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -20613,
+        "observed_ppm": -15697,
+        "upper_ppm": -11077
+      },
+      "geometry_retained": 19,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2833,
+        "observed_ppm": 4889,
+        "upper_ppm": 7187
+      },
+      "geometry_strict": 19,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 90,
+      "ordered_immediate": 3886,
+      "ordered_retained": 28,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4625,
+        "observed_ppm": 7205,
+        "upper_ppm": 10013
+      },
+      "ordered_strict": 28,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 2,
+    "geometry": {
+      "changed_words": 38918,
+      "checkpoint_strict": 62,
+      "directional_saturations": 219603,
+      "erased": 3826,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 366067601,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 62,
+      "rows": 3891,
+      "strict_before": 51,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3837
+    },
+    "ordered": {
+      "changed_words": 40319,
+      "checkpoint_strict": 61,
+      "directional_saturations": 373292,
+      "erased": 3828,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298342898,
+      "later_gains": 0,
+      "max_radius": 33027,
+      "retained": 61,
+      "rows": 3891,
+      "strict_before": 45,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3844
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -20555,
+        "observed_ppm": -15697,
+        "upper_ppm": -11026
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4130,
+        "observed_ppm": 257,
+        "upper_ppm": 4643
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -9516,
+        "observed_ppm": -4632,
+        "upper_ppm": 0
+      },
+      "geometry_retained": 62,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 12123,
+        "observed_ppm": 15955,
+        "upper_ppm": 20072
+      },
+      "geometry_strict": 62,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 123,
+      "ordered_immediate": 3886,
+      "ordered_retained": 61,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 11856,
+        "observed_ppm": 15697,
+        "upper_ppm": 19683
+      },
+      "ordered_strict": 61,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 3,
+    "geometry": {
+      "changed_words": 39018,
+      "checkpoint_strict": 25,
+      "directional_saturations": 220604,
+      "erased": 3863,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 365307995,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 25,
+      "rows": 3891,
+      "strict_before": 34,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3854
+    },
+    "ordered": {
+      "changed_words": 40438,
+      "checkpoint_strict": 32,
+      "directional_saturations": 373413,
+      "erased": 3857,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 299119212,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 32,
+      "rows": 3891,
+      "strict_before": 44,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3845
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -9761,
+        "observed_ppm": -6433,
+        "upper_ppm": -3321
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -3864,
+        "observed_ppm": -1801,
+        "upper_ppm": 0
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -18342,
+        "observed_ppm": -14153,
+        "upper_ppm": -10328
+      },
+      "geometry_retained": 25,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4105,
+        "observed_ppm": 6433,
+        "upper_ppm": 9039
+      },
+      "geometry_strict": 25,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 50,
+      "ordered_immediate": 3886,
+      "ordered_retained": 32,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 5637,
+        "observed_ppm": 8235,
+        "upper_ppm": 11143
+      },
+      "ordered_strict": 32,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 4,
+    "geometry": {
+      "changed_words": 38976,
+      "checkpoint_strict": 21,
+      "directional_saturations": 220546,
+      "erased": 3867,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 364042041,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 21,
+      "rows": 3891,
+      "strict_before": 35,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3853
+    },
+    "ordered": {
+      "changed_words": 40540,
+      "checkpoint_strict": 36,
+      "directional_saturations": 373874,
+      "erased": 3853,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 297063508,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 36,
+      "rows": 3891,
+      "strict_before": 38,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3851
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -17308,
+        "observed_ppm": -13124,
+        "upper_ppm": -9058
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -6152,
+        "observed_ppm": -3860,
+        "upper_ppm": -1809
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -19355,
+        "observed_ppm": -15183,
+        "upper_ppm": -11334
+      },
+      "geometry_retained": 21,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3112,
+        "observed_ppm": 5404,
+        "upper_ppm": 7930
+      },
+      "geometry_strict": 21,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 72,
+      "ordered_immediate": 3886,
+      "ordered_retained": 36,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6384,
+        "observed_ppm": 9264,
+        "upper_ppm": 12554
+      },
+      "ordered_strict": 36,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 5,
+    "geometry": {
+      "changed_words": 38979,
+      "checkpoint_strict": 96,
+      "directional_saturations": 220609,
+      "erased": 3792,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 363575574,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 96,
+      "rows": 3891,
+      "strict_before": 34,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3854
+    },
+    "ordered": {
+      "changed_words": 40353,
+      "checkpoint_strict": 27,
+      "directional_saturations": 372960,
+      "erased": 3862,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 299593156,
+      "later_gains": 0,
+      "max_radius": 32682,
+      "retained": 27,
+      "rows": 3891,
+      "strict_before": 48,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3841
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -12157,
+        "observed_ppm": -5919,
+        "upper_ppm": 513
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 13114,
+        "observed_ppm": 17756,
+        "upper_ppm": 22457
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -1279,
+        "observed_ppm": 4117,
+        "upper_ppm": 9262
+      },
+      "geometry_retained": 96,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 19830,
+        "observed_ppm": 24704,
+        "upper_ppm": 29586
+      },
+      "geometry_strict": 96,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 119,
+      "ordered_immediate": 3886,
+      "ordered_retained": 27,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4384,
+        "observed_ppm": 6948,
+        "upper_ppm": 9709
+      },
+      "ordered_strict": 27,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 6,
+    "geometry": {
+      "changed_words": 39015,
+      "checkpoint_strict": 64,
+      "directional_saturations": 220263,
+      "erased": 3824,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 361936635,
+      "later_gains": 0,
+      "max_radius": 40433,
+      "retained": 64,
+      "rows": 3891,
+      "strict_before": 39,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3849
+    },
+    "ordered": {
+      "changed_words": 40381,
+      "checkpoint_strict": 86,
+      "directional_saturations": 373712,
+      "erased": 3803,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298444906,
+      "later_gains": 0,
+      "max_radius": 49732,
+      "retained": 86,
+      "rows": 3891,
+      "strict_before": 41,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3848
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4372,
+        "observed_ppm": 0,
+        "upper_ppm": 4371
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -9243,
+        "observed_ppm": -5661,
+        "upper_ppm": -2059
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -7494,
+        "observed_ppm": -4117,
+        "upper_ppm": -1025
+      },
+      "geometry_retained": 64,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 12554,
+        "observed_ppm": 16469,
+        "upper_ppm": 20709
+      },
+      "geometry_strict": 64,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 64,
+      "ordered_immediate": 3886,
+      "ordered_retained": 86,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 17521,
+        "observed_ppm": 22131,
+        "upper_ppm": 26908
+      },
+      "ordered_strict": 86,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 7,
+    "geometry": {
+      "changed_words": 38977,
+      "checkpoint_strict": 11,
+      "directional_saturations": 220250,
+      "erased": 3877,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 362446064,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 11,
+      "rows": 3891,
+      "strict_before": 39,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3849
+    },
+    "ordered": {
+      "changed_words": 40506,
+      "checkpoint_strict": 37,
+      "directional_saturations": 373907,
+      "erased": 3852,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 297186406,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 37,
+      "rows": 3891,
+      "strict_before": 37,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3852
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -24774,
+        "observed_ppm": -20072,
+        "upper_ppm": -15432
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -9769,
+        "observed_ppm": -6691,
+        "upper_ppm": -3863
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -22377,
+        "observed_ppm": -17756,
+        "upper_ppm": -13586
+      },
+      "geometry_retained": 11,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1285,
+        "observed_ppm": 2831,
+        "upper_ppm": 4632
+      },
+      "geometry_strict": 11,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 89,
+      "ordered_immediate": 3886,
+      "ordered_retained": 37,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6674,
+        "observed_ppm": 9521,
+        "upper_ppm": 12840
+      },
+      "ordered_strict": 37,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 8,
+    "geometry": {
+      "changed_words": 38801,
+      "checkpoint_strict": 22,
+      "directional_saturations": 219615,
+      "erased": 3866,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 364382388,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 22,
+      "rows": 3891,
+      "strict_before": 51,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3837
+    },
+    "ordered": {
+      "changed_words": 40635,
+      "checkpoint_strict": 74,
+      "directional_saturations": 373686,
+      "erased": 3815,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 297787508,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 74,
+      "rows": 3891,
+      "strict_before": 38,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3851
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -23717,
+        "observed_ppm": -18785,
+        "upper_ppm": -14099
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -17521,
+        "observed_ppm": -13381,
+        "upper_ppm": -9293
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -19497,
+        "observed_ppm": -14925,
+        "upper_ppm": -10603
+      },
+      "geometry_retained": 22,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3360,
+        "observed_ppm": 5661,
+        "upper_ppm": 8004
+      },
+      "geometry_strict": 22,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 95,
+      "ordered_immediate": 3886,
+      "ordered_retained": 74,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 14857,
+        "observed_ppm": 19043,
+        "upper_ppm": 23309
+      },
+      "ordered_strict": 74,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "epoch": 1,
+    "geometry": {
+      "changed_words": 167,
+      "checkpoint_strict": 115,
+      "directional_saturations": 185,
+      "erased": 75,
+      "immediate": 190,
+      "infeasible": 3701,
+      "l1": 2888609,
+      "later_gains": 0,
+      "max_radius": 32767,
+      "retained": 115,
+      "rows": 3891,
+      "strict_before": 117,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 73
+    },
+    "ordered": {
+      "changed_words": 183,
+      "checkpoint_strict": 86,
+      "directional_saturations": 176,
+      "erased": 83,
+      "immediate": 169,
+      "infeasible": 3722,
+      "l1": 2804137,
+      "later_gains": 0,
+      "max_radius": 32767,
+      "retained": 86,
+      "rows": 3891,
+      "strict_before": 93,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 76
+    },
+    "paired": {
+      "geometry_immediate": 190,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -17241,
+        "observed_ppm": -11323,
+        "upper_ppm": -5664
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4127,
+        "observed_ppm": 7463,
+        "upper_ppm": 11048
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6166,
+        "observed_ppm": 9007,
+        "upper_ppm": 12098
+      },
+      "geometry_retained": 115,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 535885,
+        "observed_ppm": 605263,
+        "upper_ppm": 675258
+      },
+      "geometry_strict": 115,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 159,
+      "ordered_immediate": 169,
+      "ordered_retained": 86,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 435028,
+        "observed_ppm": 508876,
+        "upper_ppm": 585526
+      },
+      "ordered_strict": 86,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 2,
+    "geometry": {
+      "changed_words": 1,
+      "checkpoint_strict": 116,
+      "directional_saturations": 3,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 69,
+      "later_gains": 0,
+      "max_radius": 69,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 115,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "ordered": {
+      "changed_words": 8,
+      "checkpoint_strict": 86,
+      "directional_saturations": 20,
+      "erased": 4,
+      "immediate": 90,
+      "infeasible": 3801,
+      "l1": 7666,
+      "later_gains": 0,
+      "max_radius": 2791,
+      "retained": 86,
+      "rows": 3891,
+      "strict_before": 83,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 7
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -2834,
+        "observed_ppm": 2831,
+        "upper_ppm": 8720
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4636,
+        "observed_ppm": 7720,
+        "upper_ppm": 10884
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 105,
+      "ordered_immediate": 90,
+      "ordered_retained": 86,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 908046,
+        "observed_ppm": 955556,
+        "upper_ppm": 989796
+      },
+      "ordered_strict": 86,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 3,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 1,
+      "checkpoint_strict": 87,
+      "directional_saturations": 3,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 1223,
+      "later_gains": 0,
+      "max_radius": 1223,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 86,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 1
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -29609,
+        "observed_ppm": -22903,
+        "upper_ppm": -16195
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 205,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 4,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 0,
+      "checkpoint_strict": 87,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 87,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -9827,
+        "observed_ppm": -3603,
+        "upper_ppm": 3077
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 130,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 5,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 0,
+      "checkpoint_strict": 87,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 87,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -18323,
+        "observed_ppm": -11323,
+        "upper_ppm": -4384
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 160,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 6,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 0,
+      "checkpoint_strict": 87,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 87,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 16796,
+        "observed_ppm": 21873,
+        "upper_ppm": 27387
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 31,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 7,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 0,
+      "checkpoint_strict": 87,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 87,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -3110,
+        "observed_ppm": 2573,
+        "upper_ppm": 8945
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 106,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 8,
+    "geometry": {
+      "changed_words": 0,
+      "checkpoint_strict": 116,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 116,
+      "infeasible": 3775,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 116,
+      "rows": 3891,
+      "strict_before": 116,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "ordered": {
+      "changed_words": 0,
+      "checkpoint_strict": 87,
+      "directional_saturations": 0,
+      "erased": 0,
+      "immediate": 87,
+      "infeasible": 3804,
+      "l1": 0,
+      "later_gains": 0,
+      "max_radius": 0,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 87,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 0
+    },
+    "paired": {
+      "geometry_immediate": 116,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": 11037,
+        "observed_ppm": 16469,
+        "upper_ppm": 22148
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4378,
+        "observed_ppm": 7463,
+        "upper_ppm": 10780
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6428,
+        "observed_ppm": 9264,
+        "upper_ppm": 12343
+      },
+      "geometry_retained": 116,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "geometry_strict": 116,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "old_strict": 52,
+      "ordered_immediate": 87,
+      "ordered_retained": 87,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "ordered_strict": 87,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "epoch": 1,
+    "geometry": {
+      "changed_words": 39565,
+      "checkpoint_strict": 24,
+      "directional_saturations": 219997,
+      "erased": 3864,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 368904184,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 24,
+      "rows": 3891,
+      "strict_before": 36,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3852
+    },
+    "ordered": {
+      "changed_words": 40943,
+      "checkpoint_strict": 26,
+      "directional_saturations": 372069,
+      "erased": 3863,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 302146664,
+      "later_gains": 0,
+      "max_radius": 48067,
+      "retained": 26,
+      "rows": 3891,
+      "strict_before": 52,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3837
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -41131,
+        "observed_ppm": -34740,
+        "upper_ppm": -28881
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -3581,
+        "observed_ppm": -515,
+        "upper_ppm": 2301
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -18761,
+        "observed_ppm": -14411,
+        "upper_ppm": -10357
+      },
+      "geometry_retained": 24,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3858,
+        "observed_ppm": 6176,
+        "upper_ppm": 8747
+      },
+      "geometry_strict": 24,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 159,
+      "ordered_immediate": 3886,
+      "ordered_retained": 26,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4138,
+        "observed_ppm": 6691,
+        "upper_ppm": 9312
+      },
+      "ordered_strict": 26,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 2,
+    "geometry": {
+      "changed_words": 38869,
+      "checkpoint_strict": 56,
+      "directional_saturations": 220282,
+      "erased": 3832,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 363644715,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 56,
+      "rows": 3891,
+      "strict_before": 40,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3848
+    },
+    "ordered": {
+      "changed_words": 40416,
+      "checkpoint_strict": 28,
+      "directional_saturations": 373182,
+      "erased": 3861,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 297671132,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 28,
+      "rows": 3891,
+      "strict_before": 45,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3844
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -18285,
+        "observed_ppm": -12609,
+        "upper_ppm": -7000
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3853,
+        "observed_ppm": 7205,
+        "upper_ppm": 10822
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -11326,
+        "observed_ppm": -6176,
+        "upper_ppm": -1284
+      },
+      "geometry_retained": 56,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 10811,
+        "observed_ppm": 14411,
+        "upper_ppm": 18346
+      },
+      "geometry_strict": 56,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 105,
+      "ordered_immediate": 3886,
+      "ordered_retained": 28,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4622,
+        "observed_ppm": 7205,
+        "upper_ppm": 10041
+      },
+      "ordered_strict": 28,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 3,
+    "geometry": {
+      "changed_words": 39007,
+      "checkpoint_strict": 5,
+      "directional_saturations": 219833,
+      "erased": 3883,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 365329798,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 5,
+      "rows": 3891,
+      "strict_before": 47,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3841
+    },
+    "ordered": {
+      "changed_words": 40199,
+      "checkpoint_strict": 24,
+      "directional_saturations": 373249,
+      "erased": 3865,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298411812,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 24,
+      "rows": 3891,
+      "strict_before": 47,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3842
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -58583,
+        "observed_ppm": -51467,
+        "upper_ppm": -44661
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -7470,
+        "observed_ppm": -4889,
+        "upper_ppm": -2323
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -24103,
+        "observed_ppm": -19300,
+        "upper_ppm": -14952
+      },
+      "geometry_retained": 5,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 257,
+        "observed_ppm": 1287,
+        "upper_ppm": 2569
+      },
+      "geometry_strict": 5,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 205,
+      "ordered_immediate": 3886,
+      "ordered_retained": 24,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3852,
+        "observed_ppm": 6176,
+        "upper_ppm": 8765
+      },
+      "ordered_strict": 24,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 4,
+    "geometry": {
+      "changed_words": 38966,
+      "checkpoint_strict": 87,
+      "directional_saturations": 219522,
+      "erased": 3801,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 364605009,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 87,
+      "rows": 3891,
+      "strict_before": 51,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3837
+    },
+    "ordered": {
+      "changed_words": 40381,
+      "checkpoint_strict": 38,
+      "directional_saturations": 372653,
+      "erased": 3851,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298144194,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 38,
+      "rows": 3891,
+      "strict_before": 51,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3838
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -17508,
+        "observed_ppm": -11065,
+        "upper_ppm": -4626
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 7220,
+        "observed_ppm": 12609,
+        "upper_ppm": 18060
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -3865,
+        "observed_ppm": 1801,
+        "upper_ppm": 7445
+      },
+      "geometry_retained": 87,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 17875,
+        "observed_ppm": 22388,
+        "upper_ppm": 27166
+      },
+      "geometry_strict": 87,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 130,
+      "ordered_immediate": 3886,
+      "ordered_retained": 38,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6724,
+        "observed_ppm": 9779,
+        "upper_ppm": 12933
+      },
+      "ordered_strict": 38,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 5,
+    "geometry": {
+      "changed_words": 38959,
+      "checkpoint_strict": 47,
+      "directional_saturations": 219849,
+      "erased": 3841,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 365979154,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 47,
+      "rows": 3891,
+      "strict_before": 46,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3842
+    },
+    "ordered": {
+      "changed_words": 40530,
+      "checkpoint_strict": 179,
+      "directional_saturations": 373575,
+      "erased": 3710,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298819675,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 179,
+      "rows": 3891,
+      "strict_before": 41,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3848
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -35549,
+        "observed_ppm": -29079,
+        "upper_ppm": -22669
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -40492,
+        "observed_ppm": -33968,
+        "upper_ppm": -27613
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -13330,
+        "observed_ppm": -8492,
+        "upper_ppm": -4122
+      },
+      "geometry_retained": 47,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 8729,
+        "observed_ppm": 12095,
+        "upper_ppm": 15637
+      },
+      "geometry_strict": 47,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 160,
+      "ordered_immediate": 3886,
+      "ordered_retained": 179,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 39423,
+        "observed_ppm": 46063,
+        "upper_ppm": 52781
+      },
+      "ordered_strict": 179,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 6,
+    "geometry": {
+      "changed_words": 38910,
+      "checkpoint_strict": 16,
+      "directional_saturations": 220117,
+      "erased": 3872,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 364721147,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 16,
+      "rows": 3891,
+      "strict_before": 43,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3845
+    },
+    "ordered": {
+      "changed_words": 40456,
+      "checkpoint_strict": 26,
+      "directional_saturations": 374243,
+      "erased": 3863,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 299081495,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 26,
+      "rows": 3891,
+      "strict_before": 35,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3854
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -6699,
+        "observed_ppm": -3860,
+        "upper_ppm": -1030
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4361,
+        "observed_ppm": -2573,
+        "upper_ppm": -1033
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -20849,
+        "observed_ppm": -16469,
+        "upper_ppm": -12593
+      },
+      "geometry_retained": 16,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2307,
+        "observed_ppm": 4117,
+        "upper_ppm": 6181
+      },
+      "geometry_strict": 16,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 31,
+      "ordered_immediate": 3886,
+      "ordered_retained": 26,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4121,
+        "observed_ppm": 6691,
+        "upper_ppm": 9499
+      },
+      "ordered_strict": 26,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 7,
+    "geometry": {
+      "changed_words": 39163,
+      "checkpoint_strict": 18,
+      "directional_saturations": 220697,
+      "erased": 3870,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 365067188,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 18,
+      "rows": 3891,
+      "strict_before": 30,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3858
+    },
+    "ordered": {
+      "changed_words": 40462,
+      "checkpoint_strict": 29,
+      "directional_saturations": 374060,
+      "erased": 3860,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 298794652,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 29,
+      "rows": 3891,
+      "strict_before": 37,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3852
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -27663,
+        "observed_ppm": -22645,
+        "upper_ppm": -17617
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4640,
+        "observed_ppm": -2831,
+        "upper_ppm": -1285
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -20251,
+        "observed_ppm": -15955,
+        "upper_ppm": -12113
+      },
+      "geometry_retained": 18,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2578,
+        "observed_ppm": 4632,
+        "upper_ppm": 6944
+      },
+      "geometry_strict": 18,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 106,
+      "ordered_immediate": 3886,
+      "ordered_retained": 29,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4882,
+        "observed_ppm": 7463,
+        "upper_ppm": 10288
+      },
+      "ordered_strict": 29,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  },
+  {
+    "epoch": 8,
+    "geometry": {
+      "changed_words": 39021,
+      "checkpoint_strict": 36,
+      "directional_saturations": 220656,
+      "erased": 3852,
+      "immediate": 3888,
+      "infeasible": 3,
+      "l1": 365701550,
+      "later_gains": 0,
+      "max_radius": 40318,
+      "retained": 36,
+      "rows": 3891,
+      "strict_before": 33,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3855
+    },
+    "ordered": {
+      "changed_words": 40351,
+      "checkpoint_strict": 28,
+      "directional_saturations": 373144,
+      "erased": 3861,
+      "immediate": 3889,
+      "infeasible": 2,
+      "l1": 297411204,
+      "later_gains": 0,
+      "max_radius": 51513,
+      "retained": 28,
+      "rows": 3891,
+      "strict_before": 46,
+      "ties_lost": 0,
+      "ties_won": 0,
+      "updated": 3843
+    },
+    "paired": {
+      "geometry_immediate": 3886,
+      "geometry_minus_old": {
+        "defined_resamples": 4096,
+        "lower_ppm": -7482,
+        "observed_ppm": -4117,
+        "upper_ppm": -769
+      },
+      "geometry_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -257,
+        "observed_ppm": 2059,
+        "upper_ppm": 4374
+      },
+      "geometry_minus_zero": {
+        "defined_resamples": 4096,
+        "lower_ppm": -15385,
+        "observed_ppm": -11323,
+        "upper_ppm": -7653
+      },
+      "geometry_retained": 36,
+      "geometry_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6423,
+        "observed_ppm": 9264,
+        "upper_ppm": 12551
+      },
+      "geometry_strict": 36,
+      "groups": 3703,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "old_strict": 52,
+      "ordered_immediate": 3886,
+      "ordered_retained": 28,
+      "ordered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 4640,
+        "observed_ppm": 7205,
+        "upper_ppm": 10036
+      },
+      "ordered_strict": 28,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "zero_strict": 80
+    },
+    "policy": "full",
+    "seed": 435301
+  }
+]
