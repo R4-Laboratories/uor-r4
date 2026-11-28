@@ -734,7 +734,10 @@ fn check_lexical_client(
     prior_winner: u16,
     prefix: &[u16],
 ) {
-    use uor_r4_integer::discrete_d11::native_occurrence::lexical::{Carry, WEIGHT_WORDS};
+    use uor_r4_integer::discrete_d11::native_occurrence::lexical::{
+        AugmentedAddressing, Carry, AUGMENTED_SLOTS, MATCHED_SLOT_MASK, SCORE_UNIT_Q48,
+        WEIGHT_WORDS,
+    };
     use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::LexicalHead;
     use uor_r4_integer::discrete_d11::P4LexicalCarry;
     let path = dir.join("synthetic.uorlex");
@@ -1017,10 +1020,87 @@ fn check_lexical_client(
     }
     let mut unknown =
         LexicalHead::encode_geometric_bound(state, P4LexicalCarry::RawMidpoint, &[0; WEIGHT_WORDS]);
-    unknown[39] = b'6';
+    unknown[39] = b'8';
     let (payload, digest) = unknown.split_at_mut(552);
     digest.copy_from_slice(&Sha256::digest(payload));
     assert!(LexicalHead::bind(&unknown, &state).is_err());
+    for (operator, magic, label) in [
+        (AugmentedAddressing::Joint, b"UORLEX06", "geometry-joint"),
+        (AugmentedAddressing::Unary, b"UORLEX07", "geometry-unary"),
+    ] {
+        let roots_for = |id: u16| {
+            let code = codebook[usize::from(id)];
+            std::array::from_fn(|bank| ((code >> (4 * bank)) & 15) as u8)
+        };
+        let slots_for = |id| carry.augmented_addresses(roots_for(id), operator).unwrap();
+        let mut words = [0; WEIGHT_WORDS];
+        let zero = LexicalHead::encode_augmented_bound(state, operator, &words).unwrap();
+        assert_eq!(zero.len(), 584);
+        assert_eq!(&zero[32..40], magic);
+        assert!(LexicalHead::bind(&zero[..583], &state).is_err());
+        assert!(LexicalHead::bind(&zero, &[0xa5; 32]).is_err());
+        let mut tampered = zero;
+        tampered[39] ^= 1;
+        assert!(LexicalHead::bind(&tampered, &state).is_err());
+        let (prior_slots, prior_extra) = slots_for(prior_winner);
+        fs::write(&path, zero).unwrap();
+        let unchanged = read(&ids, "1");
+        assert_eq!(unchanged["p4_lexical_addressing"], label);
+        assert_eq!(unchanged["generated_ids"][0], prior_winner);
+        let lexical = &unchanged["p4_steps"][0]["lexical"];
+        assert_eq!(lexical["addresses"], json!(prior_slots));
+        assert_eq!(lexical["extra_address"], prior_extra);
+        assert_eq!(lexical["score_q48"], lexical["prior_q48"]);
+
+        let unused = (0..WEIGHT_WORDS as u16)
+            .find(|&slot| {
+                MATCHED_SLOT_MASK & (1 << (usize::from(slot) % 64)) == 0
+                    && AUGMENTED_SLOTS.binary_search(&slot).is_err()
+            })
+            .unwrap();
+        words[usize::from(unused)] = 1;
+        assert!(LexicalHead::encode_augmented_bound(state, operator, &words).is_err());
+        let mut malformed = LexicalHead::encode_bound(state, false, &words);
+        malformed[32..40].copy_from_slice(magic);
+        let (payload, digest) = malformed.split_at_mut(552);
+        digest.copy_from_slice(&Sha256::digest(payload));
+        assert!(LexicalHead::bind(&malformed, &state).is_err());
+        words[usize::from(unused)] = 0;
+
+        // Lower the original winning fifth state, favor all others, and keep
+        // the old four scores zero so any change comes from the new term.
+        for addr in AUGMENTED_SLOTS {
+            words[usize::from(addr)] = i16::MAX;
+        }
+        words[usize::from(prior_extra)] = i16::MIN;
+        let bound = LexicalHead::encode_augmented_bound(state, operator, &words).unwrap();
+        let head = LexicalHead::bind(&bound, &state).unwrap();
+        let choice = head.commit(trunk, prefix, priors).unwrap();
+        assert_ne!(choice.token, prior_winner);
+        assert_ne!(choice.extra_address, Some(prior_extra));
+        assert_eq!(choice.carry_code, Some(recurrence));
+        assert_eq!(
+            choice.score_q48,
+            choice.prior_q48 as i64 + i64::from(i16::MAX) * SCORE_UNIT_Q48
+        );
+        assert_eq!(
+            head.score_augmented_q48(&carry, roots_for(choice.token), choice.prior_q48)
+                .unwrap(),
+            choice.score_q48
+        );
+        fs::write(&path, bound).unwrap();
+        let output = read(&ids, "2");
+        assert_eq!(output["generated_ids"][0], choice.token);
+        assert_eq!(output["p4_steps"][0]["lexical"], json!(choice));
+        assert_eq!(
+            output["p4_steps"][0]["mass_sha256"],
+            baseline["p4_steps"][0]["mass_sha256"]
+        );
+        assert_eq!(
+            output["p4_steps"][1],
+            read(&format!("{ids},{}", choice.token), "1")["p4_steps"][0]
+        );
+    }
     write(None, [0xa5; 32], false);
     assert!(!cli(&ids, "1").status.success());
     write(None, state, true);

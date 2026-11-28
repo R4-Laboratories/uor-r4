@@ -7,6 +7,7 @@ mod input;
 #[allow(dead_code)]
 #[path = "../../../antigravity-17/p4-qual/src/cuda.rs"]
 mod p4_cuda;
+mod prior_tape;
 #[allow(dead_code)]
 mod protected;
 
@@ -175,7 +176,7 @@ fn donor_ordinals(
     Ok((donors, width))
 }
 
-fn load_engines(path: &Path) -> Result<(Gpu, P4GpuEngine)> {
+fn load_engines(path: &Path, frozen_trunk: Option<&[u32]>) -> Result<(Gpu, P4GpuEngine)> {
     let ClientArtifactFile::Embedded {
         model,
         state_bytes,
@@ -199,8 +200,13 @@ fn load_engines(path: &Path) -> Result<(Gpu, P4GpuEngine)> {
         "P4 bound state changed",
     )?;
     let raw = p4_cuda::split_uorp4a01_sections(&state_bytes)?;
+    let trunk = model.model.p4_lexical_trunk_words()?;
+    require(
+        frozen_trunk.is_none_or(|expected| expected == trunk.as_slice()),
+        "frozen lexical trunk differs from the bound P4",
+    )?;
     Ok((
-        Gpu::new(&model.model.p4_lexical_trunk_words()?)?,
+        Gpu::new(&trunk)?,
         P4GpuEngine::new(
             raw.counts_v3,
             raw.s3_compact,
@@ -391,7 +397,7 @@ fn row_digest(row: &[u64]) -> String {
     hex::encode(hasher.finalize())
 }
 
-#[derive(Clone, Debug, Eq, PartialEq, Serialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 struct Observation {
     ordinal: usize,
     donor: usize,
@@ -724,7 +730,7 @@ fn run(
     let requests = protected::load(witness)?.requests();
     let old_slots = old_proof_slots(witness)?;
     let (donors, width) = donor_ordinals(&train, &common, &requests)?;
-    let (midpoint, p4) = load_engines(p4)?;
+    let (midpoint, p4) = load_engines(p4, None)?;
     let features = midpoint.capture(&train.prefixes)?;
     require(
         features.len() == train.ordinals.len(),
@@ -800,9 +806,23 @@ fn main() -> Result<()> {
         println!("finite census PASS");
         return Ok(());
     }
+    if let [cmd, p4, train, witness, frozen, ledger, proofs, trunk, out] = args.as_slice() {
+        if cmd == "prior-tape" {
+            return prior_tape::run(
+                Path::new(p4),
+                Path::new(train),
+                Path::new(witness),
+                Path::new(frozen),
+                Path::new(ledger),
+                Path::new(proofs),
+                Path::new(trunk),
+                Path::new(out),
+            );
+        }
+    }
     let [p4, train, witness, frozen, eligible, out] = args.as_slice() else {
         return Err(fail(
-            "expected finite or P4 TRAIN WITNESS_DIR FROZEN_SPARSE PROTECTED_SUMMARY FRESH_OUT",
+            "expected finite or P4 TRAIN WITNESS_DIR FROZEN_SPARSE PROTECTED_SUMMARY FRESH_OUT or prior-tape P4 TRAIN WITNESS_DIR FROZEN_SPARSE PRIOR_ROWS SNAPPED_PROOFS TRUNK FRESH_OUT",
         ));
     };
     run(

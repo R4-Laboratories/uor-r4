@@ -1,0 +1,4 @@
+baseline: all 2668 historical sites and 1334 disjoint proofs reproduced in GPU constraint tape
+baseline: verified 0 singleton losses and 1334 disjoint pairs, strict win upper bound 2552
+product: verified 0 singleton losses and 1136 disjoint pairs, strict win upper bound 2750
+unary: verified 0 singleton losses and 1278 disjoint pairs, strict win upper bound 2608

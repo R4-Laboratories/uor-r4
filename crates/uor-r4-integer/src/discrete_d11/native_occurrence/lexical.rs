@@ -1,6 +1,6 @@
 //! A signed lexical contribution addressed by relative native orbit transforms.
 
-use super::super::{cl06_bfs, orbit_root_id};
+use super::super::{cl06_bfs, cl06_compose, orbit_root_id};
 use crate::{invalid, Result};
 
 const BLOCKS: usize = 4;
@@ -12,6 +12,8 @@ pub(super) const ORDERED_MAGIC: &[u8; 8] = b"UORLEX02";
 pub(super) const MATCHED_ORDERED_MAGIC: &[u8; 8] = b"UORLEX03";
 pub(super) const TRANSPORTED_MIDPOINT_MAGIC: &[u8; 8] = b"UORLEX04";
 pub(super) const RAW_MIDPOINT_MAGIC: &[u8; 8] = b"UORLEX05";
+pub(super) const JOINT_MAGIC: &[u8; 8] = b"UORLEX06";
+pub(super) const UNARY_MAGIC: &[u8; 8] = b"UORLEX07";
 
 const fn reachable_mask() -> u64 {
     let mut mask = 0;
@@ -37,6 +39,32 @@ const MATCHED_SLOTS: [u16; MATCHED_COUNT] = {
     }
     slots
 };
+
+/// Fifth-state storage in physical word order, disjoint from the four banks' reads.
+pub const AUGMENTED_SLOTS: [u16; STATES] = {
+    let mut slots = [0; STATES];
+    let mut address = 0;
+    let mut index = 0;
+    while index < STATES {
+        if MATCHED_SLOT_MASK & (1 << (address % STATES)) == 0 {
+            slots[index] = address as u16;
+            index += 1;
+        }
+        address += 1;
+    }
+    slots
+};
+
+const SUPPORT_CLASS: [usize; ROOTS] = [0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 2, 2, 1, 1, 0];
+
+/// One bounded native term in addition to all four snapped relative words.
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum AugmentedAddressing {
+    /// Ordered Cl(0,6) product of banks zero and one, with bank one acting first.
+    Joint,
+    /// Bank-zero carry and the support class of the bank-zero target root.
+    Unary,
+}
 
 pub const STATE_BYTES: usize = MAGIC.len() + WEIGHT_WORDS * 2;
 /// One signed word contributes 2^-16 on the prior's unit mass scale.
@@ -143,12 +171,47 @@ impl Carry {
             (block * STATES + cl06_bfs(source, target)) as u16
         }))
     }
+
+    /// Return the four existing physical addresses and the fifth physical address.
+    pub fn augmented_addresses(
+        &self,
+        candidate_roots: [u8; BLOCKS],
+        operator: AugmentedAddressing,
+    ) -> Result<([u16; BLOCKS], u16)> {
+        let addresses = self.addresses(candidate_roots)?;
+        let state = match operator {
+            AugmentedAddressing::Joint => cl06_compose(
+                usize::from(addresses[0]),
+                usize::from(addresses[1]) - STATES,
+            ),
+            AugmentedAddressing::Unary => {
+                4 * usize::from(self.0[0]) + SUPPORT_CLASS[usize::from(candidate_roots[0])]
+            }
+        };
+        Ok((addresses, AUGMENTED_SLOTS[state]))
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Weights([i16; WEIGHT_WORDS]);
 
 impl Weights {
+    pub(super) fn validate_augmented(words: &[i16; WEIGHT_WORDS]) -> Result<()> {
+        for (address, &word) in words.iter().enumerate() {
+            if word != 0
+                && MATCHED_SLOT_MASK & (1 << (address % STATES)) == 0
+                && AUGMENTED_SLOTS.binary_search(&(address as u16)).is_err()
+            {
+                return Err(invalid("nonzero unused augmented lexical word"));
+            }
+        }
+        Ok(())
+    }
+
+    pub(super) fn validate_augmented_payload(&self) -> Result<()> {
+        Self::validate_augmented(&self.0)
+    }
+
     pub fn from_le_bytes(bytes: &[u8]) -> Result<Self> {
         Self::decode(bytes, MAGIC)
     }
@@ -192,6 +255,15 @@ impl Weights {
 
     /// The same scalar election applies to either lawful address operator.
     pub fn score_addresses_q48(&self, addresses: [u16; BLOCKS], prior_q48: u64) -> Result<i64> {
+        self.score_with_extra(addresses, None, prior_q48)
+    }
+
+    pub(super) fn score_with_extra(
+        &self,
+        addresses: [u16; BLOCKS],
+        extra_address: Option<u16>,
+        prior_q48: u64,
+    ) -> Result<i64> {
         if prior_q48 > MAX_PRIOR_Q48 {
             return Err(invalid("lexical prior is outside the Q48 mass domain"));
         }
@@ -202,7 +274,10 @@ impl Weights {
             }
             adjustment += i64::from(self.0[address]);
         }
-        // Four i16 magnitudes bound the scaled adjustment by 2^49.
+        if let Some(extra) = extra_address {
+            adjustment += i64::from(self.0[usize::from(extra)]);
+        }
+        // At most five signed i16 words on the unchanged Q48 scale.
         Ok(prior_q48 as i64 + adjustment * SCORE_UNIT_Q48)
     }
 }
@@ -232,6 +307,60 @@ mod tests {
                 }
             }
         }
+    }
+
+    #[test]
+    fn augmented_states_cover_exactly_the_reclaimed_words() {
+        let inactive: Vec<_> = (0..WEIGHT_WORDS as u16)
+            .filter(|&slot| MATCHED_SLOT_MASK & (1 << (usize::from(slot) % STATES)) == 0)
+            .collect();
+        assert_eq!(MATCHED_COUNT, 26);
+        assert_eq!(inactive.len(), 152);
+        assert_eq!(AUGMENTED_SLOTS, inactive[..STATES]);
+
+        let mut joint = std::collections::BTreeSet::new();
+        let mut unary = std::collections::BTreeSet::new();
+        let mut reversed_order_differs = false;
+        for source in 0..ROOTS {
+            let carry = Carry::from_packed((source | (source << 4)) as u16);
+            for (target, &class) in SUPPORT_CLASS.iter().enumerate() {
+                let coords = orbit_root_coords(target);
+                let axes: Vec<_> = (0..8).filter(|&axis| coords[axis] != 0).collect();
+                assert_eq!(axes, [[0, 1], [2, 4], [3, 7], [5, 6]][class]);
+                let (old, extra) = carry
+                    .augmented_addresses([target as u8, 0, 0, 0], AugmentedAddressing::Unary)
+                    .unwrap();
+                assert_eq!(old, carry.addresses([target as u8, 0, 0, 0]).unwrap());
+                assert_eq!(extra, AUGMENTED_SLOTS[4 * source + class]);
+                unary.insert(extra);
+            }
+        }
+        // Each bank chooses independently from all 16 source/target roots.
+        for source0 in 0..ROOTS {
+            for source1 in 0..ROOTS {
+                let carry = Carry::from_packed((source0 | (source1 << 4)) as u16);
+                for target0 in 0..ROOTS {
+                    for target1 in 0..ROOTS {
+                        let roots = [target0 as u8, target1 as u8, 0, 0];
+                        let (old, extra) = carry
+                            .augmented_addresses(roots, AugmentedAddressing::Joint)
+                            .unwrap();
+                        assert_eq!(old, carry.addresses(roots).unwrap());
+                        let state = AUGMENTED_SLOTS.binary_search(&extra).unwrap();
+                        let (left, right) = (usize::from(old[0]), usize::from(old[1]) - STATES);
+                        let witness = [1, 2, 3, 4, 5, 6, 7, 8];
+                        let forward = cl06_action(left, &cl06_action(right, &witness));
+                        let reverse = cl06_action(right, &cl06_action(left, &witness));
+                        assert_eq!(cl06_action(state, &witness), forward);
+                        reversed_order_differs |= forward != reverse;
+                        joint.insert(extra);
+                    }
+                }
+            }
+        }
+        assert!(reversed_order_differs);
+        assert_eq!(joint.into_iter().collect::<Vec<_>>(), AUGMENTED_SLOTS);
+        assert_eq!(unary.into_iter().collect::<Vec<_>>(), AUGMENTED_SLOTS);
     }
 
     #[test]

@@ -2,8 +2,9 @@
 
 use super::super::{IntegerDiscreteModel, P4LexicalCarry};
 use super::lexical::{
-    Carry, OrderedPrefix, Weights, MAGIC, MATCHED_ORDERED_MAGIC, ORDERED_MAGIC, RAW_MIDPOINT_MAGIC,
-    STATE_BYTES, TRANSPORTED_MIDPOINT_MAGIC, WEIGHT_WORDS,
+    AugmentedAddressing, Carry, OrderedPrefix, Weights, JOINT_MAGIC, MAGIC, MATCHED_ORDERED_MAGIC,
+    ORDERED_MAGIC, RAW_MIDPOINT_MAGIC, STATE_BYTES, TRANSPORTED_MIDPOINT_MAGIC, UNARY_MAGIC,
+    WEIGHT_WORDS,
 };
 use crate::{invalid, Result};
 use serde::Serialize;
@@ -15,6 +16,7 @@ pub const BOUND_BYTES: usize = 32 + STATE_BYTES + 32;
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Addressing {
     Geometry(P4LexicalCarry),
+    Augmented(AugmentedAddressing),
     Ordered,
     MatchedOrdered,
 }
@@ -25,6 +27,8 @@ impl Addressing {
             Self::Geometry(P4LexicalCarry::Snapped) => MAGIC,
             Self::Geometry(P4LexicalCarry::TransportedMidpoint) => TRANSPORTED_MIDPOINT_MAGIC,
             Self::Geometry(P4LexicalCarry::RawMidpoint) => RAW_MIDPOINT_MAGIC,
+            Self::Augmented(AugmentedAddressing::Joint) => JOINT_MAGIC,
+            Self::Augmented(AugmentedAddressing::Unary) => UNARY_MAGIC,
             Self::Ordered => ORDERED_MAGIC,
             Self::MatchedOrdered => MATCHED_ORDERED_MAGIC,
         }
@@ -44,6 +48,8 @@ pub struct LexicalChoice {
     pub score_q48: i64,
     pub top_ties: u32,
     pub addresses: [u16; 4],
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_address: Option<u16>,
 }
 
 impl LexicalHead {
@@ -74,6 +80,16 @@ impl LexicalHead {
         words: &[i16; WEIGHT_WORDS],
     ) -> [u8; BOUND_BYTES] {
         Self::encode(state, Addressing::Geometry(operator), words)
+    }
+
+    /// Bind the augmented native state, requiring unused physical words to be zero.
+    pub fn encode_augmented_bound(
+        state: [u8; 32],
+        operator: AugmentedAddressing,
+        words: &[i16; WEIGHT_WORDS],
+    ) -> Result<[u8; BOUND_BYTES]> {
+        Weights::validate_augmented(words)?;
+        Ok(Self::encode(state, Addressing::Augmented(operator), words))
     }
 
     fn encode(
@@ -108,10 +124,16 @@ impl LexicalHead {
             magic if magic == RAW_MIDPOINT_MAGIC => {
                 Addressing::Geometry(P4LexicalCarry::RawMidpoint)
             }
+            magic if magic == JOINT_MAGIC => Addressing::Augmented(AugmentedAddressing::Joint),
+            magic if magic == UNARY_MAGIC => Addressing::Augmented(AugmentedAddressing::Unary),
             _ => return Err(invalid("unknown lexical address operator")),
         };
+        let weights = Weights::decode(&payload[32..], addressing.magic())?;
+        if matches!(addressing, Addressing::Augmented(_)) {
+            weights.validate_augmented_payload()?;
+        }
         Ok(Self {
-            weights: Weights::decode(&payload[32..], addressing.magic())?,
+            weights,
             addressing,
         })
     }
@@ -128,6 +150,8 @@ impl LexicalHead {
             Addressing::Geometry(P4LexicalCarry::Snapped) => "geometry",
             Addressing::Geometry(P4LexicalCarry::TransportedMidpoint) => "midpoint-transported",
             Addressing::Geometry(P4LexicalCarry::RawMidpoint) => "midpoint-raw",
+            Addressing::Augmented(AugmentedAddressing::Joint) => "geometry-joint",
+            Addressing::Augmented(AugmentedAddressing::Unary) => "geometry-unary",
             Addressing::Ordered => "ordered",
             Addressing::MatchedOrdered => "ordered-matched",
         }
@@ -140,6 +164,21 @@ impl LexicalHead {
         } else {
             self.addressing_name()
         }
+    }
+
+    /// Replay the augmented lookup and signed score on supplied native operands.
+    pub fn score_augmented_q48(
+        &self,
+        carry: &Carry,
+        candidate_roots: [u8; 4],
+        prior_q48: u64,
+    ) -> Result<i64> {
+        let Addressing::Augmented(operator) = self.addressing else {
+            return Err(invalid("lexical head is not augmented"));
+        };
+        let (addresses, extra) = carry.augmented_addresses(candidate_roots, operator)?;
+        self.weights
+            .score_with_extra(addresses, Some(extra), prior_q48)
     }
 
     /// The caller supplies the current causal window and the masses just scored for it.
@@ -161,7 +200,11 @@ impl LexicalHead {
             ));
         }
         let (carry_code, ordered_prefix) = match self.addressing {
-            Addressing::Geometry(operator) => {
+            Addressing::Geometry(_) | Addressing::Augmented(_) => {
+                let operator = match self.addressing {
+                    Addressing::Geometry(operator) => operator,
+                    _ => P4LexicalCarry::Snapped,
+                };
                 let pointer = trunk
                     .trunk
                     .as_ref()
@@ -176,20 +219,30 @@ impl LexicalHead {
             }
         };
         let carry = carry_code.map(Carry::from_packed);
-        let addresses = |id: usize| match &ordered_prefix {
-            Some(ordered) if self.addressing == Addressing::MatchedOrdered => {
-                ordered.matched_addresses(id as u16)
+        let addresses = |id: usize| -> Result<([u16; 4], Option<u16>)> {
+            if let Some(ordered) = &ordered_prefix {
+                let slots = if self.addressing == Addressing::MatchedOrdered {
+                    ordered.matched_addresses(id as u16)?
+                } else {
+                    ordered.addresses(id as u16)?
+                };
+                return Ok((slots, None));
             }
-            Some(ordered) => ordered.addresses(id as u16),
-            None => carry
-                .ok_or_else(|| invalid("missing native lexical carry"))?
-                .addresses(trunk.codebook_roots[id]),
+            let carry = carry.ok_or_else(|| invalid("missing native lexical carry"))?;
+            let roots = trunk.codebook_roots[id];
+            if let Addressing::Augmented(operator) = self.addressing {
+                let (slots, extra) = carry.augmented_addresses(roots, operator)?;
+                Ok((slots, Some(extra)))
+            } else {
+                Ok((carry.addresses(roots)?, None))
+            }
         };
         let mut best = i64::MIN;
         let mut token = 0usize;
         let mut ties = 0;
         for (id, &prior) in priors.iter().enumerate().skip(1) {
-            let score = self.weights.score_addresses_q48(addresses(id)?, prior)?;
+            let (slots, extra) = addresses(id)?;
+            let score = self.weights.score_with_extra(slots, extra, prior)?;
             if score > best {
                 best = score;
                 token = id;
@@ -198,13 +251,15 @@ impl LexicalHead {
                 ties += 1;
             }
         }
+        let (addresses, extra_address) = addresses(token)?;
         Ok(LexicalChoice {
             carry_code,
             token: token as u16,
             prior_q48: priors[token],
             score_q48: best,
             top_ties: ties,
-            addresses: addresses(token)?,
+            addresses,
+            extra_address,
         })
     }
 }

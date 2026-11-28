@@ -1,0 +1,21 @@
+{
+  "pairs_verified": 1334,
+  "ordinals_verified": 2668,
+  "family_order": ["four_bank", "joint", "direct_tuple", "unary"],
+  "opposed": [1334, 504, 158, 935],
+  "strict_integer_losses": [1334, 504, 158, 935],
+  "original_id_tie_integer_losses": [1334, 504, 158, 935],
+  "strict_integer_upper_bounds": [2552, 3382, 3728, 2951],
+  "direct_tuple_real_strict_losses": 155,
+  "direct_tuple_real_id_tie_losses": 155,
+  "within_bank_relabel_checks": 1334,
+  "zero_fifth_checks": 1334,
+  "pairs_by_differing_banks": [0, 508, 491, 253, 82],
+  "joint_persisting_by_differing_banks": [0, 107, 107, 208, 82],
+  "joint_cleared_by_differing_banks": [0, 401, 384, 45, 0],
+  "unary_persisting_by_differing_banks": [0, 201, 431, 224, 79],
+  "unary_cleared_by_differing_banks": [0, 307, 60, 29, 3],
+  "joint_observed_states": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62],
+  "unary_observed_states": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63],
+  "joint_cleared_example": {"pair":0,"differing_banks":1,"ordinals":[38, 192],"ids_left":[1526, 3240],"ids_right":[62, 1336],"gold_left":[0, 6, 16, 2],"rival_left":[1, 6, 16, 2],"gold_right":[1, 11, 48, 3],"rival_right":[0, 11, 48, 3],"joint_left_right":[6, 17, 22, 11],"unary_left_right":[13, 12, 56, 57],"strict_thresholds":[-2, 41],"id_tie_thresholds":[-2, 41]}
+}

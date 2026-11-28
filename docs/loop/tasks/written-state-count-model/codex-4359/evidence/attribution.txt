@@ -1,0 +1,9 @@
+selected pairs baseline=1334 product=1136 unary=1278; singletons baseline=0 product=0 unary=0
+four-tuple irreducible integer=377 real=358; integer upper=3509 real upper=3528 (bar 3109)
+row classes [[non-reversal constant fifth, non-reversal changed fifth], [reversal constant fifth, reversal changed fifth]] = [[427, 332], [38, 339]]
+same snapped carry 350; same group 0; crossed equal candidate roots [515, 0, 621]; crossed equal candidate IDs [515, 2, 619]; within-side root aliases 0
+differing-bank histogram [0, 386, 251, 250, 249]; exact tuple reversals by differing banks [0, 1, 32, 95, 249]
+baseline row overlaps 82; baseline exact witness overlaps 82; unary exact overlaps 158
+real irreducible: Some((11, [Side { opening: 1236, group: 1299, carry: 32140, ids: [1042, 294], roots: [22117, 21024], addresses: [[16, 1, 4, 42, 51], [8, 4, 11, 42, 51]], delta: -2528388646, bound: 0 }, Side { opening: 1251, group: 1314, carry: 32140, ids: [294, 1042], roots: [21024, 22117], addresses: [[8, 4, 11, 42, 51], [16, 1, 4, 42, 51]], delta: 16878559132, bound: 4 }]))
+integer-only irreducible: Some((19, [Side { opening: 1692, group: 1775, carry: 65411, ids: [1601, 372], roots: [3279, 283], addresses: [[48, 3, 9, 7, 32], [10, 5, 34, 7, 32]], delta: 169338648, bound: 1 }, Side { opening: 3644, group: 3805, carry: 32654, ids: [314, 2211], roots: [33046, 36034], addresses: [[10, 5, 34, 7, 32], [48, 3, 9, 7, 32]], delta: -512236884, bound: 0 }]))
+no direct tuple bound: Some((1, [Side { opening: 161, group: 171, carry: 29315, ids: [1336, 1133], roots: [33326, 35770], addresses: [[16, 4, 0, 7, 19], [2, 11, 2, 7, 19]], delta: -2939942964, bound: 0 }, Side { opening: 3145, group: 3278, carry: 29326, ids: [598, 283], roots: [31671, 29219], addresses: [[2, 11, 2, 0, 19], [16, 4, 0, 0, 19]], delta: 234840514, bound: 1 }]))

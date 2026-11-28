@@ -1,0 +1,18 @@
+# Replay the joint-word certificate
+
+[codex] Use the immutable private dataset, object path, revision and SHA256 in [the restore receipt](evidence/restore.json). Extract the Zstandard tar on Linux, verify every member with `sha256sum --strict -c PACKET.sha256`. Access to the frozen P4, genuine recordings and private archives is the same as in [the prior replay](../codex-4357/REPLAY.md). The full archive is also on Wick at `/mnt/plexpool/uor-r4-corpus/runs/20261128-codex-joint-lexical`. The three large reproducible intermediate GPU signature files are in `census/scratch-store/scratch` on Wick. Their hashes travel in the private packet.
+
+Prepare independent table bytes from this revision with `rustc --edition=2021 table-bytes.rs -o table-bytes` then `./table-bytes PATH/TO/crates/uor-r4-integer/src/discrete_d11.rs FRESH_TABLES.bin`. Expected SHA256 is c2bb35194bc60bfdb2cfaead0e1dfd39bebe61af9c546097508c81a90a0ec741. The public runner directory also contains the captured immutable C++ initializer for this geometry. The author and independent reviewer verified every entry against the Rust table.
+
+From the restored packet, these host commands check recorded physical results. Set P to the absolute restored packet path and SCRATCH to the verified constraint directory. Integer tuple bounds in the raw receipt use the native 2^32 Q48 word increment. Its real-valued column relaxes that increment. The last command reads the three witness TSVs in baseline, product, unary order.
+
+```sh
+"$P/recount/recount" "$P/protected.tsv" "$P/attempt01/protected-raw.tsv" "$P/census/native-tables.bin"
+"$P/recount/census_audit" "$P/census/native-tables.bin" "$P/attempt02/tape/roots.bin" "$P/attempt02/tape/rows.bin" "$P/protected.tsv" "$SCRATCH/baseline.constraints" baseline "$SCRATCH/baseline.constraints" "$P/attempt02/baseline.witnesses.tsv" product "$SCRATCH/product.constraints" "$P/attempt02/product.witnesses.tsv" unary "$SCRATCH/unary.constraints" "$P/attempt02/unary.witnesses.tsv"
+rustc --edition=2021 -O "$P/recount/attribution.rs" -o /tmp/uor-4359-attribution
+/tmp/uor-4359-attribution "$P/attempt02/baseline.witnesses.tsv" "$P/attempt02/product.witnesses.tsv" "$P/attempt02/unary.witnesses.tsv"
+```
+
+For a new physical replay, first reproduce the frozen tape using the protected [capture command and device census](dispatch-census.sh) under an exclusive 4090 lock. Use the dated source revision from Git, the pinned sm_89 native midpoint and P4 modules from #4357 and the authenticated inputs in its packet. Build the CUDA checker and signature scanner with nvcc for sm_89, the matcher and two independent verifiers with rustc. The archived executables are included for exact reproduction. The full tape row layout is little-endian ordinal u32, conversation group u32, gold original ID u16, snapped carry u16, and 4,096 u64 original-ID-indexed prior values with a zero pad for ID 0. Candidate roots are a separate 4,096 × u16 array. SHA256s are 88785f80b461050b97a4d64e5342b638133c8ee82cbe366f59fbe2e5de571277 and 39b57770da91e031e2e9746d125af5f2d9faa7b11ef509a6bc6fb98b0535ae88 respectively. Generated signature scratch is reproducible from these files without the 3.99 GB model.
+
+The five independent ordinary starts are reproduced by [the cold replay](replay-ordinary.sh). Its arguments are the fresh build directory containing target/release/uor-chat, the original #4357 run root, the new sentinel-raw.tsv, and a fresh output directory. Input feature capture for this protected sentinel comes from #4357. The ordinary client independently recomputes the native carry, addresses, score and winner from the original prompt with CUDA hidden.
