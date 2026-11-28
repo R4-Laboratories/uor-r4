@@ -1,0 +1,22 @@
+{
+  "snapped": {
+    "pairs": 1334,
+    "shared_row_pairs": 1334,
+    "shared_row_and_rival_pairs": 1334
+  },
+  "transported": {
+    "pairs": 1357,
+    "shared_row_pairs": 15,
+    "shared_row_and_rival_pairs": 15
+  },
+  "raw": {
+    "pairs": 1527,
+    "shared_row_pairs": 3,
+    "shared_row_and_rival_pairs": 2
+  },
+  "swapped": {
+    "pairs": 1364,
+    "shared_row_pairs": 2,
+    "shared_row_and_rival_pairs": 1
+  }
+}

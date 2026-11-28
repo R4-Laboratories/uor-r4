@@ -10,6 +10,8 @@ pub const WEIGHT_WORDS: usize = BLOCKS * STATES;
 pub(super) const MAGIC: &[u8; 8] = b"UORLEX01";
 pub(super) const ORDERED_MAGIC: &[u8; 8] = b"UORLEX02";
 pub(super) const MATCHED_ORDERED_MAGIC: &[u8; 8] = b"UORLEX03";
+pub(super) const TRANSPORTED_MIDPOINT_MAGIC: &[u8; 8] = b"UORLEX04";
+pub(super) const RAW_MIDPOINT_MAGIC: &[u8; 8] = b"UORLEX05";
 
 const fn reachable_mask() -> u64 {
     let mut mask = 0;

@@ -680,8 +680,14 @@ D11_HD static void d11_trunk_consider_candidate(const uint32_t* trunk, int32_t v
 }
 
 // Shared native key for the unmodified trunk and the assistant-opening readout.
+struct D11MidpointRoots {
+    uint32_t transported;
+    uint32_t raw;
+};
+
 D11_HD static int32_t d11_trunk_recurrence(const D11Model* m, const uint32_t* prefix,
-                                           int32_t length, uint32_t* code, D11RowProbe* probe = 0) {
+                                           int32_t length, uint32_t* code, D11RowProbe* probe = 0,
+                                           D11MidpointRoots* midpoint = 0) {
     if (length <= 0) return D11_ERR_PREFIX_LENGTH;
     const uint32_t* step_candidates = m->trunk + 1;
     const uint32_t* norm_candidates = m->trunk + 65;
@@ -691,6 +697,7 @@ D11_HD static int32_t d11_trunk_recurrence(const D11Model* m, const uint32_t* pr
     int32_t prev_pos = last_pos > 0 ? last_pos - 1 : 0;
     int32_t mid_pos = last_pos / 2;
     uint32_t c_key = 0u;
+    D11MidpointRoots roots{};
     for (int32_t b = 0; b < 4; ++b) {
         int32_t acc = D11_IDENTITY;
         int32_t f_prev = D11_IDENTITY;
@@ -757,9 +764,21 @@ D11_HD static int32_t d11_trunk_recurrence(const D11Model* m, const uint32_t* pr
                 probe->recurrence_sum[8 * b + d] = sum_block[d];
             }
         }
+        if (midpoint != 0) {
+            d11_action(align_frame, mid_rot, normalized_block);
+            int32_t transported = d11_root_id(normalized_block);
+            d11_action(align_frame, mid_coords, normalized_block);
+            int32_t raw = d11_root_id(normalized_block);
+            if (transported < 0 || raw < 0) {
+                return D11_ERR_ORBIT;
+            }
+            roots.transported |= (uint32_t)transported << (4 * b);
+            roots.raw |= (uint32_t)raw << (4 * b);
+        }
     }
 
     *code = c_key;
+    if (midpoint != 0) *midpoint = roots;
     return D11_OK;
 }
 

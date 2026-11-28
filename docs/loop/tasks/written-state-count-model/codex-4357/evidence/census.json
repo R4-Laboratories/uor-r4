@@ -1,0 +1,73 @@
+{
+  "arms": {
+    "raw": {
+      "blocking_aliases": 0,
+      "disjoint_certified_pairs": 1527,
+      "excludes_retention": true,
+      "forced_errors": 1527,
+      "nonalias_inequalities": 15909205,
+      "opposed_rows_across_distinct_groups": 3723,
+      "original_rivals_per_row": 4094,
+      "row_signature_directions": 15567316,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "strict_win_upper_bound": 2359,
+      "weaker_full_aliases": 79
+    },
+    "snapped": {
+      "blocking_aliases": 0,
+      "disjoint_certified_pairs": 1334,
+      "excludes_retention": true,
+      "forced_errors": 1334,
+      "nonalias_inequalities": 15909205,
+      "opposed_rows_across_distinct_groups": 3686,
+      "original_rivals_per_row": 4094,
+      "row_signature_directions": 15567316,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "strict_win_upper_bound": 2552,
+      "weaker_full_aliases": 79
+    },
+    "swapped": {
+      "blocking_aliases": 0,
+      "disjoint_certified_pairs": 1364,
+      "excludes_retention": true,
+      "forced_errors": 1364,
+      "nonalias_inequalities": 15909205,
+      "opposed_rows_across_distinct_groups": 3581,
+      "original_rivals_per_row": 4094,
+      "row_signature_directions": 15567316,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "strict_win_upper_bound": 2522,
+      "weaker_full_aliases": 79
+    },
+    "transported": {
+      "blocking_aliases": 0,
+      "disjoint_certified_pairs": 1357,
+      "excludes_retention": true,
+      "forced_errors": 1357,
+      "nonalias_inequalities": 15909205,
+      "opposed_rows_across_distinct_groups": 3570,
+      "original_rivals_per_row": 4094,
+      "row_signature_directions": 15567316,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "strict_win_upper_bound": 2529,
+      "weaker_full_aliases": 79
+    }
+  },
+  "artifact": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "complement_donors": 1218,
+  "complement_rotation": 2,
+  "eligibility_sha256": "90eadf5bfc148f3c90f4955b6aa60a496b18c5875a823a9cfd4531eef523e3db",
+  "historical_common_sha256": "c9989459b37b3d2c6a9f337db199ad61f36d48bc186007227b9e518e7e58dd21",
+  "matching": "deterministic greedy on rows without a blocking alias",
+  "midpoint_cubin_sha256": "feca07ab5f82cd97b9cfad2c93af4dbd8789f7e51d0bb53ef744dd94532f443a",
+  "p4_prior_cubin_sha256": "7b12da42688cdd704ca042d1a0d928683ca21178eca124e011b2f58afeffaa74",
+  "prior_q48_sha256": "2a41c2bcdc8260f1fbf1cfee67b33b1c9fb99f153b99b0aa544da7c1fde0f2a7",
+  "prior_row_hashes_sha256": "d4137e3c64a6f83feff9e6dbea67a23ee76f78a27d1e98ac5007e69089576d3e",
+  "protected_donors": 2668,
+  "retention_bar": 3109,
+  "state": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778"
+}

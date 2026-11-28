@@ -245,12 +245,7 @@ fn run(args: Args) -> Result<()> {
     if let Some((head, digest)) = lexical {
         record["decoding"] = "greedy P4 with signed native lexical ranking".into();
         record["p4_lexical_sha256"] = digest.into();
-        record["p4_lexical_addressing"] = if head.is_ordered() {
-            "ordered"
-        } else {
-            "geometry"
-        }
-        .into();
+        record["p4_lexical_addressing"] = head.ordinary_addressing_name().into();
     }
     if let Some((tokenizer, protocol, digest)) = text {
         let visible = generated.strip_suffix(&[protocol.eos_id]);

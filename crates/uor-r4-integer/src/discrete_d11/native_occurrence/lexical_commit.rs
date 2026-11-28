@@ -1,9 +1,9 @@
 //! Optional original-ID election over the ordinary P4 candidate masses.
 
-use super::super::IntegerDiscreteModel;
+use super::super::{IntegerDiscreteModel, P4LexicalCarry};
 use super::lexical::{
-    Carry, OrderedPrefix, Weights, MAGIC, MATCHED_ORDERED_MAGIC, ORDERED_MAGIC, STATE_BYTES,
-    WEIGHT_WORDS,
+    Carry, OrderedPrefix, Weights, MAGIC, MATCHED_ORDERED_MAGIC, ORDERED_MAGIC, RAW_MIDPOINT_MAGIC,
+    STATE_BYTES, TRANSPORTED_MIDPOINT_MAGIC, WEIGHT_WORDS,
 };
 use crate::{invalid, Result};
 use serde::Serialize;
@@ -14,7 +14,7 @@ pub const BOUND_BYTES: usize = 32 + STATE_BYTES + 32;
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Addressing {
-    Geometry,
+    Geometry(P4LexicalCarry),
     Ordered,
     MatchedOrdered,
 }
@@ -22,7 +22,9 @@ enum Addressing {
 impl Addressing {
     fn magic(self) -> &'static [u8; 8] {
         match self {
-            Self::Geometry => MAGIC,
+            Self::Geometry(P4LexicalCarry::Snapped) => MAGIC,
+            Self::Geometry(P4LexicalCarry::TransportedMidpoint) => TRANSPORTED_MIDPOINT_MAGIC,
+            Self::Geometry(P4LexicalCarry::RawMidpoint) => RAW_MIDPOINT_MAGIC,
             Self::Ordered => ORDERED_MAGIC,
             Self::MatchedOrdered => MATCHED_ORDERED_MAGIC,
         }
@@ -56,7 +58,7 @@ impl LexicalHead {
             if ordered {
                 Addressing::Ordered
             } else {
-                Addressing::Geometry
+                Addressing::Geometry(P4LexicalCarry::Snapped)
             },
             words,
         )
@@ -64,6 +66,14 @@ impl LexicalHead {
 
     pub fn encode_matched_bound(state: [u8; 32], words: &[i16; WEIGHT_WORDS]) -> [u8; BOUND_BYTES] {
         Self::encode(state, Addressing::MatchedOrdered, words)
+    }
+
+    pub fn encode_geometric_bound(
+        state: [u8; 32],
+        operator: P4LexicalCarry,
+        words: &[i16; WEIGHT_WORDS],
+    ) -> [u8; BOUND_BYTES] {
+        Self::encode(state, Addressing::Geometry(operator), words)
     }
 
     fn encode(
@@ -89,9 +99,15 @@ impl LexicalHead {
             return Err(invalid("lexical head checksum differs"));
         }
         let addressing = match &payload[32..40] {
-            magic if magic == MAGIC => Addressing::Geometry,
+            magic if magic == MAGIC => Addressing::Geometry(P4LexicalCarry::Snapped),
             magic if magic == ORDERED_MAGIC => Addressing::Ordered,
             magic if magic == MATCHED_ORDERED_MAGIC => Addressing::MatchedOrdered,
+            magic if magic == TRANSPORTED_MIDPOINT_MAGIC => {
+                Addressing::Geometry(P4LexicalCarry::TransportedMidpoint)
+            }
+            magic if magic == RAW_MIDPOINT_MAGIC => {
+                Addressing::Geometry(P4LexicalCarry::RawMidpoint)
+            }
             _ => return Err(invalid("unknown lexical address operator")),
         };
         Ok(Self {
@@ -101,14 +117,28 @@ impl LexicalHead {
     }
 
     pub fn is_ordered(&self) -> bool {
-        self.addressing != Addressing::Geometry
+        matches!(
+            self.addressing,
+            Addressing::Ordered | Addressing::MatchedOrdered
+        )
     }
 
     pub fn addressing_name(&self) -> &'static str {
         match self.addressing {
-            Addressing::Geometry => "geometry",
+            Addressing::Geometry(P4LexicalCarry::Snapped) => "geometry",
+            Addressing::Geometry(P4LexicalCarry::TransportedMidpoint) => "midpoint-transported",
+            Addressing::Geometry(P4LexicalCarry::RawMidpoint) => "midpoint-raw",
             Addressing::Ordered => "ordered",
             Addressing::MatchedOrdered => "ordered-matched",
+        }
+    }
+
+    /// Preserve the ordinary trace's label for both historical ordered operators.
+    pub fn ordinary_addressing_name(&self) -> &'static str {
+        if self.is_ordered() {
+            "ordered"
+        } else {
+            self.addressing_name()
         }
     }
 
@@ -130,17 +160,20 @@ impl LexicalHead {
                 "lexical election requires an aligned P4 vocabulary and causal prefix",
             ));
         }
-        let (carry_code, ordered_prefix) = if self.is_ordered() {
-            (None, Some(OrderedPrefix::new(prefix)?))
-        } else {
-            let pointer = trunk
-                .trunk
-                .as_ref()
-                .ok_or_else(|| invalid("lexical election requires a recurrence trunk"))?;
-            (
-                Some(pointer.compute_rec_code(prefix, &trunk.codebook_roots)?),
-                None,
-            )
+        let (carry_code, ordered_prefix) = match self.addressing {
+            Addressing::Geometry(operator) => {
+                let pointer = trunk
+                    .trunk
+                    .as_ref()
+                    .ok_or_else(|| invalid("lexical election requires a recurrence trunk"))?;
+                (
+                    Some(pointer.compute_carry_code(prefix, &trunk.codebook_roots, operator)?),
+                    None,
+                )
+            }
+            Addressing::Ordered | Addressing::MatchedOrdered => {
+                (None, Some(OrderedPrefix::new(prefix)?))
+            }
         };
         let carry = carry_code.map(Carry::from_packed);
         let addresses = |id: usize| match &ordered_prefix {

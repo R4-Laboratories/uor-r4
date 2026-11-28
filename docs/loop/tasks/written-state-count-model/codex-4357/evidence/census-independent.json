@@ -1,0 +1,41 @@
+{
+  "arms": {
+    "raw": {
+      "certified_alias_rows": 0,
+      "certified_disjoint_pairs": 1527,
+      "forced_errors": 1527,
+      "proof_sha256": "87e81f079197d59879fe2060f7e2ea4d8ec0e1a1652c1684cd03d6a38a3440f4",
+      "strict_win_upper_bound": 2359,
+      "unique_proof_rows": 3054
+    },
+    "snapped": {
+      "certified_alias_rows": 0,
+      "certified_disjoint_pairs": 1334,
+      "forced_errors": 1334,
+      "proof_sha256": "a67b663e7271bd60b12688a24e4d8e25b4f63fffe700e29a69230d939b4621f1",
+      "strict_win_upper_bound": 2552,
+      "unique_proof_rows": 2668
+    },
+    "swapped": {
+      "certified_alias_rows": 0,
+      "certified_disjoint_pairs": 1364,
+      "forced_errors": 1364,
+      "proof_sha256": "dacf771e9470ae96d6a162318e3cf991359c72cc475fadaa9360fd0b42380380",
+      "strict_win_upper_bound": 2522,
+      "unique_proof_rows": 2728
+    },
+    "transported": {
+      "certified_alias_rows": 0,
+      "certified_disjoint_pairs": 1357,
+      "forced_errors": 1357,
+      "proof_sha256": "7978bcc0e60d1eefeb38d5a5a6e8cc38309feff067e3698dacbefba25db87c54",
+      "strict_win_upper_bound": 2529,
+      "unique_proof_rows": 2714
+    }
+  },
+  "common_rows": 3886,
+  "original_rivals_per_row": 4094,
+  "prior_row_hashes_sha256": "d4137e3c64a6f83feff9e6dbea67a23ee76f78a27d1e98ac5007e69089576d3e",
+  "reported_bulk_prior_q48_sha256": "2a41c2bcdc8260f1fbf1cfee67b33b1c9fb99f153b99b0aa544da7c1fde0f2a7",
+  "verified": "selected GPU certificates and upper bounds"
+}

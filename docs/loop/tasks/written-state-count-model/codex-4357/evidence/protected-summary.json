@@ -1,0 +1,74 @@
+{
+  "arms": {
+    "raw": {
+      "carry_changed_rows": 2667,
+      "cleared_pairs": 1292,
+      "contrast_changed_rows": 2563,
+      "eligible_for_full_census": true,
+      "individual_impossibilities": 0,
+      "preserved_opposite_proofs": 42,
+      "preserved_pairs": 42,
+      "strict_impossible_aliases": 0,
+      "strict_win_upper_bound": 3844,
+      "unique_forced_errors": 42
+    },
+    "relabeled": {
+      "carry_changed_rows": 0,
+      "cleared_pairs": 0,
+      "contrast_changed_rows": 2668,
+      "eligible_for_full_census": false,
+      "individual_impossibilities": 0,
+      "preserved_opposite_proofs": 1334,
+      "preserved_pairs": 1334,
+      "strict_impossible_aliases": 0,
+      "strict_win_upper_bound": 2552,
+      "unique_forced_errors": 1334
+    },
+    "snapped": {
+      "carry_changed_rows": 0,
+      "cleared_pairs": 0,
+      "contrast_changed_rows": 0,
+      "eligible_for_full_census": false,
+      "individual_impossibilities": 0,
+      "preserved_opposite_proofs": 1334,
+      "preserved_pairs": 1334,
+      "strict_impossible_aliases": 0,
+      "strict_win_upper_bound": 2552,
+      "unique_forced_errors": 1334
+    },
+    "swapped": {
+      "carry_changed_rows": 2668,
+      "cleared_pairs": 1307,
+      "contrast_changed_rows": 2593,
+      "eligible_for_full_census": true,
+      "individual_impossibilities": 0,
+      "preserved_opposite_proofs": 27,
+      "preserved_pairs": 27,
+      "strict_impossible_aliases": 0,
+      "strict_win_upper_bound": 3859,
+      "unique_forced_errors": 27
+    },
+    "transported": {
+      "carry_changed_rows": 2646,
+      "cleared_pairs": 1219,
+      "contrast_changed_rows": 2157,
+      "eligible_for_full_census": true,
+      "individual_impossibilities": 0,
+      "preserved_opposite_proofs": 115,
+      "preserved_pairs": 115,
+      "strict_impossible_aliases": 0,
+      "strict_win_upper_bound": 3771,
+      "unique_forced_errors": 115
+    }
+  },
+  "common_population": 3886,
+  "maximum_forced_errors_at_bar": 777,
+  "minimum_cleared_pairs": 557,
+  "protected_pairs": 1334,
+  "protected_rows": 2668,
+  "relabel_policy": "within bank b, ((2b+3)*slot+13+4b) mod 64",
+  "retention_bar": 3109,
+  "source_certificates_sha256": "a84ca2250df04cee9f3915377af1675cd4bffbdb2d0a38573c8078dbcf27b407",
+  "source_observations_sha256": "1a553f635caa4b3920fc076ddb3e8cc21510da8be490058e967a7aef09ca24cb",
+  "swap_policy": "sort by (group, ordinal), rotate by largest group count"
+}

@@ -736,6 +736,7 @@ fn check_lexical_client(
 ) {
     use uor_r4_integer::discrete_d11::native_occurrence::lexical::{Carry, WEIGHT_WORDS};
     use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::LexicalHead;
+    use uor_r4_integer::discrete_d11::P4LexicalCarry;
     let path = dir.join("synthetic.uorlex");
     let mut session = P4Session::new();
     session.sync_prompt(prefix).unwrap();
@@ -968,6 +969,58 @@ fn check_lexical_client(
         matched["p4_steps"][1],
         read(&format!("{ids},{target}"), "1")["p4_steps"][0]
     );
+    for (operator, magic, label) in [
+        (
+            P4LexicalCarry::TransportedMidpoint,
+            b"UORLEX04",
+            "midpoint-transported",
+        ),
+        (P4LexicalCarry::RawMidpoint, b"UORLEX05", "midpoint-raw"),
+    ] {
+        // Position floor((5 - 1) / 2) is original ID 5 after the true BOS.
+        // The earlier BOS would move the midpoint if it were used instead.
+        let active = [0, 2, 5, 6, 7];
+        let replay = [0, 13, 0, 2, 5, 6, 7];
+        let carry_code = trunk.p4_lexical_carry(&replay, operator).unwrap();
+        assert_eq!(carry_code, 0x5555);
+        assert_eq!(
+            trunk.p4_lexical_carry(&active, operator).unwrap(),
+            carry_code
+        );
+        let bound = LexicalHead::encode_geometric_bound(state, operator, &[0; WEIGHT_WORDS]);
+        assert_eq!(bound.len(), 584);
+        assert_eq!(&bound[32..40], magic);
+        assert!(LexicalHead::bind(&bound, &[0xa5; 32]).is_err());
+        let head = LexicalHead::bind(&bound, &state).unwrap();
+        assert_eq!(head.addressing_name(), label);
+
+        let mut session = P4Session::new();
+        session.sync_prompt(&replay).unwrap();
+        let (winner, _) = session.step(p4, true, false).unwrap();
+        let choice = head
+            .commit(trunk, &active, session.last_scores_q48())
+            .unwrap();
+        assert_eq!(choice.token, winner);
+        assert_eq!(choice.carry_code, Some(carry_code));
+        assert_eq!(choice.score_q48, choice.prior_q48 as i64);
+
+        fs::write(&path, bound).unwrap();
+        let output = read("0,13,0,2,5,6,7", "1");
+        assert_eq!(output["p4_lexical_addressing"], label);
+        assert_eq!(output["generated_ids"][0], winner);
+        assert_eq!(output["p4_steps"][0]["lexical"], json!(choice));
+        assert_eq!(output["p4_steps"][0], read("0,2,5,6,7", "1")["p4_steps"][0]);
+
+        let mut swapped = bound;
+        swapped[39] = if magic[7] == b'4' { b'5' } else { b'4' };
+        assert!(LexicalHead::bind(&swapped, &state).is_err());
+    }
+    let mut unknown =
+        LexicalHead::encode_geometric_bound(state, P4LexicalCarry::RawMidpoint, &[0; WEIGHT_WORDS]);
+    unknown[39] = b'6';
+    let (payload, digest) = unknown.split_at_mut(552);
+    digest.copy_from_slice(&Sha256::digest(payload));
+    assert!(LexicalHead::bind(&unknown, &state).is_err());
     write(None, [0xa5; 32], false);
     assert!(!cli(&ids, "1").status.success());
     write(None, state, true);

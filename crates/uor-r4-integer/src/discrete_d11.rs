@@ -1278,6 +1278,14 @@ struct DiscreteTrunkTables {
     query_rec_unit_table: DiscreteSparseCountTable,
 }
 
+/// Select the native carry used by the P4 lexical address read.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum P4LexicalCarry {
+    Snapped,
+    TransportedMidpoint,
+    RawMidpoint,
+}
+
 impl DiscreteTrunkTables {
     fn level3_joint_pointer_score(
         &self,
@@ -1362,12 +1370,28 @@ impl DiscreteTrunkTables {
         prefix: &[T],
         codebook_roots: &[[u8; 4]],
     ) -> Result<u16> {
+        self.compute_carry_code(prefix, codebook_roots, P4LexicalCarry::Snapped)
+    }
+
+    fn compute_carry_code<T: Copy + Into<u32>>(
+        &self,
+        prefix: &[T],
+        codebook_roots: &[[u8; 4]],
+        operator: P4LexicalCarry,
+    ) -> Result<u16> {
         let len = prefix.len();
         let last_pos = len - 1;
         let prev_pos = last_pos.saturating_sub(1);
         let mid_pos = last_pos / 2;
         let mut out_roots = [0u8; 4];
         for b in 0..4 {
+            let r_mid = usize::from(codebook_roots[prefix[mid_pos].into() as usize][b]);
+            let align_frame = usize::from(self.norm_candidates[b]);
+            let mid_coords = orbit_root_coords(r_mid);
+            if operator == P4LexicalCarry::RawMidpoint {
+                out_roots[b] = Self::normalize_carry(align_frame, &mid_coords)?;
+                continue;
+            }
             let mut acc = usize::from(IDENTITY);
             let mut prev_acc = acc;
             let mut mid_acc = acc;
@@ -1383,17 +1407,20 @@ impl DiscreteTrunkTables {
                 }
             }
             let f_last = acc;
-            let h_prev = compose(f_last, cl06_inverse(prev_acc));
             let h_mid = compose(f_last, cl06_inverse(mid_acc));
+            let mid_rot = action(h_mid, &mid_coords);
+            if operator == P4LexicalCarry::TransportedMidpoint {
+                out_roots[b] = Self::normalize_carry(align_frame, &mid_rot)?;
+                continue;
+            }
 
+            let h_prev = compose(f_last, cl06_inverse(prev_acc));
             let r_start = usize::from(codebook_roots[prefix[0].into() as usize][b]);
             let r_last = usize::from(codebook_roots[prefix[last_pos].into() as usize][b]);
             let r_prev = usize::from(codebook_roots[prefix[prev_pos].into() as usize][b]);
-            let r_mid = usize::from(codebook_roots[prefix[mid_pos].into() as usize][b]);
 
             let q_coords = orbit_root_coords(r_last);
             let prev_rot = action(h_prev, &orbit_root_coords(r_prev));
-            let mid_rot = action(h_mid, &orbit_root_coords(r_mid));
             let full_rot = action(f_last, &orbit_root_coords(r_start));
 
             let mut sum_block = [0i32; 8];
@@ -1402,14 +1429,15 @@ impl DiscreteTrunkTables {
             }
             let snapped_root = snap(&sum_block, 4);
             let snapped_coords = orbit_root_coords(snapped_root);
-            let align_frame = usize::from(self.norm_candidates[b]);
-            let normalized_block = action(align_frame, &snapped_coords);
-            let norm_root = root_id(&normalized_block)
-                .ok_or_else(|| invalid("normalized recurrence block outside 16-root orbit"))?
-                as u8;
-            out_roots[b] = norm_root;
+            out_roots[b] = Self::normalize_carry(align_frame, &snapped_coords)?;
         }
         Ok(pack_4block_roots(out_roots))
+    }
+
+    fn normalize_carry(frame: usize, coords: &[i32; 8]) -> Result<u8> {
+        root_id(&action(frame, coords))
+            .map(|root| root as u8)
+            .ok_or_else(|| invalid("normalized recurrence block outside 16-root orbit"))
     }
 
     fn apply_joint_pointer_gate(
@@ -4232,6 +4260,27 @@ impl IntegerDiscreteModel {
             .collect()
     }
 
+    /// Replay the lexical carry on the active original-ID record starting at
+    /// the last BOS (or at the first ID of an already-slid window).
+    pub fn p4_lexical_carry(&self, prefix: &[u16], operator: P4LexicalCarry) -> Result<u16> {
+        let start = prefix.iter().rposition(|&id| id == 0).unwrap_or(0);
+        let prefix = &prefix[start..];
+        if prefix.is_empty()
+            || prefix.len() > 2048
+            || self.codebook_roots.len() != 4096
+            || prefix.iter().any(|&id| id >= 4096)
+        {
+            return Err(invalid(
+                "lexical election requires an aligned P4 vocabulary and causal prefix",
+            ));
+        }
+        let trunk = self
+            .trunk
+            .as_ref()
+            .ok_or_else(|| invalid("lexical election requires a recurrence trunk"))?;
+        trunk.compute_carry_code(prefix, &self.codebook_roots, operator)
+    }
+
     /// Minimal input for the shared AOT D11 recurrence. The ignored unigram
     /// words between the transforms and original-ID roots are zero-filled.
     pub fn p4_lexical_trunk_words(&self) -> Result<Vec<u32>> {
@@ -6094,7 +6143,7 @@ mod tests {
         container.resize(container.len() + pad, 0);
         container.extend_from_slice(&blob);
 
-        let model = IntegerDiscreteModel::from_bytes(&container).unwrap();
+        let mut model = IntegerDiscreteModel::from_bytes(&container).unwrap();
         assert!(model.is_trunk_d11());
         let eval = model.evaluate_prefix(&[0]).unwrap();
         let expected_b4: Vec<i32> = tok2.iter().flatten().copied().collect();
@@ -6147,6 +6196,45 @@ mod tests {
         let mut bad_tail = container;
         bad_tail[q_offset..q_offset + 4].copy_from_slice(&99u32.to_le_bytes());
         assert!(IntegerDiscreteModel::from_bytes(&bad_tail).is_err());
+
+        let trunk = model.trunk.as_mut().unwrap();
+        trunk.step_candidates = std::array::from_fn(|slot| (slot % 64) as u8);
+        trunk.norm_candidates = [6, 13, 20, 29];
+        let roots = &model.codebook_roots;
+        let replay = [0u16, 2, 1, 2, 1, 2];
+        let oracle = |operator| {
+            let mid = (replay.len() - 1) / 2;
+            pack_4block_roots(std::array::from_fn(|bank| {
+                let raw = orbit_root_coords(usize::from(roots[usize::from(replay[mid])][bank]));
+                let vector = if operator == P4LexicalCarry::TransportedMidpoint {
+                    replay[mid + 1..].iter().fold(raw, |carried, &id| {
+                        let root = usize::from(roots[usize::from(id)][bank]);
+                        action(
+                            usize::from(trunk.step_candidates[bank * 16 + root]),
+                            &carried,
+                        )
+                    })
+                } else {
+                    raw
+                };
+                root_id(&action(usize::from(trunk.norm_candidates[bank]), &vector)).unwrap() as u8
+            }))
+        };
+        let transported = P4LexicalCarry::TransportedMidpoint;
+        let raw = P4LexicalCarry::RawMidpoint;
+        assert_ne!(oracle(transported), oracle(raw));
+        for operator in [transported, raw] {
+            let actual = trunk.compute_carry_code(&replay, roots, operator).unwrap();
+            assert_eq!(actual, oracle(operator));
+            let mut changed_earlier = replay;
+            changed_earlier[1] = 1;
+            assert_eq!(
+                actual,
+                trunk
+                    .compute_carry_code(&changed_earlier, roots, operator)
+                    .unwrap()
+            );
+        }
     }
 
     fn pick_shape(read_position: u32) -> DiscreteLutShape {
