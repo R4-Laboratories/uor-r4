@@ -1,0 +1,121 @@
+{
+  "census": {
+    "eligible": 9,
+    "eligible_domains": {
+      "cnn": 2,
+      "gutenberg": 3,
+      "wikipedia": 4
+    },
+    "eligible_earlier_rounds": {
+      "1": 9
+    },
+    "exact_standalone_leading_space": 0,
+    "licensed_domains": {
+      "cnn": 100,
+      "gutenberg": 100,
+      "wikipedia": 100
+    },
+    "prefix_id_range": [
+      496,
+      933
+    ],
+    "reference_id_range_including_eos": [
+      3,
+      12
+    ],
+    "selected": 9,
+    "selected_after_previous_eos": 9,
+    "selected_domains": {
+      "cnn": 2,
+      "gutenberg": 3,
+      "wikipedia": 4
+    },
+    "selected_earlier_rounds": {
+      "1": 9
+    },
+    "source_conversations": 500,
+    "source_domains": {
+      "cnn": 100,
+      "gutenberg": 100,
+      "mctest": 100,
+      "race": 100,
+      "wikipedia": 100
+    },
+    "source_refusals": {
+      "no_admissible_target_turn": 1,
+      "out_of_scope_source_domain": 200,
+      "prior_conversation_id": 289,
+      "prior_source_filename": 1
+    },
+    "turn_refusals_before_first_admissible": {
+      "known_coqa_exact_question": 4
+    }
+  },
+  "context_ids": 2048,
+  "controls": {
+    "original_turn_order_and_context_overflow": "pass",
+    "planted_exact_coqa_and_d87_questions_and_templates": "pass",
+    "planted_prior_id_filename_and_complete_passage": "pass",
+    "prior_and_reference_eos_and_embedded_special_id": "pass",
+    "separate_blind_and_truth_roundtrip": "pass"
+  },
+  "dialogue_protocol": "blake3:4c9778ead027688600d2211e50cbfae98ac15f932a0827c01ec2389c521fef27",
+  "inputs": {
+    "d87_normalized_followup_templates": 40,
+    "d87_prompt_digests": 692364,
+    "excluded_complete_passage_digests": 474,
+    "excluded_source_filenames": 474,
+    "excluded_source_ids": 474,
+    "files": {
+      "20261127-codex-marker-question/panel-v2/held/keys.jsonl": "c7e67e6c96f297bd1e17614354f9525325895872b82d872fea6999974310acc5",
+      "20261127-codex-marker-question/panel-v2/train/keys.jsonl": "91a7f5c743dd5ede11e5ce6876229f5692a3cb82cf770ae7d0882a8634d2165d",
+      "20261127-codex-question-swap/panel/frozen-v2/keys.jsonl": "866a01878f6c2890a4dbe715a45808df171afe47f7bbc466bf74f6cf578815bd",
+      "20261127-codex-shared-source/panel-v1/human/keys.jsonl": "fcd87c28afde5a9e1dd9284d31e4630fe28535c8cde475e153b669cfc6f9f231",
+      "20261127-codex-visible-answer/panel/frozen-v1/judgments.jsonl": "bea3926ba99a205a2035ae81c8aaa78cc864f6cccf408a071bcccca4553f86aa",
+      "20261127-codex-visible-answer/panel/inputs/coqa-dev-v1.0.json": "dfa367a9733ce53222918d0231d9b3bedc2b8ee831a2845f62dfc70701f2540a",
+      "20261127-codex-visible-answer/panel/inputs/d87-bank-prompt-digests.txt": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+      "20261127-codex-visible-answer/panel/inputs/tokenizer.json": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+    },
+    "historical_union_4312_through_4314": 210,
+    "known_coqa_roster_counts": {
+      "4312": 200,
+      "4313": 5,
+      "4314-held": 5,
+      "4314-train": 0,
+      "4315": 29
+    },
+    "known_panel_question_digests": 1149,
+    "known_scored_source_union": 239,
+    "preview_only_source_ids": 235,
+    "preview_rosters": {
+      "4313-reproduced.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4313-retained.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4314-reproduced.jsonl": {
+        "rows": 11,
+        "sha256": "de5a7dcd1b7185c2df230577e542a5cad86e5828b3df371a5dbd559345381e01",
+        "unique_sources": 8
+      },
+      "4315-reproduced.jsonl": {
+        "rows": 955,
+        "sha256": "f6fa34deda5c4ef8b540d105f4305d8c79cdf985c079fd0a359760f9ee4f9385",
+        "unique_sources": 264
+      }
+    },
+    "preview_source_union": 274
+  },
+  "maximum_selected": 200,
+  "output_sha256": {
+    "blind.jsonl": "0e16de2d14aa0335b4646037f9c8d6ffeed453fd4e00893820617c042f0e970f",
+    "truth.jsonl": "40f4166523171de1ca599c8250c0f86e8fdf3db62e9528f6cd0b0e129602eb58"
+  },
+  "pool": "dev",
+  "schema": "uor-r4/held-coqa-source-supply/1"
+}

@@ -1,0 +1,11 @@
+# Prepare real causal training and independent evaluation for the lexical weights
+
+Lab: codex. Item: [written-state-count-model](../../../../roadmap/items/written-state-count-model.md), #4063. Continues [#4349](https://github.com/UOR-Foundation/uor-r4/pull/4349).
+
+**Cancel probe.** #4350 is integrated. #4349 demonstrated an independently adjustable original lexical ID at an ordinary P4 commit on a finite fixture. The known #4314 fitting donor and earlier #4310–4314 human panels have prior exposure. Before a fit, require actual full causal prefixes, reference lexical IDs, a blind ordinary interface and a disjoint transfer inventory. Source, masks, original text and identities stay private.
+
+**Scope.** This task directory and the #4063 data-tokenizer notebook. Register the population and exclusions before opening real rows. Reuse the canonical #4314 source turn offsets and prior public-source rosters on Wick. Prepare a TRAIN tape of visible lexical targets, including the exact standalone space only when present in the observed reference. Independently screen fresh human dialogue for complete canonical openings and unchanged human answers. Preserve separately closed earlier assistant turns, original token IDs, reference EOS, dataset provenance and a separate prompt-only stream. Check the exclusion method against planted overlap. Fit preparation includes causal inputs only. A real fit is a subsequent GPU unit.
+
+**Done check.** Report TRAIN rows admitted/refused, multis and real standalone-space offsets, reproduced complete prefixes and gold from independent source material, and achieved independent human transfer supply under the registered screen. Keep counts by source and single/multi-turn. Freeze SHA-256 identities and round-trip the private artifacts. A shortfall remains a finding and must not be filled by quietly relaxing criteria. No first-wrong, learned rank or useful-chat claim without model execution.
+
+**Stop list.** No model forward, no CPU or GPU training, no paid rental, no access to sealed D87 DEV, no gold passage cropping, no synthetic dialogue, no tuning eligibility based on model outcomes and no inclusion of a prior exposed conversation in fresh totals. Host-only deterministic source preparation on Wick.

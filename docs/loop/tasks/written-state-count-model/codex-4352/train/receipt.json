@@ -1,0 +1,108 @@
+{
+  "all": {
+    "admitted": 3891,
+    "immediate_admitted": 2068,
+    "immediate_seen": 2149,
+    "masked_earlier_eos_admitted": 184,
+    "masked_earlier_eos_seen": 285,
+    "other_precursor_seen": 0,
+    "refusal_reasons": {
+      "full_opening_over_cap": 454
+    },
+    "refused": 454,
+    "seen": 4345,
+    "standalone_space_admitted": 1823,
+    "standalone_space_seen": 2196,
+    "target_id_absent_from_lexical_prefix": 2188
+  },
+  "cap": 2048,
+  "files": {
+    "inputs.jsonl": {
+      "bytes": 10607176,
+      "sha256": "5dd411d7dee1335784efc5868adf58a6979da18d4b743809e36b12bd44dc6829"
+    },
+    "labels.jsonl": {
+      "bytes": 271289,
+      "sha256": "e26f239df8aba2e977bf5372dac8cdc9511e516dcf38914443cdcd9cd5431872"
+    },
+    "refused.jsonl": {
+      "bytes": 59222,
+      "sha256": "cf3f2d6b82aeb08818daf6a718febb98341c1730b89eca0871ae05c69d7b6398"
+    }
+  },
+  "first_turn": {
+    "admitted": 3707,
+    "immediate_admitted": 1916,
+    "immediate_seen": 1931,
+    "masked_earlier_eos_admitted": 0,
+    "masked_earlier_eos_seen": 0,
+    "other_precursor_seen": 0,
+    "refusal_reasons": {
+      "full_opening_over_cap": 353
+    },
+    "refused": 353,
+    "seen": 4060,
+    "standalone_space_admitted": 1791,
+    "standalone_space_seen": 2129,
+    "target_id_absent_from_lexical_prefix": 2071
+  },
+  "registration_sha256": "e1c1cf5fc0f63d039920128f1f6feb7deb0f376077a6ab89de3b228c56bb62a6",
+  "schema": "uor-r4.p4-lexical-train-inputs/1",
+  "second_turn": {
+    "admitted": 184,
+    "immediate_admitted": 152,
+    "immediate_seen": 218,
+    "masked_earlier_eos_admitted": 184,
+    "masked_earlier_eos_seen": 285,
+    "other_precursor_seen": 0,
+    "refusal_reasons": {
+      "full_opening_over_cap": 101
+    },
+    "refused": 101,
+    "seen": 285,
+    "standalone_space_admitted": 32,
+    "standalone_space_seen": 67,
+    "target_id_absent_from_lexical_prefix": 117
+  },
+  "source": {
+    "canonical_readback_sha256": "61ba19783fd29b39ee935e1dfa21ae14c5de1caddd3d380c7ed1bedb6b39f6e3",
+    "independent_verifier": {
+      "bytes": 1930488,
+      "sha256": "d25a69c86e7f23791c52c88a3b9bf93cc7ce7b09b0cf0a1be2b1b205fee2b13d"
+    },
+    "prior_groups_sha256": "b7483391dd85ff35c736b31f960e1fcb198967ae93b64cb533e85503658fdb29",
+    "prior_receipt_sha256": "4ff029e7962b6c58c88014f1baf6adeb4bd5fd1e3d0464cdbbf66d929d10bbd8",
+    "prior_structured_records_sha256": "b27d4b14538639095e9ca4828ddb9219aeb521c6fd216eccabe04d1fdff022e6",
+    "protocol_identity": "blake3:4c9778ead027688600d2211e50cbfae98ac15f932a0827c01ec2389c521fef27",
+    "source_files": {
+      "answer-first.mask.u8": {
+        "bytes": 15953579,
+        "sha256": "66f847761cbdc2688c8ebbbe1380a154626e65112c807c865990302c3dc0639b"
+      },
+      "answer-first.tokens.u16": {
+        "bytes": 31907222,
+        "sha256": "3d55850df31c135698a035a731b8f8fce0110f53d31cc75eeee60d583dece485"
+      },
+      "colon-targets.jsonl": {
+        "bytes": 91111952,
+        "sha256": "f490a70c2296e8cc05910f152f36725f2ee132d79a6178e96c826d08de4cdf78"
+      },
+      "groups.jsonl": {
+        "bytes": 464518,
+        "sha256": "e9b6a5f043e27bd473299e82475b9b62211db6dd712da9537b1eba4d247602ca"
+      },
+      "openings.jsonl": {
+        "bytes": 776577,
+        "sha256": "d9bc9e45c4fc068ac30841ddf8077a46289bc287714eea7181f710a5d11575ee"
+      },
+      "source.json": {
+        "bytes": 1368,
+        "sha256": "4e7b8bbc8bdb0582a7a2e6f8a4b68bd0b145ac56152819f0d10effd4043603f6"
+      }
+    },
+    "tokenizer": {
+      "bytes": 265393,
+      "sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+    }
+  }
+}
