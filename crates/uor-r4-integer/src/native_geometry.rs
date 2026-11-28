@@ -11,6 +11,9 @@ compile_error!(
     "historical integer model/stack/sampling execution is excluded from native qualification"
 );
 
+#[cfg(all(feature = "p4-only-client", feature = "serving-wasm"))]
+compile_error!("the P4-only client excludes the historical serving-wasm executor graph");
+
 // #1172: the preserved D11 integer/stack serving runtime compiles as this
 // crate's modules only when the `serving-wasm` feature is explicitly selected
 // (the #1172 WASM target). The native qualification graph never selects that
@@ -20,6 +23,8 @@ include!("serving_root.rs");
 
 pub mod assertion_value;
 pub mod all_starts;
+#[cfg(any(feature = "serving-wasm", feature = "p4-only-client"))]
+pub mod ordinary_p4;
 
 #[cfg(not(feature = "serving-wasm"))]
 pub mod count_mixer;

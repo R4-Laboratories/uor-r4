@@ -1,0 +1,9 @@
+{
+  "gpus": 1,
+  "sku": "RTX 4090",
+  "provider": "Vast",
+  "deleted_utc": "2026-11-28T08:13:48Z",
+  "uptime_s": 570,
+  "usd_per_h": 0.869,
+  "estimated_compute_usd": 0.13759166666666667
+}

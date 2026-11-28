@@ -1,0 +1,598 @@
+{
+  "schema": "uor-r4/4353-held-independent-recount/1",
+  "pool": "dev",
+  "rows": 9,
+  "matched_pairs": 4,
+  "unpaired": 1,
+  "first_wrong_progress_unit": "number of verified initial reference IDs, with no fabricated mismatch at cap",
+  "rank_rational_columns": [
+    "numerator",
+    "denominator"
+  ],
+  "arms": {
+    "zero": {
+      "all": {
+        "rows": 9,
+        "first_wrong": 9,
+        "first_wrong_position_histogram": {
+          "1": 9
+        },
+        "exact_eos": 0,
+        "early_eos": 1,
+        "eos": 2,
+        "cap": 7,
+        "cap_censored": 0,
+        "gold_longer_than_cap": 0,
+        "unknown_emission": 0,
+        "live_lexical_reached": 9,
+        "live_lexical": 0,
+        "conditional_gold_rank_one": 0,
+        "prior_gold_rank_one": 0,
+        "conditional_gold_strictly_beats_rival": 0,
+        "conditional_gold_vs_space": {
+          "beats": 2,
+          "loses": 7,
+          "ties": 0
+        },
+        "top_ties": 0,
+        "full_address_alias_blocked": 0,
+        "absent_target": 1,
+        "absent_target_conditional_rank_one": 0,
+        "floor_prior_target_rank_one": 0,
+        "mean_gold_rank": [
+          1199,
+          9
+        ],
+        "median_gold_rank": [
+          36,
+          2
+        ]
+      },
+      "strata": {
+        "no_standalone_space": {
+          "rows": 9,
+          "first_wrong": 9,
+          "first_wrong_position_histogram": {
+            "1": 9
+          },
+          "exact_eos": 0,
+          "early_eos": 1,
+          "eos": 2,
+          "cap": 7,
+          "cap_censored": 0,
+          "gold_longer_than_cap": 0,
+          "unknown_emission": 0,
+          "live_lexical_reached": 9,
+          "live_lexical": 0,
+          "conditional_gold_rank_one": 0,
+          "prior_gold_rank_one": 0,
+          "conditional_gold_strictly_beats_rival": 0,
+          "conditional_gold_vs_space": {
+            "beats": 2,
+            "loses": 7,
+            "ties": 0
+          },
+          "top_ties": 0,
+          "full_address_alias_blocked": 0,
+          "absent_target": 1,
+          "absent_target_conditional_rank_one": 0,
+          "floor_prior_target_rank_one": 0,
+          "mean_gold_rank": [
+            1199,
+            9
+          ],
+          "median_gold_rank": [
+            36,
+            2
+          ]
+        }
+      },
+      "assignments": {
+        "rows": 4,
+        "strict_two_way": 1,
+        "positive_assignment": 3,
+        "tied_assignment": 0,
+        "negative_assignment": 1
+      },
+      "assignment_strata": {
+        "no_standalone_space": {
+          "rows": 4,
+          "strict_two_way": 1,
+          "positive_assignment": 3,
+          "tied_assignment": 0,
+          "negative_assignment": 1
+        }
+      }
+    },
+    "geometry-435300": {
+      "all": {
+        "rows": 9,
+        "first_wrong": 9,
+        "first_wrong_position_histogram": {
+          "1": 7,
+          "3": 1,
+          "5": 1
+        },
+        "exact_eos": 0,
+        "early_eos": 0,
+        "eos": 0,
+        "cap": 9,
+        "cap_censored": 0,
+        "gold_longer_than_cap": 0,
+        "unknown_emission": 0,
+        "live_lexical_reached": 9,
+        "live_lexical": 2,
+        "conditional_gold_rank_one": 2,
+        "prior_gold_rank_one": 0,
+        "conditional_gold_strictly_beats_rival": 2,
+        "conditional_gold_vs_space": {
+          "beats": 5,
+          "loses": 4,
+          "ties": 0
+        },
+        "top_ties": 0,
+        "full_address_alias_blocked": 0,
+        "absent_target": 1,
+        "absent_target_conditional_rank_one": 0,
+        "floor_prior_target_rank_one": 0,
+        "mean_gold_rank": [
+          13929,
+          9
+        ],
+        "median_gold_rank": [
+          2916,
+          2
+        ]
+      },
+      "strata": {
+        "no_standalone_space": {
+          "rows": 9,
+          "first_wrong": 9,
+          "first_wrong_position_histogram": {
+            "1": 7,
+            "3": 1,
+            "5": 1
+          },
+          "exact_eos": 0,
+          "early_eos": 0,
+          "eos": 0,
+          "cap": 9,
+          "cap_censored": 0,
+          "gold_longer_than_cap": 0,
+          "unknown_emission": 0,
+          "live_lexical_reached": 9,
+          "live_lexical": 2,
+          "conditional_gold_rank_one": 2,
+          "prior_gold_rank_one": 0,
+          "conditional_gold_strictly_beats_rival": 2,
+          "conditional_gold_vs_space": {
+            "beats": 5,
+            "loses": 4,
+            "ties": 0
+          },
+          "top_ties": 0,
+          "full_address_alias_blocked": 0,
+          "absent_target": 1,
+          "absent_target_conditional_rank_one": 0,
+          "floor_prior_target_rank_one": 0,
+          "mean_gold_rank": [
+            13929,
+            9
+          ],
+          "median_gold_rank": [
+            2916,
+            2
+          ]
+        }
+      },
+      "assignments": {
+        "rows": 4,
+        "strict_two_way": 0,
+        "positive_assignment": 3,
+        "tied_assignment": 0,
+        "negative_assignment": 1
+      },
+      "assignment_strata": {
+        "no_standalone_space": {
+          "rows": 4,
+          "strict_two_way": 0,
+          "positive_assignment": 3,
+          "tied_assignment": 0,
+          "negative_assignment": 1
+        }
+      }
+    },
+    "ordered-435300": {
+      "all": {
+        "rows": 9,
+        "first_wrong": 9,
+        "first_wrong_position_histogram": {
+          "1": 9
+        },
+        "exact_eos": 0,
+        "early_eos": 0,
+        "eos": 0,
+        "cap": 9,
+        "cap_censored": 0,
+        "gold_longer_than_cap": 0,
+        "unknown_emission": 0,
+        "live_lexical_reached": 9,
+        "live_lexical": 0,
+        "conditional_gold_rank_one": 0,
+        "prior_gold_rank_one": 0,
+        "conditional_gold_strictly_beats_rival": 0,
+        "conditional_gold_vs_space": {
+          "beats": 1,
+          "loses": 8,
+          "ties": 0
+        },
+        "top_ties": 0,
+        "full_address_alias_blocked": 0,
+        "absent_target": 1,
+        "absent_target_conditional_rank_one": 0,
+        "floor_prior_target_rank_one": 0,
+        "mean_gold_rank": [
+          23175,
+          9
+        ],
+        "median_gold_rank": [
+          4978,
+          2
+        ]
+      },
+      "strata": {
+        "no_standalone_space": {
+          "rows": 9,
+          "first_wrong": 9,
+          "first_wrong_position_histogram": {
+            "1": 9
+          },
+          "exact_eos": 0,
+          "early_eos": 0,
+          "eos": 0,
+          "cap": 9,
+          "cap_censored": 0,
+          "gold_longer_than_cap": 0,
+          "unknown_emission": 0,
+          "live_lexical_reached": 9,
+          "live_lexical": 0,
+          "conditional_gold_rank_one": 0,
+          "prior_gold_rank_one": 0,
+          "conditional_gold_strictly_beats_rival": 0,
+          "conditional_gold_vs_space": {
+            "beats": 1,
+            "loses": 8,
+            "ties": 0
+          },
+          "top_ties": 0,
+          "full_address_alias_blocked": 0,
+          "absent_target": 1,
+          "absent_target_conditional_rank_one": 0,
+          "floor_prior_target_rank_one": 0,
+          "mean_gold_rank": [
+            23175,
+            9
+          ],
+          "median_gold_rank": [
+            4978,
+            2
+          ]
+        }
+      },
+      "assignments": {
+        "rows": 4,
+        "strict_two_way": 0,
+        "positive_assignment": 3,
+        "tied_assignment": 0,
+        "negative_assignment": 1
+      },
+      "assignment_strata": {
+        "no_standalone_space": {
+          "rows": 4,
+          "strict_two_way": 0,
+          "positive_assignment": 3,
+          "tied_assignment": 0,
+          "negative_assignment": 1
+        }
+      }
+    },
+    "geometry-435301": {
+      "all": {
+        "rows": 9,
+        "first_wrong": 9,
+        "first_wrong_position_histogram": {
+          "1": 9
+        },
+        "exact_eos": 0,
+        "early_eos": 0,
+        "eos": 1,
+        "cap": 8,
+        "cap_censored": 0,
+        "gold_longer_than_cap": 0,
+        "unknown_emission": 1,
+        "live_lexical_reached": 9,
+        "live_lexical": 0,
+        "conditional_gold_rank_one": 0,
+        "prior_gold_rank_one": 0,
+        "conditional_gold_strictly_beats_rival": 0,
+        "conditional_gold_vs_space": {
+          "beats": 4,
+          "loses": 5,
+          "ties": 0
+        },
+        "top_ties": 0,
+        "full_address_alias_blocked": 0,
+        "absent_target": 1,
+        "absent_target_conditional_rank_one": 0,
+        "floor_prior_target_rank_one": 0,
+        "mean_gold_rank": [
+          12078,
+          9
+        ],
+        "median_gold_rank": [
+          2386,
+          2
+        ]
+      },
+      "strata": {
+        "no_standalone_space": {
+          "rows": 9,
+          "first_wrong": 9,
+          "first_wrong_position_histogram": {
+            "1": 9
+          },
+          "exact_eos": 0,
+          "early_eos": 0,
+          "eos": 1,
+          "cap": 8,
+          "cap_censored": 0,
+          "gold_longer_than_cap": 0,
+          "unknown_emission": 1,
+          "live_lexical_reached": 9,
+          "live_lexical": 0,
+          "conditional_gold_rank_one": 0,
+          "prior_gold_rank_one": 0,
+          "conditional_gold_strictly_beats_rival": 0,
+          "conditional_gold_vs_space": {
+            "beats": 4,
+            "loses": 5,
+            "ties": 0
+          },
+          "top_ties": 0,
+          "full_address_alias_blocked": 0,
+          "absent_target": 1,
+          "absent_target_conditional_rank_one": 0,
+          "floor_prior_target_rank_one": 0,
+          "mean_gold_rank": [
+            12078,
+            9
+          ],
+          "median_gold_rank": [
+            2386,
+            2
+          ]
+        }
+      },
+      "assignments": {
+        "rows": 4,
+        "strict_two_way": 1,
+        "positive_assignment": 2,
+        "tied_assignment": 0,
+        "negative_assignment": 2
+      },
+      "assignment_strata": {
+        "no_standalone_space": {
+          "rows": 4,
+          "strict_two_way": 1,
+          "positive_assignment": 2,
+          "tied_assignment": 0,
+          "negative_assignment": 2
+        }
+      }
+    },
+    "ordered-435301": {
+      "all": {
+        "rows": 9,
+        "first_wrong": 9,
+        "first_wrong_position_histogram": {
+          "1": 9
+        },
+        "exact_eos": 0,
+        "early_eos": 0,
+        "eos": 0,
+        "cap": 9,
+        "cap_censored": 0,
+        "gold_longer_than_cap": 0,
+        "unknown_emission": 0,
+        "live_lexical_reached": 9,
+        "live_lexical": 0,
+        "conditional_gold_rank_one": 0,
+        "prior_gold_rank_one": 0,
+        "conditional_gold_strictly_beats_rival": 0,
+        "conditional_gold_vs_space": {
+          "beats": 1,
+          "loses": 8,
+          "ties": 0
+        },
+        "top_ties": 0,
+        "full_address_alias_blocked": 0,
+        "absent_target": 1,
+        "absent_target_conditional_rank_one": 0,
+        "floor_prior_target_rank_one": 0,
+        "mean_gold_rank": [
+          13659,
+          9
+        ],
+        "median_gold_rank": [
+          1586,
+          2
+        ]
+      },
+      "strata": {
+        "no_standalone_space": {
+          "rows": 9,
+          "first_wrong": 9,
+          "first_wrong_position_histogram": {
+            "1": 9
+          },
+          "exact_eos": 0,
+          "early_eos": 0,
+          "eos": 0,
+          "cap": 9,
+          "cap_censored": 0,
+          "gold_longer_than_cap": 0,
+          "unknown_emission": 0,
+          "live_lexical_reached": 9,
+          "live_lexical": 0,
+          "conditional_gold_rank_one": 0,
+          "prior_gold_rank_one": 0,
+          "conditional_gold_strictly_beats_rival": 0,
+          "conditional_gold_vs_space": {
+            "beats": 1,
+            "loses": 8,
+            "ties": 0
+          },
+          "top_ties": 0,
+          "full_address_alias_blocked": 0,
+          "absent_target": 1,
+          "absent_target_conditional_rank_one": 0,
+          "floor_prior_target_rank_one": 0,
+          "mean_gold_rank": [
+            13659,
+            9
+          ],
+          "median_gold_rank": [
+            1586,
+            2
+          ]
+        }
+      },
+      "assignments": {
+        "rows": 4,
+        "strict_two_way": 2,
+        "positive_assignment": 3,
+        "tied_assignment": 0,
+        "negative_assignment": 1
+      },
+      "assignment_strata": {
+        "no_standalone_space": {
+          "rows": 4,
+          "strict_two_way": 2,
+          "positive_assignment": 3,
+          "tied_assignment": 0,
+          "negative_assignment": 1
+        }
+      }
+    }
+  },
+  "comparisons": {
+    "geometry-435300_vs_zero": {
+      "rows": 9,
+      "first_wrong_progress": {
+        "improved": 2,
+        "unchanged": 7,
+        "worse": 0
+      },
+      "live_lexical": {
+        "gains": 2,
+        "losses": 0,
+        "both": 0
+      },
+      "conditional_lexical": {
+        "gains": 2,
+        "losses": 0
+      },
+      "exact_eos": {
+        "gains": 0,
+        "regressions": 0,
+        "preserved": 0
+      },
+      "strict_two_way": {
+        "gains": 0,
+        "losses": 1,
+        "both": 0
+      }
+    },
+    "geometry-435300_vs_ordered-435300": {
+      "rows": 9,
+      "first_wrong_progress": {
+        "improved": 2,
+        "unchanged": 7,
+        "worse": 0
+      },
+      "live_lexical": {
+        "gains": 2,
+        "losses": 0,
+        "both": 0
+      },
+      "conditional_lexical": {
+        "gains": 2,
+        "losses": 0
+      },
+      "exact_eos": {
+        "gains": 0,
+        "regressions": 0,
+        "preserved": 0
+      },
+      "strict_two_way": {
+        "gains": 0,
+        "losses": 0,
+        "both": 0
+      }
+    },
+    "geometry-435301_vs_zero": {
+      "rows": 9,
+      "first_wrong_progress": {
+        "improved": 0,
+        "unchanged": 9,
+        "worse": 0
+      },
+      "live_lexical": {
+        "gains": 0,
+        "losses": 0,
+        "both": 0
+      },
+      "conditional_lexical": {
+        "gains": 0,
+        "losses": 0
+      },
+      "exact_eos": {
+        "gains": 0,
+        "regressions": 0,
+        "preserved": 0
+      },
+      "strict_two_way": {
+        "gains": 1,
+        "losses": 1,
+        "both": 0
+      }
+    },
+    "geometry-435301_vs_ordered-435301": {
+      "rows": 9,
+      "first_wrong_progress": {
+        "improved": 0,
+        "unchanged": 9,
+        "worse": 0
+      },
+      "live_lexical": {
+        "gains": 0,
+        "losses": 0,
+        "both": 0
+      },
+      "conditional_lexical": {
+        "gains": 0,
+        "losses": 0
+      },
+      "exact_eos": {
+        "gains": 0,
+        "regressions": 0,
+        "preserved": 0
+      },
+      "strict_two_way": {
+        "gains": 1,
+        "losses": 2,
+        "both": 0
+      }
+    }
+  }
+}

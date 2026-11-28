@@ -1,10 +1,12 @@
-#![cfg(feature = "p1-count-serving")]
+#![cfg(any(feature = "p1-count-serving", feature = "p4-only-client"))]
 #![forbid(unsafe_code)]
 
 use serde_json::json;
 use sha2::{Digest, Sha256};
 use std::fs;
 use std::process::Command;
+#[cfg(feature = "p1-count-serving")]
+use uor_r4_count_runtime::p4_serving::{S4SourceGate, S4SourceMode};
 use uor_r4_count_runtime::{
     code_pick,
     kn_score::KN_BASE_MASS,
@@ -15,8 +17,8 @@ use uor_r4_count_runtime::{
     p4_serving::{
         encode_compact_s2_skip_from_uors2s01, encode_compact_s3_from_uors3t02, golden_shell_pkey,
         skip_keys_for_prefix, starling_7_neighbours, CausalSessionCache, CompactS2SkipView,
-        CompactS3View, P4Session, S4SourceGate, S4SourceMode, H4_ROOTS, H4_SHELL, P4_EXPERTS,
-        P4_MAX_CONTEXT, P4_NORM_BUDGET, P4_Q48_ONE, P4_TOTAL_BUCKETS, P4_UNIFORM_MASS, P4_VOCAB,
+        CompactS3View, P4Session, H4_ROOTS, H4_SHELL, P4_EXPERTS, P4_MAX_CONTEXT, P4_NORM_BUDGET,
+        P4_Q48_ONE, P4_TOTAL_BUCKETS, P4_UNIFORM_MASS, P4_VOCAB,
     },
     PickClassRule,
 };
@@ -66,6 +68,29 @@ fn h4_root_coeffs_from_p4_formula() -> [[[i8; 2]; 4]; 120] {
         }
     }
     roots
+}
+
+fn synthetic_lexical_tokenizer() -> Vec<u8> {
+    let mut vocab = serde_json::Map::new();
+    for (id, token) in ["<|bos|>", "<|eos|>", "<|unk|>"].into_iter().enumerate() {
+        vocab.insert(token.to_owned(), json!(id));
+    }
+    for token in ['Ġ', 'Ċ'].into_iter().chain('!'..='~') {
+        vocab.insert(token.to_string(), json!(vocab.len()));
+    }
+    for id in vocab.len()..P4_VOCAB {
+        vocab.insert(format!("token{id}"), json!(id));
+    }
+    serde_json::to_vec(&json!({
+        "model": {"type":"BPE", "vocab":vocab, "merges":[]},
+        "added_tokens":[
+            {"id":0,"content":"<|bos|>"},
+            {"id":1,"content":"<|eos|>"},
+            {"id":2,"content":"<|unk|>"}
+        ],
+        "pre_tokenizer":{"type":"ByteLevel","add_prefix_space":false}
+    }))
+    .unwrap()
 }
 
 fn build_synthetic_trunk_4096(context: u32) -> Vec<u8> {
@@ -171,6 +196,7 @@ fn build_synthetic_trunk_4096(context: u32) -> Vec<u8> {
     }
     let trunk_hdr = serde_json::to_vec(&json!({
         "schema": DISCRETE_TRUNK_SCHEMA,
+        "tokenizer_sha256":hex::encode(Sha256::digest(synthetic_lexical_tokenizer())),
         "shape": {
             "vocabulary": vocab, "blocks": 4, "context": context, "kept_cells": 3, "stages": stages,
             "read_mode": "relation", "read_kept": 3, "read_sweeps": 1, "read_position": 0,
@@ -709,6 +735,7 @@ fn check_lexical_client(
     prefix: &[u16],
 ) {
     use uor_r4_integer::discrete_d11::native_occurrence::lexical::{Carry, WEIGHT_WORDS};
+    use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::LexicalHead;
     let path = dir.join("synthetic.uorlex");
     let mut session = P4Session::new();
     session.sync_prompt(prefix).unwrap();
@@ -726,6 +753,11 @@ fn check_lexical_client(
     assert_eq!(recurrence, 0x2222);
     let carry = Carry::from_packed(recurrence);
     let codebook = trunk.packed_codebook_roots();
+    let trunk_words = trunk.p4_lexical_trunk_words().unwrap();
+    assert_eq!(trunk_words.len(), 8262);
+    assert_eq!(trunk_words[0], 1);
+    assert_eq!(&trunk_words[4166..], codebook);
+    assert!(trunk_words[1..4166].iter().all(|&word| word == 0));
     let addresses = |id: u16| {
         let code = codebook[usize::from(id)];
         carry
@@ -741,7 +773,7 @@ fn check_lexical_client(
     assert_eq!(target_addresses[3], prior_addresses[3]);
     assert_ne!(target_addresses[1], prior_addresses[1]);
     assert!(priors[usize::from(prior_winner)] > priors[usize::from(target)]);
-    let write = |favor: Option<[u16; 4]>, state: [u8; 32]| {
+    let write = |favor: Option<[u16; 4]>, state: [u8; 32], ordered: bool| {
         let mut words = [0i16; WEIGHT_WORDS];
         if let Some(favor) = favor {
             words.fill(i16::MIN);
@@ -749,13 +781,15 @@ fn check_lexical_client(
                 words[usize::from(addr)] = i16::MAX;
             }
         }
-        let mut payload = state.to_vec();
-        payload.extend_from_slice(b"UORLEX01");
-        for word in words {
-            payload.extend_from_slice(&word.to_le_bytes());
+        let bound = LexicalHead::encode_bound(state, ordered, &words);
+        if !ordered {
+            let mut legacy = state.to_vec();
+            legacy.extend_from_slice(b"UORLEX01");
+            legacy.extend(words.into_iter().flat_map(i16::to_le_bytes));
+            legacy.extend_from_slice(&Sha256::digest(&legacy));
+            assert_eq!(bound.as_slice(), legacy);
         }
-        payload.extend_from_slice(&Sha256::digest(&payload));
-        fs::write(&path, payload).unwrap();
+        fs::write(&path, bound).unwrap();
     };
     let cli = |ids: &str, steps: &str| {
         Command::new(env!("CARGO_BIN_EXE_uor-chat"))
@@ -793,7 +827,7 @@ fn check_lexical_client(
         ("favor absent word", Some(target_addresses), target),
         ("favor prior", Some(prior_addresses), prior_winner),
     ] {
-        write(favor, state);
+        write(favor, state, false);
         let output = read(&ids, "2");
         let committed = &output["generated_ids"];
         let trace = &output["p4_steps"][0];
@@ -816,23 +850,179 @@ fn check_lexical_client(
         println!("lexical {label}: carry={recurrence} prior={prior_winner} target={target} target_prior={} committed={committed} score={expected} addresses={:?}",
             priors[usize::from(target)], addresses(winner));
     }
-    let repeated = vec!["2"; P4_MAX_CONTEXT];
-    let long = read(&repeated.join(","), "2");
-    let first = long["generated_ids"][0].as_u64().unwrap().to_string();
-    let mut slid = repeated[1..].to_vec();
-    slid.push(&first);
-    assert_eq!(long["generated_ids"].as_array().unwrap().len(), 2);
+    for ordered in [false, true] {
+        write(None, state, ordered);
+        let repeated = vec!["2"; P4_MAX_CONTEXT];
+        let long = read(&repeated.join(","), "2");
+        let first = long["generated_ids"][0].as_u64().unwrap().to_string();
+        let mut slid = repeated[1..].to_vec();
+        slid.push(&first);
+        assert_eq!(long["generated_ids"].as_array().unwrap().len(), 2);
+        assert_eq!(
+            long["p4_steps"][1],
+            read(&slid.join(","), "1")["p4_steps"][0]
+        );
+    }
+    let ordered_addresses = |id: u16| {
+        // Recompute from exact bytes instead of the serving prefix hash state.
+        [1usize, 4, 16, P4_MAX_CONTEXT].map(|length| {
+            let bank = [1, 4, 16, P4_MAX_CONTEXT]
+                .iter()
+                .position(|&x| x == length)
+                .unwrap();
+            let mut hash = 2_166_136_261u32;
+            for word in prefix[prefix.len().saturating_sub(length)..]
+                .iter()
+                .copied()
+                .chain([id])
+            {
+                for byte in word.to_le_bytes() {
+                    hash = (hash ^ u32::from(byte)).wrapping_mul(16_777_619);
+                }
+            }
+            hash = (hash ^ (hash >> 16)).wrapping_mul(0x85eb_ca6b);
+            (bank * 64 + ((hash ^ (hash >> 13)) >> 26) as usize) as u16
+        })
+    };
+    let fingerprints: Vec<_> = (1..4096u16).map(ordered_addresses).collect();
+    let target = (16..4096u16)
+        .find(|&id| {
+            fingerprints
+                .iter()
+                .filter(|&&key| key == ordered_addresses(id))
+                .count()
+                == 1
+        })
+        .unwrap();
+    assert!(!prefix.contains(&target));
+    assert!(priors[usize::from(prior_winner)] > priors[usize::from(target)]);
+    let baseline = read(&ids, "1");
+    assert_eq!(baseline["generated_ids"][0], prior_winner);
+    write(Some(ordered_addresses(target)), state, true);
+    let ordered = read(&ids, "2");
+    let trace = &ordered["p4_steps"][0];
+    assert_eq!(ordered["p4_lexical_addressing"], "ordered");
+    assert_eq!(ordered["generated_ids"][0], target);
     assert_eq!(
-        long["p4_steps"][1],
-        read(&slid.join(","), "1")["p4_steps"][0]
+        trace["prior_winner"],
+        baseline["p4_steps"][0]["prior_winner"]
     );
-    write(None, [0xa5; 32]);
+    assert_eq!(trace["mass_sha256"], baseline["p4_steps"][0]["mass_sha256"]);
+    assert_eq!(trace["lexical"]["carry_code"], serde_json::Value::Null);
+    assert_eq!(
+        trace["lexical"]["addresses"],
+        json!(ordered_addresses(target))
+    );
+    assert_eq!(
+        trace["lexical"]["score_q48"],
+        priors[usize::from(target)] as i64 + 4 * i64::from(i16::MAX) * (1i64 << 32)
+    );
+    assert_eq!(*trace, read(&format!("12,11,{ids}"), "1")["p4_steps"][0]);
+    assert_eq!(
+        ordered["p4_steps"][1],
+        read(&format!("{ids},{target}"), "1")["p4_steps"][0]
+    );
+    write(None, [0xa5; 32], false);
     assert!(!cli(&ids, "1").status.success());
-    write(None, state);
+    write(None, state, true);
     let mut corrupt = fs::read(&path).unwrap();
     corrupt[41] ^= 1;
     fs::write(&path, corrupt).unwrap();
     assert!(!cli(&ids, "1").status.success());
+}
+
+fn check_lexical_messages(dir: &std::path::Path, p4_path: &std::path::Path, state: [u8; 32]) {
+    use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::LexicalHead;
+    use uor_r4_tokenizer::{
+        dialogue::{DialogueProtocol, Message},
+        ByteBpeTokenizer,
+    };
+
+    let tokenizer_bytes = synthetic_lexical_tokenizer();
+    let tokenizer = ByteBpeTokenizer::from_tokenizer_json_bytes(&tokenizer_bytes).unwrap();
+    let protocol = DialogueProtocol::literal_roles_v2(&tokenizer).unwrap();
+    let encoder = protocol.bind(&tokenizer).unwrap();
+    let roles = [
+        Message {
+            role: "user",
+            content: "A?",
+        },
+        Message {
+            role: "assistant",
+            content: "B.",
+        },
+        Message {
+            role: "user",
+            content: "C?",
+        },
+    ];
+    let expected = encoder.encode_assistant_prefix(&roles).tokens;
+    assert_eq!(
+        expected.iter().filter(|&&id| id == protocol.eos_id).count(),
+        1
+    );
+    let tokenizer_path = dir.join("synthetic-tokenizer.json");
+    let messages_path = dir.join("synthetic-messages.json");
+    let lexical_path = dir.join("synthetic-ordered.uorlex");
+    fs::write(&tokenizer_path, tokenizer_bytes).unwrap();
+    fs::write(
+        &lexical_path,
+        LexicalHead::encode_bound(state, true, &[0; 256]),
+    )
+    .unwrap();
+    let text = json!([
+        {"role":"user","content":"A?"},
+        {"role":"assistant","content":"B."},
+        {"role":"user","content":"C?"}
+    ]);
+    fs::write(&messages_path, serde_json::to_vec(&text).unwrap()).unwrap();
+    let cli = |extra: &[&str]| {
+        Command::new(env!("CARGO_BIN_EXE_uor-chat"))
+            .args([
+                "--discrete",
+                p4_path.to_str().unwrap(),
+                "--max-tokens",
+                "2",
+                "--p1-trace",
+                "--p4-lexical",
+                lexical_path.to_str().unwrap(),
+            ])
+            .args(extra)
+            .output()
+            .unwrap()
+    };
+    let read = |output: std::process::Output| {
+        assert!(
+            output.status.success(),
+            "{}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap()
+    };
+    let csv = expected
+        .iter()
+        .map(u32::to_string)
+        .collect::<Vec<_>>()
+        .join(",");
+    let text_flags = [
+        "--tokenizer",
+        tokenizer_path.to_str().unwrap(),
+        "--messages",
+        messages_path.to_str().unwrap(),
+    ];
+    let messages_result = read(cli(&text_flags));
+    let raw_result = read(cli(&["--prompt-ids", &csv]));
+    assert_eq!(messages_result["prompt_ids"], json!(expected));
+    assert_eq!(
+        messages_result["generated_ids"],
+        raw_result["generated_ids"]
+    );
+    assert_eq!(messages_result["p4_steps"], raw_result["p4_steps"]);
+    let mut injected = text;
+    injected[2]["gold"] = json!([6, 1]);
+    fs::write(&messages_path, serde_json::to_vec(&injected).unwrap()).unwrap();
+    let refused = cli(&text_flags);
+    assert!(!refused.status.success() && refused.stdout.is_empty());
 }
 
 #[test]
@@ -1113,81 +1303,85 @@ fn p4_deployment_end_to_end_bit_exact_and_uor_chat_cli() {
     );
 
     check_lexical_client(&dir, &p4_path, &dc.model, &p4.inner, top_id, &pref);
+    check_lexical_messages(&dir, &p4_path, p4.inner.state_sha256().unwrap());
 
-    let gate_path = dir.join("source-gate.uors4g01");
-    let digest = p4.inner.state_sha256().unwrap();
-    assert_eq!(hex::encode(digest), p4.artifact_sha256);
-    let gate = S4SourceGate::new(digest, [44; 32], [64; 20]).unwrap();
-    fs::write(&gate_path, gate.encode_bytes()).unwrap();
-    sess.sync_prompt(&pref).unwrap();
-    let (disabled, disabled_trace) = sess
-        .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Disabled)))
-        .unwrap();
-    assert_eq!(disabled, top_id);
-    assert_eq!(disabled_trace.unwrap().mass_sha256, trace.mass_sha256);
-    let base = sess.last_scores_q48().to_vec();
-    let (active, active_trace) = sess
-        .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Active)))
-        .unwrap();
-    let active_trace = active_trace.unwrap();
-    let source = active_trace.s4_source.unwrap();
-    assert_eq!(source.source_pos, Some(2));
-    assert_eq!(source.source_token, Some(5));
-    assert!(source.transfer_q48 > 0);
-    let mut expected = base;
-    expected[5] += source.transfer_q48;
-    expected[usize::from(source.rival_token.unwrap())] -= source.transfer_q48;
-    assert_eq!(sess.last_scores_q48(), expected);
+    #[cfg(feature = "p1-count-serving")]
+    {
+        let gate_path = dir.join("source-gate.uors4g01");
+        let digest = p4.inner.state_sha256().unwrap();
+        assert_eq!(hex::encode(digest), p4.artifact_sha256);
+        let gate = S4SourceGate::new(digest, [44; 32], [64; 20]).unwrap();
+        fs::write(&gate_path, gate.encode_bytes()).unwrap();
+        sess.sync_prompt(&pref).unwrap();
+        let (disabled, disabled_trace) = sess
+            .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Disabled)))
+            .unwrap();
+        assert_eq!(disabled, top_id);
+        assert_eq!(disabled_trace.unwrap().mass_sha256, trace.mass_sha256);
+        let base = sess.last_scores_q48().to_vec();
+        let (active, active_trace) = sess
+            .step_with_source(&p4.inner, true, true, Some((&gate, S4SourceMode::Active)))
+            .unwrap();
+        let active_trace = active_trace.unwrap();
+        let source = active_trace.s4_source.unwrap();
+        assert_eq!(source.source_pos, Some(2));
+        assert_eq!(source.source_token, Some(5));
+        assert!(source.transfer_q48 > 0);
+        let mut expected = base;
+        expected[5] += source.transfer_q48;
+        expected[usize::from(source.rival_token.unwrap())] -= source.transfer_q48;
+        assert_eq!(sess.last_scores_q48(), expected);
 
-    let gated_cli = |mode: &str| {
-        Command::new(env!("CARGO_BIN_EXE_uor-chat"))
-            .args([
-                "--discrete",
-                p4_path.to_str().unwrap(),
-                "--prompt-ids",
-                "0,2,5",
-                "--max-tokens",
-                "1",
-                "--p1-trace",
-                "--p4-source-gate",
-                gate_path.to_str().unwrap(),
-                "--p4-source-mode",
-                mode,
-            ])
-            .output()
-            .unwrap()
-    };
-    let chat = gated_cli("active");
-    assert!(
-        chat.status.success(),
-        "{}",
-        String::from_utf8_lossy(&chat.stderr)
-    );
-    let parsed: serde_json::Value = serde_json::from_slice(&chat.stdout).unwrap();
-    assert_eq!(parsed["generated_ids"][0], active);
-    assert_eq!(
-        parsed["p4_steps"][0]["mass_sha256"],
-        active_trace.mass_sha256
-    );
-    assert_eq!(parsed["p4_steps"][0]["s4_source"]["source_pos"], 2);
-    assert_eq!(
-        parsed["p4_source_gate"]["p4_state_sha256"],
-        p4.artifact_sha256
-    );
+        let gated_cli = |mode: &str| {
+            Command::new(env!("CARGO_BIN_EXE_uor-chat"))
+                .args([
+                    "--discrete",
+                    p4_path.to_str().unwrap(),
+                    "--prompt-ids",
+                    "0,2,5",
+                    "--max-tokens",
+                    "1",
+                    "--p1-trace",
+                    "--p4-source-gate",
+                    gate_path.to_str().unwrap(),
+                    "--p4-source-mode",
+                    mode,
+                ])
+                .output()
+                .unwrap()
+        };
+        let chat = gated_cli("active");
+        assert!(
+            chat.status.success(),
+            "{}",
+            String::from_utf8_lossy(&chat.stderr)
+        );
+        let parsed: serde_json::Value = serde_json::from_slice(&chat.stdout).unwrap();
+        assert_eq!(parsed["generated_ids"][0], active);
+        assert_eq!(
+            parsed["p4_steps"][0]["mass_sha256"],
+            active_trace.mass_sha256
+        );
+        assert_eq!(parsed["p4_steps"][0]["s4_source"]["source_pos"], 2);
+        assert_eq!(
+            parsed["p4_source_gate"]["p4_state_sha256"],
+            p4.artifact_sha256
+        );
 
-    let wrong_gate = S4SourceGate::new([45; 32], [44; 32], [64; 20]).unwrap();
-    fs::write(&gate_path, wrong_gate.encode_bytes()).unwrap();
-    assert!(sess
-        .step_with_source(
-            &p4.inner,
-            true,
-            false,
-            Some((&wrong_gate, S4SourceMode::Active))
-        )
-        .is_err());
-    let chat = gated_cli("active");
-    assert!(!chat.status.success());
-    assert!(String::from_utf8_lossy(&chat.stderr).contains("P4 state SHA-256 mismatch"));
+        let wrong_gate = S4SourceGate::new([45; 32], [44; 32], [64; 20]).unwrap();
+        fs::write(&gate_path, wrong_gate.encode_bytes()).unwrap();
+        assert!(sess
+            .step_with_source(
+                &p4.inner,
+                true,
+                false,
+                Some((&wrong_gate, S4SourceMode::Active))
+            )
+            .is_err());
+        let chat = gated_cli("active");
+        assert!(!chat.status.success());
+        assert!(String::from_utf8_lossy(&chat.stderr).contains("P4 state SHA-256 mismatch"));
+    }
 
     // Refuse overwrite without leaving temp files behind
     assert!(write_p4_deployment(

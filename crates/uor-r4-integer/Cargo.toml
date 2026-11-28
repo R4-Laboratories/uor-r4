@@ -16,6 +16,8 @@ crate-type = ["rlib", "cdylib"]
 # Compatibility name only: selecting historical executors fails at compile time.
 historical-runtime = []
 p1-count-serving = ["serving-wasm", "dep:uor-r4-count-runtime"]
+chat-client = []
+p4-only-client = ["chat-client", "dep:uor-r4-tokenizer", "dep:uor-r4-count-runtime"]
 # Read-only replay for the frozen post-period experiment.
 postperiod-diagnostic = []
 # Cold replay of the two frozen source-choice releases.
@@ -27,6 +29,7 @@ release-factorial-diagnostic = []
 # the worker pool is a native-only path, cfg'd out there (steps are
 # single-threaded; the integers do not depend on threading).
 serving-wasm = [
+    "chat-client",
     "dep:wasm-bindgen",
     "dep:uor-r4-tokenizer",
     "dep:rayon",
@@ -67,8 +70,8 @@ path = "src/bin/activate-s2-expert.rs"
 
 [[bin]]
 name = "uor-chat"
-path = "src/bin/uor-chat.rs"
-required-features = ["serving-wasm"]
+path = "src/bin/uor-chat-entry.rs"
+required-features = ["chat-client"]
 
 [[bin]]
 name = "uor-r4-integer"

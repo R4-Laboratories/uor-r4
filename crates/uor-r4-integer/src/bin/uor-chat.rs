@@ -42,6 +42,7 @@ use uor_r4_integer::stack::{
 /// How the stack path picks each token: `IntegerStackSession::serve_step`.
 const STACK_DECODING: &str =
     "greedy serve_step with optional complete prompt/reply retrieval and artifact-bound content-readout sidecars";
+use uor_r4_integer::ordinary_p4::{encode_discrete_messages, load_discrete_tokenizer};
 use uor_r4_integer::{IntegerError, Result};
 use uor_r4_tokenizer::dialogue::{DialogueProtocol, Message};
 use uor_r4_tokenizer::ByteBpeTokenizer;
@@ -140,6 +141,8 @@ struct CliArgs {
     no_turn_memory: bool,
     /// One-shot turn: answer this message, print the record and exit.
     say: Option<String>,
+    /// Role-alternating ordinary P4 history ending in a user message.
+    messages_path: Option<PathBuf>,
     /// One-shot raw token-ID prompt (`--prompt-ids 0,7,19,31`) for `--stack` parity verification.
     prompt_ids: Option<Vec<u32>>,
     /// JSON script of dialogue turns for one artifact, written as one JSON record.
@@ -392,6 +395,7 @@ impl Default for CliArgs {
             pair_hold_out: None,
             no_turn_memory: false,
             say: None,
+            messages_path: None,
             prompt_ids: None,
             script_path: None,
             save_session: None,
@@ -417,7 +421,7 @@ impl Default for CliArgs {
 fn print_usage() {
     eprintln!("Usage: uor-chat --bundle <PATH> [OPTIONS]");
     eprintln!("       uor-chat --stack <ARTIFACT.lut> --tokenizer <TOKENIZER.json> [OPTIONS]");
-    eprintln!("       uor-chat --discrete <ARTIFACT.lut> (--prompt-ids <CSV> | --tokenizer <JSON> --say <TEXT>) [OPTIONS]");
+    eprintln!("       uor-chat --discrete <ARTIFACT.lut> (--prompt-ids <CSV> | --tokenizer <JSON> --say <TEXT> | --tokenizer <JSON> --messages <FILE>) [OPTIONS]");
     eprintln!();
     eprintln!("Options:");
     eprintln!(
@@ -438,7 +442,11 @@ fn print_usage() {
         "      --p4-source-gate <FILE> Apply a fitted source gate bound to the embedded P4 state"
     );
     #[cfg(feature = "p1-count-serving")]
-    eprintln!("      --p4-lexical <FILE>      Apply a bound native lexical rank at P4 commit");
+    eprintln!("      --p4-lexical <FILE>      Apply a bound geometric or ordered lexical rank at P4 commit");
+    #[cfg(feature = "p1-count-serving")]
+    eprintln!(
+        "      --messages <FILE>       P4 JSON array of user/assistant messages ending in user"
+    );
     #[cfg(feature = "p1-count-serving")]
     eprintln!("      --p4-source-mode <MODE> active (default), disabled, wrong-address, role-blind, shuffled-role");
     eprintln!("      --discrete <ARTIFACT>   UORLUT01 discrete artifact; one-shot");
@@ -983,6 +991,13 @@ fn parse_cli_args() -> CliArgs {
                     process::exit(1);
                 }
             }
+            "--messages" => {
+                idx += 1;
+                args.messages_path = Some(PathBuf::from(raw.get(idx).unwrap_or_else(|| {
+                    eprintln!("--messages requires a JSON message file");
+                    process::exit(1);
+                })));
+            }
             "--prompt-ids" => {
                 idx += 1;
                 if idx < raw.len() {
@@ -1165,9 +1180,11 @@ fn parse_cli_args() -> CliArgs {
     if args.tokenizer_path.is_some()
         && args.stack_path.is_none()
         && !(args.discrete_path.is_some()
-            && (args.say.is_some() || args.interval_features.is_some()))
+            && (args.say.is_some()
+                || args.messages_path.is_some()
+                || args.interval_features.is_some()))
     {
-        eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--tokenizer' requires '--stack' or a discrete '--say' turn");
+        eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--tokenizer' requires '--stack' or discrete text input");
         process::exit(1);
     }
     if args.content_readout_path.is_some() && args.stack_path.is_none() {
@@ -1282,6 +1299,20 @@ fn parse_cli_args() -> CliArgs {
         );
         process::exit(1);
     }
+    if args.messages_path.is_some()
+        && (!cfg!(feature = "p1-count-serving")
+            || args.discrete_path.is_none()
+            || args.tokenizer_path.is_none()
+            || args.protocol != 2
+            || args.say.is_some()
+            || args.prompt_ids.is_some()
+            || args.script_path.is_some()
+            || args.interval_features.is_some()
+            || args.ordinary_termination_capture.is_some())
+    {
+        eprintln!("--messages requires a protocol-2 P4 --discrete deployment with its --tokenizer and supplies the sole prompt");
+        process::exit(1);
+    }
     if args.script_path.is_some() && (args.say.is_some() || args.prompt_ids.is_some()) {
         eprintln!(
             "{ANSI_RED_BOLD}error:{ANSI_RESET} '--script' is mutually exclusive with '--say' and '--prompt-ids'"
@@ -1290,11 +1321,12 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.discrete_path.is_some()
         && args.prompt_ids.is_none()
+        && args.messages_path.is_none()
         && args.interval_features.is_none()
         && args.ordinary_termination_capture.is_none()
         && (args.say.is_none() || args.tokenizer_path.is_none())
     {
-        eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--discrete' requires '--prompt-ids' or '--say' with its bound '--tokenizer'");
+        eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--discrete' requires '--prompt-ids', or '--say' or '--messages' with its bound '--tokenizer'");
         process::exit(1);
     }
     if args.ordinary_termination_capture.is_some()
@@ -2510,27 +2542,6 @@ mod tests {
     }
 }
 
-fn load_discrete_tokenizer(
-    model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
-    path: &std::path::Path,
-) -> Result<(ByteBpeTokenizer, String)> {
-    let bytes = std::fs::read(path)?;
-    let digest = hex::encode(Sha256::digest(&bytes));
-    if model.tokenizer_sha256() != Some(digest.as_str()) {
-        return Err(IntegerError::Invalid(
-            "discrete artifact does not bind this tokenizer SHA-256".into(),
-        ));
-    }
-    let tokenizer = ByteBpeTokenizer::from_tokenizer_json_bytes(&bytes)
-        .ok_or_else(|| IntegerError::Invalid("invalid discrete tokenizer JSON".into()))?;
-    if tokenizer.vocab_size() != model.shape().vocabulary as usize {
-        return Err(IntegerError::Invalid(
-            "discrete tokenizer vocabulary mismatch".into(),
-        ));
-    }
-    Ok((tokenizer, digest))
-}
-
 fn capture_interval_features(
     model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
     tokenizer: &ByteBpeTokenizer,
@@ -2865,6 +2876,12 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     };
     #[cfg(feature = "p1-count-serving")]
     let (model, p1, p4) = (deployment.model, deployment.state, deployment.p4);
+    #[cfg(feature = "p1-count-serving")]
+    if cli.messages_path.is_some() && p4.is_none() {
+        return Err(IntegerError::Invalid(
+            "--messages requires an embedded P4 deployment".into(),
+        ));
+    }
     if let Some(path) = &cli.ordinary_termination_capture {
         #[cfg(feature = "p1-count-serving")]
         if p1.is_some() || p4.is_some() {
@@ -2882,23 +2899,10 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     }
     #[cfg(feature = "p1-count-serving")]
     let lexical = if let Some(path) = &cli.p4_lexical {
-        use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::{
-            LexicalHead, BOUND_BYTES,
-        };
-        let state = p4
-            .as_ref()
-            .and_then(|engine| engine.inner.state_sha256())
-            .ok_or_else(|| {
-                IntegerError::Invalid("--p4-lexical requires an embedded P4 deployment".into())
-            })?;
-        let mut bytes = Vec::with_capacity(BOUND_BYTES + 1);
-        std::fs::File::open(path)?
-            .take((BOUND_BYTES + 1) as u64)
-            .read_to_end(&mut bytes)?;
-        Some((
-            LexicalHead::bind(&bytes, &state)?,
-            hex::encode(Sha256::digest(&bytes)),
-        ))
+        let engine = p4.as_ref().ok_or_else(|| {
+            IntegerError::Invalid("--p4-lexical requires an embedded P4 deployment".into())
+        })?;
+        Some(uor_r4_integer::ordinary_p4::load_lexical(path, &engine.inner)?)
     } else {
         None
     };
@@ -2973,7 +2977,21 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let mut user_opening = None;
     let mut text_mode = None;
     let encoded;
-    let prompt = if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
+    let prompt = if let (Some(messages), Some(path)) = (&cli.messages_path, &cli.tokenizer_path) {
+        let (tokenizer, digest) = load_discrete_tokenizer(&model, path)?;
+        let protocol = DialogueProtocol::literal_roles_v2(&tokenizer)
+            .map_err(|error| IntegerError::Invalid(error.to_string()))?;
+        let encoder = protocol
+            .bind(&tokenizer)
+            .map_err(|error| IntegerError::Invalid(error.to_string()))?;
+        let mut bytes = Vec::new();
+        std::fs::File::open(messages)?
+            .take((MAX_CHAT_SCRIPT_BYTES + 1) as u64)
+            .read_to_end(&mut bytes)?;
+        encoded = encode_discrete_messages(&bytes, &encoder, &protocol)?;
+        text_mode = Some((tokenizer, protocol, digest));
+        encoded.as_slice()
+    } else if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
         let (tokenizer, digest) = load_discrete_tokenizer(&model, path)?;
         let protocol = DialogueProtocol::literal_roles_version(&tokenizer, cli.protocol)
             .map_err(|e| IntegerError::Invalid(e.to_string()))?;
@@ -3227,66 +3245,16 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     for _ in 0..decode_tokens {
         #[cfg(feature = "p1-count-serving")]
         let p4_winner = if let (Some(engine), Some(session)) = (&p4, &mut p4_session) {
-            let (id, observation) = session
-                .step_with_source(
-                    &engine.inner,
-                    read_enabled,
-                    cli.p1_trace,
-                    p4_source.as_ref().map(|(gate, mode, _)| (gate, *mode)),
-                )
-                .map_err(|e| IntegerError::Invalid(e.to_string()))?;
-            let lexical_choice = lexical
-                .as_ref()
-                .map(|(head, _)| head.commit(&model, session.history(), session.last_scores_q48()))
-                .transpose()?;
-            let committed = lexical_choice.as_ref().map_or(id, |choice| choice.token);
-            if let Some(st) = observation {
-                let mut step_record = serde_json::json!({
-                    "token": st.token_id,
-                    "bucket": st.bucket,
-                    "highest_order": st.highest_order,
-                    "mass_q48": st.mass_q48,
-                    "top_ties": st.top_ties,
-                    "mass_sha256": st.mass_sha256,
-                    "prefix_sha256": st.prefix_sha256,
-                    "context_tokens": st.context_tokens,
-                    "pick_pos": st.pick_pos,
-                    "pick_distance": st.pick_distance,
-                    "pick_ties": st.pick_ties,
-                    "pick_successor": st.pick_successor,
-                    "pick_class": st.pick_class,
-                    "s3_pkey": st.s3_pkey,
-                    "s3_backoff_key": st.s3_backoff_key,
-                    "s3_mode": st.s3_mode,
-                    "s2_skip_keys": st.s2_skip_keys,
-                    "s2_skip_hit_mask": st.s2_skip_hit_mask,
-                    "cache_hit_state": st.cache_hit_state,
-                    "s4_role_scores": st.s4_role_scores,
-                    "s4_role_choice": st.s4_role_choice,
-                });
-                if let Some(source) = st.s4_source {
-                    step_record["s4_source"] = serde_json::json!({
-                        "resolved_role": source.resolved_role,
-                        "effective_role": source.effective_role,
-                        "gate_index": source.gate_index,
-                        "source_pos": source.source_pos,
-                        "source_token": source.source_token,
-                        "rival_token": source.rival_token,
-                        "weight_i8": source.weight_i8,
-                        "transfer_q48": source.transfer_q48,
-                        "source_mass_before_q48": source.source_mass_before_q48,
-                        "rival_mass_before_q48": source.rival_mass_before_q48,
-                    });
-                }
-                if let Some(choice) = &lexical_choice {
-                    step_record["prior_winner"] = serde_json::json!({
-                        "token": st.token_id, "mass_q48": st.mass_q48, "top_ties": st.top_ties,
-                    });
-                    step_record["token"] = committed.into();
-                    step_record["mass_q48"] = choice.prior_q48.into();
-                    step_record["top_ties"] = choice.top_ties.into();
-                    step_record["lexical"] = serde_json::to_value(choice)?;
-                }
+            let (committed, observation) = uor_r4_integer::ordinary_p4::step(
+                session,
+                &model,
+                &engine.inner,
+                read_enabled,
+                cli.p1_trace,
+                p4_source.as_ref().map(|(gate, mode, _)| (gate, *mode)),
+                lexical.as_ref().map(|(head, _)| head),
+            )?;
+            if let Some(step_record) = observation {
                 p4_steps.push(step_record);
             }
             Some(u32::from(committed))
@@ -3570,9 +3538,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             record["p4_steps"] = p4_steps.into();
             record["p4_components"] = engine.component_digests.clone();
         }
-        if let Some((_, digest)) = &lexical {
+        if let Some((head, digest)) = &lexical {
             record["decoding"] = "greedy P4 with signed native lexical ranking".into();
             record["p4_lexical_sha256"] = digest.as_str().into();
+            record["p4_lexical_addressing"] = if head.is_ordered() {
+                "ordered"
+            } else {
+                "geometry"
+            }
+            .into();
         }
         if let Some((gate, mode, digest)) = &p4_source {
             record["p4_source_gate"] = serde_json::json!({
@@ -4507,7 +4481,7 @@ fn run_stack_chat(cli: &CliArgs) -> std::result::Result<(), StackCliError> {
     Ok(())
 }
 
-fn main() {
+pub(super) fn main() {
     retain_kernel_symbols();
 
     let cli = parse_cli_args();

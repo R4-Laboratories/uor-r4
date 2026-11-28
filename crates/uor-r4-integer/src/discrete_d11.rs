@@ -49,7 +49,7 @@ pub use rival_admission::pack_rival_admission;
 
 /// Container magic (`UORLUT01`).
 pub const MAGIC: &[u8; 8] = b"UORLUT01";
-#[cfg(feature = "p1-count-serving")]
+#[cfg(any(feature = "p1-count-serving", feature = "p4-only-client"))]
 #[path = "discrete_count.rs"]
 pub mod count_deployment;
 /// Header schema of a discrete SpiralCore/FBS `UORLUT01` artifact.
@@ -1850,6 +1850,11 @@ pub(crate) fn cl06_compose(a: usize, b: usize) -> usize {
 
 pub(crate) fn cl06_bfs(src: usize, dst: usize) -> usize {
     usize::from(BFS[(src << 4) + dst])
+}
+
+/// Exact shared table used by both ordinary and device lexical addressing.
+pub fn p4_lexical_bfs() -> &'static [u8; 256] {
+    &BFS
 }
 
 pub(crate) fn cl06_inverse(a: usize) -> usize {
@@ -4227,8 +4232,32 @@ impl IntegerDiscreteModel {
             .collect()
     }
 
+    /// Minimal input for the shared AOT D11 recurrence. The ignored unigram
+    /// words between the transforms and original-ID roots are zero-filled.
+    pub fn p4_lexical_trunk_words(&self) -> Result<Vec<u32>> {
+        const VOCAB: usize = 4096;
+        const ROOTS_START: usize = 70 + VOCAB;
+        let trunk = self
+            .trunk
+            .as_ref()
+            .filter(|_| self.codebook_roots.len() == VOCAB)
+            .ok_or_else(|| invalid("P4 lexical recurrence requires the full native trunk"))?;
+        let mut words = vec![0; ROOTS_START + VOCAB];
+        words[0] = 1;
+        for (out, &value) in words[1..65].iter_mut().zip(&trunk.step_candidates) {
+            *out = u32::from(value);
+        }
+        for (out, &value) in words[65..69].iter_mut().zip(&trunk.norm_candidates) {
+            *out = u32::from(value);
+        }
+        for (out, &roots) in words[ROOTS_START..].iter_mut().zip(&self.codebook_roots) {
+            *out = u32::from(pack_4block_roots(roots));
+        }
+        Ok(words)
+    }
+
     /// Compile the trained four-block Identity Pick codes once for A1 serving.
-    #[cfg(feature = "p1-count-serving")]
+    #[cfg(any(feature = "p1-count-serving", feature = "p4-only-client"))]
     pub fn identity_pick_codes(&self) -> Result<Vec<[u16; 4]>> {
         if !self.is_trunk_d11()
             || !matches!(self.read_mode, DiscreteReadMode::Relation { .. })

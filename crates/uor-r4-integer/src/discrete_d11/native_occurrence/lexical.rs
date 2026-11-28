@@ -7,11 +7,56 @@ const BLOCKS: usize = 4;
 const ROOTS: usize = 16;
 const STATES: usize = 64;
 pub const WEIGHT_WORDS: usize = BLOCKS * STATES;
-const MAGIC: &[u8; 8] = b"UORLEX01";
+pub(super) const MAGIC: &[u8; 8] = b"UORLEX01";
+pub(super) const ORDERED_MAGIC: &[u8; 8] = b"UORLEX02";
 pub const STATE_BYTES: usize = MAGIC.len() + WEIGHT_WORDS * 2;
 /// One signed word contributes 2^-16 on the prior's unit mass scale.
 pub const SCORE_UNIT_Q48: i64 = 1 << 32;
 const MAX_PRIOR_Q48: u64 = 1 << 48;
+const SUFFIX_LENGTHS: [usize; BLOCKS] = [1, 4, 16, 2048];
+
+/// One partial FNV-1a32 hash per exact suffix of the active original-ID history.
+pub struct OrderedPrefix([u32; BLOCKS]);
+
+impl OrderedPrefix {
+    pub fn new(history: &[u16]) -> Result<Self> {
+        if history.is_empty()
+            || history.len() > SUFFIX_LENGTHS[3]
+            || history.iter().any(|&id| id >= 4096)
+        {
+            return Err(invalid("invalid ordered lexical history"));
+        }
+        Ok(Self(SUFFIX_LENGTHS.map(|length| {
+            history[history.len().saturating_sub(length)..]
+                .iter()
+                .copied()
+                .fold(2_166_136_261, hash_original_id)
+        })))
+    }
+
+    pub fn states(&self) -> [u32; BLOCKS] {
+        self.0
+    }
+
+    pub fn addresses(&self, candidate: u16) -> Result<[u16; BLOCKS]> {
+        if !(1..4096).contains(&candidate) {
+            return Err(invalid("invalid ordered lexical original candidate ID"));
+        }
+        Ok(std::array::from_fn(|bank| {
+            let mut hash = hash_original_id(self.0[bank], candidate);
+            hash ^= hash >> 16;
+            hash = hash.wrapping_mul(0x85eb_ca6b);
+            hash ^= hash >> 13;
+            (bank * STATES + (hash >> 26) as usize) as u16
+        }))
+    }
+}
+
+fn hash_original_id(hash: u32, id: u16) -> u32 {
+    id.to_le_bytes().into_iter().fold(hash, |hash, byte| {
+        (hash ^ u32::from(byte)).wrapping_mul(16_777_619)
+    })
+}
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct Carry([u8; BLOCKS]);
@@ -65,7 +110,11 @@ pub struct Weights([i16; WEIGHT_WORDS]);
 
 impl Weights {
     pub fn from_le_bytes(bytes: &[u8]) -> Result<Self> {
-        if bytes.len() != STATE_BYTES || !bytes.starts_with(MAGIC) {
+        Self::decode(bytes, MAGIC)
+    }
+
+    pub(super) fn decode(bytes: &[u8], magic: &[u8; 8]) -> Result<Self> {
+        if bytes.len() != STATE_BYTES || !bytes.starts_with(magic) {
             return Err(invalid(
                 "lexical state has the wrong version or byte length",
             ));
@@ -78,9 +127,13 @@ impl Weights {
     }
 
     pub fn to_le_bytes(&self) -> [u8; STATE_BYTES] {
+        Self::encode(&self.0, MAGIC)
+    }
+
+    pub(super) fn encode(words: &[i16; WEIGHT_WORDS], magic: &[u8; 8]) -> [u8; STATE_BYTES] {
         let mut bytes = [0; STATE_BYTES];
-        bytes[..MAGIC.len()].copy_from_slice(MAGIC);
-        for (encoded, word) in bytes[MAGIC.len()..].chunks_exact_mut(2).zip(self.0) {
+        bytes[..MAGIC.len()].copy_from_slice(magic);
+        for (encoded, word) in bytes[MAGIC.len()..].chunks_exact_mut(2).zip(words) {
             encoded.copy_from_slice(&word.to_le_bytes());
         }
         bytes
@@ -94,14 +147,21 @@ impl Weights {
         candidate_roots: [u8; BLOCKS],
         prior_q48: u64,
     ) -> Result<i64> {
+        self.score_addresses_q48(carry.addresses(candidate_roots)?, prior_q48)
+    }
+
+    /// The same scalar election applies to either lawful address operator.
+    pub fn score_addresses_q48(&self, addresses: [u16; BLOCKS], prior_q48: u64) -> Result<i64> {
         if prior_q48 > MAX_PRIOR_Q48 {
             return Err(invalid("lexical prior is outside the Q48 mass domain"));
         }
-        let adjustment: i64 = carry
-            .addresses(candidate_roots)?
-            .iter()
-            .map(|&address| i64::from(self.0[usize::from(address)]))
-            .sum();
+        let mut adjustment = 0;
+        for (bank, address) in addresses.into_iter().map(usize::from).enumerate() {
+            if address / STATES != bank {
+                return Err(invalid("lexical address lies outside its bank"));
+            }
+            adjustment += i64::from(self.0[address]);
+        }
         // Four i16 magnitudes bound the scaled adjustment by 2^49.
         Ok(prior_q48 as i64 + adjustment * SCORE_UNIT_Q48)
     }

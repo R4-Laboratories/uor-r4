@@ -1,0 +1,900 @@
+{
+  "arms": {
+    "geometry-435300": {
+      "all": {
+        "actual_lexical_boundary_reached": 192,
+        "actual_lexical_matches": 1,
+        "blocked_full_address_aliases": 1,
+        "cap_censored_without_id_mismatch": 0,
+        "early_eos": 9,
+        "emitted_eos": 18,
+        "exact_through_eos": 0,
+        "first_wrong": 200,
+        "gold_rank_improved_over_p4": 5,
+        "gold_rank_one": 1,
+        "gold_strictly_beats_rival": 1,
+        "gold_strictly_beats_space": 68,
+        "gold_ties_space": 0,
+        "hit_cap": 182,
+        "malformed_unk": 0,
+        "mean_gold_rank": [
+          384161,
+          200
+        ],
+        "median_gold_rank": [
+          3970,
+          2
+        ],
+        "p4_rank_one": 3,
+        "prior_floor_targets": 0,
+        "prior_floor_wins": 0,
+        "prior_rank_nonfirst_wins": 0,
+        "references_beyond_cap": 1,
+        "rows": 200,
+        "space_strictly_beats_gold": 132,
+        "target_absent_in_prompt": 37,
+        "target_absent_in_prompt_wins": 0,
+        "wrong_position_histogram": {
+          "1": 197,
+          "2": 2,
+          "3": 1
+        }
+      },
+      "pair_counts_by_space_stratum": {
+        "no_standalone_space": [
+          94,
+          25,
+          58
+        ],
+        "standalone_space": [
+          5,
+          0,
+          1
+        ]
+      },
+      "positive_assignment_pairs": 59,
+      "source_splits": {
+        "train": {
+          "actual_lexical_boundary_reached": 192,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 9,
+          "emitted_eos": 18,
+          "exact_through_eos": 0,
+          "first_wrong": 200,
+          "gold_rank_improved_over_p4": 5,
+          "gold_rank_one": 1,
+          "gold_strictly_beats_rival": 1,
+          "gold_strictly_beats_space": 68,
+          "gold_ties_space": 0,
+          "hit_cap": 182,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            384161,
+            200
+          ],
+          "median_gold_rank": [
+            3970,
+            2
+          ],
+          "p4_rank_one": 3,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 200,
+          "space_strictly_beats_gold": 132,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 197,
+            "2": 2,
+            "3": 1
+          }
+        }
+      },
+      "space_strata": {
+        "no_standalone_space": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 0,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 9,
+          "emitted_eos": 18,
+          "exact_through_eos": 0,
+          "first_wrong": 189,
+          "gold_rank_improved_over_p4": 5,
+          "gold_rank_one": 0,
+          "gold_strictly_beats_rival": 0,
+          "gold_strictly_beats_space": 61,
+          "gold_ties_space": 0,
+          "hit_cap": 171,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            365460,
+            189
+          ],
+          "median_gold_rank": [
+            4000,
+            2
+          ],
+          "p4_rank_one": 1,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 189,
+          "space_strictly_beats_gold": 128,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 189
+          }
+        },
+        "standalone_space": {
+          "actual_lexical_boundary_reached": 3,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 0,
+          "emitted_eos": 0,
+          "exact_through_eos": 0,
+          "first_wrong": 11,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 1,
+          "gold_strictly_beats_rival": 1,
+          "gold_strictly_beats_space": 7,
+          "gold_ties_space": 0,
+          "hit_cap": 11,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            18701,
+            11
+          ],
+          "median_gold_rank": [
+            3788,
+            2
+          ],
+          "p4_rank_one": 2,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 0,
+          "rows": 11,
+          "space_strictly_beats_gold": 4,
+          "target_absent_in_prompt": 0,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 8,
+            "2": 2,
+            "3": 1
+          }
+        }
+      },
+      "strict_two_way_pairs": 25
+    },
+    "geometry-435301": {
+      "all": {
+        "actual_lexical_boundary_reached": 190,
+        "actual_lexical_matches": 1,
+        "blocked_full_address_aliases": 1,
+        "cap_censored_without_id_mismatch": 0,
+        "early_eos": 2,
+        "emitted_eos": 5,
+        "exact_through_eos": 0,
+        "first_wrong": 200,
+        "gold_rank_improved_over_p4": 9,
+        "gold_rank_one": 1,
+        "gold_strictly_beats_rival": 1,
+        "gold_strictly_beats_space": 56,
+        "gold_ties_space": 0,
+        "hit_cap": 195,
+        "malformed_unk": 0,
+        "mean_gold_rank": [
+          367377,
+          200
+        ],
+        "median_gold_rank": [
+          3753,
+          2
+        ],
+        "p4_rank_one": 3,
+        "prior_floor_targets": 0,
+        "prior_floor_wins": 0,
+        "prior_rank_nonfirst_wins": 0,
+        "references_beyond_cap": 1,
+        "rows": 200,
+        "space_strictly_beats_gold": 144,
+        "target_absent_in_prompt": 37,
+        "target_absent_in_prompt_wins": 0,
+        "wrong_position_histogram": {
+          "1": 199,
+          "3": 1
+        }
+      },
+      "pair_counts_by_space_stratum": {
+        "no_standalone_space": [
+          94,
+          25,
+          53
+        ],
+        "standalone_space": [
+          5,
+          0,
+          1
+        ]
+      },
+      "positive_assignment_pairs": 54,
+      "source_splits": {
+        "train": {
+          "actual_lexical_boundary_reached": 190,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 2,
+          "emitted_eos": 5,
+          "exact_through_eos": 0,
+          "first_wrong": 200,
+          "gold_rank_improved_over_p4": 9,
+          "gold_rank_one": 1,
+          "gold_strictly_beats_rival": 1,
+          "gold_strictly_beats_space": 56,
+          "gold_ties_space": 0,
+          "hit_cap": 195,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            367377,
+            200
+          ],
+          "median_gold_rank": [
+            3753,
+            2
+          ],
+          "p4_rank_one": 3,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 200,
+          "space_strictly_beats_gold": 144,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 199,
+            "3": 1
+          }
+        }
+      },
+      "space_strata": {
+        "no_standalone_space": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 0,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 2,
+          "emitted_eos": 5,
+          "exact_through_eos": 0,
+          "first_wrong": 189,
+          "gold_rank_improved_over_p4": 9,
+          "gold_rank_one": 0,
+          "gold_strictly_beats_rival": 0,
+          "gold_strictly_beats_space": 48,
+          "gold_ties_space": 0,
+          "hit_cap": 184,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            357795,
+            189
+          ],
+          "median_gold_rank": [
+            3862,
+            2
+          ],
+          "p4_rank_one": 1,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 189,
+          "space_strictly_beats_gold": 141,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 189
+          }
+        },
+        "standalone_space": {
+          "actual_lexical_boundary_reached": 1,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 0,
+          "emitted_eos": 0,
+          "exact_through_eos": 0,
+          "first_wrong": 11,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 1,
+          "gold_strictly_beats_rival": 1,
+          "gold_strictly_beats_space": 8,
+          "gold_ties_space": 0,
+          "hit_cap": 11,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            9582,
+            11
+          ],
+          "median_gold_rank": [
+            1296,
+            2
+          ],
+          "p4_rank_one": 2,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 0,
+          "rows": 11,
+          "space_strictly_beats_gold": 3,
+          "target_absent_in_prompt": 0,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 10,
+            "3": 1
+          }
+        }
+      },
+      "strict_two_way_pairs": 25
+    },
+    "ordered-435300": {
+      "all": {
+        "actual_lexical_boundary_reached": 191,
+        "actual_lexical_matches": 8,
+        "blocked_full_address_aliases": 0,
+        "cap_censored_without_id_mismatch": 0,
+        "early_eos": 42,
+        "emitted_eos": 76,
+        "exact_through_eos": 3,
+        "first_wrong": 197,
+        "gold_rank_improved_over_p4": 14,
+        "gold_rank_one": 8,
+        "gold_strictly_beats_rival": 8,
+        "gold_strictly_beats_space": 79,
+        "gold_ties_space": 0,
+        "hit_cap": 124,
+        "malformed_unk": 0,
+        "mean_gold_rank": [
+          338401,
+          200
+        ],
+        "median_gold_rank": [
+          3211,
+          2
+        ],
+        "p4_rank_one": 3,
+        "prior_floor_targets": 0,
+        "prior_floor_wins": 0,
+        "prior_rank_nonfirst_wins": 6,
+        "references_beyond_cap": 1,
+        "rows": 200,
+        "space_strictly_beats_gold": 121,
+        "target_absent_in_prompt": 37,
+        "target_absent_in_prompt_wins": 0,
+        "wrong_position_histogram": {
+          "1": 192,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "pair_counts_by_space_stratum": {
+        "no_standalone_space": [
+          94,
+          11,
+          44
+        ],
+        "standalone_space": [
+          5,
+          3,
+          3
+        ]
+      },
+      "positive_assignment_pairs": 47,
+      "source_splits": {
+        "train": {
+          "actual_lexical_boundary_reached": 191,
+          "actual_lexical_matches": 8,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 42,
+          "emitted_eos": 76,
+          "exact_through_eos": 3,
+          "first_wrong": 197,
+          "gold_rank_improved_over_p4": 14,
+          "gold_rank_one": 8,
+          "gold_strictly_beats_rival": 8,
+          "gold_strictly_beats_space": 79,
+          "gold_ties_space": 0,
+          "hit_cap": 124,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            338401,
+            200
+          ],
+          "median_gold_rank": [
+            3211,
+            2
+          ],
+          "p4_rank_one": 3,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 6,
+          "references_beyond_cap": 1,
+          "rows": 200,
+          "space_strictly_beats_gold": 121,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 192,
+            "2": 2,
+            "3": 3
+          }
+        }
+      },
+      "space_strata": {
+        "no_standalone_space": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 6,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 41,
+          "emitted_eos": 74,
+          "exact_through_eos": 3,
+          "first_wrong": 186,
+          "gold_rank_improved_over_p4": 14,
+          "gold_rank_one": 6,
+          "gold_strictly_beats_rival": 6,
+          "gold_strictly_beats_space": 68,
+          "gold_ties_space": 0,
+          "hit_cap": 115,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            330182,
+            189
+          ],
+          "median_gold_rank": [
+            3508,
+            2
+          ],
+          "p4_rank_one": 1,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 6,
+          "references_beyond_cap": 1,
+          "rows": 189,
+          "space_strictly_beats_gold": 121,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 183,
+            "2": 2,
+            "3": 1
+          }
+        },
+        "standalone_space": {
+          "actual_lexical_boundary_reached": 2,
+          "actual_lexical_matches": 2,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 1,
+          "emitted_eos": 2,
+          "exact_through_eos": 0,
+          "first_wrong": 11,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 2,
+          "gold_strictly_beats_rival": 2,
+          "gold_strictly_beats_space": 11,
+          "gold_ties_space": 0,
+          "hit_cap": 9,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            8219,
+            11
+          ],
+          "median_gold_rank": [
+            816,
+            2
+          ],
+          "p4_rank_one": 2,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 0,
+          "rows": 11,
+          "space_strictly_beats_gold": 0,
+          "target_absent_in_prompt": 0,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 9,
+            "3": 2
+          }
+        }
+      },
+      "strict_two_way_pairs": 14
+    },
+    "ordered-435301": {
+      "all": {
+        "actual_lexical_boundary_reached": 191,
+        "actual_lexical_matches": 8,
+        "blocked_full_address_aliases": 0,
+        "cap_censored_without_id_mismatch": 0,
+        "early_eos": 29,
+        "emitted_eos": 50,
+        "exact_through_eos": 3,
+        "first_wrong": 197,
+        "gold_rank_improved_over_p4": 12,
+        "gold_rank_one": 8,
+        "gold_strictly_beats_rival": 8,
+        "gold_strictly_beats_space": 52,
+        "gold_ties_space": 0,
+        "hit_cap": 150,
+        "malformed_unk": 0,
+        "mean_gold_rank": [
+          342555,
+          200
+        ],
+        "median_gold_rank": [
+          3152,
+          2
+        ],
+        "p4_rank_one": 3,
+        "prior_floor_targets": 0,
+        "prior_floor_wins": 0,
+        "prior_rank_nonfirst_wins": 6,
+        "references_beyond_cap": 1,
+        "rows": 200,
+        "space_strictly_beats_gold": 148,
+        "target_absent_in_prompt": 37,
+        "target_absent_in_prompt_wins": 0,
+        "wrong_position_histogram": {
+          "1": 192,
+          "2": 3,
+          "3": 2
+        }
+      },
+      "pair_counts_by_space_stratum": {
+        "no_standalone_space": [
+          94,
+          12,
+          52
+        ],
+        "standalone_space": [
+          5,
+          2,
+          3
+        ]
+      },
+      "positive_assignment_pairs": 55,
+      "source_splits": {
+        "train": {
+          "actual_lexical_boundary_reached": 191,
+          "actual_lexical_matches": 8,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 29,
+          "emitted_eos": 50,
+          "exact_through_eos": 3,
+          "first_wrong": 197,
+          "gold_rank_improved_over_p4": 12,
+          "gold_rank_one": 8,
+          "gold_strictly_beats_rival": 8,
+          "gold_strictly_beats_space": 52,
+          "gold_ties_space": 0,
+          "hit_cap": 150,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            342555,
+            200
+          ],
+          "median_gold_rank": [
+            3152,
+            2
+          ],
+          "p4_rank_one": 3,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 6,
+          "references_beyond_cap": 1,
+          "rows": 200,
+          "space_strictly_beats_gold": 148,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 192,
+            "2": 3,
+            "3": 2
+          }
+        }
+      },
+      "space_strata": {
+        "no_standalone_space": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 6,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 28,
+          "emitted_eos": 48,
+          "exact_through_eos": 3,
+          "first_wrong": 186,
+          "gold_rank_improved_over_p4": 12,
+          "gold_rank_one": 6,
+          "gold_strictly_beats_rival": 6,
+          "gold_strictly_beats_space": 48,
+          "gold_ties_space": 0,
+          "hit_cap": 141,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            327343,
+            189
+          ],
+          "median_gold_rank": [
+            3174,
+            2
+          ],
+          "p4_rank_one": 1,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 6,
+          "references_beyond_cap": 1,
+          "rows": 189,
+          "space_strictly_beats_gold": 141,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 183,
+            "2": 3
+          }
+        },
+        "standalone_space": {
+          "actual_lexical_boundary_reached": 2,
+          "actual_lexical_matches": 2,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 1,
+          "emitted_eos": 2,
+          "exact_through_eos": 0,
+          "first_wrong": 11,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 2,
+          "gold_strictly_beats_rival": 2,
+          "gold_strictly_beats_space": 4,
+          "gold_ties_space": 0,
+          "hit_cap": 9,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            15212,
+            11
+          ],
+          "median_gold_rank": [
+            2656,
+            2
+          ],
+          "p4_rank_one": 2,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 0,
+          "rows": 11,
+          "space_strictly_beats_gold": 7,
+          "target_absent_in_prompt": 0,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 9,
+            "3": 2
+          }
+        }
+      },
+      "strict_two_way_pairs": 14
+    },
+    "zero": {
+      "all": {
+        "actual_lexical_boundary_reached": 189,
+        "actual_lexical_matches": 1,
+        "blocked_full_address_aliases": 1,
+        "cap_censored_without_id_mismatch": 0,
+        "early_eos": 0,
+        "emitted_eos": 1,
+        "exact_through_eos": 0,
+        "first_wrong": 200,
+        "gold_rank_improved_over_p4": 0,
+        "gold_rank_one": 3,
+        "gold_strictly_beats_rival": 3,
+        "gold_strictly_beats_space": 21,
+        "gold_ties_space": 0,
+        "hit_cap": 199,
+        "malformed_unk": 0,
+        "mean_gold_rank": [
+          33740,
+          200
+        ],
+        "median_gold_rank": [
+          78,
+          2
+        ],
+        "p4_rank_one": 3,
+        "prior_floor_targets": 0,
+        "prior_floor_wins": 0,
+        "prior_rank_nonfirst_wins": 0,
+        "references_beyond_cap": 1,
+        "rows": 200,
+        "space_strictly_beats_gold": 179,
+        "target_absent_in_prompt": 37,
+        "target_absent_in_prompt_wins": 0,
+        "wrong_position_histogram": {
+          "1": 199,
+          "2": 1
+        }
+      },
+      "pair_counts_by_space_stratum": {
+        "no_standalone_space": [
+          94,
+          7,
+          48
+        ],
+        "standalone_space": [
+          5,
+          1,
+          4
+        ]
+      },
+      "positive_assignment_pairs": 52,
+      "source_splits": {
+        "train": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 0,
+          "emitted_eos": 1,
+          "exact_through_eos": 0,
+          "first_wrong": 200,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 3,
+          "gold_strictly_beats_rival": 3,
+          "gold_strictly_beats_space": 21,
+          "gold_ties_space": 0,
+          "hit_cap": 199,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            33740,
+            200
+          ],
+          "median_gold_rank": [
+            78,
+            2
+          ],
+          "p4_rank_one": 3,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 200,
+          "space_strictly_beats_gold": 179,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 199,
+            "2": 1
+          }
+        }
+      },
+      "space_strata": {
+        "no_standalone_space": {
+          "actual_lexical_boundary_reached": 189,
+          "actual_lexical_matches": 1,
+          "blocked_full_address_aliases": 1,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 0,
+          "emitted_eos": 1,
+          "exact_through_eos": 0,
+          "first_wrong": 189,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 1,
+          "gold_strictly_beats_rival": 1,
+          "gold_strictly_beats_space": 18,
+          "gold_ties_space": 0,
+          "hit_cap": 188,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            33528,
+            189
+          ],
+          "median_gold_rank": [
+            88,
+            2
+          ],
+          "p4_rank_one": 1,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 1,
+          "rows": 189,
+          "space_strictly_beats_gold": 171,
+          "target_absent_in_prompt": 37,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 188,
+            "2": 1
+          }
+        },
+        "standalone_space": {
+          "actual_lexical_boundary_reached": 0,
+          "actual_lexical_matches": 0,
+          "blocked_full_address_aliases": 0,
+          "cap_censored_without_id_mismatch": 0,
+          "early_eos": 0,
+          "emitted_eos": 0,
+          "exact_through_eos": 0,
+          "first_wrong": 11,
+          "gold_rank_improved_over_p4": 0,
+          "gold_rank_one": 2,
+          "gold_strictly_beats_rival": 2,
+          "gold_strictly_beats_space": 3,
+          "gold_ties_space": 0,
+          "hit_cap": 11,
+          "malformed_unk": 0,
+          "mean_gold_rank": [
+            212,
+            11
+          ],
+          "median_gold_rank": [
+            36,
+            2
+          ],
+          "p4_rank_one": 2,
+          "prior_floor_targets": 0,
+          "prior_floor_wins": 0,
+          "prior_rank_nonfirst_wins": 0,
+          "references_beyond_cap": 0,
+          "rows": 11,
+          "space_strictly_beats_gold": 8,
+          "target_absent_in_prompt": 0,
+          "target_absent_in_prompt_wins": 0,
+          "wrong_position_histogram": {
+            "1": 11
+          }
+        }
+      },
+      "strict_two_way_pairs": 8
+    }
+  },
+  "committed_id_cap_including_eos": 32,
+  "context_ids": 2048,
+  "input_sha256": {
+    "blind": "5142514aa245d7cf99690bb60e4f5120cce36094a33678f50e52573912c23d62",
+    "truth": "483bf82f99e7ba454986726abc98b9bdee66b0df230b6a2c089a862dd364feee"
+  },
+  "matched_pairs": 99,
+  "output_sha256": {
+    "blind-generation.jsonl": "bd197bbc7cda603d5d5bd309ba5aadd5d6039cdb96a4329164bac9f978f1055b",
+    "held-grades.jsonl": "5fd42077f2579af9548bfa039f203f7caeb266fa6de4f0deef56d91309cd97d5",
+    "held-pairs.jsonl": "b6448550332ba70b5e3649b059e12ef6f0333938c8185ea4f8aed747318dcfd5",
+    "held-ranks.jsonl": "b89d9eb6ad8afb8f5a0d03e94d2bf9b98d9ed59d35a50ca69f10b32aa334c0a4",
+    "held-unpaired.jsonl": "dad7496fef0982125a9debab2e2c4fc22e6c749c4234370fda3ec421977cf465"
+  },
+  "p4_prior_floor_q48": 1,
+  "pair_count_columns": [
+    "pairs",
+    "strict_two_way",
+    "positive_assignment"
+  ],
+  "rank_mean_and_median_encoding": [
+    "numerator",
+    "denominator"
+  ],
+  "rows": 200,
+  "schema": "uor-r4/4353-held-lexical/1",
+  "score_units": "signed Q48",
+  "unpaired_by_space_stratum": {
+    "no_standalone_space": 1,
+    "standalone_space": 1
+  }
+}
