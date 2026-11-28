@@ -1,0 +1,23 @@
+{
+  "confirmation": {
+    "full": null,
+    "gold_only": null
+  },
+  "historical_checkpoint_mismatches": 0,
+  "historical_checkpoints_verified": 64,
+  "historical_visit_mismatches": 0,
+  "historical_visits_verified": 249024,
+  "joint_conflicts": {
+    "certified_rows": 2668,
+    "disjoint_pairs": 1334,
+    "excludes_full_policy_retention_bar": true,
+    "full_policy_retention_bar": 3109,
+    "raw_gpu_observations_compared": 2668,
+    "shared_strict_win_upper_bound": 2552
+  },
+  "two_seed_gate": {
+    "full": false,
+    "gold_only": false
+  },
+  "visits_recounted": 498048
+}

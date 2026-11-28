@@ -1,0 +1,182 @@
+[
+  {
+    "addressing": "geometry",
+    "all": {
+      "already_winning": 122,
+      "blocking_aliases": 3,
+      "common_rows": 3886,
+      "higher_ceiling": 3891,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3535,
+      "rows": 3891,
+      "rows_with_blocking_alias": 3,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 234,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "common": {
+      "already_winning": 122,
+      "blocking_aliases": 0,
+      "common_rows": 3886,
+      "higher_ceiling": 3886,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3533,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 231,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "gauge": {
+      "changed_words": 104,
+      "l1": 1703936,
+      "offsets": [
+        -16384,
+        -16384,
+        -16384,
+        -16384
+      ],
+      "score_q48": -281474976710656
+    },
+    "seed": 435300
+  },
+  {
+    "addressing": "ordered-matched",
+    "all": {
+      "already_winning": 123,
+      "blocking_aliases": 2,
+      "common_rows": 3886,
+      "higher_ceiling": 3891,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3762,
+      "rows": 3891,
+      "rows_with_blocking_alias": 2,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 5,
+      "still_feasible": 1,
+      "tied_aliases": 0
+    },
+    "common": {
+      "already_winning": 123,
+      "blocking_aliases": 0,
+      "common_rows": 3886,
+      "higher_ceiling": 3886,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3759,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 3,
+      "still_feasible": 1,
+      "tied_aliases": 0
+    },
+    "gauge": {
+      "changed_words": 104,
+      "l1": 2466126,
+      "offsets": [
+        -16384,
+        -16384,
+        -30918,
+        -31165
+      ],
+      "score_q48": -407381942992896
+    },
+    "seed": 435300
+  },
+  {
+    "addressing": "geometry",
+    "all": {
+      "already_winning": 116,
+      "blocking_aliases": 3,
+      "common_rows": 3886,
+      "higher_ceiling": 3891,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3676,
+      "rows": 3891,
+      "rows_with_blocking_alias": 3,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 99,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "common": {
+      "already_winning": 116,
+      "blocking_aliases": 0,
+      "common_rows": 3886,
+      "higher_ceiling": 3886,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3674,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 96,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "gauge": {
+      "changed_words": 104,
+      "l1": 1703936,
+      "offsets": [
+        -16384,
+        -16384,
+        -16384,
+        -16384
+      ],
+      "score_q48": -281474976710656
+    },
+    "seed": 435301
+  },
+  {
+    "addressing": "ordered-matched",
+    "all": {
+      "already_winning": 87,
+      "blocking_aliases": 2,
+      "common_rows": 3886,
+      "higher_ceiling": 3891,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3791,
+      "rows": 3891,
+      "rows_with_blocking_alias": 2,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 13,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "common": {
+      "already_winning": 87,
+      "blocking_aliases": 0,
+      "common_rows": 3886,
+      "higher_ceiling": 3886,
+      "lower_ceiling": 0,
+      "newly_blocked": 0,
+      "rescued": 3788,
+      "rows": 3886,
+      "rows_with_blocking_alias": 0,
+      "rows_with_tied_alias": 0,
+      "still_blocked": 11,
+      "still_feasible": 0,
+      "tied_aliases": 0
+    },
+    "gauge": {
+      "changed_words": 104,
+      "l1": 2483000,
+      "offsets": [
+        -16384,
+        -16384,
+        -31188,
+        -31544
+      ],
+      "score_q48": -410169376768000
+    },
+    "seed": 435301
+  }
+]

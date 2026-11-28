@@ -1,0 +1,15 @@
+{
+  "addressing": "geometry",
+  "certificates_exclude_full_retention_bar": true,
+  "disjoint_certified_pairs": 1334,
+  "full_policy_retention_bar": 3109,
+  "matching": "deterministic greedy; disjoint-pair lower bound, not a maximum matching",
+  "nonalias_inequalities": 15909205,
+  "opposed_rows_across_distinct_groups": 3686,
+  "original_rivals_per_row": 4094,
+  "population": "jointly strictly attainable TRAIN rows",
+  "row_signature_directions": 15567316,
+  "rows": 3886,
+  "shared_strict_win_upper_bound": 2552,
+  "weaker_full_aliases": 79
+}

@@ -1,0 +1,171 @@
+{
+  "artifact": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "capture_and_baselines_ns": 649914727,
+  "center_cubin": "fdea9faf6431408c2f9edaa6789711898fec60babb07b1135f50bc15ae2e9221",
+  "checkpoints_bytes": 135875,
+  "common_rows": 3886,
+  "confirmation": {
+    "full": null,
+    "gold_only": null
+  },
+  "controls_verified": 64,
+  "elapsed_ns": 52852023325,
+  "fits": [
+    {
+      "addressing": "geometry",
+      "centered": false,
+      "fit_elapsed_ns": 597221678,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435300
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": false,
+      "fit_elapsed_ns": 537030270,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435300
+    },
+    {
+      "addressing": "geometry",
+      "centered": true,
+      "fit_elapsed_ns": 654765234,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435300
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": true,
+      "fit_elapsed_ns": 701661359,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435300
+    },
+    {
+      "addressing": "geometry",
+      "centered": false,
+      "fit_elapsed_ns": 1217260277,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435300
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": false,
+      "fit_elapsed_ns": 1181668868,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435300
+    },
+    {
+      "addressing": "geometry",
+      "centered": true,
+      "fit_elapsed_ns": 1573662948,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435300
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": true,
+      "fit_elapsed_ns": 1489773452,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435300
+    },
+    {
+      "addressing": "geometry",
+      "centered": false,
+      "fit_elapsed_ns": 608953002,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435301
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": false,
+      "fit_elapsed_ns": 546126293,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435301
+    },
+    {
+      "addressing": "geometry",
+      "centered": true,
+      "fit_elapsed_ns": 646886516,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435301
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": true,
+      "fit_elapsed_ns": 689147941,
+      "head_bytes": 584,
+      "policy": "gold-only",
+      "seed": 435301
+    },
+    {
+      "addressing": "geometry",
+      "centered": false,
+      "fit_elapsed_ns": 1217872317,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435301
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": false,
+      "fit_elapsed_ns": 1181525898,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435301
+    },
+    {
+      "addressing": "geometry",
+      "centered": true,
+      "fit_elapsed_ns": 1573550379,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435301
+    },
+    {
+      "addressing": "ordered-matched",
+      "centered": true,
+      "fit_elapsed_ns": 1489289696,
+      "head_bytes": 584,
+      "policy": "full",
+      "seed": 435301
+    }
+  ],
+  "frozen_sparse_ns": 60529534,
+  "full_election_cubin": "3f445c905428fa4bcb0a07148d687dc258d9a8180acf332e17ef405f67812363",
+  "historical_reference_fits": [
+    {
+      "fit_elapsed_ns": 698710290,
+      "head_bytes": 584,
+      "seed": 435300
+    },
+    {
+      "fit_elapsed_ns": 699206559,
+      "head_bytes": 584,
+      "seed": 435301
+    }
+  ],
+  "historical_visits_verified": 249024,
+  "joint_conflicts_audit": true,
+  "load_ns": 27148509394,
+  "previous_checkpoint_sha256": "233162fe0834a8641aec6e6e65cfdfdfd73ffef44ed8645038c6793ec4c4cd71",
+  "previous_visits_sha256": "1fec709219e9d7f4d80d38359c79bea616354f2847feb42ad121e2df53fee537",
+  "retention_cubin": "7b0d78e1526135779851212d2dba5ef1533a2d96ecbc246b714798afe6a06a67",
+  "rows": 3891,
+  "split": "3b8d07c8112d696d08a91651c2ce0da1ef8acb81723cfcaec01bdea7798ee17c",
+  "state": "368033364f68ec16523735adf71b036b56902c5a9e9a816e6146a85a2874e778",
+  "two_seed_gate": {
+    "full": false,
+    "gold_only": false
+  },
+  "visits_bytes": 592872918
+}

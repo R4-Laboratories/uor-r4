@@ -1,0 +1,102 @@
+{
+  "ordinal": 0,
+  "expected_original_id": 93,
+  "boundary": "first content election after captured prefix",
+  "heads": [
+    {
+      "name": "zero",
+      "winner": 166,
+      "rank": 5
+    },
+    {
+      "name": "historical-geometry-435300",
+      "winner": 166,
+      "rank": 20
+    },
+    {
+      "name": "geometry-gold-only-435300-uncentered",
+      "winner": 166,
+      "rank": 4
+    },
+    {
+      "name": "ordered-matched-gold-only-435300-uncentered",
+      "winner": 166,
+      "rank": 4
+    },
+    {
+      "name": "geometry-gold-only-435300-centered",
+      "winner": 166,
+      "rank": 4
+    },
+    {
+      "name": "ordered-matched-gold-only-435300-centered",
+      "winner": 143,
+      "rank": 764
+    },
+    {
+      "name": "geometry-full-435300-uncentered",
+      "winner": 166,
+      "rank": 166
+    },
+    {
+      "name": "ordered-matched-full-435300-uncentered",
+      "winner": 2588,
+      "rank": 470
+    },
+    {
+      "name": "geometry-full-435300-centered",
+      "winner": 166,
+      "rank": 332
+    },
+    {
+      "name": "ordered-matched-full-435300-centered",
+      "winner": 2588,
+      "rank": 2170
+    },
+    {
+      "name": "historical-geometry-435301",
+      "winner": 1719,
+      "rank": 166
+    },
+    {
+      "name": "geometry-gold-only-435301-uncentered",
+      "winner": 166,
+      "rank": 3137
+    },
+    {
+      "name": "ordered-matched-gold-only-435301-uncentered",
+      "winner": 166,
+      "rank": 4
+    },
+    {
+      "name": "geometry-gold-only-435301-centered",
+      "winner": 166,
+      "rank": 5
+    },
+    {
+      "name": "ordered-matched-gold-only-435301-centered",
+      "winner": 166,
+      "rank": 3416
+    },
+    {
+      "name": "geometry-full-435301-uncentered",
+      "winner": 686,
+      "rank": 335
+    },
+    {
+      "name": "ordered-matched-full-435301-uncentered",
+      "winner": 1382,
+      "rank": 1102
+    },
+    {
+      "name": "geometry-full-435301-centered",
+      "winner": 1265,
+      "rank": 332
+    },
+    {
+      "name": "ordered-matched-full-435301-centered",
+      "winner": 1382,
+      "rank": 2861
+    }
+  ]
+}

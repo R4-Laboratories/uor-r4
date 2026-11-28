@@ -1,0 +1,1522 @@
+[
+  {
+    "arms": [
+      {
+        "addressing": "geometry",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 73688018,
+        "learning_stats": {
+          "already_strict": 122,
+          "changed_words": 0,
+          "infeasible": 3769,
+          "l1": 0,
+          "rows": 3891,
+          "saturated_words": 0,
+          "updates": 0
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 41,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 41
+            },
+            {
+              "erased": 0,
+              "immediate": 27,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 27
+            },
+            {
+              "erased": 0,
+              "immediate": 20,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 20
+            },
+            {
+              "erased": 0,
+              "immediate": 34,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 34
+            }
+          ],
+          "checkpoint_strict": 122,
+          "endpoint_high_rail": [
+            19,
+            12,
+            17,
+            14
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 0,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 122,
+          "infeasible": 3769,
+          "later_gains": 0,
+          "learning_changed_words": 0,
+          "learning_clipped_words": 0,
+          "learning_directional_rail_hits": 0,
+          "learning_l1": 0,
+          "max_radius": 0,
+          "newly_corrected": 0,
+          "newly_corrected_retained": 0,
+          "retained": 122,
+          "rows": 3891,
+          "strict_before": 122,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 0
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 66235311,
+        "learning_stats": {
+          "already_strict": 123,
+          "changed_words": 3,
+          "infeasible": 3767,
+          "l1": 3,
+          "rows": 3891,
+          "saturated_words": 1,
+          "updates": 1
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 42,
+              "newly_corrected": 1,
+              "newly_corrected_retained": 1,
+              "retained": 42
+            },
+            {
+              "erased": 1,
+              "immediate": 32,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 31
+            },
+            {
+              "erased": 0,
+              "immediate": 20,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 20
+            },
+            {
+              "erased": 0,
+              "immediate": 30,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 30
+            }
+          ],
+          "checkpoint_strict": 123,
+          "endpoint_high_rail": [
+            15,
+            13,
+            19,
+            19
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 1,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 124,
+          "infeasible": 3767,
+          "later_gains": 0,
+          "learning_changed_words": 3,
+          "learning_clipped_words": 1,
+          "learning_directional_rail_hits": 1,
+          "learning_l1": 3,
+          "max_radius": 1,
+          "newly_corrected": 1,
+          "newly_corrected_retained": 1,
+          "retained": 123,
+          "rows": 3891,
+          "strict_before": 123,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 1
+        }
+      },
+      {
+        "addressing": "geometry",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 80907970,
+        "learning_stats": {
+          "already_strict": 116,
+          "changed_words": 0,
+          "infeasible": 3775,
+          "l1": 0,
+          "rows": 3891,
+          "saturated_words": 0,
+          "updates": 0
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 41,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 41
+            },
+            {
+              "erased": 0,
+              "immediate": 27,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 27
+            },
+            {
+              "erased": 0,
+              "immediate": 19,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 19
+            },
+            {
+              "erased": 0,
+              "immediate": 29,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 29
+            }
+          ],
+          "checkpoint_strict": 116,
+          "endpoint_high_rail": [
+            14,
+            11,
+            16,
+            13
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 0,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 116,
+          "infeasible": 3775,
+          "later_gains": 0,
+          "learning_changed_words": 0,
+          "learning_clipped_words": 0,
+          "learning_directional_rail_hits": 0,
+          "learning_l1": 0,
+          "max_radius": 0,
+          "newly_corrected": 0,
+          "newly_corrected_retained": 0,
+          "retained": 116,
+          "rows": 3891,
+          "strict_before": 116,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 0
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 85801996,
+        "learning_stats": {
+          "already_strict": 81,
+          "changed_words": 612,
+          "infeasible": 3488,
+          "l1": 10330114,
+          "rows": 3891,
+          "saturated_words": 942,
+          "updates": 322
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 108,
+              "immediate": 147,
+              "newly_corrected": 110,
+              "newly_corrected_retained": 14,
+              "retained": 39
+            },
+            {
+              "erased": 129,
+              "immediate": 145,
+              "newly_corrected": 129,
+              "newly_corrected_retained": 11,
+              "retained": 16
+            },
+            {
+              "erased": 13,
+              "immediate": 21,
+              "newly_corrected": 8,
+              "newly_corrected_retained": 2,
+              "retained": 8
+            },
+            {
+              "erased": 78,
+              "immediate": 90,
+              "newly_corrected": 75,
+              "newly_corrected_retained": 5,
+              "retained": 12
+            }
+          ],
+          "checkpoint_strict": 96,
+          "endpoint_high_rail": [
+            24,
+            12,
+            10,
+            3
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 328,
+          "gauge_changed_words": 6396,
+          "gauge_l1": 10508394,
+          "gauge_visits": 209,
+          "immediate": 403,
+          "infeasible": 3488,
+          "later_gains": 21,
+          "learning_changed_words": 612,
+          "learning_clipped_words": 939,
+          "learning_directional_rail_hits": 942,
+          "learning_l1": 10330114,
+          "max_radius": 65532,
+          "newly_corrected": 322,
+          "newly_corrected_retained": 32,
+          "retained": 75,
+          "rows": 3891,
+          "strict_before": 81,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 322
+        }
+      }
+    ],
+    "epoch": 8,
+    "paired": {
+      "centered_immediate": 116,
+      "centered_minus_frozen": {
+        "defined_resamples": 4096,
+        "lower_ppm": 6442,
+        "observed_ppm": 9264,
+        "upper_ppm": 12365
+      },
+      "centered_minus_historical": {
+        "defined_resamples": 4096,
+        "lower_ppm": -257,
+        "observed_ppm": 5404,
+        "upper_ppm": 11308
+      },
+      "centered_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 517,
+        "observed_ppm": 5147,
+        "upper_ppm": 9822
+      },
+      "centered_minus_uncentered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -4634,
+        "observed_ppm": -1544,
+        "upper_ppm": 1293
+      },
+      "centered_newly_corrected": 0,
+      "centered_newly_retained": 0,
+      "centered_newly_retention": {
+        "defined_resamples": 0,
+        "lower_ppm": null,
+        "observed_ppm": null,
+        "upper_ppm": null
+      },
+      "centered_retained": 116,
+      "centered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "centered_strict": 116,
+      "frozen_strict": 80,
+      "groups": 3703,
+      "historical_strict": 95,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "ordered_strict": 96,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "uncentered_strict": 122
+    },
+    "policy": "gold-only",
+    "seed": 435300
+  },
+  {
+    "arms": [
+      {
+        "addressing": "geometry",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 151166576,
+        "learning_stats": {
+          "already_strict": 51,
+          "changed_words": 38801,
+          "infeasible": 3,
+          "l1": 364382388,
+          "rows": 3891,
+          "saturated_words": 219615,
+          "updates": 3837
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 962,
+              "immediate": 972,
+              "newly_corrected": 950,
+              "newly_corrected_retained": 3,
+              "retained": 10
+            },
+            {
+              "erased": 968,
+              "immediate": 973,
+              "newly_corrected": 959,
+              "newly_corrected_retained": 3,
+              "retained": 5
+            },
+            {
+              "erased": 968,
+              "immediate": 973,
+              "newly_corrected": 967,
+              "newly_corrected_retained": 3,
+              "retained": 5
+            },
+            {
+              "erased": 968,
+              "immediate": 970,
+              "newly_corrected": 961,
+              "newly_corrected_retained": 2,
+              "retained": 2
+            }
+          ],
+          "checkpoint_strict": 22,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            24,
+            22,
+            23,
+            24
+          ],
+          "erased": 3866,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 3888,
+          "infeasible": 3,
+          "later_gains": 0,
+          "learning_changed_words": 38801,
+          "learning_clipped_words": 219606,
+          "learning_directional_rail_hits": 219615,
+          "learning_l1": 364382388,
+          "max_radius": 40318,
+          "newly_corrected": 3837,
+          "newly_corrected_retained": 11,
+          "retained": 22,
+          "rows": 3891,
+          "strict_before": 51,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3837
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 147188451,
+        "learning_stats": {
+          "already_strict": 38,
+          "changed_words": 40635,
+          "infeasible": 2,
+          "l1": 297787508,
+          "rows": 3891,
+          "saturated_words": 373686,
+          "updates": 3851
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 950,
+              "immediate": 972,
+              "newly_corrected": 954,
+              "newly_corrected_retained": 10,
+              "retained": 22
+            },
+            {
+              "erased": 952,
+              "immediate": 973,
+              "newly_corrected": 961,
+              "newly_corrected_retained": 13,
+              "retained": 21
+            },
+            {
+              "erased": 956,
+              "immediate": 972,
+              "newly_corrected": 967,
+              "newly_corrected_retained": 14,
+              "retained": 16
+            },
+            {
+              "erased": 957,
+              "immediate": 972,
+              "newly_corrected": 969,
+              "newly_corrected_retained": 13,
+              "retained": 15
+            }
+          ],
+          "checkpoint_strict": 74,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            24,
+            24,
+            23,
+            23
+          ],
+          "erased": 3815,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 3889,
+          "infeasible": 2,
+          "later_gains": 0,
+          "learning_changed_words": 40635,
+          "learning_clipped_words": 373678,
+          "learning_directional_rail_hits": 373686,
+          "learning_l1": 297787508,
+          "max_radius": 51513,
+          "newly_corrected": 3851,
+          "newly_corrected_retained": 50,
+          "retained": 74,
+          "rows": 3891,
+          "strict_before": 38,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3851
+        }
+      },
+      {
+        "addressing": "geometry",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 195426760,
+        "learning_stats": {
+          "already_strict": 27,
+          "changed_words": 172343,
+          "infeasible": 3,
+          "l1": 1241223459,
+          "rows": 3891,
+          "saturated_words": 203260,
+          "updates": 3861
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 965,
+              "immediate": 972,
+              "newly_corrected": 965,
+              "newly_corrected_retained": 4,
+              "retained": 7
+            },
+            {
+              "erased": 968,
+              "immediate": 973,
+              "newly_corrected": 964,
+              "newly_corrected_retained": 4,
+              "retained": 5
+            },
+            {
+              "erased": 968,
+              "immediate": 973,
+              "newly_corrected": 967,
+              "newly_corrected_retained": 4,
+              "retained": 5
+            },
+            {
+              "erased": 966,
+              "immediate": 970,
+              "newly_corrected": 965,
+              "newly_corrected_retained": 4,
+              "retained": 4
+            }
+          ],
+          "checkpoint_strict": 21,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            13,
+            15,
+            11,
+            22
+          ],
+          "erased": 3867,
+          "gauge_changed_words": 249132,
+          "gauge_l1": 690309464,
+          "gauge_visits": 3806,
+          "immediate": 3888,
+          "infeasible": 3,
+          "later_gains": 0,
+          "learning_changed_words": 172343,
+          "learning_clipped_words": 203122,
+          "learning_directional_rail_hits": 203260,
+          "learning_l1": 1241223459,
+          "max_radius": 42956,
+          "newly_corrected": 3861,
+          "newly_corrected_retained": 16,
+          "retained": 21,
+          "rows": 3891,
+          "strict_before": 27,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3861
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 185715007,
+        "learning_stats": {
+          "already_strict": 14,
+          "changed_words": 391214,
+          "infeasible": 2,
+          "l1": 4719135332,
+          "rows": 3891,
+          "saturated_words": 195128,
+          "updates": 3875
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 965,
+              "immediate": 972,
+              "newly_corrected": 970,
+              "newly_corrected_retained": 7,
+              "retained": 7
+            },
+            {
+              "erased": 966,
+              "immediate": 973,
+              "newly_corrected": 968,
+              "newly_corrected_retained": 7,
+              "retained": 7
+            },
+            {
+              "erased": 966,
+              "immediate": 972,
+              "newly_corrected": 968,
+              "newly_corrected_retained": 6,
+              "retained": 6
+            },
+            {
+              "erased": 969,
+              "immediate": 972,
+              "newly_corrected": 969,
+              "newly_corrected_retained": 3,
+              "retained": 3
+            }
+          ],
+          "checkpoint_strict": 23,
+          "endpoint_high_rail": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            20,
+            21,
+            0,
+            17
+          ],
+          "erased": 3866,
+          "gauge_changed_words": 370682,
+          "gauge_l1": 4261758904,
+          "gauge_visits": 3875,
+          "immediate": 3889,
+          "infeasible": 2,
+          "later_gains": 0,
+          "learning_changed_words": 391214,
+          "learning_clipped_words": 195053,
+          "learning_directional_rail_hits": 195128,
+          "learning_l1": 4719135332,
+          "max_radius": 35420,
+          "newly_corrected": 3875,
+          "newly_corrected_retained": 23,
+          "retained": 23,
+          "rows": 3891,
+          "strict_before": 14,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3875
+        }
+      }
+    ],
+    "epoch": 8,
+    "paired": {
+      "centered_immediate": 3886,
+      "centered_minus_frozen": {
+        "defined_resamples": 4096,
+        "lower_ppm": -19861,
+        "observed_ppm": -15183,
+        "upper_ppm": -10772
+      },
+      "centered_minus_historical": {
+        "defined_resamples": 4096,
+        "lower_ppm": -24019,
+        "observed_ppm": -19043,
+        "upper_ppm": -14319
+      },
+      "centered_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -3614,
+        "observed_ppm": -515,
+        "upper_ppm": 2573
+      },
+      "centered_minus_uncentered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -1806,
+        "observed_ppm": -257,
+        "upper_ppm": 1290
+      },
+      "centered_newly_corrected": 3859,
+      "centered_newly_retained": 16,
+      "centered_newly_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2323,
+        "observed_ppm": 4146,
+        "upper_ppm": 6222
+      },
+      "centered_retained": 21,
+      "centered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3321,
+        "observed_ppm": 5404,
+        "upper_ppm": 7736
+      },
+      "centered_strict": 21,
+      "frozen_strict": 80,
+      "groups": 3703,
+      "historical_strict": 95,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "ordered_strict": 23,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "uncentered_strict": 22
+    },
+    "policy": "full",
+    "seed": 435300
+  },
+  {
+    "arms": [
+      {
+        "addressing": "geometry",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 75114884,
+        "learning_stats": {
+          "already_strict": 116,
+          "changed_words": 0,
+          "infeasible": 3775,
+          "l1": 0,
+          "rows": 3891,
+          "saturated_words": 0,
+          "updates": 0
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 31,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 31
+            },
+            {
+              "erased": 0,
+              "immediate": 31,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 31
+            },
+            {
+              "erased": 0,
+              "immediate": 28,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 28
+            },
+            {
+              "erased": 0,
+              "immediate": 26,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 26
+            }
+          ],
+          "checkpoint_strict": 116,
+          "endpoint_high_rail": [
+            16,
+            14,
+            17,
+            13
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 0,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 116,
+          "infeasible": 3775,
+          "later_gains": 0,
+          "learning_changed_words": 0,
+          "learning_clipped_words": 0,
+          "learning_directional_rail_hits": 0,
+          "learning_l1": 0,
+          "max_radius": 0,
+          "newly_corrected": 0,
+          "newly_corrected_retained": 0,
+          "retained": 116,
+          "rows": 3891,
+          "strict_before": 116,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 0
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 67340380,
+        "learning_stats": {
+          "already_strict": 87,
+          "changed_words": 0,
+          "infeasible": 3804,
+          "l1": 0,
+          "rows": 3891,
+          "saturated_words": 0,
+          "updates": 0
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 23,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 23
+            },
+            {
+              "erased": 0,
+              "immediate": 26,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 26
+            },
+            {
+              "erased": 0,
+              "immediate": 18,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 18
+            },
+            {
+              "erased": 0,
+              "immediate": 20,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 20
+            }
+          ],
+          "checkpoint_strict": 87,
+          "endpoint_high_rail": [
+            10,
+            13,
+            16,
+            16
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 0,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 87,
+          "infeasible": 3804,
+          "later_gains": 0,
+          "learning_changed_words": 0,
+          "learning_clipped_words": 0,
+          "learning_directional_rail_hits": 0,
+          "learning_l1": 0,
+          "max_radius": 0,
+          "newly_corrected": 0,
+          "newly_corrected_retained": 0,
+          "retained": 87,
+          "rows": 3891,
+          "strict_before": 87,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 0
+        }
+      },
+      {
+        "addressing": "geometry",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 79917231,
+        "learning_stats": {
+          "already_strict": 127,
+          "changed_words": 0,
+          "infeasible": 3764,
+          "l1": 0,
+          "rows": 3891,
+          "saturated_words": 0,
+          "updates": 0
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 0,
+              "immediate": 32,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 32
+            },
+            {
+              "erased": 0,
+              "immediate": 34,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 34
+            },
+            {
+              "erased": 0,
+              "immediate": 32,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 32
+            },
+            {
+              "erased": 0,
+              "immediate": 29,
+              "newly_corrected": 0,
+              "newly_corrected_retained": 0,
+              "retained": 29
+            }
+          ],
+          "checkpoint_strict": 127,
+          "endpoint_high_rail": [
+            16,
+            9,
+            17,
+            15
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 0,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 127,
+          "infeasible": 3764,
+          "later_gains": 0,
+          "learning_changed_words": 0,
+          "learning_clipped_words": 0,
+          "learning_directional_rail_hits": 0,
+          "learning_l1": 0,
+          "max_radius": 0,
+          "newly_corrected": 0,
+          "newly_corrected_retained": 0,
+          "retained": 127,
+          "rows": 3891,
+          "strict_before": 127,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 0
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 84970236,
+        "learning_stats": {
+          "already_strict": 75,
+          "changed_words": 553,
+          "infeasible": 3529,
+          "l1": 10924768,
+          "rows": 3891,
+          "saturated_words": 845,
+          "updates": 287
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 74,
+              "immediate": 89,
+              "newly_corrected": 68,
+              "newly_corrected_retained": 6,
+              "retained": 15
+            },
+            {
+              "erased": 94,
+              "immediate": 108,
+              "newly_corrected": 83,
+              "newly_corrected_retained": 5,
+              "retained": 14
+            },
+            {
+              "erased": 67,
+              "immediate": 81,
+              "newly_corrected": 70,
+              "newly_corrected_retained": 10,
+              "retained": 14
+            },
+            {
+              "erased": 70,
+              "immediate": 84,
+              "newly_corrected": 66,
+              "newly_corrected_retained": 7,
+              "retained": 14
+            }
+          ],
+          "checkpoint_strict": 104,
+          "endpoint_high_rail": [
+            24,
+            19,
+            0,
+            2
+          ],
+          "endpoint_low_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "erased": 305,
+          "gauge_changed_words": 5616,
+          "gauge_l1": 11657126,
+          "gauge_visits": 183,
+          "immediate": 362,
+          "infeasible": 3529,
+          "later_gains": 47,
+          "learning_changed_words": 553,
+          "learning_clipped_words": 840,
+          "learning_directional_rail_hits": 845,
+          "learning_l1": 10924768,
+          "max_radius": 65534,
+          "newly_corrected": 287,
+          "newly_corrected_retained": 28,
+          "retained": 57,
+          "rows": 3891,
+          "strict_before": 75,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 287
+        }
+      }
+    ],
+    "epoch": 8,
+    "paired": {
+      "centered_immediate": 127,
+      "centered_minus_frozen": {
+        "defined_resamples": 4096,
+        "lower_ppm": 8747,
+        "observed_ppm": 12095,
+        "upper_ppm": 15504
+      },
+      "centered_minus_historical": {
+        "defined_resamples": 4096,
+        "lower_ppm": 13541,
+        "observed_ppm": 19300,
+        "upper_ppm": 25128
+      },
+      "centered_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 0,
+        "observed_ppm": 5919,
+        "upper_ppm": 11816
+      },
+      "centered_minus_uncentered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -257,
+        "observed_ppm": 2831,
+        "upper_ppm": 5897
+      },
+      "centered_newly_corrected": 0,
+      "centered_newly_retained": 0,
+      "centered_newly_retention": {
+        "defined_resamples": 0,
+        "lower_ppm": null,
+        "observed_ppm": null,
+        "upper_ppm": null
+      },
+      "centered_retained": 127,
+      "centered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1000000,
+        "observed_ppm": 1000000,
+        "upper_ppm": 1000000
+      },
+      "centered_strict": 127,
+      "frozen_strict": 80,
+      "groups": 3703,
+      "historical_strict": 52,
+      "meets_endpoints": false,
+      "meets_retention": true,
+      "ordered_strict": 104,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "uncentered_strict": 116
+    },
+    "policy": "gold-only",
+    "seed": 435301
+  },
+  {
+    "arms": [
+      {
+        "addressing": "geometry",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 151840870,
+        "learning_stats": {
+          "already_strict": 33,
+          "changed_words": 39021,
+          "infeasible": 3,
+          "l1": 365701550,
+          "rows": 3891,
+          "saturated_words": 220656,
+          "updates": 3855
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 960,
+              "immediate": 972,
+              "newly_corrected": 963,
+              "newly_corrected_retained": 7,
+              "retained": 12
+            },
+            {
+              "erased": 962,
+              "immediate": 973,
+              "newly_corrected": 963,
+              "newly_corrected_retained": 3,
+              "retained": 11
+            },
+            {
+              "erased": 967,
+              "immediate": 972,
+              "newly_corrected": 965,
+              "newly_corrected_retained": 2,
+              "retained": 5
+            },
+            {
+              "erased": 963,
+              "immediate": 971,
+              "newly_corrected": 964,
+              "newly_corrected_retained": 3,
+              "retained": 8
+            }
+          ],
+          "checkpoint_strict": 36,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            22,
+            22,
+            23,
+            24
+          ],
+          "erased": 3852,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 3888,
+          "infeasible": 3,
+          "later_gains": 0,
+          "learning_changed_words": 39021,
+          "learning_clipped_words": 220643,
+          "learning_directional_rail_hits": 220656,
+          "learning_l1": 365701550,
+          "max_radius": 40318,
+          "newly_corrected": 3855,
+          "newly_corrected_retained": 15,
+          "retained": 36,
+          "rows": 3891,
+          "strict_before": 33,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3855
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": false,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 147096413,
+        "learning_stats": {
+          "already_strict": 46,
+          "changed_words": 40351,
+          "infeasible": 2,
+          "l1": 297411204,
+          "rows": 3891,
+          "saturated_words": 373144,
+          "updates": 3843
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 961,
+              "immediate": 972,
+              "newly_corrected": 960,
+              "newly_corrected_retained": 4,
+              "retained": 11
+            },
+            {
+              "erased": 968,
+              "immediate": 973,
+              "newly_corrected": 960,
+              "newly_corrected_retained": 0,
+              "retained": 5
+            },
+            {
+              "erased": 967,
+              "immediate": 973,
+              "newly_corrected": 962,
+              "newly_corrected_retained": 2,
+              "retained": 6
+            },
+            {
+              "erased": 965,
+              "immediate": 971,
+              "newly_corrected": 961,
+              "newly_corrected_retained": 2,
+              "retained": 6
+            }
+          ],
+          "checkpoint_strict": 28,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "erased": 3861,
+          "gauge_changed_words": 0,
+          "gauge_l1": 0,
+          "gauge_visits": 0,
+          "immediate": 3889,
+          "infeasible": 2,
+          "later_gains": 0,
+          "learning_changed_words": 40351,
+          "learning_clipped_words": 373132,
+          "learning_directional_rail_hits": 373144,
+          "learning_l1": 297411204,
+          "max_radius": 51513,
+          "newly_corrected": 3843,
+          "newly_corrected_retained": 8,
+          "retained": 28,
+          "rows": 3891,
+          "strict_before": 46,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3843
+        }
+      },
+      {
+        "addressing": "geometry",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 196112464,
+        "learning_stats": {
+          "already_strict": 14,
+          "changed_words": 175890,
+          "infeasible": 3,
+          "l1": 1267142190,
+          "rows": 3891,
+          "saturated_words": 203052,
+          "updates": 3874
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 965,
+              "immediate": 972,
+              "newly_corrected": 972,
+              "newly_corrected_retained": 7,
+              "retained": 7
+            },
+            {
+              "erased": 967,
+              "immediate": 973,
+              "newly_corrected": 964,
+              "newly_corrected_retained": 3,
+              "retained": 6
+            },
+            {
+              "erased": 970,
+              "immediate": 972,
+              "newly_corrected": 970,
+              "newly_corrected_retained": 2,
+              "retained": 2
+            },
+            {
+              "erased": 965,
+              "immediate": 971,
+              "newly_corrected": 968,
+              "newly_corrected_retained": 6,
+              "retained": 6
+            }
+          ],
+          "checkpoint_strict": 21,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            17,
+            13,
+            15,
+            23
+          ],
+          "erased": 3867,
+          "gauge_changed_words": 256022,
+          "gauge_l1": 711474010,
+          "gauge_visits": 3814,
+          "immediate": 3888,
+          "infeasible": 3,
+          "later_gains": 0,
+          "learning_changed_words": 175890,
+          "learning_clipped_words": 202981,
+          "learning_directional_rail_hits": 203052,
+          "learning_l1": 1267142190,
+          "max_radius": 40904,
+          "newly_corrected": 3874,
+          "newly_corrected_retained": 18,
+          "retained": 21,
+          "rows": 3891,
+          "strict_before": 14,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3874
+        }
+      },
+      {
+        "addressing": "ordered-matched",
+        "centered": true,
+        "checkpoint_bytes": 512,
+        "elapsed_ns": 185327833,
+        "learning_stats": {
+          "already_strict": 28,
+          "changed_words": 389975,
+          "infeasible": 2,
+          "l1": 4701467148,
+          "rows": 3891,
+          "saturated_words": 193482,
+          "updates": 3861
+        },
+        "movement": {
+          "age_quartiles": [
+            {
+              "erased": 968,
+              "immediate": 972,
+              "newly_corrected": 967,
+              "newly_corrected_retained": 4,
+              "retained": 4
+            },
+            {
+              "erased": 973,
+              "immediate": 973,
+              "newly_corrected": 964,
+              "newly_corrected_retained": 0,
+              "retained": 0
+            },
+            {
+              "erased": 972,
+              "immediate": 973,
+              "newly_corrected": 966,
+              "newly_corrected_retained": 1,
+              "retained": 1
+            },
+            {
+              "erased": 970,
+              "immediate": 971,
+              "newly_corrected": 964,
+              "newly_corrected_retained": 1,
+              "retained": 1
+            }
+          ],
+          "checkpoint_strict": 6,
+          "endpoint_high_rail": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "endpoint_low_rail": [
+            19,
+            18,
+            14,
+            17
+          ],
+          "erased": 3883,
+          "gauge_changed_words": 369928,
+          "gauge_l1": 4246481590,
+          "gauge_visits": 3861,
+          "immediate": 3889,
+          "infeasible": 2,
+          "later_gains": 0,
+          "learning_changed_words": 389975,
+          "learning_clipped_words": 193421,
+          "learning_directional_rail_hits": 193482,
+          "learning_l1": 4701467148,
+          "max_radius": 36525,
+          "newly_corrected": 3861,
+          "newly_corrected_retained": 6,
+          "retained": 6,
+          "rows": 3891,
+          "strict_before": 28,
+          "ties_lost": 0,
+          "ties_won": 0,
+          "updated": 3861
+        }
+      }
+    ],
+    "epoch": 8,
+    "paired": {
+      "centered_immediate": 3886,
+      "centered_minus_frozen": {
+        "defined_resamples": 4096,
+        "lower_ppm": -19799,
+        "observed_ppm": -15183,
+        "upper_ppm": -10847
+      },
+      "centered_minus_historical": {
+        "defined_resamples": 4096,
+        "lower_ppm": -11559,
+        "observed_ppm": -7977,
+        "upper_ppm": -4615
+      },
+      "centered_minus_ordered": {
+        "defined_resamples": 4096,
+        "lower_ppm": 1548,
+        "observed_ppm": 3860,
+        "upper_ppm": 6189
+      },
+      "centered_minus_uncentered": {
+        "defined_resamples": 4096,
+        "lower_ppm": -6458,
+        "observed_ppm": -3860,
+        "upper_ppm": -1536
+      },
+      "centered_newly_corrected": 3872,
+      "centered_newly_retained": 18,
+      "centered_newly_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 2585,
+        "observed_ppm": 4649,
+        "upper_ppm": 6920
+      },
+      "centered_retained": 21,
+      "centered_retention": {
+        "defined_resamples": 4096,
+        "lower_ppm": 3097,
+        "observed_ppm": 5404,
+        "upper_ppm": 7742
+      },
+      "centered_strict": 21,
+      "frozen_strict": 80,
+      "groups": 3703,
+      "historical_strict": 52,
+      "meets_endpoints": false,
+      "meets_retention": false,
+      "ordered_strict": 6,
+      "pass": false,
+      "resamples": 4096,
+      "rows": 3886,
+      "uncentered_strict": 36
+    },
+    "policy": "full",
+    "seed": 435301
+  }
+]

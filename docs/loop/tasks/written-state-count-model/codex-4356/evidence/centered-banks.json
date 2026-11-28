@@ -1,0 +1,650 @@
+[
+  {
+    "arm": "geometry-full-435300",
+    "source_sha256": "e5516223485f2332f1e3c4df5a2887daa7d591bb61149fe677bdc6fa5c2dc809",
+    "centered_sha256": "d1c4dd1e08e48e5f2ee5c68d6fca5191b284635ed88cde63fdb5998bb292450d",
+    "addressing": "geometry",
+    "score_shift_q48": 331442626232320,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": 21988,
+        "before": {
+          "min": -32768,
+          "max": -11210,
+          "lower_headroom": 0,
+          "upper_headroom": 43977,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -10780,
+          "max": 10778,
+          "lower_headroom": 21988,
+          "upper_headroom": 21989,
+          "minimum_headroom": 21988
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": 21988,
+        "before": {
+          "min": -32768,
+          "max": -11210,
+          "lower_headroom": 0,
+          "upper_headroom": 43977,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -10780,
+          "max": 10778,
+          "lower_headroom": 21988,
+          "upper_headroom": 21989,
+          "minimum_headroom": 21988
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": 16597,
+        "before": {
+          "min": -32768,
+          "max": -427,
+          "lower_headroom": 0,
+          "upper_headroom": 33194,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16171,
+          "max": 16170,
+          "lower_headroom": 16597,
+          "upper_headroom": 16597,
+          "minimum_headroom": 16597
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": 16597,
+        "before": {
+          "min": -32768,
+          "max": -427,
+          "lower_headroom": 0,
+          "upper_headroom": 33194,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16171,
+          "max": 16170,
+          "lower_headroom": 16597,
+          "upper_headroom": 16597,
+          "minimum_headroom": 16597
+        }
+      }
+    ]
+  },
+  {
+    "arm": "geometry-full-435301",
+    "source_sha256": "9e24e72ca30ce4d16060da28182349cfbbac0d395044d166738e441113aa3194",
+    "centered_sha256": "db90059d70ca9177c2cf7428eb927166b4279a8590fd5e18aeb69f59fcbcaf94",
+    "addressing": "geometry",
+    "score_shift_q48": 416933950259200,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": 26388,
+        "before": {
+          "min": -32768,
+          "max": -20010,
+          "lower_headroom": 0,
+          "upper_headroom": 52777,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -6380,
+          "max": 6378,
+          "lower_headroom": 26388,
+          "upper_headroom": 26389,
+          "minimum_headroom": 26388
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": 18889,
+        "before": {
+          "min": -32768,
+          "max": -5012,
+          "lower_headroom": 0,
+          "upper_headroom": 37779,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -13879,
+          "max": 13877,
+          "lower_headroom": 18889,
+          "upper_headroom": 18890,
+          "minimum_headroom": 18889
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": 23904,
+        "before": {
+          "min": -32768,
+          "max": -15041,
+          "lower_headroom": 0,
+          "upper_headroom": 47808,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -8864,
+          "max": 8863,
+          "lower_headroom": 23904,
+          "upper_headroom": 23904,
+          "minimum_headroom": 23904
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": 27894,
+        "before": {
+          "min": -32768,
+          "max": -23022,
+          "lower_headroom": 0,
+          "upper_headroom": 55789,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -4874,
+          "max": 4872,
+          "lower_headroom": 27894,
+          "upper_headroom": 27895,
+          "minimum_headroom": 27894
+        }
+      }
+    ]
+  },
+  {
+    "arm": "geometry-gold-only-435300",
+    "source_sha256": "7df18e1a7abcca3f1f35a3d68f290b3e4faae080263b687cc48c5229b4968896",
+    "centered_sha256": "cd8c0235ff0849095916a4544b1a8d408dc063008888c299dd8ed50c5e2940b5",
+    "addressing": "geometry",
+    "score_shift_q48": -281474976710656,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      }
+    ]
+  },
+  {
+    "arm": "geometry-gold-only-435301",
+    "source_sha256": "74f81ba0125a8b3f48f363eb1eb82647801a6d868a64e88298eb032fd941d876",
+    "centered_sha256": "26ddf03d859d79da40911313eb1882990c0d847503e94d1da04e21d5410af13e",
+    "addressing": "geometry",
+    "score_shift_q48": -281474976710656,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      }
+    ]
+  },
+  {
+    "arm": "ordered-matched-full-435300",
+    "source_sha256": "1ff45f2a5b3e2d5dd5fbe726d83cc65e03722ea398bebea34a0ffc1c060a1c85",
+    "centered_sha256": "908504b0f9dc829a2110d27b64c42d8082197dfbdcaea93dd70800abd93b552e",
+    "addressing": "ordered-matched",
+    "score_shift_q48": 489849610043392,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": 27096,
+        "before": {
+          "min": -32768,
+          "max": -21426,
+          "lower_headroom": 0,
+          "upper_headroom": 54193,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -5672,
+          "max": 5670,
+          "lower_headroom": 27096,
+          "upper_headroom": 27097,
+          "minimum_headroom": 27096
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": 27096,
+        "before": {
+          "min": -32768,
+          "max": -21426,
+          "lower_headroom": 0,
+          "upper_headroom": 54193,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -5672,
+          "max": 5670,
+          "lower_headroom": 27096,
+          "upper_headroom": 27097,
+          "minimum_headroom": 27096
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": 29930,
+        "before": {
+          "min": -32768,
+          "max": -27094,
+          "lower_headroom": 0,
+          "upper_headroom": 59861,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -2838,
+          "max": 2836,
+          "lower_headroom": 29930,
+          "upper_headroom": 29931,
+          "minimum_headroom": 29930
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": 29930,
+        "before": {
+          "min": -32768,
+          "max": -27094,
+          "lower_headroom": 0,
+          "upper_headroom": 59861,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -2838,
+          "max": 2836,
+          "lower_headroom": 29930,
+          "upper_headroom": 29931,
+          "minimum_headroom": 29930
+        }
+      }
+    ]
+  },
+  {
+    "arm": "ordered-matched-full-435301",
+    "source_sha256": "402a58674728b106db085b1ad8a38b563e38f0e2a6c28b296187a00b65fb093a",
+    "centered_sha256": "e519eb76e0aa97b6e542ed6a65491971d5ed517e66f52168c645d68231e8658f",
+    "addressing": "ordered-matched",
+    "score_shift_q48": 437167541190656,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": 26709,
+        "before": {
+          "min": -32768,
+          "max": -20652,
+          "lower_headroom": 0,
+          "upper_headroom": 53419,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -6059,
+          "max": 6057,
+          "lower_headroom": 26709,
+          "upper_headroom": 26710,
+          "minimum_headroom": 26709
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": 26709,
+        "before": {
+          "min": -32768,
+          "max": -20652,
+          "lower_headroom": 0,
+          "upper_headroom": 53419,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -6059,
+          "max": 6057,
+          "lower_headroom": 26709,
+          "upper_headroom": 26710,
+          "minimum_headroom": 26709
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": 26709,
+        "before": {
+          "min": -32768,
+          "max": -20652,
+          "lower_headroom": 0,
+          "upper_headroom": 53419,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -6059,
+          "max": 6057,
+          "lower_headroom": 26709,
+          "upper_headroom": 26710,
+          "minimum_headroom": 26709
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": 21659,
+        "before": {
+          "min": -32768,
+          "max": -10552,
+          "lower_headroom": 0,
+          "upper_headroom": 43319,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -11109,
+          "max": 11107,
+          "lower_headroom": 21659,
+          "upper_headroom": 21660,
+          "minimum_headroom": 21659
+        }
+      }
+    ]
+  },
+  {
+    "arm": "ordered-matched-gold-only-435300",
+    "source_sha256": "7d9e2bfb1d4ad60bc02e30a51a5c292a7474bc66d18d5dc15136d77c64f5d74b",
+    "centered_sha256": "e862a0d9ba9dc058efb40afd3b3179c4590c2fd52ca7decfefa08531ea55d448",
+    "addressing": "ordered-matched",
+    "score_shift_q48": -407381942992896,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": -30918,
+        "before": {
+          "min": 29068,
+          "max": 32767,
+          "lower_headroom": 61836,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -1850,
+          "max": 1849,
+          "lower_headroom": 30918,
+          "upper_headroom": 30918,
+          "minimum_headroom": 30918
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": -31165,
+        "before": {
+          "min": 29562,
+          "max": 32767,
+          "lower_headroom": 62330,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -1603,
+          "max": 1602,
+          "lower_headroom": 31165,
+          "upper_headroom": 31165,
+          "minimum_headroom": 31165
+        }
+      }
+    ]
+  },
+  {
+    "arm": "ordered-matched-gold-only-435301",
+    "source_sha256": "6765c184ee329982a4dc24eca29bd85a3f622e8d71efeb9c8b5c51e3d252685e",
+    "centered_sha256": "775542e499ec56357b30966efc5c20a0e5dead792013da6ec32f40b0c31d73b9",
+    "addressing": "ordered-matched",
+    "score_shift_q48": -410169376768000,
+    "banks": [
+      {
+        "bank": 0,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 1,
+        "delta_i16_words": -16384,
+        "before": {
+          "min": 0,
+          "max": 32767,
+          "lower_headroom": 32768,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -16384,
+          "max": 16383,
+          "lower_headroom": 16384,
+          "upper_headroom": 16384,
+          "minimum_headroom": 16384
+        }
+      },
+      {
+        "bank": 2,
+        "delta_i16_words": -31188,
+        "before": {
+          "min": 29609,
+          "max": 32767,
+          "lower_headroom": 62377,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -1579,
+          "max": 1579,
+          "lower_headroom": 31189,
+          "upper_headroom": 31188,
+          "minimum_headroom": 31188
+        }
+      },
+      {
+        "bank": 3,
+        "delta_i16_words": -31544,
+        "before": {
+          "min": 30320,
+          "max": 32767,
+          "lower_headroom": 63088,
+          "upper_headroom": 0,
+          "minimum_headroom": 0
+        },
+        "after": {
+          "min": -1224,
+          "max": 1223,
+          "lower_headroom": 31544,
+          "upper_headroom": 31544,
+          "minimum_headroom": 31544
+        }
+      }
+    ]
+  }
+]
