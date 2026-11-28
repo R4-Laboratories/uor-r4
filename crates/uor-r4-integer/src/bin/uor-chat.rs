@@ -96,6 +96,8 @@ struct CliArgs {
     p4_source_gate: Option<PathBuf>,
     #[cfg(feature = "p1-count-serving")]
     p4_source_mode: Option<S4SourceMode>,
+    #[cfg(feature = "p1-count-serving")]
+    p4_lexical: Option<PathBuf>,
     ordered_role_trace: bool,
     role_replay: Option<RoleReplay>,
     pair_replay: pair_rank::Replay,
@@ -367,6 +369,8 @@ impl Default for CliArgs {
             p4_source_gate: None,
             #[cfg(feature = "p1-count-serving")]
             p4_source_mode: None,
+            #[cfg(feature = "p1-count-serving")]
+            p4_lexical: None,
             ordered_role_trace: false,
             role_replay: None,
             pair_replay: pair_rank::Replay::default(),
@@ -433,6 +437,8 @@ fn print_usage() {
     eprintln!(
         "      --p4-source-gate <FILE> Apply a fitted source gate bound to the embedded P4 state"
     );
+    #[cfg(feature = "p1-count-serving")]
+    eprintln!("      --p4-lexical <FILE>      Apply a bound native lexical rank at P4 commit");
     #[cfg(feature = "p1-count-serving")]
     eprintln!("      --p4-source-mode <MODE> active (default), disabled, wrong-address, role-blind, shuffled-role");
     eprintln!("      --discrete <ARTIFACT>   UORLUT01 discrete artifact; one-shot");
@@ -653,6 +659,14 @@ fn parse_cli_args() -> CliArgs {
             }
             #[cfg(feature = "p1-count-serving")]
             "--p1-trace" => args.p1_trace = true,
+            #[cfg(feature = "p1-count-serving")]
+            "--p4-lexical" => {
+                idx += 1;
+                args.p4_lexical = Some(PathBuf::from(raw.get(idx).unwrap_or_else(|| {
+                    eprintln!("--p4-lexical requires a bound lexical weight file");
+                    process::exit(1);
+                })));
+            }
             #[cfg(feature = "p1-count-serving")]
             "--p4-source-gate" => {
                 idx += 1;
@@ -1339,6 +1353,11 @@ fn parse_cli_args() -> CliArgs {
     #[cfg(feature = "p1-count-serving")]
     if args.p1_path.is_some() && args.discrete_path.is_none() {
         eprintln!("--p1-state requires its fitted --discrete trunk");
+        process::exit(1);
+    }
+    #[cfg(feature = "p1-count-serving")]
+    if args.p4_lexical.is_some() && (args.discrete_path.is_none() || args.p1_path.is_some()) {
+        eprintln!("--p4-lexical requires an embedded P4 --discrete deployment");
         process::exit(1);
     }
     #[cfg(feature = "p1-count-serving")]
@@ -2862,6 +2881,28 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         ));
     }
     #[cfg(feature = "p1-count-serving")]
+    let lexical = if let Some(path) = &cli.p4_lexical {
+        use uor_r4_integer::discrete_d11::native_occurrence::lexical_commit::{
+            LexicalHead, BOUND_BYTES,
+        };
+        let state = p4
+            .as_ref()
+            .and_then(|engine| engine.inner.state_sha256())
+            .ok_or_else(|| {
+                IntegerError::Invalid("--p4-lexical requires an embedded P4 deployment".into())
+            })?;
+        let mut bytes = Vec::with_capacity(BOUND_BYTES + 1);
+        std::fs::File::open(path)?
+            .take((BOUND_BYTES + 1) as u64)
+            .read_to_end(&mut bytes)?;
+        Some((
+            LexicalHead::bind(&bytes, &state)?,
+            hex::encode(Sha256::digest(&bytes)),
+        ))
+    } else {
+        None
+    };
+    #[cfg(feature = "p1-count-serving")]
     let p4_source = if let Some(path) = &cli.p4_source_gate {
         let p4_state_sha256 = p4
             .as_ref()
@@ -3194,6 +3235,11 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                     p4_source.as_ref().map(|(gate, mode, _)| (gate, *mode)),
                 )
                 .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+            let lexical_choice = lexical
+                .as_ref()
+                .map(|(head, _)| head.commit(&model, session.history(), session.last_scores_q48()))
+                .transpose()?;
+            let committed = lexical_choice.as_ref().map_or(id, |choice| choice.token);
             if let Some(st) = observation {
                 let mut step_record = serde_json::json!({
                     "token": st.token_id,
@@ -3232,9 +3278,18 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                         "rival_mass_before_q48": source.rival_mass_before_q48,
                     });
                 }
+                if let Some(choice) = &lexical_choice {
+                    step_record["prior_winner"] = serde_json::json!({
+                        "token": st.token_id, "mass_q48": st.mass_q48, "top_ties": st.top_ties,
+                    });
+                    step_record["token"] = committed.into();
+                    step_record["mass_q48"] = choice.prior_q48.into();
+                    step_record["top_ties"] = choice.top_ties.into();
+                    step_record["lexical"] = serde_json::to_value(choice)?;
+                }
                 p4_steps.push(step_record);
             }
-            Some(u32::from(id))
+            Some(u32::from(committed))
         } else {
             None
         };
@@ -3514,6 +3569,10 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         if cli.p1_trace {
             record["p4_steps"] = p4_steps.into();
             record["p4_components"] = engine.component_digests.clone();
+        }
+        if let Some((_, digest)) = &lexical {
+            record["decoding"] = "greedy P4 with signed native lexical ranking".into();
+            record["p4_lexical_sha256"] = digest.as_str().into();
         }
         if let Some((gate, mode, digest)) = &p4_source {
             record["p4_source_gate"] = serde_json::json!({

@@ -7,3 +7,9 @@ description = "Shared Q31 geometric vector state and operator for native UOR-R4"
 
 [lib]
 path = "src/lib.rs"
+
+[features]
+# Existing standalone research tools use the package defaults. Ordinary integer
+# serving requests the Q31 operators with default features disabled.
+default = ["butterfly-research"]
+butterfly-research = []

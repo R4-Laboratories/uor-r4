@@ -1,0 +1,56 @@
+{
+  "coarse_buckets_with_a_separable_pair": 256,
+  "distinct_coarse": 256,
+  "distinct_full": 4007,
+  "eos": {
+    "coarse_distinct_full": 15,
+    "coarse_hex": "23",
+    "coarse_occupancy": 16,
+    "different_full_rivals_in_coarse": 15,
+    "fingerprint_hex": "2003",
+    "full_members": [
+      1
+    ],
+    "id": 1,
+    "roots": [
+      3,
+      0,
+      0,
+      2
+    ]
+  },
+  "full_alias_pairs": 89,
+  "full_bucket_size_histogram": {
+    "1": 3920,
+    "2": 86,
+    "3": 1
+  },
+  "ids_in_those_coarse_buckets": 4095,
+  "ids_with_full_aliases": 175,
+  "legal_ids": 4095,
+  "p4_bytes": 3987940843,
+  "p4_sha256": "e0ffbba19deb34df085d002c1062dd43e88adf98a2aac6aa81d469ab98507776",
+  "peak_full_bucket_size": 3,
+  "same_coarse_pairs_separable_by_full_roots": 30824,
+  "same_coarse_unordered_pairs": 30913,
+  "space": {
+    "coarse_distinct_full": 15,
+    "coarse_hex": "73",
+    "coarse_occupancy": 17,
+    "different_full_rivals_in_coarse": 16,
+    "fingerprint_hex": "7fd3",
+    "full_members": [
+      223
+    ],
+    "id": 223,
+    "roots": [
+      3,
+      13,
+      15,
+      7
+    ]
+  },
+  "trunk_bytes": 86536132,
+  "trunk_sha256": "04652a3de8e966a23539b04fbd77c7d9872d9f13a541fcb224d48e766e2c147d",
+  "unique_full_ids": 3920
+}

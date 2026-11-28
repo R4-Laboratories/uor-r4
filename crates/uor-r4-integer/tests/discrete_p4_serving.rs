@@ -98,8 +98,14 @@ fn build_synthetic_trunk_4096(context: u32) -> Vec<u8> {
     let mut cells = Vec::with_capacity(vocab);
     for tok in 0..vocab {
         let r = (tok & 15) as u8;
-        for _ in 0..4 {
-            for d in roots[usize::from(r)] {
+        for block in 0..4 {
+            // Give 16 near aliases one distinct inner block while keeping their outer cell.
+            let root = if (16..32).contains(&tok) && block == 1 {
+                (r + 1) % 16
+            } else {
+                r
+            };
+            for d in roots[usize::from(root)] {
                 table.push(i32::from(d));
             }
         }
@@ -694,6 +700,141 @@ fn build_synthetic_uorknc03_v2_converted(c_sha: [u8; 32]) -> Vec<u8> {
     v3
 }
 
+fn check_lexical_client(
+    dir: &std::path::Path,
+    p4_path: &std::path::Path,
+    trunk: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
+    p4: &uor_r4_count_runtime::p4_serving::P4State<'_>,
+    prior_winner: u16,
+    prefix: &[u16],
+) {
+    use uor_r4_integer::discrete_d11::native_occurrence::lexical::{Carry, WEIGHT_WORDS};
+    let path = dir.join("synthetic.uorlex");
+    let mut session = P4Session::new();
+    session.sync_prompt(prefix).unwrap();
+    session.step(p4, true, false).unwrap();
+    let priors = session.last_scores_q48();
+    let recurrence = trunk
+        .evaluate_prefix_traced(&prefix.iter().map(|&x| u32::from(x)).collect::<Vec<_>>())
+        .unwrap()
+        .trunk_pointer
+        .unwrap()
+        .recurrence_code;
+    // All four blocks use identity rotations. For [0,2,5] the sum is
+    // roots[0] + 2*roots[2] + roots[5], which snaps to root 2 in each block.
+    assert_eq!(prefix, [0, 2, 5]);
+    assert_eq!(recurrence, 0x2222);
+    let carry = Carry::from_packed(recurrence);
+    let codebook = trunk.packed_codebook_roots();
+    let addresses = |id: u16| {
+        let code = codebook[usize::from(id)];
+        carry
+            .addresses(std::array::from_fn(|b| ((code >> (4 * b)) & 15) as u8))
+            .unwrap()
+    };
+    assert!(prior_winner < 16);
+    let target = prior_winner + 16;
+    assert!(!prefix.contains(&target));
+    let target_addresses = addresses(target);
+    let prior_addresses = addresses(prior_winner);
+    assert_eq!(target_addresses[0], prior_addresses[0]);
+    assert_eq!(target_addresses[3], prior_addresses[3]);
+    assert_ne!(target_addresses[1], prior_addresses[1]);
+    assert!(priors[usize::from(prior_winner)] > priors[usize::from(target)]);
+    let write = |favor: Option<[u16; 4]>, state: [u8; 32]| {
+        let mut words = [0i16; WEIGHT_WORDS];
+        if let Some(favor) = favor {
+            words.fill(i16::MIN);
+            for addr in favor {
+                words[usize::from(addr)] = i16::MAX;
+            }
+        }
+        let mut payload = state.to_vec();
+        payload.extend_from_slice(b"UORLEX01");
+        for word in words {
+            payload.extend_from_slice(&word.to_le_bytes());
+        }
+        payload.extend_from_slice(&Sha256::digest(&payload));
+        fs::write(&path, payload).unwrap();
+    };
+    let cli = |ids: &str, steps: &str| {
+        Command::new(env!("CARGO_BIN_EXE_uor-chat"))
+            .args([
+                "--discrete",
+                p4_path.to_str().unwrap(),
+                "--prompt-ids",
+                ids,
+                "--max-tokens",
+                steps,
+                "--p1-trace",
+                "--p4-lexical",
+                path.to_str().unwrap(),
+            ])
+            .output()
+            .unwrap()
+    };
+    let read = |ids: &str, steps: &str| {
+        let out = cli(ids, steps);
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
+        serde_json::from_slice::<serde_json::Value>(&out.stdout).unwrap()
+    };
+    let ids = prefix
+        .iter()
+        .map(u16::to_string)
+        .collect::<Vec<_>>()
+        .join(",");
+    let state = p4.state_sha256().unwrap();
+    for (label, favor, winner) in [
+        ("zero", None, prior_winner),
+        ("favor absent word", Some(target_addresses), target),
+        ("favor prior", Some(prior_addresses), prior_winner),
+    ] {
+        write(favor, state);
+        let output = read(&ids, "2");
+        let committed = &output["generated_ids"];
+        let trace = &output["p4_steps"][0];
+        assert_eq!(trace["lexical"]["carry_code"], recurrence);
+        assert_eq!(trace["prior_winner"]["token"], prior_winner);
+        assert_eq!(trace["token"], winner);
+        assert_eq!(committed[0], winner);
+        let expected = priors[usize::from(winner)] as i64
+            + if favor.is_some() {
+                4 * i64::from(i16::MAX) * (1i64 << 32)
+            } else {
+                0
+            };
+        assert_eq!(trace["lexical"]["score_q48"], expected);
+        assert_eq!(trace["lexical"]["addresses"], json!(addresses(winner)));
+        assert_eq!(read(&format!("12,11,{ids}"), "1")["p4_steps"][0], *trace);
+        let after = read(&format!("{ids},{winner}"), "1");
+        assert_eq!(output["p4_steps"][1], after["p4_steps"][0]);
+        assert_eq!(committed[1], after["generated_ids"][0]);
+        println!("lexical {label}: carry={recurrence} prior={prior_winner} target={target} target_prior={} committed={committed} score={expected} addresses={:?}",
+            priors[usize::from(target)], addresses(winner));
+    }
+    let repeated = vec!["2"; P4_MAX_CONTEXT];
+    let long = read(&repeated.join(","), "2");
+    let first = long["generated_ids"][0].as_u64().unwrap().to_string();
+    let mut slid = repeated[1..].to_vec();
+    slid.push(&first);
+    assert_eq!(long["generated_ids"].as_array().unwrap().len(), 2);
+    assert_eq!(
+        long["p4_steps"][1],
+        read(&slid.join(","), "1")["p4_steps"][0]
+    );
+    write(None, [0xa5; 32]);
+    assert!(!cli(&ids, "1").status.success());
+    write(None, state);
+    let mut corrupt = fs::read(&path).unwrap();
+    corrupt[41] ^= 1;
+    fs::write(&path, corrupt).unwrap();
+    assert!(!cli(&ids, "1").status.success());
+}
+
 #[test]
 fn p4_deployment_end_to_end_bit_exact_and_uor_chat_cli() {
     let trunk = build_synthetic_trunk_4096(192);
@@ -970,6 +1111,8 @@ fn p4_deployment_end_to_end_bit_exact_and_uor_chat_cli() {
         stderr.contains("uor-r4.p1-client-timing/1"),
         "missing timing: {stderr}"
     );
+
+    check_lexical_client(&dir, &p4_path, &dc.model, &p4.inner, top_id, &pref);
 
     let gate_path = dir.join("source-gate.uors4g01");
     let digest = p4.inner.state_sha256().unwrap();

@@ -10,6 +10,8 @@ use super::{native_opening, pack_4block_roots, HashingReader, IntegerDiscreteMod
 use crate::{invalid, Result};
 
 mod features;
+pub mod lexical;
+pub mod lexical_commit;
 use features::Prompt;
 pub use features::{classify_token, Candidate, ACTIVE, WEIGHTS};
 

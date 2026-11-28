@@ -8,12 +8,15 @@
 //! words; the AOT CUDA module must return the same words.
 
 use std::fmt;
+#[cfg(feature = "butterfly-research")]
 pub mod butterfly_rotor;
+#[cfg(feature = "butterfly-research")]
 pub mod butterfly_rotor_v3;
 pub mod contract;
 pub mod read;
 pub mod read_dump;
 pub mod read_train;
+#[cfg(feature = "butterfly-research")]
 pub use butterfly_rotor::*;
 pub use contract::*;
 pub use read::*;

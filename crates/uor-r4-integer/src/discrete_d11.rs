@@ -1357,29 +1357,39 @@ impl DiscreteTrunkTables {
         best_tok
     }
 
-    fn compute_rec_code(&self, prefix: &[u32], codebook_roots: &[[u8; 4]]) -> Result<u16> {
+    fn compute_rec_code<T: Copy + Into<u32>>(
+        &self,
+        prefix: &[T],
+        codebook_roots: &[[u8; 4]],
+    ) -> Result<u16> {
         let len = prefix.len();
         let last_pos = len - 1;
         let prev_pos = last_pos.saturating_sub(1);
         let mid_pos = last_pos / 2;
         let mut out_roots = [0u8; 4];
-        let mut prefix_acc = [0usize; MAX_CONTEXT];
         for b in 0..4 {
             let mut acc = usize::from(IDENTITY);
+            let mut prev_acc = acc;
+            let mut mid_acc = acc;
             for (pos, &tok) in prefix.iter().enumerate() {
-                let r = usize::from(codebook_roots[tok as usize][b]);
+                let r = usize::from(codebook_roots[tok.into() as usize][b]);
                 let step = usize::from(self.step_candidates[(b << 4) + r]);
                 acc = compose(step, acc);
-                prefix_acc[pos] = acc;
+                if pos == prev_pos {
+                    prev_acc = acc;
+                }
+                if pos == mid_pos {
+                    mid_acc = acc;
+                }
             }
-            let f_last = prefix_acc[last_pos];
-            let h_prev = compose(f_last, cl06_inverse(prefix_acc[prev_pos]));
-            let h_mid = compose(f_last, cl06_inverse(prefix_acc[mid_pos]));
+            let f_last = acc;
+            let h_prev = compose(f_last, cl06_inverse(prev_acc));
+            let h_mid = compose(f_last, cl06_inverse(mid_acc));
 
-            let r_start = usize::from(codebook_roots[prefix[0] as usize][b]);
-            let r_last = usize::from(codebook_roots[prefix[last_pos] as usize][b]);
-            let r_prev = usize::from(codebook_roots[prefix[prev_pos] as usize][b]);
-            let r_mid = usize::from(codebook_roots[prefix[mid_pos] as usize][b]);
+            let r_start = usize::from(codebook_roots[prefix[0].into() as usize][b]);
+            let r_last = usize::from(codebook_roots[prefix[last_pos].into() as usize][b]);
+            let r_prev = usize::from(codebook_roots[prefix[prev_pos].into() as usize][b]);
+            let r_mid = usize::from(codebook_roots[prefix[mid_pos].into() as usize][b]);
 
             let q_coords = orbit_root_coords(r_last);
             let prev_rot = action(h_prev, &orbit_root_coords(r_prev));
@@ -6066,7 +6076,9 @@ mod tests {
         // trunk, even when the later assertion and query tokens are changed.
         let recurrence = contextual_source::SourceArm::WideRecurrence;
         let trunk = model.trunk.as_ref().unwrap();
-        let code = trunk.compute_rec_code(&[0], &model.codebook_roots).unwrap();
+        let code = trunk
+            .compute_rec_code(&[0u32], &model.codebook_roots)
+            .unwrap();
         let expected: Vec<i32> = (0..4)
             .flat_map(|block| orbit_root_coords(usize::from((code >> (4 * block)) & 15)))
             .collect();
