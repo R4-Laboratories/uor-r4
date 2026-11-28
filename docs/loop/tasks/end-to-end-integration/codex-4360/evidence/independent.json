@@ -1,0 +1,136 @@
+{
+  "pairs": 64,
+  "native_replies": 128,
+  "native_dual_own_preference": 1,
+  "swap_dual_donor_preference": 1,
+  "strict_four_signs": 1,
+  "native_row_preference": {
+    "own": 65,
+    "other": 63,
+    "tied": 0
+  },
+  "swap_row_preference": {
+    "own": 63,
+    "other": 65,
+    "tied": 0
+  },
+  "native_assignment_sum": {
+    "own": 38,
+    "other": 26,
+    "tied": 0
+  },
+  "swap_assignment_sum": {
+    "own": 28,
+    "other": 36,
+    "tied": 0
+  },
+  "native_to_swap_sum_reversal": 36,
+  "native_top_five_first_ids": [
+    {
+      "id": 223,
+      "count": 123,
+      "vocab_piece": "Ġ",
+      "decoded_bytes": [
+        32
+      ],
+      "decoded": " "
+    },
+    {
+      "id": 287,
+      "count": 5,
+      "vocab_piece": "ĠThe",
+      "decoded_bytes": [
+        32,
+        84,
+        104,
+        101
+      ],
+      "decoded": " The"
+    }
+  ],
+  "swap_top_five_first_ids": [
+    {
+      "id": 223,
+      "count": 123,
+      "vocab_piece": "Ġ",
+      "decoded_bytes": [
+        32
+      ],
+      "decoded": " "
+    },
+    {
+      "id": 287,
+      "count": 5,
+      "vocab_piece": "ĠThe",
+      "decoded_bytes": [
+        32,
+        84,
+        104,
+        101
+      ],
+      "decoded": " The"
+    }
+  ],
+  "swaps_changed_first_original_id": 6,
+  "native_admitted_rank_top_one": 0,
+  "native_admitted_rank_top_eight": 7,
+  "native_admitted": 22,
+  "native_both_admitted": 1,
+  "native_target_rank_histogram": {
+    "1": 19,
+    "2": 7,
+    "3": 8,
+    "4": 14,
+    "5": 8,
+    "6": 10,
+    "7": 2,
+    "8": 5,
+    "9": 2,
+    "10": 3,
+    "11": 2,
+    "13": 3,
+    "14": 4,
+    "15": 1,
+    "17": 1,
+    "18": 2,
+    "19": 5,
+    "21": 1,
+    "22": 2,
+    "24": 3,
+    "25": 1,
+    "26": 2,
+    "27": 1,
+    "28": 2,
+    "29": 1,
+    "31": 2,
+    "34": 1,
+    "36": 2,
+    "38": 1,
+    "39": 1,
+    "40": 1,
+    "42": 1,
+    "45": 3,
+    "46": 2,
+    "47": 1,
+    "50": 1,
+    "55": 1,
+    "56": 1,
+    "60": 1
+  },
+  "native_target_rank_middle": [
+    6,
+    6
+  ],
+  "native_forced_top_one": 19,
+  "native_forced_top_eight": 73,
+  "native_greedy_top_one": 0,
+  "native_first_wrong": {
+    "0": 128
+  },
+  "native_natural_eos": 0,
+  "native_exact": 0,
+  "native_early_eos": 0,
+  "native_invalid_bos": 0,
+  "native_cap": 128,
+  "native_censored": 0
+}

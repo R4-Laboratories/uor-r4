@@ -1,0 +1,5 @@
+# Codex top-session pre-run decision
+
+Proceed with the [sheet](SHEET.md) on the corrected [frozen 64 pairs](cohort/evidence/aggregate.json). Whole-project dependency chain is the M2 conversation milestone, #4064 integration, the stored Gate 1 Arm 2 learned artifact and its ordinary native step. The earlier P4 result is separate. No weights or serving code change. This diagnostic distinguishes route admission from target ranking, then tests whether either moves with donor carry. The ordinary client format still needs a distinct integration test.
+
+The independent [FIT](FIT.md) and [destination file pins](dispatch.sha256) condition this release. Require all pins, then finite, historical and six-pair differential passes in order before opening the full evaluation. On an instrument failure retain the whole attempted run in a separate directory. The physical budget is one leased Vast RTX 4090 at the posted $0.869/h, within the shared cap. Wick's GPU and the other rented GPUs are occupied. Wick CPU serves the frozen parity subset. The laptop runs no model. A session-specific idle watcher is armed. Verify the off-pod capture before releasing the lease.

@@ -1,0 +1,86 @@
+{
+  "candidate_turns_with_recurring_question": 4,
+  "common_suffix_id_range": [
+    16,
+    23
+  ],
+  "context_cap": 512,
+  "coqa_sha256": "b0fdb2bc1bd38dd3ca2ce5fa2ac3e02c6288ac914f241ac409a655ffb6619fa6",
+  "eligible_conversation_groups": 192,
+  "eligible_extractable_turns": 248,
+  "maximum_prefix_ids": 497,
+  "pair_tape_sha256": "764e7a69c9458528d05b0689f951f225a5df689b6242ee53aa876201c6c93206",
+  "pairs": 2,
+  "pairs_both_at_most_512": 2,
+  "prior_input_receipts": {
+    "d87_normalized_followup_templates": 40,
+    "d87_prompt_digests": 692364,
+    "excluded_complete_passage_digests": 499,
+    "excluded_source_filenames": 499,
+    "excluded_source_ids": 500,
+    "files": {
+      "20261127-codex-marker-question/panel-v2/held/keys.jsonl": "c7e67e6c96f297bd1e17614354f9525325895872b82d872fea6999974310acc5",
+      "20261127-codex-marker-question/panel-v2/train/keys.jsonl": "91a7f5c743dd5ede11e5ce6876229f5692a3cb82cf770ae7d0882a8634d2165d",
+      "20261127-codex-question-swap/panel/frozen-v2/keys.jsonl": "866a01878f6c2890a4dbe715a45808df171afe47f7bbc466bf74f6cf578815bd",
+      "20261127-codex-shared-source/panel-v1/human/keys.jsonl": "fcd87c28afde5a9e1dd9284d31e4630fe28535c8cde475e153b669cfc6f9f231",
+      "20261127-codex-visible-answer/panel/frozen-v1/judgments.jsonl": "bea3926ba99a205a2035ae81c8aaa78cc864f6cccf408a071bcccca4553f86aa",
+      "20261127-codex-visible-answer/panel/inputs/coqa-dev-v1.0.json": "dfa367a9733ce53222918d0231d9b3bedc2b8ee831a2845f62dfc70701f2540a",
+      "20261127-codex-visible-answer/panel/inputs/d87-bank-prompt-digests.txt": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+      "20261127-codex-visible-answer/panel/inputs/tokenizer.json": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+      "supplemental CoQA source": "b0fdb2bc1bd38dd3ca2ce5fa2ac3e02c6288ac914f241ac409a655ffb6619fa6"
+    },
+    "historical_union_4312_through_4314": 210,
+    "known_coqa_roster_counts": {
+      "4312": 200,
+      "4313": 5,
+      "4314-held": 5,
+      "4314-train": 0,
+      "4315": 29
+    },
+    "known_panel_question_digests": 1149,
+    "known_scored_source_union": 239,
+    "preview_only_source_ids": 235,
+    "preview_rosters": {
+      "4313-reproduced.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4313-retained.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4314-reproduced.jsonl": {
+        "rows": 11,
+        "sha256": "de5a7dcd1b7185c2df230577e542a5cad86e5828b3df371a5dbd559345381e01",
+        "unique_sources": 8
+      },
+      "4315-reproduced.jsonl": {
+        "rows": 955,
+        "sha256": "f6fa34deda5c4ef8b540d105f4305d8c79cdf985c079fd0a359760f9ee4f9385",
+        "unique_sources": 264
+      }
+    },
+    "preview_source_union": 274
+  },
+  "protocol": "blake3:4c9778ead027688600d2211e50cbfae98ac15f932a0827c01ec2389c521fef27",
+  "recurring_literal_question_keys_before_overlap_screen": 2,
+  "schema": "uor-r4/compact-carry-cohort/2",
+  "scope": "CoQA original passage, source filename, and conversation ID; worker/author identity unavailable",
+  "screen": {
+    "additional_chat_v0_p2_excluded": 0,
+    "additional_dev_tune_excluded": 0,
+    "chat_v0_p2_sha256": "e5f400b0e676791fd0458ce810163c5d2542adda80dccc8282f37d9ca8904cef",
+    "contiguous_tokens": 32,
+    "dev_tune_sha256": "99b714a67415d92e42750577110d9ce405625d93adabbd906739bbfca60d9c78",
+    "prior_supplement_sha256": "483bf82f99e7ba454986726abc98b9bdee66b0df230b6a2c089a862dd364feee",
+    "train_excluded": 0,
+    "train_sha256": "c804c3b084a49d11f2bfcd2a5cf741862df29b42e3442ccb609305e049aba590"
+  },
+  "selected_index_sha256": "602bfa007f15f4460a5fceeaf3c75b446708132e9024f49e0da7f9d4cf9ef700",
+  "selected_literal_question_keys": 2,
+  "standalone_space_turns_excluded": 13,
+  "sum_prefix_ids": 1944,
+  "unique_groups": 4
+}

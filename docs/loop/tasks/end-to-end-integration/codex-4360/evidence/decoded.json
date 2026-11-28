@@ -1,0 +1,53 @@
+{
+  "native": {
+    "rows": 128,
+    "cap": 128,
+    "token_first_match": 0,
+    "token_first_mismatch": 128,
+    "first_word_equal": 0,
+    "first_word_equal_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_only_with_token_first_mismatch": 0,
+    "trimmed_full_equal": 0,
+    "trimmed_full_equal_at_cap": 0,
+    "trimmed_full_equal_with_token_first_mismatch": 0,
+    "nonempty_output_prefix_of_reference_with_token_first_mismatch": 0,
+    "output_begins_full_reference_with_token_first_mismatch": 0,
+    "empty_output": 0,
+    "invalid_utf8_output": 1
+  },
+  "swap": {
+    "rows": 128,
+    "cap": 128,
+    "token_first_match": 0,
+    "token_first_mismatch": 128,
+    "first_word_equal": 0,
+    "first_word_equal_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_only_with_token_first_mismatch": 0,
+    "trimmed_full_equal": 0,
+    "trimmed_full_equal_at_cap": 0,
+    "trimmed_full_equal_with_token_first_mismatch": 0,
+    "nonempty_output_prefix_of_reference_with_token_first_mismatch": 0,
+    "output_begins_full_reference_with_token_first_mismatch": 0,
+    "empty_output": 0,
+    "invalid_utf8_output": 1
+  },
+  "zero": {
+    "rows": 128,
+    "cap": 128,
+    "token_first_match": 0,
+    "token_first_mismatch": 128,
+    "first_word_equal": 0,
+    "first_word_equal_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_with_token_first_mismatch": 0,
+    "begins_reference_word_bytes_only_with_token_first_mismatch": 0,
+    "trimmed_full_equal": 0,
+    "trimmed_full_equal_at_cap": 0,
+    "trimmed_full_equal_with_token_first_mismatch": 0,
+    "nonempty_output_prefix_of_reference_with_token_first_mismatch": 0,
+    "output_begins_full_reference_with_token_first_mismatch": 0,
+    "empty_output": 0,
+    "invalid_utf8_output": 0
+  }
+}

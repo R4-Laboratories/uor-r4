@@ -1,0 +1,69 @@
+{
+  "analysis": "Exploratory post hoc; sign of exact u128 comparison native_own*changed_other vs changed_own*native_other",
+  "native_vs_swap": {
+    "both_native_higher_pairs": 37,
+    "both_native_lower_pairs": 27,
+    "both_tied_pairs": 0,
+    "native_higher_rows": 74,
+    "native_lower_rows": 54,
+    "one_higher_one_lower_pairs": 0,
+    "one_higher_one_tied_pairs": 0,
+    "one_lower_one_tied_pairs": 0,
+    "tied_rows": 0
+  },
+  "native_vs_zero": {
+    "both_native_higher_pairs": 1,
+    "both_native_lower_pairs": 3,
+    "both_tied_pairs": 0,
+    "native_higher_rows": 62,
+    "native_lower_rows": 66,
+    "one_higher_one_lower_pairs": 60,
+    "one_higher_one_tied_pairs": 0,
+    "one_lower_one_tied_pairs": 0,
+    "tied_rows": 0
+  },
+  "pairs": 64,
+  "rows": 128,
+  "same_cell": {
+    "native": [
+      6,
+      6,
+      0
+    ],
+    "pairs": 6,
+    "preference_array_order": [
+      "own better rank",
+      "other better rank",
+      "tie"
+    ],
+    "rows": 12,
+    "rows_native_own_better_swap_other_better": 0,
+    "swap": [
+      6,
+      6,
+      0
+    ],
+    "zero": [
+      6,
+      6,
+      0
+    ]
+  },
+  "zero_mass_rows": {
+    "native": {
+      "both": 0,
+      "other": 0,
+      "own": 0
+    },
+    "swap": {
+      "both": 0,
+      "other": 0,
+      "own": 0
+    },
+    "zero": {
+      "both": 0,
+      "other": 0,
+      "own": 0
+    }
+  }
+}

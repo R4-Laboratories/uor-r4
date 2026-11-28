@@ -1,0 +1,6 @@
+{"ts":"2026-11-28T11:02:37Z","event":"up","session":"compact-carry-4360","usd_per_h":0.869,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:03:10Z","event":"ssh-ready","session":"compact-carry-4360","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:03:38Z","event":"run","session":"compact-carry-4360","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:07:01Z","event":"release","session":"compact-carry-4360","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:07:06Z","event":"vast-archive","session":"compact-carry-4360","usd_per_h":null,"wall_seconds":null,"uptime_s":null}
+{"ts":"2026-11-28T11:07:06Z","event":"down","session":"compact-carry-4360","usd_per_h":0.869,"wall_seconds":null,"uptime_s":266}

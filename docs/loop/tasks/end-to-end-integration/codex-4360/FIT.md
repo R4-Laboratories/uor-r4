@@ -1,0 +1,7 @@
+# Independent pre-run fitness, Codex lab
+
+Review by a separate non-author gpt-6.2-sol session (v3_fit). The initial review withheld FIT. Version one included 17 standalone-space starts and five pairs with identical first emitted IDs. Its planted model also had only one eligible cell and could accept a truncated output. The rejected tape and binaries remain on Wick.
+
+**TEST FITNESS: FIT, conditional on physical calibration.** The second review verified the corrected constructor, aggregate and manifest. The frozen tape is 8640f5f72de45f2c8a0c6fb8990830691da3e5602cf87ac506ff584b3f4182b4. Frozen parity pairs are 1, 2, 17, 32, 48 and 64, in original order. The aggregate and tape must verify at the destination. The reviewed device kernel and runner are identified in the adjacent dispatch manifest. Preserve the single natural EOS ID 1 and 32-token limit. Require the multicell planted fixture, the archived Arm 2 replay and all six pairs of ordinary/device parity to pass before the main comparison. Preserve strict preferences per member, all four directional signs per pair and ties. Forced-cell ranks are diagnostic only.
+
+Single-step parity covers 12 prefix states and 36 arms. Compare carry, history, token count, hidden words, PKM addresses, actual group and token, coarse scores, winning-cell fine result and diagnostics for each consumed generated step. The additional batched comparison covers the first transition and the complete emitted trajectory with stopping. Later batched state words are not independently exposed by that comparison.
