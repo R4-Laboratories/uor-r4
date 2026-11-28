@@ -17,7 +17,7 @@ pub const BASE_SHA256: &str = "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61d
 const BASE_BYTES: u64 = 1_202_177_144;
 const BASE_HEADER_BYTES: usize = 358;
 const BASE_HEADER_SHA256: &str = "66b9959d08c86252e1aef4583f9c04f22d9697ac40dc84c4757d3017a3ee419a";
-const TOKENIZER_CID: &str =
+pub(super) const TOKENIZER_CID: &str =
     "blake3:3338e1a777cf20c8f85df9971d73e99cc6ad1ab25434cb797a792471a33a3b27";
 
 #[derive(Debug, Deserialize, Serialize)]

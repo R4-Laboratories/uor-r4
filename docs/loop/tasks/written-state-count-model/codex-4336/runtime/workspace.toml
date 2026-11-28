@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/uor-r4-integer",
+    "crates/uor-r4-tokenizer",
+    "crates/uor-r4-native-vector",
+    "crates/uor-r4-vision",
+    "crates/uor-r4-discrete/count-runtime",
+]
+
+[patch.crates-io]
+arrayref = { path = "third_party/arrayref" }

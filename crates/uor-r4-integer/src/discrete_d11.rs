@@ -36,6 +36,7 @@ pub mod native_opening;
 #[cfg(feature = "postperiod-diagnostic")]
 pub mod native_postperiod;
 pub mod native_source_choice;
+pub mod native_span_release;
 pub mod native_whole_turn;
 pub mod native_word_ending;
 pub mod pair_rank;

@@ -1,0 +1,25 @@
+{
+  "schema": "uor-r4.verified-span-release-guard-replay/1",
+  "guarded_source_revision": "ec634ff7479ed40b328a0936745f976cd593e276",
+  "guarded_client_sha256": "864925b76406e7a520ef0a7b621c7384ea34844a3a231d7509b77f971abc0ab5",
+  "scientific_client_sha256": "4573faa45873d418900d736aa20f030b42f1ecfaec15d0bd6b88144da8bf8f3e",
+  "panel": {
+    "records": 238,
+    "guarded_client_records": 166,
+    "manifest_sha256": "2775f82b1147f883e26c2dd920a46e33ecf8edd345ed6b5a996883c1b4481df4",
+    "matched_byte_for_byte": [
+      "records.jsonl",
+      "scores.jsonl",
+      "summary.json"
+    ]
+  },
+  "exposed_transfer": {
+    "records": 36,
+    "manifest_sha256": "f80ea5448e83f2b0cd3c9d977252a09963f4497235a90dd655001d07713e314d",
+    "matched_byte_for_byte": [
+      "inputs.jsonl",
+      "records.jsonl",
+      "summary.json"
+    ]
+  }
+}

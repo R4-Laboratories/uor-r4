@@ -124,10 +124,21 @@ impl<'a> Session<'a> {
     /// Evaluate the current causal window. The caller appends `committed_id`
     /// once before another step and closes the session when it returns EOS.
     pub fn step(&mut self, prefix: &[u32]) -> Result<WriterEvent> {
+        self.step_with_commit(prefix, |_| Ok(()))
+            .map(|(event, ())| event)
+    }
+
+    /// Resolve an opt-in release or writer intervention before advancing the
+    /// session. The terminal bit and returned event follow the final commit.
+    pub fn step_with_commit<T>(
+        &mut self,
+        prefix: &[u32],
+        resolve: impl FnOnce(&mut WriterEvent) -> Result<T>,
+    ) -> Result<(WriterEvent, T)> {
         if self.terminal {
             return Err(invalid("authenticated copy session has reached EOS"));
         }
-        let event = match self.pending {
+        let mut event = match self.pending {
             Some(FirstStep::WholeTurn(opening)) => {
                 if prefix != opening.tokens() {
                     return Err(invalid(
@@ -140,9 +151,10 @@ impl<'a> Session<'a> {
             Some(FirstStep::Framed(action)) => evaluate(self.model, prefix, action)?,
             None => evaluate(self.model, prefix, self.generate)?,
         };
+        let result = resolve(&mut event)?;
         self.pending = None;
         self.terminal = event.committed_id == EOS;
-        Ok(event)
+        Ok((event, result))
     }
 }
 

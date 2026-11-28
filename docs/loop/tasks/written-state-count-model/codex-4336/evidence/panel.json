@@ -1,0 +1,449 @@
+{
+  "schema": "uor-r4.verified-span-release-panel-evidence/1",
+  "sealed_before_decode_utc": "2026-11-28T02:58:14Z",
+  "frozen_panel_manifest_sha256": "cb20e7810ce535a9b27dfa3e60cae4b75199b9502551a877ac38669bd6e3cbad",
+  "scored_capture_manifest_sha256": "2775f82b1147f883e26c2dd920a46e33ecf8edd345ed6b5a996883c1b4481df4",
+  "inputs": {
+    "artifact_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+    "base_chat_sha256": "8fd42b0795e92e1a3da4d18de89d012385e0879a97a0d200ebe2a46bd67afd69",
+    "historical_chat_sha256": "87cfb3ca166a313c983a9e217ae3474ad92ce433aae4daf4fe2006fbd1d305d3",
+    "new_chat_sha256": "4573faa45873d418900d736aa20f030b42f1ecfaec15d0bd6b88144da8bf8f3e",
+    "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+  },
+  "corpus": {
+    "prompts": 27,
+    "supported": 24,
+    "unsupported": 3,
+    "pairs": 12,
+    "authored_fact_families": 3,
+    "fact_orders": 2,
+    "wording_families": 2,
+    "first_span_token_lengths": [
+      7,
+      8,
+      9
+    ],
+    "decode_limit": 16,
+    "scheduled_ordinary_client_processes": 238
+  },
+  "ordinary_authenticated": {
+    "supported": {
+      "trials": 24,
+      "first_correct_token": 0,
+      "first_correct_address": 0,
+      "exact_first_span_tokens": 0,
+      "exact_first_span_addresses": 0,
+      "exact_reply_through_eos": 0,
+      "exact_reply_through_eos_with_addresses": 0,
+      "any_eos": 3,
+      "certified_first_end": 0,
+      "cap": 0,
+      "supplied_stop": 0,
+      "native_period_release_triggered": 12,
+      "original_source_claims": 22,
+      "original_source_copies": 22
+    },
+    "eos_by_requested_action": [
+      {
+        "request": "continue",
+        "trials": 12,
+        "any_eos": 0
+      },
+      {
+        "request": "stop",
+        "trials": 12,
+        "any_eos": 3
+      }
+    ],
+    "unsupported": {
+      "trials": 3,
+      "original_source_claims": 2,
+      "original_source_copies": 2,
+      "exact_reply_through_eos": 0,
+      "any_eos": 0,
+      "native_period_release_triggered": 1
+    },
+    "unsupported_by_type": [
+      {
+        "kind": "unspecified",
+        "false_original_claim": true,
+        "false_original_copy": true
+      },
+      {
+        "kind": "denied",
+        "false_original_claim": true,
+        "false_original_copy": true
+      },
+      {
+        "kind": "excluded",
+        "false_original_claim": false,
+        "false_original_copy": false
+      }
+    ],
+    "exact_pairs": 0
+  },
+  "stock_defaults": {
+    "supported_trials": 6,
+    "first_correct_token": 0,
+    "exact_reply_through_eos": 0,
+    "address_trace": "disabled"
+  },
+  "diagnostic_arms": {
+    "oracle": {
+      "totals": {
+        "trials": 24,
+        "first_correct_token": 24,
+        "first_correct_address": 24,
+        "exact_first_span_tokens": 16,
+        "exact_first_span_addresses": 16,
+        "exact_reply_through_eos": 16,
+        "exact_reply_through_eos_with_addresses": 16,
+        "any_eos": 16,
+        "certified_first_end": 16,
+        "cap": 8,
+        "supplied_stop": 16,
+        "native_period_release_triggered": 0
+      },
+      "length_strata": [
+        {
+          "first_span_tokens": 7,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 8,
+          "any_eos": 8,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 8,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 8,
+          "any_eos": 8,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 9,
+          "trials": 8,
+          "exact_first_span_addresses": 0,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 0,
+          "certified_first_end": 0,
+          "cap": 8
+        }
+      ],
+      "complete_pairs": 12,
+      "same_authenticated_prefix_pairs": 12,
+      "both_exact_with_original_addresses": 8
+    },
+    "native": {
+      "totals": {
+        "trials": 24,
+        "first_correct_token": 24,
+        "first_correct_address": 24,
+        "exact_first_span_tokens": 16,
+        "exact_first_span_addresses": 16,
+        "exact_reply_through_eos": 0,
+        "exact_reply_through_eos_with_addresses": 0,
+        "any_eos": 0,
+        "certified_first_end": 16,
+        "cap": 8,
+        "supplied_stop": 0,
+        "native_period_release_triggered": 0
+      },
+      "length_strata": [
+        {
+          "first_span_tokens": 7,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 0,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 8,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 0,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 9,
+          "trials": 8,
+          "exact_first_span_addresses": 0,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 0,
+          "certified_first_end": 0,
+          "cap": 8
+        }
+      ],
+      "complete_pairs": 12,
+      "same_authenticated_prefix_pairs": 12,
+      "both_exact_with_original_addresses": 0
+    },
+    "swapped": {
+      "totals": {
+        "trials": 24,
+        "first_correct_token": 24,
+        "first_correct_address": 24,
+        "exact_first_span_tokens": 16,
+        "exact_first_span_addresses": 16,
+        "exact_reply_through_eos": 0,
+        "exact_reply_through_eos_with_addresses": 0,
+        "any_eos": 16,
+        "certified_first_end": 16,
+        "cap": 8,
+        "supplied_stop": 16,
+        "native_period_release_triggered": 0
+      },
+      "length_strata": [
+        {
+          "first_span_tokens": 7,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 8,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 8,
+          "trials": 8,
+          "exact_first_span_addresses": 8,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 8,
+          "certified_first_end": 8,
+          "cap": 0
+        },
+        {
+          "first_span_tokens": 9,
+          "trials": 8,
+          "exact_first_span_addresses": 0,
+          "exact_reply_through_eos_with_addresses": 0,
+          "any_eos": 0,
+          "certified_first_end": 0,
+          "cap": 8
+        }
+      ],
+      "complete_pairs": 12,
+      "same_authenticated_prefix_pairs": 12,
+      "both_exact_with_original_addresses": 0,
+      "opposite_reply_with_eos_and_addresses": 16
+    }
+  },
+  "native_first_wrong_commits": [
+    {
+      "first_span_tokens": 7,
+      "request": "continue",
+      "trials": 4,
+      "boundary": "verified_end",
+      "first_wrong_commit": [
+        {
+          "offset": 7,
+          "expected_id": 269,
+          "committed_id": 210,
+          "trials": 4
+        }
+      ]
+    },
+    {
+      "first_span_tokens": 7,
+      "request": "stop",
+      "trials": 4,
+      "boundary": "verified_end",
+      "first_wrong_commit": [
+        {
+          "offset": 7,
+          "expected_id": 1,
+          "committed_id": 210,
+          "trials": 4
+        }
+      ]
+    },
+    {
+      "first_span_tokens": 8,
+      "request": "continue",
+      "trials": 4,
+      "boundary": "verified_end",
+      "first_wrong_commit": [
+        {
+          "offset": 8,
+          "expected_id": 269,
+          "committed_id": 16,
+          "trials": 3
+        },
+        {
+          "offset": 8,
+          "expected_id": 269,
+          "committed_id": 465,
+          "trials": 1
+        }
+      ]
+    },
+    {
+      "first_span_tokens": 8,
+      "request": "stop",
+      "trials": 4,
+      "boundary": "verified_end",
+      "first_wrong_commit": [
+        {
+          "offset": 8,
+          "expected_id": 1,
+          "committed_id": 16,
+          "trials": 4
+        }
+      ]
+    },
+    {
+      "first_span_tokens": 9,
+      "request": "continue",
+      "trials": 4,
+      "boundary": "cap",
+      "first_wrong_commit": [
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 5,
+          "trials": 2
+        },
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 16,
+          "trials": 1
+        },
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 300,
+          "trials": 1
+        }
+      ]
+    },
+    {
+      "first_span_tokens": 9,
+      "request": "stop",
+      "trials": 4,
+      "boundary": "cap",
+      "first_wrong_commit": [
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 5,
+          "trials": 1
+        },
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 16,
+          "trials": 1
+        },
+        {
+          "offset": 8,
+          "expected_id": 1413,
+          "committed_id": 300,
+          "trials": 2
+        }
+      ]
+    }
+  ],
+  "perturbations": {
+    "rival_address": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "early_end": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "late_end": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "missing_claim": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "missing_proof": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "wrong_prompt": {
+      "trials": 6,
+      "controls_passed": 6,
+      "first_rejected": 6,
+      "supplied_stop": 0
+    },
+    "wrong_second": {
+      "trials": 2,
+      "controls_passed": 2,
+      "second_rejected": 2,
+      "supplied_stop": 0
+    },
+    "delimiter": {
+      "trials": 2,
+      "controls_passed": 2,
+      "delimiter": 2,
+      "supplied_stop": 0
+    },
+    "unsupported_claim": {
+      "trials": 3,
+      "controls_passed": 3,
+      "first_rejected": 3,
+      "supplied_stop": 0
+    }
+  },
+  "unsupported_claim_fallback": {
+    "trials": 3,
+    "diagnostic_rejections_with_identical_ordinary_emission": 3,
+    "false_original_claims_from_ordinary_fallback": 2,
+    "false_original_copies_from_ordinary_fallback": 2
+  },
+  "equivalence": {
+    "base_auth_vs_new_auth": {
+      "matching": 27,
+      "compared": 27,
+      "scope": "normalized_whole_client_record"
+    },
+    "base_stock_vs_new_stock": {
+      "matching": 9,
+      "compared": 9,
+      "scope": "normalized_whole_client_record"
+    },
+    "historical_auth_vs_base_auth": {
+      "matching": 27,
+      "compared": 27,
+      "scope": "normalized_whole_client_record"
+    },
+    "historical_stock_vs_base_stock": {
+      "matching": 9,
+      "compared": 9,
+      "scope": "normalized_whole_client_record"
+    },
+    "new_auth_vs_new_auth_quiet": {
+      "matching": 9,
+      "compared": 9,
+      "scope": "prompt/generated IDs, text and stopping"
+    },
+    "oracle_vs_oracle_quiet": {
+      "matching": 6,
+      "compared": 6,
+      "scope": "prompt/generated IDs, text and stopping"
+    }
+  },
+  "independent_regrade": "records, scores and summary byte-identical in a fresh output directory"
+}

@@ -20,7 +20,8 @@ use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
 use uor_r4_integer::discrete_d11::{
-    native_copy, native_source_choice, native_whole_turn, native_word_ending, pair_rank,
+    native_copy, native_source_choice, native_span_release, native_whole_turn, native_word_ending,
+    pair_rank,
 };
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
@@ -71,6 +72,7 @@ struct CliArgs {
     discrete_path: Option<PathBuf>,
     authenticated_copy: bool,
     native_period_release: bool,
+    verified_span_release_path: Option<PathBuf>,
     native_occurrence_trace: bool,
     no_native_occurrence: bool,
     word_ending: bool,
@@ -335,6 +337,7 @@ impl Default for CliArgs {
             discrete_path: None,
             authenticated_copy: false,
             native_period_release: false,
+            verified_span_release_path: None,
             native_occurrence_trace: false,
             no_native_occurrence: false,
             word_ending: false,
@@ -437,6 +440,7 @@ fn print_usage() {
         "      --authenticated-copy   resolve one native occurrence-backed opening tie by exact ID"
     );
     eprintln!("      --native-period-release    consult the fitted release after a copied word and generated period");
+    eprintln!("      --verified-span-release FILE  intervene with separately supplied protocol-2 source proof, claim and actions");
     eprintln!("      --native-occurrence-trace  record the fitted occurrence read and writer at each step");
     eprintln!("      --no-native-occurrence  diagnose the frozen marker and trunk with occurrence disabled");
     eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
@@ -714,6 +718,14 @@ fn parse_cli_args() -> CliArgs {
             "--contextual-source-trace" => args.contextual_source_trace = true,
             "--authenticated-copy" => args.authenticated_copy = true,
             "--native-period-release" => args.native_period_release = true,
+            "--verified-span-release" => {
+                idx += 1;
+                let Some(path) = raw.get(idx) else {
+                    eprintln!("--verified-span-release requires a JSON control file");
+                    process::exit(1);
+                };
+                args.verified_span_release_path = Some(PathBuf::from(path));
+            }
             "--native-occurrence-trace" => args.native_occurrence_trace = true,
             "--no-native-occurrence" => args.no_native_occurrence = true,
             "--word-ending" => args.word_ending = true,
@@ -1251,6 +1263,15 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.native_period_release && !args.authenticated_copy {
         eprintln!("--native-period-release requires --authenticated-copy");
+        process::exit(1);
+    }
+    if args.verified_span_release_path.is_some()
+        && (!args.native_period_release
+            || args.protocol != 2
+            || args.say.is_none()
+            || args.tokenizer_path.is_none())
+    {
+        eprintln!("--verified-span-release requires --authenticated-copy --native-period-release and protocol-2 --say with --tokenizer");
         process::exit(1);
     }
     if args.no_native_occurrence
@@ -2445,13 +2466,13 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         let encoder = protocol
             .bind(&tokenizer)
             .map_err(|e| IntegerError::Invalid(e.to_string()))?;
-        let prompt = if whole_turn_copy {
+        let prompt = if whole_turn_copy || cli.verified_span_release_path.is_some() {
             user_opening = encoder.encode_single_user_opening(text);
             user_opening
                 .as_ref()
                 .ok_or_else(|| {
                     IntegerError::Invalid(
-                        "whole-turn authenticated copy requires one plain protocol-2 user message"
+                        "whole-turn copy and verified span release require a plain protocol-2 user message"
                             .into(),
                     )
                 })?
@@ -2517,7 +2538,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let native_no_read = cli.no_native_occurrence;
     let mut occurrence_writer = if native_no_read {
         Some(native_copy::Session::without_occurrence(&model)?)
-    } else if let Some(opening) = user_opening.as_ref() {
+    } else if let Some(opening) = user_opening.as_ref().filter(|_| whole_turn_copy) {
         Some(native_copy::Session::for_user_opening(&model, opening)?)
     } else if cli.authenticated_copy {
         Some(native_copy::Session::new(&model)?)
@@ -2528,6 +2549,18 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         .native_period_release
         .then(|| native_source_choice::OrdinaryPeriodRelease::new(&model))
         .transpose()?;
+    let mut span_release = if let Some(path) = &cli.verified_span_release_path {
+        let opening = user_opening.as_ref().ok_or_else(|| {
+            IntegerError::Invalid(
+                "--verified-span-release requires a serialized user opening".into(),
+            )
+        })?;
+        let request = serde_json::from_reader(io::BufReader::new(std::fs::File::open(path)?))?;
+        Some(native_span_release::Session::new(opening, &request)?)
+    } else {
+        None
+    };
+    let mut span_release_steps = Vec::new();
     let mut release_read = None;
     let mut authenticated_steps = Vec::new();
     let mut occurrence_steps = Vec::new();
@@ -2687,11 +2720,28 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             ending_steps.push(event);
             committed_id
         } else if let Some(session) = &mut occurrence_writer {
-            let mut event = session.step(&context)?;
-            if let Some(release) = &period_release {
-                if let Some(read) = release.apply(prompt, &authenticated_steps, &mut event) {
-                    release_read = Some(read);
+            let (event, span_step) = session.step_with_commit(&context, |event| {
+                if let Some(release) = &period_release {
+                    if let Some(read) = release.apply(prompt, &authenticated_steps, event) {
+                        release_read = Some(read);
+                    }
                 }
+                let span_step = span_release
+                    .as_mut()
+                    .map(|span| span.step(event.committed_id))
+                    .transpose()?;
+                if let Some(step) = &span_step {
+                    event.committed_id = step.committed_id;
+                    if step.commit != native_span_release::Commit::Ordinary {
+                        // The occurrence read is still observed. Only the
+                        // actual native authenticated commit can prime period release.
+                        event.copied = false;
+                    }
+                }
+                Ok(span_step)
+            })?;
+            if let Some(step) = span_step.filter(|_| cli.native_occurrence_trace) {
+                span_release_steps.push(step);
             }
             let committed_id = event.committed_id;
             occurrence_event = Some(event);
@@ -2831,6 +2881,14 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     if cli.native_period_release {
         record["decoding"] = "authenticated opening with native period release".into();
         record["native_period_release"] = serde_json::to_value(release_read)?;
+    }
+    if span_release.is_some() {
+        record["decoding"] = native_span_release::SCHEMA.into();
+        record["verified_span_release"] = serde_json::json!({
+            "schema": native_span_release::SCHEMA,
+            "trace": cli.native_occurrence_trace,
+            "steps": span_release_steps,
+        });
     }
     if native_no_read {
         record["decoding"] = "greedy native occurrence disabled; frozen marker and trunk".into();

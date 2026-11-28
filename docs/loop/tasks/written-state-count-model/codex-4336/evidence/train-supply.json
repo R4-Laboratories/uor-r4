@@ -1,0 +1,16 @@
+{
+  "supported": 130,
+  "over_cap": 21,
+  "published_impossible": 130,
+  "reachable": 109,
+  "entry_phases": {
+    "after_space": 15,
+    "immediate": 94
+  },
+  "next_source": {
+    "ascii_punctuation": 40,
+    "other": 4,
+    "ascii_alphanumeric": 65
+  },
+  "at_cap": 7
+}
