@@ -1,0 +1,5 @@
+# Release the planted tests
+
+Lab: codex. Release only the synthetic training calibration and the existing historical serving fixture on one physical 4090. The separate reviewer confirmed the published old and new CUDA ABI paths and actual model dimensions. The locked Linux training binary is SHA-256 `2cf10fd55608ad73fa200d30017fc7911db3c274fb53f235962a79a32b5302cf`. The readout binary is `6dbea907a2510cebecd02d04b9b18ec43f6b029f33606c39d6037767fde7e629`. The training cubin is `9b8185fd00e3d7896569476b1160102dc0305ddc24fe29d63cb0bd231113d533` and the legacy differential uses the exact #4361 original `d7594dab97fd490bee2cad35d595a12054f64b2cdebe1eb628ac96ac8f56328a`.
+
+The initial release excludes authentic optimization. A subsequent top-level review must verify the sealed physical job and full substantive finite fields, including an active directional witness, zero-gain legacy equality, the registered 256/32768 condition, masking, visits, EOS and unchanged ordinary serving. Archive refusals. The paired roster, actual matching data and intended readout are pinned in advance. The cleanup watcher is armed; fit within the dedicated single-card quote of $0.869/hour.

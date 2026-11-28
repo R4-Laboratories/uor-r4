@@ -1,0 +1,16 @@
+{
+  "schema": "uor-cold-opposed-opening-parity/1",
+  "checked": 12,
+  "verdict": "COMPLETE",
+  "cap": 96,
+  "cli_sha256": "15d5856ebf19200021700f77166a4caa641896c5f54ef0dbec279e0cc70a77e2",
+  "gpu_rows_sha256": "fe463c5e4c4f89eaf895ef956dd55289f96124363a2c11f2ef171eaa761dd8f0",
+  "role_source_sha256": "f8fe9561f79dc41ffb6d9c52423ce215f533e7482aa48a833f391611b3656630",
+  "train_sha256": "700c0bd3e78bd2dd8c0644d0abaea3e265538205eec20f69b9da0ccddca1ba92",
+  "training_receipt_sha256": "569c12bcf83587484e5dba537223aa7d58756a72a03a8bc5efe28cbde8233627",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "all_prefixes_equal": true,
+  "all_emissions_equal": true,
+  "all_stdout_equal": true,
+  "all_stops_equal": true
+}

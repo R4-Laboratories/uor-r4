@@ -1,0 +1,216 @@
+--- a/cuda_backend.rs
++++ b/cuda_backend.rs
+@@ -238,6 +238,7 @@
+         pub max_batch: usize,
+         pub max_seq_len: usize,
+         pub slices: V3AdamWSliceTable,
++        historical_kernel: bool,
+     }
+ 
+     impl CudaV3ButterflyEngine {
+@@ -306,10 +307,39 @@
+                 d_shift_ws,
+                 max_batch,
+                 max_seq_len,
++                historical_kernel: false,
+                 slices: flat.slices,
+             })
+         }
+ 
++        pub fn from_historical_cubin(
++            model: &ButterflyV3Model,
++            adam: &ButterflyV3AdamWState,
++            max_batch: usize,
++            max_seq_len: usize,
++            cubin: &[u8],
++        ) -> Result<Self, String> {
++            let mut engine = Self::new(model, adam, max_batch, max_seq_len)?;
++            let original = engine.ctx.load_module(Ptx::from_binary(cubin.to_vec()))
++                .map_err(|e| format!("load historical AOT module: {e}"))?;
++            engine.fn_fwd_bwd = original.load_function("bfy_v3_batch_fwd_bwd_kernel")
++                .map_err(|e| format!("load historical training kernel: {e}"))?;
++            engine.fn_adamw = original.load_function("bfy_v3_adamw_update_kernel")
++                .map_err(|e| format!("load historical optimizer kernel: {e}"))?;
++            engine.fn_eval = original.load_function("bfy_v3_eval_records_kernel")
++                .map_err(|e| format!("load historical writer: {e}"))?;
++            engine.historical_kernel = true;
++            Ok(engine)
++        }
++        
++        pub fn use_historical_writer(&mut self, cubin: &[u8]) -> Result<(), String> {
++            let original = self.ctx.load_module(Ptx::from_binary(cubin.to_vec()))
++                .map_err(|e| format!("load historical writer module: {e}"))?;
++            self.fn_eval = original.load_function("bfy_v3_eval_records_kernel")
++                .map_err(|e| format!("load historical writer: {e}"))?;
++            Ok(())
++        }
++        
+         pub fn zero_grads(&mut self) -> Result<(), String> {
+             self.stream.memset_zeros(&mut self.d_grads).map_err(|e| e.to_string())
+         }
+@@ -322,6 +352,50 @@
+             stride_tok: usize,
+             learn_pkm_keys: bool,
+         ) -> Result<(u128, u64), String> {
++            let opening = vec![0; batch_lens.len()];
++            let (loss, labels, _) = self.accumulate_opening_batch(
++                batch_tokens, batch_mask, batch_lens, stride_tok, learn_pkm_keys,
++                &opening, &[0; 65], 1, [0, 0],
++            )?;
++            Ok((loss, labels))
++        }
++        
++        #[allow(clippy::too_many_arguments)]
++        pub fn accumulate_opening_batch(
++            &mut self,
++            batch_tokens: &[u16],
++            batch_mask: &[u8],
++            batch_lens: &[u32],
++            stride_tok: usize,
++            learn_pkm_keys: bool,
++            opening_label_index: &[u32],
++            eligibility: &[u64; 65],
++            margin_q15: i32,
++            gains_q15: [i32; 2],
++        ) -> Result<(u128, u64, Vec<i64>), String> {
++            let words = stride_tok.checked_mul(batch_lens.len()).ok_or("batch shape overflow")?;
++            if batch_tokens.len() != words || batch_mask.len() != words ||
++                opening_label_index.len() != batch_lens.len() || stride_tok > u32::MAX as usize ||
++                !(1..=1 << 22).contains(&margin_q15) ||
++                gains_q15.iter().any(|gain| !(0..=1 << 22).contains(gain))
++            {
++                return Err("invalid opening batch shape/configuration".into());
++            }
++            for (row, (&len, &opening)) in batch_lens.iter().zip(opening_label_index).enumerate() {
++                if len as usize > stride_tok || opening != 0 && (opening >= len ||
++                    batch_mask[row * stride_tok + opening as usize] != 1 ||
++                    batch_tokens[row * stride_tok + opening as usize] <= 1)
++                {
++                    return Err("opening must be a real positively masked non-BOS, non-EOS label".into());
++                }
++                let start = row * stride_tok;
++                if batch_tokens[start..start + len as usize].iter().any(|&token| token as usize >= self.cfg.vocab) {
++                    return Err("out-of-vocabulary active token".into());
++                }
++            }
++            if self.historical_kernel && opening_label_index.iter().any(|&index| index != 0) {
++                return Err("historical ABI takes no auxiliary metadata".into());
++            }
+             let batch_size = batch_lens.len();
+             if batch_size == 0 || batch_size > self.max_batch {
+                 return Err(format!("batch_size {batch_size} out of 1..={}", self.max_batch));
+@@ -332,6 +406,12 @@
+             let d_toks = self.stream.clone_htod(batch_tokens).map_err(|e| e.to_string())?;
+             let d_mask = self.stream.clone_htod(batch_mask).map_err(|e| e.to_string())?;
+             let d_lens = self.stream.clone_htod(batch_lens).map_err(|e| e.to_string())?;
++            let d_opening = self.stream.clone_htod(opening_label_index).map_err(|e| e.to_string())?;
++            let d_eligibility = self.stream.clone_htod(eligibility).map_err(|e| e.to_string())?;
++            let mut sentinel = vec![0_i64; batch_size * 10];
++            for stage in sentinel.chunks_exact_mut(5) { stage[0] = -3; }
++            let mut d_opening_trace = self.stream.clone_htod(&sentinel).map_err(|e| e.to_string())?;
++            let [coarse_gain_q15, fine_gain_q15] = gains_q15;
+             let mut d_loss = self.stream.alloc_zeros::<u64>(batch_size).map_err(|e| e.to_string())?;
+             let mut d_sup = self.stream.alloc_zeros::<u64>(batch_size).map_err(|e| e.to_string())?;
+ 
+@@ -376,13 +456,30 @@
+             b.arg(&mut self.d_grads);
+             b.arg(&mut d_loss);
+             b.arg(&mut d_sup);
++            if !self.historical_kernel {
++                b.arg(&d_opening);
++                b.arg(&d_eligibility);
++                b.arg(&margin_q15);
++                b.arg(&coarse_gain_q15);
++                b.arg(&fine_gain_q15);
++                b.arg(&mut d_opening_trace);
++            }
+             #[allow(unsafe_code)]
+             unsafe {
+                 b.launch(cfg).map_err(|e| format!("launch bfy_v3_batch_fwd_bwd: {e}"))?;
+             }
+             let h_loss = self.stream.clone_dtoh(&d_loss).map_err(|e| e.to_string())?;
+             let h_sup = self.stream.clone_dtoh(&d_sup).map_err(|e| e.to_string())?;
+-            Ok((h_loss.iter().map(|&v| u128::from(v)).sum(), h_sup.iter().sum()))
++            let trace = self.stream.clone_dtoh(&d_opening_trace).map_err(|e| e.to_string())?;
++            for (row, &opening) in trace.chunks_exact(10).zip(opening_label_index) {
++                let visited = row[0] >= -1 && row[5] >= -1;
++                let untouched = row[0] == -3 && row[5] == -3;
++                if (opening == 0 && !untouched) || (opening != 0 && !visited) {
++                    self.zero_grads()?;
++                    return Err("opening visitation or gold eligibility mismatch; discarded gradients".into());
++                }
++            }
++            Ok((h_loss.iter().map(|&v| u128::from(v)).sum(), h_sup.iter().sum(), trace))
+         }
+ 
+         pub fn apply_adamw_step(
+--- a/butterfly_kernels_v3.cu
++++ b/butterfly_kernels_v3.cu
+@@ -1,3 +1,4 @@
++#include "opening_margin.cuh"
+ // Pure-integer AOT CUDA kernels for UOR-R4 Butterfly-Rotor V3 (`UORBFY03`).
+ // Strictly CHARTER §3 compliant:
+ // - ZERO floating point (`f16`/`bf16`/`f32`/`f64`, zero `MUFU`/`I2F`/`F2I` SASS).
+@@ -925,6 +926,21 @@
+ // ---------------------------------------------------------------------------
+ // Kernel 1: Exact Reversible-Checkpointed `UORBFY03` Batch Forward + BPTT Backward
+ // ---------------------------------------------------------------------------
++__device__ void trace_opening_rank(
++    const int32_t* scores, uint64_t eligibility, uint32_t gold,
++    int32_t margin, int32_t gain, int32_t* dz, int64_t* trace
++) {
++    // A sham computes the identical rival/gap without contributing gradients.
++    const auto rank = uor_opening_margin::strongest_rival_margin(
++        scores, eligibility, gold, margin, gain == 0 ? 1 : gain);
++    trace[0] = rank.rival;
++    trace[1] = rank.gap_q15;
++    trace[2] = gain == 0 ? 0 : rank.loss_q15;
++    trace[3] = gain == 0 ? 0 : rank.derivative_q15;
++    trace[4] = rank.rival >= 0 && gain != 0
++        ? uor_opening_margin::add_to_legacy(dz, gold, rank) : 0;
++}
++
+ extern "C" __global__ void bfy_v3_batch_fwd_bwd_kernel(
+     const int16_t* __restrict__ weights,
+     const uint16_t* __restrict__ vocab_perm,
+@@ -947,7 +963,13 @@
+     uint32_t max_seq_len,
+     int64_t* __restrict__ grads,                 // same flat length as `weights`
+     uint64_t* __restrict__ out_seq_loss,         // [batch_size]
+-    uint64_t* __restrict__ out_seq_sup           // [batch_size]
++    uint64_t* __restrict__ out_seq_sup,          // [batch_size]
++    const uint32_t* __restrict__ opening_label_index,
++    const uint64_t* __restrict__ eligibility,   // [coarse mask, fine masks 0..63]
++    int32_t opening_margin_q15,
++    int32_t coarse_gain_q15,
++    int32_t fine_gain_q15,
++    int64_t* __restrict__ out_opening_trace     // [batch_size][2][5]
+ ) {
+     uint32_t b_idx = blockIdx.x;
+     uint32_t tid = threadIdx.x;
+@@ -1174,6 +1196,12 @@
+             block_head_dots_64(s_buf2, coarse_centroids, s_scores64, dim, stages);
+             if (tid == 0U) {
+                 s_loss_c = loss_and_grad_64_dev(s_scores64, t_coarse, loss_code, loss_param, s_dc);
++                if (opening_label_index[b_idx] == t + 1U) {
++                    trace_opening_rank(
++                        s_scores64, eligibility[0], t_coarse,
++                        opening_margin_q15, coarse_gain_q15, s_dc,
++                        out_opening_trace + (size_t)b_idx * 10U + 0);
++                }
+             }
+             __syncthreads();
+ 
+@@ -1181,6 +1209,12 @@
+             block_head_dots_64(s_buf2, fine_base, s_scores64, dim, stages);
+             if (tid == 0U) {
+                 s_loss_f = loss_and_grad_64_dev(s_scores64, t_fine, loss_code, loss_param, s_df);
++                if (opening_label_index[b_idx] == t + 1U) {
++                    trace_opening_rank(
++                        s_scores64, eligibility[1U + t_coarse], t_fine,
++                        opening_margin_q15, fine_gain_q15, s_df,
++                        out_opening_trace + (size_t)b_idx * 10U + 5);
++                }
+             }
+             __syncthreads();
+ 

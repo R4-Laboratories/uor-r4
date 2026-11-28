@@ -1,0 +1,1 @@
+The pinned #4361 loader also requires its mandatory `stratum` field. Preserve the source row's stratum in each canonical `{id,prefix,expected,stratum}` input line. This clarifies the output schema before inspecting any candidate supply. The selector and input authority are unchanged.

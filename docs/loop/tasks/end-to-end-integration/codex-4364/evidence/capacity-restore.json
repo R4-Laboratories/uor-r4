@@ -1,0 +1,21 @@
+{
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/20261128-grounded-opposed-4364-capacity/capacity.tar.zst",
+  "revision": "7062a2bd3f1bc2e0a360ab69c476d6ac66c309af",
+  "sha256": "00e15d7621286afbd4d6a113578860db0540ed2053f78de900d55d3be0fbcb78",
+  "bytes": 774530,
+  "verified_members": 45,
+  "forced_restore_verified": true,
+  "original_pilot": {
+    "repository": "caseyallard/uor-r4-store",
+    "path": "results/codex/20261128-grounded-opposed-4364/custody.tar.zst",
+    "revision": "c06bf59d2428275a81d01c4d6e103bbd06ee8ae9",
+    "sha256": "9e5f42b6759ae3709d32060cfe74553bd700ab3af037ad915d68ba9fb58a8e20",
+    "bytes": 13595602,
+    "verified_members": 205,
+    "forced_restore_verified": true,
+    "forced_restore_endpoints_verified": true,
+    "sham_checkpoint_sha256": "ee4b806de58f66dba01299744494969f744d734d120bed2c3ce7308bf56eab6f",
+    "active_checkpoint_sha256": "1f8196ad1e66feaa4a48df69fdb04cf94c1a25a267c85fa330a1e07519f9a7fb"
+  }
+}

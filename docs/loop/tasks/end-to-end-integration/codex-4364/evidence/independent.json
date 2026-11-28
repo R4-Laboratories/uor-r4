@@ -1,0 +1,133 @@
+{
+  "arms": [
+    {
+      "arm": "frozen",
+      "both_members_first_win": 0,
+      "cap": 4,
+      "conditional_gold_fine_wins": 0,
+      "eos": 0,
+      "exact_through_eos": 0,
+      "first_wins": 0,
+      "gold_cell_admissions": 0,
+      "strict_conditional_gold_fine_wins": 0,
+      "strict_gold_cells": 0
+    },
+    {
+      "arm": "sham",
+      "both_members_first_win": 0,
+      "cap": 4,
+      "conditional_gold_fine_wins": 0,
+      "eos": 0,
+      "exact_through_eos": 0,
+      "first_wins": 0,
+      "gold_cell_admissions": 0,
+      "strict_conditional_gold_fine_wins": 0,
+      "strict_gold_cells": 0
+    },
+    {
+      "arm": "active",
+      "both_members_first_win": 0,
+      "cap": 4,
+      "conditional_gold_fine_wins": 0,
+      "eos": 0,
+      "exact_through_eos": 0,
+      "first_wins": 0,
+      "gold_cell_admissions": 0,
+      "strict_conditional_gold_fine_wins": 0,
+      "strict_gold_cells": 0
+    }
+  ],
+  "cold_checked": 12,
+  "pairs": [
+    {
+      "arm": "frozen",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 1,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    },
+    {
+      "arm": "frozen",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 2,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    },
+    {
+      "arm": "sham",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 1,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    },
+    {
+      "arm": "sham",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 2,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    },
+    {
+      "arm": "active",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 1,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    },
+    {
+      "arm": "active",
+      "both_members_first_win": false,
+      "both_members_strict_source_win": false,
+      "exact_through_eos": 0,
+      "ordinary_first_wins": 0,
+      "pair": 2,
+      "source_comparison_stage": "coarse",
+      "source_ties": 0,
+      "strict_source_score_wins": 1
+    }
+  ],
+  "primary": "no demonstrated opening correction at this dose",
+  "recorded_gradient_words_changed": 3075695,
+  "rows_sha256": "fe463c5e4c4f89eaf895ef956dd55289f96124363a2c11f2ef171eaa761dd8f0",
+  "training_receipt_sha256": "569c12bcf83587484e5dba537223aa7d58756a72a03a8bc5efe28cbde8233627",
+  "weight_words_changed": {
+    "frozen_to_active": {
+      "coarse_centroids": 31979,
+      "other": 1988890,
+      "tied_embeddings": 956281,
+      "total": 2977150
+    },
+    "frozen_to_sham": {
+      "coarse_centroids": 31978,
+      "other": 1988666,
+      "tied_embeddings": 956262,
+      "total": 2976906
+    },
+    "sham_to_active": {
+      "coarse_centroids": 29,
+      "other": 31134,
+      "tied_embeddings": 9613,
+      "total": 40776
+    }
+  }
+}
