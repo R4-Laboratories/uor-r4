@@ -1,0 +1,17 @@
+{
+  "scope": "Before fitting or scoring. Validation source-only selection and TRAIN-only capsule.",
+  "registration_commit": "c7cd84da94d36afb8389ce5721625e7bf03123c6",
+  "supply_main_commit": "67d3146f5c176f85d10aaa7a3cbdff9c1d4d675f",
+  "training_capsule_sha256": "09c93ef41bbe46385f40cb13aa1bf67906ed3b95494ad55ccc8f4545f0be48cf",
+  "source_extraction_sha256": "ae7a726d7d8880ee6f6db02575922320e61c8773b2d181e4bc328a44305cee52",
+  "semantic_source_rows_sha256": "2a3baa08fe9b692e22c6b153b949e8b40f0c3d0a251f2df547743744ef9ee3d3",
+  "selected_reciprocal_pairs": 23,
+  "selected_answerability_pairs": 44,
+  "client": "21461b5af9c82d98f6f0c7f8780ae6f738bd601a52fe8a98edf25a7e07548381",
+  "binder": "91679e342515d27aa9e904be9712cf581668af2e3bd34d1cc1909d845721327d",
+  "model": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+  "tokenizer": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "extraction": "ae7a726d7d8880ee6f6db02575922320e61c8773b2d181e4bc328a44305cee52",
+  "review_a": "cd2fb30947ed46fdc27dec9f553ec3f68162c3a693067ec4990c33ac789d1155",
+  "review_b": "11d835299d7cc98a94d432a3c507604859e12df481f716b79749acdd9b67bc98"
+}

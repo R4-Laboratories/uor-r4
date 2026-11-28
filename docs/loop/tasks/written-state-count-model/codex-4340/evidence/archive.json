@@ -1,0 +1,38 @@
+{
+  "schema": "uor-r4-natural-reciprocal-transfer-archive/1",
+  "repository": "caseyallard/uor-r4-store",
+  "revision": "9bd98bef04d00fd88d01d1a14305bbc449f4046b",
+  "path": "results/codex/natural-reciprocal-transfer-20261127/transfer.tar.zst",
+  "sha256": "8cbc7dc3bb71029e75cd45d6058334c0ac98c2c566471067e93999dcbac9c960",
+  "members_sha256": "265fe39846ff9cc7654d5a3284f1e6d2029bdd823abe72867464c6da287725c5",
+  "bytes": 2291852,
+  "member_count": 70,
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "registration_commit": "c7cd84da94d36afb8389ce5721625e7bf03123c6",
+  "replay_source_commit": "27ccaa88812fbaa15ab54f05a6c84e085ebfe9cb",
+  "parent": {
+    "revision": "0bc863b1414a6cbe7aeaf9a7253e9431132a3aa3",
+    "members_sha256": "3b2d3d587beb6e557bd6bb95992687d34b809e27aa0e3e66c0919e69db19cc51",
+    "forced_download_verified": true
+  },
+  "extraction_manifest_sha256": "ae7a726d7d8880ee6f6db02575922320e61c8773b2d181e4bc328a44305cee52",
+  "qualification_manifest_sha256": "7a383420fab69b393211146a23b65b0286816cdf278d369fe9efe1ec47cf7c2a",
+  "training_capsule_manifest_sha256": "09c93ef41bbe46385f40cb13aa1bf67906ed3b95494ad55ccc8f4545f0be48cf",
+  "review_rows": [
+    67,
+    67
+  ],
+  "restored_members_verified": true,
+  "selection_and_source_rows_regenerated_byte_identical": true,
+  "relocated_extraction_input_digests_verified": true,
+  "ordinary_client_qualification_regenerated_byte_identical": true,
+  "training_capsule_regenerated_byte_identical": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "tampered_review_refused_before_ordinary_client_capture": true,
+  "validation_coverage_pass": false,
+  "optimizer": "NOT_RUN",
+  "gpu_dispatch": "NOT_RUN",
+  "fit_scoring": "NOT_RUN",
+  "locked_evaluation": "NOT_RUN"
+}

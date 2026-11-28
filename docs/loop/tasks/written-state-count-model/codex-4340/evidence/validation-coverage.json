@@ -1,0 +1,134 @@
+{
+  "titles": [
+    {
+      "family": "answerability",
+      "article": "1973_oil_crisis",
+      "selected": 4,
+      "semantic": 0,
+      "qualified": 0
+    },
+    {
+      "family": "answerability",
+      "article": "Construction",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4
+    },
+    {
+      "family": "answerability",
+      "article": "Force",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 3
+    },
+    {
+      "family": "answerability",
+      "article": "French_and_Indian_War",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 3
+    },
+    {
+      "family": "answerability",
+      "article": "Geology",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 2
+    },
+    {
+      "family": "answerability",
+      "article": "Harvard_University",
+      "selected": 4,
+      "semantic": 1,
+      "qualified": 1
+    },
+    {
+      "family": "answerability",
+      "article": "Huguenot",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4
+    },
+    {
+      "family": "answerability",
+      "article": "Islamism",
+      "selected": 4,
+      "semantic": 1,
+      "qualified": 1
+    },
+    {
+      "family": "answerability",
+      "article": "Oxygen",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "answerability",
+      "article": "Scottish_Parliament",
+      "selected": 4,
+      "semantic": 3,
+      "qualified": 2
+    },
+    {
+      "family": "answerability",
+      "article": "Steam_engine",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "two_answer",
+      "article": "2008_Summer_Olympics_torch_relay",
+      "selected": 2,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "two_answer",
+      "article": "Adult_contemporary_music",
+      "selected": 4,
+      "semantic": 4,
+      "qualified": 4
+    },
+    {
+      "family": "two_answer",
+      "article": "Brain",
+      "selected": 1,
+      "semantic": 1,
+      "qualified": 1
+    },
+    {
+      "family": "two_answer",
+      "article": "Catalan_language",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "two_answer",
+      "article": "Daylight_saving_time",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "two_answer",
+      "article": "Plymouth",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    },
+    {
+      "family": "two_answer",
+      "article": "Pub",
+      "selected": 4,
+      "semantic": 2,
+      "qualified": 2
+    }
+  ],
+  "two_answer_total": 15,
+  "answerability_total": 24,
+  "coverage_pass": false,
+  "model_fit": "NOT_RUN"
+}

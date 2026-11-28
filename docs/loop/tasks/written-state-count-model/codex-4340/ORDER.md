@@ -1,0 +1,9 @@
+# Test whether natural supervision transfers to unseen original addresses
+
+Lab: codex
+
+Item: [written-state-count-model](../../../../roadmap/items/written-state-count-model.md), #4063. The [qualified TRAIN supply](../codex-4338/REPORT.md) contains 147 verified natural contrasts. Fit the two matched 264-event schedules from its private receipt against the same ordinary D11 writer and shared signed integer operator. This unit tests a change in the distribution of training examples. No handcrafted sentence structure enters the client.
+
+Pre-register the article-level validation and conditional locked decision. Before evaluating, choose qualifying panels without viewing model scores. Keep the balanced checkpoint, original candidate generator, exact cursor, stop policy and four protected original addresses fixed. Train geometry and equal-byte token-context weights from zero on the historical or natural schedule. Replay scores and source decisions from exported artifacts. Count actual comparisons, word updates, model bytes, accelerator time and end-to-end steps. Include zero and permuted labels as controls. Screen the primary natural geometry model against natural count and historical geometry on the identical unseen questions.
+
+Measure whether both original endpoints strictly win under each question in a pair and whether the source-less alternative wins for genuine missing facts. Grade the first wrong committed token, full answers through natural EOS and false factual assertions separately. A supplied source/stop test measures the ceiling. Use verified shared states and source addresses, independently replayed against the original client. Frozen validation scores control whether the untouched articles are opened. Persist positive and negative outcomes, source identity, a revision-pinned private archive and a cold replay. A failed gate retains the balanced writer, all locked cases and the ordinary generation path for the next bounded study.
