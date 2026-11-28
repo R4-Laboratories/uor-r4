@@ -1,0 +1,13 @@
+{
+  "schema": "uor-r4-directed-relation-screen/1",
+  "sha256": "2d361e7bde5c9a97d648e5cd439d73f7f144a1ad15e057cda18750a0ba2a5e65",
+  "members_sha256": "7b04b58e4f36f6d1cf38383fc7b937d01bc3bb06a70a50a222a528df00566b4f",
+  "bytes": 4520703,
+  "member_count": 105,
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/directed-relation-20261128/complete-words.tar.zst",
+  "revision": "c4d60d0be707bd753ea44f4e4789973aae1968bd",
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true
+}

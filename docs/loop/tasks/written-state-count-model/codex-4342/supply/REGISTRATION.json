@@ -1,0 +1,42 @@
+{
+  "schema": "uor-r4/directed-relation-train-supply/1",
+  "official": {
+    "member": "20261127-codex-whole-turn-census/supply-inputs/squad-train-v2.0.json",
+    "sha256": "68dcfbb971bd3e96d5b46c7177b16c1a4e7d4bdef19fb204502738552dede002",
+    "dataset_version": "v2.0"
+  },
+  "parent_split": {
+    "member": "20261127-codex-grounded-interval/next-supply-pilot-v1/split.tsv",
+    "sha256": "8502372b2e063cbcd05b7619b24d3b6f9ebe5e33efec9b8f36cfdb029a86439a"
+  },
+  "parent_train": {
+    "member": "20261127-codex-grounded-interval/next-supply-pilot-v1/train-articles.json",
+    "sha256": "300f940879964486002c7c414334d78b2fcd666ac6b90ae03627192ee6dfa4fb"
+  },
+  "parent_qualification_truth": {
+    "member": "20261127-codex-natural-reciprocal/qualified-v1/train-truth.jsonl",
+    "sha256": "529639103030a78c92284276ffd95b4cf529e92ee46f20e428c203940955be93"
+  },
+  "parent_natural_fit_ids": {
+    "member": "20261127-codex-natural-reciprocal/matched-v1/natural/case-ids",
+    "sha256": "cd270a81df9bc81018a5808bb94cbb27d398749a26eb7ba663e620a3ede934cf"
+  },
+  "parent_original_fit_ids": {
+    "member": "20261127-codex-natural-reciprocal/matched-v1/original/case-ids",
+    "sha256": "ec725a023d36a534f7bba74d40af173161efaf40c39de68f0d8153a8c04a06d5"
+  },
+  "article_domain": "uor-r4/codex-4342/article/v1",
+  "passage_domain": "uor-r4/codex-4342/passage/v1",
+  "article_counts": {"screen": 8, "construction": 16},
+  "shape_order": ["quad", "triple", "switch", "same-target"],
+  "sample_per_shape_per_split": 24,
+  "source_reviews_required": 2,
+  "function_words": [
+    "a", "about", "after", "all", "an", "and", "any", "are", "as", "at", "be", "been", "before", "being",
+    "between", "both", "by", "can", "could", "did", "do", "does", "during", "each", "for", "from", "had", "has",
+    "have", "how", "i", "if", "in", "into", "is", "it", "its", "may", "more", "most", "of", "on", "or", "other",
+    "our", "out", "over", "should", "some", "than", "that", "the", "their", "them", "then", "there", "these", "they",
+    "this", "those", "to", "under", "up", "us", "was", "we", "were", "what", "when", "where", "which", "who", "whom",
+    "whose", "why", "will", "with", "would", "you", "your"
+  ]
+}

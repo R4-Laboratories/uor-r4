@@ -13,7 +13,8 @@ type CliResult<T> = Result<T, Box<dyn std::error::Error>>;
 
 fn main() -> CliResult<()> {
     const USAGE: &str =
-        "usage: pack-native-interval GEOMETRY_OR_COUNT BALANCED.d11 WORDS.i16le OUTPUT.d11 FIT_SHA256";
+        "usage: pack-native-interval ARM BALANCED.d11 WORDS.i16le OUTPUT.d11 FIT_SHA256\n\
+        ARM: geometry, count, directed_geometry, directed_count, or swapped_geometry";
     let arguments: Vec<_> = std::env::args_os().skip(1).collect();
     let [arm, base, words, output, fit] = arguments.as_slice() else {
         return Err(USAGE.into());
@@ -21,6 +22,9 @@ fn main() -> CliResult<()> {
     let arm = match arm.to_str() {
         Some("geometry") => Arm::Geometry,
         Some("count") => Arm::Count,
+        Some("directed_geometry") => Arm::DirectedGeometry,
+        Some("directed_count") => Arm::DirectedCount,
+        Some("swapped_geometry") => Arm::SwappedGeometry,
         _ => return Err(USAGE.into()),
     };
     let fit = hex::decode(fit.to_str().ok_or(USAGE)?)?

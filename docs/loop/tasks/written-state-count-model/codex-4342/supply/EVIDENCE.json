@@ -1,0 +1,201 @@
+{
+  "schema": "uor-r4/directed-relation-train-supply-evidence/1",
+  "scope": "Source inventory and source-only qualification",
+  "custody": {
+    "wick_root": "/mnt/plexpool/uor-r4-corpus/runs/20261128-codex-directed-relation",
+    "zfs_dataset": "plexpool/uor-r4-corpus",
+    "inventory_sha256": "b388cbd23d387255d1750dfd5c9fb10221b94963e6bf50c71304ad79cd19a86c",
+    "supply_sha256": "77fa0cfec83255ec2d22eb28570e45224784437d39c14dd74cc2c68fa557f105",
+    "blind_sha256": "54219a05ae0a1402ad09f92e5133e376adb73df577e5f7075c7db576f5d3a9ca",
+    "truth_sha256": "79a201c74dafc024dda5700b98d260e70df48b4e202700884e627592505b8d77",
+    "groups_sha256": "4576e3de5fd29611c82ea3bb2f2d6ec4d58918629ce9f4117b57702aa4e9806d"
+  },
+  "inventory": {
+    "schema": "uor-r4/directed-relation-train-supply-inventory/1",
+    "screen": {
+      "articles": 8,
+      "paragraphs": 513,
+      "duplicate_paragraphs": 0,
+      "answerable_questions": 2422,
+      "question_status": {
+        "eligible": 2422
+      },
+      "listed_answer_annotations": 2422,
+      "records_with_multiple_listed_answers": 0,
+      "records_with_multiple_exact_listed_spans": 0,
+      "independently_identified_annotators": null,
+      "exact_eligible_passages": 513,
+      "evidence_shape": {
+        "quad": 64,
+        "triple": 121,
+        "switch": 458,
+        "same-target": 124
+      },
+      "assigned_shape": {
+        "quad": 64,
+        "triple": 57,
+        "switch": 337,
+        "same-target": 3
+      },
+      "selected_shape": {
+        "quad": 24,
+        "triple": 24,
+        "switch": 24,
+        "same-target": 3
+      },
+      "selected_passages": 75,
+      "selected_articles": 8,
+      "selected_source_qa_records": 222,
+      "selected_listed_answer_annotations": 222,
+      "eligible_wording_families": 2297,
+      "selected_wording_families": 220,
+      "previous_exposure": {
+        "qualified_exact": 54,
+        "fitted_natural_exact": 46,
+        "fitted_original_via_qualification_join_exact": 0,
+        "selected_qualified_exact": 6,
+        "selected_fitted_natural_exact": 6,
+        "selected_fitted_original_via_qualification_join_exact": 0
+      }
+    },
+    "construction": {
+      "articles": 16,
+      "paragraphs": 1076,
+      "duplicate_paragraphs": 0,
+      "answerable_questions": 4580,
+      "question_status": {
+        "eligible": 4580,
+        "impossible": 180
+      },
+      "listed_answer_annotations": 4580,
+      "records_with_multiple_listed_answers": 0,
+      "records_with_multiple_exact_listed_spans": 0,
+      "independently_identified_annotators": null,
+      "exact_eligible_passages": 1076,
+      "evidence_shape": {
+        "quad": 25,
+        "triple": 104,
+        "switch": 1015,
+        "same-target": 109
+      },
+      "assigned_shape": {
+        "quad": 25,
+        "triple": 79,
+        "switch": 911,
+        "same-target": 5
+      },
+      "selected_shape": {
+        "quad": 24,
+        "triple": 24,
+        "switch": 24,
+        "same-target": 5
+      },
+      "selected_passages": 77,
+      "selected_articles": 16,
+      "selected_source_qa_records": 226,
+      "selected_listed_answer_annotations": 226,
+      "eligible_wording_families": 4146,
+      "selected_wording_families": 219,
+      "previous_exposure": {
+        "qualified_exact": 120,
+        "fitted_natural_exact": 98,
+        "fitted_original_via_qualification_join_exact": 0,
+        "selected_qualified_exact": 5,
+        "selected_fitted_natural_exact": 5,
+        "selected_fitted_original_via_qualification_join_exact": 0
+      }
+    },
+    "family_quarantine": {
+      "reserved_skeletons": 2297,
+      "construction_eligible_cases_overlapping_screen": 286,
+      "construction_eligible_skeletons_overlapping_screen": 78,
+      "recorded_previous_fitted_skeletons": 142,
+      "eligible_screen_cases_overlapping_previous_fitted": 63,
+      "selected_screen_cases_overlapping_previous_fitted": 6
+    }
+  },
+  "qualification": {
+    "schema": "uor-r4/directed-relation-source-qualification/1",
+    "split": "screen",
+    "source_only_reviewers": 2,
+    "selected_groups": 75,
+    "selected_articles": 8,
+    "selected_questions": 222,
+    "accepted_groups": 29,
+    "accepted_articles": 7,
+    "accepted_questions": 73,
+    "rejected_groups": 46,
+    "shapes": [
+      {
+        "shape": "quad",
+        "selected": 24,
+        "accepted": 4,
+        "accepted_contrast": {
+          "target-switch": 4
+        },
+        "titles": {
+          "Beyoncé": 4
+        }
+      },
+      {
+        "shape": "triple",
+        "selected": 24,
+        "accepted": 7,
+        "accepted_contrast": {
+          "target-switch": 7
+        },
+        "titles": {
+          "Beyoncé": 2,
+          "Classical_music": 1,
+          "Dog": 4
+        }
+      },
+      {
+        "shape": "switch",
+        "selected": 24,
+        "accepted": 16,
+        "accepted_contrast": {
+          "same-fact-inverse": 1,
+          "target-switch": 15
+        },
+        "titles": {
+          "Bern": 3,
+          "Beyoncé": 1,
+          "Classical_music": 2,
+          "Computer": 3,
+          "Hydrogen": 4,
+          "Lighting": 3
+        }
+      },
+      {
+        "shape": "same-target",
+        "selected": 3,
+        "accepted": 2,
+        "accepted_contrast": {
+          "paraphrase": 2
+        },
+        "titles": {
+          "Dog": 2
+        }
+      }
+    ],
+    "exclusion_reasons": {
+      "endpoint_review_disagreement": 27,
+      "equivalence_review_disagreement": 8,
+      "review_a_endpoint": 35,
+      "review_a_equivalence": 27,
+      "review_b_endpoint": 23,
+      "review_b_equivalence": 26
+    },
+    "accepted_exact_natural_fit_cases": 1,
+    "accepted_exact_original_fit_cases_via_qualification_join": 0,
+    "accepted_groups_containing_any_exact_fit_case": 1
+  },
+  "verification": {
+    "inventory_replayed_members": true,
+    "qualification_replayed_members": true,
+    "rebound_cases": 73,
+    "rebound_groups": 29,
+    "missing_review_row_rejected": true
+  }
+}

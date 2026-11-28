@@ -8,15 +8,17 @@ use std::{
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
-use uor_r4_tokenizer::{dialogue::EncodedUserOpening, ByteBpeTokenizer};
+use uor_r4_tokenizer::{ByteBpeTokenizer, dialogue::EncodedUserOpening};
 
 use super::{
-    cl06_action, cl06_bfs, native_whole_turn, native_word_ending, orbit_root_coords, orbit_root_id,
-    HashingReader, IntegerDiscreteModel, MAGIC, ROLE_COPY_STOPS,
+    HashingReader, IntegerDiscreteModel, MAGIC, ROLE_COPY_STOPS, cl06_action, cl06_bfs,
+    cl06_compose, cl06_inverse, native_whole_turn, native_word_ending, orbit_root_coords,
+    orbit_root_id,
 };
-use crate::{invalid, Result};
+use crate::{Result, invalid};
 
 pub const SCHEMA: &str = "uor-r4.lut-discrete-native-interval/1";
+pub const DIRECTED_SCHEMA: &str = "uor-r4.lut-discrete-native-interval/2";
 pub const BANKS: usize = 16;
 const SLOTS: usize = 256;
 pub const WORDS: usize = BANKS * SLOTS;
@@ -24,6 +26,9 @@ pub const WEIGHT_BYTES: usize = WORDS * 2;
 pub const MAX_SPAN: usize = 8;
 const NO_READ_SLOTS: u8 = 224;
 const AMBIGUOUS_QUERY_TOKENS: usize = 32;
+const RELATION_BANK: usize = 10;
+const RELATION_BLOCK: usize = (RELATION_BANK - 8) % 4;
+const RELATION_ACTIONS: u32 = 64;
 
 type Keys = [u16; BANKS];
 
@@ -32,19 +37,40 @@ type Keys = [u16; BANKS];
 pub enum Arm {
     Geometry,
     Count,
+    DirectedGeometry,
+    DirectedCount,
+    SwappedGeometry,
 }
 
 impl Arm {
+    fn schema(self) -> &'static str {
+        if self.is_directed() {
+            DIRECTED_SCHEMA
+        } else {
+            SCHEMA
+        }
+    }
+
+    pub fn is_directed(self) -> bool {
+        matches!(
+            self,
+            Self::DirectedGeometry | Self::DirectedCount | Self::SwappedGeometry
+        )
+    }
+
     fn tag(self) -> u8 {
         match self {
             Self::Geometry => 1,
             Self::Count => 2,
+            Self::DirectedGeometry => 3,
+            Self::DirectedCount => 4,
+            Self::SwappedGeometry => 5,
         }
     }
 
     fn bound_digest(self, bytes: &[u8; WEIGHT_BYTES]) -> String {
         let mut sha = Sha256::new();
-        sha.update(SCHEMA.as_bytes());
+        sha.update(self.schema().as_bytes());
         sha.update([self.tag()]);
         sha.update(bytes);
         hex::encode(sha.finalize())
@@ -72,6 +98,31 @@ pub struct Features {
     pub question: [u16; 2],
     pub candidates: Vec<Candidate>,
     pub no_read_keys: Keys,
+}
+
+/// Original token positions for one bank-10 capture, in unreversed order.
+#[derive(Debug, Eq, PartialEq, Serialize)]
+pub struct RelationEndpoints {
+    pub query: [Option<u16>; 2],
+    pub source: [Option<u16>; 2],
+    pub query_anchor: Option<[u16; 2]>,
+    pub source_anchor: Option<u16>,
+    pub clause: [u16; 2],
+}
+
+#[derive(Debug, Serialize)]
+pub struct RelationToken {
+    pub id: u32,
+    pub bytes: Vec<u8>,
+    pub root: u8,
+}
+
+#[derive(Debug, Default, Serialize)]
+pub struct RelationCapture {
+    /// Parallel to `Features::candidates`.
+    pub relation_endpoints: Vec<RelationEndpoints>,
+    /// Absolute positions in the complete protocol-2 opening.
+    pub relation_tokens: Vec<RelationToken>,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
@@ -145,6 +196,12 @@ pub(super) struct State {
     fit_sha256: String,
 }
 
+impl State {
+    pub(super) fn schema(&self) -> &'static str {
+        self.arm.schema()
+    }
+}
+
 #[derive(Debug, Serialize)]
 pub struct Identity<'a> {
     pub base_sha256: &'static str,
@@ -177,9 +234,12 @@ pub(super) fn read_from(
     let arm = match envelope.arm {
         1 => Arm::Geometry,
         2 => Arm::Count,
+        3 => Arm::DirectedGeometry,
+        4 => Arm::DirectedCount,
+        5 => Arm::SwappedGeometry,
         _ => return Err(invalid("invalid interval arm tag")),
     };
-    if envelope.schema != SCHEMA
+    if envelope.schema != arm.schema()
         || envelope.base_sha256 != native_whole_turn::BASE_SHA256
         || envelope.base_bytes != base_bytes
         || envelope.state_bytes != WEIGHT_BYTES
@@ -222,7 +282,7 @@ pub fn write_artifact(
     }
     let base_bytes = native_whole_turn::BASE_BYTES;
     let header = serde_json::to_vec(&Envelope {
-        schema: SCHEMA.into(),
+        schema: arm.schema().into(),
         base_sha256: native_whole_turn::BASE_SHA256.into(),
         base_bytes,
         arm: arm.tag(),
@@ -299,6 +359,31 @@ pub fn features(
     tokenizer: &ByteBpeTokenizer,
     arm: Arm,
 ) -> Result<Features> {
+    collect_features(model, opening, tokenizer, arm, None)
+}
+
+/// Collect one directed arm with its original protocol-2 positions and roots.
+pub fn relation_features(
+    model: &IntegerDiscreteModel,
+    opening: &EncodedUserOpening,
+    tokenizer: &ByteBpeTokenizer,
+    arm: Arm,
+) -> Result<(Features, RelationCapture)> {
+    if !arm.is_directed() {
+        return Err(invalid("relation capture requires a directed interval arm"));
+    }
+    let mut capture = RelationCapture::default();
+    let features = collect_features(model, opening, tokenizer, arm, Some(&mut capture))?;
+    Ok((features, capture))
+}
+
+fn collect_features(
+    model: &IntegerDiscreteModel,
+    opening: &EncodedUserOpening,
+    tokenizer: &ByteBpeTokenizer,
+    arm: Arm,
+    capture: Option<&mut RelationCapture>,
+) -> Result<Features> {
     if model.interval.is_none() && model.artifact_sha256() != native_whole_turn::BASE_SHA256 {
         return Err(invalid(
             "interval features require the pinned balanced artifact",
@@ -320,8 +405,20 @@ pub fn features(
         .map(|&id| tokenizer.decode_bytes(&[id]))
         .collect();
     let mut prompt = Prompt::new(original_ids, &decoded, &model.codebook_roots);
-    prompt.prepare();
-    Ok(prompt.collect(arm, user.start))
+    prompt.prepare(arm.is_directed());
+    let endpoints = capture.map(|capture| {
+        capture.relation_tokens = opening
+            .tokens()
+            .iter()
+            .map(|&id| RelationToken {
+                id,
+                bytes: tokenizer.decode_bytes(&[id]),
+                root: model.codebook_roots[id as usize][RELATION_BLOCK],
+            })
+            .collect();
+        &mut capture.relation_endpoints
+    });
+    Ok(prompt.collect(arm, user.start, endpoints))
 }
 
 fn keyed(slots: [u8; BANKS]) -> Keys {
@@ -360,7 +457,73 @@ struct Word {
 struct Anchor {
     fact: usize,
     query: usize,
+    query_end: usize,
+    whole_query: bool,
     quality: u8,
+}
+
+#[derive(Clone, Copy)]
+struct Relation {
+    query: [Option<usize>; 2],
+    source: [Option<usize>; 2],
+}
+
+impl Relation {
+    fn describe(
+        self,
+        anchor: Option<&Anchor>,
+        clause: Range<usize>,
+        offset: usize,
+    ) -> RelationEndpoints {
+        let absolute = |position| (offset + position) as u16;
+        let endpoints = |sites: [Option<usize>; 2]| sites.map(|site| site.map(absolute));
+        RelationEndpoints {
+            query: endpoints(self.query),
+            source: endpoints(self.source),
+            query_anchor: anchor.map(|a| [absolute(a.query), absolute(a.query_end)]),
+            source_anchor: anchor.map(|a| absolute(a.fact)),
+            clause: [absolute(clause.start), absolute(clause.end)],
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+struct CliffordDisplacement(usize);
+
+impl CliffordDisplacement {
+    fn between([left, right]: [u8; 2]) -> Self {
+        Self(cl06_bfs(usize::from(left), usize::from(right)))
+    }
+
+    fn relative_to(self, query: Self) -> Self {
+        Self(cl06_compose(cl06_inverse(query.0), self.0))
+    }
+}
+
+fn ordered_count_slot(ids: [u32; 4]) -> u8 {
+    let mut digest = 2_166_136_261u32;
+    for byte in ids.into_iter().flat_map(u32::to_le_bytes) {
+        digest = (digest ^ u32::from(byte)).wrapping_mul(16_777_619);
+    }
+    (digest % RELATION_ACTIONS + 1) as u8
+}
+
+/// The nearest complete lexical word on either side, within the original
+/// token window. Use the facing subtoken for a word spanning several tokens.
+fn lexical_neighbors(
+    words: &[Word],
+    focus: Range<usize>,
+    bounds: Range<usize>,
+) -> [Option<usize>; 2] {
+    let left = words[..words.partition_point(|word| word.end <= focus.start)]
+        .last()
+        .filter(|word| bounds.start <= word.start)
+        .map(|word| word.end - 1);
+    let right = words
+        .get(words.partition_point(|word| word.start < focus.end))
+        .filter(|word| word.end <= bounds.end)
+        .map(|word| word.start);
+    [left, right]
 }
 
 struct Prompt<'a> {
@@ -372,6 +535,7 @@ struct Prompt<'a> {
     left_edges: Vec<usize>,
     right_edges: Vec<usize>,
     anchors: Vec<Anchor>,
+    lexical_words: Option<Vec<Word>>,
     starts: Vec<bool>,
     ends: Vec<bool>,
 }
@@ -419,6 +583,7 @@ impl<'a> Prompt<'a> {
             left_edges: vec![0; fact_end],
             right_edges: vec![fact_end; fact_end],
             anchors: Vec::new(),
+            lexical_words: None,
             starts: vec![false; fact_end],
             ends: vec![false; fact_end],
         }
@@ -459,7 +624,7 @@ impl<'a> Prompt<'a> {
         words
     }
 
-    fn prepare(&mut self) {
+    fn prepare(&mut self, directed: bool) {
         let mut left = self.fact.start;
         for i in self.fact.clone() {
             self.left_edges[i] = left;
@@ -476,6 +641,9 @@ impl<'a> Prompt<'a> {
         }
         let facts = self.words(self.fact.clone());
         let question = self.words(self.query.clone());
+        // The bounded suffix of an unseparated query can begin inside a word
+        // or a UTF-8 character. Keep the original words for directed endpoints.
+        self.lexical_words = directed.then(|| self.words(0..self.ids.len()));
         for fact in &facts {
             self.starts[fact.start] = true;
             self.ends[fact.end - 1] = true;
@@ -493,6 +661,14 @@ impl<'a> Prompt<'a> {
             self.anchors.push(Anchor {
                 fact: fact.start,
                 query: query.start,
+                query_end: query.end,
+                whole_query: self.lexical_words.as_ref().is_some_and(|words| {
+                    let first = words.partition_point(|word| word.start < query.start);
+                    words[first..]
+                        .iter()
+                        .take_while(|word| word.start == query.start)
+                        .any(|word| word.end == query.end && word.spelling == query.spelling)
+                }),
                 quality: 1
                     + 2 * u8::from(!repeated)
                     + 4 * u8::from(fact.capitalized && query.capitalized),
@@ -500,7 +676,12 @@ impl<'a> Prompt<'a> {
         }
     }
 
-    fn collect(&self, arm: Arm, offset: usize) -> Features {
+    fn collect(
+        &self,
+        arm: Arm,
+        offset: usize,
+        mut capture: Option<&mut Vec<RelationEndpoints>>,
+    ) -> Features {
         let mut candidates = Vec::new();
         for start in self.fact.clone() {
             if !self.starts[start] || !self.copyable(start) {
@@ -517,7 +698,7 @@ impl<'a> Prompt<'a> {
                             start: (offset + start) as u16,
                             end: (offset + end) as u16,
                         },
-                        keys: self.candidate_keys(start, end, arm),
+                        keys: self.candidate_keys(start, end, arm, offset, capture.as_deref_mut()),
                     });
                 }
             }
@@ -542,7 +723,14 @@ impl<'a> Prompt<'a> {
         position.map_or(0, |i| token_class(&self.bytes[i]))
     }
 
-    fn candidate_keys(&self, start: usize, end: usize, arm: Arm) -> Keys {
+    fn candidate_keys(
+        &self,
+        start: usize,
+        end: usize,
+        arm: Arm,
+        offset: usize,
+        capture: Option<&mut Vec<RelationEndpoints>>,
+    ) -> Keys {
         let last = end - 1;
         let left = start.checked_sub(1);
         let right = (end < self.ids.len()).then_some(end);
@@ -593,7 +781,43 @@ impl<'a> Prompt<'a> {
         for (i, (query, source, context)) in site_pairs.into_iter().enumerate() {
             slots[8 + i] = self.route(arm, query, source, context, i % 4) % NO_READ_SLOTS;
         }
+        if let Some(words) = &self.lexical_words {
+            let relation = Relation {
+                query: anchor
+                    .filter(|a| a.whole_query)
+                    .map_or([None; 2], |anchor| {
+                        lexical_neighbors(words, anchor.query..anchor.query_end, self.query.clone())
+                    }),
+                source: lexical_neighbors(words, start..end, clause.clone()),
+            };
+            slots[RELATION_BANK] = self.relation_slot(relation, arm);
+            if let Some(capture) = capture {
+                capture.push(relation.describe(anchor, clause, offset));
+            }
+        }
         keyed(slots)
+    }
+
+    fn relation_slot(&self, relation: Relation, arm: Arm) -> u8 {
+        let [Some(q_left), Some(q_right)] = relation.query else {
+            return 0;
+        };
+        let [Some(s_left), Some(s_right)] = relation.source else {
+            return 0;
+        };
+        let ids = [q_left, q_right, s_left, s_right].map(|position| self.ids[position]);
+        if arm == Arm::DirectedCount {
+            return ordered_count_slot(ids);
+        }
+        let [q_left, q_right, s_left, s_right] =
+            ids.map(|id| self.roots[id as usize][RELATION_BLOCK]);
+        let query = CliffordDisplacement::between([q_left, q_right]);
+        let source = CliffordDisplacement::between(if arm == Arm::SwappedGeometry {
+            [s_right, s_left]
+        } else {
+            [s_left, s_right]
+        });
+        (source.relative_to(query).0 + 1) as u8
     }
 
     fn no_read_keys(&self, arm: Arm) -> Keys {
@@ -648,7 +872,7 @@ impl<'a> Prompt<'a> {
             return 0;
         };
         match arm {
-            Arm::Geometry => {
+            Arm::Geometry | Arm::DirectedGeometry | Arm::DirectedCount | Arm::SwappedGeometry => {
                 let [q, s, c] =
                     [query, source, context].map(|id| self.roots[id as usize][block] as usize);
                 let action = cl06_bfs(q, s);
@@ -685,4 +909,196 @@ pub fn leading_space(
                 .first()
                 .is_some_and(|byte| !byte.is_ascii_whitespace())
         })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const DIRECTED_ARMS: [Arm; 3] = [
+        Arm::DirectedGeometry,
+        Arm::DirectedCount,
+        Arm::SwappedGeometry,
+    ];
+
+    #[test]
+    fn relative_transport_uses_inverse_query_on_the_left() {
+        let query = CliffordDisplacement::between([0, 2]);
+        let source = CliffordDisplacement::between([1, 3]);
+        let swapped = CliffordDisplacement::between([3, 1]);
+        assert_eq!((query.0, source.0, swapped.0), (7, 1, 42));
+        assert_eq!(source.relative_to(query).0, 18);
+        assert_eq!(cl06_compose(source.0, cl06_inverse(query.0)), 3);
+        assert_eq!(swapped.relative_to(query).0, 55);
+        assert_eq!(cl06_inverse(source.0), 51);
+        assert_ne!(swapped.0, cl06_inverse(source.0));
+
+        let axes = [1, 2, 3, 4, 5, 6, 7, 8];
+        assert_eq!(
+            cl06_action(source.relative_to(query).0, &axes),
+            cl06_action(cl06_inverse(query.0), &cl06_action(source.0, &axes)),
+        );
+    }
+
+    #[test]
+    fn four_site_count_matches_the_reachable_clifford_slots() {
+        let transports: Vec<_> = (0..16)
+            .flat_map(|left| (0..16).map(move |right| CliffordDisplacement::between([left, right])))
+            .collect();
+        let mut geometry = [false; RELATION_ACTIONS as usize];
+        for &query in &transports {
+            for &source in &transports {
+                geometry[source.relative_to(query).0] = true;
+            }
+        }
+        assert!(geometry.into_iter().all(|reachable| reachable));
+        for position in 0..4 {
+            let mut count = [false; RELATION_ACTIONS as usize];
+            for id in 0..RELATION_ACTIONS {
+                let mut ids = [701, 952, 1024, 1502];
+                ids[position] = id;
+                count[usize::from(ordered_count_slot(ids) - 1)] = true;
+            }
+            assert_eq!(count, geometry);
+        }
+        assert_eq!(ordered_count_slot([11, 22, 33, 44]), 22);
+        assert_eq!(ordered_count_slot([11, 22, 44, 33]), 6);
+    }
+
+    #[test]
+    fn ambiguous_query_suffix_keeps_original_word_boundaries() {
+        for (left_half, suffix, anchor_word, first_word, expected_query) in [
+            (
+                &b" cy"[..],
+                &b"an"[..],
+                " Keeper",
+                " Keeper",
+                [None, Some(5)],
+            ),
+            (
+                &b" star"[..],
+                &b"Anvil"[..],
+                " left",
+                " Anvil",
+                [None, None],
+            ),
+            (
+                &b" caf\xc3"[..],
+                &b"\xa9"[..],
+                " Keeper",
+                " Keeper",
+                [None, None],
+            ),
+        ] {
+            let mut bytes = vec![
+                b"Amber".to_vec(),
+                first_word.as_bytes().to_vec(),
+                left_half.to_vec(),
+                suffix.to_vec(),
+                anchor_word.as_bytes().to_vec(),
+                b" bird".to_vec(),
+            ];
+            bytes.extend(std::iter::repeat_n(b" x".to_vec(), 28));
+            bytes.push(b"?".to_vec());
+            let ids: Vec<u32> = (20..20 + bytes.len() as u32).collect();
+            let roots = [[1; 4]; 64];
+            let mut prompt = Prompt::new(&ids, &bytes, &roots);
+            assert_eq!(prompt.query.start, 3);
+            prompt.prepare(true);
+            for arm in DIRECTED_ARMS {
+                let mut trace = Vec::new();
+                let features = prompt.collect(arm, 0, Some(&mut trace));
+                let index = features
+                    .candidates
+                    .iter()
+                    .position(|candidate| candidate.span == (Span { start: 1, end: 2 }))
+                    .expect("complete first source word");
+                assert_eq!(trace[index].query, expected_query);
+                assert_eq!(
+                    features.candidates[index].keys[RELATION_BANK],
+                    (RELATION_BANK * SLOTS) as u16
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn directed_capture_changes_only_bank_ten_at_original_lexical_sites() {
+        let ids: Vec<_> = (20..35).collect();
+        let bytes = [
+            "First", " Bind", "ed", " am", "ber", " fox", " we", "st", " ridge", ".", " north",
+            " Bind", "ed", " clear", "?",
+        ]
+        .map(|part| part.as_bytes().to_vec());
+        let mut roots = [[13; 4]; 35];
+        for (position, root) in [(10, 0), (13, 2), (4, 1), (6, 3)] {
+            roots[ids[position] as usize][RELATION_BLOCK] = root;
+        }
+
+        let offset = 3;
+        let mut original = Prompt::new(&ids, &bytes, &roots);
+        original.prepare(false);
+        let legacy = original.collect(Arm::Geometry, offset, None);
+        let mut directed = Prompt::new(&ids, &bytes, &roots);
+        directed.prepare(true);
+        let relation_bank = (RELATION_BANK * SLOTS) as u16;
+        for (arm, slot) in DIRECTED_ARMS.into_iter().zip([19, 41, 56]) {
+            let mut trace = Vec::new();
+            let captured = directed.collect(arm, offset, Some(&mut trace));
+            let serving = directed.collect(arm, offset, None);
+            assert_eq!(captured.candidates, serving.candidates);
+            assert_eq!(captured.no_read_keys, serving.no_read_keys);
+            assert_eq!(captured.no_read_keys, legacy.no_read_keys);
+            assert_eq!(
+                (captured.user, captured.fact, captured.question),
+                (legacy.user, legacy.fact, legacy.question)
+            );
+            assert_eq!(captured.candidates.len(), legacy.candidates.len());
+            assert_eq!(captured.candidates.len(), trace.len());
+            for ((a, b), endpoints) in captured
+                .candidates
+                .iter()
+                .zip(&legacy.candidates)
+                .zip(&trace)
+            {
+                assert_eq!(a.span, b.span);
+                for bank in (0..BANKS).filter(|&bank| bank != RELATION_BANK) {
+                    assert_eq!(a.keys[bank], b.keys[bank]);
+                }
+                if endpoints.source.contains(&None) {
+                    assert_eq!(a.keys[RELATION_BANK], relation_bank);
+                }
+            }
+            let i = captured
+                .candidates
+                .iter()
+                .position(|candidate| candidate.span == (Span { start: 8, end: 9 }))
+                .expect("fox candidate");
+            assert_eq!(
+                trace[i],
+                RelationEndpoints {
+                    query: [Some(13), Some(16)],
+                    source: [Some(7), Some(9)],
+                    query_anchor: Some([14, 16]),
+                    source_anchor: Some(4),
+                    clause: [3, 12],
+                }
+            );
+            assert_eq!(
+                captured.candidates[i].keys[RELATION_BANK],
+                relation_bank + slot
+            );
+
+            for missing in 0..4 {
+                let mut sites = [Some(10), Some(13), Some(4), Some(6)];
+                sites[missing] = None;
+                let [q_left, q_right, s_left, s_right] = sites;
+                let relation = Relation {
+                    query: [q_left, q_right],
+                    source: [s_left, s_right],
+                };
+                assert_eq!(directed.relation_slot(relation, arm), 0);
+            }
+        }
+    }
 }

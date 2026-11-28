@@ -2574,6 +2574,7 @@ impl IntegerDiscreteModel {
                 | native_occurrence::SCHEMA
                 | native_whole_turn::SCHEMA
                 | native_interval::SCHEMA
+                | native_interval::DIRECTED_SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2584,7 +2585,7 @@ impl IntegerDiscreteModel {
                 })
                 .transpose()?;
             let mut model = match schema.as_str() {
-                native_interval::SCHEMA => {
+                native_interval::SCHEMA | native_interval::DIRECTED_SCHEMA => {
                     native_interval::read_from(&mut reader, &encoded_header, expected_body)?
                 }
                 native_whole_turn::SCHEMA => {
@@ -2893,6 +2894,7 @@ impl IntegerDiscreteModel {
                 | native_occurrence::SCHEMA
                 | native_whole_turn::SCHEMA
                 | native_interval::SCHEMA
+                | native_interval::DIRECTED_SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2902,7 +2904,7 @@ impl IntegerDiscreteModel {
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
             let mut model = match schema.as_str() {
-                native_interval::SCHEMA => {
+                native_interval::SCHEMA | native_interval::DIRECTED_SCHEMA => {
                     native_interval::read_from(&mut reader, encoded_header, expected_body)?
                 }
                 native_whole_turn::SCHEMA => {
@@ -3357,8 +3359,8 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
-        if self.interval.is_some() {
-            return native_interval::SCHEMA;
+        if let Some(interval) = &self.interval {
+            return interval.schema();
         }
         if self.whole_turn.is_some() {
             return native_whole_turn::SCHEMA;

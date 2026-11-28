@@ -1,0 +1,13 @@
+{
+  "schema": "uor-r4-directed-relation-screen/1",
+  "sha256": "b8c988964f085753dace2e943991895de93dbde2319db34a3dd70ef91530695b",
+  "members_sha256": "2cab5b5fc8ce8879483de95f1ba26ba5a3bfbc056cdff13ee5971d5303a941ea",
+  "bytes": 4494579,
+  "member_count": 79,
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/directed-relation-20261128/screen.tar.zst",
+  "revision": "8cc00c47de1fe2ae6a235342a6871fe456b73313",
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true
+}

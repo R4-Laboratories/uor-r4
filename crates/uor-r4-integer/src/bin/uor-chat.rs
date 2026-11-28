@@ -63,6 +63,11 @@ enum RoleReplay {
     Detached,
 }
 
+struct IntervalCapture {
+    path: PathBuf,
+    relations: bool,
+}
+
 struct CliArgs {
     bundle_path: Option<PathBuf>,
     /// A `UORLUT01` geometric-stack artifact (`--stack`): served directly by
@@ -75,7 +80,7 @@ struct CliArgs {
     verified_span_release_path: Option<PathBuf>,
     native_occurrence_trace: bool,
     no_native_occurrence: bool,
-    interval_features: Option<PathBuf>,
+    interval_features: Option<IntervalCapture>,
     interval_supplied_source: Option<PathBuf>,
     interval_supplied_stop: bool,
     word_ending: bool,
@@ -452,6 +457,7 @@ fn print_usage() {
     eprintln!(
         "      --interval-features FILE  capture interval feature keys from protocol-2 user JSONL"
     );
+    eprintln!("      --interval-relation-features FILE  capture legacy and directed interval arms with relation witnesses");
     eprintln!("      --interval-supplied-stop  diagnose the extractive ceiling with EOS at a selected interval end");
     eprintln!("      --interval-supplied-source FILE  diagnose a span with independently supplied original IDs");
     eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
@@ -739,13 +745,25 @@ fn parse_cli_args() -> CliArgs {
             }
             "--native-occurrence-trace" => args.native_occurrence_trace = true,
             "--no-native-occurrence" => args.no_native_occurrence = true,
-            "--interval-features" => {
+            flag @ ("--interval-features" | "--interval-relation-features") => {
+                let relations = flag == "--interval-relation-features";
                 idx += 1;
                 let Some(path) = raw.get(idx) else {
-                    eprintln!("--interval-features requires a JSONL input file");
+                    eprintln!("{flag} requires a JSONL input file");
                     process::exit(1);
                 };
-                args.interval_features = Some(PathBuf::from(path));
+                if args
+                    .interval_features
+                    .as_ref()
+                    .is_some_and(|capture| capture.relations != relations)
+                {
+                    eprintln!("--interval-features and --interval-relation-features are mutually exclusive");
+                    process::exit(1);
+                }
+                args.interval_features = Some(IntervalCapture {
+                    path: PathBuf::from(path),
+                    relations,
+                });
             }
             "--interval-supplied-stop" => args.interval_supplied_stop = true,
             "--interval-supplied-source" => {
@@ -1232,17 +1250,23 @@ fn parse_cli_args() -> CliArgs {
         eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--discrete' requires '--prompt-ids' or '--say' with its bound '--tokenizer'");
         process::exit(1);
     }
-    if args.interval_features.is_some()
-        && (args.discrete_path.is_none()
+    if let Some(capture) = &args.interval_features {
+        if args.discrete_path.is_none()
             || args.tokenizer_path.is_none()
             || args.protocol != 2
             || args.say.is_some()
             || args.prompt_ids.is_some()
             || args.interval_supplied_source.is_some()
-            || args.interval_supplied_stop)
-    {
-        eprintln!("--interval-features requires --discrete, --tokenizer and standalone protocol-2 capture");
-        process::exit(1);
+            || args.interval_supplied_stop
+        {
+            let flag = if capture.relations {
+                "--interval-relation-features"
+            } else {
+                "--interval-features"
+            };
+            eprintln!("{flag} requires --discrete, --tokenizer and standalone protocol-2 capture");
+            process::exit(1);
+        }
     }
     if (args.interval_supplied_source.is_some() || args.interval_supplied_stop)
         && (args.discrete_path.is_none() || args.say.is_none() || args.tokenizer_path.is_none())
@@ -2434,8 +2458,10 @@ fn load_discrete_tokenizer(
 fn capture_interval_features(
     model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
     tokenizer: &ByteBpeTokenizer,
-    rows: &std::path::Path,
+    capture: &IntervalCapture,
 ) -> Result<()> {
+    use native_interval::Arm;
+
     #[derive(Deserialize)]
     #[serde(deny_unknown_fields)]
     struct OpeningRow {
@@ -2447,6 +2473,8 @@ fn capture_interval_features(
         case_id: String,
         #[serde(flatten)]
         features: native_interval::Features,
+        #[serde(flatten)]
+        relation: Option<native_interval::RelationCapture>,
         #[serde(skip_serializing_if = "Option::is_none")]
         scores: Option<native_interval::Scores>,
     }
@@ -2455,22 +2483,43 @@ fn capture_interval_features(
     let encoder = protocol
         .bind(tokenizer)
         .map_err(|error| IntegerError::Invalid(error.to_string()))?;
+    let arms: &[_] = if capture.relations {
+        &[
+            Arm::Geometry,
+            Arm::Count,
+            Arm::DirectedGeometry,
+            Arm::DirectedCount,
+            Arm::SwappedGeometry,
+        ]
+    } else {
+        &[Arm::Geometry, Arm::Count]
+    };
     let mut output = io::BufWriter::new(io::stdout().lock());
-    for line in io::BufReader::new(std::fs::File::open(rows)?).lines() {
+    for line in io::BufReader::new(std::fs::File::open(&capture.path)?).lines() {
         let row: OpeningRow = serde_json::from_str(&line?)?;
         let opening = encoder
             .encode_single_user_opening(&row.text)
             .ok_or_else(|| {
                 IntegerError::Invalid(format!("invalid protocol-2 opening for {}", row.case_id))
             })?;
-        for arm in [native_interval::Arm::Geometry, native_interval::Arm::Count] {
-            let features = native_interval::features(model, &opening, tokenizer, arm)?;
+        for &arm in arms {
+            let (features, relation) = if arm.is_directed() {
+                let (features, relation) =
+                    native_interval::relation_features(model, &opening, tokenizer, arm)?;
+                (features, Some(relation))
+            } else {
+                (
+                    native_interval::features(model, &opening, tokenizer, arm)?,
+                    None,
+                )
+            };
             let scores = native_interval::scores(model, &features);
             serde_json::to_writer(
                 &mut output,
                 &FeatureRow {
                     case_id: row.case_id.clone(),
                     features,
+                    relation,
                     scores,
                 },
             )?;
@@ -3097,7 +3146,10 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         record["decoding"] = "greedy native occurrence disabled; frozen marker and trunk".into();
     }
     if use_interval {
-        record["decoding"] = native_interval::SCHEMA.into();
+        record["decoding"] = interval
+            .as_ref()
+            .map_or(native_interval::SCHEMA, |_| model.artifact_schema())
+            .into();
         let leading_space_reached = interval_leading_space
             .then(|| span_release_steps.first())
             .flatten()
