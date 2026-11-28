@@ -31,6 +31,7 @@ mod assertion_retrieval;
 #[path = "contextual_source.rs"]
 pub mod contextual_source;
 pub mod native_copy;
+pub mod native_interval;
 pub mod native_occurrence;
 pub mod native_opening;
 #[cfg(feature = "postperiod-diagnostic")]
@@ -1378,6 +1379,7 @@ pub struct IntegerDiscreteModel {
     opening: Option<native_opening::State>,
     occurrence: Option<native_occurrence::State>,
     whole_turn: Option<native_whole_turn::State>,
+    interval: Option<native_interval::State>,
     source_choice: Option<native_source_choice::State>,
     word_ending: Option<native_word_ending::State>,
     role_policy: Option<RolePolicy>,
@@ -2571,6 +2573,7 @@ impl IntegerDiscreteModel {
             native_opening::SCHEMA
                 | native_occurrence::SCHEMA
                 | native_whole_turn::SCHEMA
+                | native_interval::SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2581,6 +2584,9 @@ impl IntegerDiscreteModel {
                 })
                 .transpose()?;
             let mut model = match schema.as_str() {
+                native_interval::SCHEMA => {
+                    native_interval::read_from(&mut reader, &encoded_header, expected_body)?
+                }
                 native_whole_turn::SCHEMA => {
                     native_whole_turn::read_from(&mut reader, &encoded_header, expected_body)?
                 }
@@ -2834,6 +2840,7 @@ impl IntegerDiscreteModel {
             opening: None,
             occurrence: None,
             whole_turn: None,
+            interval: None,
             source_choice: None,
             word_ending: None,
             role_policy: None,
@@ -2885,6 +2892,7 @@ impl IntegerDiscreteModel {
             native_opening::SCHEMA
                 | native_occurrence::SCHEMA
                 | native_whole_turn::SCHEMA
+                | native_interval::SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2894,6 +2902,9 @@ impl IntegerDiscreteModel {
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
             let mut model = match schema.as_str() {
+                native_interval::SCHEMA => {
+                    native_interval::read_from(&mut reader, encoded_header, expected_body)?
+                }
                 native_whole_turn::SCHEMA => {
                     native_whole_turn::read_from(&mut reader, encoded_header, expected_body)?
                 }
@@ -3265,6 +3276,7 @@ impl IntegerDiscreteModel {
             opening: None,
             occurrence: None,
             whole_turn: None,
+            interval: None,
             source_choice: None,
             word_ending: None,
             role_policy: None,
@@ -3345,6 +3357,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.interval.is_some() {
+            return native_interval::SCHEMA;
+        }
         if self.whole_turn.is_some() {
             return native_whole_turn::SCHEMA;
         }

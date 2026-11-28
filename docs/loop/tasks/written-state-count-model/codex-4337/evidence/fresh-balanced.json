@@ -1,0 +1,118 @@
+{
+  "arm": "balanced-native",
+  "summary": {
+    "cases": 30,
+    "supported": 23,
+    "unsupported": 7,
+    "original_interval_exact": 0,
+    "unsupported_interval_selected": 0,
+    "unsupported_actual_source_commit": 0,
+    "unsupported_explicit_noread": 0,
+    "first_original_address_exact": 0,
+    "full_original_addresses_exact": 0,
+    "false_same_value_address": 0,
+    "exact_reply_through_eos": 0,
+    "exact_reply_and_addresses": 0,
+    "copy_then_verified_end": 0,
+    "release_eos_by_native": 0,
+    "release_eos_supplied": 0,
+    "delayed_openings": 4,
+    "delayed_emitted_space_first": 2,
+    "delayed_actual_copy_after_space": 0,
+    "visible_unsupported_grades": [
+      {
+        "case": "empty_reply",
+        "n": 3
+      },
+      {
+        "case": "requires_semantic_review",
+        "n": 4
+      }
+    ],
+    "first_wrong_offsets": [
+      {
+        "offset": 0,
+        "n": 21
+      },
+      {
+        "offset": 1,
+        "n": 2
+      }
+    ]
+  },
+  "by_tape": [
+    {
+      "tape": "SQuAD2.0 fresh disjoint positives from official TRAIN",
+      "results": {
+        "cases": 10,
+        "supported": 10,
+        "unsupported": 0,
+        "original_interval_exact": 0,
+        "unsupported_interval_selected": 0,
+        "unsupported_actual_source_commit": 0,
+        "unsupported_explicit_noread": 0,
+        "first_original_address_exact": 0,
+        "full_original_addresses_exact": 0,
+        "false_same_value_address": 0,
+        "exact_reply_through_eos": 0,
+        "exact_reply_and_addresses": 0,
+        "copy_then_verified_end": 0,
+        "release_eos_by_native": 0,
+        "release_eos_supplied": 0,
+        "delayed_openings": 4,
+        "delayed_emitted_space_first": 2,
+        "delayed_actual_copy_after_space": 0,
+        "visible_unsupported_grades": [],
+        "first_wrong_offsets": [
+          {
+            "offset": 0,
+            "n": 8
+          },
+          {
+            "offset": 1,
+            "n": 2
+          }
+        ]
+      }
+    },
+    {
+      "tape": "new authored closed-world",
+      "results": {
+        "cases": 20,
+        "supported": 13,
+        "unsupported": 7,
+        "original_interval_exact": 0,
+        "unsupported_interval_selected": 0,
+        "unsupported_actual_source_commit": 0,
+        "unsupported_explicit_noread": 0,
+        "first_original_address_exact": 0,
+        "full_original_addresses_exact": 0,
+        "false_same_value_address": 0,
+        "exact_reply_through_eos": 0,
+        "exact_reply_and_addresses": 0,
+        "copy_then_verified_end": 0,
+        "release_eos_by_native": 0,
+        "release_eos_supplied": 0,
+        "delayed_openings": 0,
+        "delayed_emitted_space_first": 0,
+        "delayed_actual_copy_after_space": 0,
+        "visible_unsupported_grades": [
+          {
+            "case": "empty_reply",
+            "n": 3
+          },
+          {
+            "case": "requires_semantic_review",
+            "n": 4
+          }
+        ],
+        "first_wrong_offsets": [
+          {
+            "offset": 0,
+            "n": 13
+          }
+        ]
+      }
+    }
+  ]
+}

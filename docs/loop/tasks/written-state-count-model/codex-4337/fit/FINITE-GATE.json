@@ -1,0 +1,82 @@
+{
+  "scope": "sealed reduced TRAIN representability and full TRAIN candidate coverage",
+  "run_root": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-grounded-interval",
+  "balanced_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "extractor_sha256": "21461b5af9c82d98f6f0c7f8780ae6f738bd601a52fe8a98edf25a7e07548381",
+  "reduced_train": {
+    "panel_manifest_sha256": "da8667c7f7659ac0553bf0ff84ab9d2f836f1e22a103a19a399993b847e839b7",
+    "inputs_sha256": "2d784b20a2ce581014d5dfb6ca6e57ddde639e4e4d3a2aba4280ebae4eb2d257",
+    "gold_sha256": "98a2889bce912a0f0fbb96233681812ba9f9557dc4c1951f057fb4866377df22",
+    "final_feature_sha256": "f874c2a2251d27f5817e6ac2043bf511ec4fe5306d132e9b6efcb227b2fd3d8a",
+    "output_manifest_sha256": "56621b81ac98d7b06e928747ebc7259b0bd8848afa98d4849dfbe23dcbb7121e",
+    "output_directory": "fit-gate-v2-final",
+    "gold_candidates_covered": 20,
+    "cases": 20,
+    "rival_comparisons_per_arm": 2173,
+    "matched_rows": 12,
+    "swapped_target_omissions": 0,
+    "word_bound": 4096,
+    "payload_bytes_each": 8192,
+    "geometry": {
+      "status": "verified_shared_integer_witness",
+      "nonzero_words": 124,
+      "minimum_integer_margin": 1,
+      "matched_selection_changes": 12,
+      "report_sha256": "c7c2a6a73e9bb1bf8d375703d58b86bea8922c9e024e593f99fcab7c68a2562e"
+    },
+    "count": {
+      "status": "verified_shared_integer_witness",
+      "nonzero_words": 130,
+      "minimum_integer_margin": 1,
+      "matched_selection_changes": 12,
+      "report_sha256": "7764dbeb763690e0e479d118735e9ab31304ed0e9f1c372d95c152439869b105"
+    }
+  },
+  "full_train": {
+    "panel_manifest_sha256": "3591ebc559da8a889389b80af8905b9486a186b9070a5ae035a2c0934577ba3e",
+    "all_cases": 346,
+    "gold_candidates_covered": 345,
+    "authored_cases_covered": 248,
+    "immediate_human_cases_covered": 83,
+    "immediate_human_cases": 84,
+    "delayed_human_cases_covered": 14,
+    "delayed_human_cases": 14,
+    "swapped_target_omissions": 0,
+    "locked_period_exclusion": {
+      "case_id": "56f7366c711bf01900a44a65",
+      "start": 67,
+      "end_exclusive": 74,
+      "original_ids": [2611, 612, 491, 595, 16, 363, 1417],
+      "blocked_by_id": 16
+    }
+  },
+  "preserved_extractor_defects": [
+    {
+      "scope": "20-row reduced gate before Unicode endpoint repair",
+      "findings": "A UTF-8 em dash fused adjacent lexical runs. This omitted the exact original end of one interval in both arms.",
+      "output_directory": "fit-gate-v2",
+      "output_manifest_sha256": "fe4c043b80c8f690808ea1c831e0f3f882501c49dbf844cf5aa4f8673be15ed9"
+    },
+    {
+      "scope": "346-row full TRAIN coverage before separator fallback repair",
+      "findings": "One undelimited question and one colon-delimited question produced empty fact ranges. An original period ID separately prevents one existing fenced copy.",
+      "output_directory": "fit-full-coverage-v1",
+      "output_manifest_sha256": "d6894949982fa59b97aa73aa7691188981dcf85d97750f4220e0af1923309875"
+    }
+  ],
+  "device_inputs": {
+    "directory": "fit-device-v1/device",
+    "preparation_output_manifest_sha256": "65f6ffe5a2c281d30ca063ce016d95928379bc33431ac736b3fb2809cdd10b7e",
+    "train_manifest_sha256": "4570cabb7f226becd1eeda425e5833a42bfcd7ac6ef4d077d5fc7cc04c3e3a18",
+    "blind_eval_manifest_sha256": "0f6cef20fd305f7d891c1ae340bb2848214bbbbd43535cd431c574cbe1ded891",
+    "train_rows_per_arm": 345,
+    "permuted_rows_per_arm": 248,
+    "epochs": 32,
+    "train_events_per_fit": 11040,
+    "train_eval_choices_per_arm": 30443,
+    "protected_eval_choices_per_arm": 284,
+    "held_eval_choices_per_arm": 3240,
+    "all_packed_tapes_and_zero_bytes": 4139872
+  }
+}

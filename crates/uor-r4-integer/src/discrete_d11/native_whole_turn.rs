@@ -14,7 +14,7 @@ use crate::{invalid, Result};
 
 pub const SCHEMA: &str = "uor-r4.lut-discrete-native-whole-turn/1";
 pub const BASE_SHA256: &str = "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa";
-const BASE_BYTES: u64 = 1_202_177_144;
+pub(super) const BASE_BYTES: u64 = 1_202_177_144;
 const BASE_HEADER_BYTES: usize = 358;
 const BASE_HEADER_SHA256: &str = "66b9959d08c86252e1aef4583f9c04f22d9697ac40dc84c4757d3017a3ee419a";
 pub(super) const TOKENIZER_CID: &str =
@@ -80,29 +80,34 @@ pub(super) fn read_from(
         return Err(invalid("whole-turn occurrence state digest mismatch"));
     }
     let weights = WeightWords::parse(&bytes)?;
+    let mut model = read_balanced_base(reader)?;
+    model.whole_turn = Some(State {
+        weights,
+        state_sha256: envelope.state_sha256,
+        fit_sha256: envelope.fit_sha256,
+    });
+    Ok(model)
+}
+
+pub(super) fn read_balanced_base(reader: &mut dyn Read) -> Result<IntegerDiscreteModel> {
     let mut base = HashingReader::new((&mut *reader).take(BASE_BYTES));
     let mut preamble = [0; BASE_HEADER_BYTES];
     base.read_exact(&mut preamble)?;
     if hex::encode(Sha256::digest(preamble)) != BASE_HEADER_SHA256 {
         return Err(invalid(
-            "whole-turn occurrence requires the pinned balanced header",
+            "native source reader requires the pinned balanced header",
         ));
     }
-    let mut model = native_source_choice::read_from(
+    let model = native_source_choice::read_from(
         &mut base,
         &preamble[16..],
         Some(BASE_BYTES - BASE_HEADER_BYTES as u64),
     )?;
     if base.inner.limit() != 0 || base.finalize() != BASE_SHA256 || reader.read(&mut [0])? != 0 {
         return Err(invalid(
-            "whole-turn occurrence base digest or length mismatch",
+            "native source reader balanced base digest or length mismatch",
         ));
     }
-    model.whole_turn = Some(State {
-        weights,
-        state_sha256: envelope.state_sha256,
-        fit_sha256: envelope.fit_sha256,
-    });
     Ok(model)
 }
 

@@ -1,0 +1,68 @@
+{
+  "schema": "uor-r4.interval-validation-supplement/1",
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/grounded-interval-fit-20261127/validation-v4.tar.zst",
+  "revision": "af2520ca1fb61acfbf41319885849145f1195b20",
+  "sha256": "22948ff08b4c1134553b2a22a6fda432d8410b9ab3bbea6c85a02f3767dad15d",
+  "bytes": 27635,
+  "members_sha256": "121162a92243ce22071e63bfd3a7a640822760c2cd05d47385380921bc27251f",
+  "member_count": 42,
+  "primary": {
+    "repository": "caseyallard/uor-r4-store",
+    "path": "results/codex/grounded-interval-fit-20261127/interval.tar.zst",
+    "revision": "32ed13a7da5e69f076f06d6f1d7b47ea71ead438",
+    "sha256": "62ad3bab7eb1844dc3c81e1ee1bdd16f9eee42d11cdb57258243f5aa6719737a"
+  },
+  "companion": {
+    "repository": "caseyallard/uor-r4-store",
+    "path": "results/codex/grounded-interval-fit-20261127/companion.tar.zst",
+    "revision": "2219b8d7f38814b19b86a09a526903edbf00d313",
+    "sha256": "0e594ca5c2a6f4a80cdd16f62c1c75f03d1fc2268dd5fddb02846cf7fa65c230"
+  },
+  "grade_validation": {
+    "grade_version": 4,
+    "prior_validation_superseded": true,
+    "both_grades_and_summaries_byte_identical": true,
+    "byte_identical_arms": 24,
+    "client_sessions": 440,
+    "rejected_forged_paths": 22,
+    "frozen_decision_reference_rebuilt_byte_identically": true
+  },
+  "seals": [
+    {
+      "path": "regrade-v4/VERIFIED",
+      "sha256": "6bb60d6b3a6af60b90ec5397a05217217418be857c8ce0f2653d9090bc520e10"
+    },
+    {
+      "path": "regrade-v4/OUTPUTS.sha256",
+      "sha256": "44b3809add226087f1c04034dd015f283e745afa9cfafbfdf969fe1c7141e7ea"
+    },
+    {
+      "path": "regrade-v4/REGRADES.tsv",
+      "sha256": "7dcc6be50b9de513890f80e4ecf17f5038c0284a638c4e26cfa27a14f28a74f8"
+    },
+    {
+      "path": "regrade-v4/source/SOURCES.sha256",
+      "sha256": "29c3a7a3075e5b7204b903e37592d8c02daec2cf5a66d6fa483eff01cb9aed60"
+    },
+    {
+      "path": "regrade-v4/negative-controls/REJECTIONS.sha256",
+      "sha256": "caa2762256c79bfade515874981581fa7f47f8298fd6dfbbd2f53a8136718516"
+    },
+    {
+      "path": "decision-reference-v4/OUTPUTS.sha256",
+      "sha256": "bc61420cce3e4e81ef64e1bff79461e8ca203387a6f0de250d1a7e629ba6b46f"
+    },
+    {
+      "path": "decision-reference-v4/decision-reference.json",
+      "sha256": "6c29462db91865a5081f604d91d03fb8759aecd90795912c7ab69856d2095f0f"
+    }
+  ],
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true,
+  "inner_validation_digests_verified": true,
+  "primary_packet_regraded_from_cold_restore": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "wick_archive": "20261127-codex-grounded-interval/archive-validation-v4"
+}

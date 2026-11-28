@@ -1,0 +1,62 @@
+{
+  "lab": "codex",
+  "roadmap_issue": 4063,
+  "unit": "codex-4337",
+  "scope": "Prospective source inventory and TRAIN-only passage adjudication",
+  "split": {
+    "article_key": "SHA256(UTF-8 bytes of uor-r4/codex-4337/next-supply-pilot-v1/article, LF, exact official article title)",
+    "ordering": "Ascending digest in C locale",
+    "passages_with_more_than_one_article": 0,
+    "train": {"ranks": [1, 24], "articles": 24, "passages": 149, "mechanical_pairs": 336},
+    "validation": {"ranks": [25, 31], "articles": 7, "passages": 77, "mechanical_pairs": 187},
+    "locked": {"ranks": [32, 38], "articles": 7, "passages": 49, "mechanical_pairs": 115},
+    "validation_and_locked_text_opened_for_adjudication": false
+  },
+  "pilot": {
+    "pick": "Rank TRAIN passage SHA strings using the same hash construction with /passage in place of /article. Take the first passage per article, stop at eight distinct articles, and select each passage's first pair by left then right case ID.",
+    "articles": 8,
+    "passages": 8,
+    "mechanical_pairs_reviewed": 8,
+    "positive_spans_reviewed": 16,
+    "positive_spans_supported": 10,
+    "positive_spans_ambiguous": 2,
+    "positive_spans_with_unsupported_scope_or_agency": 4,
+    "both_positives_supported": 3,
+    "positive_pairs_excluded": 5,
+    "official_impossible_labels_available": 0,
+    "supported_unsupported_pairs": 0
+  },
+  "train_negative_inventory": {
+    "articles": 24,
+    "mechanical_positive_pair_passages": 149,
+    "passages_with_official_impossible": 1,
+    "official_impossible_labels": 4,
+    "first_pick": "First four TRAIN passages with any official impossible label in frozen passage rank, then first official impossible question by source ID per passage.",
+    "first_pick_reviewed": 1,
+    "first_pick_ambiguous": 1,
+    "full_follow_through_reviewed": 4,
+    "unsupported": 1,
+    "answerable": 2,
+    "ambiguous": 1,
+    "positive_spans_reviewed_on_the_same_passage": 2,
+    "positive_spans_supported_on_the_same_passage": 2,
+    "positive_positive_pairs_supported_on_the_same_passage": 1,
+    "polarity_matched_supported_unsupported_pairs": 1,
+    "possible_mixed_pairings_reusing_the_one_negative": 2
+  },
+  "model_activity": {"training": false, "evaluation": false, "new_fit": false},
+  "custody": {
+    "host": "wick",
+    "path": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-grounded-interval/next-supply-pilot-v1",
+    "sha256": {
+      "squad-train-v2.0.json": "68dcfbb971bd3e96d5b46c7177b16c1a4e7d4bdef19fb204502738552dede002",
+      "next-supply-v1/pairs.json": "f6eea0707c6880a2858638f494b7c8887d5b8609285cb41b1865a8899e4ed131",
+      "next-supply-v1/questions.jsonl": "36ef265ab8346bb4cc51ede1ea83f210622edc9472297410e5ad8c859373ff28",
+      "split.tsv": "8502372b2e063cbcd05b7619b24d3b6f9ebe5e33efec9b8f36cfdb029a86439a",
+      "picked-pairs.jsonl": "91f1a4c151e38e7b98eace8edd98d8d5d34ba2811e1bf9843b0fd3035cc35cb7",
+      "selected-source.jsonl": "b11930b238dafc4cdce0f3dd38c391430630942da7c3ea195b8fc9646737b0b8",
+      "MANIFEST.sha256": "948353accf1ec21be9e709719f502570cfd6d8afdb612bcb57c789bc24cb4c3b",
+      "FOLLOW-THROUGH.sha256": "ff88d9040c5f700c0bce30edd227c9e9933eae3229298ec6af8f4f6c3c1c51de"
+    }
+  }
+}

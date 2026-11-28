@@ -1,0 +1,214 @@
+[
+  {
+    "arm": "geometry",
+    "breakdown": [
+      {
+        "cohort": "SQuAD2.0 fresh disjoint positives from official TRAIN",
+        "supported": true,
+        "count": 10,
+        "location": [
+          {
+            "category": "correct-start-wrong-end",
+            "count": 1
+          },
+          {
+            "category": "disjoint-other-interval",
+            "count": 8
+          },
+          {
+            "category": "unsupported-route-on-supported",
+            "count": 1
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 5
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 5
+          }
+        ]
+      },
+      {
+        "cohort": "new authored closed-world",
+        "supported": false,
+        "count": 7,
+        "location": [
+          {
+            "category": "exact",
+            "count": 1
+          },
+          {
+            "category": "unsupported-selected-span",
+            "count": 6
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 4
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 3
+          }
+        ]
+      },
+      {
+        "cohort": "new authored closed-world",
+        "supported": true,
+        "count": 13,
+        "location": [
+          {
+            "category": "correct-end-wrong-start",
+            "count": 1
+          },
+          {
+            "category": "disjoint-other-interval",
+            "count": 7
+          },
+          {
+            "category": "exact",
+            "count": 1
+          },
+          {
+            "category": "unsupported-route-on-supported",
+            "count": 4
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 11
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 1
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": true,
+            "count": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "arm": "count",
+    "breakdown": [
+      {
+        "cohort": "SQuAD2.0 fresh disjoint positives from official TRAIN",
+        "supported": true,
+        "count": 10,
+        "location": [
+          {
+            "category": "disjoint-other-interval",
+            "count": 8
+          },
+          {
+            "category": "overlap-only",
+            "count": 1
+          },
+          {
+            "category": "unsupported-route-on-supported",
+            "count": 1
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 4
+          },
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": true,
+            "count": 1
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 5
+          }
+        ]
+      },
+      {
+        "cohort": "new authored closed-world",
+        "supported": false,
+        "count": 7,
+        "location": [
+          {
+            "category": "exact",
+            "count": 2
+          },
+          {
+            "category": "unsupported-selected-span",
+            "count": 5
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 1
+          },
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": true,
+            "count": 1
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 5
+          }
+        ]
+      },
+      {
+        "cohort": "new authored closed-world",
+        "supported": true,
+        "count": 13,
+        "location": [
+          {
+            "category": "correct-end-wrong-start",
+            "count": 1
+          },
+          {
+            "category": "disjoint-other-interval",
+            "count": 11
+          },
+          {
+            "category": "unsupported-route-on-supported",
+            "count": 1
+          }
+        ],
+        "margin_signs": [
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": false,
+            "count": 8
+          },
+          {
+            "shared_banks_prefer_gold": false,
+            "route_banks_prefer_gold": true,
+            "count": 2
+          },
+          {
+            "shared_banks_prefer_gold": true,
+            "route_banks_prefer_gold": false,
+            "count": 3
+          }
+        ]
+      }
+    ]
+  }
+]

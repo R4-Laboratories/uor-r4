@@ -1,0 +1,9 @@
+{
+  "screened_questions": 751,
+  "candidate_passages": 288,
+  "mechanically_supported_pairs": 638,
+  "distinct_questions": 718,
+  "distinct_passages": 275,
+  "distinct_articles": 38,
+  "both_immediate": 515
+}

@@ -20,8 +20,8 @@ use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
 use uor_r4_integer::discrete_d11::{
-    native_copy, native_source_choice, native_span_release, native_whole_turn, native_word_ending,
-    pair_rank,
+    native_copy, native_interval, native_source_choice, native_span_release, native_whole_turn,
+    native_word_ending, pair_rank,
 };
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
@@ -75,6 +75,9 @@ struct CliArgs {
     verified_span_release_path: Option<PathBuf>,
     native_occurrence_trace: bool,
     no_native_occurrence: bool,
+    interval_features: Option<PathBuf>,
+    interval_supplied_source: Option<PathBuf>,
+    interval_supplied_stop: bool,
     word_ending: bool,
     word_ending_source: Option<u16>,
     #[cfg(feature = "p1-count-serving")]
@@ -340,6 +343,9 @@ impl Default for CliArgs {
             verified_span_release_path: None,
             native_occurrence_trace: false,
             no_native_occurrence: false,
+            interval_features: None,
+            interval_supplied_source: None,
+            interval_supplied_stop: false,
             word_ending: false,
             word_ending_source: None,
             #[cfg(feature = "p1-count-serving")]
@@ -443,6 +449,11 @@ fn print_usage() {
     eprintln!("      --verified-span-release FILE  intervene with separately supplied protocol-2 source proof, claim and actions");
     eprintln!("      --native-occurrence-trace  record the fitted occurrence read and writer at each step");
     eprintln!("      --no-native-occurrence  diagnose the frozen marker and trunk with occurrence disabled");
+    eprintln!(
+        "      --interval-features FILE  capture interval feature keys from protocol-2 user JSONL"
+    );
+    eprintln!("      --interval-supplied-stop  diagnose the extractive ceiling with EOS at a selected interval end");
+    eprintln!("      --interval-supplied-source FILE  diagnose a span with independently supplied original IDs");
     eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
     eprintln!(
         "      --word-ending-source N supply a zero-based factual source on the opening step"
@@ -728,6 +739,23 @@ fn parse_cli_args() -> CliArgs {
             }
             "--native-occurrence-trace" => args.native_occurrence_trace = true,
             "--no-native-occurrence" => args.no_native_occurrence = true,
+            "--interval-features" => {
+                idx += 1;
+                let Some(path) = raw.get(idx) else {
+                    eprintln!("--interval-features requires a JSONL input file");
+                    process::exit(1);
+                };
+                args.interval_features = Some(PathBuf::from(path));
+            }
+            "--interval-supplied-stop" => args.interval_supplied_stop = true,
+            "--interval-supplied-source" => {
+                idx += 1;
+                let Some(path) = raw.get(idx) else {
+                    eprintln!("--interval-supplied-source requires an original interval JSON file");
+                    process::exit(1);
+                };
+                args.interval_supplied_source = Some(PathBuf::from(path));
+            }
             "--word-ending" => args.word_ending = true,
             "--word-ending-source" => {
                 idx += 1;
@@ -1072,7 +1100,8 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.tokenizer_path.is_some()
         && args.stack_path.is_none()
-        && !(args.discrete_path.is_some() && args.say.is_some())
+        && !(args.discrete_path.is_some()
+            && (args.say.is_some() || args.interval_features.is_some()))
     {
         eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--tokenizer' requires '--stack' or a discrete '--say' turn");
         process::exit(1);
@@ -1197,9 +1226,28 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.discrete_path.is_some()
         && args.prompt_ids.is_none()
+        && args.interval_features.is_none()
         && (args.say.is_none() || args.tokenizer_path.is_none())
     {
         eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--discrete' requires '--prompt-ids' or '--say' with its bound '--tokenizer'");
+        process::exit(1);
+    }
+    if args.interval_features.is_some()
+        && (args.discrete_path.is_none()
+            || args.tokenizer_path.is_none()
+            || args.protocol != 2
+            || args.say.is_some()
+            || args.prompt_ids.is_some()
+            || args.interval_supplied_source.is_some()
+            || args.interval_supplied_stop)
+    {
+        eprintln!("--interval-features requires --discrete, --tokenizer and standalone protocol-2 capture");
+        process::exit(1);
+    }
+    if (args.interval_supplied_source.is_some() || args.interval_supplied_stop)
+        && (args.discrete_path.is_none() || args.say.is_none() || args.tokenizer_path.is_none())
+    {
+        eprintln!("supplied interval controls require a bound discrete --say turn");
         process::exit(1);
     }
     #[cfg(feature = "p1-count-serving")]
@@ -2362,6 +2410,105 @@ mod tests {
     }
 }
 
+fn load_discrete_tokenizer(
+    model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
+    path: &std::path::Path,
+) -> Result<(ByteBpeTokenizer, String)> {
+    let bytes = std::fs::read(path)?;
+    let digest = hex::encode(Sha256::digest(&bytes));
+    if model.tokenizer_sha256() != Some(digest.as_str()) {
+        return Err(IntegerError::Invalid(
+            "discrete artifact does not bind this tokenizer SHA-256".into(),
+        ));
+    }
+    let tokenizer = ByteBpeTokenizer::from_tokenizer_json_bytes(&bytes)
+        .ok_or_else(|| IntegerError::Invalid("invalid discrete tokenizer JSON".into()))?;
+    if tokenizer.vocab_size() != model.shape().vocabulary as usize {
+        return Err(IntegerError::Invalid(
+            "discrete tokenizer vocabulary mismatch".into(),
+        ));
+    }
+    Ok((tokenizer, digest))
+}
+
+fn capture_interval_features(
+    model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
+    tokenizer: &ByteBpeTokenizer,
+    rows: &std::path::Path,
+) -> Result<()> {
+    #[derive(Deserialize)]
+    #[serde(deny_unknown_fields)]
+    struct OpeningRow {
+        case_id: String,
+        text: String,
+    }
+    #[derive(serde::Serialize)]
+    struct FeatureRow {
+        case_id: String,
+        #[serde(flatten)]
+        features: native_interval::Features,
+        #[serde(skip_serializing_if = "Option::is_none")]
+        scores: Option<native_interval::Scores>,
+    }
+    let protocol = DialogueProtocol::literal_roles_v2(tokenizer)
+        .map_err(|error| IntegerError::Invalid(error.to_string()))?;
+    let encoder = protocol
+        .bind(tokenizer)
+        .map_err(|error| IntegerError::Invalid(error.to_string()))?;
+    let mut output = io::BufWriter::new(io::stdout().lock());
+    for line in io::BufReader::new(std::fs::File::open(rows)?).lines() {
+        let row: OpeningRow = serde_json::from_str(&line?)?;
+        let opening = encoder
+            .encode_single_user_opening(&row.text)
+            .ok_or_else(|| {
+                IntegerError::Invalid(format!("invalid protocol-2 opening for {}", row.case_id))
+            })?;
+        for arm in [native_interval::Arm::Geometry, native_interval::Arm::Count] {
+            let features = native_interval::features(model, &opening, tokenizer, arm)?;
+            let scores = native_interval::scores(model, &features);
+            serde_json::to_writer(
+                &mut output,
+                &FeatureRow {
+                    case_id: row.case_id.clone(),
+                    features,
+                    scores,
+                },
+            )?;
+            output.write_all(b"\n")?;
+        }
+    }
+    output.flush()?;
+    Ok(())
+}
+
+fn read_supplied_interval(
+    path: &std::path::Path,
+    original: &[u32],
+) -> Result<native_interval::Span> {
+    #[derive(Deserialize)]
+    #[serde(deny_unknown_fields)]
+    struct SuppliedInterval {
+        prompt_ids: Vec<u32>,
+        start: u16,
+        end: u16,
+        ids: Vec<u32>,
+    }
+    let supplied: SuppliedInterval =
+        serde_json::from_reader(io::BufReader::new(std::fs::File::open(path)?))?;
+    if supplied.prompt_ids != original
+        || original.get(usize::from(supplied.start)..usize::from(supplied.end))
+            != Some(supplied.ids.as_slice())
+    {
+        return Err(IntegerError::Invalid(
+            "supplied interval differs from original prompt IDs".into(),
+        ));
+    }
+    Ok(native_interval::Span {
+        start: supplied.start,
+        end: supplied.end,
+    })
+}
+
 fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let artifact = cli
         .discrete_path
@@ -2442,38 +2589,59 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     }
     #[cfg(feature = "p1-count-serving")]
     let profile_start = profile_start.filter(|_| p1.is_some() || p4.is_some());
+    if let Some(rows) = &cli.interval_features {
+        let path = cli.tokenizer_path.as_deref().ok_or_else(|| {
+            IntegerError::Invalid("interval feature capture requires a tokenizer".into())
+        })?;
+        let (tokenizer, _) = load_discrete_tokenizer(&model, path)?;
+        return capture_interval_features(&model, &tokenizer, rows);
+    }
+    let interval = native_interval::identity(&model);
+    let use_interval = interval.is_some() || cli.interval_supplied_source.is_some();
+    if use_interval {
+        if cli.protocol != 2
+            || cli.say.is_none()
+            || cli.tokenizer_path.is_none()
+            || cli.authenticated_copy
+            || cli.verified_span_release_path.is_some()
+            || cli.word_ending
+            || (cli.interval_supplied_source.is_some()
+                && (cli.read_mode != ReadMode::Enabled || cli.no_native_occurrence))
+        {
+            return Err(IntegerError::Invalid(
+                "interval artifacts require their protocol-2 user opening and ordinary writer"
+                    .into(),
+            ));
+        }
+        if interval.is_none() && model.artifact_sha256() != native_whole_turn::BASE_SHA256 {
+            return Err(IntegerError::Invalid(
+                "supplied interval control requires the pinned balanced base".into(),
+            ));
+        }
+    } else if cli.interval_supplied_stop {
+        return Err(IntegerError::Invalid(
+            "--interval-supplied-stop requires an interval artifact".into(),
+        ));
+    }
     let whole_turn_copy = cli.authenticated_copy && native_whole_turn::identity(&model).is_some();
     let mut user_opening = None;
     let mut text_mode = None;
     let encoded;
     let prompt = if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
-        let bytes = std::fs::read(path)?;
-        let digest = hex::encode(Sha256::digest(&bytes));
-        if model.tokenizer_sha256() != Some(digest.as_str()) {
-            return Err(IntegerError::Invalid(
-                "discrete artifact does not bind this tokenizer SHA-256".into(),
-            ));
-        }
-        let tokenizer = ByteBpeTokenizer::from_tokenizer_json_bytes(&bytes)
-            .ok_or_else(|| IntegerError::Invalid("invalid discrete tokenizer JSON".into()))?;
-        if tokenizer.vocab_size() != model.shape().vocabulary as usize {
-            return Err(IntegerError::Invalid(
-                "discrete tokenizer vocabulary mismatch".into(),
-            ));
-        }
+        let (tokenizer, digest) = load_discrete_tokenizer(&model, path)?;
         let protocol = DialogueProtocol::literal_roles_version(&tokenizer, cli.protocol)
             .map_err(|e| IntegerError::Invalid(e.to_string()))?;
         let encoder = protocol
             .bind(&tokenizer)
             .map_err(|e| IntegerError::Invalid(e.to_string()))?;
-        let prompt = if whole_turn_copy || cli.verified_span_release_path.is_some() {
+        let prompt = if use_interval || whole_turn_copy || cli.verified_span_release_path.is_some()
+        {
             user_opening = encoder.encode_single_user_opening(text);
             user_opening
                 .as_ref()
                 .ok_or_else(|| {
                     IntegerError::Invalid(
-                        "whole-turn copy and verified span release require a plain protocol-2 user message"
-                            .into(),
+                        "source reading requires a plain protocol-2 user message".into(),
                     )
                 })?
                 .tokens()
@@ -2535,7 +2703,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             "native occurrence diagnostics require the native occurrence writer".into(),
         ));
     }
-    let native_no_read = cli.no_native_occurrence;
+    let native_no_read = cli.no_native_occurrence || use_interval;
     let mut occurrence_writer = if native_no_read {
         Some(native_copy::Session::without_occurrence(&model)?)
     } else if let Some(opening) = user_opening.as_ref().filter(|_| whole_turn_copy) {
@@ -2549,7 +2717,38 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         .native_period_release
         .then(|| native_source_choice::OrdinaryPeriodRelease::new(&model))
         .transpose()?;
-    let mut span_release = if let Some(path) = &cli.verified_span_release_path {
+    let mut interval_selection = None;
+    let mut supplied_interval = None;
+    let mut interval_leading_space = false;
+    let mut span_release = if use_interval {
+        let (tokenizer, _, _) = text_mode.as_ref().ok_or_else(|| {
+            IntegerError::Invalid("interval serving requires a bound tokenizer".into())
+        })?;
+        let opening = user_opening.as_ref().ok_or_else(|| {
+            IntegerError::Invalid("interval serving requires a serialized user opening".into())
+        })?;
+        let chosen = if let Some(path) = &cli.interval_supplied_source {
+            supplied_interval = Some(read_supplied_interval(path, opening.tokens())?);
+            supplied_interval
+        } else if cli.read_mode == ReadMode::Enabled && !cli.no_native_occurrence {
+            let selected = native_interval::select(&model, opening, tokenizer)?;
+            interval_selection = Some(selected);
+            selected.span
+        } else {
+            None
+        };
+        chosen
+            .map(|span| {
+                interval_leading_space = native_interval::leading_space(opening, tokenizer, span);
+                native_span_release::Session::for_interval(
+                    opening,
+                    span,
+                    interval_leading_space,
+                    cli.interval_supplied_stop,
+                )
+            })
+            .transpose()?
+    } else if let Some(path) = &cli.verified_span_release_path {
         let opening = user_opening.as_ref().ok_or_else(|| {
             IntegerError::Invalid(
                 "--verified-span-release requires a serialized user opening".into(),
@@ -2560,7 +2759,11 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     } else {
         None
     };
-    let mut span_release_steps = Vec::new();
+    let mut span_release_steps = if use_interval {
+        Vec::with_capacity(cli.max_tokens)
+    } else {
+        Vec::new()
+    };
     let mut release_read = None;
     let mut authenticated_steps = Vec::new();
     let mut occurrence_steps = Vec::new();
@@ -2740,7 +2943,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                 }
                 Ok(span_step)
             })?;
-            if let Some(step) = span_step.filter(|_| cli.native_occurrence_trace) {
+            if let Some(step) = span_step.filter(|_| cli.native_occurrence_trace || use_interval) {
                 span_release_steps.push(step);
             }
             let committed_id = event.committed_id;
@@ -2882,7 +3085,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         record["decoding"] = "authenticated opening with native period release".into();
         record["native_period_release"] = serde_json::to_value(release_read)?;
     }
-    if span_release.is_some() {
+    if cli.verified_span_release_path.is_some() {
         record["decoding"] = native_span_release::SCHEMA.into();
         record["verified_span_release"] = serde_json::json!({
             "schema": native_span_release::SCHEMA,
@@ -2892,6 +3095,22 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     }
     if native_no_read {
         record["decoding"] = "greedy native occurrence disabled; frozen marker and trunk".into();
+    }
+    if use_interval {
+        record["decoding"] = native_interval::SCHEMA.into();
+        let leading_space_reached = interval_leading_space
+            .then(|| span_release_steps.first())
+            .flatten()
+            .map(|step| step.event == native_span_release::Event::NativeSpace);
+        record["native_interval"] = serde_json::json!({
+            "identity": interval,
+            "selection": interval_selection,
+            "supplied_source": supplied_interval,
+            "leading_space": interval_leading_space,
+            "leading_space_reached": leading_space_reached,
+            "supplied_stop": cli.interval_supplied_stop,
+            "steps": span_release_steps,
+        });
     }
     if cli.native_occurrence_trace {
         record["native_occurrence_steps"] = serde_json::to_value(occurrence_steps)?;

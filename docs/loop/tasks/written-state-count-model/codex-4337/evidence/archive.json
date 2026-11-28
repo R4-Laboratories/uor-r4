@@ -1,0 +1,58 @@
+{
+  "schema": "uor-r4.interval-custody/1",
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/grounded-interval-fit-20261127/interval.tar.zst",
+  "revision": "32ed13a7da5e69f076f06d6f1d7b47ea71ead438",
+  "sha256": "62ad3bab7eb1844dc3c81e1ee1bdd16f9eee42d11cdb57258243f5aa6719737a",
+  "bytes": 6372936,
+  "members_sha256": "c1ac62b93d159375a6f94094bfde2fe28c7f9e0a56196abbbf01c29467041f32",
+  "member_count": 587,
+  "inputs": {
+    "balanced_sha256": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+    "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+    "client_sha256": "21461b5af9c82d98f6f0c7f8780ae6f738bd601a52fe8a98edf25a7e07548381",
+    "pack_sha256": "1ddddd477cddc06b848e2add89289bf7d0f8da1d4ab6c6b9c2bf45fbb431f13d",
+    "fit_sha256": "acebcaa5f924cf37f96a07c5a73147bb3ed96b7d79be38306660a9b605ef0fcb",
+    "prior_balanced_revision": "4b1566d8b293c308e5666ea76efdab4a4947602a",
+    "prior_tokenizer_revision": "c2c5daa20edd2bf7f95d181969c7d553adf8a81a",
+    "base_tree_archive_sha256": "8423115e9ceb31935c6fbe17ce00faf52e52586973956475e2ed0866c6ac4405"
+  },
+  "build": {
+    "base_revision": "6c8689ec0cdb7ce1f9fb4a1a7ebe065801a6089a",
+    "runtime_revision": "f9caaa0d4e6e948c34f72b73465dccdee83fa44c",
+    "rust": "rustc 1.97.1 (8bab26f4f 2026-07-14)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.97.1\nLLVM version: 22.1.6\n",
+    "runtime_rust": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)\nbinary: rustc\ncommit-hash: 01f6ddf7588f42ae2d7eb0a2f21d44e8e96674cf\ncommit-date: 2026-02-11\nhost: x86_64-unknown-linux-gnu\nrelease: 1.93.1\nLLVM version: 21.1.8\n"
+  },
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "wick_archive": "20261127-codex-grounded-interval/archive-v1",
+  "cold_parity_manifest_sha256": "3d7aa04a3ac1221badbeceb6b355e86595ca9836d1968f63dec9ef5a9b1c6926",
+  "ordinary_records": 272,
+  "causal_records": 86,
+  "visible_reviews": 42,
+  "fresh_balanced_reference_records": 30,
+  "next_supply_manifest_sha256": "22e9d64fc7b423364f254447769d14e42819ccd4030d418643de930ac77d9cbb",
+  "visible_review_manifest_sha256": "9cd3898a2953371e64b291df74cdfdd9e8684abda293c1132ba9b3a23ca357a3",
+  "measured_device_manifest_sha256": "0075b9935d630ba9867d97b51064279ffaaa0751c51868f5543eab3398385953",
+  "frozen_words_manifest_sha256": "78048a30df55484919810acf3818133f1da6b762283351cefa2cf0e6a945be5a",
+  "cold_replay": {
+    "manifest_sha256": "f4aea5abb6f2e056ab55bc0672c7213aeedef7ad25380fe19f1cd64247c8f5e7",
+    "artifact_receipts_byte_identical": true,
+    "held_candidate_streams_byte_identical": true,
+    "parity": {
+      "cases": 30,
+      "exact_scores": 3240,
+      "banks": 16,
+      "payload_bytes": 8192
+    },
+    "changed_question_ordinary_records_per_client": 1,
+    "changed_question_record_sha256": "dd70af7f6f243f551d3c496ba271ae32ded4fffe18cc83791c0e5cdca44aae3a",
+    "captured_and_rebuilt_match": true,
+    "rebuilt_client_sha256": "614befc6fa87951a7daba167971545cf3328af2ea2ee1e42dfb86e50080486d3",
+    "rebuilt_packer_sha256": "c1cd2a9e882e5b38df7fd37c96343856f188b3ff6482ec55337986aa3e4f5106",
+    "rebuilt_fitter_sha256": "acebcaa5f924cf37f96a07c5a73147bb3ed96b7d79be38306660a9b605ef0fcb",
+    "executable_identity_scope": "relocated build source path embedded in ELF"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "scope": "Fresh unsupported requests in native-release captures",
+  "method": "Arm-blind manual grading of exact prompt and reply pairs, ordered by content hash",
+  "blind_packet_sha256": "29e3ede2d7078812ea73a9303611c74e2b0e9afe790918ecd93c201c17a97733",
+  "verdict_ledger_sha256": "de195420d7b26788f4676b35e613e377dbe9bb94946073fd9801aacfa852e30a",
+  "unsupported_cases": 7,
+  "captured_outputs": 42,
+  "distinct_prompt_reply_pairs": 25,
+  "unique_pair_grades": {
+    "empty_reply": 3,
+    "false_factual_claim": 7,
+    "no_decipherable_claim": 15,
+    "visible_abstention": 0
+  },
+  "output_grades": {
+    "empty_reply": 9,
+    "false_factual_claim": 12,
+    "no_decipherable_claim": 21,
+    "visible_abstention": 0
+  },
+  "arms": [
+    {
+      "arm": "count.actual",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 1,
+        "false_factual_claim": 3,
+        "no_decipherable_claim": 3,
+        "visible_abstention": 0
+      }
+    },
+    {
+      "arm": "count.permuted",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 2,
+        "false_factual_claim": 2,
+        "no_decipherable_claim": 3,
+        "visible_abstention": 0
+      }
+    },
+    {
+      "arm": "count.zero",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 3,
+        "false_factual_claim": 1,
+        "no_decipherable_claim": 3,
+        "visible_abstention": 0
+      }
+    },
+    {
+      "arm": "geometry.actual",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 0,
+        "false_factual_claim": 2,
+        "no_decipherable_claim": 5,
+        "visible_abstention": 0
+      }
+    },
+    {
+      "arm": "geometry.permuted",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 0,
+        "false_factual_claim": 3,
+        "no_decipherable_claim": 4,
+        "visible_abstention": 0
+      }
+    },
+    {
+      "arm": "geometry.zero",
+      "outputs": 7,
+      "grades": {
+        "empty_reply": 3,
+        "false_factual_claim": 1,
+        "no_decipherable_claim": 3,
+        "visible_abstention": 0
+      }
+    }
+  ]
+}

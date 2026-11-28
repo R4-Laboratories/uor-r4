@@ -1,0 +1,38 @@
+{
+  "schema": "uor-r4.interval-custody-companion/1",
+  "repository": "caseyallard/uor-r4-store",
+  "path": "results/codex/grounded-interval-fit-20261127/companion.tar.zst",
+  "revision": "2219b8d7f38814b19b86a09a526903edbf00d313",
+  "sha256": "0e594ca5c2a6f4a80cdd16f62c1c75f03d1fc2268dd5fddb02846cf7fa65c230",
+  "bytes": 64067,
+  "members_sha256": "f86351ed4f0957dd427874305bc8b0667656f629ec2f70c34ca9a2b0114d790f",
+  "member_count": 56,
+  "prior_packet": {
+    "repository": "caseyallard/uor-r4-store",
+    "path": "results/codex/grounded-interval-fit-20261127/interval.tar.zst",
+    "revision": "32ed13a7da5e69f076f06d6f1d7b47ea71ead438",
+    "sha256": "62ad3bab7eb1844dc3c81e1ee1bdd16f9eee42d11cdb57258243f5aa6719737a",
+    "members_sha256": "c1ac62b93d159375a6f94094bfde2fe28c7f9e0a56196abbbf01c29467041f32"
+  },
+  "prospective_pilot": {
+    "manifest_sha256": "948353accf1ec21be9e709719f502570cfd6d8afdb612bcb57c789bc24cb4c3b",
+    "follow_through_sha256": "ff88d9040c5f700c0bce30edd227c9e9933eae3229298ec6af8f4f6c3c1c51de",
+    "split_picks_and_source_rebuilt": true
+  },
+  "grade_validation": {
+    "path": "regrade-v3/VERIFIED",
+    "sha256": "94e016a969588552e5a990681611f4c936a0b308f7806134cb11ef41a1c12649",
+    "supersedes_derived_grades_in_prior_packet": true,
+    "reported_outcomes_unchanged": true,
+    "manifest_sha256": "68a2f59add45708ce3ac7fa746016f7ce27a97c8c12bf842b74d0570183a738e",
+    "byte_identical_arms": 24,
+    "client_sessions": 440,
+    "rejected_forged_paths": 12
+  },
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "restored_members_verified": true,
+  "inner_pilot_and_validation_verified": true,
+  "corrupted_packet_refused_before_extraction": true,
+  "wick_archive": "20261127-codex-grounded-interval/archive-companion-v1"
+}

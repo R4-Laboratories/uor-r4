@@ -141,6 +141,11 @@ path = "src/bin/pack-whole-turn-occurrence.rs"
 required-features = ["serving-wasm"]
 
 [[bin]]
+name = "pack-native-interval"
+path = "src/bin/pack-native-interval.rs"
+required-features = ["serving-wasm"]
+
+[[bin]]
 name = "verify-whole-turn-occurrence"
 path = "src/bin/verify-whole-turn-occurrence.rs"
 required-features = ["serving-wasm"]

@@ -1,0 +1,116 @@
+[
+  {
+    "arm": "balanced",
+    "summary": {
+      "cases": 20,
+      "supported": 16,
+      "unsupported": 4,
+      "original_interval_exact": 0,
+      "unsupported_interval_selected": 0,
+      "unsupported_actual_source_commit": 0,
+      "unsupported_explicit_noread": 0,
+      "first_original_address_exact": 0,
+      "full_original_addresses_exact": 0,
+      "false_same_value_address": 0,
+      "exact_reply_through_eos": 0,
+      "exact_reply_and_addresses": 0,
+      "copy_then_verified_end": 0,
+      "release_eos_by_native": 0,
+      "release_eos_supplied": 0,
+      "delayed_openings": 0,
+      "delayed_emitted_space_first": 0,
+      "delayed_actual_copy_after_space": 0,
+      "visible_unsupported_grades": [
+        {
+          "case": "empty_reply",
+          "n": 3
+        },
+        {
+          "case": "requires_semantic_review",
+          "n": 1
+        }
+      ],
+      "first_wrong_offsets": [
+        {
+          "offset": 0,
+          "n": 16
+        }
+      ]
+    }
+  },
+  {
+    "arm": "supplied-native",
+    "summary": {
+      "cases": 16,
+      "supported": 16,
+      "unsupported": 0,
+      "original_interval_exact": 0,
+      "unsupported_interval_selected": 0,
+      "unsupported_actual_source_commit": 0,
+      "unsupported_explicit_noread": 0,
+      "first_original_address_exact": 16,
+      "full_original_addresses_exact": 16,
+      "false_same_value_address": 0,
+      "exact_reply_through_eos": 0,
+      "exact_reply_and_addresses": 0,
+      "copy_then_verified_end": 16,
+      "release_eos_by_native": 0,
+      "release_eos_supplied": 0,
+      "delayed_openings": 0,
+      "delayed_emitted_space_first": 0,
+      "delayed_actual_copy_after_space": 0,
+      "visible_unsupported_grades": [],
+      "first_wrong_offsets": [
+        {
+          "offset": 1,
+          "n": 8
+        },
+        {
+          "offset": 2,
+          "n": 1
+        },
+        {
+          "offset": 4,
+          "n": 1
+        },
+        {
+          "offset": 5,
+          "n": 2
+        },
+        {
+          "offset": 6,
+          "n": 1
+        },
+        {
+          "offset": 7,
+          "n": 3
+        }
+      ]
+    }
+  },
+  {
+    "arm": "supplied-stop",
+    "summary": {
+      "cases": 16,
+      "supported": 16,
+      "unsupported": 0,
+      "original_interval_exact": 0,
+      "unsupported_interval_selected": 0,
+      "unsupported_actual_source_commit": 0,
+      "unsupported_explicit_noread": 0,
+      "first_original_address_exact": 16,
+      "full_original_addresses_exact": 16,
+      "false_same_value_address": 0,
+      "exact_reply_through_eos": 16,
+      "exact_reply_and_addresses": 16,
+      "copy_then_verified_end": 16,
+      "release_eos_by_native": 0,
+      "release_eos_supplied": 16,
+      "delayed_openings": 0,
+      "delayed_emitted_space_first": 0,
+      "delayed_actual_copy_after_space": 0,
+      "visible_unsupported_grades": [],
+      "first_wrong_offsets": []
+    }
+  }
+]

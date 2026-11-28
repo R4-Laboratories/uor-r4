@@ -5,7 +5,10 @@
 use serde::{Deserialize, Serialize};
 use uor_r4_tokenizer::dialogue::EncodedUserOpening;
 
-use super::{native_copy::EOS, native_whole_turn::TOKENIZER_CID, ExactCopyState, ROLE_COPY_STOPS};
+use super::{
+    native_copy::EOS, native_interval, native_opening::SPACE, native_whole_turn::TOKENIZER_CID,
+    ExactCopyState, ROLE_COPY_STOPS,
+};
 use crate::{invalid, Result};
 
 pub const SCHEMA: &str = "uor-r4.verified-span-release/1";
@@ -69,6 +72,8 @@ pub enum Phase {
 #[serde(rename_all = "snake_case")]
 pub enum Event {
     Copy,
+    NativeSpace,
+    OpeningMismatch,
     VerifiedEnd,
     Cap,
     Delimiter,
@@ -124,6 +129,7 @@ pub struct Session<'a> {
     second: Option<VerifiedSpan>,
     first_action: Option<Action>,
     second_action: Option<Action>,
+    leading_space: bool,
 }
 
 impl<'a> Session<'a> {
@@ -135,6 +141,52 @@ impl<'a> Session<'a> {
             ));
         }
         Self::bind(opening.tokens(), opening.user_range(), request)
+    }
+
+    /// Enter the same exact cursor path with an interval read from the bound
+    /// opening. The experiment keeps the soundness checks at the write boundary.
+    pub fn for_interval(
+        opening: &'a EncodedUserOpening,
+        span: native_interval::Span,
+        leading_space: bool,
+        supplied_stop: bool,
+    ) -> Result<Self> {
+        let user = opening.user_range();
+        let start = usize::from(span.start);
+        let end = usize::from(span.end);
+        if opening.tokenizer_cid() != TOKENIZER_CID
+            || start < user.start
+            || start >= end
+            || end > user.end
+            || end - start > native_interval::MAX_SPAN
+            || opening.tokens()[start..end]
+                .iter()
+                .any(|id| ROLE_COPY_STOPS.contains(id))
+        {
+            return Err(invalid("learned interval escapes the original copy window"));
+        }
+        let prompt = opening.tokens();
+        let prompt_end = u32::try_from(prompt.len())
+            .map_err(|_| invalid("interval original prompt exceeds u32 addresses"))?;
+        Ok(Self {
+            prompt,
+            prompt_end,
+            pending: Some(Active {
+                phase: Phase::First,
+                span: Some(VerifiedSpan {
+                    cursor: ExactCopyState::new(Some(u32::from(span.start)), prompt_end),
+                    end: u32::from(span.end),
+                }),
+            }),
+            second: None,
+            first_action: Some(if supplied_stop {
+                Action::Stop
+            } else {
+                Action::Native
+            }),
+            second_action: None,
+            leading_space,
+        })
     }
 
     fn bind(
@@ -186,6 +238,7 @@ impl<'a> Session<'a> {
                     TerminalAction::Native => Action::Native,
                     TerminalAction::Stop => Action::Stop,
                 }),
+            leading_space: false,
         })
     }
 
@@ -212,6 +265,16 @@ impl<'a> Session<'a> {
         let Some(active) = active else {
             return Ok(step);
         };
+        if self.leading_space {
+            self.leading_space = false;
+            step.event = if ordinary_id == SPACE {
+                Event::NativeSpace
+            } else {
+                self.pending = None;
+                Event::OpeningMismatch
+            };
+            return Ok(step);
+        }
         let (event, mut next) = self.advance(active, &mut step)?;
         step.event = event;
         if event == Event::VerifiedEnd {
