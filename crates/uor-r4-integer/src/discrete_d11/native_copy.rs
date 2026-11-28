@@ -107,6 +107,11 @@ impl<'a> Session<'a> {
         Ok(session)
     }
 
+    /// Use the ordinary native proposal on every step with no authorized copy.
+    pub fn generate_only(model: &'a IntegerDiscreteModel) -> Result<Self> {
+        Self::with_action(model, GENERATE)
+    }
+
     fn with_action(model: &'a IntegerDiscreteModel, action: Action) -> Result<Self> {
         if model.occurrence.is_none() {
             return Err(invalid(

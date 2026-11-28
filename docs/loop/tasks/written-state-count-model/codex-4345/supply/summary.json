@@ -1,0 +1,5207 @@
+{
+  "cap_including_target_ids": 192,
+  "census": {
+    "opening_and_eligible_boundary_ambiguity": {
+      "distinct_exact_prefixes_in_multiple_splits": 0,
+      "distinct_exact_prefixes_with_opposing_actions_excluded": 0,
+      "duplicate_exact_prefix_events_beyond_first": 0
+    },
+    "registered_train_and_held_supply_gate": true,
+    "splits": [
+      {
+        "all_strata": 7970,
+        "counts": {
+          "continuation_candidates_completing_split_alnum": 907,
+          "continue_candidates": 89038,
+          "eligible_continues_after_ambiguity": 89038,
+          "eligible_stops_after_ambiguity": 313,
+          "further_unique_continuation_records": 1532,
+          "further_unique_stop_records": 313,
+          "history_eos_mask_zero": 171,
+          "history_eos_mask_zero_with_target_room": 18,
+          "history_eos_mask_zero_without_target_room": 153,
+          "internal_ids_completing_split_alnum": 929,
+          "internal_ids_ending_mid_character": 2227,
+          "internal_ids_other_without_completed_alnum": 6205,
+          "internal_ids_punctuation_or_space_only": 27094,
+          "internal_ids_whitespace_only": 11432,
+          "internal_ids_with_no_earlier_alnum": 3575,
+          "internal_ids_with_target_room": 137344,
+          "internal_ids_without_target_room": 2516329,
+          "internal_non_alnum_ids_followed_by_later_alnum_beyond_budget": 1226,
+          "internal_non_alnum_ids_followed_by_later_alnum_within_budget": 42983,
+          "internal_non_alnum_ids_with_no_later_alnum": 522,
+          "matched_continue_components": 237,
+          "matched_distinct_components": 435,
+          "matched_pairs": 237,
+          "matched_stop_components": 229,
+          "opening_fits": 1566,
+          "opening_with_next_id_fits": 1561,
+          "removed_ambiguous_continues": 0,
+          "removed_ambiguous_stops": 0,
+          "stop_candidates": 313,
+          "supervised_eos": 2856,
+          "supervised_eos_with_room_but_no_earlier_alnum": 1,
+          "supervised_eos_with_target_room": 314,
+          "supervised_eos_without_target_room": 2542,
+          "turns": 3027,
+          "turns_with_continue_candidate": 1546,
+          "turns_with_genuine_history": 171,
+          "turns_with_stop_candidate": 313,
+          "visible_answer_ids": 2653673
+        },
+        "split": "train",
+        "strata_with_observed_stop": [
+          {
+            "continues_after_conflict_exclusion": 37,
+            "continues_before_conflict_exclusion": 37,
+            "key": {
+              "completed_answer_ids": 1,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 40,
+            "continues_before_conflict_exclusion": 40,
+            "key": {
+              "completed_answer_ids": 1,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 34,
+            "continues_before_conflict_exclusion": 34,
+            "key": {
+              "completed_answer_ids": 1,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 30,
+            "continues_before_conflict_exclusion": 30,
+            "key": {
+              "completed_answer_ids": 1,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 44,
+            "continues_before_conflict_exclusion": 44,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 24,
+            "continues_before_conflict_exclusion": 24,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 16,
+            "continues_before_conflict_exclusion": 16,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 20
+            },
+            "matched_pairs": 5,
+            "stops_after_conflict_exclusion": 5,
+            "stops_before_conflict_exclusion": 5
+          },
+          {
+            "continues_after_conflict_exclusion": 15,
+            "continues_before_conflict_exclusion": 15,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 21
+            },
+            "matched_pairs": 3,
+            "stops_after_conflict_exclusion": 3,
+            "stops_before_conflict_exclusion": 3
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 62,
+            "continues_before_conflict_exclusion": 62,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 47,
+            "continues_before_conflict_exclusion": 47,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 42,
+            "continues_before_conflict_exclusion": 42,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 49,
+            "continues_before_conflict_exclusion": 49,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 60,
+            "continues_before_conflict_exclusion": 60,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 5,
+            "stops_after_conflict_exclusion": 5,
+            "stops_before_conflict_exclusion": 5
+          },
+          {
+            "continues_after_conflict_exclusion": 39,
+            "continues_before_conflict_exclusion": 39,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 5,
+            "stops_after_conflict_exclusion": 5,
+            "stops_before_conflict_exclusion": 5
+          },
+          {
+            "continues_after_conflict_exclusion": 41,
+            "continues_before_conflict_exclusion": 41,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 5,
+            "stops_after_conflict_exclusion": 5,
+            "stops_before_conflict_exclusion": 5
+          },
+          {
+            "continues_after_conflict_exclusion": 31,
+            "continues_before_conflict_exclusion": 31,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 28,
+            "continues_before_conflict_exclusion": 28,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 26,
+            "continues_before_conflict_exclusion": 26,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 20,
+            "continues_before_conflict_exclusion": 20,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 20,
+            "continues_before_conflict_exclusion": 20,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 37,
+            "continues_before_conflict_exclusion": 37,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 38,
+            "continues_before_conflict_exclusion": 38,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 3,
+            "stops_after_conflict_exclusion": 3,
+            "stops_before_conflict_exclusion": 3
+          },
+          {
+            "continues_after_conflict_exclusion": 28,
+            "continues_before_conflict_exclusion": 28,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 27,
+            "continues_before_conflict_exclusion": 27,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 23
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 87,
+            "continues_before_conflict_exclusion": 87,
+            "key": {
+              "completed_answer_ids": 5,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 39,
+            "continues_before_conflict_exclusion": 39,
+            "key": {
+              "completed_answer_ids": 5,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 13,
+            "continues_before_conflict_exclusion": 13,
+            "key": {
+              "completed_answer_ids": 5,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 21
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 51,
+            "continues_before_conflict_exclusion": 51,
+            "key": {
+              "completed_answer_ids": 6,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 6,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 28,
+            "continues_before_conflict_exclusion": 28,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 43,
+            "continues_before_conflict_exclusion": 43,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 9,
+            "continues_before_conflict_exclusion": 9,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 3,
+            "stops_after_conflict_exclusion": 3,
+            "stops_before_conflict_exclusion": 3
+          },
+          {
+            "continues_after_conflict_exclusion": 9,
+            "continues_before_conflict_exclusion": 9,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 3,
+            "stops_after_conflict_exclusion": 3,
+            "stops_before_conflict_exclusion": 3
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 13,
+            "continues_before_conflict_exclusion": 13,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 11,
+            "continues_before_conflict_exclusion": 11,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 27,
+            "continues_before_conflict_exclusion": 27,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 22
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 10,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 10,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 11,
+            "continues_before_conflict_exclusion": 11,
+            "key": {
+              "completed_answer_ids": 10,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 33,
+            "continues_before_conflict_exclusion": 33,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 20
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 12,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 14,
+            "continues_before_conflict_exclusion": 14,
+            "key": {
+              "completed_answer_ids": 12,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 13,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 13,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 13,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 13,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 20
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 9,
+            "continues_before_conflict_exclusion": 9,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 15,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 15,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 9,
+            "continues_before_conflict_exclusion": 9,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 18,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 18,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 18,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 21
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 19,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 19,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 39,
+            "continues_before_conflict_exclusion": 39,
+            "key": {
+              "completed_answer_ids": 19,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 19,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 19,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 21,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 22,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 13,
+            "continues_before_conflict_exclusion": 13,
+            "key": {
+              "completed_answer_ids": 23,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 23,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 25,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 25,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 25,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 27,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 28,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 32,
+            "continues_before_conflict_exclusion": 32,
+            "key": {
+              "completed_answer_ids": 28,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 29,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 29,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 29,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 30,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 32,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 33,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 34,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 34,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 15,
+            "continues_before_conflict_exclusion": 15,
+            "key": {
+              "completed_answer_ids": 34,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 34,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 35,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 36,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 11,
+            "continues_before_conflict_exclusion": 11,
+            "key": {
+              "completed_answer_ids": 36,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 37,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 38,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 39,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 40,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 41,
+              "has_history": false,
+              "last_char_class": "other",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 41,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 41,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 42,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 42,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 43,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 43,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 44,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 45,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 45,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 45,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 12,
+            "continues_before_conflict_exclusion": 12,
+            "key": {
+              "completed_answer_ids": 46,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 46,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 46,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 46,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 47,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 48,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 48,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 48,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 48,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 49,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 50,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 52,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 9,
+            "continues_before_conflict_exclusion": 9,
+            "key": {
+              "completed_answer_ids": 52,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 53,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 35,
+            "continues_before_conflict_exclusion": 35,
+            "key": {
+              "completed_answer_ids": 53,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 53,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 54,
+              "has_history": true,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 55,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 56,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 57,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 57,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 57,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 59,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 59,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 11,
+            "continues_before_conflict_exclusion": 11,
+            "key": {
+              "completed_answer_ids": 59,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 60,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 60,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 19,
+            "continues_before_conflict_exclusion": 19,
+            "key": {
+              "completed_answer_ids": 60,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 61,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 62,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 62,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 63,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 63,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 64,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 65,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 66,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 25,
+            "continues_before_conflict_exclusion": 25,
+            "key": {
+              "completed_answer_ids": 66,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 67,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 69,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 69,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 69,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 69,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 70,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 70,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 71,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 71,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 72,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 73,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 73,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 73,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 74,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 74,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 74,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 74,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 14,
+            "continues_before_conflict_exclusion": 14,
+            "key": {
+              "completed_answer_ids": 75,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 75,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 76,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 76,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 77,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 78,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 78,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 78,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 79,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 81,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 82,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 82,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 84,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 85,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 86,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 87,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 88,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 90,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 91,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 93,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 93,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 94,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 94,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 94,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 95,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 95,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 96,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 98,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 99,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 99,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 102,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 105,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 105,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 105,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 106,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 107,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 107,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 107,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 107,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 108,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 110,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 110,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 112,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 112,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 113,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 113,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 114,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 115,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 115,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 119,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 120,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 120,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 121,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 122,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 123,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 125,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 127,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 129,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 129,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 131,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 134,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 137,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 143,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 146,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 153,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 156,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 156,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          }
+        ]
+      },
+      {
+        "all_strata": 4009,
+        "counts": {
+          "continuation_candidates_completing_split_alnum": 217,
+          "continue_candidates": 12855,
+          "eligible_continues_after_ambiguity": 12855,
+          "eligible_stops_after_ambiguity": 46,
+          "further_unique_continuation_records": 232,
+          "further_unique_stop_records": 46,
+          "history_eos_mask_zero": 48,
+          "history_eos_mask_zero_with_target_room": 5,
+          "history_eos_mask_zero_without_target_room": 43,
+          "internal_ids_completing_split_alnum": 225,
+          "internal_ids_ending_mid_character": 512,
+          "internal_ids_other_without_completed_alnum": 1132,
+          "internal_ids_punctuation_or_space_only": 3626,
+          "internal_ids_whitespace_only": 1656,
+          "internal_ids_with_no_earlier_alnum": 581,
+          "internal_ids_with_target_room": 19850,
+          "internal_ids_without_target_room": 323343,
+          "internal_non_alnum_ids_followed_by_later_alnum_beyond_budget": 245,
+          "internal_non_alnum_ids_followed_by_later_alnum_within_budget": 6088,
+          "internal_non_alnum_ids_with_no_later_alnum": 81,
+          "matched_continue_components": 24,
+          "matched_distinct_components": 44,
+          "matched_pairs": 24,
+          "matched_stop_components": 20,
+          "opening_fits": 241,
+          "opening_with_next_id_fits": 240,
+          "removed_ambiguous_continues": 0,
+          "removed_ambiguous_stops": 0,
+          "stop_candidates": 46,
+          "supervised_eos": 401,
+          "supervised_eos_with_room_but_no_earlier_alnum": 0,
+          "supervised_eos_with_target_room": 46,
+          "supervised_eos_without_target_room": 355,
+          "turns": 449,
+          "turns_with_continue_candidate": 237,
+          "turns_with_genuine_history": 48,
+          "turns_with_stop_candidate": 46,
+          "visible_answer_ids": 343193
+        },
+        "split": "dev",
+        "strata_with_observed_stop": [
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 6,
+            "stops_after_conflict_exclusion": 6,
+            "stops_before_conflict_exclusion": 6
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 4,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 6,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 7,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": true,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 22
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 12,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 12,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 22
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 18,
+              "has_history": false,
+              "last_char_class": "other",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 22,
+              "has_history": false,
+              "last_char_class": "other",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 22,
+              "has_history": false,
+              "last_char_class": "other",
+              "opening_length_bin": 20
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 27,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 30,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 38,
+              "has_history": true,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 46,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 51,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 60,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 73,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 81,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 84,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 85,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 102,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 105,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 115,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 129,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          }
+        ]
+      },
+      {
+        "all_strata": 5401,
+        "counts": {
+          "continuation_candidates_completing_split_alnum": 202,
+          "continue_candidates": 27748,
+          "eligible_continues_after_ambiguity": 27748,
+          "eligible_stops_after_ambiguity": 81,
+          "further_unique_continuation_records": 447,
+          "further_unique_stop_records": 81,
+          "history_eos_mask_zero": 66,
+          "history_eos_mask_zero_with_target_room": 7,
+          "history_eos_mask_zero_without_target_room": 59,
+          "internal_ids_completing_split_alnum": 209,
+          "internal_ids_ending_mid_character": 575,
+          "internal_ids_other_without_completed_alnum": 1712,
+          "internal_ids_punctuation_or_space_only": 8458,
+          "internal_ids_whitespace_only": 3530,
+          "internal_ids_with_no_earlier_alnum": 1075,
+          "internal_ids_with_target_room": 42523,
+          "internal_ids_without_target_room": 724479,
+          "internal_non_alnum_ids_followed_by_later_alnum_beyond_budget": 272,
+          "internal_non_alnum_ids_followed_by_later_alnum_within_budget": 13297,
+          "internal_non_alnum_ids_with_no_later_alnum": 131,
+          "matched_continue_components": 47,
+          "matched_distinct_components": 89,
+          "matched_pairs": 47,
+          "matched_stop_components": 46,
+          "opening_fits": 455,
+          "opening_with_next_id_fits": 455,
+          "removed_ambiguous_continues": 0,
+          "removed_ambiguous_stops": 0,
+          "stop_candidates": 81,
+          "supervised_eos": 803,
+          "supervised_eos_with_room_but_no_earlier_alnum": 0,
+          "supervised_eos_with_target_room": 81,
+          "supervised_eos_without_target_room": 722,
+          "turns": 869,
+          "turns_with_continue_candidate": 453,
+          "turns_with_genuine_history": 66,
+          "turns_with_stop_candidate": 81,
+          "visible_answer_ids": 767002
+        },
+        "split": "held",
+        "strata_with_observed_stop": [
+          {
+            "continues_after_conflict_exclusion": 19,
+            "continues_before_conflict_exclusion": 19,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 2,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 21
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 14,
+            "continues_before_conflict_exclusion": 14,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 20,
+            "continues_before_conflict_exclusion": 20,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 12,
+            "continues_before_conflict_exclusion": 12,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 10,
+            "continues_before_conflict_exclusion": 10,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 4,
+            "stops_after_conflict_exclusion": 4,
+            "stops_before_conflict_exclusion": 4
+          },
+          {
+            "continues_after_conflict_exclusion": 6,
+            "continues_before_conflict_exclusion": 6,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 3,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 5,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 3
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 8,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": true,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 9,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 17
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 13,
+            "continues_before_conflict_exclusion": 13,
+            "key": {
+              "completed_answer_ids": 11,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 12,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 7,
+            "continues_before_conflict_exclusion": 7,
+            "key": {
+              "completed_answer_ids": 13,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 14,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 18
+            },
+            "matched_pairs": 2,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 15,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 3,
+            "continues_before_conflict_exclusion": 3,
+            "key": {
+              "completed_answer_ids": 16,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 17,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 18,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 8,
+            "continues_before_conflict_exclusion": 8,
+            "key": {
+              "completed_answer_ids": 20,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 24,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 14,
+            "continues_before_conflict_exclusion": 14,
+            "key": {
+              "completed_answer_ids": 25,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 26,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 29,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 5,
+            "continues_before_conflict_exclusion": 5,
+            "key": {
+              "completed_answer_ids": 29,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 30,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 19
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 13
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 31,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 15
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 32,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 49,
+              "has_history": true,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 14
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 51,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 54,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 16
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 59,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 11
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 68,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 74,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 15,
+            "continues_before_conflict_exclusion": 15,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 80,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 83,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 2,
+            "stops_before_conflict_exclusion": 2
+          },
+          {
+            "continues_after_conflict_exclusion": 18,
+            "continues_before_conflict_exclusion": 18,
+            "key": {
+              "completed_answer_ids": 90,
+              "has_history": false,
+              "last_char_class": "alphanumeric",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 90,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 90,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 12
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 91,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 92,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 94,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 95,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 98,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 9
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 2,
+            "continues_before_conflict_exclusion": 2,
+            "key": {
+              "completed_answer_ids": 100,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 10
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 101,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 4,
+            "continues_before_conflict_exclusion": 4,
+            "key": {
+              "completed_answer_ids": 102,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 108,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 2
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 108,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 111,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 116,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 8
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 123,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 124,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 4
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 124,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 129,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 1,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 134,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 7
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 1,
+            "continues_before_conflict_exclusion": 1,
+            "key": {
+              "completed_answer_ids": 135,
+              "has_history": false,
+              "last_char_class": "other_punctuation",
+              "opening_length_bin": 6
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          },
+          {
+            "continues_after_conflict_exclusion": 0,
+            "continues_before_conflict_exclusion": 0,
+            "key": {
+              "completed_answer_ids": 143,
+              "has_history": false,
+              "last_char_class": "sentence_end",
+              "opening_length_bin": 5
+            },
+            "matched_pairs": 0,
+            "stops_after_conflict_exclusion": 1,
+            "stops_before_conflict_exclusion": 1
+          }
+        ]
+      }
+    ]
+  },
+  "partitions": {
+    "duplicate_exact_user_sources_across_records": 40,
+    "exact_user_sources_crossing_splits": 0,
+    "largest_component_records": 13,
+    "normalized_full_user_wordings": 4086,
+    "normalized_wording_families_crossing_splits": 0,
+    "repeated_normalized_wordings_across_records": 47,
+    "rule": "SHA256(least original record identifier UTF-8)[0] % 10",
+    "splits": [
+      {
+        "components": 2700,
+        "records": 2856,
+        "split": "train",
+        "turns": 3027
+      },
+      {
+        "components": 355,
+        "records": 401,
+        "split": "dev",
+        "turns": 449
+      },
+      {
+        "components": 746,
+        "records": 803,
+        "split": "held",
+        "turns": 869
+      }
+    ]
+  },
+  "prior_exposure": "same subset used in #4312/#4314 and inspected in #4344; all three splits are internal",
+  "records": 4060,
+  "schema": "uor-r4.ordinary-generic-termination-train-supply/1",
+  "source": "corrected #4314 donor-v2, every-128th official D87 TRAIN records",
+  "turns": 4345,
+  "visible_answer_overlap": {
+    "distinct_exact_spans_present_in_multiple_splits": 2431,
+    "minimum_consecutive_visible_answer_ids": 50,
+    "positions_checked": 3568385,
+    "positions_in_exact_spans_present_in_multiple_splits": 29069,
+    "splits": [
+      {
+        "eligible_records": 2517,
+        "eligible_turns": 2660,
+        "records_with_cross_split_exact_overlap": 142,
+        "split": "train",
+        "turns_with_cross_split_exact_overlap": 142
+      },
+      {
+        "eligible_records": 339,
+        "eligible_turns": 376,
+        "records_with_cross_split_exact_overlap": 17,
+        "split": "dev",
+        "turns_with_cross_split_exact_overlap": 17
+      },
+      {
+        "eligible_records": 718,
+        "eligible_turns": 772,
+        "records_with_cross_split_exact_overlap": 46,
+        "split": "held",
+        "turns_with_cross_split_exact_overlap": 46
+      }
+    ]
+  },
+  "visible_original_ids": 5731000
+}

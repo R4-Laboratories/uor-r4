@@ -20,8 +20,8 @@ use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
 use uor_r4_integer::discrete_d11::{
-    native_copy, native_interval, native_source_choice, native_span_release, native_whole_turn,
-    native_word_ending, pair_rank,
+    native_copy, native_interval, native_source_choice, native_span_release, native_termination,
+    native_whole_turn, native_word_ending, pair_rank,
 };
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
@@ -83,6 +83,9 @@ struct CliArgs {
     interval_features: Option<IntervalCapture>,
     interval_supplied_source: Option<PathBuf>,
     interval_supplied_stop: bool,
+    ordinary_termination: native_termination::Mode,
+    ordinary_termination_trace: bool,
+    ordinary_termination_capture: Option<PathBuf>,
     word_ending: bool,
     word_ending_source: Option<u16>,
     #[cfg(feature = "p1-count-serving")]
@@ -351,6 +354,9 @@ impl Default for CliArgs {
             interval_features: None,
             interval_supplied_source: None,
             interval_supplied_stop: false,
+            ordinary_termination: native_termination::Mode::Off,
+            ordinary_termination_trace: false,
+            ordinary_termination_capture: None,
             word_ending: false,
             word_ending_source: None,
             #[cfg(feature = "p1-count-serving")]
@@ -460,6 +466,11 @@ fn print_usage() {
     eprintln!("      --interval-relation-features FILE  capture legacy and directed interval arms with relation witnesses");
     eprintln!("      --interval-supplied-stop  diagnose the extractive ceiling with EOS at a selected interval end");
     eprintln!("      --interval-supplied-source FILE  diagnose a span with independently supplied original IDs");
+    eprintln!("      --ordinary-termination MODE  use off, generic, or verified-end on a packed native artifact");
+    eprintln!(
+        "      --ordinary-termination-trace  show exact ordinary decision keys and writer words"
+    );
+    eprintln!("      --ordinary-termination-capture FILE  capture unlabeled keys from original-ID prefix JSONL");
     eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
     eprintln!(
         "      --word-ending-source N supply a zero-based factual source on the opening step"
@@ -766,6 +777,27 @@ fn parse_cli_args() -> CliArgs {
                 });
             }
             "--interval-supplied-stop" => args.interval_supplied_stop = true,
+            "--ordinary-termination" => {
+                idx += 1;
+                args.ordinary_termination = match raw.get(idx).map(String::as_str) {
+                    Some("off") => native_termination::Mode::Off,
+                    Some("generic") => native_termination::Mode::Generic,
+                    Some("verified-end") => native_termination::Mode::VerifiedEnd,
+                    _ => {
+                        eprintln!("--ordinary-termination requires off, generic, or verified-end");
+                        process::exit(1);
+                    }
+                };
+            }
+            "--ordinary-termination-trace" => args.ordinary_termination_trace = true,
+            "--ordinary-termination-capture" => {
+                idx += 1;
+                let Some(path) = raw.get(idx) else {
+                    eprintln!("--ordinary-termination-capture requires a JSONL input file");
+                    process::exit(1);
+                };
+                args.ordinary_termination_capture = Some(PathBuf::from(path));
+            }
             "--interval-supplied-source" => {
                 idx += 1;
                 let Some(path) = raw.get(idx) else {
@@ -1245,9 +1277,34 @@ fn parse_cli_args() -> CliArgs {
     if args.discrete_path.is_some()
         && args.prompt_ids.is_none()
         && args.interval_features.is_none()
+        && args.ordinary_termination_capture.is_none()
         && (args.say.is_none() || args.tokenizer_path.is_none())
     {
         eprintln!("{ANSI_RED_BOLD}error:{ANSI_RESET} '--discrete' requires '--prompt-ids' or '--say' with its bound '--tokenizer'");
+        process::exit(1);
+    }
+    if args.ordinary_termination_capture.is_some()
+        && (args.discrete_path.is_none()
+            || args.say.is_some()
+            || args.prompt_ids.is_some()
+            || args.interval_features.is_some()
+            || args.authenticated_copy
+            || args.no_native_occurrence
+            || args.interval_supplied_source.is_some()
+            || args.interval_supplied_stop
+            || args.word_ending
+            || args.protocol != 2
+            || args.ordinary_termination_trace
+            || args.ordinary_termination != native_termination::Mode::Off)
+    {
+        eprintln!("--ordinary-termination-capture requires standalone frozen --discrete capture");
+        process::exit(1);
+    }
+    if (args.ordinary_termination_trace
+        || args.ordinary_termination != native_termination::Mode::Off)
+        && (args.discrete_path.is_none() || args.word_ending || args.interval_features.is_some())
+    {
+        eprintln!("ordinary termination requires native discrete writer serving");
         process::exit(1);
     }
     if let Some(capture) = &args.interval_features {
@@ -2558,6 +2615,190 @@ fn read_supplied_interval(
     })
 }
 
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct OrdinaryTerminationPrefix {
+    prefix: Vec<u32>,
+}
+
+fn capture_ordinary_termination(
+    model: &uor_r4_integer::discrete_d11::IntegerDiscreteModel,
+    path: &Path,
+) -> Result<()> {
+    if model.artifact_sha256() != native_whole_turn::BASE_SHA256 {
+        return Err(IntegerError::Invalid(
+            "ordinary termination key capture requires the frozen balanced artifact".into(),
+        ));
+    }
+    let input = io::BufReader::new(std::fs::File::open(path)?);
+    let mut output = io::BufWriter::new(io::stdout().lock());
+    for (ordinal, line) in input.lines().enumerate() {
+        let row: OrdinaryTerminationPrefix = serde_json::from_str(&line?)?;
+        let writer = native_copy::observe_generate(model, &row.prefix)?;
+        let features = native_termination::features(&row.prefix, &writer)?;
+        let mut digest = Sha256::new();
+        for id in &row.prefix {
+            digest.update(id.to_le_bytes());
+        }
+        serde_json::to_writer(
+            &mut output,
+            &serde_json::json!({
+                "ordinal": ordinal,
+                "prefix_len": row.prefix.len(),
+                "prefix_sha256": hex::encode(digest.finalize()),
+                "ordinary_id": writer.committed_id,
+                "geometry_keys": features.geometry_keys,
+                "ordered_keys": features.ordered_keys,
+                "read_vector": writer.read_vector,
+                "read_code": writer.read_code,
+                "recurrence_code": writer.recurrence_code,
+            }),
+        )?;
+        output.write_all(b"\n")?;
+    }
+    output.flush()?;
+    Ok(())
+}
+
+fn termination_site(
+    authorized: bool,
+    span: Option<&native_span_release::Step>,
+) -> native_termination::Site {
+    use native_span_release::{Action, Commit, Event};
+    use native_termination::Site;
+
+    if authorized
+        || span.is_some_and(|step| {
+            step.commit != Commit::Ordinary
+                || step.event == Event::NativeSpace
+                || matches!(step.action, Some(Action::Stop | Action::Continue))
+        })
+    {
+        Site::Authorized
+    } else if span.is_some_and(|step| step.event == Event::VerifiedEnd) {
+        Site::VerifiedEnd
+    } else {
+        Site::Ordinary
+    }
+}
+
+#[derive(serde::Serialize)]
+struct SpanReleaseTrace {
+    #[serde(flatten)]
+    step: native_span_release::Step,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    commit_phase: Option<&'static str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    final_committed_id: Option<u32>,
+}
+
+impl SpanReleaseTrace {
+    fn new(step: native_span_release::Step, committed_id: u32) -> Self {
+        let superseded = step.committed_id != committed_id;
+        Self {
+            step,
+            commit_phase: superseded.then_some("before_ordinary_termination"),
+            final_committed_id: superseded.then_some(committed_id),
+        }
+    }
+}
+
+fn discrete_eos_ends_generation(
+    prediction: u32,
+    native_eos_enabled: bool,
+    text_eos_id: Option<u32>,
+) -> bool {
+    (native_eos_enabled && prediction == native_copy::EOS) || text_eos_id == Some(prediction)
+}
+
+#[cfg(test)]
+#[test]
+fn ordinary_termination_keeps_raw_parity_running_through_native_eos() {
+    let eos = native_copy::EOS;
+    assert!(!discrete_eos_ends_generation(eos, false, None));
+    assert!(discrete_eos_ends_generation(eos, true, None));
+    assert!(discrete_eos_ends_generation(eos, false, Some(eos)));
+    assert!(!discrete_eos_ends_generation(7, true, Some(eos)));
+}
+
+#[cfg(test)]
+#[test]
+fn ordinary_termination_keeps_explicit_control_and_copy_sites() {
+    use native_span_release::{Action, Commit, Event, Step};
+    use native_termination::Site;
+
+    let mut span = Step {
+        phase: None,
+        event: Event::VerifiedEnd,
+        second_event: None,
+        source_pos: None,
+        source_id: None,
+        ordinary_id: 7,
+        committed_id: 7,
+        commit: Commit::Ordinary,
+        action: Some(Action::Native),
+        start: None,
+        cursor: None,
+        end: None,
+        prompt_end: 15,
+    };
+    assert_eq!(termination_site(false, None), Site::Ordinary);
+    assert_eq!(termination_site(true, None), Site::Authorized);
+    assert_eq!(termination_site(false, Some(&span)), Site::VerifiedEnd);
+    span.action = Some(Action::Continue);
+    assert_eq!(termination_site(false, Some(&span)), Site::Authorized);
+    span.action = None;
+    span.event = Event::NativeSpace;
+    assert_eq!(termination_site(false, Some(&span)), Site::Authorized);
+    span.event = Event::Copy;
+    span.commit = Commit::Copy;
+    assert_eq!(termination_site(false, Some(&span)), Site::Authorized);
+    assert!(
+        serde_json::from_str::<OrdinaryTerminationPrefix>(r#"{"prefix":[0,1],"target":1}"#)
+            .is_err()
+    );
+}
+
+#[cfg(test)]
+#[test]
+fn ordinary_termination_trace_preserves_the_span_stage_and_reports_final_eos() -> Result<()> {
+    use native_span_release::{Action, Commit, Event, Phase, Step};
+
+    let span = Step {
+        phase: Some(Phase::First),
+        event: Event::VerifiedEnd,
+        second_event: None,
+        source_pos: None,
+        source_id: None,
+        ordinary_id: 7,
+        committed_id: 7,
+        commit: Commit::Ordinary,
+        action: Some(Action::Native),
+        start: Some(4),
+        cursor: Some(6),
+        end: Some(6),
+        prompt_end: 15,
+    };
+    let original = serde_json::to_value(&span)?;
+    let mut expected = original.clone();
+    expected["commit_phase"] = "before_ordinary_termination".into();
+    expected["final_committed_id"] = native_copy::EOS.into();
+    let unchanged = Step {
+        committed_id: native_copy::EOS,
+        ..span
+    };
+    let unchanged_json = serde_json::to_value(&unchanged)?;
+    assert_eq!(
+        serde_json::to_value(SpanReleaseTrace::new(span, native_copy::EOS))?,
+        expected
+    );
+    assert_eq!(
+        serde_json::to_value(SpanReleaseTrace::new(unchanged, native_copy::EOS))?,
+        unchanged_json
+    );
+    Ok(())
+}
+
 fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let artifact = cli
         .discrete_path
@@ -2605,6 +2846,15 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     };
     #[cfg(feature = "p1-count-serving")]
     let (model, p1, p4) = (deployment.model, deployment.state, deployment.p4);
+    if let Some(path) = &cli.ordinary_termination_capture {
+        #[cfg(feature = "p1-count-serving")]
+        if p1.is_some() || p4.is_some() {
+            return Err(IntegerError::Invalid(
+                "ordinary termination capture requires the frozen geometric writer".into(),
+            ));
+        }
+        return capture_ordinary_termination(&model, path);
+    }
     #[cfg(feature = "p1-count-serving")]
     if cli.authenticated_copy && (p1.is_some() || p4.is_some()) {
         return Err(IntegerError::Invalid(
@@ -2646,6 +2896,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         return capture_interval_features(&model, &tokenizer, rows);
     }
     let interval = native_interval::identity(&model);
+    let termination_identity = native_termination::identity(&model);
     let use_interval = interval.is_some() || cli.interval_supplied_source.is_some();
     if use_interval {
         if cli.protocol != 2
@@ -2662,7 +2913,12 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                     .into(),
             ));
         }
-        if interval.is_none() && model.artifact_sha256() != native_whole_turn::BASE_SHA256 {
+        if interval.is_none()
+            && model.artifact_sha256() != native_whole_turn::BASE_SHA256
+            && !termination_identity
+                .as_ref()
+                .is_some_and(|bound| bound.base_sha256 == native_whole_turn::BASE_SHA256)
+        {
             return Err(IntegerError::Invalid(
                 "supplied interval control requires the pinned balanced base".into(),
             ));
@@ -2745,6 +3001,29 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         && model.active_s2().is_none()
         && model.count_mixer().is_none()
         && !cli.word_ending;
+    let use_termination = cli.ordinary_termination != native_termination::Mode::Off;
+    if use_termination && (termination_identity.is_none() || cli.protocol != 2) {
+        return Err(IntegerError::Invalid(
+            "ordinary termination requires a packed state and protocol 2".into(),
+        ));
+    }
+    if termination_identity.is_some()
+        && text_mode
+            .as_ref()
+            .is_some_and(|(_, protocol, _)| protocol.eos_id != native_copy::EOS)
+    {
+        return Err(IntegerError::Invalid(
+            "ordinary termination text protocol has a different EOS identity".into(),
+        ));
+    }
+    let observe_termination = use_termination || cli.ordinary_termination_trace;
+    if observe_termination
+        && (!native_occurrence_writer || !native_termination::allows_capture(&model))
+    {
+        return Err(IntegerError::Invalid(
+            "ordinary termination requires its frozen native occurrence writer".into(),
+        ));
+    }
     if (cli.native_occurrence_trace || cli.no_native_occurrence || cli.native_period_release)
         && !native_occurrence_writer
     {
@@ -2753,12 +3032,20 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         ));
     }
     let native_no_read = cli.no_native_occurrence || use_interval;
+    let native_eos_enabled = native_no_read
+        || cli.authenticated_copy
+        || cli.word_ending
+        || use_termination
+        || alternate_count_writer;
+    let text_eos_id = text_mode.as_ref().map(|(_, protocol, _)| protocol.eos_id);
     let mut occurrence_writer = if native_no_read {
         Some(native_copy::Session::without_occurrence(&model)?)
     } else if let Some(opening) = user_opening.as_ref().filter(|_| whole_turn_copy) {
         Some(native_copy::Session::for_user_opening(&model, opening)?)
     } else if cli.authenticated_copy {
         Some(native_copy::Session::new(&model)?)
+    } else if observe_termination {
+        Some(native_copy::Session::generate_only(&model)?)
     } else {
         None
     };
@@ -2816,6 +3103,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let mut release_read = None;
     let mut authenticated_steps = Vec::new();
     let mut occurrence_steps = Vec::new();
+    let mut termination_steps = Vec::new();
     let mut word_ending = cli
         .word_ending
         .then(|| native_word_ending::Session::new(&model, prompt, cli.word_ending_source))
@@ -2870,6 +3158,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let mut context = prompt.to_vec();
     let decode_tokens = cli.pair_replay.project.map_or(cli.max_tokens, |_| 0);
     let mut generated_ids = Vec::with_capacity(decode_tokens);
+    let mut stopped_on_eos = false;
     let mut count_masses = Vec::new();
     #[cfg(feature = "p1-count-serving")]
     let mut p1_steps = Vec::new();
@@ -2973,11 +3262,13 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             committed_id
         } else if let Some(session) = &mut occurrence_writer {
             let (event, span_step) = session.step_with_commit(&context, |event| {
+                let before_release = event.committed_id;
                 if let Some(release) = &period_release {
                     if let Some(read) = release.apply(prompt, &authenticated_steps, event) {
                         release_read = Some(read);
                     }
                 }
+                let authorized = event.copied || event.committed_id != before_release;
                 let span_step = span_release
                     .as_mut()
                     .map(|span| span.step(event.committed_id))
@@ -2990,10 +3281,31 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                         event.copied = false;
                     }
                 }
+                if observe_termination {
+                    let site = termination_site(authorized, span_step.as_ref());
+                    let decision = native_termination::observe(
+                        &model,
+                        &context,
+                        event,
+                        cli.ordinary_termination,
+                        site,
+                    )?;
+                    if cli.ordinary_termination_trace {
+                        let mut trace = serde_json::to_value(decision)?;
+                        trace["assistant_offset"] = generated_ids.len().into();
+                        trace["prefix_start"] =
+                            (prompt.len() + generated_ids.len() - context.len()).into();
+                        trace["prefix_len"] = context.len().into();
+                        trace["writer"] = serde_json::to_value(&*event)?;
+                        termination_steps.push(trace);
+                    }
+                }
                 Ok(span_step)
             })?;
-            if let Some(step) = span_step.filter(|_| cli.native_occurrence_trace || use_interval) {
-                span_release_steps.push(step);
+            if let Some(step) =
+                span_step.filter(|_| cli.native_occurrence_trace || use_interval || use_termination)
+            {
+                span_release_steps.push(SpanReleaseTrace::new(step, event.committed_id));
             }
             let committed_id = event.committed_id;
             occurrence_event = Some(event);
@@ -3076,19 +3388,14 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
             authenticated_steps.extend(occurrence_event);
         }
         generated_ids.push(prediction);
-        if (occurrence_writer.is_some() || word_ending.is_some()) && prediction == native_copy::EOS
-        {
+        if discrete_eos_ends_generation(prediction, native_eos_enabled, text_eos_id) {
+            stopped_on_eos = true;
             break;
         }
-        #[cfg(feature = "p1-count-serving")]
-        if (p1.is_some() || p4.is_some()) && prediction == 1 {
-            break;
-        }
-        if text_mode
-            .as_ref()
-            .is_some_and(|(_, protocol, _)| prediction == protocol.eos_id)
-        {
-            break;
+        if prediction == native_copy::EOS && occurrence_writer.is_some() {
+            // A generate-only observer can trace the legacy raw-ID emitter,
+            // whose causal window includes EOS like any other ID.
+            occurrence_writer = Some(native_copy::Session::generate_only(&model)?);
         }
         if context.len() == context_limit {
             context.remove(0);
@@ -3138,7 +3445,7 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         record["decoding"] = native_span_release::SCHEMA.into();
         record["verified_span_release"] = serde_json::json!({
             "schema": native_span_release::SCHEMA,
-            "trace": cli.native_occurrence_trace,
+            "trace": cli.native_occurrence_trace || use_termination,
             "steps": span_release_steps,
         });
     }
@@ -3146,14 +3453,19 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         record["decoding"] = "greedy native occurrence disabled; frozen marker and trunk".into();
     }
     if use_interval {
-        record["decoding"] = interval
+        record["decoding"] = if interval
             .as_ref()
-            .map_or(native_interval::SCHEMA, |_| model.artifact_schema())
-            .into();
+            .is_some_and(|identity| identity.arm.is_directed())
+        {
+            native_interval::DIRECTED_SCHEMA
+        } else {
+            native_interval::SCHEMA
+        }
+        .into();
         let leading_space_reached = interval_leading_space
             .then(|| span_release_steps.first())
             .flatten()
-            .map(|step| step.event == native_span_release::Event::NativeSpace);
+            .map(|trace| trace.step.event == native_span_release::Event::NativeSpace);
         record["native_interval"] = serde_json::json!({
             "identity": interval,
             "selection": interval_selection,
@@ -3166,6 +3478,17 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     }
     if cli.native_occurrence_trace {
         record["native_occurrence_steps"] = serde_json::to_value(occurrence_steps)?;
+    }
+    if termination_identity.is_some() || cli.ordinary_termination_trace {
+        record["ordinary_termination"] = serde_json::json!({
+            "identity": termination_identity,
+            "mode": cli.ordinary_termination,
+            "steps": termination_steps,
+        });
+        if use_termination {
+            record["decoding"] = native_termination::SCHEMA.into();
+        }
+        record["stop"] = if stopped_on_eos { "eos" } else { "max_tokens" }.into();
     }
     if let Some(session) = word_ending {
         record["decoding"] = native_word_ending::DECODING.into();

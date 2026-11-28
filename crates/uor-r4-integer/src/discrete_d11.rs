@@ -38,6 +38,8 @@ pub mod native_opening;
 pub mod native_postperiod;
 pub mod native_source_choice;
 pub mod native_span_release;
+#[path = "discrete_d11/native_occurrence/termination.rs"]
+pub mod native_termination;
 pub mod native_whole_turn;
 pub mod native_word_ending;
 pub mod pair_rank;
@@ -1382,6 +1384,7 @@ pub struct IntegerDiscreteModel {
     interval: Option<native_interval::State>,
     source_choice: Option<native_source_choice::State>,
     word_ending: Option<native_word_ending::State>,
+    termination: Option<native_termination::State>,
     role_policy: Option<RolePolicy>,
     contextual_source: Option<contextual_source::SourcePolicy>,
     pair_rank: Option<pair_rank::Policy>,
@@ -2577,6 +2580,7 @@ impl IntegerDiscreteModel {
                 | native_interval::DIRECTED_SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
+                | native_termination::SCHEMA
         ) {
             let expected_body = expected_len
                 .map(|len| {
@@ -2585,6 +2589,9 @@ impl IntegerDiscreteModel {
                 })
                 .transpose()?;
             let mut model = match schema.as_str() {
+                native_termination::SCHEMA => {
+                    native_termination::read_from(&mut reader, &encoded_header, expected_body)?
+                }
                 native_interval::SCHEMA | native_interval::DIRECTED_SCHEMA => {
                     native_interval::read_from(&mut reader, &encoded_header, expected_body)?
                 }
@@ -2844,6 +2851,7 @@ impl IntegerDiscreteModel {
             interval: None,
             source_choice: None,
             word_ending: None,
+            termination: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -2897,6 +2905,7 @@ impl IntegerDiscreteModel {
                 | native_interval::DIRECTED_SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
+                | native_termination::SCHEMA
         ) {
             if !allow_role {
                 return Err(invalid("nested native opening artifacts are invalid"));
@@ -2904,6 +2913,9 @@ impl IntegerDiscreteModel {
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
             let mut model = match schema.as_str() {
+                native_termination::SCHEMA => {
+                    native_termination::read_from(&mut reader, encoded_header, expected_body)?
+                }
                 native_interval::SCHEMA | native_interval::DIRECTED_SCHEMA => {
                     native_interval::read_from(&mut reader, encoded_header, expected_body)?
                 }
@@ -3281,6 +3293,7 @@ impl IntegerDiscreteModel {
             interval: None,
             source_choice: None,
             word_ending: None,
+            termination: None,
             role_policy: None,
             contextual_source: None,
             pair_rank: None,
@@ -3359,6 +3372,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.termination.is_some() {
+            return native_termination::SCHEMA;
+        }
         if let Some(interval) = &self.interval {
             return interval.schema();
         }

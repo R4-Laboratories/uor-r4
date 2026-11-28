@@ -1,0 +1,971 @@
+{
+  "schema": "uor-r4.ordinary-termination-held-summary/1",
+  "artifacts": [
+    {
+      "name": "base",
+      "sha": "5c98e60db9011890d3dbce42f197c8703cfb75865e85ee61db2c364a8624c2aa",
+      "bytes": 1202177144,
+      "tokenizer_bytes": 265393
+    },
+    {
+      "name": "zero",
+      "sha": "f8d24991367ff9f356b58ee22b6bbec4ab335a2e8745d4bfb8fe7e7a57d9beab",
+      "bytes": 1202185796,
+      "tokenizer_bytes": 265393
+    },
+    {
+      "name": "geometry.1",
+      "sha": "da1955efba42af2039fe3762f9a14bfc0a07a96d7fc4d17ae33c3016df4e5c95",
+      "bytes": 1202185796,
+      "tokenizer_bytes": 265393
+    },
+    {
+      "name": "geometry.2",
+      "sha": "96d4744d4ac36e8a29b458d547ee368c8d552ce3ac4f37201222c5865ae55109",
+      "bytes": 1202185796,
+      "tokenizer_bytes": 265393
+    },
+    {
+      "name": "ordered.1",
+      "sha": "3ff25a0acf5406c391f41357746bd59952861029090ba6900a4570a1cd77fec7",
+      "bytes": 1202185795,
+      "tokenizer_bytes": 265393
+    },
+    {
+      "name": "ordered.2",
+      "sha": "289995c1f13ee01dec95c4aaf988c70127a3cd6fbf3e01568249195feb89d8cb",
+      "bytes": 1202185795,
+      "tokenizer_bytes": 265393
+    }
+  ],
+  "parity": {
+    "device_client_one_step_per_fit": 94,
+    "total_device_client_one_step": 376,
+    "off_boundary": 94,
+    "zero_boundary": 94,
+    "off_ordinary": 90,
+    "zero_ordinary": 90
+  },
+  "teacher_forced": {
+    "base": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 46,
+      "strict_pair_wins": 0,
+      "exact_next_id": 2,
+      "exact_eos": 0,
+      "exact_internal_content": 2,
+      "keep_on_internal_content": 46,
+      "missed_final_eos": 47,
+      "premature_eos": 1,
+      "agreement_with_native_ids": 94,
+      "flipped_label_correct_actions": 48,
+      "flipped_label_strict_pair_wins": 1
+    },
+    "fixed": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 46,
+      "strict_pair_wins": 0,
+      "exact_next_id": 5,
+      "exact_eos": 4,
+      "exact_internal_content": 1,
+      "keep_on_internal_content": 42,
+      "missed_final_eos": 43,
+      "premature_eos": 5,
+      "agreement_with_native_ids": 86,
+      "flipped_label_correct_actions": 48,
+      "flipped_label_strict_pair_wins": 1
+    },
+    "geometry.1": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 74,
+      "strict_pair_wins": 28,
+      "exact_next_id": 38,
+      "exact_eos": 38,
+      "exact_internal_content": 0,
+      "keep_on_internal_content": 36,
+      "missed_final_eos": 9,
+      "premature_eos": 11,
+      "agreement_with_native_ids": 46,
+      "flipped_label_correct_actions": 20,
+      "flipped_label_strict_pair_wins": 1,
+      "sign_correct_actions": 74,
+      "sign_pair_wins": 28,
+      "strictly_signed_pair_wins": 28,
+      "flipped_label_sign_correct_actions": 20,
+      "flipped_label_sign_pair_wins": 1,
+      "identical_key_pairs": 0,
+      "positive_scores": 49,
+      "negative_scores": 44,
+      "tie_scores": 1,
+      "stop_tie_scores": 1,
+      "keep_tie_scores": 0,
+      "score_range": {
+        "min": -20,
+        "max": 33
+      },
+      "stop_score_range": {
+        "min": -8,
+        "max": 33
+      },
+      "keep_score_range": {
+        "min": -20,
+        "max": 19
+      },
+      "stop_minus_keep_range": {
+        "min": -12,
+        "max": 46
+      }
+    },
+    "geometry.2": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 76,
+      "strict_pair_wins": 30,
+      "exact_next_id": 40,
+      "exact_eos": 39,
+      "exact_internal_content": 1,
+      "keep_on_internal_content": 37,
+      "missed_final_eos": 8,
+      "premature_eos": 10,
+      "agreement_with_native_ids": 46,
+      "flipped_label_correct_actions": 18,
+      "flipped_label_strict_pair_wins": 1,
+      "sign_correct_actions": 76,
+      "sign_pair_wins": 30,
+      "strictly_signed_pair_wins": 28,
+      "flipped_label_sign_correct_actions": 18,
+      "flipped_label_sign_pair_wins": 1,
+      "identical_key_pairs": 0,
+      "positive_scores": 49,
+      "negative_scores": 42,
+      "tie_scores": 3,
+      "stop_tie_scores": 0,
+      "keep_tie_scores": 3,
+      "score_range": {
+        "min": -22,
+        "max": 32
+      },
+      "stop_score_range": {
+        "min": -13,
+        "max": 32
+      },
+      "keep_score_range": {
+        "min": -22,
+        "max": 20
+      },
+      "stop_minus_keep_range": {
+        "min": -10,
+        "max": 52
+      }
+    },
+    "ordered.1": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 65,
+      "strict_pair_wins": 21,
+      "exact_next_id": 36,
+      "exact_eos": 35,
+      "exact_internal_content": 1,
+      "keep_on_internal_content": 30,
+      "missed_final_eos": 12,
+      "premature_eos": 17,
+      "agreement_with_native_ids": 43,
+      "flipped_label_correct_actions": 29,
+      "flipped_label_strict_pair_wins": 3,
+      "sign_correct_actions": 65,
+      "sign_pair_wins": 21,
+      "strictly_signed_pair_wins": 20,
+      "flipped_label_sign_correct_actions": 29,
+      "flipped_label_sign_pair_wins": 3,
+      "identical_key_pairs": 0,
+      "positive_scores": 52,
+      "negative_scores": 37,
+      "tie_scores": 5,
+      "stop_tie_scores": 4,
+      "keep_tie_scores": 1,
+      "score_range": {
+        "min": -15,
+        "max": 18
+      },
+      "stop_score_range": {
+        "min": -8,
+        "max": 18
+      },
+      "keep_score_range": {
+        "min": -15,
+        "max": 6
+      },
+      "stop_minus_keep_range": {
+        "min": -6,
+        "max": 24
+      }
+    },
+    "ordered.2": {
+      "rows": 94,
+      "pairs": 47,
+      "correct_actions": 67,
+      "strict_pair_wins": 25,
+      "exact_next_id": 36,
+      "exact_eos": 35,
+      "exact_internal_content": 1,
+      "keep_on_internal_content": 32,
+      "missed_final_eos": 12,
+      "premature_eos": 15,
+      "agreement_with_native_ids": 45,
+      "flipped_label_correct_actions": 27,
+      "flipped_label_strict_pair_wins": 5,
+      "sign_correct_actions": 67,
+      "sign_pair_wins": 25,
+      "strictly_signed_pair_wins": 24,
+      "flipped_label_sign_correct_actions": 27,
+      "flipped_label_sign_pair_wins": 5,
+      "identical_key_pairs": 0,
+      "positive_scores": 50,
+      "negative_scores": 41,
+      "tie_scores": 3,
+      "stop_tie_scores": 2,
+      "keep_tie_scores": 1,
+      "score_range": {
+        "min": -16,
+        "max": 19
+      },
+      "stop_score_range": {
+        "min": -10,
+        "max": 19
+      },
+      "keep_score_range": {
+        "min": -16,
+        "max": 6
+      },
+      "stop_minus_keep_range": {
+        "min": -12,
+        "max": 25
+      }
+    }
+  },
+  "self_fed": {
+    "base": {
+      "turns": 90,
+      "actual_eos": 2,
+      "premature_eos": 2,
+      "late_eos": 0,
+      "cap": 88,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 0,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 58
+        },
+        {
+          "step": 2,
+          "count": 32
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 19
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 8
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 0,
+        "later": 0,
+        "same": 90
+      }
+    },
+    "fixed_punctuation_reconstruction": {
+      "turns": 90,
+      "actual_eos": 18,
+      "premature_eos": 16,
+      "late_eos": 0,
+      "cap": 72,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 0,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 58
+        },
+        {
+          "step": 2,
+          "count": 32
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 19
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 8
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 0,
+        "later": 0,
+        "same": 90
+      }
+    },
+    "off": {
+      "turns": 90,
+      "actual_eos": 2,
+      "premature_eos": 2,
+      "late_eos": 0,
+      "cap": 88,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 0,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 58
+        },
+        {
+          "step": 2,
+          "count": 32
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 19
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 8
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 0,
+        "later": 0,
+        "same": 90
+      }
+    },
+    "zero": {
+      "turns": 90,
+      "actual_eos": 2,
+      "premature_eos": 2,
+      "late_eos": 0,
+      "cap": 88,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 0,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 58
+        },
+        {
+          "step": 2,
+          "count": 32
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 19
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 8
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 0,
+        "later": 0,
+        "same": 90
+      }
+    },
+    "geometry.1": {
+      "turns": 90,
+      "actual_eos": 90,
+      "premature_eos": 81,
+      "late_eos": 8,
+      "cap": 0,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 18,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 61
+        },
+        {
+          "step": 2,
+          "count": 29
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 15
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 7
+        },
+        {
+          "expected": 223,
+          "emitted": 1,
+          "count": 6
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 5
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 287,
+          "emitted": 1,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 62,
+          "emitted": 1,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 3,
+        "later": 0,
+        "same": 87
+      }
+    },
+    "geometry.2": {
+      "turns": 90,
+      "actual_eos": 90,
+      "premature_eos": 82,
+      "late_eos": 5,
+      "cap": 0,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 23,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 65
+        },
+        {
+          "step": 2,
+          "count": 25
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 12
+        },
+        {
+          "expected": 223,
+          "emitted": 1,
+          "count": 9
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 5
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 62,
+          "emitted": 1,
+          "count": 3
+        },
+        {
+          "expected": 287,
+          "emitted": 1,
+          "count": 3
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 7,
+        "later": 0,
+        "same": 83
+      }
+    },
+    "ordered.1": {
+      "turns": 90,
+      "actual_eos": 90,
+      "premature_eos": 88,
+      "late_eos": 2,
+      "cap": 0,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 24,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 58
+        },
+        {
+          "step": 2,
+          "count": 32
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 1,
+          "count": 12
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 7
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 7
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 1,
+          "count": 3
+        },
+        {
+          "expected": 5,
+          "emitted": 1,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 1,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 0,
+        "later": 0,
+        "same": 90
+      }
+    },
+    "ordered.2": {
+      "turns": 90,
+      "actual_eos": 90,
+      "premature_eos": 88,
+      "late_eos": 2,
+      "cap": 0,
+      "over_budget_references": 27,
+      "genuine_history": 0,
+      "supervised_reference_eos": 90,
+      "exact_through_eos": 0,
+      "first_wrong_is_premature_eos": 17,
+      "reached_but_missed_reference_eos": 0,
+      "first_wrong_at": [
+        {
+          "step": 1,
+          "count": 59
+        },
+        {
+          "step": 2,
+          "count": 31
+        }
+      ],
+      "common_first_wrong_ids": [
+        {
+          "expected": 62,
+          "emitted": 1,
+          "count": 10
+        },
+        {
+          "expected": 62,
+          "emitted": 223,
+          "count": 9
+        },
+        {
+          "expected": 223,
+          "emitted": 5,
+          "count": 8
+        },
+        {
+          "expected": 287,
+          "emitted": 223,
+          "count": 7
+        },
+        {
+          "expected": 1042,
+          "emitted": 223,
+          "count": 4
+        },
+        {
+          "expected": 12,
+          "emitted": 223,
+          "count": 2
+        },
+        {
+          "expected": 20,
+          "emitted": 1,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 21,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 31,
+          "count": 2
+        },
+        {
+          "expected": 223,
+          "emitted": 808,
+          "count": 2
+        },
+        {
+          "expected": 265,
+          "emitted": 386,
+          "count": 2
+        },
+        {
+          "expected": 290,
+          "emitted": 223,
+          "count": 2
+        }
+      ],
+      "first_error_vs_base": {
+        "earlier": 1,
+        "later": 0,
+        "same": 89
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "updated_client": "21db5f422d94c9edd682d0bbaca043f2357fddf00be5538511272fa2d2e28744",
+  "receipt": "e08f8f8d6c41cd474c89f07e31d600291cbb477445138abc3935ad1f0498ca50",
+  "observed_ids": [
+    1044,
+    1
+  ],
+  "frozen_ids": [
+    1044,
+    1
+  ],
+  "released_span_proposal": 316,
+  "final_committed_id": 1
+}
