@@ -1,0 +1,552 @@
+{
+  "checkpoints": [
+    {
+      "name": "frozen",
+      "sha256": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+      "step": 3333
+    },
+    {
+      "name": "reset",
+      "sha256": "3656e0575bd9e590e63305000e6f03ca010e1a663d6ac45d9061961f9a356bc2",
+      "step": 3397
+    },
+    {
+      "name": "preserved",
+      "sha256": "8e0721cc8b989f12af9c80b88dfac53c3a33701e6a3e8e7d2d26d2dec7fd1340",
+      "step": 3397
+    }
+  ],
+  "comparisons": {
+    "frozen_to_preserved": {
+      "coarse_cell_3": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 142,
+          "output_row_movement": 114
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 1247279574478,
+          "max_absolute": 12336841554,
+          "median_times_two": 10416360298,
+          "negative": 17,
+          "positive": 239,
+          "signed_total": 1215319354218,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 663506043034,
+          "max_absolute": 8769047920,
+          "median_times_two": 4708391478,
+          "negative": 29,
+          "positive": 227,
+          "signed_total": 601173341496,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 370077,
+          "max_absolute": 5080,
+          "median_times_two": -2023,
+          "negative": 180,
+          "positive": 76,
+          "signed_total": -224675,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 356692,
+          "max_absolute": 3192,
+          "median_times_two": 2749,
+          "negative": 2,
+          "positive": 254,
+          "signed_total": 354836,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 594751,
+          "max_absolute": 5882,
+          "median_times_two": 4968,
+          "negative": 17,
+          "positive": 239,
+          "signed_total": 579511,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 614146012722,
+          "max_absolute": 3679969155,
+          "median_times_two": 6934519866,
+          "negative": 0,
+          "positive": 256,
+          "signed_total": 614146012722,
+          "zero": 0
+        },
+        "paired_rows": 256,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 248335446,
+          "max_absolute": 2920454,
+          "median_times_two": 53882,
+          "negative": 124,
+          "positive": 132,
+          "signed_total": 3298454,
+          "zero": 0
+        }
+      },
+      "fine_excluded_unobserved_at_either_endpoint": 198,
+      "fine_id_1228": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 46,
+          "output_row_movement": 12
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 359097661026,
+          "max_absolute": 15009960162,
+          "median_times_two": 3839943740,
+          "negative": 12,
+          "positive": 46,
+          "signed_total": 334960328186,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 663264955881,
+          "max_absolute": 20165335062,
+          "median_times_two": 15928330013,
+          "negative": 0,
+          "positive": 58,
+          "signed_total": 663264955881,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 172837,
+          "max_absolute": 6689,
+          "median_times_two": 1137,
+          "negative": 28,
+          "positive": 30,
+          "signed_total": -65997,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 93732,
+          "max_absolute": 2857,
+          "median_times_two": 3292,
+          "negative": 0,
+          "positive": 58,
+          "signed_total": 93732,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 171237,
+          "max_absolute": 7158,
+          "median_times_two": 1832,
+          "negative": 12,
+          "positive": 46,
+          "signed_total": 159729,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 328304627695,
+          "max_absolute": 6252754198,
+          "median_times_two": -12003570805,
+          "negative": 58,
+          "positive": 0,
+          "signed_total": -328304627695,
+          "zero": 0
+        },
+        "paired_rows": 58,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 68468910,
+          "max_absolute": 3003358,
+          "median_times_two": 888710,
+          "negative": 24,
+          "positive": 34,
+          "signed_total": 15663622,
+          "zero": 0
+        }
+      },
+      "fine_left_right_physical_cell_3_visibility": {
+        "elected_and_target / elected_and_target": 2,
+        "elected_only / elected_only": 12,
+        "target_only / elected_and_target": 44,
+        "unobserved / elected_only": 196,
+        "unobserved / unobserved": 2
+      }
+    },
+    "frozen_to_reset": {
+      "coarse_cell_3": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 180,
+          "output_row_movement": 76
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 1240314996328,
+          "max_absolute": 13009452252,
+          "median_times_two": 9495818570,
+          "negative": 17,
+          "positive": 239,
+          "signed_total": 1220232370140,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 744061146564,
+          "max_absolute": 9195039288,
+          "median_times_two": 5388864055,
+          "negative": 28,
+          "positive": 228,
+          "signed_total": 695845606332,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 358040,
+          "max_absolute": 5080,
+          "median_times_two": -821,
+          "negative": 145,
+          "positive": 111,
+          "signed_total": -109622,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 472550,
+          "max_absolute": 3146,
+          "median_times_two": 3732,
+          "negative": 1,
+          "positive": 255,
+          "signed_total": 472234,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 591428,
+          "max_absolute": 6203,
+          "median_times_two": 4528,
+          "negative": 17,
+          "positive": 239,
+          "signed_total": 581856,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 524386763808,
+          "max_absolute": 3913972140,
+          "median_times_two": 1427123049,
+          "negative": 0,
+          "positive": 256,
+          "signed_total": 524386763808,
+          "zero": 0
+        },
+        "paired_rows": 256,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 238742900,
+          "max_absolute": 3353946,
+          "median_times_two": -3610,
+          "negative": 128,
+          "positive": 128,
+          "signed_total": 8103972,
+          "zero": 0
+        }
+      },
+      "fine_excluded_unobserved_at_either_endpoint": 198,
+      "fine_id_1228": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 52,
+          "output_row_movement": 6
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 476953207324,
+          "max_absolute": 18701629832,
+          "median_times_two": 20905736282,
+          "negative": 6,
+          "positive": 52,
+          "signed_total": 462732913996,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 769286199212,
+          "max_absolute": 24560519222,
+          "median_times_two": 30752009108,
+          "negative": 0,
+          "positive": 58,
+          "signed_total": 769286199212,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 195424,
+          "max_absolute": 7349,
+          "median_times_two": -7266,
+          "negative": 41,
+          "positive": 17,
+          "signed_total": -136270,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 84383,
+          "max_absolute": 2447,
+          "median_times_two": 3153,
+          "negative": 0,
+          "positive": 58,
+          "signed_total": 84383,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 227429,
+          "max_absolute": 8918,
+          "median_times_two": 9968,
+          "negative": 6,
+          "positive": 52,
+          "signed_total": 220653,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 306553285216,
+          "max_absolute": 6358482815,
+          "median_times_two": -9806240049,
+          "negative": 58,
+          "positive": 0,
+          "signed_total": -306553285216,
+          "zero": 0
+        },
+        "paired_rows": 58,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 60724212,
+          "max_absolute": 2544570,
+          "median_times_two": 582020,
+          "negative": 24,
+          "positive": 34,
+          "signed_total": 9966260,
+          "zero": 0
+        }
+      },
+      "fine_left_right_physical_cell_3_visibility": {
+        "elected_and_target / elected_and_target": 2,
+        "elected_only / elected_only": 12,
+        "target_only / elected_and_target": 44,
+        "unobserved / elected_only": 197,
+        "unobserved / unobserved": 1
+      }
+    },
+    "reset_to_preserved": {
+      "coarse_cell_3": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 251,
+          "output_row_movement": 5
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 276470447320,
+          "max_absolute": 2450756748,
+          "median_times_two": -2190840422,
+          "negative": 250,
+          "positive": 6,
+          "signed_total": -275027137436,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 260325170337,
+          "max_absolute": 2286835920,
+          "median_times_two": -2061615070,
+          "negative": 253,
+          "positive": 3,
+          "signed_total": -259150764409,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 485989,
+          "max_absolute": 3256,
+          "median_times_two": 3837,
+          "negative": 0,
+          "positive": 256,
+          "signed_total": 485989,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 356692,
+          "max_absolute": 3192,
+          "median_times_two": 2749,
+          "negative": 2,
+          "positive": 254,
+          "signed_total": 354836,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 131841,
+          "max_absolute": 1168,
+          "median_times_two": -1044,
+          "negative": 250,
+          "positive": 6,
+          "signed_total": -131153,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 35325278413,
+          "max_absolute": 171777931,
+          "median_times_two": -323884729,
+          "negative": 156,
+          "positive": 100,
+          "signed_total": -15876373027,
+          "zero": 0
+        },
+        "paired_rows": 256,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 253733928,
+          "max_absolute": 3542736,
+          "median_times_two": -288076,
+          "negative": 137,
+          "positive": 119,
+          "signed_total": -20638820,
+          "zero": 0
+        }
+      },
+      "fine_excluded_unobserved_at_either_endpoint": 2,
+      "fine_id_1228": {
+        "absolute_term_dominance": {
+          "equal": 0,
+          "hidden_change": 203,
+          "output_row_movement": 51
+        },
+        "clamped_scores_left_and_right_candidate_then_rival": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "exact_gap_delta_numerator": {
+          "absolute_total": 106522602718,
+          "max_absolute": 1509663002,
+          "median_times_two": 539945132,
+          "negative": 63,
+          "positive": 191,
+          "signed_total": 73309487318,
+          "zero": 0
+        },
+        "four_endpoint_scores_verified_per_row": true,
+        "hidden_change_numerator": {
+          "absolute_total": 136906151317,
+          "max_absolute": 1785667183,
+          "median_times_two": 672498600,
+          "negative": 78,
+          "positive": 176,
+          "signed_total": 93335015957,
+          "zero": 0
+        },
+        "observed_left_gap_q15_words": {
+          "absolute_total": 385935,
+          "max_absolute": 2605,
+          "median_times_two": 3170,
+          "negative": 2,
+          "positive": 252,
+          "signed_total": 382147,
+          "zero": 0
+        },
+        "observed_right_gap_q15_words": {
+          "absolute_total": 420815,
+          "max_absolute": 2857,
+          "median_times_two": 3382,
+          "negative": 1,
+          "positive": 253,
+          "signed_total": 417113,
+          "zero": 0
+        },
+        "observed_rounded_gap_delta_q15_words": {
+          "absolute_total": 50796,
+          "max_absolute": 720,
+          "median_times_two": 256,
+          "negative": 63,
+          "positive": 191,
+          "signed_total": 34966,
+          "zero": 0
+        },
+        "output_rows_movement_numerator": {
+          "absolute_total": 51160223679,
+          "max_absolute": 298198382,
+          "median_times_two": -284544447,
+          "negative": 128,
+          "positive": 126,
+          "signed_total": -20025528639,
+          "zero": 0
+        },
+        "paired_rows": 254,
+        "rounding_and_clamp_residual_numerator": {
+          "absolute_total": 256003238,
+          "max_absolute": 3353280,
+          "median_times_two": 295004,
+          "negative": 117,
+          "positive": 137,
+          "signed_total": 19529514,
+          "zero": 0
+        }
+      },
+      "fine_left_right_physical_cell_3_visibility": {
+        "elected_and_target / elected_and_target": 46,
+        "elected_only / elected_only": 208,
+        "elected_only / unobserved": 1,
+        "unobserved / unobserved": 1
+      }
+    }
+  },
+  "cubin_sha256": "8f5ab22af0074c38c582b17b1f92b5e5dff906b2bb366dccdadb99df7e23c713",
+  "head_dot_shift": 20,
+  "hidden_scope": "net change in the physically captured post-head-projection hidden vector, including effects from input embeddings and all preceding operations",
+  "input_train_physical_jsonl_sha256": "860c2ad83cc5aa40486f47e567a2510f11ab46fd1bd8182b9b7c0594a9170e0f",
+  "kind": "supplemental post-registration exact paired endpoint algebra",
+  "numerator_units_per_unrounded_q15_score_word": 2097152,
+  "rival_rule": "strongest admissible right-endpoint other by physical score, first slot on ties, kept fixed at left endpoint",
+  "train_sha256": "f96cc65ed0fd76c6cb9f75b5434ef6a0d7edc65d42ec01a4145781e2d2a94f4a",
+  "unit": "signed exact raw-dot numerator with 2^(head_dot_shift+1) numerator units per unrounded Q15 score word",
+  "weight_scope": "net movement of the candidate and fixed rival row weights in the scored head"
+}

@@ -1,0 +1,305 @@
+{
+  "frozen": {
+    "admitted_fine": {
+      "articles": 34,
+      "correct_assignment": {
+        "both_strict": 22,
+        "negative": 138,
+        "positive": 175,
+        "sum_q15": 45632,
+        "tied": 0
+      },
+      "distinct_label_pairs": 313,
+      "rotations": {
+        "at_or_above_observed_positive": 7,
+        "both_strict": {
+          "max": 33,
+          "median_lower": 10,
+          "median_upper": 10,
+          "min": 0
+        },
+        "count": 30,
+        "positive": {
+          "max": 233,
+          "median_lower": 154,
+          "median_upper": 156,
+          "min": 89
+        },
+        "sum_q15": {
+          "max": 154488,
+          "median_lower": -14183,
+          "median_upper": -14152,
+          "min": -146491
+        }
+      }
+    },
+    "coarse": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 361,
+        "negative": 14612,
+        "positive": 14850,
+        "sum_q15": 123993,
+        "tied": 8
+      },
+      "distinct_label_pairs": 29470,
+      "rotations": {
+        "at_or_above_observed_positive": 115,
+        "both_strict": {
+          "max": 910,
+          "median_lower": 555,
+          "median_upper": 555,
+          "min": 272
+        },
+        "count": 255,
+        "positive": {
+          "max": 16647,
+          "median_lower": 14734,
+          "median_upper": 14734,
+          "min": 12978
+        },
+        "sum_q15": {
+          "max": 7012441,
+          "median_lower": 58969,
+          "median_upper": 58969,
+          "min": -6613927
+        }
+      }
+    },
+    "conditional_fine": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 68,
+        "negative": 1245,
+        "positive": 1391,
+        "sum_q15": 161803,
+        "tied": 0
+      },
+      "distinct_label_pairs": 2636,
+      "rotations": {
+        "at_or_above_observed_positive": 5,
+        "both_strict": {
+          "max": 104,
+          "median_lower": 63,
+          "median_upper": 63,
+          "min": 32
+        },
+        "count": 45,
+        "positive": {
+          "max": 1493,
+          "median_lower": 1337,
+          "median_upper": 1337,
+          "min": 1110
+        },
+        "sum_q15": {
+          "max": 365456,
+          "median_lower": 3907,
+          "median_upper": 3907,
+          "min": -512641
+        }
+      }
+    }
+  },
+  "preserved": {
+    "admitted_fine": {
+      "articles": 46,
+      "correct_assignment": {
+        "both_strict": 50,
+        "negative": 418,
+        "positive": 485,
+        "sum_q15": 65238,
+        "tied": 2
+      },
+      "distinct_label_pairs": 905,
+      "rotations": {
+        "at_or_above_observed_positive": 10,
+        "both_strict": {
+          "max": 86,
+          "median_lower": 46,
+          "median_upper": 46,
+          "min": 13
+        },
+        "count": 45,
+        "positive": {
+          "max": 570,
+          "median_lower": 446,
+          "median_upper": 446,
+          "min": 378
+        },
+        "sum_q15": {
+          "max": 177754,
+          "median_lower": -82,
+          "median_upper": -82,
+          "min": -172306
+        }
+      }
+    },
+    "coarse": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 543,
+        "negative": 12135,
+        "positive": 17321,
+        "sum_q15": 4475366,
+        "tied": 14
+      },
+      "distinct_label_pairs": 29470,
+      "rotations": {
+        "at_or_above_observed_positive": 0,
+        "both_strict": {
+          "max": 654,
+          "median_lower": 397,
+          "median_upper": 397,
+          "min": 214
+        },
+        "count": 255,
+        "positive": {
+          "max": 16974,
+          "median_lower": 14702,
+          "median_upper": 14702,
+          "min": 12813
+        },
+        "sum_q15": {
+          "max": 4730342,
+          "median_lower": -79642,
+          "median_upper": -79642,
+          "min": -3961882
+        }
+      }
+    },
+    "conditional_fine": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 76,
+        "negative": 1160,
+        "positive": 1473,
+        "sum_q15": 276725,
+        "tied": 3
+      },
+      "distinct_label_pairs": 2636,
+      "rotations": {
+        "at_or_above_observed_positive": 0,
+        "both_strict": {
+          "max": 105,
+          "median_lower": 63,
+          "median_upper": 63,
+          "min": 30
+        },
+        "count": 45,
+        "positive": {
+          "max": 1420,
+          "median_lower": 1314,
+          "median_upper": 1314,
+          "min": 1145
+        },
+        "sum_q15": {
+          "max": 182365,
+          "median_lower": -17718,
+          "median_upper": -17718,
+          "min": -273308
+        }
+      }
+    }
+  },
+  "reset": {
+    "admitted_fine": {
+      "articles": 47,
+      "correct_assignment": {
+        "both_strict": 24,
+        "negative": 428,
+        "positive": 477,
+        "sum_q15": 40220,
+        "tied": 0
+      },
+      "distinct_label_pairs": 905,
+      "rotations": {
+        "at_or_above_observed_positive": 12,
+        "both_strict": {
+          "max": 51,
+          "median_lower": 24,
+          "median_upper": 24,
+          "min": 2
+        },
+        "count": 45,
+        "positive": {
+          "max": 591,
+          "median_lower": 452,
+          "median_upper": 452,
+          "min": 363
+        },
+        "sum_q15": {
+          "max": 230108,
+          "median_lower": -6976,
+          "median_upper": -6976,
+          "min": -161076
+        }
+      }
+    },
+    "coarse": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 447,
+        "negative": 12621,
+        "positive": 16828,
+        "sum_q15": 3482973,
+        "tied": 21
+      },
+      "distinct_label_pairs": 29470,
+      "rotations": {
+        "at_or_above_observed_positive": 2,
+        "both_strict": {
+          "max": 610,
+          "median_lower": 400,
+          "median_upper": 400,
+          "min": 233
+        },
+        "count": 255,
+        "positive": {
+          "max": 17308,
+          "median_lower": 14714,
+          "median_upper": 14714,
+          "min": 13021
+        },
+        "sum_q15": {
+          "max": 4864349,
+          "median_lower": 74333,
+          "median_upper": 74333,
+          "min": -3548579
+        }
+      }
+    },
+    "conditional_fine": {
+      "articles": 256,
+      "correct_assignment": {
+        "both_strict": 38,
+        "negative": 1194,
+        "positive": 1441,
+        "sum_q15": 218414,
+        "tied": 1
+      },
+      "distinct_label_pairs": 2636,
+      "rotations": {
+        "at_or_above_observed_positive": 0,
+        "both_strict": {
+          "max": 79,
+          "median_lower": 44,
+          "median_upper": 44,
+          "min": 15
+        },
+        "count": 45,
+        "positive": {
+          "max": 1430,
+          "median_lower": 1305,
+          "median_upper": 1305,
+          "min": 1159
+        },
+        "sum_q15": {
+          "max": 165065,
+          "median_lower": -30260,
+          "median_upper": -30260,
+          "min": -270442
+        }
+      }
+    }
+  }
+}

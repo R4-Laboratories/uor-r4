@@ -1,0 +1,5 @@
+# Exploratory target support only
+
+Freeze before the first exploratory yield. Use the exact same inputs, partition, family assignment, genuine history, protocol, target opener, context cap, chunk restriction and complete token-overlap screens as SELECTOR.md. Only the history support filter changes. Preserve every authentic previous assistant answer and earlier role marker verbatim, including source responses such as yes/no and other abstractive replies. The target alone must rejoin its original source annotation and occur as consecutive normalized words in that authenticated span. This retrospective data endpoint diagnoses the eligibility cost of demanding extractive preceding replies. It does not revise the strict selector or authorize a training run.
+
+For the independent graph recount, expose only the resulting private graph rows, grouped by exact literal question and retaining complete normalized answer, original component hash, split, family split, original target ordinal, stratum and actual first content ID. Compare the separately implemented graph counts with both derived selector versions. Preserve all raw rows on Wick.

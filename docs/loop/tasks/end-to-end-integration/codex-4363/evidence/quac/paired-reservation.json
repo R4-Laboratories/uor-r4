@@ -1,0 +1,73 @@
+{
+  "chronology_exclusions": {
+    "held_pairs_touching_initial_train_target_family": 2,
+    "train_pairs_touching_initial_held_target_family": 9
+  },
+  "confirmation": "official QuAC VAL unopened",
+  "evidence_class": "exploratory graph-first source reservation; public QuAC TRAIN only; no model execution",
+  "final": {
+    "held": {
+      "components": 52,
+      "distinct_first_content_ids": 33,
+      "native_label_comparisons": {
+        "different_coarse_different_fine": 23,
+        "different_coarse_same_fine": 1,
+        "same_coarse_different_fine": 2
+      },
+      "near_far_pairs": 0,
+      "normalized_target_families": 21,
+      "pairs": 26,
+      "pairs_with_a_prior_cannotanswer": 15,
+      "pairs_with_both_prior_cannotanswer": 7,
+      "same_ordinal_pairs": 11,
+      "tied_top_families": 1,
+      "top_family_denominator": 26,
+      "top_family_pairs": 3,
+      "yes_no_metadata": {
+        "both_neutral_x": 8,
+        "both_yesno_marked": 10,
+        "one_yesno_marked": 8
+      }
+    },
+    "held_earlier_question_overlap_with_surviving_train_target": 0,
+    "selected_component_overlap": 0,
+    "selected_target_family_overlap": 0,
+    "train": {
+      "components": 202,
+      "distinct_first_content_ids": 73,
+      "native_label_comparisons": {
+        "different_coarse_different_fine": 86,
+        "different_coarse_same_fine": 5,
+        "same_coarse_different_fine": 10
+      },
+      "near_far_pairs": 0,
+      "normalized_target_families": 18,
+      "pairs": 101,
+      "pairs_with_a_prior_cannotanswer": 76,
+      "pairs_with_both_prior_cannotanswer": 25,
+      "same_ordinal_pairs": 34,
+      "tied_top_families": 1,
+      "top_family_denominator": 101,
+      "top_family_pairs": 83,
+      "yes_no_metadata": {
+        "both_neutral_x": 17,
+        "both_yesno_marked": 38,
+        "one_yesno_marked": 46
+      }
+    },
+    "train_earlier_question_overlap_with_surviving_held_target": 0
+  },
+  "global_components": 276,
+  "global_normalized_families": 43,
+  "global_pair_count": 138,
+  "global_witnesses_sha256": "a9da13ed212cfbab07c7daae9513c78bba1263719c0016e5a9039bc3ecf80e72",
+  "initial": {
+    "held_families": 23,
+    "held_pairs": 28,
+    "scaled_absolute_deviation_from_4_to_1_target": 2,
+    "train_families": 20,
+    "train_pairs": 110
+  },
+  "label_permutation_artifact_sha256": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+  "selector_sha256": "b439cafa59888a690cdc9cbf7bb261677d29205ad93954a66d82c5e3e7c20a28"
+}

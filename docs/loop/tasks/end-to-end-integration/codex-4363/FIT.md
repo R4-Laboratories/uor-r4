@@ -1,0 +1,5 @@
+# Non-author instrument review
+
+[codex] Independent reviewer `quote_margin_fit` examined the pre-registration and the runner before physical scoring. The original host tie sorter alone could not validate a model observation. The revised instrument plants an exact tie, both one-word directions, and exclusion cases in the actual scorer. It compares native state, elected slots and scores with the registered expectations, then requires the historical replay. The real decision uses constant placeholders. Reference and elected labels request diagnostic rows in a separate launch. A third launch repeats the original placeholders. The raw hidden words and independent signatures are retained for recount.
+
+[codex] FIT is conditional on successful physical calibration, matching input and code hashes, and complete row coverage. The fine margin is conditional on reaching its group. The recovered derivatives describe a loss at observed scores. Attribution to a particular historical optimizer step requires separate evidence. A failed control, including a differing unlabelled transition, invalidates model interpretation.

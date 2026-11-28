@@ -1,0 +1,13 @@
+{
+  "audit": "independent validation of whole family groups, optimal 4:1 count, both original chronology filters and witness membership",
+  "dropped_held_pairs": 2,
+  "dropped_train_pairs": 9,
+  "final_held_pairs": 26,
+  "final_train_pairs": 101,
+  "global_pairs": 138,
+  "global_unique_article_components": 276,
+  "initial_held_pairs": 28,
+  "initial_train_pairs": 110,
+  "minimum_attainable_scaled_imbalance": 2,
+  "normalized_target_families": 43
+}

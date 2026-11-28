@@ -1,0 +1,516 @@
+{
+  "arms": {
+    "frozen": {
+      "all": {
+        "cell3_coarse_gap": {
+          "max": 461,
+          "median_lower": -1566,
+          "median_upper": -1554,
+          "min": -5080
+        },
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": {
+            "max": 4809,
+            "median_lower": 1480,
+            "median_upper": 1481,
+            "min": 1
+          },
+          "strict_larger": 255,
+          "strict_one_word": 1,
+          "tie": 0
+        },
+        "coarse_target_gap": {
+          "max": 3149,
+          "median_lower": -6282,
+          "median_upper": -5907,
+          "min": -31726
+        },
+        "conditional_gold_rank_one": 39,
+        "elected_cell3": 14,
+        "elected_fine_supervised": 34,
+        "fine_margin": {
+          "distribution": {
+            "max": 7857,
+            "median_lower": 4739,
+            "median_upper": 4773,
+            "min": 764
+          },
+          "strict_larger": 256,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": {
+          "max": 15950,
+          "median_lower": -6698,
+          "median_upper": -6387,
+          "min": -42366
+        },
+        "first_id_correct": 1,
+        "first_id_counts": {
+          "223": 238,
+          "287": 14,
+          "301": 4
+        },
+        "gold_cell_admissions": 34,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 256,
+        "rows": 256
+      },
+      "matched_against_frozen": null,
+      "quote": {
+        "cell3_coarse_gap": null,
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": null,
+          "strict_larger": 0,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "coarse_target_gap": null,
+        "conditional_gold_rank_one": 0,
+        "elected_cell3": 0,
+        "elected_fine_supervised": 0,
+        "fine_margin": {
+          "distribution": null,
+          "strict_larger": 0,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": null,
+        "first_id_correct": 0,
+        "first_id_counts": {},
+        "gold_cell_admissions": 0,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 0,
+        "rows": 0
+      }
+    },
+    "preserved": {
+      "all": {
+        "cell3_coarse_gap": {
+          "max": 3192,
+          "median_lower": 1374,
+          "median_upper": 1375,
+          "min": -585
+        },
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": {
+            "max": 3192,
+            "median_lower": 1374,
+            "median_upper": 1375,
+            "min": 70
+          },
+          "strict_larger": 256,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "coarse_target_gap": {
+          "max": 2707,
+          "median_lower": -3500,
+          "median_upper": -3466,
+          "min": -32625
+        },
+        "conditional_gold_rank_one": 41,
+        "elected_cell3": 254,
+        "elected_fine_supervised": 46,
+        "fine_margin": {
+          "distribution": {
+            "max": 4073,
+            "median_lower": 1690,
+            "median_upper": 1692,
+            "min": 35
+          },
+          "strict_larger": 256,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": {
+          "max": 10623,
+          "median_lower": -5010,
+          "median_upper": -4980,
+          "min": -21777
+        },
+        "first_id_correct": 0,
+        "first_id_counts": {
+          "1228": 253,
+          "201": 1,
+          "340": 1,
+          "598": 1
+        },
+        "gold_cell_admissions": 46,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 256,
+        "rows": 256
+      },
+      "matched_against_frozen": {
+        "cell3_coarse_admission": {
+          "gains": 240,
+          "losses": 0
+        },
+        "cell3_coarse_gap_delta": {
+          "max": 5882,
+          "median_lower": 3037,
+          "median_upper": 3041,
+          "min": 525
+        },
+        "changed_first_ids": 256,
+        "coarse_gold_gap_delta": {
+          "max": 15388,
+          "median_lower": 2143,
+          "median_upper": 2187,
+          "min": -9339
+        },
+        "fine_gold_gap_delta": {
+          "max": 27052,
+          "median_lower": 4737,
+          "median_upper": 4777,
+          "min": -11079
+        },
+        "first_id_correct": {
+          "gains": 0,
+          "losses": 1
+        },
+        "gold_cell_admission": {
+          "gains": 44,
+          "losses": 32
+        },
+        "matched_id1228_gap_when_both_elected_cell3": {
+          "delta": {
+            "max": 10324,
+            "median_lower": 8557,
+            "median_upper": 8741,
+            "min": 7971
+          },
+          "frozen": {
+            "max": -6086,
+            "median_lower": -7213,
+            "median_upper": -7165,
+            "min": -7996
+          },
+          "gained": 14,
+          "lost": 0,
+          "rows": 14,
+          "trained": {
+            "max": 2509,
+            "median_lower": 1344,
+            "median_upper": 1571,
+            "min": 649
+          },
+          "unchanged": 0
+        },
+        "matched_id1228_gap_when_both_traces_record_cell3": {
+          "delta": {
+            "max": 10324,
+            "median_lower": 8517,
+            "median_upper": 8557,
+            "min": 6995
+          },
+          "frozen": {
+            "max": -5174,
+            "median_lower": -6960,
+            "median_upper": -6958,
+            "min": -8369
+          },
+          "gained": 58,
+          "lost": 0,
+          "rows": 58,
+          "trained": {
+            "max": 2857,
+            "median_lower": 1638,
+            "median_upper": 1654,
+            "min": 35
+          },
+          "unchanged": 0
+        },
+        "trained_quote_frozen_origin": {
+          "frozen_other_cell": 239,
+          "frozen_quote_lost_on_score": 14
+        },
+        "trained_quote_gap_delta_when_frozen_admitted_quote_cell": {
+          "max": 10324,
+          "median_lower": 8557,
+          "median_upper": 8741,
+          "min": 7971
+        }
+      },
+      "quote": {
+        "cell3_coarse_gap": {
+          "max": 3192,
+          "median_lower": 1377,
+          "median_upper": 1377,
+          "min": 70
+        },
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": {
+            "max": 3192,
+            "median_lower": 1377,
+            "median_upper": 1377,
+            "min": 70
+          },
+          "strict_larger": 253,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "coarse_target_gap": {
+          "max": 2707,
+          "median_lower": -3505,
+          "median_upper": -3505,
+          "min": -32625
+        },
+        "conditional_gold_rank_one": 40,
+        "elected_cell3": 253,
+        "elected_fine_supervised": 46,
+        "fine_margin": {
+          "distribution": {
+            "max": 2857,
+            "median_lower": 1692,
+            "median_upper": 1692,
+            "min": 35
+          },
+          "strict_larger": 253,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": {
+          "max": 10623,
+          "median_lower": -4980,
+          "median_upper": -4980,
+          "min": -21777
+        },
+        "first_id_correct": 0,
+        "first_id_counts": {
+          "1228": 253
+        },
+        "gold_cell_admissions": 46,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 253,
+        "rows": 253
+      }
+    },
+    "reset": {
+      "all": {
+        "cell3_coarse_gap": {
+          "max": 3146,
+          "median_lower": 1860,
+          "median_upper": 1872,
+          "min": -158
+        },
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": {
+            "max": 3146,
+            "median_lower": 1860,
+            "median_upper": 1872,
+            "min": 158
+          },
+          "strict_larger": 256,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "coarse_target_gap": {
+          "max": 2785,
+          "median_lower": -3621,
+          "median_upper": -3592,
+          "min": -33122
+        },
+        "conditional_gold_rank_one": 41,
+        "elected_cell3": 255,
+        "elected_fine_supervised": 47,
+        "fine_margin": {
+          "distribution": {
+            "max": 4095,
+            "median_lower": 1523,
+            "median_upper": 1523,
+            "min": 16
+          },
+          "strict_larger": 256,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": {
+          "max": 10282,
+          "median_lower": -5910,
+          "median_upper": -5799,
+          "min": -21688
+        },
+        "first_id_correct": 0,
+        "first_id_counts": {
+          "1228": 253,
+          "340": 1,
+          "598": 2
+        },
+        "gold_cell_admissions": 47,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 256,
+        "rows": 256
+      },
+      "matched_against_frozen": {
+        "cell3_coarse_admission": {
+          "gains": 241,
+          "losses": 0
+        },
+        "cell3_coarse_gap_delta": {
+          "max": 6203,
+          "median_lower": 3525,
+          "median_upper": 3526,
+          "min": 1129
+        },
+        "changed_first_ids": 256,
+        "coarse_gold_gap_delta": {
+          "max": 14453,
+          "median_lower": 2317,
+          "median_upper": 2368,
+          "min": -9998
+        },
+        "fine_gold_gap_delta": {
+          "max": 27117,
+          "median_lower": 4736,
+          "median_upper": 4769,
+          "min": -11349
+        },
+        "first_id_correct": {
+          "gains": 0,
+          "losses": 1
+        },
+        "gold_cell_admission": {
+          "gains": 45,
+          "losses": 32
+        },
+        "matched_id1228_gap_when_both_elected_cell3": {
+          "delta": {
+            "max": 10109,
+            "median_lower": 8369,
+            "median_upper": 8504,
+            "min": 7683
+          },
+          "frozen": {
+            "max": -6086,
+            "median_lower": -7213,
+            "median_upper": -7165,
+            "min": -7996
+          },
+          "gained": 14,
+          "lost": 0,
+          "rows": 14,
+          "trained": {
+            "max": 2113,
+            "median_lower": 1152,
+            "median_upper": 1247,
+            "min": 655
+          },
+          "unchanged": 0
+        },
+        "matched_id1228_gap_when_both_traces_record_cell3": {
+          "delta": {
+            "max": 10235,
+            "median_lower": 8355,
+            "median_upper": 8369,
+            "min": 6837
+          },
+          "frozen": {
+            "max": -5174,
+            "median_lower": -6960,
+            "median_upper": -6958,
+            "min": -8369
+          },
+          "gained": 58,
+          "lost": 0,
+          "rows": 58,
+          "trained": {
+            "max": 2447,
+            "median_lower": 1575,
+            "median_upper": 1578,
+            "min": 203
+          },
+          "unchanged": 0
+        },
+        "trained_quote_frozen_origin": {
+          "frozen_other_cell": 239,
+          "frozen_quote_lost_on_score": 14
+        },
+        "trained_quote_gap_delta_when_frozen_admitted_quote_cell": {
+          "max": 10109,
+          "median_lower": 8369,
+          "median_upper": 8504,
+          "min": 7683
+        }
+      },
+      "quote": {
+        "cell3_coarse_gap": {
+          "max": 3146,
+          "median_lower": 1872,
+          "median_upper": 1872,
+          "min": 639
+        },
+        "coarse_local_dz_saturation_rows": 0,
+        "coarse_margin": {
+          "distribution": {
+            "max": 3146,
+            "median_lower": 1872,
+            "median_upper": 1872,
+            "min": 639
+          },
+          "strict_larger": 253,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "coarse_target_gap": {
+          "max": 2785,
+          "median_lower": -3693,
+          "median_upper": -3693,
+          "min": -33122
+        },
+        "conditional_gold_rank_one": 41,
+        "elected_cell3": 253,
+        "elected_fine_supervised": 46,
+        "fine_margin": {
+          "distribution": {
+            "max": 2496,
+            "median_lower": 1523,
+            "median_upper": 1523,
+            "min": 16
+          },
+          "strict_larger": 253,
+          "strict_one_word": 0,
+          "tie": 0
+        },
+        "fine_target_gap": {
+          "max": 10282,
+          "median_lower": -5753,
+          "median_upper": -5753,
+          "min": -21688
+        },
+        "first_id_correct": 0,
+        "first_id_counts": {
+          "1228": 253
+        },
+        "gold_cell_admissions": 46,
+        "gold_fine_local_dz_saturation_rows": 0,
+        "raw_head_dot_replayed_rows": 253,
+        "rows": 253
+      }
+    }
+  },
+  "capture_sha256": "860c2ad83cc5aa40486f47e567a2510f11ab46fd1bd8182b9b7c0594a9170e0f",
+  "checkpoint_head_dot_recomputed_rows": 768,
+  "checkpoint_head_dot_recomputed_scores": 147456,
+  "checkpoint_rows": 768,
+  "checkpoint_sha256": {
+    "frozen": "20262de550c2a96a9cc87a7fecfd178567a11cf58dbd6ad2cb1ffc3e5bddb589",
+    "preserved": "8e0721cc8b989f12af9c80b88dfac53c3a33701e6a3e8e7d2d26d2dec7fd1340",
+    "reset": "3656e0575bd9e590e63305000e6f03ca010e1a663d6ac45d9061961f9a356bc2"
+  },
+  "cubin_sha256": "8f5ab22af0074c38c582b17b1f92b5e5dff906b2bb366dccdadb99df7e23c713",
+  "distinct_supervised_first_ids": 117,
+  "historical_fixture_sha256": "dcc3019546fd1fe6e272aa71a64d694db2754b946bc82638f64b19671e47d04d",
+  "physical_instrument_sha256": "b2efa6299f892ed3479b6b97aa719bb5e477e7d65897857ccea3e4fbceb721b6",
+  "scope": "mechanical reconciliation of physical rows; local dz only",
+  "supervised_id1228_count": 0,
+  "supervised_label_count": 2151,
+  "train_sha256": "f96cc65ed0fd76c6cb9f75b5434ef6a0d7edc65d42ec01a4145781e2d2a94f4a",
+  "unique_articles": 256,
+  "verdict": "PASS"
+}

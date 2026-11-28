@@ -1,0 +1,38 @@
+[
+  {
+    "event": "up",
+    "utc": "2026-11-28T12:20:08Z",
+    "rate_usd_hour": 0.869,
+    "uptime_seconds": null
+  },
+  {
+    "event": "ssh-ready",
+    "utc": "2026-11-28T12:21:01Z",
+    "rate_usd_hour": null,
+    "uptime_seconds": null
+  },
+  {
+    "event": "run",
+    "utc": "2026-11-28T12:21:20Z",
+    "rate_usd_hour": null,
+    "uptime_seconds": null
+  },
+  {
+    "event": "release",
+    "utc": "2026-11-28T12:33:44Z",
+    "rate_usd_hour": null,
+    "uptime_seconds": null
+  },
+  {
+    "event": "vast-archive",
+    "utc": "2026-11-28T12:33:49Z",
+    "rate_usd_hour": null,
+    "uptime_seconds": null
+  },
+  {
+    "event": "down",
+    "utc": "2026-11-28T12:33:50Z",
+    "rate_usd_hour": 0.869,
+    "uptime_seconds": 818
+  }
+]

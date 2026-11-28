@@ -1,0 +1,39 @@
+{
+  "eligible_article_components": 2968,
+  "eligible_distinct_literal_question_keys": 37539,
+  "evidence_class": "provisional unpartitioned public QuAC TRAIN census only",
+  "exact_question_opposed_opening_pairs": {
+    "eligible_candidate_row_edges": 4032171,
+    "exact_literal_question_keys_with_edges": 1857,
+    "greedy_component_disjoint_construction": 1187,
+    "participating_article_components": 2609,
+    "sum_per_question_component_bound": 4163,
+    "upper_bound_component_disjoint_pairs": 1304
+  },
+  "filters": {
+    "eligible_grounded_actual_first_content_targets": 45902,
+    "excluded_invalid_earlier_original_history": 15,
+    "excluded_invalid_target_annotation_or_offset": 6,
+    "excluded_target_cannotanswer": 11895,
+    "excluded_target_does_not_open_with_content_id": 2616,
+    "official_cannotanswer_targets": 14459,
+    "official_yes_or_no_labels": 22030,
+    "original_train_third_or_later_turns": 60434,
+    "original_train_turns": 83568
+  },
+  "frozen_rules_sha256": "09da6db886948d57e4ddba4432d8b3d38bdd43012d08b3b7a3e273fb7a935785",
+  "original_train_article_containers": 11567,
+  "original_train_dialogues": 11567,
+  "same_turn_ordinal_pairs": {
+    "eligible_candidate_row_edges": 624138,
+    "exact_literal_question_keys_with_edges": 721,
+    "greedy_component_disjoint_construction": 1063,
+    "participating_article_components": 2385,
+    "sum_per_question_component_bound": 2565,
+    "upper_bound_component_disjoint_pairs": 1192
+  },
+  "source_train_sha256": "ff5cca5a2e4b4d1cb5b5ced68b9fce88394ef6d93117426d6d4baafbcc05c56a",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+  "unchecked": "canonical dialogue input/context budget, boundary and source exclusivity, matched history confounds, chronological source exposure, D87 and exact historical leak checks, partition/family isolation, official validation and hidden test",
+  "whole_article_components": 2991
+}

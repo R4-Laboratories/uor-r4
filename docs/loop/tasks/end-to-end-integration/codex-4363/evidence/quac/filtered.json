@@ -1,0 +1,385 @@
+{
+  "additional_overlaps": {
+    "historical_dev": {
+      "additional_rejected_rows": 0,
+      "path": "20261127-antigravity-gate0-d87-proto2/corpus/dev-tune.tokens.u16",
+      "sha256": "99b714a67415d92e42750577110d9ce405625d93adabbd906739bbfca60d9c78",
+      "source_token_count": 3805330
+    },
+    "historical_prior": {
+      "additional_rejected_rows": 0,
+      "path": "../inputs/chat-v0-p2/heldout.u16",
+      "sha256": "e5f400b0e676791fd0458ce810163c5d2542adda80dccc8282f37d9ca8904cef",
+      "source_token_count": 6194621
+    },
+    "historical_train": {
+      "additional_rejected_rows": 28,
+      "path": "20261127-antigravity-gate0-d87-proto2/corpus/train-100m.tokens.u16",
+      "sha256": "c804c3b084a49d11f2bfcd2a5cf741862df29b42e3442ccb609305e049aba590",
+      "source_token_count": 100472534
+    }
+  },
+  "components_excluded_by_prior_complete_section_matching": 0,
+  "confirmation": "official QuAC VAL unopened and unaccessed; official TEST unavailable",
+  "evidence_class": "QuAC public TRAIN source feasibility only, no model execution",
+  "historical_4352_and_d87_inventory": {
+    "d87_normalized_followup_templates": 40,
+    "d87_prompt_digests": 692364,
+    "excluded_complete_passage_digests": 499,
+    "excluded_source_filenames": 499,
+    "excluded_source_ids": 500,
+    "files": {
+      "20261127-codex-marker-question/panel-v2/held/keys.jsonl": "c7e67e6c96f297bd1e17614354f9525325895872b82d872fea6999974310acc5",
+      "20261127-codex-marker-question/panel-v2/train/keys.jsonl": "91a7f5c743dd5ede11e5ce6876229f5692a3cb82cf770ae7d0882a8634d2165d",
+      "20261127-codex-question-swap/panel/frozen-v2/keys.jsonl": "866a01878f6c2890a4dbe715a45808df171afe47f7bbc466bf74f6cf578815bd",
+      "20261127-codex-shared-source/panel-v1/human/keys.jsonl": "fcd87c28afde5a9e1dd9284d31e4630fe28535c8cde475e153b669cfc6f9f231",
+      "20261127-codex-visible-answer/panel/frozen-v1/judgments.jsonl": "bea3926ba99a205a2035ae81c8aaa78cc864f6cccf408a071bcccca4553f86aa",
+      "20261127-codex-visible-answer/panel/inputs/coqa-dev-v1.0.json": "dfa367a9733ce53222918d0231d9b3bedc2b8ee831a2845f62dfc70701f2540a",
+      "20261127-codex-visible-answer/panel/inputs/d87-bank-prompt-digests.txt": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+      "20261127-codex-visible-answer/panel/inputs/tokenizer.json": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377",
+      "supplemental CoQA source": "b0fdb2bc1bd38dd3ca2ce5fa2ac3e02c6288ac914f241ac409a655ffb6619fa6"
+    },
+    "historical_union_4312_through_4314": 210,
+    "known_coqa_roster_counts": {
+      "4312": 200,
+      "4313": 5,
+      "4314-held": 5,
+      "4314-train": 0,
+      "4315": 29
+    },
+    "known_panel_question_digests": 1149,
+    "known_scored_source_union": 239,
+    "preview_only_source_ids": 235,
+    "preview_rosters": {
+      "4313-reproduced.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4313-retained.jsonl": {
+        "rows": 14,
+        "sha256": "a2220b5cba5d19c1c3861960f62a109c18f45109f0c990b628ad2bdc40eedac7",
+        "unique_sources": 12
+      },
+      "4314-reproduced.jsonl": {
+        "rows": 11,
+        "sha256": "de5a7dcd1b7185c2df230577e542a5cad86e5828b3df371a5dbd559345381e01",
+        "unique_sources": 8
+      },
+      "4315-reproduced.jsonl": {
+        "rows": 955,
+        "sha256": "f6fa34deda5c4ef8b540d105f4305d8c79cdf985c079fd0a359760f9ee4f9385",
+        "unique_sources": 264
+      }
+    },
+    "preview_source_union": 274
+  },
+  "normalized_family_count": 64630,
+  "normalized_family_overlap": 0,
+  "original_train_dialogues": 11567,
+  "prior_rosters": {
+    "4360-corrected": {
+      "joined_prior_question_occurrences": 443,
+      "path": "20261128-codex-compact-carry-preflight/cohort/v2/final-2048/selected-index.jsonl",
+      "rows": 64,
+      "sha256": "d6dd93ab4cbacf4eb6ea6fdaf42e5264dda4a325b78c14f2fcf038c9485adfb7"
+    },
+    "4360-rejected": {
+      "joined_prior_question_occurrences": 437,
+      "path": "20261128-codex-compact-carry-preflight/cohort/final-2048/selected-index.jsonl",
+      "rows": 64,
+      "sha256": "a335a338dda285c192582256797c6dd2a8afbd633fea90acf38d670314e4b005"
+    },
+    "4361-corrected-development": {
+      "joined_prior_question_occurrences": 324,
+      "path": "20261128-codex-grounded-reset/cohort/complete-reservation/final/development.jsonl",
+      "rows": 108,
+      "sha256": "b7f1c457d5d656a92c742ca55fa9f49435cb6d92fea925f83e000079f44f8598"
+    },
+    "4361-corrected-held": {
+      "joined_prior_question_occurrences": 666,
+      "path": "20261128-codex-grounded-reset/cohort/complete-reservation/final/held.jsonl",
+      "rows": 222,
+      "sha256": "6ffd2228957ca42705c17fa995071a8360c5f265b719674f8d0c1990e984e4ee"
+    },
+    "4361-corrected-train": {
+      "joined_prior_question_occurrences": 768,
+      "path": "20261128-codex-grounded-reset/cohort/complete-reservation/final/train.jsonl",
+      "rows": 256,
+      "sha256": "f96cc65ed0fd76c6cb9f75b5434ef6a0d7edc65d42ec01a4145781e2d2a94f4a"
+    },
+    "4361-superseded-development": {
+      "joined_prior_question_occurrences": 330,
+      "path": "20261128-codex-grounded-reset/cohort/final/development.jsonl",
+      "rows": 110,
+      "sha256": "43484a97e94253a164367fdd721304ba54cfbdf62ce60da99cdfefc700a25fc9"
+    },
+    "4361-superseded-held": {
+      "joined_prior_question_occurrences": 669,
+      "path": "20261128-codex-grounded-reset/cohort/final/held.jsonl",
+      "rows": 223,
+      "sha256": "89e57de07d82223d6fc9bc1c57690e8c1d84dddbd51cc319bb56d8f7353a02fe"
+    },
+    "4361-superseded-train": {
+      "joined_prior_question_occurrences": 768,
+      "path": "20261128-codex-grounded-reset/cohort/final/train.jsonl",
+      "rows": 256,
+      "sha256": "f96cc65ed0fd76c6cb9f75b5434ef6a0d7edc65d42ec01a4145781e2d2a94f4a"
+    },
+    "lexical-supplement-1": {
+      "joined_prior_question_occurrences": 400,
+      "path": "20261128-codex-lexical-transfer/supplement-1/truth.jsonl",
+      "rows": 200,
+      "sha256": "483bf82f99e7ba454986726abc98b9bdee66b0df230b6a2c089a862dd364feee"
+    },
+    "lexical-supplement-2": {
+      "joined_prior_question_occurrences": 400,
+      "path": "20261128-codex-lexical-transfer/supplement-2/truth.jsonl",
+      "rows": 200,
+      "sha256": "483bf82f99e7ba454986726abc98b9bdee66b0df230b6a2c089a862dd364feee"
+    }
+  },
+  "rejects": {
+    "complete_dialogue_above_1088": 35167,
+    "d87_exact_prompt_or_template": 73,
+    "historical_4352_panel_or_preview_question": 2691,
+    "invalid_original_history_or_target_offset": 21,
+    "opening_is_not_actual_content_id": 2616,
+    "opening_predecessor_or_eos_crosses_chunk": 1088,
+    "prefix_context_overflow": 1282,
+    "previous_4360_4361_or_lexical_question": 2089,
+    "target_is_official_cannotanswer": 11895
+  },
+  "selector_sha256": "008be4e118134bc15ba5229b3b93eccbcc9896914a2faf97766fbbbbd9ab6b4a",
+  "source_train_sha256": "ff5cca5a2e4b4d1cb5b5ced68b9fce88394ef6d93117426d6d4baafbcc05c56a",
+  "split_supply": {
+    "held": {
+      "both_rows_with_prior_original_cannotanswer": {
+        "components": 96,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 195,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 196,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      },
+      "component_and_question_family_partition": {
+        "components": 200,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 524,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 526,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      },
+      "component_partition_only": {
+        "components": 217,
+        "greedy_disjoint_pairs": 16,
+        "literal_candidate_row_pairs": 607,
+        "literal_question_keys": 605,
+        "literal_question_keys_with_pairs": 4,
+        "participating_components": 34,
+        "rows": 645,
+        "sum_local_component_pair_bound": 18,
+        "upper_bound_disjoint_pairs": 17
+      },
+      "near_far": {
+        "components": 200,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 524,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 526,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      },
+      "neutral_x_span_pairs": {
+        "components": 171,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 369,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 371,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      },
+      "same_turn_ordinal": {
+        "components": 200,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 524,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 526,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      }
+    },
+    "train": {
+      "both_rows_with_prior_original_cannotanswer": {
+        "components": 442,
+        "greedy_disjoint_pairs": 51,
+        "literal_candidate_row_pairs": 3966,
+        "literal_question_keys": 909,
+        "literal_question_keys_with_pairs": 9,
+        "participating_components": 103,
+        "rows": 1010,
+        "sum_local_component_pair_bound": 52,
+        "upper_bound_disjoint_pairs": 51
+      },
+      "component_and_question_family_partition": {
+        "components": 872,
+        "greedy_disjoint_pairs": 107,
+        "literal_candidate_row_pairs": 13395,
+        "literal_question_keys": 2512,
+        "literal_question_keys_with_pairs": 54,
+        "participating_components": 236,
+        "rows": 2758,
+        "sum_local_component_pair_bound": 131,
+        "upper_bound_disjoint_pairs": 118
+      },
+      "component_partition_only": {
+        "components": 881,
+        "greedy_disjoint_pairs": 112,
+        "literal_candidate_row_pairs": 13415,
+        "literal_question_keys": 2582,
+        "literal_question_keys_with_pairs": 59,
+        "participating_components": 247,
+        "rows": 2839,
+        "sum_local_component_pair_bound": 138,
+        "upper_bound_disjoint_pairs": 123
+      },
+      "near_far": {
+        "components": 872,
+        "greedy_disjoint_pairs": 0,
+        "literal_candidate_row_pairs": 0,
+        "literal_question_keys": 2512,
+        "literal_question_keys_with_pairs": 0,
+        "participating_components": 0,
+        "rows": 2758,
+        "sum_local_component_pair_bound": 0,
+        "upper_bound_disjoint_pairs": 0
+      },
+      "neutral_x_span_pairs": {
+        "components": 725,
+        "greedy_disjoint_pairs": 45,
+        "literal_candidate_row_pairs": 1163,
+        "literal_question_keys": 1660,
+        "literal_question_keys_with_pairs": 29,
+        "participating_components": 101,
+        "rows": 1748,
+        "sum_local_component_pair_bound": 53,
+        "upper_bound_disjoint_pairs": 50
+      },
+      "same_turn_ordinal": {
+        "components": 872,
+        "greedy_disjoint_pairs": 90,
+        "literal_candidate_row_pairs": 4059,
+        "literal_question_keys": 2512,
+        "literal_question_keys_with_pairs": 27,
+        "participating_components": 194,
+        "rows": 2758,
+        "sum_local_component_pair_bound": 101,
+        "upper_bound_disjoint_pairs": 97
+      }
+    }
+  },
+  "stages": {
+    "0_original_source_history_and_content_opener": {
+      "components": 2968,
+      "greedy_disjoint_pairs": 1183,
+      "literal_candidate_row_pairs": 4032171,
+      "literal_question_keys": 37539,
+      "literal_question_keys_with_pairs": 1857,
+      "participating_components": 2609,
+      "rows": 45902,
+      "sum_local_component_pair_bound": 4163,
+      "upper_bound_disjoint_pairs": 1304
+    },
+    "1_donor_preview_and_prior_prompt_screens": {
+      "components": 2955,
+      "greedy_disjoint_pairs": 1113,
+      "literal_candidate_row_pairs": 3315627,
+      "literal_question_keys": 34417,
+      "literal_question_keys_with_pairs": 1475,
+      "participating_components": 2469,
+      "rows": 41049,
+      "sum_local_component_pair_bound": 3282,
+      "upper_bound_disjoint_pairs": 1234
+    },
+    "2_replayed_canonical_role_document": {
+      "components": 2951,
+      "greedy_disjoint_pairs": 1099,
+      "literal_candidate_row_pairs": 3066512,
+      "literal_question_keys": 33394,
+      "literal_question_keys_with_pairs": 1428,
+      "participating_components": 2446,
+      "rows": 39767,
+      "sum_local_component_pair_bound": 3169,
+      "upper_bound_disjoint_pairs": 1223
+    },
+    "3_complete_1088_limit": {
+      "components": 1248,
+      "greedy_disjoint_pairs": 192,
+      "literal_candidate_row_pairs": 39639,
+      "literal_question_keys": 4125,
+      "literal_question_keys_with_pairs": 114,
+      "participating_components": 432,
+      "rows": 4600,
+      "sum_local_component_pair_bound": 256,
+      "upper_bound_disjoint_pairs": 216
+    },
+    "4_opening_predecessor_and_eos_in_chunk": {
+      "components": 1108,
+      "greedy_disjoint_pairs": 140,
+      "literal_candidate_row_pairs": 20036,
+      "literal_question_keys": 3190,
+      "literal_question_keys_with_pairs": 78,
+      "participating_components": 313,
+      "rows": 3512,
+      "sum_local_component_pair_bound": 174,
+      "upper_bound_disjoint_pairs": 156
+    },
+    "5_exact_train32": {
+      "components": 1098,
+      "greedy_disjoint_pairs": 138,
+      "literal_candidate_row_pairs": 19833,
+      "literal_question_keys": 3165,
+      "literal_question_keys_with_pairs": 76,
+      "participating_components": 309,
+      "rows": 3484,
+      "sum_local_component_pair_bound": 171,
+      "upper_bound_disjoint_pairs": 154
+    },
+    "6_exact_dev32": {
+      "components": 1098,
+      "greedy_disjoint_pairs": 138,
+      "literal_candidate_row_pairs": 19833,
+      "literal_question_keys": 3165,
+      "literal_question_keys_with_pairs": 76,
+      "participating_components": 309,
+      "rows": 3484,
+      "sum_local_component_pair_bound": 171,
+      "upper_bound_disjoint_pairs": 154
+    },
+    "7_exact_prior32": {
+      "components": 1098,
+      "greedy_disjoint_pairs": 138,
+      "literal_candidate_row_pairs": 19833,
+      "literal_question_keys": 3165,
+      "literal_question_keys_with_pairs": 76,
+      "participating_components": 309,
+      "rows": 3484,
+      "sum_local_component_pair_bound": 171,
+      "upper_bound_disjoint_pairs": 154
+    }
+  },
+  "tokenizer_protocol": "blake3:4c9778ead027688600d2211e50cbfae98ac15f932a0827c01ec2389c521fef27",
+  "whole_article_components": 2991
+}
