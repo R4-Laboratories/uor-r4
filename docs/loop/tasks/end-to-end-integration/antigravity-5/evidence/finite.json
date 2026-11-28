@@ -1,0 +1,67 @@
+{
+  "cases": [
+    {
+      "adam_m_diffs": 0,
+      "adam_v_diffs": 0,
+      "dim": 32,
+      "eval_diffs": 0,
+      "ffn_branches": 4,
+      "grad_diffs": 0,
+      "layers": 2,
+      "loss_diffs": 0,
+      "name": "v3_d32_l2_ffn4_k32_freq_pkm",
+      "pass": true,
+      "pkm_key_dim": 8,
+      "steps": 3,
+      "weight_diffs": 0
+    },
+    {
+      "adam_m_diffs": 0,
+      "adam_v_diffs": 0,
+      "dim": 256,
+      "eval_diffs": 0,
+      "ffn_branches": 4,
+      "grad_diffs": 0,
+      "layers": 2,
+      "loss_diffs": 0,
+      "name": "v3_d256_l2_ffn4_k32_kd32_freq_pkm",
+      "pass": true,
+      "pkm_key_dim": 32,
+      "steps": 2,
+      "weight_diffs": 0
+    },
+    {
+      "adam_m_diffs": 0,
+      "adam_v_diffs": 0,
+      "dim": 512,
+      "eval_diffs": 0,
+      "ffn_branches": 4,
+      "grad_diffs": 0,
+      "layers": 2,
+      "loss_diffs": 0,
+      "name": "v3_d512_l2_ffn4_k64_kd32_freq_pkm",
+      "pass": true,
+      "pkm_key_dim": 32,
+      "steps": 2,
+      "weight_diffs": 0
+    },
+    {
+      "adam_m_diffs": 0,
+      "adam_v_diffs": 0,
+      "dim": 32,
+      "eval_diffs": 0,
+      "ffn_branches": 2,
+      "grad_diffs": 0,
+      "layers": 2,
+      "loss_diffs": 0,
+      "name": "v3_d32_l2_ffn2_sparsemax_bosreset",
+      "pass": true,
+      "pkm_key_dim": 8,
+      "steps": 2,
+      "weight_diffs": 0
+    }
+  ],
+  "pass": true,
+  "schema": "uor-r4.gate1-v3-finite/1",
+  "total_diffs": 0
+}

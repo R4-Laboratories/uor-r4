@@ -9,6 +9,7 @@
 
 use std::fmt;
 pub mod butterfly_rotor;
+pub mod butterfly_rotor_v3;
 pub mod contract;
 pub mod read;
 pub mod read_dump;
