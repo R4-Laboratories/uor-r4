@@ -1,0 +1,7 @@
+# Compare longer-context retrieval after source admission
+
+[codex] The frozen 512-token census restores 34 exact gold spans beyond the ordinary 192-token limit. For the genuine reversal, the other address still exceeds eight tokens under both questions. This separates opening admission from span admissibility. [Result](REPORT.md)
+
+A future fit needs natural groups with each original address reachable under every wording. Register the source groups before inspecting scores and keep the old reversal as a width-failure control. If a segment of the proposed comparison needs longer copied spans, justify that separate mechanism and record its candidate growth before changing the copy cap.
+
+For the longer-context experiment, compare persistent native geometric memory with an ordered-count system at equal **total deployed bytes**. Use the same complete protocol inputs, original absolute addresses, legal span choices and writer. Include paired long inputs with identical suffix IDs and different earlier sources, near controls, and explicit refusal counts. Extend the finite paired witness to natural TRAIN before a fit. Reproduce ordinary short behavior, then measure learned original-address selection and exact reply through EOS separately, together with context and decode throughput, peak memory and total bytes on the intended laptop and browser. The compiled D11 model limit is 243 tokens. Serving 512-token contexts requires its own design and verification.

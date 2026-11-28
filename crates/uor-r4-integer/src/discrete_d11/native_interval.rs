@@ -24,6 +24,8 @@ const SLOTS: usize = 256;
 pub const WORDS: usize = BANKS * SLOTS;
 pub const WEIGHT_BYTES: usize = WORDS * 2;
 pub const MAX_SPAN: usize = 8;
+/// Capacity of the read-only source census. Serving checks its own artifact.
+pub const SOURCE_CENSUS_CONTEXT: usize = 512;
 const NO_READ_SLOTS: u8 = 224;
 const AMBIGUOUS_QUERY_TOKENS: usize = 32;
 const RELATION_BANK: usize = 10;
@@ -77,7 +79,7 @@ impl Arm {
     }
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct Span {
     pub start: u16,
     pub end: u16,
@@ -389,22 +391,15 @@ fn collect_features(
             "interval features require the pinned balanced artifact",
         ));
     }
-    if opening.tokenizer_cid() != native_whole_turn::TOKENIZER_CID
-        || tokenizer.address() != native_whole_turn::TOKENIZER_CID
-    {
-        return Err(invalid("interval features require the pinned tokenizer"));
-    }
+    validate_source_tokenizer(opening, tokenizer)?;
     model.validate_prefix(opening.tokens())?;
     let user = opening.user_range();
     if user.end > u16::MAX as usize || model.codebook_roots.len() != tokenizer.vocab_size() {
         return Err(invalid("invalid interval address width or codebook"));
     }
     let original_ids = &opening.tokens()[user.clone()];
-    let decoded: Vec<_> = original_ids
-        .iter()
-        .map(|&id| tokenizer.decode_bytes(&[id]))
-        .collect();
-    let mut prompt = Prompt::new(original_ids, &decoded, &model.codebook_roots);
+    let decoded = source_bytes(original_ids, tokenizer);
+    let mut prompt = Prompt::new(original_ids, &decoded);
     prompt.prepare(arm.is_directed());
     let endpoints = capture.map(|capture| {
         capture.relation_tokens = opening
@@ -418,7 +413,61 @@ fn collect_features(
             .collect();
         &mut capture.relation_endpoints
     });
-    Ok(prompt.collect(arm, user.start, endpoints))
+    Ok(prompt.collect(arm, user.start, &model.codebook_roots, endpoints))
+}
+
+fn validate_source_tokenizer(
+    opening: &EncodedUserOpening,
+    tokenizer: &ByteBpeTokenizer,
+) -> Result<()> {
+    if opening.tokenizer_cid() != native_whole_turn::TOKENIZER_CID
+        || tokenizer.address() != native_whole_turn::TOKENIZER_CID
+    {
+        return Err(invalid("interval features require the pinned tokenizer"));
+    }
+    Ok(())
+}
+
+fn source_bytes(ids: &[u32], tokenizer: &ByteBpeTokenizer) -> Vec<Vec<u8>> {
+    ids.iter()
+        .map(|&id| tokenizer.decode_bytes(&[id]))
+        .collect()
+}
+
+/// Ordered source spans before arm-specific address keys or scoring.
+#[derive(Debug, Deserialize, Eq, PartialEq, Serialize)]
+pub struct SourceCandidates {
+    pub user: [u16; 2],
+    pub fact: [u16; 2],
+    pub question: [u16; 2],
+    pub candidates: Vec<Span>,
+}
+
+/// Enumerate source spans on the complete opening, without a model artifact.
+/// NoRead is available separately from this ordered list in every interval arm.
+pub fn census_source_candidates(
+    opening: &EncodedUserOpening,
+    tokenizer: &ByteBpeTokenizer,
+) -> Result<SourceCandidates> {
+    if opening.tokens().len() > SOURCE_CENSUS_CONTEXT {
+        return Err(invalid("opening exceeds source census capacity"));
+    }
+    validate_source_tokenizer(opening, tokenizer)?;
+    let user = opening.user_range();
+    let ids = &opening.tokens()[user.clone()];
+    let bytes = source_bytes(ids, tokenizer);
+    let mut prompt = Prompt::new(ids, &bytes);
+    prompt.prepare_spans();
+    let offset = user.start;
+    Ok(SourceCandidates {
+        user: prompt.absolute_range(0..prompt.ids.len(), offset),
+        fact: prompt.absolute_range(prompt.fact.clone(), offset),
+        question: prompt.absolute_range(prompt.query.clone(), offset),
+        candidates: prompt
+            .source_spans()
+            .map(|span| prompt.absolute_span(span, offset))
+            .collect(),
+    })
 }
 
 fn keyed(slots: [u8; BANKS]) -> Keys {
@@ -529,7 +578,6 @@ fn lexical_neighbors(
 struct Prompt<'a> {
     ids: &'a [u32],
     bytes: &'a [Vec<u8>],
-    roots: &'a [[u8; 4]],
     fact: Range<usize>,
     query: Range<usize>,
     left_edges: Vec<usize>,
@@ -541,7 +589,7 @@ struct Prompt<'a> {
 }
 
 impl<'a> Prompt<'a> {
-    fn new(ids: &'a [u32], bytes: &'a [Vec<u8>], roots: &'a [[u8; 4]]) -> Self {
+    fn new(ids: &'a [u32], bytes: &'a [Vec<u8>]) -> Self {
         let mut byte_ids = Vec::new();
         let mut unsegmented = Vec::new();
         for (i, token) in bytes.iter().enumerate() {
@@ -577,7 +625,6 @@ impl<'a> Prompt<'a> {
         Self {
             ids,
             bytes,
-            roots,
             fact: 0..fact_end,
             query,
             left_edges: vec![0; fact_end],
@@ -624,7 +671,7 @@ impl<'a> Prompt<'a> {
         words
     }
 
-    fn prepare(&mut self, directed: bool) {
+    fn prepare_spans(&mut self) -> Vec<Word> {
         let mut left = self.fact.start;
         for i in self.fact.clone() {
             self.left_edges[i] = left;
@@ -640,13 +687,20 @@ impl<'a> Prompt<'a> {
             self.right_edges[i] = right;
         }
         let facts = self.words(self.fact.clone());
+        for fact in &facts {
+            self.starts[fact.start] = true;
+            self.ends[fact.end - 1] = true;
+        }
+        facts
+    }
+
+    fn prepare(&mut self, directed: bool) {
+        let facts = self.prepare_spans();
         let question = self.words(self.query.clone());
         // The bounded suffix of an unseparated query can begin inside a word
         // or a UTF-8 character. Keep the original words for directed endpoints.
         self.lexical_words = directed.then(|| self.words(0..self.ids.len()));
         for fact in &facts {
-            self.starts[fact.start] = true;
-            self.ends[fact.end - 1] = true;
             if fact.spelling.len() < 3 {
                 continue;
             }
@@ -676,42 +730,49 @@ impl<'a> Prompt<'a> {
         }
     }
 
+    fn source_spans(&self) -> impl Iterator<Item = Range<usize>> + '_ {
+        self.fact
+            .clone()
+            .filter(|&start| self.starts[start] && self.copyable(start))
+            .flat_map(|start| {
+                let last = (start + MAX_SPAN).min(self.right_edges[start]);
+                (start + 1..=last)
+                    .take_while(|&end| self.copyable(end - 1))
+                    .filter(|&end| self.ends[end - 1])
+                    .map(move |end| start..end)
+            })
+    }
+
+    fn absolute_range(&self, range: Range<usize>, offset: usize) -> [u16; 2] {
+        [(offset + range.start) as u16, (offset + range.end) as u16]
+    }
+
+    fn absolute_span(&self, range: Range<usize>, offset: usize) -> Span {
+        let [start, end] = self.absolute_range(range, offset);
+        Span { start, end }
+    }
+
     fn collect(
         &self,
         arm: Arm,
         offset: usize,
+        roots: &[[u8; 4]],
         mut capture: Option<&mut Vec<RelationEndpoints>>,
     ) -> Features {
-        let mut candidates = Vec::new();
-        for start in self.fact.clone() {
-            if !self.starts[start] || !self.copyable(start) {
-                continue;
-            }
-            let last = (start + MAX_SPAN).min(self.right_edges[start]);
-            for end in start + 1..=last {
-                if !self.copyable(end - 1) {
-                    break;
-                }
-                if self.ends[end - 1] {
-                    candidates.push(Candidate {
-                        span: Span {
-                            start: (offset + start) as u16,
-                            end: (offset + end) as u16,
-                        },
-                        keys: self.candidate_keys(start, end, arm, offset, capture.as_deref_mut()),
-                    });
-                }
-            }
-        }
-        let bounds =
-            |range: &Range<usize>| [(offset + range.start) as u16, (offset + range.end) as u16];
+        let candidates = self
+            .source_spans()
+            .map(|span| Candidate {
+                span: self.absolute_span(span.clone(), offset),
+                keys: self.candidate_keys(span, arm, offset, roots, capture.as_deref_mut()),
+            })
+            .collect();
         Features {
             arm,
-            user: [offset as u16, (offset + self.ids.len()) as u16],
-            fact: bounds(&self.fact),
-            question: bounds(&self.query),
+            user: self.absolute_range(0..self.ids.len(), offset),
+            fact: self.absolute_range(self.fact.clone(), offset),
+            question: self.absolute_range(self.query.clone(), offset),
             candidates,
-            no_read_keys: self.no_read_keys(arm),
+            no_read_keys: self.no_read_keys(arm, roots),
         }
     }
 
@@ -725,12 +786,13 @@ impl<'a> Prompt<'a> {
 
     fn candidate_keys(
         &self,
-        start: usize,
-        end: usize,
+        span: Range<usize>,
         arm: Arm,
         offset: usize,
+        roots: &[[u8; 4]],
         capture: Option<&mut Vec<RelationEndpoints>>,
     ) -> Keys {
+        let Range { start, end } = span;
         let last = end - 1;
         let left = start.checked_sub(1);
         let right = (end < self.ids.len()).then_some(end);
@@ -779,7 +841,7 @@ impl<'a> Prompt<'a> {
             (Some(last), Some(start), right),
         ];
         for (i, (query, source, context)) in site_pairs.into_iter().enumerate() {
-            slots[8 + i] = self.route(arm, query, source, context, i % 4) % NO_READ_SLOTS;
+            slots[8 + i] = self.route(arm, query, source, context, i % 4, roots) % NO_READ_SLOTS;
         }
         if let Some(words) = &self.lexical_words {
             let relation = Relation {
@@ -790,7 +852,7 @@ impl<'a> Prompt<'a> {
                     }),
                 source: lexical_neighbors(words, start..end, clause.clone()),
             };
-            slots[RELATION_BANK] = self.relation_slot(relation, arm);
+            slots[RELATION_BANK] = self.relation_slot(relation, arm, roots);
             if let Some(capture) = capture {
                 capture.push(relation.describe(anchor, clause, offset));
             }
@@ -798,7 +860,7 @@ impl<'a> Prompt<'a> {
         keyed(slots)
     }
 
-    fn relation_slot(&self, relation: Relation, arm: Arm) -> u8 {
+    fn relation_slot(&self, relation: Relation, arm: Arm, roots: &[[u8; 4]]) -> u8 {
         let [Some(q_left), Some(q_right)] = relation.query else {
             return 0;
         };
@@ -809,8 +871,7 @@ impl<'a> Prompt<'a> {
         if arm == Arm::DirectedCount {
             return ordered_count_slot(ids);
         }
-        let [q_left, q_right, s_left, s_right] =
-            ids.map(|id| self.roots[id as usize][RELATION_BLOCK]);
+        let [q_left, q_right, s_left, s_right] = ids.map(|id| roots[id as usize][RELATION_BLOCK]);
         let query = CliffordDisplacement::between([q_left, q_right]);
         let source = CliffordDisplacement::between(if arm == Arm::SwappedGeometry {
             [s_right, s_left]
@@ -820,7 +881,7 @@ impl<'a> Prompt<'a> {
         (source.relative_to(query).0 + 1) as u8
     }
 
-    fn no_read_keys(&self, arm: Arm) -> Keys {
+    fn no_read_keys(&self, arm: Arm, roots: &[[u8; 4]]) -> Keys {
         let first = (!self.query.is_empty()).then_some(self.query.start);
         let last = (!self.query.is_empty()).then(|| self.query.end - 1);
         let first_fact = (!self.fact.is_empty()).then_some(self.fact.start);
@@ -854,7 +915,7 @@ impl<'a> Prompt<'a> {
             (last, last_fact, first_fact),
         ];
         for (i, (query, source, context)) in triples.into_iter().enumerate() {
-            slots[8 + i] = self.route(arm, query, source, context, i % 4) % 32;
+            slots[8 + i] = self.route(arm, query, source, context, i % 4, roots) % 32;
         }
         keyed(slots.map(|slot| NO_READ_SLOTS + slot))
     }
@@ -866,6 +927,7 @@ impl<'a> Prompt<'a> {
         source: Option<usize>,
         context: Option<usize>,
         block: usize,
+        roots: &[[u8; 4]],
     ) -> u8 {
         let [query, source, context] = [query, source, context].map(|p| p.map(|p| self.ids[p]));
         let [Some(query), Some(source), Some(context)] = [query, source, context] else {
@@ -874,7 +936,7 @@ impl<'a> Prompt<'a> {
         match arm {
             Arm::Geometry | Arm::DirectedGeometry | Arm::DirectedCount | Arm::SwappedGeometry => {
                 let [q, s, c] =
-                    [query, source, context].map(|id| self.roots[id as usize][block] as usize);
+                    [query, source, context].map(|id| roots[id as usize][block] as usize);
                 let action = cl06_bfs(q, s);
                 let transported = cl06_action(action, &orbit_root_coords(c));
                 // Two signed axes identify an orbit root. Pair that transported
@@ -1002,12 +1064,12 @@ mod tests {
             bytes.push(b"?".to_vec());
             let ids: Vec<u32> = (20..20 + bytes.len() as u32).collect();
             let roots = [[1; 4]; 64];
-            let mut prompt = Prompt::new(&ids, &bytes, &roots);
+            let mut prompt = Prompt::new(&ids, &bytes);
             assert_eq!(prompt.query.start, 3);
             prompt.prepare(true);
             for arm in DIRECTED_ARMS {
                 let mut trace = Vec::new();
-                let features = prompt.collect(arm, 0, Some(&mut trace));
+                let features = prompt.collect(arm, 0, &roots, Some(&mut trace));
                 let index = features
                     .candidates
                     .iter()
@@ -1036,16 +1098,16 @@ mod tests {
         }
 
         let offset = 3;
-        let mut original = Prompt::new(&ids, &bytes, &roots);
+        let mut original = Prompt::new(&ids, &bytes);
         original.prepare(false);
-        let legacy = original.collect(Arm::Geometry, offset, None);
-        let mut directed = Prompt::new(&ids, &bytes, &roots);
+        let legacy = original.collect(Arm::Geometry, offset, &roots, None);
+        let mut directed = Prompt::new(&ids, &bytes);
         directed.prepare(true);
         let relation_bank = (RELATION_BANK * SLOTS) as u16;
         for (arm, slot) in DIRECTED_ARMS.into_iter().zip([19, 41, 56]) {
             let mut trace = Vec::new();
-            let captured = directed.collect(arm, offset, Some(&mut trace));
-            let serving = directed.collect(arm, offset, None);
+            let captured = directed.collect(arm, offset, &roots, Some(&mut trace));
+            let serving = directed.collect(arm, offset, &roots, None);
             assert_eq!(captured.candidates, serving.candidates);
             assert_eq!(captured.no_read_keys, serving.no_read_keys);
             assert_eq!(captured.no_read_keys, legacy.no_read_keys);
@@ -1097,7 +1159,7 @@ mod tests {
                     query: [q_left, q_right],
                     source: [s_left, s_right],
                 };
-                assert_eq!(directed.relation_slot(relation, arm), 0);
+                assert_eq!(directed.relation_slot(relation, arm, &roots), 0);
             }
         }
     }

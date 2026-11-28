@@ -1,0 +1,220 @@
+{
+  "all_admitted_at_512": {
+    "gold_with_distinct_rival": 44,
+    "max_candidate_count": 598,
+    "min_candidate_count": 62,
+    "no_read_choices": 73,
+    "openings": 73,
+    "openings_with_distinct_rival": 73,
+    "opponent_available": 44,
+    "over_eight_token_widths": {
+      "10": 3,
+      "11": 3,
+      "12": 6,
+      "13": 2,
+      "15": 1,
+      "18": 1,
+      "20": 1,
+      "28": 1,
+      "30": 1,
+      "9": 4
+    },
+    "own_and_opponent_available": 25,
+    "own_available": 44,
+    "own_unavailable": {
+      "excluded-by-copy-or-lexical-edge": 5,
+      "outside-fact-role": 1,
+      "over-eight-tokens": 23
+    },
+    "source_candidates": 24641,
+    "with_named_opponent": 69
+  },
+  "baseline_192": {
+    "gold_with_distinct_rival": 10,
+    "max_candidate_count": 194,
+    "min_candidate_count": 62,
+    "no_read_choices": 20,
+    "openings": 20,
+    "openings_with_distinct_rival": 20,
+    "opponent_available": 10,
+    "over_eight_token_widths": {
+      "12": 2,
+      "13": 2,
+      "15": 1,
+      "28": 1,
+      "30": 1,
+      "9": 1
+    },
+    "own_and_opponent_available": 2,
+    "own_available": 10,
+    "own_unavailable": {
+      "excluded-by-copy-or-lexical-edge": 1,
+      "outside-fact-role": 1,
+      "over-eight-tokens": 8
+    },
+    "source_candidates": 2790,
+    "with_named_opponent": 20
+  },
+  "group_counts": {
+    "paraphrase": [
+      2,
+      0,
+      2,
+      0,
+      1,
+      0,
+      0
+    ],
+    "quad": [
+      4,
+      2,
+      4,
+      0,
+      1,
+      0,
+      1
+    ],
+    "switch": [
+      16,
+      6,
+      16,
+      1,
+      3,
+      1,
+      3
+    ],
+    "triple": [
+      7,
+      0,
+      7,
+      0,
+      5,
+      0,
+      5
+    ]
+  },
+  "group_counts_columns": [
+    "groups",
+    "all_admitted_192",
+    "all_admitted_512",
+    "all_own_192",
+    "all_own_512",
+    "both_targets_192",
+    "both_targets_512"
+  ],
+  "identical_suffix_fixture": {
+    "identical_final_ids": 192,
+    "original_span": {
+      "end": 5,
+      "start": 4
+    },
+    "source_ids": [
+      [
+        439
+      ],
+      [
+        376
+      ]
+    ],
+    "tokens": 400
+  },
+  "opening_caps": [
+    192,
+    512
+  ],
+  "opening_token_range": [
+    86,
+    491
+  ],
+  "ordinary_archived_tapes_matching_order": 140,
+  "ordinary_distinct_arm_tapes_matching_order": 100,
+  "original_groups": 29,
+  "original_openings": 73,
+  "recovered_at_512": {
+    "gold_with_distinct_rival": 34,
+    "max_candidate_count": 598,
+    "min_candidate_count": 170,
+    "no_read_choices": 53,
+    "openings": 53,
+    "openings_with_distinct_rival": 53,
+    "opponent_available": 34,
+    "over_eight_token_widths": {
+      "10": 3,
+      "11": 3,
+      "12": 4,
+      "18": 1,
+      "20": 1,
+      "9": 3
+    },
+    "own_and_opponent_available": 23,
+    "own_available": 34,
+    "own_unavailable": {
+      "excluded-by-copy-or-lexical-edge": 4,
+      "over-eight-tokens": 15
+    },
+    "source_candidates": 21851,
+    "with_named_opponent": 49
+  },
+  "refused_at_512": 0,
+  "same_fact_inverse": [
+    {
+      "admitted_192": false,
+      "admitted_512": true,
+      "named_opponent": {
+        "span": {
+          "end": 53,
+          "start": 48
+        },
+        "status": "available"
+      },
+      "no_read_choices": 1,
+      "opponent_original_bytes": [
+        110,
+        120
+      ],
+      "own": {
+        "span": {
+          "end": 17,
+          "start": 5
+        },
+        "status": "over-eight-tokens"
+      },
+      "own_original_bytes": [
+        4,
+        35
+      ],
+      "source_candidates": 340,
+      "tokens": 349
+    },
+    {
+      "admitted_192": false,
+      "admitted_512": true,
+      "named_opponent": {
+        "span": {
+          "end": 17,
+          "start": 5
+        },
+        "status": "over-eight-tokens"
+      },
+      "no_read_choices": 1,
+      "opponent_original_bytes": [
+        4,
+        35
+      ],
+      "own": {
+        "span": {
+          "end": 53,
+          "start": 48
+        },
+        "status": "available"
+      },
+      "own_original_bytes": [
+        110,
+        120
+      ],
+      "source_candidates": 340,
+      "tokens": 345
+    }
+  ],
+  "schema": "uor-r4/source-opening-census/1"
+}
