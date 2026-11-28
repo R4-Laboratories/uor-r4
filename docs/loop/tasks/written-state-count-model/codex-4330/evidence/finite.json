@@ -1,0 +1,27 @@
+{
+  "cubin_sha256": "fb65c01ea001ba81e13c03ff095ef13eeb87805f62da12113edef2bd800c4005",
+  "decisions_sha256": "ef101660056eb0e149d3de540a7e44a42b07ad5348c2eea3686b2d3fe95af356",
+  "fit_events_sha256": "daf998314ca337e0e041a65b68bb038153c808cd1a98b7f591c767be0a8ed1fd",
+  "geometry": {
+    "classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23",
+    "roots_sha256": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "pass": true,
+  "schema": "uor-r4.whole-turn-finite/1",
+  "selection_sha256": "9c8466ea584d76a3161737d210dea71b311a630bc513aece5020d68495d46c0b",
+  "tests": [
+    "unframed single candidate",
+    "framed paragraph and expanded scope",
+    "strict abstention at equal scores",
+    "nested markers remain user content",
+    "32-ID query suffix",
+    "positive comparison favors NoRead on tie",
+    "negative comparison favors earliest position on tie",
+    "empty NoRead prompt",
+    "overlap cancels and i16 is clamped once",
+    "four chronological epochs with exact repeat fit",
+    "finite update turns abstention into an actual source read",
+    "same-ID exact tie abstains and a distinguishing feature selects the later address"
+  ]
+}

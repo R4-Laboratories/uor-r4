@@ -20,7 +20,7 @@ use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
 use uor_r4_integer::discrete_d11::{
-    native_copy, native_source_choice, native_word_ending, pair_rank,
+    native_copy, native_source_choice, native_whole_turn, native_word_ending, pair_rank,
 };
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
@@ -2421,6 +2421,8 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     }
     #[cfg(feature = "p1-count-serving")]
     let profile_start = profile_start.filter(|_| p1.is_some() || p4.is_some());
+    let whole_turn_copy = cli.authenticated_copy && native_whole_turn::identity(&model).is_some();
+    let mut user_opening = None;
     let mut text_mode = None;
     let encoded;
     let prompt = if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
@@ -2440,16 +2442,31 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         }
         let protocol = DialogueProtocol::literal_roles_version(&tokenizer, cli.protocol)
             .map_err(|e| IntegerError::Invalid(e.to_string()))?;
-        encoded = protocol
+        let encoder = protocol
             .bind(&tokenizer)
-            .map_err(|e| IntegerError::Invalid(e.to_string()))?
-            .encode_assistant_prefix(&[Message {
-                role: "user",
-                content: text,
-            }])
-            .tokens;
+            .map_err(|e| IntegerError::Invalid(e.to_string()))?;
+        let prompt = if whole_turn_copy {
+            user_opening = encoder.encode_single_user_opening(text);
+            user_opening
+                .as_ref()
+                .ok_or_else(|| {
+                    IntegerError::Invalid(
+                        "whole-turn authenticated copy requires one plain protocol-2 user message"
+                            .into(),
+                    )
+                })?
+                .tokens()
+        } else {
+            encoded = encoder
+                .encode_assistant_prefix(&[Message {
+                    role: "user",
+                    content: text,
+                }])
+                .tokens;
+            encoded.as_slice()
+        };
         text_mode = Some((tokenizer, protocol, digest));
-        encoded.as_slice()
+        prompt
     } else {
         cli.prompt_ids
             .as_deref()
@@ -2500,6 +2517,8 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
     let native_no_read = cli.no_native_occurrence;
     let mut occurrence_writer = if native_no_read {
         Some(native_copy::Session::without_occurrence(&model)?)
+    } else if let Some(opening) = user_opening.as_ref() {
+        Some(native_copy::Session::for_user_opening(&model, opening)?)
     } else if cli.authenticated_copy {
         Some(native_copy::Session::new(&model)?)
     } else {
@@ -2721,7 +2740,14 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
                     "native occurrence trace differs from the committed token".into(),
                 ));
             }
-            let probe = native_copy::observe_opening(&model, &context, !native_no_read)?;
+            let probe = if whole_turn_copy {
+                native_whole_turn::probe(
+                    &model,
+                    user_opening.as_ref().filter(|_| generated_ids.is_empty()),
+                )?
+            } else {
+                native_copy::observe_opening(&model, &context, !native_no_read)?
+            };
             let mut step = serde_json::to_value(event)?;
             step["framing"] = if probe.parsed_start.is_none() {
                 "rejected"

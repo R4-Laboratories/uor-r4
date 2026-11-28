@@ -36,6 +36,7 @@ pub mod native_opening;
 #[cfg(feature = "postperiod-diagnostic")]
 pub mod native_postperiod;
 pub mod native_source_choice;
+pub mod native_whole_turn;
 pub mod native_word_ending;
 pub mod pair_rank;
 mod rival_admission;
@@ -1375,6 +1376,7 @@ pub struct IntegerDiscreteModel {
     count_mixer: Option<crate::count_mixer::CountMixer>,
     opening: Option<native_opening::State>,
     occurrence: Option<native_occurrence::State>,
+    whole_turn: Option<native_whole_turn::State>,
     source_choice: Option<native_source_choice::State>,
     word_ending: Option<native_word_ending::State>,
     role_policy: Option<RolePolicy>,
@@ -2567,6 +2569,7 @@ impl IntegerDiscreteModel {
             schema.as_str(),
             native_opening::SCHEMA
                 | native_occurrence::SCHEMA
+                | native_whole_turn::SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2577,6 +2580,9 @@ impl IntegerDiscreteModel {
                 })
                 .transpose()?;
             let mut model = match schema.as_str() {
+                native_whole_turn::SCHEMA => {
+                    native_whole_turn::read_from(&mut reader, &encoded_header, expected_body)?
+                }
                 native_source_choice::SCHEMA => {
                     native_source_choice::read_from(&mut reader, &encoded_header, expected_body)?
                 }
@@ -2826,6 +2832,7 @@ impl IntegerDiscreteModel {
             count_mixer: None,
             opening: None,
             occurrence: None,
+            whole_turn: None,
             source_choice: None,
             word_ending: None,
             role_policy: None,
@@ -2876,6 +2883,7 @@ impl IntegerDiscreteModel {
             schema.as_str(),
             native_opening::SCHEMA
                 | native_occurrence::SCHEMA
+                | native_whole_turn::SCHEMA
                 | native_word_ending::SCHEMA
                 | native_source_choice::SCHEMA
         ) {
@@ -2885,6 +2893,9 @@ impl IntegerDiscreteModel {
             let mut reader = &bytes[end_header..];
             let expected_body = Some(reader.len() as u64);
             let mut model = match schema.as_str() {
+                native_whole_turn::SCHEMA => {
+                    native_whole_turn::read_from(&mut reader, encoded_header, expected_body)?
+                }
                 native_source_choice::SCHEMA => {
                     native_source_choice::read_from(&mut reader, &encoded_header, expected_body)?
                 }
@@ -3252,6 +3263,7 @@ impl IntegerDiscreteModel {
             count_mixer: None,
             opening: None,
             occurrence: None,
+            whole_turn: None,
             source_choice: None,
             word_ending: None,
             role_policy: None,
@@ -3332,6 +3344,9 @@ impl IntegerDiscreteModel {
 
     /// Schema of the artifact loaded by this instance.
     pub fn artifact_schema(&self) -> &'static str {
+        if self.whole_turn.is_some() {
+            return native_whole_turn::SCHEMA;
+        }
         if self.source_choice.is_some() {
             return native_source_choice::SCHEMA;
         }

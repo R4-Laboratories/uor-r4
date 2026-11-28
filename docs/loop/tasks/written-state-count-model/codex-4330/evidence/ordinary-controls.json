@@ -1,0 +1,30 @@
+{
+  "schema": "uor-r4.study-shared-load-controls/1",
+  "total_exact": 309,
+  "arms": [
+    {
+      "arm": "old",
+      "exact_records": 103,
+      "batch_seconds": 4.22,
+      "batch_peak_rss_kib": 985292,
+      "fresh_mean_seconds_per_call": 3.58786,
+      "fresh_peak_rss_kib": 987180
+    },
+    {
+      "arm": "frozen",
+      "exact_records": 103,
+      "batch_seconds": 4.66,
+      "batch_peak_rss_kib": 985804,
+      "fresh_mean_seconds_per_call": 4.03388,
+      "fresh_peak_rss_kib": 987400
+    },
+    {
+      "arm": "fitted",
+      "exact_records": 103,
+      "batch_seconds": 4.61,
+      "batch_peak_rss_kib": 986676,
+      "fresh_mean_seconds_per_call": 4.03592,
+      "fresh_peak_rss_kib": 987424
+    }
+  ]
+}

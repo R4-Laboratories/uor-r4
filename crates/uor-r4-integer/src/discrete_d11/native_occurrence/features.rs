@@ -99,6 +99,36 @@ impl<'a> Prompt<'a> {
         roots: &'a [[u8; 4]],
     ) -> Option<Self> {
         let (fact, question) = spans(ids)?;
+        Self::with_spans(ids, classes, roots, fact, question)
+    }
+
+    pub(super) fn for_user(
+        ids: &'a [u32],
+        classes: &'a [u8; VOCABULARY],
+        roots: &'a [[u8; 4]],
+        user: Range<usize>,
+    ) -> Option<Self> {
+        let user_tokens = ids.get(user.clone())?;
+        if ids.len() > CONTEXT
+            || ids.iter().any(|&id| id as usize >= VOCABULARY)
+            || user.is_empty()
+            || user_tokens.iter().any(|&id| id < 2)
+            || ids[..user.start] != USER
+            || ids[user.end..] != ASSISTANT_MARKER
+        {
+            return None;
+        }
+        let query = user.end.saturating_sub(32).max(user.start)..user.end;
+        Self::with_spans(ids, classes, roots, user, query)
+    }
+
+    fn with_spans(
+        ids: &'a [u32],
+        classes: &'a [u8; VOCABULARY],
+        roots: &'a [[u8; 4]],
+        fact: Range<usize>,
+        question: Range<usize>,
+    ) -> Option<Self> {
         if roots.len() != VOCABULARY {
             return None;
         }
@@ -149,6 +179,10 @@ impl<'a> Prompt<'a> {
 
     pub(super) fn fact_bounds(&self) -> [u16; 2] {
         [self.fact.start as u16, self.fact.end as u16]
+    }
+
+    pub(super) fn query_bounds(&self) -> [u16; 2] {
+        [self.question.start as u16, self.question.end as u16]
     }
 
     fn token(&self, position: usize) -> usize {
@@ -261,15 +295,18 @@ fn delta_bucket(delta: Option<i16>) -> u8 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::discrete_d11::native_occurrence::{OpeningChoice, OpeningDecision, State};
+    use crate::discrete_d11::native_occurrence::{
+        OpeningChoice, OpeningDecision, State, WeightWords,
+    };
 
     #[test]
     fn occurrence_ablation_retains_framing_and_removes_a_selectable_source() {
         let mut classes = Box::new([0; VOCABULARY]);
         classes[51] = 2;
+        let mut words = [0; WEIGHTS + 1];
+        words[WEIGHTS] = -1;
         let state = State {
-            weights: [0; WEIGHTS],
-            no_read: -1,
+            weights: WeightWords(words),
             classes,
             state_sha256: String::new(),
             fit_sha256: String::new(),
@@ -291,6 +328,35 @@ mod tests {
             assert!(trace.best_score.is_none());
             ids.push(SPACE);
         }
+    }
+
+    #[test]
+    fn whole_turn_keeps_the_serializer_span_and_allows_query_self_overlap() {
+        let mut classes = [0; VOCABULARY];
+        classes[50] = 4;
+        classes[51] = 2;
+        let mut roots = [[0; 4]; VOCABULARY];
+        roots[50] = [1, 2, 3, 4];
+        let mut ids = Vec::from(USER);
+        let user = ids.len()..ids.len() + 40;
+        ids.resize(user.end, 280);
+        ids[user.start] = 51;
+        ids[user.end - 1] = 50;
+        ids[16..22].copy_from_slice(&ASSISTANT_MARKER);
+        ids.extend(ASSISTANT_MARKER);
+        assert!(Prompt::new(&ids, &classes, &roots).is_none());
+        let prompt = Prompt::for_user(&ids, &classes, &roots, user.clone()).unwrap();
+        assert_eq!(prompt.fact_bounds(), [4, 44]);
+        assert_eq!(prompt.query_bounds(), [12, 44]);
+        let candidates: Vec<_> = prompt.candidates().collect();
+        assert_eq!(
+            candidates.iter().map(|c| c.position).collect::<Vec<_>>(),
+            [4, 43]
+        );
+        assert_eq!(candidates[1].features[9], 32 * 9 + 4);
+        assert!(Prompt::for_user(&ids, &classes, &roots, 16..44).is_none());
+        ids.push(SPACE);
+        assert!(Prompt::for_user(&ids, &classes, &roots, user).is_none());
     }
 
     #[test]

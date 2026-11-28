@@ -1,0 +1,53 @@
+--- a/crates/uor-r4-integer/src/bin/uor-chat.rs
++++ b/crates/uor-r4-integer/src/bin/uor-chat.rs
+@@ -2421,11 +2421,12 @@
+     }
+     #[cfg(feature = "p1-count-serving")]
+     let profile_start = profile_start.filter(|_| p1.is_some() || p4.is_some());
++    let generate = |say: Option<&String>| -> Result<serde_json::Value> {
+     let whole_turn_copy = cli.authenticated_copy && native_whole_turn::identity(&model).is_some();
+     let mut user_opening = None;
+     let mut text_mode = None;
+     let encoded;
+-    let prompt = if let (Some(text), Some(path)) = (&cli.say, &cli.tokenizer_path) {
++    let prompt = if let (Some(text), Some(path)) = (say, &cli.tokenizer_path) {
+         let bytes = std::fs::read(path)?;
+         let digest = hex::encode(Sha256::digest(&bytes));
+         if model.tokenizer_sha256() != Some(digest.as_str()) {
+@@ -2987,6 +2988,35 @@
+         record["tokenizer_sha256"] = digest.into();
+         record["protocol"] = protocol.schema.into();
+     }
+-    println!("{}", serde_json::to_string_pretty(&record)?);
++    Ok(record)
++    };
++    if let Some(path) = std::env::var_os("UOR_WHOLE_TURN_STUDY_PROMPTS") {
++        use std::io::BufRead as _;
++
++        #[derive(serde::Deserialize)]
++        #[serde(deny_unknown_fields)]
++        struct StudyPrompt {
++            case_id: String,
++            prompt: String,
++        }
++        if cli.say.is_none() || cli.tokenizer_path.is_none() {
++            return Err(IntegerError::Invalid(
++                "the study dispatcher requires ordinary --say and the bound tokenizer".into(),
++            ));
++        }
++        let prompts = std::io::BufReader::new(std::fs::File::open(path)?);
++        let mut seen = std::collections::BTreeSet::new();
++        for line in prompts.lines() {
++            let row: StudyPrompt = serde_json::from_str(&line?)?;
++            if row.case_id.is_empty() || row.prompt.contains('\0') || !seen.insert(row.case_id.clone()) {
++                return Err(IntegerError::Invalid("invalid or repeated study case".into()));
++            }
++            let result = generate(Some(&row.prompt))?;
++            println!("{}", serde_json::json!({"case_id":row.case_id,"client":result}));
++        }
++    } else {
++        let result = generate(cli.say.as_ref())?;
++        println!("{}", serde_json::to_string_pretty(&result)?);
++    }
+     Ok(())
+ }

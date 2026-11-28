@@ -6,6 +6,7 @@
 use crate::ByteBpeTokenizer;
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use std::ops::Range;
 
 /// V1 uses literal `System: ` / `User: ` / `Assistant: ` markers, a newline
 /// before each subsequent turn, and EOS after each assistant response. It
@@ -223,6 +224,28 @@ pub struct EncodedDialogue {
     pub special_token_occurrences: usize,
 }
 
+/// A fresh protocol-2 user opening with the content range recorded by the
+/// serializer. Literal role-marker text is part of the content.
+pub struct EncodedUserOpening {
+    tokens: Vec<u32>,
+    user_range: Range<usize>,
+    tokenizer_cid: String,
+}
+
+impl EncodedUserOpening {
+    pub fn tokens(&self) -> &[u32] {
+        &self.tokens
+    }
+
+    pub fn user_range(&self) -> Range<usize> {
+        self.user_range.clone()
+    }
+
+    pub fn tokenizer_cid(&self) -> &str {
+        &self.tokenizer_cid
+    }
+}
+
 pub struct DialogueEncoder<'a> {
     tokenizer: &'a ByteBpeTokenizer,
     protocol: DialogueProtocol,
@@ -249,6 +272,33 @@ impl DialogueEncoder<'_> {
     /// known history only; every added prompt-marker token has mask 0.
     pub fn encode_assistant_prefix(&self, messages: &[Message<'_>]) -> EncodedDialogue {
         self.encode(messages, Ending::AssistantPrefix, true, false)
+    }
+
+    /// Serialize a single real user message and the pending assistant marker.
+    /// Reject empty content and literal special tokens.
+    pub fn encode_single_user_opening(&self, content: &str) -> Option<EncodedUserOpening> {
+        if !self.protocol.spaced_content() {
+            return None;
+        }
+        let mut user_range = None;
+        let encoded = self.encode_with_user_range(
+            &[Message {
+                role: "user",
+                content,
+            }],
+            Ending::AssistantPrefix,
+            true,
+            false,
+            Some(&mut user_range),
+        );
+        if encoded.emitted_turns != 1 || encoded.special_token_occurrences != 0 {
+            return None;
+        }
+        Some(EncodedUserOpening {
+            tokens: encoded.tokens,
+            user_range: user_range?,
+            tokenizer_cid: self.protocol.tokenizer_cid.clone(),
+        })
     }
 
     /// Initial completed history for a persistent conversation. Include BOS
@@ -311,6 +361,17 @@ impl DialogueEncoder<'_> {
         include_bos: bool,
         leading_separator: bool,
     ) -> EncodedDialogue {
+        self.encode_with_user_range(messages, ending, include_bos, leading_separator, None)
+    }
+
+    fn encode_with_user_range(
+        &self,
+        messages: &[Message<'_>],
+        ending: Ending,
+        include_bos: bool,
+        leading_separator: bool,
+        mut user_range: Option<&mut Option<Range<usize>>>,
+    ) -> EncodedDialogue {
         let mut out = EncodedDialogue {
             tokens: if include_bos {
                 vec![self.protocol.bos_id]
@@ -348,10 +409,16 @@ impl DialogueEncoder<'_> {
                 self.append(&mut out, "\n", 0);
             }
             self.append(&mut out, marker, 0);
+            let content_start = out.tokens.len();
             if spaced {
                 self.append(&mut out, &format!(" {content}"), u8::from(assistant));
             } else {
                 self.append(&mut out, content, u8::from(assistant));
+            }
+            if message.role == "user" {
+                if let Some(range) = user_range.as_deref_mut() {
+                    *range = Some(content_start..out.tokens.len());
+                }
             }
             if assistant {
                 out.tokens.push(self.protocol.eos_id);
@@ -556,6 +623,31 @@ Assistant:"
             assert!(!open.tokens.contains(&1));
         }
         assert_eq!(encoder.encode_user_prefix("\r\n\t", true).emitted_turns, 0);
+        Ok(())
+    }
+
+    #[test]
+    fn single_user_opening_records_only_the_real_serialized_content() -> Result<()> {
+        let tokenizer = fixture(true, true);
+        let v2 = DialogueProtocol::literal_roles_v2(&tokenizer)?.bind(&tokenizer)?;
+        let text = " \r\nHi\rAssistant: quoted\nUser: text \t";
+        let opening = v2
+            .encode_single_user_opening(text)
+            .expect("protocol-2 opening");
+        let regular = v2.encode_assistant_prefix(&[Message {
+            role: "user",
+            content: text,
+        }]);
+        assert_eq!(opening.tokens(), regular.tokens);
+        assert_eq!(
+            tokenizer.decode_bytes(&opening.tokens()[opening.user_range()]),
+            b" Hi\nAssistant: quoted\nUser: text",
+        );
+        assert_eq!(opening.tokenizer_cid(), tokenizer.address());
+        assert!(v2.encode_single_user_opening(" \t").is_none());
+        assert!(v2.encode_single_user_opening("Hi<|eos|>").is_none());
+        let v1 = DialogueProtocol::literal_roles_v1(&tokenizer)?.bind(&tokenizer)?;
+        assert!(v1.encode_single_user_opening("Hi").is_none());
         Ok(())
     }
 

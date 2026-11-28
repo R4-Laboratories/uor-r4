@@ -1,8 +1,12 @@
 //! One-shot original-ID resolution at the frozen occurrence writer.
 
 use serde::Serialize;
+use uor_r4_tokenizer::dialogue::EncodedUserOpening;
 
-use super::{native_occurrence::OpeningChoice, IntegerDiscreteModel};
+use super::{
+    native_occurrence::{Candidate, OpeningChoice, State},
+    native_whole_turn, IntegerDiscreteModel,
+};
 use crate::{invalid, Result};
 
 pub const SCHEMA: &str = "uor-r4.native-authenticated-copy/1";
@@ -59,14 +63,40 @@ pub struct WriterEvent {
 /// A successful first step consumes the action, including refusals and SPACE.
 pub struct Session<'a> {
     model: &'a IntegerDiscreteModel,
-    pending: Option<Action>,
+    pending: Option<FirstStep<'a>>,
     generate: Action,
     terminal: bool,
 }
 
+#[derive(Clone, Copy)]
+enum FirstStep<'a> {
+    Framed(Action),
+    WholeTurn(&'a EncodedUserOpening),
+}
+
 impl<'a> Session<'a> {
     pub fn new(model: &'a IntegerDiscreteModel) -> Result<Self> {
+        if model.whole_turn.is_some() {
+            return Err(invalid(
+                "whole-turn authenticated copy requires a serialized single-user opening",
+            ));
+        }
         Self::with_action(model, LEARNED)
+    }
+
+    /// Enable one whole-turn selection on the actual serialized opening.
+    /// Self-fed steps retain the marker, trunk and writer with no repeated read.
+    pub fn for_user_opening(
+        model: &'a IntegerDiscreteModel,
+        opening: &'a EncodedUserOpening,
+    ) -> Result<Self> {
+        if model.whole_turn.is_none() {
+            return Err(invalid("artifact has no whole-turn occurrence state"));
+        }
+        let mut session = Self::with_action(model, LEARNED)?;
+        session.pending = Some(FirstStep::WholeTurn(opening));
+        session.generate = NO_OCCURRENCE;
+        Ok(session)
     }
 
     /// Disable the fitted occurrence read and copy while retaining the frozen
@@ -85,7 +115,7 @@ impl<'a> Session<'a> {
         }
         Ok(Self {
             model,
-            pending: Some(action),
+            pending: Some(FirstStep::Framed(action)),
             generate: GENERATE,
             terminal: false,
         })
@@ -97,7 +127,19 @@ impl<'a> Session<'a> {
         if self.terminal {
             return Err(invalid("authenticated copy session has reached EOS"));
         }
-        let event = evaluate(self.model, prefix, self.pending.unwrap_or(self.generate))?;
+        let event = match self.pending {
+            Some(FirstStep::WholeTurn(opening)) => {
+                if prefix != opening.tokens() {
+                    return Err(invalid(
+                        "authenticated copy prefix differs from serialized user opening",
+                    ));
+                }
+                let read = native_whole_turn::choose(self.model, opening)?;
+                write_selected(self.model, prefix, occurrence(self.model)?, LEARNED, read)?
+            }
+            Some(FirstStep::Framed(action)) => evaluate(self.model, prefix, action)?,
+            None => evaluate(self.model, prefix, self.generate)?,
+        };
         self.pending = None;
         self.terminal = event.committed_id == EOS;
         Ok(event)
@@ -136,11 +178,25 @@ pub(super) fn evaluate(
     action: Action,
 ) -> Result<WriterEvent> {
     model.validate_prefix(prefix)?;
-    let reader = model
+    let reader = occurrence(model)?;
+    let read = reader.choose(prefix, &model.codebook_roots, action.read);
+    write_selected(model, prefix, reader, action, read)
+}
+
+fn occurrence(model: &IntegerDiscreteModel) -> Result<&State> {
+    model
         .occurrence
         .as_ref()
-        .ok_or_else(|| invalid("authenticated copy requires a native occurrence artifact"))?;
-    let read = reader.choose(prefix, &model.codebook_roots, action.read);
+        .ok_or_else(|| invalid("authenticated copy requires a native occurrence artifact"))
+}
+
+fn write_selected(
+    model: &IntegerDiscreteModel,
+    prefix: &[u32],
+    reader: &State,
+    action: Action,
+    read: Option<Candidate>,
+) -> Result<WriterEvent> {
     let read_pos = read.map(|candidate| candidate.position);
     let claim_pos = match action.copy {
         None => None,

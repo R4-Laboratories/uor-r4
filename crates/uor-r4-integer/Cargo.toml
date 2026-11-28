@@ -136,6 +136,16 @@ name = "verify-native-occurrence"
 path = "src/bin/verify-native-occurrence.rs"
 
 [[bin]]
+name = "pack-whole-turn-occurrence"
+path = "src/bin/pack-whole-turn-occurrence.rs"
+required-features = ["serving-wasm"]
+
+[[bin]]
+name = "verify-whole-turn-occurrence"
+path = "src/bin/verify-whole-turn-occurrence.rs"
+required-features = ["serving-wasm"]
+
+[[bin]]
 name = "verify-native-copy"
 path = "src/bin/verify-native-copy.rs"
 

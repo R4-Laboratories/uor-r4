@@ -1,0 +1,17 @@
+{
+  "cases_with_framed_candidates": 34,
+  "cubin_sha256": "fb65c01ea001ba81e13c03ff095ef13eeb87805f62da12113edef2bd800c4005",
+  "decisions_sha256": "0f7e8cfd9c595fd611c528d185c0a1161517d1eff3042c23b1673b3a25e72ce7",
+  "eval_tape_sha256": "b5404535fd76051a3c0c121b3fe394742837a003c13e963c7588073f715e26d8",
+  "fitted_state_sha256": "64465acceb876799cf1ebe06c36029c87f6f31863f37ead21fd07cf41aa439d0",
+  "geometry": {
+    "classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23",
+    "roots_sha256": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "initial_state_sha256": "c4c2cb4139f1af761da5c5d6dcc656dab81ad9a813646c3efef7be672ca5a08a",
+  "labels_removed_before_device": true,
+  "reverse_eval_exact": true,
+  "rows": 1086,
+  "schema": "uor-r4.whole-turn-ordered-score/1"
+}

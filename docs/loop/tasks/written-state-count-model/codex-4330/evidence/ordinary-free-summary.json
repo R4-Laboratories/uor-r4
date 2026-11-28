@@ -1,0 +1,29 @@
+{
+  "schema": "uor-r4.whole-turn-free-chat-summary/1",
+  "arms": [
+    {
+      "arm": "old",
+      "eos": 0,
+      "capped": 8,
+      "copied": 0,
+      "distinct_id_sequences": 3,
+      "rows": 8
+    },
+    {
+      "arm": "frozen",
+      "eos": 0,
+      "capped": 8,
+      "copied": 7,
+      "distinct_id_sequences": 8,
+      "rows": 8
+    },
+    {
+      "arm": "fitted",
+      "eos": 0,
+      "capped": 8,
+      "copied": 3,
+      "distinct_id_sequences": 4,
+      "rows": 8
+    }
+  ]
+}

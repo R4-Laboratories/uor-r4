@@ -1,0 +1,71 @@
+[
+  {
+    "arm": "old",
+    "held": 618,
+    "reference": 393,
+    "reference_over_cap": 0,
+    "first_correct": 37,
+    "exact_eos": 0,
+    "terminated": 9,
+    "first_error_zero_based": [
+      {
+        "step": 0,
+        "n": 356
+      },
+      {
+        "step": 1,
+        "n": 30
+      },
+      {
+        "step": 2,
+        "n": 7
+      }
+    ]
+  },
+  {
+    "arm": "frozen",
+    "held": 618,
+    "reference": 393,
+    "reference_over_cap": 0,
+    "first_correct": 19,
+    "exact_eos": 0,
+    "terminated": 17,
+    "first_error_zero_based": [
+      {
+        "step": 0,
+        "n": 374
+      },
+      {
+        "step": 1,
+        "n": 13
+      },
+      {
+        "step": 2,
+        "n": 6
+      }
+    ]
+  },
+  {
+    "arm": "fitted",
+    "held": 618,
+    "reference": 393,
+    "reference_over_cap": 0,
+    "first_correct": 13,
+    "exact_eos": 0,
+    "terminated": 18,
+    "first_error_zero_based": [
+      {
+        "step": 0,
+        "n": 380
+      },
+      {
+        "step": 1,
+        "n": 10
+      },
+      {
+        "step": 2,
+        "n": 3
+      }
+    ]
+  }
+]

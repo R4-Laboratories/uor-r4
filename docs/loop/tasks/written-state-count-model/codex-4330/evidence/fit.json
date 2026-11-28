@@ -1,0 +1,44 @@
+{
+  "changed_words_from_initial": 228,
+  "cubin_sha256": "fb65c01ea001ba81e13c03ff095ef13eeb87805f62da12113edef2bd800c4005",
+  "epochs": 4,
+  "fit_events_sha256": "f1ce17ded2275b7dbfd8e7714ddefe4c0af4a6e342e1d9c08b245b8d64fc7763",
+  "geometry": {
+    "classes_sha256": "a0afae48560e5a8112d682fb067f24c57a2f432935b2405acfcc8b7dd7d31a23",
+    "roots_sha256": "875a0857dfef840d88a64c90a5777a6154a1674cde08a71429e2cca93fb7bb5a"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "initial_state_sha256": "c4c2cb4139f1af761da5c5d6dcc656dab81ad9a813646c3efef7be672ca5a08a",
+  "margin": 8,
+  "positive_rows_per_epoch": 258,
+  "repeat_fit_exact": true,
+  "rows_per_epoch": 468,
+  "schema": "uor-r4.whole-turn-ordered-fit/1",
+  "snapshots_sha256": [
+    "7a994f9a72383dd45f9dff8fec1c4204bda8a30eec78c12c42730a99904ddb66",
+    "34932d8d35f548d57b34ef648d23728a53bea8bbb1be5cd12007015a8aa4eee5",
+    "0f1a8ec01d4a18ae93eb0f7d691a7364c39b3c81efa4760a71a3071e4294ee5b",
+    "64465acceb876799cf1ebe06c36029c87f6f31863f37ead21fd07cf41aa439d0"
+  ],
+  "state_sha256": "64465acceb876799cf1ebe06c36029c87f6f31863f37ead21fd07cf41aa439d0",
+  "train_tape_sha256": "6ecf447629ee5a4f103b38f3046afc1693f5ed6b37ef893a2d20509392ef9b01",
+  "updates_by_epoch": [
+    {
+      "negative": 209,
+      "positive": 258
+    },
+    {
+      "negative": 208,
+      "positive": 237
+    },
+    {
+      "negative": 204,
+      "positive": 212
+    },
+    {
+      "negative": 200,
+      "positive": 214
+    }
+  ],
+  "weight_bound": 4096
+}

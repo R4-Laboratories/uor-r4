@@ -1,0 +1,12 @@
+{
+  "blocked_prior_open_panel_sha256": "8fc9be4086f86b35187b019fb1e22581574168ea9fb6326627fb45658d99f035",
+  "corpus_sha256": "7a886a16ccfc1173c4f00a6897523e3c95b2785a86ee44a18a98f4f2807ee29b",
+  "eligible_roots": 51,
+  "prompt_bank_sha256": "d95090332157731b3d02bace4bd3e3467a3a6ee80e5934a6fed3cf89cb3e1541",
+  "scanned_trees": 13854,
+  "schema": "uor-r4.real-chat-roots/1",
+  "selected": 8,
+  "source": "OpenAssistant/oasst2",
+  "source_revision": "179dd21fc55192153d94adb0e0ce8f69e222bf75",
+  "tokenizer_sha256": "a9fb13f70c69ffe5afed40c8251a8e702adf0b00732d35ccff9457a3309ee377"
+}

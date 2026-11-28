@@ -4,6 +4,7 @@ use std::io::{Read, Write};
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
+use uor_r4_tokenizer::dialogue::EncodedUserOpening;
 
 use super::{native_opening, pack_4block_roots, HashingReader, IntegerDiscreteModel, MAGIC};
 use crate::{invalid, Result};
@@ -41,11 +42,54 @@ struct Envelope {
 
 #[derive(Clone, Debug)]
 pub(super) struct State {
-    weights: [i16; WEIGHTS],
-    no_read: i16,
+    weights: WeightWords,
     classes: Box<[u8; VOCABULARY]>,
     state_sha256: String,
     fit_sha256: String,
+}
+
+#[derive(Clone, Debug)]
+pub(super) struct WeightWords([i16; WEIGHTS + 1]);
+
+impl WeightWords {
+    pub(super) fn parse(bytes: &[u8; WEIGHT_BYTES]) -> Result<Self> {
+        let mut words = [0; WEIGHTS + 1];
+        for (word, bytes) in words.iter_mut().zip(bytes.chunks_exact(2)) {
+            *word = i16::from_le_bytes([bytes[0], bytes[1]]);
+            if !(-WEIGHT_LIMIT..=WEIGHT_LIMIT).contains(word) {
+                return Err(invalid("native occurrence weight exceeds the signed bound"));
+            }
+        }
+        Ok(Self(words))
+    }
+
+    pub(super) fn bytes(&self) -> [u8; WEIGHT_BYTES] {
+        let mut bytes = [0; WEIGHT_BYTES];
+        for (word, output) in self.0.iter().zip(bytes.chunks_exact_mut(2)) {
+            output.copy_from_slice(&word.to_le_bytes());
+        }
+        bytes
+    }
+
+    fn score(&self, candidate: Candidate) -> i32 {
+        candidate
+            .features
+            .iter()
+            .map(|&id| i32::from(self.0[usize::from(id)]))
+            .sum()
+    }
+
+    fn no_read(&self) -> i16 {
+        self.0[WEIGHTS]
+    }
+
+    fn best(&self, prompt: &Prompt<'_>) -> Best {
+        let mut best = Best::default();
+        for candidate in prompt.candidates() {
+            best.consider(candidate, self.score(candidate));
+        }
+        best
+    }
 }
 
 #[derive(Debug, Serialize)]
@@ -108,6 +152,25 @@ pub struct AssessmentCandidate {
     pub features: Option<[u16; ACTIVE]>,
     pub score: Option<i32>,
     pub rank: Option<u16>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct OpeningAssessment {
+    pub fact_bounds: Option<[u16; 2]>,
+    pub query_bounds: Option<[u16; 2]>,
+    pub winner_pos: Option<u16>,
+    pub best_score: Option<i32>,
+    pub best_ties: u16,
+    pub no_read_score: i16,
+    pub candidates: Vec<ScoredCandidate>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct ScoredCandidate {
+    pub pos: u16,
+    pub id: u16,
+    pub score: i32,
+    pub features: [u16; ACTIVE],
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -246,16 +309,11 @@ impl State {
                 "native occurrence state magic or feature spec mismatch",
             ));
         }
-        let mut words = [0; WEIGHTS + 1];
-        for (word, bytes) in words
-            .iter_mut()
-            .zip(payload[STATE_PREFIX_BYTES..STATE_PREFIX_BYTES + WEIGHT_BYTES].chunks_exact(2))
-        {
-            *word = i16::from_le_bytes([bytes[0], bytes[1]]);
-            if !(-WEIGHT_LIMIT..=WEIGHT_LIMIT).contains(word) {
-                return Err(invalid("native occurrence weight exceeds the signed bound"));
-            }
-        }
+        let weights = WeightWords::parse(
+            payload[STATE_PREFIX_BYTES..STATE_PREFIX_BYTES + WEIGHT_BYTES]
+                .try_into()
+                .map_err(|_| invalid("invalid native occurrence weight length"))?,
+        )?;
         let classes = Box::new(
             payload[STATE_PREFIX_BYTES + WEIGHT_BYTES..]
                 .try_into()
@@ -266,11 +324,8 @@ impl State {
                 "native occurrence canonical token classes mismatch",
             ));
         }
-        let mut weights = [0; WEIGHTS];
-        weights.copy_from_slice(&words[..WEIGHTS]);
         Ok(Self {
             weights,
-            no_read: words[WEIGHTS],
             classes,
             state_sha256: envelope.state_sha256,
             fit_sha256: envelope.fit_sha256,
@@ -288,12 +343,84 @@ impl State {
         }
     }
 
-    fn score(&self, candidate: Candidate) -> i32 {
-        candidate
-            .features
-            .iter()
-            .map(|&id| i32::from(self.weights[usize::from(id)]))
-            .sum()
+    pub(super) fn weight_bytes(&self) -> [u8; WEIGHT_BYTES] {
+        self.weights.bytes()
+    }
+
+    fn user_prompt<'a>(
+        &'a self,
+        opening: &'a EncodedUserOpening,
+        roots: &'a [[u8; 4]],
+    ) -> Option<Prompt<'a>> {
+        Prompt::for_user(opening.tokens(), &self.classes, roots, opening.user_range())
+    }
+
+    pub(super) fn choose_user(
+        &self,
+        opening: &EncodedUserOpening,
+        roots: &[[u8; 4]],
+        weights: &WeightWords,
+    ) -> Result<Option<Candidate>> {
+        let prompt = self
+            .user_prompt(opening, roots)
+            .ok_or_else(|| invalid("invalid serialized whole-turn opening"))?;
+        Ok(weights.best(&prompt).read(weights.no_read()))
+    }
+
+    pub(super) fn probe_user(
+        &self,
+        opening: Option<&EncodedUserOpening>,
+        roots: &[[u8; 4]],
+        weights: &WeightWords,
+    ) -> OpeningProbe {
+        let prompt = opening.and_then(|opening| self.user_prompt(opening, roots));
+        make_probe(prompt, weights, opening.is_some())
+    }
+
+    pub(super) fn assess_opening(
+        &self,
+        opening: &EncodedUserOpening,
+        roots: &[[u8; 4]],
+        expanded: Option<&WeightWords>,
+    ) -> Result<OpeningAssessment> {
+        let (prompt, weights) = match expanded {
+            Some(weights) => (
+                Some(
+                    self.user_prompt(opening, roots)
+                        .ok_or_else(|| invalid("invalid serialized whole-turn opening"))?,
+                ),
+                weights,
+            ),
+            None => (
+                Prompt::new(opening.tokens(), &self.classes, roots),
+                &self.weights,
+            ),
+        };
+        let mut best = Best::default();
+        let mut candidates = Vec::new();
+        if let Some(prompt) = &prompt {
+            for candidate in prompt.candidates() {
+                let score = weights.score(candidate);
+                best.consider(candidate, score);
+                candidates.push(ScoredCandidate {
+                    pos: candidate.position,
+                    id: candidate.token,
+                    score,
+                    features: candidate.features,
+                });
+            }
+        }
+        Ok(OpeningAssessment {
+            fact_bounds: prompt.as_ref().map(Prompt::fact_bounds),
+            query_bounds: prompt.as_ref().map(Prompt::query_bounds),
+            winner_pos: best
+                .read(weights.no_read())
+                .map(|candidate| candidate.position),
+            best_score: best.score,
+            best_ties: best.ties,
+            no_read_score: weights.no_read(),
+            candidates,
+        })
     }
 
     pub(super) fn choose(
@@ -309,41 +436,15 @@ impl State {
         if let OpeningChoice::Supplied(position) = choice {
             return prompt.candidate(usize::from(position));
         }
-        self.best(&prompt).read(self.no_read)
-    }
-
-    fn best(&self, prompt: &Prompt<'_>) -> Best {
-        let mut best = Best::default();
-        for candidate in prompt.candidates() {
-            best.consider(candidate, self.score(candidate));
-        }
-        best
+        self.weights.best(&prompt).read(self.weights.no_read())
     }
 
     pub(super) fn probe(&self, ids: &[u32], roots: &[[u8; 4]], enabled: bool) -> OpeningProbe {
-        let prompt = Prompt::new(ids, &self.classes, roots);
-        let best = if enabled {
-            prompt.as_ref().map(|prompt| self.best(prompt))
-        } else {
-            None
-        };
-        let decision = match &best {
-            _ if !enabled => OpeningDecision::Disabled,
-            None => OpeningDecision::FramingRejected,
-            Some(best) if best.candidate.is_none() => OpeningDecision::NoEligibleCandidate,
-            Some(best) if best.ties != 1 => OpeningDecision::ScoreTie,
-            Some(best) if best.read(self.no_read).is_none() => OpeningDecision::NoReadThreshold,
-            Some(_) => OpeningDecision::Selected,
-        };
-        let bounds = prompt.map(|prompt| prompt.fact_bounds());
-        OpeningProbe {
-            parsed_start: bounds.map(|bounds| bounds[0]),
-            parsed_end: bounds.map(|bounds| bounds[1]),
-            decision,
-            best_score: best.as_ref().and_then(|best| best.score),
-            best_ties: best.map_or(0, |best| best.ties),
-            no_read_score: self.no_read,
-        }
+        make_probe(
+            Prompt::new(ids, &self.classes, roots),
+            &self.weights,
+            enabled,
+        )
     }
 
     fn assess_prefix(
@@ -360,7 +461,7 @@ impl State {
             winner_pos: None,
             best_score: None,
             best_ties: 0,
-            no_read_score: self.no_read,
+            no_read_score: self.weights.no_read(),
             gold_rank: None,
             rival_rank: None,
         };
@@ -374,7 +475,7 @@ impl State {
         for pos in start..end {
             let candidate = prompt.candidate(usize::from(pos));
             let score = candidate.map(|candidate| {
-                let score = self.score(candidate);
+                let score = self.weights.score(candidate);
                 best.consider(candidate, score);
                 score
             });
@@ -405,10 +506,37 @@ impl State {
                 assessment.rival_rank = candidate.rank;
             }
         }
-        assessment.winner_pos = best.read(self.no_read).map(|candidate| candidate.position);
+        assessment.winner_pos = best
+            .read(self.weights.no_read())
+            .map(|candidate| candidate.position);
         assessment.best_score = best.score;
         assessment.best_ties = best.ties;
         assessment
+    }
+}
+
+fn make_probe(prompt: Option<Prompt<'_>>, weights: &WeightWords, enabled: bool) -> OpeningProbe {
+    let best = if enabled {
+        prompt.as_ref().map(|prompt| weights.best(prompt))
+    } else {
+        None
+    };
+    let decision = match &best {
+        _ if !enabled => OpeningDecision::Disabled,
+        None => OpeningDecision::FramingRejected,
+        Some(best) if best.candidate.is_none() => OpeningDecision::NoEligibleCandidate,
+        Some(best) if best.ties != 1 => OpeningDecision::ScoreTie,
+        Some(best) if best.read(weights.no_read()).is_none() => OpeningDecision::NoReadThreshold,
+        Some(_) => OpeningDecision::Selected,
+    };
+    let bounds = prompt.map(|prompt| prompt.fact_bounds());
+    OpeningProbe {
+        parsed_start: bounds.map(|bounds| bounds[0]),
+        parsed_end: bounds.map(|bounds| bounds[1]),
+        decision,
+        best_score: best.as_ref().and_then(|best| best.score),
+        best_ties: best.map_or(0, |best| best.ties),
+        no_read_score: weights.no_read(),
     }
 }
 

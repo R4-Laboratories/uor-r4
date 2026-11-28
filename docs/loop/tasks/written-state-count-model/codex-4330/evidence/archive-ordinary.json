@@ -1,0 +1,18 @@
+{
+  "schema": "uor-r4.whole-turn-ordinary-archive-readback/1",
+  "repo": "caseyallard/uor-r4-store",
+  "private_repository_verified": true,
+  "revision": "24ab9fa6bd6ea1fd60dd2b8b785c4c20b6d5ba5b",
+  "path": "results/codex/whole-turn-source-fit-20261127/whole-turn-ordinary.tar.zst",
+  "archive_bytes": 124349,
+  "archive_sha256": "9988b44733293ff650c1f918d4e9f0f574d9b613034121d7d94d1b44109037c9",
+  "cold_download_byte_exact": true,
+  "packed_members_verified": true,
+  "prompt_count": 3,
+  "arm_count": 3,
+  "cold_reply_records": 9,
+  "exact_reply_records": 9,
+  "comparison_omits": ["artifact"],
+  "representative_manifest_sha256": "dd2b079e8c760aeb726e7ecef4aa7eb4e1db00ebe7e95edc85f59ab05a652d54",
+  "wick_evidence_root": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-whole-turn-fit/ordinary-archive-readback-v1"
+}
