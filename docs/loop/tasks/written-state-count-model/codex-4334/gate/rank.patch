@@ -1,0 +1,220 @@
+--- a/solver/src/main.rs
++++ b/solver/src/main.rs
+@@ -235,10 +235,30 @@
+     Ok(rows)
+ }
+
++#[derive(Clone, Copy)]
++enum RankScope {
++    Sources,
++    NoRead,
++}
++
++impl RankScope {
++    fn name(self) -> &'static str {
++        match self {
++            Self::Sources => "supported_gold_vs_sites",
++            Self::NoRead => "supported_gold_vs_noread",
++        }
++    }
++
++    fn keeps(self, row: &Inequality) -> bool {
++        row.winner.is_some() && row.loser.is_some() == matches!(self, Self::Sources)
++    }
++}
++
+ struct Conditions {
+     frozen: bool,
+     whole: bool,
+     margin: i64,
++    rank: Option<RankScope>,
+ }
+
+ fn emit(
+@@ -273,7 +293,9 @@
+             .collect::<Result<Vec<_>>>()?
+             .into_iter()
+             .flatten()
++            .filter(|row| condition.rank.is_none_or(|scope| scope.keeps(row)))
+             .collect();
++        check(!rows.is_empty(), "empty comparison group")?;
+         let verdict = solve(z3, &rows, matches!(arm, Arm::ZeroWeight))?;
+         let status = match &verdict {
+             Verdict::Feasible { .. } => Some(true),
+@@ -296,7 +318,10 @@
+             &mut *output,
+             &json!({
+                 "offsets": if condition.frozen { "frozen" } else { "zero" },
+-                "scope": if condition.whole { "all" } else { "designated" },
++                "scope": condition.rank.map_or(
++                    if condition.whole { "all" } else { "designated" },
++                    RankScope::name,
++                ),
+                 "margin": condition.margin,
+                 "arm": arm.name(),
+                 "level": level,
+@@ -314,6 +339,10 @@
+
+ fn main() -> Result<()> {
+     let mut args: Vec<_> = std::env::args().skip(1).collect();
++    let rank_only = args.first().is_some_and(|arg| arg == "--rank");
++    if rank_only {
++        args.remove(0);
++    }
+     let (filter_level, omitted_id) = match args.first().map(String::as_str) {
+         Some("--panel-positive-only") => {
+             args.remove(0);
+@@ -328,8 +357,12 @@
+     };
+     check(
+         args.len() >= 3 && args.len() % 2 == 1,
+-        "usage: signed-site-gate [--panel-positive-only | --panel-omit-row CASE_ID] Z3 CAPTURE.jsonl KEY.jsonl [CAPTURE.jsonl KEY.jsonl ...]",
++        "usage: signed-site-gate [--rank | --panel-positive-only | --panel-omit-row CASE_ID] Z3 CAPTURE.jsonl KEY.jsonl [CAPTURE.jsonl KEY.jsonl ...]",
+     )?;
++    check(
++        !rank_only || (filter_level.is_none() && args.len() == 3),
++        "--rank takes one panel",
++    )?;
+     let mut captured = BTreeMap::new();
+     let mut keys = Vec::new();
+     for pair in args[1..].chunks_exact(2) {
+@@ -363,6 +396,44 @@
+         panel.extend([(&pair[0], &pair[1]), (&pair[1], &pair[0])]);
+     }
+     let mut output = std::io::BufWriter::new(std::io::stdout().lock());
++    if rank_only {
++        let positives: Vec<_> = panel
++            .iter()
++            .copied()
++            .filter(|(member, _)| member.key.target.is_some())
++            .collect();
++        for rank in [RankScope::Sources, RankScope::NoRead] {
++            for frozen in [true, false] {
++                for margin in [1, 8] {
++                    let condition = Conditions {
++                        frozen,
++                        whole: true,
++                        margin,
++                        rank: Some(rank),
++                    };
++                    emit(
++                        &mut output,
++                        &args[0],
++                        &positives,
++                        &condition,
++                        "panel_positive_only",
++                        "supported",
++                    )?;
++                    for &(member, other) in &positives {
++                        emit(
++                            &mut output,
++                            &args[0],
++                            &[(member, other)],
++                            &condition,
++                            "row",
++                            &member.key.case_id,
++                        )?;
++                    }
++                }
++            }
++        }
++        return Ok(());
++    }
+     if let Some(level) = filter_level {
+         let filtered: Vec<_> = panel
+             .iter()
+@@ -385,6 +456,7 @@
+                 frozen,
+                 whole: true,
+                 margin: 1,
++                rank: None,
+             };
+             emit(
+                 &mut output,
+@@ -404,6 +476,7 @@
+                     frozen,
+                     whole,
+                     margin,
++                    rank: None,
+                 };
+                 emit(&mut output, &args[0], &panel, &condition, "panel", "shared")?;
+             }
+@@ -416,6 +489,7 @@
+                     frozen,
+                     whole,
+                     margin,
++                    rank: None,
+                 };
+                 for (id, pair) in &pairs {
+                     let members = [(&pair[0], &pair[1]), (&pair[1], &pair[0])];
+--- a/check/src/main.rs
++++ b/check/src/main.rs
+@@ -1,5 +1,7 @@
+ // Standalone replay of finite certificate records. Rebuild the comparisons from
+ // original target addresses independently of the solver's coefficient emitter.
++mod certificate_replay;
++
+ use serde::Deserialize;
+ use serde_json::{json, Value};
+ use std::{
+@@ -54,6 +56,7 @@
+     case_id: String,
+     candidates: Vec<Candidate>,
+     expanded_frozen: Threshold,
++    question_start: Option<usize>,
+ }
+ #[derive(Deserialize, PartialEq, Debug)]
+ struct Expr {
+@@ -262,9 +265,12 @@
+
+ fn main() -> Result<()> {
+     let args: Vec<_> = std::env::args().skip(1).collect();
++    if args.first().is_some_and(|arg| arg == "--prior-certificate") {
++        return certificate_replay::run(&args[1..]);
++    }
+     need(
+         args.len() >= 3,
+-        "usage: verify-signed-verdicts FEATURES KEYS RESULTS [--positive|--omit CASE_ID|--split]",
++        "usage: verify-signed-verdicts FEATURES KEYS RESULTS [--positive|--omit CASE_ID|--split|--rank]",
+     )?;
+     let rows: Vec<Capture> = lines(&args[0])?;
+     let n = rows.len();
+@@ -285,7 +291,7 @@
+     need(
+         matches!(
+             mode.as_slice(),
+-            [] | ["--positive"] | ["--split"] | ["--omit", _]
++            [] | ["--positive"] | ["--split"] | ["--rank"] | ["--omit", _]
+         ),
+         "unknown replay mode",
+     )?;
+@@ -296,6 +302,7 @@
+         )?;
+     }
+     let split = mode == ["--split"];
++    let rank = mode == ["--rank"];
+     let records: Vec<Record> = if split {
+         let mut split_records = Vec::new();
+         let positive_ids: BTreeSet<_> = keys
+@@ -352,6 +359,12 @@
+                 ["supported_gold_vs_sites", "supported_gold_vs_noread"].contains(&r.scope.as_str())
+                     && ["fixed", "actual"].contains(&r.arm.as_str())
+             }
++            ["--rank"] => {
++                ["supported_gold_vs_sites", "supported_gold_vs_noread"].contains(&r.scope.as_str())
++                    && ((r.level == "panel_positive_only" && r.id == "supported")
++                        || (r.level == "row"
++                            && keys.iter().any(|k| k.case_id == r.id && k.target.is_some())))
++            }
+             ["--positive"] => {
+                 r.level == "panel_positive_only"
+                     && r.id == "supported"
+@@ -418,6 +431,8 @@
+                 40 * (n + pairs + 1)
+             } else if split {
+                 16
++            } else if rank {
++                40 * (keys.iter().filter(|k| k.target.is_some()).count() + 1)
+             } else {
+                 10
+             },

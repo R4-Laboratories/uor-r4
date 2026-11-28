@@ -1,0 +1,30 @@
+{
+  "repository": "caseyallard/uor-r4-store",
+  "revision": "0c61787181f4fa666d683a7f50bbb9d5f54afbf3",
+  "path": "results/codex/relative-source-finite-20261127/relative-source-finite.tar.zst",
+  "bytes": 512306,
+  "sha256": "19c3092a7a5e950b009cf3927461ee7f8944ba852d68d8d8eb563a7b2c682361",
+  "member_count": 95,
+  "members_manifest_sha256": "b51ecce3f535eed39fbbf55fa832d2312e684c1771018d923cf2e070e9d2d381",
+  "wick_archive": "20261127-codex-relative-source/archive-v1",
+  "wick_cold_readback": "20261127-codex-relative-source/archive-v1/cold-readback",
+  "prior_revisions": {
+    "4333": "d7429b0c18eb1ad518176021b46b25f7f105cbab",
+    "4332": "a13ee14c1877b197cb0b2a9bfc1e203ed490e388"
+  },
+  "private_repository_verified": true,
+  "forced_download_byte_identical": true,
+  "cold_transport_members_reconstructed_byte_identically": 25,
+  "cold_gate_records_independently_rechecked": 15000,
+  "cold_restricted_rival_records_independently_rechecked": 6720,
+  "cold_prior_certificate_replays_recomputed": 3,
+  "cold_wrong_cut_rejected_on_coefficient_or_offset_mismatch": true,
+  "wrong_packet_digest_rejected_before_extraction": true,
+  "cold_readback_sha256": {
+    "transport/SCAN.sha256": "99f46ea8c26d42aaf4d4aeb15c2bbfb1b7727efe9932fa79384e26e31166ff60",
+    "verified/separator/prior-certificate.json": "4f42499077713a78706498b15fed6b6a860c1bd0d8b6a8a6301945b5083d6442",
+    "verified/tail32/prior-certificate.json": "6e67a3cca881e39c09861fa8bbdb0cedc0e8b6188b71ab31df4acd3c8db8cffb",
+    "verified/zero/prior-certificate.json": "04294702117c455150b074e14fca67eb4de0515730f60434e35b79f1f7c5450e",
+    "verified/wrong-cut.stderr": "85a38113629cebb13cb0f6ef6f166a4c2f41710202dd29150d07e0e9c087cf7e"
+  }
+}
