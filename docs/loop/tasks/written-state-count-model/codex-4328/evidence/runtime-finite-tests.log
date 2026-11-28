@@ -1,0 +1,16 @@
+   Compiling uor-r4-integer v0.1.0 (/home/callard/uor-codex/20261127-ordinary-source/src/crates/uor-r4-integer)
+error[E0432]: unresolved import `super::super`
+ --> crates/uor-r4-integer/src/stack/tests/pair_rows.rs:5:5
+  |
+5 | use super::super as stack;
+  |     ^^^^^^^^^^^^^^^^^^^^^ no `super` in `stack::tests`
+
+error[E0282]: type annotations needed
+   --> crates/uor-r4-integer/src/stack/tests/pair_rows.rs:233:28
+    |
+233 |     let rows = vec![value; dict.len() * width];
+    |                            ^^^^ cannot infer type
+
+Some errors have detailed explanations: E0282, E0432.
+For more information about an error, try `rustc --explain E0282`.
+error: could not compile `uor-r4-integer` (lib test) due to 2 previous errors

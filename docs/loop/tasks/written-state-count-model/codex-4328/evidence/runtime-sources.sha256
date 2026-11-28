@@ -1,0 +1,5 @@
+5b591a4b12402908e881731fc338f8829ace688c5d00b76a35c31b6b81714998  crates/uor-r4-integer/src/bin/uor-chat.rs
+cad962a49651c373f5ad9d8027e40ba7404729900c939cebe0e5bd87a0cefa9a  crates/uor-r4-integer/src/discrete_d11/native_copy.rs
+208b3a60a825281bd2c1953f11754833c6d571ae491d55c3d4cfb129869cd4a5  crates/uor-r4-integer/src/discrete_d11/native_occurrence.rs
+0042bfd7af0b7cdf4054e6c305b048b8a1dd92d063585516eed8ce7c0d34e051  crates/uor-r4-integer/src/discrete_d11/native_occurrence/features.rs
+4b285d737b3f7b6ec2b23c0833bf064f7277ab90a53240ab522a35c55c06d040  docs/loop/tasks/written-state-count-model/codex-4328/runtime/run.sh

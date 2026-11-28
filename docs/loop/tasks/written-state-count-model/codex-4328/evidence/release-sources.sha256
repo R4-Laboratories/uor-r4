@@ -1,0 +1,4 @@
+7bb71021a26a6e0a6e625f7f6da014692172ffd5195fedc7b2e5aa79cd0165f9  crates/uor-r4-integer/src/discrete_d11/native_source_choice.rs
+ede0c6244768c0f1eb41ac0f925add53a5e55214c6ed3903baf7e99858c8c198  crates/uor-r4-integer/src/bin/uor-chat.rs
+479a1b3d1dff344d63401fdc4dd1ffa7c996dff67b82a86153a1d480bfe9f3c4  docs/loop/tasks/written-state-count-model/codex-4328/release/run.sh
+75df651fe5cf56d256656c324a808e9a3ce12d3a1f0a64cb1b1d038c4ca98724  docs/loop/tasks/written-state-count-model/codex-4328/release/grade.jq

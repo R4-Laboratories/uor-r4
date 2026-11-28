@@ -1,0 +1,123 @@
+{
+  "schema": "uor-r4.ordinary-source-runtime-receipt/1",
+  "output_path": "/mnt/plexpool/uor-r4-corpus/runs/20261127-codex-ordinary-source/runtime-v1",
+  "host": "wick",
+  "architecture": "Linux x86_64",
+  "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+  "rustc": "rustc 1.93.1 (01f6ddf75 2026-02-11) (built from a source tarball)",
+  "cargo": "cargo 1.93.1 (083ac5135 2025-12-15) (built from a source tarball)",
+  "elementary_prompt_cases": 48,
+  "traced_rows": 432,
+  "uninstrumented_rows": 432,
+  "stock_read_mode_rows": 12,
+  "client_fields_equal_after_trace_removal": true,
+  "stock_read_mode_same_as_default": true,
+  "stock_read_mode_initially_selected": 12,
+  "artifact_triplets": 144,
+  "nested_artifact_words_equal": true,
+  "summaries": [
+    {
+      "artifact": "balanced",
+      "mode": "authenticated_copy",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "balanced",
+      "mode": "default",
+      "cases": 48,
+      "tokens": 521,
+      "eos": 5,
+      "capped": 43,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "balanced",
+      "mode": "no_read",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 0,
+      "initially_disabled": 48,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "base",
+      "mode": "authenticated_copy",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "base",
+      "mode": "default",
+      "cases": 48,
+      "tokens": 521,
+      "eos": 5,
+      "capped": 43,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "base",
+      "mode": "no_read",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 0,
+      "initially_disabled": 48,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "paired",
+      "mode": "authenticated_copy",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "paired",
+      "mode": "default",
+      "cases": 48,
+      "tokens": 521,
+      "eos": 5,
+      "capped": 43,
+      "initially_selected": 34,
+      "initially_disabled": 0,
+      "initial_framing_rejection": 14
+    },
+    {
+      "artifact": "paired",
+      "mode": "no_read",
+      "cases": 48,
+      "tokens": 576,
+      "eos": 0,
+      "capped": 48,
+      "initially_selected": 0,
+      "initially_disabled": 48,
+      "initial_framing_rejection": 14
+    }
+  ],
+  "timed_processes": 876,
+  "stderr_bytes": 0,
+  "elapsed_wall_seconds": 422,
+  "output_manifest_sha256": "7ed165e974fe8a0412bb3ac4b4abf937bbb57d3c996cf01a0dd575b419a741c2"
+}

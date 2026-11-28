@@ -66,6 +66,27 @@ pub(super) enum OpeningChoice {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum OpeningDecision {
+    Selected,
+    FramingRejected,
+    NoEligibleCandidate,
+    ScoreTie,
+    NoReadThreshold,
+    Disabled,
+}
+
+#[derive(Debug, Serialize)]
+pub struct OpeningProbe {
+    pub parsed_start: Option<u16>,
+    pub parsed_end: Option<u16>,
+    pub decision: OpeningDecision,
+    pub best_score: Option<i32>,
+    pub best_ties: u16,
+    pub no_read_score: i16,
+}
+
+#[derive(Debug, Serialize)]
 pub struct Assessment {
     pub parsed_start: Option<u16>,
     pub parsed_end: Option<u16>,
@@ -288,11 +309,41 @@ impl State {
         if let OpeningChoice::Supplied(position) = choice {
             return prompt.candidate(usize::from(position));
         }
+        self.best(&prompt).read(self.no_read)
+    }
+
+    fn best(&self, prompt: &Prompt<'_>) -> Best {
         let mut best = Best::default();
         for candidate in prompt.candidates() {
             best.consider(candidate, self.score(candidate));
         }
-        best.read(self.no_read)
+        best
+    }
+
+    pub(super) fn probe(&self, ids: &[u32], roots: &[[u8; 4]], enabled: bool) -> OpeningProbe {
+        let prompt = Prompt::new(ids, &self.classes, roots);
+        let best = if enabled {
+            prompt.as_ref().map(|prompt| self.best(prompt))
+        } else {
+            None
+        };
+        let decision = match &best {
+            _ if !enabled => OpeningDecision::Disabled,
+            None => OpeningDecision::FramingRejected,
+            Some(best) if best.candidate.is_none() => OpeningDecision::NoEligibleCandidate,
+            Some(best) if best.ties != 1 => OpeningDecision::ScoreTie,
+            Some(best) if best.read(self.no_read).is_none() => OpeningDecision::NoReadThreshold,
+            Some(_) => OpeningDecision::Selected,
+        };
+        let bounds = prompt.map(|prompt| prompt.fact_bounds());
+        OpeningProbe {
+            parsed_start: bounds.map(|bounds| bounds[0]),
+            parsed_end: bounds.map(|bounds| bounds[1]),
+            decision,
+            best_score: best.as_ref().and_then(|best| best.score),
+            best_ties: best.map_or(0, |best| best.ties),
+            no_read_score: self.no_read,
+        }
     }
 
     fn assess_prefix(

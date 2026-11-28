@@ -1,0 +1,5 @@
+--- a/crates/uor-r4-integer/src/stack/tests/pair_rows.rs
++++ b/crates/uor-r4-integer/src/stack/tests/pair_rows.rs
+@@ -5 +5 @@
+-use super::super as stack;
++use crate::stack;

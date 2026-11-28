@@ -19,7 +19,9 @@ use uor_r4_integer::config::ReadMode;
 use uor_r4_integer::discrete_d11::count_deployment::{
     self, DiscreteCountModel, SCHEMA as COUNT_SCHEMA, SCHEMA_P4 as COUNT_SCHEMA_P4,
 };
-use uor_r4_integer::discrete_d11::{native_copy, native_word_ending, pair_rank};
+use uor_r4_integer::discrete_d11::{
+    native_copy, native_source_choice, native_word_ending, pair_rank,
+};
 use uor_r4_integer::generation::conversation::{
     ConversationError, ConversationRequest, DialogueConversation, DialogueConversationStream,
     TurnClosure,
@@ -68,6 +70,9 @@ struct CliArgs {
     /// A `UORLUT01` discrete SpiralCore/FBS artifact (`--discrete`).
     discrete_path: Option<PathBuf>,
     authenticated_copy: bool,
+    native_period_release: bool,
+    native_occurrence_trace: bool,
+    no_native_occurrence: bool,
     word_ending: bool,
     word_ending_source: Option<u16>,
     #[cfg(feature = "p1-count-serving")]
@@ -329,6 +334,9 @@ impl Default for CliArgs {
             stack_path: None,
             discrete_path: None,
             authenticated_copy: false,
+            native_period_release: false,
+            native_occurrence_trace: false,
+            no_native_occurrence: false,
             word_ending: false,
             word_ending_source: None,
             #[cfg(feature = "p1-count-serving")]
@@ -428,6 +436,9 @@ fn print_usage() {
     eprintln!(
         "      --authenticated-copy   resolve one native occurrence-backed opening tie by exact ID"
     );
+    eprintln!("      --native-period-release    consult the fitted release after a copied word and generated period");
+    eprintln!("      --native-occurrence-trace  record the fitted occurrence read and writer at each step");
+    eprintln!("      --no-native-occurrence  diagnose the frozen marker and trunk with occurrence disabled");
     eprintln!("      --word-ending          enable the packed stop-or-period choice after one verified word");
     eprintln!(
         "      --word-ending-source N supply a zero-based factual source on the opening step"
@@ -702,6 +713,9 @@ fn parse_cli_args() -> CliArgs {
             }
             "--contextual-source-trace" => args.contextual_source_trace = true,
             "--authenticated-copy" => args.authenticated_copy = true,
+            "--native-period-release" => args.native_period_release = true,
+            "--native-occurrence-trace" => args.native_occurrence_trace = true,
+            "--no-native-occurrence" => args.no_native_occurrence = true,
             "--word-ending" => args.word_ending = true,
             "--word-ending-source" => {
                 idx += 1;
@@ -1229,6 +1243,22 @@ fn parse_cli_args() -> CliArgs {
     }
     if args.authenticated_copy && args.discrete_path.is_none() {
         eprintln!("--authenticated-copy requires a native occurrence --discrete artifact");
+        process::exit(1);
+    }
+    if args.native_occurrence_trace && (args.discrete_path.is_none() || args.word_ending) {
+        eprintln!("--native-occurrence-trace requires native occurrence --discrete serving");
+        process::exit(1);
+    }
+    if args.native_period_release && !args.authenticated_copy {
+        eprintln!("--native-period-release requires --authenticated-copy");
+        process::exit(1);
+    }
+    if args.no_native_occurrence
+        && (args.discrete_path.is_none() || args.word_ending || args.authenticated_copy)
+    {
+        eprintln!(
+            "--no-native-occurrence requires native occurrence --discrete generate-only serving"
+        );
         process::exit(1);
     }
     if args.word_ending_source.is_some() && !args.word_ending {
@@ -2448,11 +2478,40 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
 
     use uor_r4_integer::discrete_d11::{ExactCopyState, ROLE_COPY_STOPS};
     let role_carrier = model.is_role_copy_carrier();
-    let mut authenticated_copy = cli
-        .authenticated_copy
-        .then(|| native_copy::Session::new(&model))
+    let has_native_occurrence = model.native_occurrence_identity().is_some();
+    #[cfg(feature = "p1-count-serving")]
+    let alternate_count_writer = p1.is_some() || p4.is_some();
+    #[cfg(not(feature = "p1-count-serving"))]
+    let alternate_count_writer = false;
+    let native_occurrence_writer = has_native_occurrence
+        && !alternate_count_writer
+        && !role_carrier
+        && cli.role_replay.is_none()
+        && model.active_s2().is_none()
+        && model.count_mixer().is_none()
+        && !cli.word_ending;
+    if (cli.native_occurrence_trace || cli.no_native_occurrence || cli.native_period_release)
+        && !native_occurrence_writer
+    {
+        return Err(IntegerError::Invalid(
+            "native occurrence diagnostics require the native occurrence writer".into(),
+        ));
+    }
+    let native_no_read = cli.no_native_occurrence;
+    let mut occurrence_writer = if native_no_read {
+        Some(native_copy::Session::without_occurrence(&model)?)
+    } else if cli.authenticated_copy {
+        Some(native_copy::Session::new(&model)?)
+    } else {
+        None
+    };
+    let period_release = cli
+        .native_period_release
+        .then(|| native_source_choice::OrdinaryPeriodRelease::new(&model))
         .transpose()?;
+    let mut release_read = None;
     let mut authenticated_steps = Vec::new();
+    let mut occurrence_steps = Vec::new();
     let mut word_ending = cli
         .word_ending
         .then(|| native_word_ending::Session::new(&model, prompt, cli.word_ending_source))
@@ -2602,15 +2661,21 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         };
         #[cfg(not(feature = "p1-count-serving"))]
         let p1_winner: Option<u32> = p4_winner;
+        let mut occurrence_event = None;
         let ordinary = if let Some(session) = &mut word_ending {
             let event = session.step(&context)?;
             let committed_id = event.writer.committed_id;
             ending_steps.push(event);
             committed_id
-        } else if let Some(session) = &mut authenticated_copy {
-            let event = session.step(&context)?;
+        } else if let Some(session) = &mut occurrence_writer {
+            let mut event = session.step(&context)?;
+            if let Some(release) = &period_release {
+                if let Some(read) = release.apply(prompt, &authenticated_steps, &mut event) {
+                    release_read = Some(read);
+                }
+            }
             let committed_id = event.committed_id;
-            authenticated_steps.push(event);
+            occurrence_event = Some(event);
             committed_id
         } else if let Some(id) = p1_winner {
             id
@@ -2643,8 +2708,47 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         } else {
             ordinary
         };
+        if cli.native_occurrence_trace {
+            let observation;
+            let event = if let Some(event) = &occurrence_event {
+                event
+            } else {
+                observation = native_copy::observe_generate(&model, &context)?;
+                &observation
+            };
+            if event.committed_id != prediction {
+                return Err(IntegerError::Invalid(
+                    "native occurrence trace differs from the committed token".into(),
+                ));
+            }
+            let probe = native_copy::observe_opening(&model, &context, !native_no_read)?;
+            let mut step = serde_json::to_value(event)?;
+            step["framing"] = if probe.parsed_start.is_none() {
+                "rejected"
+            } else {
+                "parsed"
+            }
+            .into();
+            step["parsed_start"] = serde_json::to_value(probe.parsed_start)?;
+            step["parsed_end"] = serde_json::to_value(probe.parsed_end)?;
+            step["decision"] = serde_json::to_value(probe.decision)?;
+            step["best_score"] = serde_json::to_value(probe.best_score)?;
+            step["best_ties"] = probe.best_ties.into();
+            step["no_read_score"] = probe.no_read_score.into();
+            step["prefix_start"] = (prompt.len() + generated_ids.len() - context.len()).into();
+            step["prefix_len"] = context.len().into();
+            step["previous_id"] = serde_json::to_value(context.last())?;
+            step["source_pos"] = serde_json::to_value(event.read_pos)?;
+            step["claimed_id"] = step["source_id"].take();
+            step["source_id"] =
+                serde_json::to_value(event.read_pos.and_then(|p| context.get(usize::from(p))))?;
+            occurrence_steps.push(step);
+        }
+        if cli.authenticated_copy {
+            authenticated_steps.extend(occurrence_event);
+        }
         generated_ids.push(prediction);
-        if (authenticated_copy.is_some() || word_ending.is_some()) && prediction == native_copy::EOS
+        if (occurrence_writer.is_some() || word_ending.is_some()) && prediction == native_copy::EOS
         {
             break;
         }
@@ -2694,9 +2798,19 @@ fn run_discrete_parity(cli: &CliArgs) -> Result<()> {
         "prompt_ids": prompt,
         "generated_ids": generated_ids,
     });
-    if authenticated_copy.is_some() {
+    if cli.authenticated_copy {
         record["decoding"] = native_copy::SCHEMA.into();
         record["authenticated_copy_steps"] = serde_json::to_value(authenticated_steps)?;
+    }
+    if cli.native_period_release {
+        record["decoding"] = "authenticated opening with native period release".into();
+        record["native_period_release"] = serde_json::to_value(release_read)?;
+    }
+    if native_no_read {
+        record["decoding"] = "greedy native occurrence disabled; frozen marker and trunk".into();
+    }
+    if cli.native_occurrence_trace {
+        record["native_occurrence_steps"] = serde_json::to_value(occurrence_steps)?;
     }
     if let Some(session) = word_ending {
         record["decoding"] = native_word_ending::DECODING.into();

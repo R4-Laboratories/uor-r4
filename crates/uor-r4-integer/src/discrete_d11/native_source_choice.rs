@@ -291,6 +291,59 @@ fn score(state: &State, model: &IntegerDiscreteModel, prefix: &[u32], stage: usi
     score
 }
 
+/// First release decision in an ordinary, self-fed authenticated-copy session.
+pub struct OrdinaryPeriodRelease<'a> {
+    model: &'a IntegerDiscreteModel,
+    state: &'a State,
+}
+
+#[derive(Debug, Serialize)]
+pub struct OrdinaryReleaseRead {
+    score: i32,
+    choice: Choice,
+    unresolved_copy: bool,
+    native_id: u32,
+    committed_id: u32,
+}
+
+impl<'a> OrdinaryPeriodRelease<'a> {
+    pub fn new(model: &'a IntegerDiscreteModel) -> Result<Self> {
+        Ok(Self {
+            model,
+            state: checked_state(model)?,
+        })
+    }
+
+    /// Only the original prompt and the ordinary writer's actual history enter.
+    /// A positive continuation still needs a second authenticated source.
+    pub fn apply(
+        &self,
+        prompt: &[u32],
+        previous: &[WriterEvent],
+        writer: &mut WriterEvent,
+    ) -> Option<OrdinaryReleaseRead> {
+        let [opening, second] = previous else {
+            return None;
+        };
+        if !opening.copied || second.copied || second.committed_id != PERIOD {
+            return None;
+        }
+        let score = score(self.state, self.model, prompt, 0);
+        let choice = Choice::from_score(score);
+        let native_id = writer.committed_id;
+        if choice == Choice::Eos {
+            writer.committed_id = EOS;
+        }
+        Some(OrdinaryReleaseRead {
+            score,
+            choice,
+            unresolved_copy: choice == Choice::Copy,
+            native_id,
+            committed_id: writer.committed_id,
+        })
+    }
+}
+
 fn verified_source(model: &IntegerDiscreteModel, prefix: &[u32], position: u32) -> Option<u32> {
     let position = u16::try_from(position).ok()?;
     let candidate = model.occurrence.as_ref()?.choose(

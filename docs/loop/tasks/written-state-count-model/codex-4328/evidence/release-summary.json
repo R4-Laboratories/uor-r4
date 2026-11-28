@@ -1,0 +1,380 @@
+{
+  "summary": {
+    "paired": {
+      "cap": 41,
+      "changed_third_id": 7,
+      "correct_third_on_verified": 3,
+      "eligible": 16,
+      "eos": 7,
+      "exact": 3,
+      "exact_on_verified": 3,
+      "first_wrong": {
+        "1": 35,
+        "2": 6,
+        "3": 4,
+        "null": 3
+      },
+      "kept_native_on_tie": 9,
+      "right_source_and_period": 7,
+      "rows": 48,
+      "selected_eos": 7,
+      "unresolved_copy": 0
+    },
+    "rowwise": {
+      "cap": 48,
+      "changed_third_id": 0,
+      "correct_third_on_verified": 0,
+      "eligible": 16,
+      "eos": 0,
+      "exact": 0,
+      "exact_on_verified": 0,
+      "first_wrong": {
+        "1": 35,
+        "2": 6,
+        "3": 7
+      },
+      "kept_native_on_tie": 9,
+      "right_source_and_period": 7,
+      "rows": 48,
+      "selected_eos": 0,
+      "unresolved_copy": 7
+    },
+    "zero": {
+      "cap": 41,
+      "changed_third_id": 7,
+      "correct_third_on_verified": 3,
+      "eligible": 16,
+      "eos": 7,
+      "exact": 3,
+      "exact_on_verified": 3,
+      "first_wrong": {
+        "1": 35,
+        "2": 6,
+        "3": 4,
+        "null": 3
+      },
+      "kept_native_on_tie": 9,
+      "right_source_and_period": 7,
+      "rows": 48,
+      "selected_eos": 7,
+      "unresolved_copy": 0
+    }
+  },
+  "verified": [
+    {
+      "arm": "paired",
+      "counts": {
+        "cap": 0,
+        "changed_third_id": 2,
+        "correct_third_on_verified": 2,
+        "eligible": 2,
+        "eos": 2,
+        "exact": 2,
+        "exact_on_verified": 2,
+        "first_wrong": {
+          "null": 2
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 2,
+        "unresolved_copy": 0
+      },
+      "group": "duplicate_fenced"
+    },
+    {
+      "arm": "paired",
+      "counts": {
+        "cap": 2,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 2,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 2
+        },
+        "kept_native_on_tie": 2,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "fenced_prior_template"
+    },
+    {
+      "arm": "paired",
+      "counts": {
+        "cap": 0,
+        "changed_third_id": 1,
+        "correct_third_on_verified": 1,
+        "eligible": 1,
+        "eos": 1,
+        "exact": 1,
+        "exact_on_verified": 1,
+        "first_wrong": {
+          "null": 1
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 1,
+        "unresolved_copy": 0
+      },
+      "group": "fenced_unique"
+    },
+    {
+      "arm": "paired",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_more"
+    },
+    {
+      "arm": "paired",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_stop"
+    },
+    {
+      "arm": "rowwise",
+      "counts": {
+        "cap": 2,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 2,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 2
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 0,
+        "unresolved_copy": 2
+      },
+      "group": "duplicate_fenced"
+    },
+    {
+      "arm": "rowwise",
+      "counts": {
+        "cap": 2,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 2,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 2
+        },
+        "kept_native_on_tie": 2,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "fenced_prior_template"
+    },
+    {
+      "arm": "rowwise",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 1
+      },
+      "group": "fenced_unique"
+    },
+    {
+      "arm": "rowwise",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_more"
+    },
+    {
+      "arm": "rowwise",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_stop"
+    },
+    {
+      "arm": "zero",
+      "counts": {
+        "cap": 0,
+        "changed_third_id": 2,
+        "correct_third_on_verified": 2,
+        "eligible": 2,
+        "eos": 2,
+        "exact": 2,
+        "exact_on_verified": 2,
+        "first_wrong": {
+          "null": 2
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 2,
+        "unresolved_copy": 0
+      },
+      "group": "duplicate_fenced"
+    },
+    {
+      "arm": "zero",
+      "counts": {
+        "cap": 2,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 2,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 2
+        },
+        "kept_native_on_tie": 2,
+        "right_source_and_period": 2,
+        "rows": 2,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "fenced_prior_template"
+    },
+    {
+      "arm": "zero",
+      "counts": {
+        "cap": 0,
+        "changed_third_id": 1,
+        "correct_third_on_verified": 1,
+        "eligible": 1,
+        "eos": 1,
+        "exact": 1,
+        "exact_on_verified": 1,
+        "first_wrong": {
+          "null": 1
+        },
+        "kept_native_on_tie": 0,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 1,
+        "unresolved_copy": 0
+      },
+      "group": "fenced_unique"
+    },
+    {
+      "arm": "zero",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_more"
+    },
+    {
+      "arm": "zero",
+      "counts": {
+        "cap": 1,
+        "changed_third_id": 0,
+        "correct_third_on_verified": 0,
+        "eligible": 1,
+        "eos": 0,
+        "exact": 0,
+        "exact_on_verified": 0,
+        "first_wrong": {
+          "3": 1
+        },
+        "kept_native_on_tie": 1,
+        "right_source_and_period": 1,
+        "rows": 1,
+        "selected_eos": 0,
+        "unresolved_copy": 0
+      },
+      "group": "release_stop"
+    }
+  ]
+}

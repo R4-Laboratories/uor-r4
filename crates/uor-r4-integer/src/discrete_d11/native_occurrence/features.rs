@@ -261,6 +261,37 @@ fn delta_bucket(delta: Option<i16>) -> u8 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::discrete_d11::native_occurrence::{OpeningChoice, OpeningDecision, State};
+
+    #[test]
+    fn occurrence_ablation_retains_framing_and_removes_a_selectable_source() {
+        let mut classes = Box::new([0; VOCABULARY]);
+        classes[51] = 2;
+        let state = State {
+            weights: [0; WEIGHTS],
+            no_read: -1,
+            classes,
+            state_sha256: String::new(),
+            fit_sha256: String::new(),
+        };
+        let roots = [[0; 4]; VOCABULARY];
+        let mut ids = Vec::from(USER);
+        ids.extend([51, LINE_BREAK[0], LINE_BREAK[1], 80]);
+        ids.extend(ASSISTANT_MARKER);
+
+        for _ in 0..2 {
+            let source = state.choose(&ids, &roots, OpeningChoice::Learned).unwrap();
+            assert_eq!((source.position, source.token), (4, 51));
+            assert!(state
+                .choose(&ids, &roots, OpeningChoice::Fallback)
+                .is_none());
+            let trace = state.probe(&ids, &roots, false);
+            assert!(matches!(trace.decision, OpeningDecision::Disabled));
+            assert_eq!((trace.parsed_start, trace.parsed_end), (Some(4), Some(5)));
+            assert!(trace.best_score.is_none());
+            ids.push(SPACE);
+        }
+    }
 
     #[test]
     fn only_causal_fact_positions_enter_the_reader() {

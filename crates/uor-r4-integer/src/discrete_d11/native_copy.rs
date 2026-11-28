@@ -29,6 +29,10 @@ pub(super) const LEARNED: Action = Action {
     read: OpeningChoice::Learned,
     copy: Some(Address::Selected),
 };
+const NO_OCCURRENCE: Action = Action {
+    read: OpeningChoice::Fallback,
+    copy: None,
+};
 
 /// Exact native words from one writer transition.
 #[cfg_attr(feature = "postperiod-diagnostic", derive(Clone))]
@@ -56,12 +60,21 @@ pub struct WriterEvent {
 pub struct Session<'a> {
     model: &'a IntegerDiscreteModel,
     pending: Option<Action>,
+    generate: Action,
     terminal: bool,
 }
 
 impl<'a> Session<'a> {
     pub fn new(model: &'a IntegerDiscreteModel) -> Result<Self> {
         Self::with_action(model, LEARNED)
+    }
+
+    /// Disable the fitted occurrence read and copy while retaining the frozen
+    /// marker and trunk. This is the occurrence ablation, including self-feed.
+    pub fn without_occurrence(model: &'a IntegerDiscreteModel) -> Result<Self> {
+        let mut session = Self::with_action(model, NO_OCCURRENCE)?;
+        session.generate = NO_OCCURRENCE;
+        Ok(session)
     }
 
     fn with_action(model: &'a IntegerDiscreteModel, action: Action) -> Result<Self> {
@@ -73,6 +86,7 @@ impl<'a> Session<'a> {
         Ok(Self {
             model,
             pending: Some(action),
+            generate: GENERATE,
             terminal: false,
         })
     }
@@ -83,11 +97,30 @@ impl<'a> Session<'a> {
         if self.terminal {
             return Err(invalid("authenticated copy session has reached EOS"));
         }
-        let event = evaluate(self.model, prefix, self.pending.unwrap_or(GENERATE))?;
+        let event = evaluate(self.model, prefix, self.pending.unwrap_or(self.generate))?;
         self.pending = None;
         self.terminal = event.committed_id == EOS;
         Ok(event)
     }
+}
+
+/// Observe the generate-only writer at an ordinary prefix.
+pub fn observe_generate(model: &IntegerDiscreteModel, prefix: &[u32]) -> Result<WriterEvent> {
+    evaluate(model, prefix, GENERATE)
+}
+
+/// Diagnose the frozen reader at the same causal prefix without providing an address.
+pub fn observe_opening(
+    model: &IntegerDiscreteModel,
+    prefix: &[u32],
+    enabled: bool,
+) -> Result<super::native_occurrence::OpeningProbe> {
+    model.validate_prefix(prefix)?;
+    let reader = model
+        .occurrence
+        .as_ref()
+        .ok_or_else(|| invalid("native occurrence trace requires a native occurrence artifact"))?;
+    Ok(reader.probe(prefix, &model.codebook_roots, enabled))
 }
 
 pub(super) fn supplied(read: Option<u16>, claim: Option<u16>) -> Action {

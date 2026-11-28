@@ -1,0 +1,10 @@
+   Compiling uor-r4-integer v0.1.0 (/home/callard/uor-codex/20261127-ordinary-source/src/crates/uor-r4-integer)
+    Finished `release` profile [optimized] target(s) in 1m 34s
+     Running unittests src/native_geometry.rs (../target/release/deps/uor_r4_integer-cb6c8780a61e4d2c)
+
+running 3 tests
+test discrete_d11::native_occurrence::features::tests::byte_classes_never_require_a_lexical_label ... ok
+test discrete_d11::native_occurrence::features::tests::occurrence_ablation_retains_framing_and_removes_a_selectable_source ... ok
+test discrete_d11::native_occurrence::features::tests::only_causal_fact_positions_enter_the_reader ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 749 filtered out; finished in 0.00s

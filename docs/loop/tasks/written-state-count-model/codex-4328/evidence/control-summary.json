@@ -1,0 +1,529 @@
+{
+  "cohorts": [
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "framing_rejected": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "conditional_delivery",
+      "fenced": false,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "framing_rejected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "breakfast",
+      "fenced": false,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "framing_rejected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "delivery_crate",
+      "fenced": false,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "framing_rejected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "recycling_bin",
+      "fenced": false,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 2,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "unsupported_read": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "correction_without_replacement",
+      "fenced": true,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 2,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "unsupported_read": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "denied_color",
+      "fenced": true,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 2,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "unsupported_read": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "omitted_value",
+      "fenced": true,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 2,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "unsupported_read": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "third_subject",
+      "fenced": true,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 2,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "unsupported_read": 2
+        },
+        "rows": 2,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 0,
+        "supplied_exact_commit": 0,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 0
+      },
+      "family": "unconfirmed_desk",
+      "fenced": true,
+      "supported": false
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 4,
+          "invalid": 4,
+          "learned": 0,
+          "marker": 0,
+          "missing": 4,
+          "same_id_wrong_occurrence": 4,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 4,
+        "learned_verified_copy_and_self_fed_second_reference": 2,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "exact_source_selected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 4,
+        "same_id_distinct_pair_minimum_distance": 4,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 4,
+        "supplied_exact_commit": 4,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 2,
+        "supplied_first_reference": 4
+      },
+      "family": "cabinet_tag",
+      "fenced": true,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 0,
+        "learned_verified_copy_and_self_fed_second_reference": 0,
+        "learned_wrong_supported_copy": 4,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "another_occurrence_selected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 4,
+        "supplied_exact_commit": 4,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 0,
+        "supplied_first_reference": 4
+      },
+      "family": "cafe_break",
+      "fenced": true,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 3,
+        "learned_verified_copy_and_self_fed_second_reference": 1,
+        "learned_wrong_supported_copy": 1,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "another_occurrence_selected": 1,
+          "exact_source_selected": 3
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 4,
+        "supplied_exact_commit": 4,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 1,
+        "supplied_first_reference": 4
+      },
+      "family": "delivery_crate",
+      "fenced": true,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 0,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 4,
+        "learned_verified_copy_and_self_fed_second_reference": 2,
+        "learned_wrong_supported_copy": 0,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "exact_source_selected": 4
+        },
+        "rows": 4,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 4,
+        "supplied_exact_commit": 4,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 2,
+        "supplied_first_reference": 4
+      },
+      "family": "museum_badge",
+      "fenced": true,
+      "supported": true
+    },
+    {
+      "counts": {
+        "arm_first_commit_eos": {
+          "correct": 0,
+          "generate": 1,
+          "invalid": 0,
+          "learned": 0,
+          "marker": 0,
+          "missing": 0,
+          "same_id_wrong_occurrence": 0,
+          "swapped": 0
+        },
+        "learned_unsupported_copy": 0,
+        "learned_verified_copy": 2,
+        "learned_verified_copy_and_self_fed_second_reference": 2,
+        "learned_wrong_supported_copy": 6,
+        "missing_claim_copied": 0,
+        "no_occurrence_read_copied": 0,
+        "reader_gates": {
+          "another_occurrence_selected": 6,
+          "exact_source_selected": 2
+        },
+        "rows": 8,
+        "same_id_distinct_pair_eligible": 0,
+        "same_id_distinct_pair_minimum_distance": 0,
+        "same_id_wrong_claim_copied": 0,
+        "supplied_eligible": 8,
+        "supplied_exact_commit": 8,
+        "supplied_exact_reply_in_two_steps": 0,
+        "supplied_first_and_self_fed_second_reference": 5,
+        "supplied_first_reference": 8
+      },
+      "family": "station_code",
+      "fenced": true,
+      "supported": true
+    }
+  ],
+  "total": {
+    "arm_first_commit_eos": {
+      "correct": 0,
+      "generate": 5,
+      "invalid": 4,
+      "learned": 0,
+      "marker": 0,
+      "missing": 4,
+      "same_id_wrong_occurrence": 4,
+      "swapped": 0
+    },
+    "learned_unsupported_copy": 10,
+    "learned_verified_copy": 13,
+    "learned_verified_copy_and_self_fed_second_reference": 7,
+    "learned_wrong_supported_copy": 11,
+    "missing_claim_copied": 0,
+    "no_occurrence_read_copied": 0,
+    "reader_gates": {
+      "another_occurrence_selected": 11,
+      "exact_source_selected": 13,
+      "framing_rejected": 14,
+      "unsupported_read": 10
+    },
+    "rows": 48,
+    "same_id_distinct_pair_eligible": 4,
+    "same_id_distinct_pair_minimum_distance": 4,
+    "same_id_wrong_claim_copied": 0,
+    "supplied_eligible": 24,
+    "supplied_exact_commit": 24,
+    "supplied_exact_reply_in_two_steps": 0,
+    "supplied_first_and_self_fed_second_reference": 10,
+    "supplied_first_reference": 24
+  }
+}
