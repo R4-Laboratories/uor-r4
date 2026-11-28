@@ -1,0 +1,22 @@
+{
+  "repository": "caseyallard/uor-r4-store",
+  "revision": "a13ee14c1877b197cb0b2a9bfc1e203ed490e388",
+  "path": "results/codex/request-site-finite-20261127/request-site-finite.tar.zst",
+  "bytes": 7735079,
+  "sha256": "587e809244d91945da273f4c6c63817a522b60ec331e5ada5dc2980ceafd2ceb",
+  "member_count": 433,
+  "members_manifest_sha256": "b5b192da4e77b12b78327c95176400107c8f361c3c66562b6521e425896f8121",
+  "wick_archive": "20261127-codex-request-site-finite/archive-v2",
+  "wick_cold_readback": "20261127-codex-request-site-finite/archive-cold-readback-v2",
+  "forced_download_byte_identical": true,
+  "cold_readback_byte_identical": {
+    "panel/blind/SEALED.sha256": "49e4da492eec5a7a7529ef242862a2371e8f917286d6401b37196386a744374e",
+    "panel/truth/SEALED.sha256": "cbebd8c7a12768102abe2d83c3405f2c73761d1c2b52ca532455592ad0897736",
+    "capture.jsonl": "3925d9964f6b97f31a6734793e7cd615c280e968e081bdc3e8abb3f0106bd7e2",
+    "verdict.json": "a66def89744be48aed50adb174bbd1b816343e13c761d41f208bf383c3c72c75",
+    "sites.json": "347815c4e22e68b6c90bc76ad0194eccded1c9e36389fa9121d58724f62e8cce",
+    "alias.json": "5c63da598283f8b74215f0ade35eb9d2a709c36218bfd93131484dbe0349eef6",
+    "train-signatures.jsonl": "fef15cfaa74c3df564f3979291fb3e22896fad0b4829e24e6a1395b71ae16694"
+  },
+  "cold_independent_span_agreements": 18
+}

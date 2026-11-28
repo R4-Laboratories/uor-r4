@@ -1,0 +1,5840 @@
+{
+  "cases": 18,
+  "outcomes": [
+    {
+      "arm": "actual",
+      "feasible_pairs": 3,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 543,
+            "to": 0,
+            "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+          }
+        ],
+        "excess": 543,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 2,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -3483,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3067,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3067,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2330,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2332,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1567,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 962,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1178,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 4,
+                "minimum": -1214,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1178,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              }
+            ],
+            "excess": 1178,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1086,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2020,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 563,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1150,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              563,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1985,
+                "to": 8,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 0,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ],
+            "excess": 543,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1995,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1084,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1084,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "fixed",
+      "feasible_pairs": 3,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 1084,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+          }
+        ],
+        "excess": 1084,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 2,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -3483,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3067,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              3067,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2330,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2332,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1567,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 962,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1178,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1214,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1178,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              }
+            ],
+            "excess": 1178,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -1086,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              },
+              {
+                "from": 8,
+                "minimum": -1086,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              }
+            ],
+            "excess": 934,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 563,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1150,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              563,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1985,
+                "to": 4,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 4,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "active_words": [
+              543,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1995,
+                "to": 0,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 0,
+                "minimum": 1084,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1084,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ],
+            "excess": 1084,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "swapped",
+      "feasible_pairs": 5,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2020,
+            "to": 0,
+            "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+          }
+        ],
+        "excess": 2020,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 2,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -3483,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3067,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              3067,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2330,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2332,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1567,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 962,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1178,
+                "to": 4,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1214,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              1178,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1086,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2020,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 563,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1150,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              563,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1985,
+                "to": 0,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 8,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "active_words": [
+              543,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1995,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1084,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1084,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "no_question",
+      "feasible_pairs": 4,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 543,
+            "to": 0,
+            "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+          }
+        ],
+        "excess": 543,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 853,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -851,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 2,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -3483,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3067,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3067,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2330,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2332,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2332,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1567,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 962,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 962,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 4,
+                "minimum": 1178,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1214,
+                "to": 4,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "active_words": [
+              1178,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1086,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2020,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2020,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 563,
+                "to": 2,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 2,
+                "minimum": -1150,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              563,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1985,
+                "to": 0,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 0,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 543,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ],
+            "excess": 543,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1995,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1084,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1084,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "actual",
+      "feasible_pairs": 3,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 550,
+            "to": 0,
+            "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+          }
+        ],
+        "excess": 550,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 16,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -3476,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3074,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3074,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2323,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2339,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1560,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 969,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1185,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 4,
+                "minimum": -1207,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1185,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              }
+            ],
+            "excess": 1185,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1079,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2027,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 570,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1143,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              570,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1978,
+                "to": 8,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 0,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ],
+            "excess": 550,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1988,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1091,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1091,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "fixed",
+      "feasible_pairs": 3,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 1091,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+          }
+        ],
+        "excess": 1091,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 16,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -3476,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3074,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              3074,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2323,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2339,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1560,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 969,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1185,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1207,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1185,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              }
+            ],
+            "excess": 1185,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -1079,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              },
+              {
+                "from": 8,
+                "minimum": -1079,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              }
+            ],
+            "excess": 948,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 570,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1143,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              570,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1978,
+                "to": 4,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 4,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "active_words": [
+              550,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1988,
+                "to": 0,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 0,
+                "minimum": 1091,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1091,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ],
+            "excess": 1091,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "swapped",
+      "feasible_pairs": 5,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2027,
+            "to": 0,
+            "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+          }
+        ],
+        "excess": 2027,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 16,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -3476,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3074,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              3074,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2323,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2339,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1560,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 969,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": 1185,
+                "to": 4,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1207,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              1185,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1079,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2027,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 570,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": -1143,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              570,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1978,
+                "to": 0,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 8,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "active_words": [
+              550,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1988,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1091,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1091,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "no_question",
+      "feasible_pairs": 4,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 550,
+            "to": 0,
+            "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+          }
+        ],
+        "excess": 550,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              },
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 860,
+                "to": 16,
+                "why": "d019135eb16ca03db19a7417ca6805d23409ef7d57dfa203980dd7a1e7b44c8a NoRead > 21"
+              },
+              {
+                "from": 16,
+                "minimum": -844,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > NoRead"
+              }
+            ],
+            "excess": 16,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 8,
+                "minimum": -3476,
+                "to": 16,
+                "why": "9315b6a20e6861fd2d166ed769b72796136e3ebc58bafcdecea38d75bbe5a03f NoRead > 11"
+              },
+              {
+                "from": 16,
+                "minimum": 3074,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > NoRead"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              3074,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -2323,
+                "to": 0,
+                "why": "2d9a836cf3575498162494fb73c00ee608d1d9a15d4c0de3e293261cf54953f7 35 > 19"
+              },
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2339,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 35"
+              }
+            ],
+            "excess": 2339,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1560,
+                "to": 0,
+                "why": "3d4c45b3194f8f88f60815115ede636e983ae03ad7a6275f202358ce83871dd4 31 > 14"
+              },
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 969,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 31"
+              }
+            ],
+            "excess": 969,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 4,
+                "minimum": 1185,
+                "to": 0,
+                "why": "52ee89f0f3fa5ea210725a680a079432ede1a446d15fb536da74e275afa09212 17 > 37"
+              },
+              {
+                "from": 0,
+                "minimum": -1207,
+                "to": 4,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 17"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "active_words": [
+              1185,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1079,
+                "to": 0,
+                "why": "08ebb9e1bde699dd54468e15c08eebb078f25da8fc1123e56ac8fcf3a91696fb 55 > 86"
+              },
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2027,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 55"
+              }
+            ],
+            "excess": 2027,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": false,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 16,
+                "minimum": 570,
+                "to": 2,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > NoRead"
+              },
+              {
+                "from": 2,
+                "minimum": -1143,
+                "to": 16,
+                "why": "bfac4eed5efe88fd7106beef5e7fcd107952ad9b5b923a3a88087a929f205393 NoRead > 33"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "active_words": [
+              0,
+              0,
+              570,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1978,
+                "to": 0,
+                "why": "8ba81f6efbf98113688d233f0bd5909a63198af85bf82120d22cbfaaf3e1488c 10 > 20"
+              },
+              {
+                "from": 0,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 550,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 10"
+              }
+            ],
+            "excess": 550,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": true,
+          "contrast": {
+            "aligned_difference": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "constraints": [
+              {
+                "from": 0,
+                "minimum": -1988,
+                "to": 8,
+                "why": "4dafbbe90e70ff1dff9389f5e7afd90fdafdcd9463dfdc857c963a709f29a98c 30 > 13"
+              },
+              {
+                "from": 8,
+                "minimum": 1091,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 30"
+              }
+            ]
+          },
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "active_words": [
+              1091,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "result": "Feasible"
+          }
+        }
+      ],
+      "scope": "annotated"
+    },
+    {
+      "arm": "actual",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 1319,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 50"
+          }
+        ],
+        "excess": 1319,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 111,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 111,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 1842,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 61"
+              }
+            ],
+            "excess": 1842,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1595,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1595,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2644,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2644,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2961,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 80"
+              }
+            ],
+            "excess": 2961,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5487,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5487,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 100,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 100,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1571,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1571,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1319,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 50"
+              }
+            ],
+            "excess": 1319,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "fixed",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2130,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+          }
+        ],
+        "excess": 2130,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 111,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 111,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2223,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 67"
+              }
+            ],
+            "excess": 2223,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1595,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1595,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2644,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2644,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2961,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 80"
+              }
+            ],
+            "excess": 2961,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 711,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 89"
+              }
+            ],
+            "excess": 711,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 100,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 100,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1571,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1571,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2130,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+              }
+            ],
+            "excess": 2130,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "swapped",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 635,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 49"
+          }
+        ],
+        "excess": 635,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 111,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 111,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1211,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 66"
+              }
+            ],
+            "excess": 1211,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 918,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 49"
+              }
+            ],
+            "excess": 918,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2644,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2644,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 715,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 79"
+              }
+            ],
+            "excess": 715,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5487,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5487,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 100,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 100,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1571,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1571,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 635,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 49"
+              }
+            ],
+            "excess": 635,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "no_question",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2130,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+          }
+        ],
+        "excess": 2130,
+        "result": "Impossible"
+      },
+      "margin": 1,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 433,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 36"
+              }
+            ],
+            "excess": 433,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 1842,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 61"
+              }
+            ],
+            "excess": 1842,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1595,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1595,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2644,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2644,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 4,
+                "minimum": 715,
+                "to": 4,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 79"
+              }
+            ],
+            "excess": 715,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5487,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5487,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 2,
+                "minimum": 871,
+                "to": 2,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 131"
+              }
+            ],
+            "excess": 871,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1571,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1571,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2130,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+              }
+            ],
+            "excess": 2130,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "actual",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 1326,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 50"
+          }
+        ],
+        "excess": 1326,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 118,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 118,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 1849,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 61"
+              }
+            ],
+            "excess": 1849,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1602,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1602,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2651,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2651,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2968,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 80"
+              }
+            ],
+            "excess": 2968,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5494,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5494,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 107,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 107,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1578,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1578,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1326,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 50"
+              }
+            ],
+            "excess": 1326,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "fixed",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2137,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+          }
+        ],
+        "excess": 2137,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 118,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 118,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2230,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 67"
+              }
+            ],
+            "excess": 2230,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1602,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1602,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2651,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2651,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2968,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 80"
+              }
+            ],
+            "excess": 2968,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 718,
+                "to": 8,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 89"
+              }
+            ],
+            "excess": 718,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 107,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 107,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1578,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1578,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2137,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+              }
+            ],
+            "excess": 2137,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "swapped",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 642,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 49"
+          }
+        ],
+        "excess": 642,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 118,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 42"
+              }
+            ],
+            "excess": 118,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1218,
+                "to": 0,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 66"
+              }
+            ],
+            "excess": 1218,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 925,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 49"
+              }
+            ],
+            "excess": 925,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2651,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2651,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 722,
+                "to": 0,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 79"
+              }
+            ],
+            "excess": 722,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5494,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5494,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 107,
+                "to": 0,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 137"
+              }
+            ],
+            "excess": 107,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1578,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1578,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 642,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 49"
+              }
+            ],
+            "excess": 642,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    },
+    {
+      "arm": "no_question",
+      "feasible_pairs": 0,
+      "joint": {
+        "cycle": [
+          {
+            "from": 0,
+            "minimum": 2137,
+            "to": 0,
+            "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+          }
+        ],
+        "excess": 2137,
+        "result": "Impossible"
+      },
+      "margin": 8,
+      "pairs": [
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "11f207c7aa26460b089fac5b45328248cc8fe92432a445c3e067f29daaadaab1",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 440,
+                "to": 0,
+                "why": "a72c893682ee744c0813439cfd521d8ca6407ad40d757917d1bdab17c2b988ef 21 > 36"
+              }
+            ],
+            "excess": 440,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "support",
+          "pair": "303645437ac9c8a0285ccd2aaffe0aa52d5f9da488be159973a7dbeb453ae357",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 8,
+                "minimum": 1849,
+                "to": 8,
+                "why": "a00f42aed19008dcb170969ce086deaa41d62bffeb64e0ff6498d933eaf95d89 11 > 61"
+              }
+            ],
+            "excess": 1849,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "40eec0358a3fe16c5ab9933cc7b514a8a9a182b56bfc2f70ed6438e8a077c9a4",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1602,
+                "to": 0,
+                "why": "30b18fc117773ce491bf4c565b2788cdd01ee4aeea5abcf3fd76112e09126a8d 19 > 50"
+              }
+            ],
+            "excess": 1602,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "4da5ae3a07c56c3fcab369a44f72ab4c61127891109716422d0447a50a013c70",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2651,
+                "to": 0,
+                "why": "f480aa8af89580b39e28a8d39dbf5ade3130c785eb90ad43d0a74d3b25546729 14 > 54"
+              }
+            ],
+            "excess": 2651,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "5ac170bc63446b184b16c32fd222d46c05e93c7e1d41e7777fac460d6e72a14c",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 4,
+                "minimum": 722,
+                "to": 4,
+                "why": "61dc782c33273364841028a22cf3a5b1c718cd1e4be16974c1d1af3fd9b2e5e5 37 > 79"
+              }
+            ],
+            "excess": 722,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-rank",
+          "pair": "79ddd6d4009aedc46062cc0bee96668803653d59613668dc21fff173d37059d7",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 5494,
+                "to": 0,
+                "why": "8251b9882abc1ebd1744ebeb37de3c42220897323d4a6982326b3d3e3d392ada 86 > 118"
+              }
+            ],
+            "excess": 5494,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "natural-support",
+          "pair": "8f60e3ddd9a67ba4f453e0a6ab536a5aa2888e7c25feb541af06594d69ec0378",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 2,
+                "minimum": 878,
+                "to": 2,
+                "why": "3ebf2494e6ce499ee0341c27d714b5fbace6f05fccdaa6c6e9d9ece246a18e63 33 > 131"
+              }
+            ],
+            "excess": 878,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "rank",
+          "pair": "959f60373d5c9017ba6ce3fab4ab8535f64d4c769df2c81055e402d31d39d2b0",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 1578,
+                "to": 0,
+                "why": "9832497a2530cd8716637bac9825f51ebd2e5bb34505bbae1c921565ef4274de 20 > 42"
+              }
+            ],
+            "excess": 1578,
+            "result": "Impossible"
+          }
+        },
+        {
+          "actual_witness_pass": null,
+          "contrast": null,
+          "frozen_base_pass": false,
+          "kind": "equal-id",
+          "pair": "960f73bdff086e00926b8d898a3aa9a0b338e6511e7d2f7e76c4d38bc15480ef",
+          "verdict": {
+            "cycle": [
+              {
+                "from": 0,
+                "minimum": 2137,
+                "to": 0,
+                "why": "7769dc651852136a71767e8a1a3083ff11e09772fcddb8f47a7723a6bbed862b 13 > 51"
+              }
+            ],
+            "excess": 2137,
+            "result": "Impossible"
+          }
+        }
+      ],
+      "scope": "whole"
+    }
+  ],
+  "pairs": 9
+}
