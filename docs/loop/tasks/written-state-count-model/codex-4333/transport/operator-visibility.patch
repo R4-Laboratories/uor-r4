@@ -1,0 +1,11 @@
+--- a/crates/uor-r4-integer/src/discrete_d11.rs
++++ b/crates/uor-r4-integer/src/discrete_d11.rs
+@@ -1704 +1704 @@
+-pub(crate) fn orbit_root_coords(root: usize) -> [i32; 8] {
++pub fn orbit_root_coords(root: usize) -> [i32; 8] {
+@@ -1726 +1726 @@
+-pub(crate) fn cl06_action(a: usize, x: &[i32; 8]) -> [i32; 8] {
++pub fn cl06_action(a: usize, x: &[i32; 8]) -> [i32; 8] {
+@@ -1756 +1756 @@
+-pub(crate) fn cl06_bfs(src: usize, dst: usize) -> usize {
++pub fn cl06_bfs(src: usize, dst: usize) -> usize {
