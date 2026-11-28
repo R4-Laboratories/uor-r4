@@ -1,0 +1,38 @@
+{
+  "arch": "sm_120",
+  "gate1a_pure_int": {
+    "cubin_path": "/workspace/bfy-diag-target/release/build/butterfly-diag-eb153be65cc7c9b9/out/butterfly_kernels.sm_120.cubin",
+    "cubin_sha256": "19b0cda8b4b9eb7c7993e075c6309a8077f03cdaaf1031289a009d74e24a00c1",
+    "required_kernels": [
+      "bfy_batch_fwd_bwd_kernel",
+      "bfy_adamw_update_kernel",
+      "bfy_eval_records_kernel"
+    ],
+    "missing_ptx_kernels": [],
+    "missing_sass_kernels": [],
+    "ptx_float_hits": 0,
+    "ptx_div_hits": 0,
+    "ptx_mma_hits": 0,
+    "sass_sm120_mov_aliases": 3253,
+    "sass_float_hits": 0,
+    "sass_mma_hits": 0,
+    "pass": true
+  },
+  "gate1b_diag_f32": {
+    "cubin_path": "/workspace/bfy-diag-target/release/build/butterfly-diag-eb153be65cc7c9b9/out/diag_f32_kernels.sm_120.cubin",
+    "cubin_sha256": "04729273501ccaf213e0cc6d39fc81987b08827c98d3904a8c449ff2c07408e6",
+    "required_kernels": [
+      "diag_f32_batch_fwd_bwd_kernel",
+      "diag_f32_adamw_update_kernel",
+      "diag_f32_eval_records_kernel"
+    ],
+    "missing_ptx_kernels": [],
+    "missing_sass_kernels": [],
+    "ptx_exp_log_hits": 0,
+    "sass_exp_log_hits": 0,
+    "ptx_mma_hits": 0,
+    "sass_mma_hits": 0,
+    "pass": true
+  },
+  "pass": true
+}

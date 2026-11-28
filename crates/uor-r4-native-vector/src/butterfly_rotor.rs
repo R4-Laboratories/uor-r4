@@ -753,6 +753,7 @@ pub struct SparsePkmRead {
     /// Positive normalized integer weights in Q15 summing to `<= Q15_ONE`.
     pub weights_q15: [i32; PKM_TOP_K],
     pub raw_scores: [i32; PKM_TOP_K],
+    pub sum_pos: i64,
     pub output: Vec<i32>,
 }
 
@@ -876,6 +877,7 @@ impl SparsePkmMemory {
             sub_b,
             weights_q15,
             raw_scores,
+            sum_pos,
             output,
         }
     }
@@ -1201,7 +1203,109 @@ pub struct LayerGradAccum {
     pub g_norm2: Vec<i64>,
     pub g_ffn_in: ButterflyLinearGrad,
     pub g_ffn_out: ButterflyLinearGrad,
+    pub g_pkm_key_a: Vec<i64>,
+    pub g_pkm_key_b: Vec<i64>,
     pub g_pkm_values: Vec<i64>,
+}
+
+/// Pure-integer Lazy-Sparse AdamW optimizer state (`beta1 = 7/8`, `beta2 = 63/64`, zero float).
+///
+/// Because `1 - beta1 == sqrt(1 - beta2) == 1/8` identically, `m_t / isqrt(v_t)` stays `O(1)`
+/// from step 1 without bias-correction blowup, while `v_t` remains strictly `< 2^60` in `u64`.
+#[derive(Clone, Debug)]
+pub struct ButterflyAdamWState {
+    pub m_embeddings: Vec<i32>,
+    pub v_embeddings: Vec<u64>,
+    pub m_coarse: Vec<i32>,
+    pub v_coarse: Vec<u64>,
+    pub m_final_norm: Vec<i32>,
+    pub v_final_norm: Vec<u64>,
+    pub m_layers: Vec<LayerAdamWState>,
+}
+
+#[derive(Clone, Debug)]
+pub struct LayerAdamWState {
+    pub m_norm1: Vec<i32>,
+    pub v_norm1: Vec<u64>,
+    pub m_rotor_in: Vec<i32>,
+    pub v_rotor_in: Vec<u64>,
+    pub m_rotor_diag: Vec<i32>,
+    pub v_rotor_diag: Vec<u64>,
+    pub m_rotor_out: Vec<i32>,
+    pub v_rotor_out: Vec<u64>,
+    pub m_key_in: Vec<i32>,
+    pub v_key_in: Vec<u64>,
+    pub m_key_diag: Vec<i32>,
+    pub v_key_diag: Vec<u64>,
+    pub m_key_out: Vec<i32>,
+    pub v_key_out: Vec<u64>,
+    pub m_val_in: Vec<i32>,
+    pub v_val_in: Vec<u64>,
+    pub m_val_diag: Vec<i32>,
+    pub v_val_diag: Vec<u64>,
+    pub m_val_out: Vec<i32>,
+    pub v_val_out: Vec<u64>,
+    pub m_query_in: Vec<i32>,
+    pub v_query_in: Vec<u64>,
+    pub m_query_diag: Vec<i32>,
+    pub v_query_diag: Vec<u64>,
+    pub m_query_out: Vec<i32>,
+    pub v_query_out: Vec<u64>,
+    pub m_norm2: Vec<i32>,
+    pub v_norm2: Vec<u64>,
+    pub m_ffn_in_a: Vec<i32>,
+    pub v_ffn_in_a: Vec<u64>,
+    pub m_ffn_in_d: Vec<i32>,
+    pub v_ffn_in_d: Vec<u64>,
+    pub m_ffn_in_b: Vec<i32>,
+    pub v_ffn_in_b: Vec<u64>,
+    pub m_ffn_out_a: Vec<i32>,
+    pub v_ffn_out_a: Vec<u64>,
+    pub m_ffn_out_d: Vec<i32>,
+    pub v_ffn_out_d: Vec<u64>,
+    pub m_ffn_out_b: Vec<i32>,
+    pub v_ffn_out_b: Vec<u64>,
+    pub m_pkm_key_a: Vec<i32>,
+    pub v_pkm_key_a: Vec<u64>,
+    pub m_pkm_key_b: Vec<i32>,
+    pub v_pkm_key_b: Vec<u64>,
+    pub m_pkm_values: Vec<i32>,
+    pub v_pkm_values: Vec<u64>,
+}
+
+/// Deterministically bin-pack `HIER_VOCAB` (`4,096`) token counts into `64` balanced coarse cells
+/// of `64` fine tokens each (LPT greedy, pure integer, strictly bijective).
+pub fn build_frequency_balanced_vocab_perm(
+    token_counts: &[u64; HIER_VOCAB],
+) -> (Vec<u16>, Vec<u16>) {
+    let mut order: Vec<usize> = (0..HIER_VOCAB).collect();
+    order.sort_unstable_by(|&a, &b| token_counts[b].cmp(&token_counts[a]).then_with(|| a.cmp(&b)));
+    let mut cell_weight = [0u128; HIER_COARSE];
+    let mut cell_fill = [0usize; HIER_COARSE];
+    let mut vocab_perm = vec![0u16; HIER_VOCAB];
+    let mut vocab_inv = vec![0u16; HIER_VOCAB];
+    for tok_id in order {
+        let mut best_c = 0usize;
+        let mut found = false;
+        for c in 0..HIER_COARSE {
+            if cell_fill[c] >= HIER_FINE {
+                continue;
+            }
+            if !found
+                || (cell_weight[c], cell_fill[c], c)
+                    < (cell_weight[best_c], cell_fill[best_c], best_c)
+            {
+                best_c = c;
+                found = true;
+            }
+        }
+        let slot = best_c * HIER_FINE + cell_fill[best_c];
+        cell_fill[best_c] += 1;
+        cell_weight[best_c] += u128::from(token_counts[tok_id]);
+        vocab_perm[tok_id] = slot as u16;
+        vocab_inv[slot] = tok_id as u16;
+    }
+    (vocab_perm, vocab_inv)
 }
 
 struct TokenForwardTrace {
@@ -1230,6 +1334,7 @@ struct LayerStepCache {
     q_quats: Vec<[i32; 4]>,
     x_after_rotor: Vec<i32>,
     rms2: i64,
+    n2_head16: [i32; 16],
     ffn1_y: Vec<i32>,
     ffn1_mid: Vec<i32>,
     ffn2_y: Vec<i32>,
@@ -1325,6 +1430,89 @@ impl ButterflyRotorModel {
         }
     }
 
+    /// Install a validated bijective vocabulary permutation (`token_id -> hier_slot`).
+    pub fn set_vocab_perm(&mut self, vocab_perm: Vec<u16>) -> Result<()> {
+        if vocab_perm.len() != HIER_VOCAB {
+            return Err(invalid("vocab_perm length must equal HIER_VOCAB (4096)"));
+        }
+        let mut vocab_inv = vec![0u16; HIER_VOCAB];
+        let mut seen = vec![false; HIER_VOCAB];
+        for (tok_id, &slot_u16) in vocab_perm.iter().enumerate() {
+            let slot = usize::from(slot_u16);
+            if slot >= HIER_VOCAB || seen[slot] {
+                return Err(invalid("vocab_perm must be a bijection over 0..4096"));
+            }
+            seen[slot] = true;
+            vocab_inv[slot] = tok_id as u16;
+        }
+        self.vocab_perm = vocab_perm;
+        self.vocab_inv = vocab_inv;
+        Ok(())
+    }
+
+    pub fn new_adamw_state(&self) -> ButterflyAdamWState {
+        ButterflyAdamWState {
+            m_embeddings: vec![0i32; self.embeddings.len()],
+            v_embeddings: vec![0u64; self.embeddings.len()],
+            m_coarse: vec![0i32; self.coarse_centroids.len()],
+            v_coarse: vec![0u64; self.coarse_centroids.len()],
+            m_final_norm: vec![0i32; self.final_norm_q12.len()],
+            v_final_norm: vec![0u64; self.final_norm_q12.len()],
+            m_layers: self
+                .layers
+                .iter()
+                .map(|l| LayerAdamWState {
+                    m_norm1: vec![0i32; l.norm1_q12.len()],
+                    v_norm1: vec![0u64; l.norm1_q12.len()],
+                    m_rotor_in: vec![0i32; l.rotor_proj.b_in.shears.len()],
+                    v_rotor_in: vec![0u64; l.rotor_proj.b_in.shears.len()],
+                    m_rotor_diag: vec![0i32; l.rotor_proj.diag_q12.len()],
+                    v_rotor_diag: vec![0u64; l.rotor_proj.diag_q12.len()],
+                    m_rotor_out: vec![0i32; l.rotor_proj.b_out.shears.len()],
+                    v_rotor_out: vec![0u64; l.rotor_proj.b_out.shears.len()],
+                    m_key_in: vec![0i32; l.key_proj.b_in.shears.len()],
+                    v_key_in: vec![0u64; l.key_proj.b_in.shears.len()],
+                    m_key_diag: vec![0i32; l.key_proj.diag_q12.len()],
+                    v_key_diag: vec![0u64; l.key_proj.diag_q12.len()],
+                    m_key_out: vec![0i32; l.key_proj.b_out.shears.len()],
+                    v_key_out: vec![0u64; l.key_proj.b_out.shears.len()],
+                    m_val_in: vec![0i32; l.value_proj.b_in.shears.len()],
+                    v_val_in: vec![0u64; l.value_proj.b_in.shears.len()],
+                    m_val_diag: vec![0i32; l.value_proj.diag_q12.len()],
+                    v_val_diag: vec![0u64; l.value_proj.diag_q12.len()],
+                    m_val_out: vec![0i32; l.value_proj.b_out.shears.len()],
+                    v_val_out: vec![0u64; l.value_proj.b_out.shears.len()],
+                    m_query_in: vec![0i32; l.query_proj.b_in.shears.len()],
+                    v_query_in: vec![0u64; l.query_proj.b_in.shears.len()],
+                    m_query_diag: vec![0i32; l.query_proj.diag_q12.len()],
+                    v_query_diag: vec![0u64; l.query_proj.diag_q12.len()],
+                    m_query_out: vec![0i32; l.query_proj.b_out.shears.len()],
+                    v_query_out: vec![0u64; l.query_proj.b_out.shears.len()],
+                    m_norm2: vec![0i32; l.norm2_q12.len()],
+                    v_norm2: vec![0u64; l.norm2_q12.len()],
+                    m_ffn_in_a: vec![0i32; l.ffn_in.b_in.shears.len()],
+                    v_ffn_in_a: vec![0u64; l.ffn_in.b_in.shears.len()],
+                    m_ffn_in_d: vec![0i32; l.ffn_in.diag_q12.len()],
+                    v_ffn_in_d: vec![0u64; l.ffn_in.diag_q12.len()],
+                    m_ffn_in_b: vec![0i32; l.ffn_in.b_out.shears.len()],
+                    v_ffn_in_b: vec![0u64; l.ffn_in.b_out.shears.len()],
+                    m_ffn_out_a: vec![0i32; l.ffn_out.b_in.shears.len()],
+                    v_ffn_out_a: vec![0u64; l.ffn_out.b_in.shears.len()],
+                    m_ffn_out_d: vec![0i32; l.ffn_out.diag_q12.len()],
+                    v_ffn_out_d: vec![0u64; l.ffn_out.diag_q12.len()],
+                    m_ffn_out_b: vec![0i32; l.ffn_out.b_out.shears.len()],
+                    v_ffn_out_b: vec![0u64; l.ffn_out.b_out.shears.len()],
+                    m_pkm_key_a: vec![0i32; l.pkm.key_a.len()],
+                    v_pkm_key_a: vec![0u64; l.pkm.key_a.len()],
+                    m_pkm_key_b: vec![0i32; l.pkm.key_b.len()],
+                    v_pkm_key_b: vec![0u64; l.pkm.key_b.len()],
+                    m_pkm_values: vec![0i32; l.pkm.values.len()],
+                    v_pkm_values: vec![0u64; l.pkm.values.len()],
+                })
+                .collect(),
+        }
+    }
+
     pub fn zero_grad(&self) -> ButterflyGradAccum {
         ButterflyGradAccum {
             g_embeddings: vec![0i64; self.embeddings.len()],
@@ -1342,6 +1530,8 @@ impl ButterflyRotorModel {
                     g_norm2: vec![0i64; l.norm2_q12.len()],
                     g_ffn_in: l.ffn_in.zero_grad(),
                     g_ffn_out: l.ffn_out.zero_grad(),
+                    g_pkm_key_a: vec![0i64; l.pkm.key_a.len()],
+                    g_pkm_key_b: vec![0i64; l.pkm.key_b.len()],
                     g_pkm_values: vec![0i64; l.pkm.values.len()],
                 })
                 .collect(),
@@ -1420,6 +1610,8 @@ impl ButterflyRotorModel {
             }
 
             let (n2, rms2) = rmsnorm_forward_q15(&x_after_rotor, &layer.norm2_q12);
+            let mut n2_head16 = [0i32; 16];
+            n2_head16.copy_from_slice(&n2[..16]);
             let (ffn1_y, ffn1_mid) = layer.ffn_in.forward(&n2)?;
             let ffn_act: Vec<i32> = ffn1_y.iter().map(|&v| relu2_forward_q15(v)).collect();
             let (ffn2_y, ffn2_mid) = layer.ffn_out.forward(&ffn_act)?;
@@ -1448,6 +1640,7 @@ impl ButterflyRotorModel {
                 q_quats,
                 x_after_rotor,
                 rms2,
+                n2_head16,
                 ffn1_y,
                 ffn1_mid,
                 ffn2_y,
@@ -1575,6 +1768,18 @@ impl ButterflyRotorModel {
         mask: &[u8],
         grad: &mut ButterflyGradAccum,
     ) -> Result<(u128, u64)> {
+        self.accumulate_sequence_grad_opts(tokens, mask, grad, false)
+    }
+
+    /// Exact pure-integer forward + truncated BPTT reverse-mode adjoint accumulation with optional
+    /// sparse PKM key-table gradients (`g_pkm_key_a`, `g_pkm_key_b`, and `dn2[0..16]`).
+    pub fn accumulate_sequence_grad_opts(
+        &self,
+        tokens: &[u16],
+        mask: &[u8],
+        grad: &mut ButterflyGradAccum,
+        learn_pkm_keys: bool,
+    ) -> Result<(u128, u64)> {
         if tokens.len() < 2 || tokens.len() != mask.len() {
             return Err(invalid("sequence length must be >= 2 and match mask"));
         }
@@ -1593,6 +1798,8 @@ impl ButterflyRotorModel {
         for (l, lg) in self.layers.iter().zip(&grad.g_layers) {
             if lg.g_norm1.len() != l.norm1_q12.len()
                 || lg.g_norm2.len() != l.norm2_q12.len()
+                || lg.g_pkm_key_a.len() != l.pkm.key_a.len()
+                || lg.g_pkm_key_b.len() != l.pkm.key_b.len()
                 || lg.g_pkm_values.len() != l.pkm.values.len()
             {
                 return Err(invalid("layer gradient accumulator shape mismatch"));
@@ -1714,6 +1921,48 @@ impl ButterflyRotorModel {
                             (i64::from(dx_val) * w + Q15_HALF) >> Q15_SHIFT;
                     }
                 }
+                // 1b. Optional exact integer PKM key-table & query-routing adjoint.
+                let mut dn2_pkm = [0i32; 16];
+                if learn_pkm_keys {
+                    let mut dw = [0i64; PKM_TOP_K];
+                    let mut avg_dw_acc = 0i64;
+                    for (k, dw_slot) in dw.iter_mut().enumerate() {
+                        let base = cache.pkm_read.slots[k] * dim;
+                        let mut acc = 0i64;
+                        for (d, &dx_val) in dx.iter().enumerate() {
+                            acc += i64::from(dx_val) * i64::from(layer.pkm.values[base + d]);
+                        }
+                        let val = ((acc + Q15_HALF) >> Q15_SHIFT)
+                            .clamp(i64::from(-ACT_CLAMP), i64::from(ACT_CLAMP));
+                        *dw_slot = val;
+                        avg_dw_acc += val * i64::from(cache.pkm_read.weights_q15[k]);
+                    }
+                    let avg_dw = (avg_dw_acc + Q15_HALF) >> Q15_SHIFT;
+                    let sum_pos = cache.pkm_read.sum_pos.max(1);
+                    for (k, &dw_k) in dw.iter().enumerate() {
+                        if cache.pkm_read.raw_scores[k] <= 0 {
+                            continue;
+                        }
+                        let num = (dw_k - avg_dw).saturating_mul(i64::from(Q15_ONE));
+                        let dp = (num / sum_pos).clamp(i64::from(-ACT_CLAMP), i64::from(ACT_CLAMP));
+                        let ka_base = cache.pkm_read.sub_a[k] * 8;
+                        let kb_base = cache.pkm_read.sub_b[k] * 8;
+                        for j in 0..8 {
+                            lg.g_pkm_key_a[ka_base + j] +=
+                                (dp * i64::from(cache.n2_head16[j]) + Q15_HALF) >> Q15_SHIFT;
+                            lg.g_pkm_key_b[kb_base + j] +=
+                                (dp * i64::from(cache.n2_head16[8 + j]) + Q15_HALF) >> Q15_SHIFT;
+                            dn2_pkm[j] = clamp_act(
+                                dn2_pkm[j]
+                                    + round_shift_q15(dp * i64::from(layer.pkm.key_a[ka_base + j])),
+                            );
+                            dn2_pkm[8 + j] = clamp_act(
+                                dn2_pkm[8 + j]
+                                    + round_shift_q15(dp * i64::from(layer.pkm.key_b[kb_base + j])),
+                            );
+                        }
+                    }
+                }
 
                 // 2. Geometric FFN backward (`B2 -> ReLU² -> B1 -> RMSNorm2`).
                 let d_ffn_act = layer.ffn_out.backward(
@@ -1726,12 +1975,17 @@ impl ButterflyRotorModel {
                 for d in 0..dim {
                     d_ffn1_y[d] = relu2_backward_q15(cache.ffn1_y[d], d_ffn_act[d]);
                 }
-                let dn2 = layer.ffn_in.backward(
+                let mut dn2 = layer.ffn_in.backward(
                     &cache.ffn1_y,
                     &cache.ffn1_mid,
                     &d_ffn1_y,
                     &mut lg.g_ffn_in,
                 )?;
+                if learn_pkm_keys {
+                    for (dst, &src) in dn2.iter_mut().zip(&dn2_pkm) {
+                        *dst = clamp_act(*dst + src);
+                    }
+                }
                 let dx_norm2 = rmsnorm_backward_q15(
                     &cache.x_after_rotor,
                     &layer.norm2_q12,
@@ -1750,19 +2004,26 @@ impl ButterflyRotorModel {
                 let mut d_val_y = vec![0i32; dim];
                 let mut d_qry_y = vec![0i32; dim];
                 let mut dh_prev_layer = vec![0i32; dim];
-                let tangent_pullback = |du: [i32; 4], u: [i32; 4], out: &mut [i32], b: usize| {
-                    let dot_du_u = round_shift_q15(
-                        i64::from(du[0]) * i64::from(u[0])
-                            + i64::from(du[1]) * i64::from(u[1])
-                            + i64::from(du[2]) * i64::from(u[2])
-                            + i64::from(du[3]) * i64::from(u[3]),
-                    );
-                    for c in 1..4 {
-                        let proj = i64::from(du[c])
-                            - i64::from(round_shift_q15(i64::from(dot_du_u) * i64::from(u[c])));
-                        out[b + c] = round_shift_q15(proj * i64::from(u[0]));
-                    }
-                };
+                let tangent_pullback =
+                    |du: [i32; 4], u: [i32; 4], raw: &[i32], out: &mut [i32], b: usize| {
+                        let dot_du_u = round_shift_q15(
+                            i64::from(du[0]) * i64::from(u[0])
+                                + i64::from(du[1]) * i64::from(u[1])
+                                + i64::from(du[2]) * i64::from(u[2])
+                                + i64::from(du[3]) * i64::from(u[3]),
+                        );
+                        for c in 1..4 {
+                            if raw[b + c] <= -Q15_ONE || raw[b + c] >= Q15_ONE {
+                                out[b + c] = 0;
+                            } else {
+                                let proj = i64::from(du[c])
+                                    - i64::from(round_shift_q15(
+                                        i64::from(dot_du_u) * i64::from(u[c]),
+                                    ));
+                                out[b + c] = round_shift_q15(proj * i64::from(u[0]));
+                            }
+                        }
+                    };
                 let n_quats = dim / 4;
                 for q in 0..n_quats {
                     let b = q * 4;
@@ -1785,7 +2046,7 @@ impl ButterflyRotorModel {
                     // `d_h_from_y = q ⊗ dy`, `d_q = h_next ⊗ conj(dy)`.
                     let dh_from_y = quat_mul_q15(qq, dy);
                     let dq = quat_mul_q15(hn, quat_conj_q15(dy));
-                    tangent_pullback(dq, qq, &mut d_qry_y, b);
+                    tangent_pullback(dq, qq, &cache.qry_y, &mut d_qry_y, b);
 
                     let dh_tot = [
                         clamp_act(dh_from_y[0] + dh_carry_next[l_idx][b]),
@@ -1815,7 +2076,7 @@ impl ButterflyRotorModel {
                     ];
                     let dk = quat_mul_q15(d_bound, quat_conj_q15(xv));
                     let dv = quat_mul_q15(quat_conj_q15(kq), d_bound);
-                    tangent_pullback(dk, kq, &mut d_key_y, b);
+                    tangent_pullback(dk, kq, &cache.key_y, &mut d_key_y, b);
                     d_val_y[b..b + 4].copy_from_slice(&dv);
 
                     let hp = [
@@ -1829,7 +2090,7 @@ impl ButterflyRotorModel {
                     // `d_u = dh_rot ⊗ conj(h_prev)`, `d_h_prev = conj(u) ⊗ dh_rot`.
                     let du = quat_mul_q15(dh_rot, quat_conj_q15(hp));
                     let dhp = quat_mul_q15(quat_conj_q15(u), dh_rot);
-                    tangent_pullback(du, u, &mut d_rot_y, b);
+                    tangent_pullback(du, u, &cache.rot_y, &mut d_rot_y, b);
                     dh_prev_layer[b..b + 4].copy_from_slice(&dhp);
                 }
                 dh_carry_next[l_idx] = dh_prev_layer;
@@ -2140,6 +2401,382 @@ impl ButterflyRotorModel {
                 &mut lm.m_pkm_values,
                 lr_q8,
                 q15_lim,
+                &mut cursor,
+            );
+        }
+    }
+
+    /// Pure-integer Lazy-Sparse AdamW step (`beta1 = 7/8`, `beta2 = 63/64`, zero float, zero export gap).
+    ///
+    /// - Eliminates sign-Lion idle momentum coasting on sparse tables (`embeddings`, `pkm.values`)
+    ///   when `sparse_skip == true` by leaving untouched elements (`g[i] == 0`) completely invariant.
+    /// - Keeps `m_t / isqrt(v_t)` automatically `O(1)` from step 1 (`1 - beta1 == sqrt(1 - beta2) == 1/8`).
+    /// - Applies decoupled weight decay toward `0` on Q15 weights and anchor decay toward `Q12_ONE`
+    ///   (`4,096`) on Q12 norms/diagonals to prevent monotonic scale inflation.
+    #[allow(clippy::too_many_arguments)]
+    pub fn apply_adamw_step(
+        &mut self,
+        grad: &ButterflyGradAccum,
+        adam: &mut ButterflyAdamWState,
+        lr_q8: i32,
+        wd_shift: u32,
+        eps: u64,
+        sparse_skip: bool,
+        learn_pkm_keys: bool,
+    ) {
+        self.step += 1;
+        let step_seed = self.cfg.seed ^ self.step.wrapping_mul(0xD6E8_FEB8_6659_FD93);
+        let mut cursor = 0u64;
+        let eff_wd = wd_shift.min(30);
+        let eps_safe = eps.max(1);
+
+        let update_slice = |w: &mut [i16],
+                            g: &[i64],
+                            m: &mut [i32],
+                            v: &mut [u64],
+                            step_lr_q8: i32,
+                            clamp_hi: i32,
+                            is_q12: bool,
+                            is_sparse: bool,
+                            cursor: &mut u64| {
+            if step_lr_q8 <= 0 {
+                *cursor += w.len() as u64;
+                return;
+            }
+            let max_step = 4i64 * i64::from(step_lr_q8);
+            for i in 0..w.len() {
+                let raw_g = g[i];
+                if is_sparse && raw_g == 0 {
+                    continue;
+                }
+                let gi = raw_g.clamp(-(1i64 << 27), 1i64 << 27);
+                let gi_sq = (gi * gi) as u64;
+                let mi = i64::from(m[i]);
+                let vi = v[i];
+                let m_new = (7 * mi + gi) / 8;
+                let v_new = (63u64.saturating_mul(vi).saturating_add(gi_sq)) >> 6;
+                m[i] = m_new as i32;
+                v[i] = v_new;
+                let denom = (isqrt_u64(v_new) + eps_safe) as i64;
+                let grad_step = (m_new.saturating_mul(i64::from(step_lr_q8)) / denom)
+                    .clamp(-max_step, max_step);
+                let wd_term = if eff_wd > 0 {
+                    let wd_s = if is_q12 {
+                        eff_wd.saturating_sub(3)
+                    } else {
+                        eff_wd
+                    };
+                    let anchor = if is_q12 { i64::from(Q12_ONE) } else { 0 };
+                    let w_diff = i64::from(w[i]) - anchor;
+                    (w_diff * i64::from(step_lr_q8)) / (1i64 << wd_s)
+                } else {
+                    0
+                };
+                let delta_q8 = grad_step + wd_term;
+                let key = step_seed ^ (*cursor + i as u64);
+                let step_i32 = stochastic_round_shift(delta_q8, 8, key);
+                let next_w = (i32::from(w[i]) - step_i32).clamp(-clamp_hi, clamp_hi);
+                w[i] = next_w as i16;
+            }
+            *cursor += w.len() as u64;
+        };
+
+        let q15_lim = i32::from(Q15_MAX_I16);
+        let q12_lim = 16_384;
+        let lr_q12 = if lr_q8 <= 0 { 0 } else { (lr_q8 >> 3).max(1) };
+
+        update_slice(
+            &mut self.embeddings,
+            &grad.g_embeddings,
+            &mut adam.m_embeddings,
+            &mut adam.v_embeddings,
+            lr_q8,
+            q15_lim,
+            false,
+            sparse_skip,
+            &mut cursor,
+        );
+        update_slice(
+            &mut self.coarse_centroids,
+            &grad.g_coarse,
+            &mut adam.m_coarse,
+            &mut adam.v_coarse,
+            lr_q8,
+            q15_lim,
+            false,
+            false,
+            &mut cursor,
+        );
+        update_slice(
+            &mut self.final_norm_q12,
+            &grad.g_final_norm,
+            &mut adam.m_final_norm,
+            &mut adam.v_final_norm,
+            lr_q12,
+            q12_lim,
+            true,
+            false,
+            &mut cursor,
+        );
+
+        for (l_idx, layer) in self.layers.iter_mut().enumerate() {
+            let lg = &grad.g_layers[l_idx];
+            let la = &mut adam.m_layers[l_idx];
+            update_slice(
+                &mut layer.norm1_q12,
+                &lg.g_norm1,
+                &mut la.m_norm1,
+                &mut la.v_norm1,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.rotor_proj.b_in.shears,
+                &lg.g_rotor.b_in,
+                &mut la.m_rotor_in,
+                &mut la.v_rotor_in,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.rotor_proj.diag_q12,
+                &lg.g_rotor.diag_q12,
+                &mut la.m_rotor_diag,
+                &mut la.v_rotor_diag,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.rotor_proj.b_out.shears,
+                &lg.g_rotor.b_out,
+                &mut la.m_rotor_out,
+                &mut la.v_rotor_out,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.key_proj.b_in.shears,
+                &lg.g_key.b_in,
+                &mut la.m_key_in,
+                &mut la.v_key_in,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.key_proj.diag_q12,
+                &lg.g_key.diag_q12,
+                &mut la.m_key_diag,
+                &mut la.v_key_diag,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.key_proj.b_out.shears,
+                &lg.g_key.b_out,
+                &mut la.m_key_out,
+                &mut la.v_key_out,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.value_proj.b_in.shears,
+                &lg.g_value.b_in,
+                &mut la.m_val_in,
+                &mut la.v_val_in,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.value_proj.diag_q12,
+                &lg.g_value.diag_q12,
+                &mut la.m_val_diag,
+                &mut la.v_val_diag,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.value_proj.b_out.shears,
+                &lg.g_value.b_out,
+                &mut la.m_val_out,
+                &mut la.v_val_out,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.query_proj.b_in.shears,
+                &lg.g_query.b_in,
+                &mut la.m_query_in,
+                &mut la.v_query_in,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.query_proj.diag_q12,
+                &lg.g_query.diag_q12,
+                &mut la.m_query_diag,
+                &mut la.v_query_diag,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.query_proj.b_out.shears,
+                &lg.g_query.b_out,
+                &mut la.m_query_out,
+                &mut la.v_query_out,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.norm2_q12,
+                &lg.g_norm2,
+                &mut la.m_norm2,
+                &mut la.v_norm2,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_in.b_in.shears,
+                &lg.g_ffn_in.b_in,
+                &mut la.m_ffn_in_a,
+                &mut la.v_ffn_in_a,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_in.diag_q12,
+                &lg.g_ffn_in.diag_q12,
+                &mut la.m_ffn_in_d,
+                &mut la.v_ffn_in_d,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_in.b_out.shears,
+                &lg.g_ffn_in.b_out,
+                &mut la.m_ffn_in_b,
+                &mut la.v_ffn_in_b,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_out.b_in.shears,
+                &lg.g_ffn_out.b_in,
+                &mut la.m_ffn_out_a,
+                &mut la.v_ffn_out_a,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_out.diag_q12,
+                &lg.g_ffn_out.diag_q12,
+                &mut la.m_ffn_out_d,
+                &mut la.v_ffn_out_d,
+                lr_q12,
+                q12_lim,
+                true,
+                false,
+                &mut cursor,
+            );
+            update_slice(
+                &mut layer.ffn_out.b_out.shears,
+                &lg.g_ffn_out.b_out,
+                &mut la.m_ffn_out_b,
+                &mut la.v_ffn_out_b,
+                lr_q8,
+                q15_lim,
+                false,
+                false,
+                &mut cursor,
+            );
+            if learn_pkm_keys {
+                update_slice(
+                    &mut layer.pkm.key_a,
+                    &lg.g_pkm_key_a,
+                    &mut la.m_pkm_key_a,
+                    &mut la.v_pkm_key_a,
+                    lr_q8,
+                    q15_lim,
+                    false,
+                    false,
+                    &mut cursor,
+                );
+                update_slice(
+                    &mut layer.pkm.key_b,
+                    &lg.g_pkm_key_b,
+                    &mut la.m_pkm_key_b,
+                    &mut la.v_pkm_key_b,
+                    lr_q8,
+                    q15_lim,
+                    false,
+                    false,
+                    &mut cursor,
+                );
+            } else {
+                cursor += (layer.pkm.key_a.len() + layer.pkm.key_b.len()) as u64;
+            }
+            update_slice(
+                &mut layer.pkm.values,
+                &lg.g_pkm_values,
+                &mut la.m_pkm_values,
+                &mut la.v_pkm_values,
+                lr_q8,
+                q15_lim,
+                false,
+                sparse_skip,
                 &mut cursor,
             );
         }
@@ -3010,5 +3647,257 @@ mod tests {
             "oracle Hui-Belkin target probability must exceed 98%, got {}",
             probs[7]
         );
+    }
+
+    #[test]
+    fn pkm_key_and_norm_adjoints_lower_exact_loss() {
+        let cfg = ButterflyRotorConfig {
+            vocab: 256,
+            dim: 16,
+            layers: 2,
+            pkm_sub_keys: 4,
+            loss_kind: LossKind::HuiBelkinRescaledSquare { pos_weight_k: 8 },
+            seed: 4242,
+        };
+        let mut model = ButterflyRotorModel::new(cfg).unwrap();
+        // Seed non-zero PKM values (`±16384`) so PKM routing weights carry strong signal above integer rounding.
+        for (i, v) in model.layers[1].pkm.values.iter_mut().enumerate() {
+            let r = splitmix64(999 ^ (i as u64));
+            *v = (((r % 32_769) as i64) - 16_384) as i16;
+        }
+        let toks = vec![0u16, 10, 65, 11, 130, 12, 10, 65];
+        let mask = vec![0u8, 0, 0, 0, 0, 0, 0, 1];
+        let mut grad = model.zero_grad();
+        let (base_loss, _) = model
+            .accumulate_sequence_grad_opts(&toks, &mask, &mut grad, true)
+            .unwrap();
+        assert!(base_loss > 0);
+        assert!(
+            grad.g_layers[1].g_pkm_key_a.iter().any(|&g| g != 0),
+            "expected non-zero g_pkm_key_a"
+        );
+        assert!(
+            grad.g_layers[1].g_pkm_key_b.iter().any(|&g| g != 0),
+            "expected non-zero g_pkm_key_b"
+        );
+
+        let check_group = |name: &str, mut m: ButterflyRotorModel, delta_fn: &dyn Fn(&mut ButterflyRotorModel)| {
+            delta_fn(&mut m);
+            let mut g2 = m.zero_grad();
+            let (next_loss, _) = m
+                .accumulate_sequence_grad_opts(&toks, &mask, &mut g2, true)
+                .unwrap();
+            assert!(
+                next_loss < base_loss,
+                "parameter group `{name}` negative gradient step failed to lower loss ({next_loss} >= {base_loss})"
+            );
+        };
+
+        check_group("pkm_key_a", model.clone(), &|m| {
+            for (w, &g) in m.layers[1]
+                .pkm
+                .key_a
+                .iter_mut()
+                .zip(&grad.g_layers[1].g_pkm_key_a)
+            {
+                *w = clamp_q15_i16(i32::from(*w) - (g.signum() as i32) * 128);
+            }
+        });
+        check_group("pkm_key_b", model.clone(), &|m| {
+            for (w, &g) in m.layers[1]
+                .pkm
+                .key_b
+                .iter_mut()
+                .zip(&grad.g_layers[1].g_pkm_key_b)
+            {
+                *w = clamp_q15_i16(i32::from(*w) - (g.signum() as i32) * 128);
+            }
+        });
+        check_group("final_norm_q12", model.clone(), &|m| {
+            for (w, &g) in m.final_norm_q12.iter_mut().zip(&grad.g_final_norm) {
+                *w = (i32::from(*w) - (g.signum() as i32) * 16).clamp(-16_384, 16_384) as i16;
+            }
+        });
+        check_group("layer1_norm2_q12", model.clone(), &|m| {
+            for (w, &g) in m.layers[1]
+                .norm2_q12
+                .iter_mut()
+                .zip(&grad.g_layers[1].g_norm2)
+            {
+                *w = (i32::from(*w) - (g.signum() as i32) * 16).clamp(-16_384, 16_384) as i16;
+            }
+        });
+        check_group("layer0_ffn_in", model.clone(), &|m| {
+            for (w, &g) in m.layers[0]
+                .ffn_in
+                .b_out
+                .shears
+                .iter_mut()
+                .zip(&grad.g_layers[0].g_ffn_in.b_out)
+            {
+                *w = clamp_q15_i16(i32::from(*w) - (g.signum() as i32) * 64);
+            }
+        });
+    }
+
+    #[test]
+    fn pure_integer_adamw_learns_opposite_role_binding_with_k1_brier_and_learned_pkm() {
+        let pairs: &[(u16, u16)] = &[(64, 130), (65, 131), (66, 132), (67, 133)];
+        let mut sequences: Vec<(Vec<u16>, Vec<u8>)> = Vec::new();
+        for &(va, vb) in pairs {
+            sequences.push((
+                vec![0, 10, va, 11, vb, 12, 10, va],
+                vec![0, 0, 0, 0, 0, 0, 0, 1],
+            ));
+            sequences.push((
+                vec![0, 10, va, 11, vb, 12, 11, vb],
+                vec![0, 0, 0, 0, 0, 0, 0, 1],
+            ));
+            sequences.push((
+                vec![0, 11, vb, 10, va, 12, 10, va],
+                vec![0, 0, 0, 0, 0, 0, 0, 1],
+            ));
+            sequences.push((
+                vec![0, 11, vb, 10, va, 12, 11, vb],
+                vec![0, 0, 0, 0, 0, 0, 0, 1],
+            ));
+        }
+        for loss_kind in [
+            LossKind::HuiBelkinRescaledSquare { pos_weight_k: 8 },
+            LossKind::HuiBelkinRescaledSquare { pos_weight_k: 1 },
+        ] {
+            let cfg = ButterflyRotorConfig {
+                vocab: 256,
+                dim: 32,
+                layers: 2,
+                pkm_sub_keys: 4,
+                loss_kind,
+                seed: 20261128,
+            };
+            let mut model = ButterflyRotorModel::new(cfg).unwrap();
+            let mut adam = model.new_adamw_state();
+            let mut initial_loss = 0u128;
+            let mut final_loss = 0u128;
+            for epoch in 0..160 {
+                let mut grad = model.zero_grad();
+                let mut ep_loss = 0u128;
+                for (toks, mask) in &sequences {
+                    let (l, _) = model
+                        .accumulate_sequence_grad_opts(toks, mask, &mut grad, true)
+                        .unwrap();
+                    ep_loss += l;
+                }
+                if epoch == 0 {
+                    initial_loss = ep_loss;
+                }
+                final_loss = ep_loss;
+                let lr_q8 = if epoch < 80 {
+                    65_536
+                } else if epoch < 130 {
+                    16_384
+                } else {
+                    4_096
+                };
+                model.apply_adamw_step(&grad, &mut adam, lr_q8, 17, 16, true, true);
+            }
+            assert!(
+                final_loss * 5 < initial_loss,
+                "Pure-Int AdamW {:?}: expected >80% loss drop ({initial_loss} -> {final_loss})",
+                loss_kind
+            );
+            let mut correct = 0usize;
+            for (toks, _) in &sequences {
+                let mut s = model.new_session();
+                let mut last_pred = 0u16;
+                for &t in &toks[..toks.len() - 1] {
+                    last_pred = model.step(t, &mut s).unwrap().greedy_token;
+                }
+                if last_pred == *toks.last().unwrap() {
+                    correct += 1;
+                }
+            }
+            assert_eq!(
+                correct,
+                sequences.len(),
+                "Pure-Int AdamW {:?}: expected 16/16 unwrapped accuracy, got {correct}/16",
+                loss_kind
+            );
+        }
+    }
+
+    #[test]
+    fn adamw_sparse_skip_holds_idle_rows_and_q12_anchor_bounds_drift() {
+        let cfg = ButterflyRotorConfig {
+            vocab: 256,
+            dim: 16,
+            layers: 1,
+            pkm_sub_keys: 4,
+            loss_kind: LossKind::HuiBelkinRescaledSquare { pos_weight_k: 1 },
+            seed: 88,
+        };
+        let mut model = ButterflyRotorModel::new(cfg).unwrap();
+        let mut adam = model.new_adamw_state();
+        // Plant non-zero momentum on an idle embedding slot (`g == 0`) & inflated Q12 norm.
+        adam.m_embeddings[0] = 50_000;
+        adam.v_embeddings[0] = 1_000_000;
+        let orig_w0 = model.embeddings[0];
+        model.final_norm_q12[0] = 6_400;
+        let mut grad = model.zero_grad();
+        grad.g_embeddings[1] = 10_000;
+        for _ in 0..64 {
+            model.apply_adamw_step(&grad, &mut adam, 4_096, 14, 16, true, false);
+        }
+        assert_eq!(
+            model.embeddings[0], orig_w0,
+            "sparse_skip must prevent any idle weight drift on untouched embedding slot"
+        );
+        assert_eq!(adam.m_embeddings[0], 50_000);
+        assert_eq!(adam.v_embeddings[0], 1_000_000);
+        assert!(
+            model.final_norm_q12[0] < 6_400 && model.final_norm_q12[0] >= Q12_ONE,
+            "Q12 anchor decay must pull inflated norm back toward Q12_ONE=4096, got {}",
+            model.final_norm_q12[0]
+        );
+    }
+
+    #[test]
+    fn frequency_balanced_vocab_perm_is_bijective_and_balances_coarse_mass() {
+        let mut counts = [1u64; HIER_VOCAB];
+        // Zipfian counts concentrated in low IDs (mirroring ByteBPE).
+        for (i, c) in counts.iter_mut().enumerate() {
+            *c = 1_000_000u64 / ((i as u64) + 1);
+        }
+        let (perm, inv) = build_frequency_balanced_vocab_perm(&counts);
+        let mut cell_mass = [0u64; HIER_COARSE];
+        for tok in 0..HIER_VOCAB {
+            let slot = usize::from(perm[tok]);
+            assert_eq!(usize::from(inv[slot]), tok);
+            cell_mass[slot >> 6] += counts[tok];
+        }
+        let min_m = *cell_mass.iter().min().unwrap();
+        let max_m = *cell_mass.iter().max().unwrap();
+        // Top-1 token alone has weight 1_000_000 vs average ~140_000, so cell 0 holds it;
+        // verify non-outlier cells (`1..64`) balance tightly (`max/min < 2` for cells 8..64).
+        let min_tail = *cell_mass[8..].iter().min().unwrap();
+        let max_tail = *cell_mass[8..].iter().max().unwrap();
+        assert!(min_m > 0 && max_m >= min_m);
+        assert!(
+            max_tail <= min_tail * 2,
+            "balanced perm must spread frequency mass evenly across coarse cells: tail min={min_tail}, max={max_tail}"
+        );
+        let cfg = ButterflyRotorConfig {
+            vocab: HIER_VOCAB,
+            dim: 16,
+            layers: 1,
+            pkm_sub_keys: 4,
+            loss_kind: LossKind::HuiBelkinRescaledSquare { pos_weight_k: 1 },
+            seed: 123,
+        };
+        let mut m = ButterflyRotorModel::new(cfg).unwrap();
+        m.set_vocab_perm(perm.clone()).unwrap();
+        let reloaded = ButterflyRotorModel::from_bytes(&m.to_bytes()).unwrap();
+        assert_eq!(reloaded.vocab_perm, perm);
+        assert_eq!(reloaded.vocab_inv, inv);
+        assert!(m.set_vocab_perm(vec![0u16; HIER_VOCAB]).is_err());
     }
 }
