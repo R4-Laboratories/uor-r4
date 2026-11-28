@@ -1,0 +1,18 @@
+{
+  "arch": "sm_120",
+  "cubin_sha256": "4ee6bd8de04f68a3e13f3e6c818913e93fa6ddf444bc3781f53aa942f816c82e",
+  "required_kernels": [
+    "bfy_batch_fwd_bwd_kernel",
+    "bfy_lion_update_kernel",
+    "bfy_eval_records_kernel"
+  ],
+  "missing_ptx_kernels": [],
+  "missing_sass_kernels": [],
+  "ptx_float_hits": 0,
+  "ptx_div_hits": 0,
+  "ptx_mma_hits": 0,
+  "sass_sm120_mov_aliases": 3234,
+  "sass_float_hits": 0,
+  "sass_mma_hits": 0,
+  "pass": true
+}

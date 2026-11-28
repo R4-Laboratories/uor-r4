@@ -1,0 +1,26 @@
+[package]
+name = "butterfly-pilot"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[features]
+default = []
+cuda = ["dep:cudarc"]
+
+[dependencies]
+cudarc = { path = "../../../../../../third_party/cudarc-0.19.10", default-features = false, features = ["std", "driver", "cuda-12080", "dynamic-linking"], optional = true }
+hex = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+uor-r4-core = { path = "../../../../../../crates/uor-r4-core" }
+uor-r4-integer = { path = "../../../../../../crates/uor-r4-integer", features = ["p1-count-serving"] }
+uor-r4-native-vector = { path = "../../../../../../crates/uor-r4-native-vector" }
+uor-r4-tokenizer = { path = "../../../../../../crates/uor-r4-tokenizer" }
+
+[patch.crates-io]
+cudarc = { path = "../../../../../../third_party/cudarc-0.19.10" }
+arrayref = { path = "../../../../../../third_party/arrayref" }

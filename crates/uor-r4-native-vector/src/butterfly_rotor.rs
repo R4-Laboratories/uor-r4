@@ -40,7 +40,7 @@ pub const HIER_VOCAB: usize = HIER_COARSE * HIER_FINE;
 pub const PKM_TOP_K: usize = 4;
 /// Lossless binary artifact magic header.
 pub const UORBFY01_MAGIC: &[u8; 8] = b"UORBFY01";
-pub const UORBFY01_VERSION: u32 = 1;
+pub const UORBFY01_VERSION: u32 = 2;
 
 fn invalid(msg: impl Into<String>) -> Error {
     Error::Invalid(msg.into())
@@ -192,11 +192,45 @@ pub fn fwht_inplace_q15(data: &mut [i32]) -> Result<()> {
 ///   `b1 = b + round_q15(beta  * a1)`
 ///   `a2 = a1 + round_q15(alpha * b1)`
 /// Strictly bit-exact reversible (`inverse(forward(x)) == x`) and norm-preserving (`kappa ~ 1`).
+/// Exact orthogonal 3-shear Givens sine `beta(t) = -2*t / (1 + t^2)` in Q15 (`t = alpha ∈ [-1, 1]`).
+/// Guarantees every 2x2 butterfly block is an exact `SO(2)` rotation (`||B||_2 == 1.0`) while
+/// staying 100% bit-exact reversible (`inverse(forward(x)) == x`, zero rounding drift).
+#[inline]
+pub fn givens_beta_q15(alpha: i32) -> i32 {
+    let a = i64::from(alpha);
+    let a2 = (a * a + Q15_HALF) >> Q15_SHIFT;
+    let denom = i64::from(Q15_ONE) + a2;
+    let num = -2 * a * i64::from(Q15_ONE);
+    let q = if num >= 0 {
+        (num + (denom >> 1)) / denom
+    } else {
+        -((-num + (denom >> 1)) / denom)
+    };
+    q.clamp(i64::from(Q15_MIN_I16), i64::from(Q15_MAX_I16)) as i32
+}
+
+/// Exact integer derivative `d(beta)/d(alpha) = -2*(1 - t^2) / (1 + t^2)^2` in Q15 (`[-2.0, 0.0]`).
+#[inline]
+pub fn givens_dbeta_dalpha_q15(alpha: i32) -> i32 {
+    let a = i64::from(alpha);
+    let a2 = (a * a + Q15_HALF) >> Q15_SHIFT;
+    let denom = i64::from(Q15_ONE) + a2;
+    let denom2 = denom * denom;
+    let one_minus_a2 = i64::from(Q15_ONE) - a2;
+    let num = -2 * one_minus_a2 * i64::from(Q15_ONE) * i64::from(Q15_ONE);
+    let q = if num >= 0 {
+        (num + (denom2 >> 1)) / denom2
+    } else {
+        -((-num + (denom2 >> 1)) / denom2)
+    };
+    q.clamp(-2 * i64::from(Q15_ONE), 2 * i64::from(Q15_ONE)) as i32
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct LiftingButterfly {
     pub dim: usize,
     pub stages: usize,
-    /// Flat array of length `stages * (dim / 2) * 2`: `[alpha, beta]` per butterfly pair.
+    /// Flat array of length `stages * (dim / 2)`: one Givens angle `alpha = tan(theta/2)` per pair.
     pub shears: Vec<i16>,
 }
 
@@ -209,7 +243,7 @@ impl LiftingButterfly {
         Ok(Self {
             dim,
             stages,
-            shears: vec![0i16; stages * dim],
+            shears: vec![0i16; stages * (dim / 2)],
         })
     }
 
@@ -224,7 +258,7 @@ impl LiftingButterfly {
         Ok(b)
     }
 
-    /// Exact forward transform in place (`O(D log D)`, zero dense matmul).
+    /// Exact orthogonal forward transform in place (`O(D log D)`, `||B||_2 == 1.0`, zero dense matmul).
     pub fn forward_inplace(&self, x: &mut [i32]) -> Result<()> {
         if x.len() != self.dim {
             return Err(invalid("butterfly input length mismatch"));
@@ -233,15 +267,16 @@ impl LiftingButterfly {
         for s in 0..self.stages {
             let stride = 1usize << s;
             let block = stride << 1;
-            let stage_base = s * half_dim * 2;
+            let stage_base = s * half_dim;
             let mut pair_idx = 0usize;
             let mut base = 0usize;
             while base < self.dim {
                 for off in 0..stride {
                     let i = base + off;
                     let j = i + stride;
-                    let alpha = i64::from(self.shears[stage_base + pair_idx * 2]);
-                    let beta = i64::from(self.shears[stage_base + pair_idx * 2 + 1]);
+                    let alpha_i32 = i32::from(self.shears[stage_base + pair_idx]);
+                    let alpha = i64::from(alpha_i32);
+                    let beta = i64::from(givens_beta_q15(alpha_i32));
                     let a = x[i];
                     let b = x[j];
                     let a1 = a.wrapping_add(round_shift_q15(alpha * i64::from(b)));
@@ -266,15 +301,16 @@ impl LiftingButterfly {
         for s in (0..self.stages).rev() {
             let stride = 1usize << s;
             let block = stride << 1;
-            let stage_base = s * half_dim * 2;
+            let stage_base = s * half_dim;
             let mut pair_idx = 0usize;
             let mut base = 0usize;
             while base < self.dim {
                 for off in 0..stride {
                     let i = base + off;
                     let j = i + stride;
-                    let alpha = i64::from(self.shears[stage_base + pair_idx * 2]);
-                    let beta = i64::from(self.shears[stage_base + pair_idx * 2 + 1]);
+                    let alpha_i32 = i32::from(self.shears[stage_base + pair_idx]);
+                    let alpha = i64::from(alpha_i32);
+                    let beta = i64::from(givens_beta_q15(alpha_i32));
                     let a2 = x[i];
                     let b1 = x[j];
                     let a1 = a2.wrapping_sub(round_shift_q15(alpha * i64::from(b1)));
@@ -294,7 +330,7 @@ impl LiftingButterfly {
     ///
     /// Mutates `x_out` back to `x_in` in place (zero per-stage activation storage!),
     /// transforms `dx` from output gradient to input gradient in place, and accumulates
-    /// exact `i64` parameter gradients into `grad_shears`.
+    /// exact `i64` parameter gradients into `grad_shears` via the exact Givens chain rule.
     pub fn backward_inplace(
         &self,
         x_out: &mut [i32],
@@ -309,16 +345,18 @@ impl LiftingButterfly {
         for s in (0..self.stages).rev() {
             let stride = 1usize << s;
             let block = stride << 1;
-            let stage_base = s * half_dim * 2;
+            let stage_base = s * half_dim;
             let mut pair_idx = 0usize;
             let mut base = 0usize;
             while base < self.dim {
                 for off in 0..stride {
                     let i = base + off;
                     let j = i + stride;
-                    let w_idx = stage_base + pair_idx * 2;
-                    let alpha = i64::from(self.shears[w_idx]);
-                    let beta = i64::from(self.shears[w_idx + 1]);
+                    let w_idx = stage_base + pair_idx;
+                    let alpha_i32 = i32::from(self.shears[w_idx]);
+                    let alpha = i64::from(alpha_i32);
+                    let beta = i64::from(givens_beta_q15(alpha_i32));
+                    let dbeta_da = i64::from(givens_dbeta_dalpha_q15(alpha_i32));
 
                     // Recover exact forward intermediates `(a1, b, a)` via bit-exact inverse.
                     let a2 = x_out[i];
@@ -336,7 +374,7 @@ impl LiftingButterfly {
                     let da1 = da2;
                     let db1_tot = db1 + i64::from(round_shift_q15(alpha * da2));
 
-                    // Adjoint through shear 2: b1 = b + round_q15(beta * a1)
+                    // Adjoint through shear 2: b1 = b + round_q15(beta(alpha) * a1)
                     let g_beta_2 = (db1_tot * i64::from(a1) + Q15_HALF) >> Q15_SHIFT;
                     let db = db1_tot;
                     let da1_tot = da1 + i64::from(round_shift_q15(beta * db1_tot));
@@ -346,8 +384,8 @@ impl LiftingButterfly {
                     let da = da1_tot;
                     let db_out = db + i64::from(round_shift_q15(alpha * da1_tot));
 
-                    grad_shears[w_idx] += g_alpha_3 + g_alpha_1;
-                    grad_shears[w_idx + 1] += g_beta_2;
+                    let g_via_beta = (g_beta_2 * dbeta_da + Q15_HALF) >> Q15_SHIFT;
+                    grad_shears[w_idx] += g_alpha_3 + g_alpha_1 + g_via_beta;
                     dx[i] = clamp_act(da as i32);
                     dx[j] = clamp_act(db_out as i32);
                     pair_idx += 1;
@@ -974,7 +1012,8 @@ pub fn loss_and_grad_64(
 }
 
 /// Convert a 64-way Q15 score array into strictly positive integer Q24 probabilities summing to `2^24`
-/// (zero `exp`, zero normalized exponential, using shifted squared-ReLU / Sparsemax + uniform floor 1).
+/// (zero `exp`, zero normalized exponential, using exact rational Bayes posterior for Hui-Belkin or
+/// Sparsemax64 simplex projection + smooth positive floor `4`).
 pub fn scores_64_to_q24_probs(
     scores: &[i32; HIER_COARSE],
     loss_kind: LossKind,
@@ -985,17 +1024,18 @@ pub fn scores_64_to_q24_probs(
         LossKind::Sparsemax64 => {
             let p = sparsemax_64_q15(scores);
             for i in 0..HIER_COARSE {
-                raw[i] = (p[i].max(0) as u64) + 1;
+                raw[i] = (p[i].max(0) as u64) + 4;
             }
         }
-        LossKind::HuiBelkinRescaledSquare { .. } => {
-            let max_s = scores.iter().copied().max().unwrap_or(0);
+        LossKind::HuiBelkinRescaledSquare { pos_weight_k } => {
+            // Exact rational Bayes posterior of `0.5*p*k*(z-1)^2 + 0.5*(1-p)*z^2`:
+            // `z* = k*p / ((k-1)*p + 1)  <=>  p = z / (k - (k-1)*z)`.
+            let k = u64::from(pos_weight_k.max(1) as u32);
             for i in 0..HIER_COARSE {
-                // Positive quadratic margin above `max_s - 2*Q15_ONE`.
-                let shifted =
-                    (i64::from(scores[i]) - i64::from(max_s) + 2 * i64::from(Q15_ONE)).max(0);
-                let sq = ((shifted * shifted) >> 18) as u64;
-                raw[i] = sq + 1;
+                let z = scores[i].clamp(0, Q15_ONE - 32) as u64;
+                let denom = k * (Q15_ONE as u64) - (k - 1) * z;
+                let p_q15 = (z * (Q15_ONE as u64)) / denom;
+                raw[i] = p_q15 + 4;
             }
         }
     }
@@ -1848,9 +1888,10 @@ impl ButterflyRotorModel {
     /// Pure-integer NITI power-of-2 normalized Lion step with deterministic PRNG stochastic rounding.
     ///
     /// Updates persistent `i16` weights directly (zero float master copy!).
-    /// `lr_q8`: step size in units of `1/256` of a Q15 LSB (e.g., `64` = `0.25` LSB/step via
-    /// stochastic rounding, `256` = `1.0` LSB/step, `1024` = `4.0` LSB/step).
-    /// `wd_shift`: weight decay shift (e.g., `12` -> `w >> 12` decayed stochastically; `0` disables).
+    /// `lr_q8`: step size in units of `1/256` of a Q15 LSB (e.g., `64` = `1/4` LSB/step via
+    /// stochastic rounding, `256` = `1` LSB/step, `1024` = `4` LSB/step, `2048` = `8` LSB/step).
+    /// `wd_shift`: LR-scaled decoupled Lion weight decay shift (`wd_term = (w * step_lr_q8) / 2^wd_shift`;
+    /// e.g., `17` -> `lambda = 1/4` in Q15, `16` -> `lambda = 1/2`; `0` disables).
     pub fn apply_lion_step(
         &mut self,
         grad: &ButterflyGradAccum,
@@ -1873,17 +1914,20 @@ impl ButterflyRotorModel {
                 *cursor += w.len() as u64;
                 return;
             }
-            // NITI per-tensor dynamic shift brings `max_abs` into `[2^13, 2^14]`.
+            // 24-bit NITI per-tensor dynamic shift brings `max_abs` into `[2^23, 2^24]`,
+            // preserving >1,000,000:1 dynamic range inside `i32` momentum so rare tokens & PKM slots train.
             let bits = 64 - max_abs.leading_zeros();
-            let rshift = bits.saturating_sub(14);
+            let rshift = bits.saturating_sub(24);
             for i in 0..w.len() {
-                let gi = (g[i] >> rshift).clamp(-32_768, 32_767) as i32;
+                let gi = (g[i] >> rshift).clamp(-33_554_432, 33_554_432) as i32;
                 let mi = m[i];
                 // Symmetric truncating-toward-zero division prevents negative momentum trapping at `-1`!
                 let u = (7 * i64::from(mi) + i64::from(gi)) / 8;
                 let dir = u.signum(); // `-1, 0, +1`
+                                      // LR-scaled decoupled Lion weight decay `lr * lambda * w` (`lambda = Q15_ONE / 2^wd_shift`):
+                                      // stays scale-invariant as `step_lr_q8` anneals and yields exact 0 motion when `step_lr_q8 == 0`.
                 let wd_term = if wd_shift > 0 && clamp_hi == i32::from(Q15_MAX_I16) {
-                    (i64::from(w[i]) * 256) / (1i64 << wd_shift.min(30))
+                    (i64::from(w[i]) * i64::from(step_lr_q8)) / (1i64 << wd_shift.min(30))
                 } else {
                     0
                 };
@@ -2311,7 +2355,7 @@ impl ButterflyRotorModel {
         let final_norm_q12 = read_i16_vec(&mut cur, dim)?;
 
         let stages = dim.trailing_zeros() as usize;
-        let shear_len = stages * dim;
+        let shear_len = stages * (dim / 2);
         let mut layers = Vec::with_capacity(layers_n);
         for _ in 0..layers_n {
             let norm1_q12 = read_i16_vec(&mut cur, dim)?;
@@ -2585,7 +2629,7 @@ mod tests {
                 } else {
                     4_096
                 };
-                model.apply_lion_step(&grad, &mut lion, lr_q8, 12);
+                model.apply_lion_step(&grad, &mut lion, lr_q8, 17);
             }
 
             // Verify dramatic pure-integer loss reduction AND 100% unwrapped exact prediction!
@@ -2779,7 +2823,11 @@ mod tests {
             "negative idle momentum must decay to exact 0 without trapping at -1"
         );
         let snap = model.clone();
-        model.apply_lion_step(&grad, &mut lion, 0, 0);
+        model.apply_lion_step(&grad, &mut lion, 0, 17);
+        assert_eq!(
+            model.embeddings, snap.embeddings,
+            "lr_q8 == 0 with wd_shift > 0 must not decay Q15 weights"
+        );
         assert_eq!(
             model.final_norm_q12, snap.final_norm_q12,
             "lr_q8 == 0 must not move Q12 norm weights"
@@ -2918,5 +2966,49 @@ mod tests {
         assert!(dx_low
             .iter()
             .all(|&v| (-ACT_CLAMP..=ACT_CLAMP).contains(&v)));
+    }
+
+    #[test]
+    fn orthogonal_givens_preserves_norm_at_d256_and_oracle_calibration_has_no_floor() {
+        // Even with maximal shears (`±32767`) across 8 stages (`D = 256`), exact SO(2) Givens lifting
+        // must preserve vector L2 norm within ~1% (zero hyperbolic blowup or i32 wrap!).
+        let mut b = LiftingButterfly::new_identity(256).unwrap();
+        for (i, w) in b.shears.iter_mut().enumerate() {
+            *w = if i % 2 == 0 { Q15_MAX_I16 } else { -24_000 };
+        }
+        let orig: Vec<i32> = (0..256)
+            .map(|i| (((splitmix64(101 + i as u64) % 65_535) as i64) - 32_767) as i32)
+            .collect();
+        let norm2_in: u128 = orig
+            .iter()
+            .map(|&v| i128::from(v).unsigned_abs().pow(2))
+            .sum();
+        let mut work = orig.clone();
+        b.forward_inplace(&mut work).unwrap();
+        let norm2_out: u128 = work
+            .iter()
+            .map(|&v| i128::from(v).unsigned_abs().pow(2))
+            .sum();
+        assert!(
+            norm2_out * 100 >= norm2_in * 98 && norm2_out * 100 <= norm2_in * 102,
+            "SO(2) Givens butterfly must preserve L2 norm within 2%: in={norm2_in} out={norm2_out}"
+        );
+        b.inverse_inplace(&mut work).unwrap();
+        assert_eq!(work, orig, "orthogonal Givens inverse must stay bit-exact");
+
+        // Oracle Hui-Belkin (`z[target] = Q15_ONE`, others `0`) must assign >98% Q24 mass (no 2.86 BPB floor!).
+        let mut scores = [0i32; HIER_COARSE];
+        scores[7] = Q15_ONE;
+        let probs = scores_64_to_q24_probs(
+            &scores,
+            LossKind::HuiBelkinRescaledSquare { pos_weight_k: 8 },
+        );
+        let sum: u64 = probs.iter().map(|&p| u64::from(p)).sum();
+        assert_eq!(sum, 1u64 << 24);
+        assert!(
+            u64::from(probs[7]) * 100 >= (1u64 << 24) * 98,
+            "oracle Hui-Belkin target probability must exceed 98%, got {}",
+            probs[7]
+        );
     }
 }

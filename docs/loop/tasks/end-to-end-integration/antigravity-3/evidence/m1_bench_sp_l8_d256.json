@@ -1,0 +1,18 @@
+{
+  "artifact_bytes": 19161660,
+  "artifact_sha256": "33c5a5b8fd18ce2b8b2d9ebe3e862c3da231e659115d783186e1c0121a1ef834",
+  "cold_open_ms": 101,
+  "context_len": 2048,
+  "cuda_vs_cpu_replay_checked": true,
+  "cuda_vs_cpu_replay_diffs": 0,
+  "determinism_replay_diffs": 0,
+  "dim": 256,
+  "gen_len": 128,
+  "layers": 8,
+  "median_decode_tok_per_sec": 2245,
+  "median_decode_us": 56996,
+  "median_prefill_ms": 992,
+  "pkm_sub_keys": 64,
+  "runs": 7,
+  "schema": "uor-r4.gate1-cpu-bench/1"
+}

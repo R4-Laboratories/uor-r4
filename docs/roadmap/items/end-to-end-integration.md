@@ -31,6 +31,8 @@ both before any mechanism is promoted.
 
 **November 27, 2026 (`antigravity-2`, Gate 1 PR 1).** Pure-integer Reversible Lifting-Givens Butterfly + Non-Abelian `S³` Holographic Quaternion Rotor + Sparse PKM + Factored `64×64` Hierarchical Readout + Exact Integer Adjoint & Lion core (`UORBFY01`) landed in `uor-r4-native-vector` (`49/49` tests incl. `16/16` unwrapped opposite-role binding on both loss arms, WASM32-ready, `$0.00` GPU). [Gate 1 PR 1 Report](../../loop/tasks/end-to-end-integration/antigravity-2/REPORT.md)
 
+**November 28, 2026 (`antigravity-3`, Gate 1 PR 2).** Pure-integer AOT CUDA (`sm_120`, `0` PTX/SASS float/div/MMA, `0` GPU=CPU=M1 diffs) 3-arm Butterfly-Rotor pilot on `train-100m` (`r4`, Vast.ai RTX 5090, `$5.74` total across `r2`/`r3`/`r4`, `0` pods active, `DEV-test` sealed) achieved **`4,291 tok/s`** (`L=4`, `10.65 MB`, `23.6 MB` M1 RSS, `112 ms` open) and **`2,294 tok/s`** (`L=8`, `19.16 MB`, `40.7 MB` M1 RSS, `97 ms` open) with `0` CUDA=M1 replay diffs, while honestly classifying **`GATE1_DIAGNOSTIC_NEEDED`** (`hb_l4 = 2.687`, `hb_l8 = 2.782`, `sp_l8 = 3.466` BPB; `L=8` `shuf_delta = +9,698` vs `L=4` `+4,505`; step-`2,000` turnaround traced to sparse-row sign-Lion idle coasting, uncapped Q12 norm drift, and identity `vocab_perm`), unlocking the pre-registered `CHARTER §3.7` diagnostic + optimizer repair unit (`antigravity-4`). [Gate 1 PR 2 Report](../../loop/tasks/end-to-end-integration/antigravity-3/REPORT.md)
+
 - One common `Read` result and interface, whose reference implementation is the native Q31
   first-pick read that D86 step 6 trains and serves (ADR-0007 Amendment 1). The Hamming copy and
   ask heads come second. Flock, route and relation adapters wait for a second consumer.
